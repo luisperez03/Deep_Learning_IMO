@@ -1,0 +1,951 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Diseño experimental e implementación &#8212; Segmentación de etiquetas de mercancías peligrosas</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'implementacion';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Resultados y baseline" href="resultados.html" />
+    <link rel="prev" title="EDA y preparación" href="eda.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Segmentación de etiquetas de mercancías peligrosas</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="problema.html">Problema y datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="literatura.html">Estado del arte y elección de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eda.html">EDA y preparación</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Diseño experimental e implementación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resultados.html">Resultados y baseline</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Diseño experimental e implementación</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tres-maneras-de-reconstruir-una-mascara">Tres maneras de reconstruir una máscara</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#como-contar-capas-y-neuronas">Cómo contar capas y neuronas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fcn">FCN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#segnet">SegNet</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#u-net">U-Net</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#de-un-pixel-rgb-a-un-mapa-de-caracteristicas">De un píxel RGB a un mapa de características</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-informacion-llega-al-decodificador">Qué información llega al decodificador</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#del-error-observado-al-gradiente">Del error observado al gradiente</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-paso-de-adam">Un paso de Adam</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#del-logit-a-dice-e-iou">Del logit a Dice e IoU</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologia-experimental">Metodología experimental</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-y-procedencia">Hardware y procedencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducir-el-informe-desde-los-archivos-guardados">Reproducir el informe desde los archivos guardados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducir-las-figuras-del-cierre">Reproducir las figuras del cierre</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ruta-alternativa-para-inspeccion-en-colab">Ruta alternativa para inspección en Colab</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="diseno-experimental-e-implementacion">
+<h1>Diseño experimental e implementación<a class="headerlink" href="#diseno-experimental-e-implementacion" title="Link to this heading">#</a></h1>
+<section id="tres-maneras-de-reconstruir-una-mascara">
+<h2>Tres maneras de reconstruir una máscara<a class="headerlink" href="#tres-maneras-de-reconstruir-una-mascara" title="Link to this heading">#</a></h2>
+<p>Las implementaciones de <code class="docutils literal notranslate"><span class="pre">scripts/modelos_base.py</span></code> comparten bloques de dos convoluciones 3 × 3 con relleno y ReLU, canales 16/32/64, dos reducciones espaciales por máximos y una cabeza 1 × 1. La salida tiene un canal. Con lote unitario se prescindió de BatchNorm. Los pesos se aprendieron desde cero, sin aumentos.</p>
+<section id="como-contar-capas-y-neuronas">
+<h3>Cómo contar capas y neuronas<a class="headerlink" href="#como-contar-capas-y-neuronas" title="Link to this heading">#</a></h3>
+<p>Contamos como capa entrenable cada convolución, incluida la cabeza final de 1 × 1. Un filtro produce un canal y reutiliza los mismos pesos en muchas posiciones. Por eso conviene distinguir filtros, activaciones y parámetros. Por ejemplo, la primera convolución de las tres redes tiene 16 filtros, produce 16 × 256 × 256 = 1.048.576 activaciones por imagen y aprende (3 × 3 × 3 + 1) × 16 = 448 parámetros.</p>
+<p>Si por «neuronas» se entienden las <strong>unidades de salida de las convoluciones</strong>, la columna de activaciones suma esas unidades en todas las capas por imagen. Depende de la resolución. Los parámetros son los pesos y sesgos aprendidos, compartidos entre posiciones. Pooling, ReLU, ampliaciones y concatenaciones intervienen en el cálculo y no añaden parámetros.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Red</p></th>
+<th class="head text-right"><p>Capas entrenables</p></th>
+<th class="head text-right"><p>Filtros sumados</p></th>
+<th class="head text-right"><p>Activaciones convolucionales por imagen</p></th>
+<th class="head text-right"><p>Parámetros</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>FCN</p></td>
+<td class="text-right"><p>7</p></td>
+<td class="text-right"><p>225</p></td>
+<td class="text-right"><p>3.674.112</p></td>
+<td class="text-right"><p>72.145</p></td>
+</tr>
+<tr class="row-odd"><td><p>SegNet</p></td>
+<td class="text-right"><p>12</p></td>
+<td class="text-right"><p>321</p></td>
+<td class="text-right"><p>6.488.064</p></td>
+<td class="text-right"><p>85.761</p></td>
+</tr>
+<tr class="row-even"><td><p>U-Net</p></td>
+<td class="text-right"><p>11</p></td>
+<td class="text-right"><p>321</p></td>
+<td class="text-right"><p>6.881.280</p></td>
+<td class="text-right"><p>118.273</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="fcn">
+<h3>FCN<a class="headerlink" href="#fcn" title="Link to this heading">#</a></h3>
+<p><img alt="Camino del codificador y reconstrucción espacial de FCN" src="_images/mapa_fcn.png" /></p>
+<p>La cabeza calcula un solo logit por posición en el mapa de 64 × 64. La ampliación bilineal recupera el tamaño de la máscara sin añadir pesos.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Ver las 7 capas convolucionales de FCN</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text">Capa en PyTorch</p></th>
+<th class="head"><p class="sd-card-text">Núcleo</p></th>
+<th class="head text-right"><p class="sd-card-text">Canales entrada → salida</p></th>
+<th class="head"><p class="sd-card-text">Salida (C × H × W)</p></th>
+<th class="head text-right"><p class="sd-card-text">Parámetros</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">features.0.0</span></code></p></td>
+<td><p class="sd-card-text">3 × 3</p></td>
+<td class="text-right"><p class="sd-card-text">3 → 16</p></td>
+<td><p class="sd-card-text">16 × 256 × 256</p></td>
+<td class="text-right"><p class="sd-card-text">448</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">features.0.2</span></code></p></td>
+<td><p class="sd-card-text">3 × 3</p></td>
+<td class="text-right"><p class="sd-card-text">16 → 16</p></td>
+<td><p class="sd-card-text">16 × 256 × 256</p></td>
+<td class="text-right"><p class="sd-card-text">2.320</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">features.2.0</span></code></p></td>
+<td><p class="sd-card-text">3 × 3</p></td>
+<td class="text-right"><p class="sd-card-text">16 → 32</p></td>
+<td><p class="sd-card-text">32 × 128 × 128</p></td>
+<td class="text-right"><p class="sd-card-text">4.640</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">features.2.2</span></code></p></td>
+<td><p class="sd-card-text">3 × 3</p></td>
+<td class="text-right"><p class="sd-card-text">32 → 32</p></td>
+<td><p class="sd-card-text">32 × 128 × 128</p></td>
+<td class="text-right"><p class="sd-card-text">9.248</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">features.4.0</span></code></p></td>
+<td><p class="sd-card-text">3 × 3</p></td>
+<td class="text-right"><p class="sd-card-text">32 → 64</p></td>
+<td><p class="sd-card-text">64 × 64 × 64</p></td>
+<td class="text-right"><p class="sd-card-text">18.496</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">features.4.2</span></code></p></td>
+<td><p class="sd-card-text">3 × 3</p></td>
+<td class="text-right"><p class="sd-card-text">64 → 64</p></td>
+<td><p class="sd-card-text">64 × 64 × 64</p></td>
+<td class="text-right"><p class="sd-card-text">36.928</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">head</span></code></p></td>
+<td><p class="sd-card-text">1 × 1</p></td>
+<td class="text-right"><p class="sd-card-text">64 → 1</p></td>
+<td><p class="sd-card-text">1 × 64 × 64</p></td>
+<td class="text-right"><p class="sd-card-text">65</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</details></section>
+<section id="segnet">
+<h3>SegNet<a class="headerlink" href="#segnet" title="Link to this heading">#</a></h3>
+<p><img alt="Camino del codificador y reconstrucción espacial de SegNet" src="_images/mapa_segnet.png" /></p>
+<p>Las ramas laterales transportan los índices del máximo de cada ventana. El decodificador usa estos índices para recolocar los valores antes de aplicar sus convoluciones.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Ver las 12 capas convolucionales de SegNet</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text">Capa en PyTorch</p></th>
+<th class="head"><p class="sd-card-text">Núcleo</p></th>
+<th class="head text-right"><p class="sd-card-text">Canales entrada → salida</p></th>
+<th class="head"><p class="sd-card-text">Salida (C × H × W)</p></th>
+<th class="head text-right"><p class="sd-card-text">Parámetros</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">e1.0</span></code></p></td>
+<td><p class="sd-card-text">3 × 3</p></td>
+<td class="text-right"><p class="sd-card-text">3 → 16</p></td>
+<td><p class="sd-card-text">16 × 256 × 256</p></td>
+<td class="text-right"><p class="sd-card-text">448</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">e1.2</span></code></p></td>
+<td><p class="sd-card-text">3 × 3</p></td>
+<td class="text-right"><p class="sd-card-text">16 → 16</p></td>
+<td><p class="sd-card-text">16 × 256 × 256</p></td>
+<td class="text-right"><p class="sd-card-text">2.320</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">e2.0</span></code></p></td>
+<td><p class="sd-card-text">3 × 3</p></td>
+<td class="text-right"><p class="sd-card-text">16 → 32</p></td>
+<td><p class="sd-card-text">32 × 128 × 128</p></td>
+<td class="text-right"><p class="sd-card-text">4.640</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">e2.2</span></code></p></td>
+<td><p class="sd-card-text">3 × 3</p></td>
+<td class="text-right"><p class="sd-card-text">32 → 32</p></td>
+<td><p class="sd-card-text">32 × 128 × 128</p></td>
+<td class="text-right"><p class="sd-card-text">9.248</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">e3.0</span></code></p></td>
+<td><p class="sd-card-text">3 × 3</p></td>
+<td class="text-right"><p class="sd-card-text">32 → 64</p></td>
+<td><p class="sd-card-text">64 × 64 × 64</p></td>
+<td class="text-right"><p class="sd-card-text">18.496</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">e3.2</span></code></p></td>
+<td><p class="sd-card-text">3 × 3</p></td>
+<td class="text-right"><p class="sd-card-text">64 → 64</p></td>
+<td><p class="sd-card-text">64 × 64 × 64</p></td>
+<td class="text-right"><p class="sd-card-text">36.928</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">reduce</span></code></p></td>
+<td><p class="sd-card-text">1 × 1</p></td>
+<td class="text-right"><p class="sd-card-text">64 → 32</p></td>
+<td><p class="sd-card-text">32 × 64 × 64</p></td>
+<td class="text-right"><p class="sd-card-text">2.080</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">d2.0</span></code></p></td>
+<td><p class="sd-card-text">3 × 3</p></td>
+<td class="text-right"><p class="sd-card-text">32 → 16</p></td>
+<td><p class="sd-card-text">16 × 128 × 128</p></td>
+<td class="text-right"><p class="sd-card-text">4.624</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">d2.2</span></code></p></td>
+<td><p class="sd-card-text">3 × 3</p></td>
+<td class="text-right"><p class="sd-card-text">16 → 16</p></td>
+<td><p class="sd-card-text">16 × 128 × 128</p></td>
+<td class="text-right"><p class="sd-card-text">2.320</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">d1.0</span></code></p></td>
+<td><p class="sd-card-text">3 × 3</p></td>
+<td class="text-right"><p class="sd-card-text">16 → 16</p></td>
+<td><p class="sd-card-text">16 × 256 × 256</p></td>
+<td class="text-right"><p class="sd-card-text">2.320</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">d1.2</span></code></p></td>
+<td><p class="sd-card-text">3 × 3</p></td>
+<td class="text-right"><p class="sd-card-text">16 → 16</p></td>
+<td><p class="sd-card-text">16 × 256 × 256</p></td>
+<td class="text-right"><p class="sd-card-text">2.320</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">head</span></code></p></td>
+<td><p class="sd-card-text">1 × 1</p></td>
+<td class="text-right"><p class="sd-card-text">16 → 1</p></td>
+<td><p class="sd-card-text">1 × 256 × 256</p></td>
+<td class="text-right"><p class="sd-card-text">17</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</details></section>
+<section id="u-net">
+<h3>U-Net<a class="headerlink" href="#u-net" title="Link to this heading">#</a></h3>
+<p><img alt="Camino del codificador y reconstrucción espacial de U-Net" src="_images/mapa_unet.png" /></p>
+<p>Las ramas laterales copian activaciones completas. Tras ampliar por vecino más cercano, se concatenan 64 + 32 canales a 128 × 128 y 32 + 16 canales a 256 × 256.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Ver las 11 capas convolucionales de U-Net</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text">Capa en PyTorch</p></th>
+<th class="head"><p class="sd-card-text">Núcleo</p></th>
+<th class="head text-right"><p class="sd-card-text">Canales entrada → salida</p></th>
+<th class="head"><p class="sd-card-text">Salida (C × H × W)</p></th>
+<th class="head text-right"><p class="sd-card-text">Parámetros</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">e1.0</span></code></p></td>
+<td><p class="sd-card-text">3 × 3</p></td>
+<td class="text-right"><p class="sd-card-text">3 → 16</p></td>
+<td><p class="sd-card-text">16 × 256 × 256</p></td>
+<td class="text-right"><p class="sd-card-text">448</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">e1.2</span></code></p></td>
+<td><p class="sd-card-text">3 × 3</p></td>
+<td class="text-right"><p class="sd-card-text">16 → 16</p></td>
+<td><p class="sd-card-text">16 × 256 × 256</p></td>
+<td class="text-right"><p class="sd-card-text">2.320</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">e2.0</span></code></p></td>
+<td><p class="sd-card-text">3 × 3</p></td>
+<td class="text-right"><p class="sd-card-text">16 → 32</p></td>
+<td><p class="sd-card-text">32 × 128 × 128</p></td>
+<td class="text-right"><p class="sd-card-text">4.640</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">e2.2</span></code></p></td>
+<td><p class="sd-card-text">3 × 3</p></td>
+<td class="text-right"><p class="sd-card-text">32 → 32</p></td>
+<td><p class="sd-card-text">32 × 128 × 128</p></td>
+<td class="text-right"><p class="sd-card-text">9.248</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">e3.0</span></code></p></td>
+<td><p class="sd-card-text">3 × 3</p></td>
+<td class="text-right"><p class="sd-card-text">32 → 64</p></td>
+<td><p class="sd-card-text">64 × 64 × 64</p></td>
+<td class="text-right"><p class="sd-card-text">18.496</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">e3.2</span></code></p></td>
+<td><p class="sd-card-text">3 × 3</p></td>
+<td class="text-right"><p class="sd-card-text">64 → 64</p></td>
+<td><p class="sd-card-text">64 × 64 × 64</p></td>
+<td class="text-right"><p class="sd-card-text">36.928</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">d2.0</span></code></p></td>
+<td><p class="sd-card-text">3 × 3</p></td>
+<td class="text-right"><p class="sd-card-text">96 → 32</p></td>
+<td><p class="sd-card-text">32 × 128 × 128</p></td>
+<td class="text-right"><p class="sd-card-text">27.680</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">d2.2</span></code></p></td>
+<td><p class="sd-card-text">3 × 3</p></td>
+<td class="text-right"><p class="sd-card-text">32 → 32</p></td>
+<td><p class="sd-card-text">32 × 128 × 128</p></td>
+<td class="text-right"><p class="sd-card-text">9.248</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">d1.0</span></code></p></td>
+<td><p class="sd-card-text">3 × 3</p></td>
+<td class="text-right"><p class="sd-card-text">48 → 16</p></td>
+<td><p class="sd-card-text">16 × 256 × 256</p></td>
+<td class="text-right"><p class="sd-card-text">6.928</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">d1.2</span></code></p></td>
+<td><p class="sd-card-text">3 × 3</p></td>
+<td class="text-right"><p class="sd-card-text">16 → 16</p></td>
+<td><p class="sd-card-text">16 × 256 × 256</p></td>
+<td class="text-right"><p class="sd-card-text">2.320</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">head</span></code></p></td>
+<td><p class="sd-card-text">1 × 1</p></td>
+<td class="text-right"><p class="sd-card-text">16 → 1</p></td>
+<td><p class="sd-card-text">1 × 256 × 256</p></td>
+<td class="text-right"><p class="sd-card-text">17</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</details><p>FCN tiene 72.145 parámetros y centra el presupuesto en extraer contexto. Al ampliar directamente la salida gruesa puede suavizar contornos. SegNet tiene 85.761 parámetros y conserva posiciones de máximos para reconstruir la geometría con <em>unpooling</em>. U-Net tiene 118.273 parámetros y transporta también los valores de las características superficiales. Esto permite representar detalles que el <em>pooling</em> elimina, a costa de almacenar mapas más grandes. Estas son adaptaciones locales. Por ejemplo, la FCN del artículo explora fusiones laterales y nuestra FCN prescinde de ellas.</p>
+<p>Una convolución calcula <span class="math notranslate nohighlight">\(h_j=\mathrm{ReLU}(b_j+\sum_i W_{ji}*x_i)\)</span>. Para un núcleo de lado <span class="math notranslate nohighlight">\(k\)</span>, con <span class="math notranslate nohighlight">\(C_i\)</span> canales de entrada y <span class="math notranslate nohighlight">\(C_o\)</span> de salida, aporta <span class="math notranslate nohighlight">\((k^2 C_i+1)C_o\)</span> parámetros. En un mapa de <span class="math notranslate nohighlight">\(H\times W\)</span> su costo es del orden de <span class="math notranslate nohighlight">\(HWk^2C_iC_o\)</span> operaciones por imagen. Se suma por capa; la retropropagación conserva el orden y añade gradientes y activaciones intermedias. La tabla de tiempos mide épocas con entrenamiento y validación incluidos.</p>
+</section>
+</section>
+<section id="de-un-pixel-rgb-a-un-mapa-de-caracteristicas">
+<h2>De un píxel RGB a un mapa de características<a class="headerlink" href="#de-un-pixel-rgb-a-un-mapa-de-caracteristicas" title="Link to this heading">#</a></h2>
+<p>La entrada tiene forma <span class="math notranslate nohighlight">\(3\times256\times256\)</span>. En cada posición <span class="math notranslate nohighlight">\((u,v)\)</span> el filtro <span class="math notranslate nohighlight">\(j\)</span> lee la misma vecindad de 3 × 3 en todos los canales. En la implementación de PyTorch, la operación llamada convolución es una correlación cruzada con pesos aprendidos:</p>
+<div class="math notranslate nohighlight">
+\[
+a_{j,u,v}=b_j+\sum_{c}\sum_{r,s=-1}^{1}W_{j,c,r,s}\,x_{c,u+r,v+s},
+\qquad h_{j,u,v}=\max(0,a_{j,u,v}).
+\]</div>
+<p>El mismo peso interviene en muchas posiciones. Así, un patrón local puede activar el filtro en diferentes partes de la imagen. El relleno de un píxel de la convolución conserva ancho y alto. Es distinto del relleno del preprocesamiento que ajusta la fotografía al lienzo cuadrado. En <code class="docutils literal notranslate"><span class="pre">block</span></code>, cada una de las dos convoluciones va seguida de ReLU.</p>
+<p><img alt="Un filtro de tres por tres detecta una transición y ReLU elimina la respuesta negativa" src="_images/filtro_convolucion.png" /></p>
+<p>En la primera ventana, cada fila aporta −1 × 0 + 0 × 1 + 1 × 1 = 1. Al sumar tres filas se obtiene 3. Al deslizar el mismo filtro un píxel a la derecha se obtiene −3 y ReLU devuelve 0. Es un ejemplo didáctico de un canal con un filtro construido a mano. En las tres redes, cada filtro combina todos los canales de entrada y aprende sus coeficientes durante el entrenamiento.</p>
+<section id="que-informacion-llega-al-decodificador">
+<h3>Qué información llega al decodificador<a class="headerlink" href="#que-informacion-llega-al-decodificador" title="Link to this heading">#</a></h3>
+<p>El codificador transforma <span class="math notranslate nohighlight">\(16\times256\times256\)</span> en <span class="math notranslate nohighlight">\(32\times128\times128\)</span> y luego en <span class="math notranslate nohighlight">\(64\times64\times64\)</span>. En cada reducción, <code class="docutils literal notranslate"><span class="pre">max_pool2d</span></code> conserva el máximo de cada ventana de 2 × 2. Las activaciones profundas combinan información de una región mayor de la fotografía, pero ya no conservan una muestra por cada posición original.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Red y método en el código</p></th>
+<th class="head"><p>Camino de vuelta a 256 × 256</p></th>
+<th class="head"><p>Consecuencia</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SmallFCN.forward</span></code></p></td>
+<td><p>Una convolución 1 × 1 lleva los 64 canales a un logit a resolución 64 × 64. La interpolación bilineal amplía ese mapa directamente.</p></td>
+<td><p>No recibe mapas laterales del codificador. Un logit de salida combina vecinos del mapa grueso.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SmallSegNet.forward</span></code></p></td>
+<td><p>Reduce 64 a 32 canales con una convolución 1 × 1. Dos operaciones de <em>unpooling</em> devuelven los valores a los índices de máximos guardados, seguidas por bloques convolucionales.</p></td>
+<td><p>El índice recupera una posición, no los valores descartados. Las convoluciones del decodificador completan el mapa disperso.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SmallUNet.forward</span></code></p></td>
+<td><p>Amplía por vecino más cercano y concatena el mapa profundo con 32 canales del codificador (96 en total). Repite la operación con 16 canales (48 en total).</p></td>
+<td><p>El decodificador recibe las activaciones superficiales completas en sus posiciones originales de cada nivel.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Las dos últimas redes producen el logit final mediante una cabeza 1 × 1 a resolución completa. Ninguna emplea transposición convolucional, pesos preentrenados ni normalización por lotes. La comparación empírica decide si estas diferencias ayudan en este corpus.</p>
+</section>
+</section>
+<section id="del-error-observado-al-gradiente">
+<h2>Del error observado al gradiente<a class="headerlink" href="#del-error-observado-al-gradiente" title="Link to this heading">#</a></h2>
+<p>Sea <span class="math notranslate nohighlight">\(V\)</span> el conjunto de píxeles válidos de una imagen, <span class="math notranslate nohighlight">\(n=|V|\)</span>, <span class="math notranslate nohighlight">\(z_i\)</span> su logit, <span class="math notranslate nohighlight">\(p_i=(1+e^{-z_i})^{-1}\)</span> y <span class="math notranslate nohighlight">\(y_i\in\{0,1\}\)</span>. En <code class="docutils literal notranslate"><span class="pre">colab_runner.loss_fn</span></code> se indexa por <span class="math notranslate nohighlight">\(V\)</span> antes de reducir. La BCE se calcula directamente con logits para mantener estabilidad numérica. Para explicar el cálculo puede escribirse en probabilidades:</p>
+<div class="math notranslate nohighlight">
+\[
+L_{\rm BCE}=-\frac1n\sum_{i\in V}\big[y_i\log p_i+(1-y_i)\log(1-p_i)\big].
+\]</div>
+<p>Sea <span class="math notranslate nohighlight">\(A=2\sum_{i\in V}p_i y_i+\varepsilon\)</span> y <span class="math notranslate nohighlight">\(B=\sum_{i\in V}(p_i+y_i)+\varepsilon\)</span>, con <span class="math notranslate nohighlight">\(\varepsilon=10^{-6}\)</span>. La pérdida usada fue <span class="math notranslate nohighlight">\(L=(L_{\rm BCE}+1-A/B)/2\)</span>. La BCE penaliza errores por píxel. El término de solapamiento vincula los píxeles de la imagen mediante un denominador común y da peso a la pequeña región de etiqueta.</p>
+<p>Antes de aplicar umbral, la derivada respecto de un logit válido es</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial L}{\partial z_i}
+=\tfrac12\left[\frac{p_i-y_i}{n}
++\frac{A-2y_i B}{B^2}p_i(1-p_i)\right].
+\]</div>
+<p>Por la regla de la cadena, si <span class="math notranslate nohighlight">\(\delta_{j,u,v}\)</span> es el gradiente que llega a la preactivación <span class="math notranslate nohighlight">\(a_{j,u,v}\)</span>, entonces <span class="math notranslate nohighlight">\(\partial L/\partial W_{j,c,r,s}=\sum_{u,v}\delta_{j,u,v} x_{c,u+r,v+s}\)</span>. La suma recoge todos los usos del filtro. ReLU transmite el gradiente para preactivaciones positivas y <em>max pooling</em> lo dirige a la posición elegida. Las concatenaciones de U-Net dan al gradiente más de una ruta hacia las primeras capas. Los píxeles del relleno no aportan términos a la pérdida.</p>
+<section id="un-paso-de-adam">
+<h3>Un paso de Adam<a class="headerlink" href="#un-paso-de-adam" title="Link to this heading">#</a></h3>
+<p>Por cada imagen, <code class="docutils literal notranslate"><span class="pre">run</span></code> limpia los gradientes con <code class="docutils literal notranslate"><span class="pre">zero_grad</span></code>, ejecuta el modelo, evalúa la pérdida y llama a <code class="docutils literal notranslate"><span class="pre">loss.backward()</span></code>. PyTorch obtiene <span class="math notranslate nohighlight">\(g_t=\nabla_\theta L_t\)</span> para cada parámetro por diferenciación automática. <code class="docutils literal notranslate"><span class="pre">optimizer.step()</span></code> aplica Adam con tasa <span class="math notranslate nohighlight">\(\eta=0{,}001\)</span>, momentos iniciales cero, <span class="math notranslate nohighlight">\(\beta_1=0{,}9\)</span>, <span class="math notranslate nohighlight">\(\beta_2=0{,}999\)</span>, <span class="math notranslate nohighlight">\(\epsilon_A=10^{-8}\)</span> y sin decaimiento de pesos:</p>
+<div class="math notranslate nohighlight">
+\[
+m_t=\beta_1m_{t-1}+(1-\beta_1)g_t,\qquad
+v_t=\beta_2v_{t-1}+(1-\beta_2)g_t^2,
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\widehat m_t=\frac{m_t}{1-\beta_1^t},\quad
+\widehat v_t=\frac{v_t}{1-\beta_2^t},\quad
+\theta_t=\theta_{t-1}-\eta\frac{\widehat m_t}{\sqrt{\widehat v_t}+\epsilon_A}.
+\]</div>
+<p>Las operaciones son por coordenada. El primer momento suaviza la dirección del gradiente y el segundo adapta la escala del paso. El <span class="math notranslate nohighlight">\(\epsilon_A\)</span> de Adam cumple una función distinta del suavizado del Dice. La validación selecciona pesos al final de cada época; no produce actualizaciones del optimizador. <a class="reference external" href="https://arxiv.org/abs/1412.6980">Kingma y Ba, <em>Adam: A Method for Stochastic Optimization</em></a></p>
+</section>
+</section>
+<section id="del-logit-a-dice-e-iou">
+<h2>Del logit a Dice e IoU<a class="headerlink" href="#del-logit-a-dice-e-iou" title="Link to this heading">#</a></h2>
+<p>En <code class="docutils literal notranslate"><span class="pre">dataset_ready.metrics</span></code>, <span class="math notranslate nohighlight">\(p_i\geq0{,}5\)</span> define la máscara predicha <span class="math notranslate nohighlight">\(P\)</span>. Sea <span class="math notranslate nohighlight">\(Y\)</span> la referencia binaria en el área válida. Los aciertos positivos son <span class="math notranslate nohighlight">\(|P\cap Y|\)</span>; la unión <span class="math notranslate nohighlight">\(|P\cup Y|\)</span> incluye además falsos positivos y negativos. Por imagen se cumple</p>
+<div class="math notranslate nohighlight">
+\[
+J=\mathrm{IoU}=\frac{VP}{VP+FP+FN},\qquad
+D=\mathrm{Dice}=\frac{2VP}{2VP+FP+FN}=\frac{2J}{1+J}.
+\]</div>
+<p>Por ejemplo, con 8 píxeles positivos correctos, 1 falso positivo y 3 falsos negativos, IoU es <span class="math notranslate nohighlight">\(8/12\)</span> y Dice es <span class="math notranslate nohighlight">\(16/20\)</span>. Para coincidencia parcial Dice resulta mayor; ambos valen uno al coincidir perfectamente. El código asigna uno también a dos máscaras vacías. La relación es no lineal: el Dice promedio de la tabla no se obtiene transformando la IoU promedio. El Dice suave de entrenamiento usa probabilidades continuas; estas métricas de evaluación usan máscaras umbralizadas.</p>
+</section>
+<section id="metodologia-experimental">
+<h2>Metodología experimental<a class="headerlink" href="#metodologia-experimental" title="Link to this heading">#</a></h2>
+<p><strong>De la ecuación al entrenamiento.</strong> En <code class="docutils literal notranslate"><span class="pre">colab_runner.loss_fn</span></code>, <code class="docutils literal notranslate"><span class="pre">valid</span></code> selecciona los píxeles observados antes de sumar. El último renglón asigna el mismo peso a BCE y a la pérdida Dice.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">loss_fn</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">valid</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">logits</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">target</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'La salida no coincide con la máscara'</span><span class="p">)</span>
+    <span class="n">p</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">logits</span><span class="p">)[</span><span class="n">valid</span><span class="p">],</span> <span class="n">target</span><span class="p">[</span><span class="n">valid</span><span class="p">]</span>
+    <span class="n">bce</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">binary_cross_entropy_with_logits</span><span class="p">(</span><span class="n">logits</span><span class="p">[</span><span class="n">valid</span><span class="p">],</span> <span class="n">t</span><span class="p">)</span>
+    <span class="n">dice</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">+</span> <span class="mf">1e-6</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">+</span> <span class="n">t</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">+</span> <span class="mf">1e-6</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">bce</span> <span class="o">+</span> <span class="n">dice</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p><strong>De validación al checkpoint.</strong> En <code class="docutils literal notranslate"><span class="pre">run</span></code>, <code class="docutils literal notranslate"><span class="pre">score</span></code> es el Dice medio por grupo en validación. Una mejora estricta actualiza <code class="docutils literal notranslate"><span class="pre">best.pt</span></code>; en caso de empate se conserva el primer máximo.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">score</span><span class="p">,</span> <span class="n">details</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">guard</span><span class="o">=</span><span class="n">guard</span><span class="p">)</span>
+<span class="n">improved</span> <span class="o">=</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="n">best</span>
+<span class="k">if</span> <span class="n">improved</span><span class="p">:</span>
+    <span class="n">best</span><span class="p">,</span> <span class="n">stale</span> <span class="o">=</span> <span class="n">score</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="n">dest</span><span class="o">/</span><span class="s1">'best.tmp'</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">dest</span><span class="o">/</span><span class="s1">'best.tmp'</span><span class="p">,</span> <span class="n">dest</span><span class="o">/</span><span class="s1">'best.pt'</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Elemento</p></th>
+<th class="head"><p>Valor aplicado en las 15 corridas</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Entrada y lote</p></td>
+<td><p>256 × 256, lote 1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Optimizador</p></td>
+<td><p>Adam, tasa fija 0,001</p></td>
+</tr>
+<tr class="row-even"><td><p>Pérdida</p></td>
+<td><p>½ BCE con logits + ½ pérdida Dice suave, solo píxeles válidos</p></td>
+</tr>
+<tr class="row-odd"><td><p>Presupuesto</p></td>
+<td><p>Máximo 30 épocas, paciencia 5 sin mejora en Dice de validación por grupo</p></td>
+</tr>
+<tr class="row-even"><td><p>Semillas comunes</p></td>
+<td><p>11, 23, 37, 53 y 71</p></td>
+</tr>
+<tr class="row-odd"><td><p>Selección</p></td>
+<td><p>Mejor checkpoint de cada corrida por validación; una evaluación final en test con umbral 0,5</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La pérdida Dice suave es <span class="math notranslate nohighlight">\(1-(2\sum py+\epsilon)/(\sum p+\sum y+\epsilon)\)</span>, donde <span class="math notranslate nohighlight">\(p\)</span> es la salida sigmoide, <span class="math notranslate nohighlight">\(y\)</span> la máscara binaria y <span class="math notranslate nohighlight">\(\epsilon=10^{-6}\)</span>. El orden de imágenes depende de la semilla y la época. Se fijaron los generadores de Python, NumPy y PyTorch, también en CUDA. El modo determinista registra advertencias cuando una operación carece de implementación determinista. La profesora cerró esta etapa sin ajuste de hiperparámetros. Los planes antiguos con una segunda tasa o más épocas no describen las corridas.</p>
+</section>
+<section id="hardware-y-procedencia">
+<h2>Hardware y procedencia<a class="headerlink" href="#hardware-y-procedencia" title="Link to this heading">#</a></h2>
+<p>El portátil Ryzen 5 7520U ejecutó en CPU las tres redes con semilla 11 y FCN con semilla 23. SegNet con semilla 23 completó la primera época en CPU y las diez restantes en T4. Las otras diez corridas se ejecutaron en T4. Para auditar aquella migración, el historial completo conserva la época CPU y sus segundos. Toda la evaluación final se efectuó en Colab.</p>
+<p>El entorno CPU registró Python 3.12.14, PyTorch 2.15.0+cpu, NumPy 2.3.5 y Pillow 12.3.0. El entrenamiento en T4 registró Python 3.13.16, PyTorch 2.14.1+cu130, CUDA 13.0, NumPy 2.4.6 y Pillow 11.3.0. Las versiones del evaluador y los SHA-256 de los 15 checkpoints están en <code class="docutils literal notranslate"><span class="pre">IMO_test_final.zip</span> <span class="pre">→</span> <span class="pre">procedencia.json</span></code>. Las dependencias del EDA original y del entrenamiento CPU constan en <code class="docutils literal notranslate"><span class="pre">requirements-inicio.lock.txt</span></code> y <code class="docutils literal notranslate"><span class="pre">requirements-cpu.lock.txt</span></code>.</p>
+</section>
+<section id="reproducir-el-informe-desde-los-archivos-guardados">
+<h2>Reproducir el informe desde los archivos guardados<a class="headerlink" href="#reproducir-el-informe-desde-los-archivos-guardados" title="Link to this heading">#</a></h2>
+<p>Los <a class="reference download internal" download="" href="_downloads/b03d48959acc5d881bbd4969fea078a1/ilustrar_libro.py"><code class="xref download docutils literal notranslate"><span class="pre">diagramas,</span> <span class="pre">galería</span> <span class="pre">y</span> <span class="pre">recuentos</span> <span class="pre">de</span> <span class="pre">capas</span></code></a> se regeneran desde la raíz con <code class="docutils literal notranslate"><span class="pre">.\.venv-cpu\Scripts\python.exe</span> <span class="pre">scripts\ilustrar_libro.py</span></code>. El script obtiene las dimensiones de salida del código PyTorch con tensores simbólicos de tamaño 1 × 3 × 256 × 256 y coteja las huellas de cada ejemplo de la galería con el manifiesto de train.</p>
+<p>El informe se puede auditar con el <a class="reference download internal" download="" href="_downloads/a2d7532fadebc8434b11e33819ae6ae7/modelos_base.py"><code class="xref download docutils literal notranslate"><span class="pre">código</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">tres</span> <span class="pre">redes</span></code></a>, el <a class="reference download internal" download="" href="_downloads/6023826456faf44aeaf80dfbd9e7108f/analisis_entregable.py"><code class="xref download docutils literal notranslate"><span class="pre">análisis</span> <span class="pre">estadístico</span></code></a>, el <a class="reference download internal" download="" href="_downloads/4e4e09e16da5bfe5b0d8c6f4651adfbd/eda_entregable.py"><code class="xref download docutils literal notranslate"><span class="pre">complemento</span> <span class="pre">del</span> <span class="pre">EDA</span></code></a> y las <a class="reference download internal" download="" href="_downloads/fbd29bb3c2f98540cb687ad05f4c6884/requirements-libro.txt"><code class="xref download docutils literal notranslate"><span class="pre">dependencias</span> <span class="pre">del</span> <span class="pre">libro</span></code></a>.</p>
+<p>Se necesita Python 3.12, la raíz <code class="docutils literal notranslate"><span class="pre">tesis_imo_para_codex</span></code>, su carpeta hermana <code class="docutils literal notranslate"><span class="pre">VOC2012</span></code>, ambos archivos comprimidos de resultados y los directorios locales de resultados. Para comprobar otra copia de los datos, usar los SHA-256 por archivo del manifiesto. El corpus de los autores se obtiene desde el repositorio citado en el primer capítulo; su equivalencia con esta copia exige verificación.</p>
+<p>Desde la raíz del proyecto, en PowerShell, estos comandos crean un entorno independiente, regeneran el complemento de EDA y las tablas y construyen el libro.</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">-m</span> <span class="n">venv</span> <span class="p">.</span><span class="n">venv-libro</span>
+<span class="p">.\.</span><span class="n">venv-libro</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">python</span><span class="p">.</span><span class="n">exe</span> <span class="n">-m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">-r</span> <span class="n">requirements-libro</span><span class="p">.</span><span class="n">txt</span>
+<span class="p">.\.</span><span class="n">venv-libro</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">python</span><span class="p">.</span><span class="n">exe</span> <span class="n">scripts</span><span class="p">\</span><span class="n">eda_entregable</span><span class="p">.</span><span class="n">py</span>
+<span class="p">.\.</span><span class="n">venv-libro</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">python</span><span class="p">.</span><span class="n">exe</span> <span class="n">scripts</span><span class="p">\</span><span class="n">analisis_entregable</span><span class="p">.</span><span class="n">py</span>
+<span class="p">.\.</span><span class="n">venv-libro</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">jupyter-book</span><span class="p">.</span><span class="n">exe</span> <span class="n">build</span> <span class="n">libro</span> <span class="n">-W</span>
+</pre></div>
+</div>
+<p>Abrir <code class="docutils literal notranslate"><span class="pre">libro/_build/html/index.html</span></code>. Para recompilar solo el texto basta el último comando. La configuración desactiva la ejecución de cuadernos. El EDA original se puede examinar desde el capítulo 3 o ejecutar en <code class="docutils literal notranslate"><span class="pre">notebooks/01_eda_voc.ipynb</span></code> en su entorno histórico. El flujo de modelado conservado pasa por <code class="docutils literal notranslate"><span class="pre">preparar_base.py</span></code> (manifiestos y máscaras), <code class="docutils literal notranslate"><span class="pre">dataset_ready.py</span></code> (carga y métricas), <code class="docutils literal notranslate"><span class="pre">modelos_base.py</span></code> y <code class="docutils literal notranslate"><span class="pre">colab_runner.py</span></code> (redes y entrenamiento). <code class="docutils literal notranslate"><span class="pre">evaluar_test_final.py</span></code> produjo el ZIP cerrado. El análisis del libro solo lee sus CSV.</p>
+</section>
+<section id="reproducir-las-figuras-del-cierre">
+<h2>Reproducir las figuras del cierre<a class="headerlink" href="#reproducir-las-figuras-del-cierre" title="Link to this heading">#</a></h2>
+<p>Las tres figuras ya están incluidas en resultados. En el proyecto local, el entorno CPU histórico basta para reconstruirlas desde los tres checkpoints de semilla 11. Se verifican las huellas, se usa <code class="docutils literal notranslate"><span class="pre">eval()</span></code> con gradientes desactivados y se cotejan las cuatro métricas por caso con las filas cerradas de T4. El generador escribe exclusivamente los paneles y su tabla. La auditoría completa lee los artefactos sin ejecutar las redes.</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">.\.</span><span class="n">venv-libro</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">python</span><span class="p">.</span><span class="n">exe</span> <span class="n">scripts</span><span class="p">\</span><span class="n">auditar_cierre</span><span class="p">.</span><span class="n">py</span>
+<span class="p">.\.</span><span class="n">venv-cpu</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">python</span><span class="p">.</span><span class="n">exe</span> <span class="n">scripts</span><span class="p">\</span><span class="n">paneles_cierre</span><span class="p">.</span><span class="n">py</span>
+<span class="p">.\.</span><span class="n">venv-libro</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">jupyter-book</span><span class="p">.</span><span class="n">exe</span> <span class="n">build</span> <span class="n">libro</span> <span class="n">-W</span>
+</pre></div>
+</div>
+<p>El <a class="reference download internal" download="" href="_downloads/6cd5e0b94501b3c7c0647215a327c900/paneles_cierre.py"><code class="xref download docutils literal notranslate"><span class="pre">generador</span> <span class="pre">de</span> <span class="pre">paneles</span></code></a> y la <a class="reference download internal" download="" href="_downloads/ce4fcd8747939f187f1664d2b9cdc702/auditar_cierre.py"><code class="xref download docutils literal notranslate"><span class="pre">auditoría</span> <span class="pre">de</span> <span class="pre">integridad</span></code></a> usan las rutas de la copia local descritas arriba. Las fotografías son para revisión académica local; la redistribución del corpus requiere confirmar la licencia.</p>
+<section id="ruta-alternativa-para-inspeccion-en-colab">
+<h3>Ruta alternativa para inspección en Colab<a class="headerlink" href="#ruta-alternativa-para-inspeccion-en-colab" title="Link to this heading">#</a></h3>
+<p>El ZIP del test guarda métricas y procedencia. Para ver las máscaras de tres casos, se prepararon <code class="docutils literal notranslate"><span class="pre">colab/04_IMO_Figuras_Colab.ipynb</span></code> y <code class="docutils literal notranslate"><span class="pre">colab/IMO_figuras_colab.zip</span></code>. El paquete contiene solo las tres fotos elegidas, sus anotaciones, los tres mejores checkpoints de semilla 11 y el código de inferencia y preprocesamiento.</p>
+<ol class="arabic simple">
+<li><p>Abrir el cuaderno en VS Code y seleccionar el kernel de Colab con GPU.</p></li>
+<li><p>Usar <strong>Upload to Colab</strong> para subir únicamente <code class="docutils literal notranslate"><span class="pre">IMO_figuras_colab.zip</span></code> a <code class="docutils literal notranslate"><span class="pre">/content</span></code>. El cuaderno comprueba su SHA-256.</p></li>
+<li><p>Ejecutar la celda y descargar <code class="docutils literal notranslate"><span class="pre">/content/paneles_IMO.zip</span></code>. Incluye la comparación frente a la anotación y las nueve máscaras individuales. No requiere Drive.</p></li>
+<li><p>Este cuaderno histórico produce las máscaras individuales y una lámina simple. El generador local anterior incorpora además los mapas de error y contornos que se muestran en esta edición.</p></li>
+</ol>
+<p>Si se reconstruye el paquete, ejecutar <code class="docutils literal notranslate"><span class="pre">.\.venv-libro\Scripts\python.exe</span> <span class="pre">scripts\preparar_figuras_colab.py</span></code> y usar juntos el cuaderno y ZIP recién generados.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="eda.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">EDA y preparación</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="resultados.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Resultados y baseline</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tres-maneras-de-reconstruir-una-mascara">Tres maneras de reconstruir una máscara</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#como-contar-capas-y-neuronas">Cómo contar capas y neuronas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fcn">FCN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#segnet">SegNet</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#u-net">U-Net</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#de-un-pixel-rgb-a-un-mapa-de-caracteristicas">De un píxel RGB a un mapa de características</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-informacion-llega-al-decodificador">Qué información llega al decodificador</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#del-error-observado-al-gradiente">Del error observado al gradiente</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-paso-de-adam">Un paso de Adam</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#del-logit-a-dice-e-iou">Del logit a Dice e IoU</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologia-experimental">Metodología experimental</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-y-procedencia">Hardware y procedencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducir-el-informe-desde-los-archivos-guardados">Reproducir el informe desde los archivos guardados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducir-las-figuras-del-cierre">Reproducir las figuras del cierre</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ruta-alternativa-para-inspeccion-en-colab">Ruta alternativa para inspección en Colab</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Luis Perez y Daniel Carbono
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
