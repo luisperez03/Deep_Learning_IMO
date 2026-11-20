@@ -1,0 +1,83 @@
+{
+  "schema": "replica_paper_guia_v1",
+  "estado": "Protocolo fijado el 2026-11-20 antes de ejecutar cualquier evaluación en ADE20K. Ningún resultado de la réplica existía al escribirlo. Cambios posteriores solo como enmienda fechada, sin tocar el criterio.",
+  "item_checklist": 32,
+  "paper_guia": {
+    "referencia": "Xie, E., Wang, W., Yu, Z., Anandkumar, A., Alvarez, J. M. y Luo, P. (2021). SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers. Advances in Neural Information Processing Systems 34 (NeurIPS 2021). arXiv:2105.15203.",
+    "resultado_clave": "SegFormer-B0, ADE20K, mIoU en escala única = 37,4 % (Tabla 2 del artículo; 38,0 % es multiescala con volteo y no se usa).",
+    "valor_reportado_miou": 37.4,
+    "parametros_reportados_millones": 3.8
+  },
+  "niveles": {
+    "nivel_1_evaluacion": "Evaluar el checkpoint publicado en las condiciones originales. Valida el pipeline de evaluación (datos, preprocesamiento, métrica); NO replica el entrenamiento.",
+    "nivel_2_entrenamiento_parcial": "Ajuste corto desde los pesos ImageNet-1k del codificador MiT-B0, una semilla. Solo diseño en este protocolo (sección paso_2); no se presenta como ejecutado mientras no exista su resumen JSON."
+  },
+  "condiciones_originales": {
+    "dataset": "ADE20K, versión SceneParsing/ADEChallengeData2016 (150 clases).",
+    "particion": "validation: 2.000 imágenes y 2.000 anotaciones (images/validation, annotations/validation). Es la partición con la que el artículo reporta.",
+    "metrica": "mIoU acumulado sobre el conjunto: por clase, suma de intersecciones / suma de uniones sobre las 2.000 imágenes; media sobre las clases con unión > 0 (nanmean, como mmseg 0.x).",
+    "etiquetas": "reduce_zero_label: la etiqueta 0 ('otros') pasa a 255 (ignorada) y las 1..150 pasan a 0..149.",
+    "configuracion_fuente": "https://github.com/NVlabs/SegFormer/blob/65fa8cfa9b52b6ee7e8897a98705abf8570f9e32/local_configs/segformer/B0/segformer.b0.512x512.ade.160k.py y local_configs/_base_/datasets/ade20k_repeat.py (mismo commit)",
+    "preprocesamiento_prueba": {
+      "lectura": "imagen RGB (mmcv lee BGR y convierte con to_rgb=True); anotación PNG leída con Pillow sin cambios",
+      "redimension": "AlignedResize keep_ratio=True con img_scale=(2048, 512): factor = min(2048/lado_largo, 512/lado_corto); tamaño = int(lado*factor + 0,5); interpolación bilineal (cv2.INTER_LINEAR). Luego segunda redimensión bilineal a múltiplos de 32 por techo (ceil(h/32)*32, ceil(w/32)*32).",
+      "normalizacion": "media [123.675, 116.28, 103.53], desviación [58.395, 57.12, 57.375] en escala 0-255, RGB, float32",
+      "inferencia": "test_cfg mode='whole' (imagen completa, sin ventana deslizante), sin volteo, escala única",
+      "salida": "logits de 1/4 de resolución reescalados bilinealmente (align_corners=False) al tamaño de entrada y luego al tamaño original; argmax sobre 150 clases"
+    }
+  },
+  "checkpoint": {
+    "fuente_principal": "Hugging Face nvidia/segformer-b0-finetuned-ade-512-512, revisión 489d5cd81a0b59fab9b7ea758d3548ebe99677da (consultada el 2026-11-20). La ficha declara que es la conversión del checkpoint publicado en github.com/NVlabs/SegFormer.",
+    "archivo": "model.safetensors",
+    "sha256_lfs": "6ae39addd01de6b1b8bde2cf677d43a5cd733424b8d186de3f95d1c51fee23f9",
+    "tamano_bytes": 15036944,
+    "licencia": "NVIDIA Source Code License de NVlabs/SegFormer (uso no comercial de investigación o evaluación); en Hugging Face figura license: other. Se conservan los avisos.",
+    "fuente_original_alternativa": "segformer.b0.512x512.ade.160k.pth en las carpetas de Google Drive/OneDrive enlazadas desde el README de NVlabs/SegFormer (commit 65fa8cfa). No tiene hash publicado ni descarga directa estable; queda como verificación opcional si se obtiene a mano.",
+    "por_que_hugging_face": "Menor riesgo de dependencias: transformers ya viene en Colab y carga el modelo en PyTorch puro. La vía oficial depende de mmcv-full 1.x y de la bifurcación mmseg 0.11 de NVlabs, con extensiones compiladas atadas a versiones antiguas de PyTorch y CUDA; instalarlas en el Colab actual obliga a fijar o compilar esas versiones, un riesgo que la vía Hugging Face evita. El riesgo que se acepta a cambio es la fidelidad de la conversión; se controla con el análisis de desviación (D3)."
+  },
+  "dataset_descarga": {
+    "url": "https://data.csail.mit.edu/places/ADEchallenge/ADEChallengeData2016.zip",
+    "tamano_bytes_observado": 967382037,
+    "etag_observado": "\"39a91415-5e46c686a7a37\"",
+    "last_modified_observado": "Fri, 22 Jul 2022 22:32:22 GMT",
+    "hash_oficial": null,
+    "verificacion": "No se encontró un hash publicado por la fuente. Se verifica el tamaño contra el observado, se calcula el SHA-256 en la primera descarga y se fija en el resumen; toda ejecución posterior debe dar el mismo SHA-256 o se detiene. Además se exigen 2.000 JPG y 2.000 PNG en validation con nombres emparejados.",
+    "licencia_y_terminos": "Términos de uso de ADE20K en https://ade20k.csail.mit.edu/terms/ (uso académico y no comercial; leerlos antes de descargar). Kit de evaluación CSAILVision/sceneparsing con licencia BSD-3-Clause. El cuaderno exige confirmar la lectura de los términos con una variable antes de descargar.",
+    "uso": "Solo evaluación en Colab; no se copia a este equipo ni al repositorio."
+  },
+  "incertidumbre": {
+    "unidad": "imagen de validación (las 2.000 son escenas distintas)",
+    "metodo": "bootstrap no paramétrico por imagen: se remuestrean 2.000 imágenes con reemplazo y se recalcula el mIoU acumulado con sus intersecciones y uniones por clase",
+    "replicas": 2000,
+    "semilla": 20261120,
+    "intervalo": "percentil 95 %",
+    "nota": "El IC refleja la variación por muestra de imágenes de validación, no la variación por semilla de entrenamiento (no aplica al nivel 1: un solo checkpoint)."
+  },
+  "criterio_a_priori": {
+    "delta_puntos_miou": 1.0,
+    "justificacion_delta": "Un punto de mIoU es una diferencia que no cambia ninguna conclusión del proyecto y tolera diferencias de redimensión y de versión de librería que no se pueden eliminar sin el entorno original (mmcv/mmseg 0.x). Se fija antes de ver resultados.",
+    "diferencia": "D = mIoU_replica - 37,4 (puntos porcentuales), con IC95 = IC95(mIoU_replica) - 37,4",
+    "replicado": "IC95 de D completamente dentro de [-1,0; +1,0]",
+    "compatible": "|D| <= 1,0 pero el IC95 de D sale de [-1,0; +1,0]",
+    "no_replicado": "|D| > 1,0",
+    "secundario": "Se informa además si 37,4 cae dentro del IC95 de la réplica, sin que cambie el veredicto."
+  },
+  "analisis_desviacion": {
+    "regla": "Se ejecuta siempre y se informa completo; ninguna variante reemplaza el resultado primario ni se elige después de verla.",
+    "D1_preprocesamiento": "Repetir con el preprocesador por defecto de Hugging Face (512x512 sin conservar proporción, normalización ImageNet en escala 0-1). Cuantifica cuánto pesa el redimensionado no documentado en la ficha.",
+    "D2_acumulacion": "Comparar el mIoU acumulado (primario) con la media por imagen del IoU por clase, para mostrar el efecto de la definición de la métrica.",
+    "D3_pesos": "Si se obtiene el .pth oficial, comparar sus logits con los de Hugging Face en 20 imágenes fijas (máxima diferencia absoluta). Sin él, se declara como causa no descartada.",
+    "D4_versiones": "Registrar versiones de torch, transformers, cv2, numpy, Pillow y GPU; el artículo usó mmseg/mmcv con cv2 para redimensionar.",
+    "D5_clases": "IoU por clase de la réplica; si se dispone del IoU por clase de referencia, listar las 10 clases con mayor diferencia.",
+    "si_no_coincide": "Se reporta 'no replicado' con D, su IC95 y los resultados D1-D5 como posibles causas. No se cambia el criterio, el delta ni el preprocesamiento primario para forzar la coincidencia."
+  },
+  "paso_2": {
+    "estado": "Diseño solamente; no ejecutado.",
+    "objetivo": "Réplica parcial de entrenamiento: verificar que el pipeline de ajuste del paper (codificador ImageNet + cabeza MLP) aprende en ADE20K.",
+    "pesos_iniciales": "nvidia/mit-b0 en Hugging Face (codificador MiT-B0 preentrenado en ImageNet-1k); fijar revisión y SHA-256 al ejecutar.",
+    "receta_del_articulo": "AdamW lr 6e-5, cabeza x10, weight decay 0,01, poly power 1 con calentamiento lineal 1.500 iteraciones, recorte 512x512, escala aleatoria 0,5-2,0, volteo, distorsión fotométrica, lote 16, 160.000 iteraciones.",
+    "receta_corta": "Misma receta con lote 8 y 8.000 iteraciones (5 % del calendario), semilla 11, evaluación con el preprocesamiento primario.",
+    "costo_estimado_t4": "Estimación sin medir: 1,5 a 2,5 h en T4 con precisión mixta; medir 200 iteraciones antes de comprometer la sesión.",
+    "criterio": "No se compara con 37,4 % (calendario 20 veces menor). Se informa mIoU con IC95 por imagen y se declara como réplica parcial; si se ejecuta con más de una semilla, se agrega la DE entre semillas."
+  }
+}
