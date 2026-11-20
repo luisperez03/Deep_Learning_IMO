@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-18",
+  "cpu_models_passed": [
+    "fcn",
+    "segnet",
+    "unet",
+    "deeplabv3plus",
+    "unetplusplus",
+    "pidnet_s",
+    "segnext_t",
+    "segformer_b0",
+    "transunet_2d"
+  ],
+  "synthetic_batch": 3,
+  "synthetic_size": 256,
+  "unit_tests": {
+    "count": 4,
+    "status": "passed",
+    "scope": "padding, boundary mask, batch tail, deterministic resume and identity rejection"
+  },
+  "pip_check": "passed",
+  "gpu_validation": "pending in Colab, including VM-UNet",
+  "dataset_training_executed": false,
+  "notebook_code_cells_compile": true,
+  "notebook_zip_hash_matches": true,
+  "zip_sha256": "954f4fe5663d9fedd676dcee4f1f7fb9086a2a7f5c1907ce902b5df4c109cb49",
+  "zip_bytes": 185030476,
+  "note": "The local CPU preflight predates the final checkpoint-file checksum addition; runner unit tests passed after that addition. Colab must generate a fresh GPU preflight for the packaged source signature."
+}

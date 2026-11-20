@@ -1,0 +1,128 @@
+{
+  "split": "val",
+  "selection": "descriptive, not representative sample; distinct similarity groups",
+  "illustration_seed": 11,
+  "negative_images": 0,
+  "cases": [
+    {
+      "id": "image_0419",
+      "group_id": "g_image_0419",
+      "area_fraction": 0.053202311197916664,
+      "mean_all_models": 0.12792045911649694,
+      "model_means": {
+        "deeplabv3plus": 0.174858649477336,
+        "fcn": 0.07100130175772273,
+        "pidnet_s": 0.1942239554672075,
+        "segformer_b0": 0.29786993946461615,
+        "segnet": 0.011585592276271815,
+        "segnext_t": 0.23616097854475604,
+        "transunet_2d": 0.04106437939129727,
+        "unet": 0.059450052813983564,
+        "unetplusplus": 0.0658497450341321,
+        "vmunet": 0.1271399969376463
+      },
+      "range_models": 0.28628434718834433,
+      "reason": "Menor Dice medio de los diez modelos"
+    },
+    {
+      "id": "image_1538",
+      "group_id": "g_image_0555",
+      "area_fraction": 0.06719970703125,
+      "mean_all_models": 0.22559405078555045,
+      "model_means": {
+        "deeplabv3plus": 0.1981469465305323,
+        "fcn": 0.2425310611527836,
+        "pidnet_s": 0.057605735586948106,
+        "segformer_b0": 0.004074381349846295,
+        "segnet": 0.2434078406477397,
+        "segnext_t": 0.17699160601349992,
+        "transunet_2d": 0.34916319866409995,
+        "unet": 0.2772409483672238,
+        "unetplusplus": 0.3755066781434109,
+        "vmunet": 0.33127211139942003
+      },
+      "range_models": 0.3714322967935646,
+      "reason": "Segundo grupo difícil"
+    },
+    {
+      "id": "image_0693",
+      "group_id": "g_image_0693",
+      "area_fraction": 0.004475911458333333,
+      "mean_all_models": 0.881811114361869,
+      "model_means": {
+        "deeplabv3plus": 0.8749861087726388,
+        "fcn": 0.9128902932542898,
+        "pidnet_s": 0.857983349344227,
+        "segformer_b0": 0.7752345621725706,
+        "segnet": 0.8863301574463301,
+        "segnext_t": 0.8329619211677942,
+        "transunet_2d": 0.909311329277853,
+        "unet": 0.9436176290927079,
+        "unetplusplus": 0.9189867134992159,
+        "vmunet": 0.9058090795910629
+      },
+      "range_models": 0.16838306692013727,
+      "reason": "Menor fracción de etiqueta positiva disponible"
+    },
+    {
+      "id": "image_0251",
+      "group_id": "g_image_0251",
+      "area_fraction": 0.031270345052083336,
+      "mean_all_models": 0.5733693365369181,
+      "model_means": {
+        "deeplabv3plus": 0.8692164840870711,
+        "fcn": 0.44914555794366895,
+        "pidnet_s": 0.6848221764941803,
+        "segformer_b0": 0.03244543881703385,
+        "segnet": 0.47308481062610247,
+        "segnext_t": 0.4627698444965486,
+        "transunet_2d": 0.8612387049886752,
+        "unet": 0.25691383244485216,
+        "unetplusplus": 0.8337097782203332,
+        "vmunet": 0.8103467372507158
+      },
+      "range_models": 0.8367710452700372,
+      "reason": "Mayor desacuerdo entre modelos; no hay máscaras vacías en val"
+    },
+    {
+      "id": "image_1081",
+      "group_id": "g_image_0593",
+      "area_fraction": 0.0410614013671875,
+      "mean_all_models": 0.8747027602157356,
+      "model_means": {
+        "deeplabv3plus": 0.7983174729678528,
+        "fcn": 0.9326760250149512,
+        "pidnet_s": 0.7201383839521123,
+        "segformer_b0": 0.911934544172978,
+        "segnet": 0.9394638648461695,
+        "segnext_t": 0.8709431335390883,
+        "transunet_2d": 0.9423322951836359,
+        "unet": 0.9221285764925584,
+        "unetplusplus": 0.8151372660041963,
+        "vmunet": 0.8939560399838131
+      },
+      "range_models": 0.22219391123152366,
+      "reason": "Caso próximo a la mediana"
+    },
+    {
+      "id": "image_0030",
+      "group_id": "g_image_0030",
+      "area_fraction": 0.06878662109375,
+      "mean_all_models": 0.9740931152249843,
+      "model_means": {
+        "deeplabv3plus": 0.9747956446638475,
+        "fcn": 0.9751698688139863,
+        "pidnet_s": 0.9745577060357391,
+        "segformer_b0": 0.9698225892801391,
+        "segnet": 0.9724096072087682,
+        "segnext_t": 0.9692794038244286,
+        "transunet_2d": 0.9823436668101058,
+        "unet": 0.9772465030850281,
+        "unetplusplus": 0.9707330584989834,
+        "vmunet": 0.9745731040288169
+      },
+      "range_models": 0.0130642629856772,
+      "reason": "Caso de alto acuerdo"
+    }
+  ]
+}

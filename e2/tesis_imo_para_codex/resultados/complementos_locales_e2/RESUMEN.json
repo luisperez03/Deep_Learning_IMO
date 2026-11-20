@@ -1,0 +1,158 @@
+{
+  "EDA": {
+    "train": {
+      "foreground_fraction": 0.047387144671337,
+      "binary_entropy_bits": 0.24601706022168124,
+      "regions": 1.6340388007054674,
+      "perimeter_pixels": 181.6360964138742
+    },
+    "val": {
+      "foreground_fraction": 0.048568362553358724,
+      "binary_entropy_bits": 0.24625349653746353,
+      "regions": 1.7459016393442623,
+      "perimeter_pixels": 186.5737704918033
+    },
+    "test": {
+      "foreground_fraction": 0.03750585564231459,
+      "binary_entropy_bits": 0.2122514515326813,
+      "regions": 1.6024590163934427,
+      "perimeter_pixels": 163.65573770491804
+    }
+  },
+  "adversarial": {
+    "auc_crossfit": 0.5597189695550351,
+    "CI95_conditional_predictions": [
+      0.5060959444008193,
+      0.6143308609906873
+    ],
+    "p_permutation_MC": 0.08955223880597014,
+    "limit": "Sin rechazo no prueba ausencia de shift; IC condicional a predicciones crossfit. No es permutación de etiquetas de segmentación."
+  },
+  "statistics": {
+    "SS_total": 255.53585060425823,
+    "SS_components": {
+      "modelo": 11.703192316439827,
+      "semilla": 0.12151531081947473,
+      "grupo": 159.42641579179696,
+      "0_1": 1.7322337180239973,
+      "0_2": 42.44988399018533,
+      "1_2": 4.133236814846775,
+      "interaccion_triple_residual": 35.96937266214588
+    },
+    "fractions_descriptive": {
+      "modelo": 0.04579863173314283,
+      "semilla": 0.00047553136098958714,
+      "grupo": 0.6238906024920023,
+      "0_1": 0.006778828543735974,
+      "0_2": 0.16612105068547256,
+      "1_2": 0.016174782540582973,
+      "interaccion_triple_residual": 0.1407605726440738
+    },
+    "interpretation": "Descomposición descriptiva ortogonal de cuadrícula modelo×semilla×grupo; no modelo causal ni componentes de varianza poblacionales.",
+    "tost_exploratory": {
+      "delta": 0.02,
+      "difference": 0.009061417034028928,
+      "p_lower": 0.0009580494162611708,
+      "p_upper": 0.11738690231329237,
+      "p_TOST": 0.11738690231329237,
+      "CI90_t": [
+        -0.00612253577696086,
+        0.02424536984501871
+      ],
+      "equivalent_alpha05": false,
+      "assumptions": "Grupos aproximadamente independientes; aproximación t a la media, sensibilidad bootstrap ya disponible; cinco semillas fijas."
+    }
+  },
+  "borders": [
+    {
+      "model": "fcn",
+      "seed": 11,
+      "precision": 0.8401979420925466,
+      "recall": 0.8724798727360721,
+      "HD95": 24.667306488597337,
+      "ASSD": 5.090995489599565,
+      "empty_prediction": 0.0
+    },
+    {
+      "model": "segnet",
+      "seed": 11,
+      "precision": 0.7590971398893446,
+      "recall": 0.8724991952584804,
+      "HD95": 29.772197360350752,
+      "ASSD": 7.506736590440076,
+      "empty_prediction": 0.0
+    },
+    {
+      "model": "unet",
+      "seed": 11,
+      "precision": 0.8300998375312778,
+      "recall": 0.8914671075620467,
+      "HD95": 25.623529359952983,
+      "ASSD": 6.5928947408670115,
+      "empty_prediction": 0.004098360655737705
+    },
+    {
+      "model": "deeplabv3plus",
+      "seed": 11,
+      "precision": 0.8023838874342996,
+      "recall": 0.8503158914551164,
+      "HD95": 25.03553673973214,
+      "ASSD": 9.699212206403491,
+      "empty_prediction": 0.012295081967213115
+    },
+    {
+      "model": "unetplusplus",
+      "seed": 11,
+      "precision": 0.811591809715048,
+      "recall": 0.854157154740647,
+      "HD95": 21.491679840623974,
+      "ASSD": 5.59640606090498,
+      "empty_prediction": 0.0
+    },
+    {
+      "model": "pidnet_s",
+      "seed": 11,
+      "precision": 0.7760152326289343,
+      "recall": 0.7834440884267981,
+      "HD95": 25.355415493645804,
+      "ASSD": 8.31823387216351,
+      "empty_prediction": 0.004098360655737705
+    },
+    {
+      "model": "segnext_t",
+      "seed": 11,
+      "precision": 0.7840625518412931,
+      "recall": 0.7993265426744716,
+      "HD95": 26.066933685437213,
+      "ASSD": 5.993683203452534,
+      "empty_prediction": 0.0
+    },
+    {
+      "model": "segformer_b0",
+      "seed": 11,
+      "precision": 0.7813659203507076,
+      "recall": 0.6827125173209393,
+      "HD95": 33.84983202324752,
+      "ASSD": 8.00035060499768,
+      "empty_prediction": 0.0
+    },
+    {
+      "model": "transunet_2d",
+      "seed": 11,
+      "precision": 0.8591918609177853,
+      "recall": 0.9036790224990404,
+      "HD95": 19.25050081317241,
+      "ASSD": 4.014906470031275,
+      "empty_prediction": 0.0
+    },
+    {
+      "model": "vmunet",
+      "seed": 11,
+      "precision": 0.864210420187426,
+      "recall": 0.9097681438519941,
+      "HD95": 18.874079514043714,
+      "ASSD": 4.333941454067635,
+      "empty_prediction": 0.0
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+Este es mi repositorio de tesis de Maestría en Estadística Aplicada. Lee AGENTS.md y todos los documentos de contexto de esta carpeta antes de trabajar.
+
+Las carpetas `Hazmat Pacards.v5i.coco`, `VOC2012` y `SeaFront_v1_0_0` ya contienen mis datasets descargados. NO los modifiques, muevas ni renombres.
+
+PRIMERA MISIÓN: auditar la compatibilidad de las tres fuentes. Revisa el código de `scripts/auditar_datasets.py`, prepara el entorno, ejecuta sus pruebas y luego la auditoría con `--hash-duplicados` (si el tiempo de lectura resulta demasiado alto, realiza primero la corrida rápida y documenta la verificación de duplicados pendiente) y el muestrario visual con `scripts/crear_muestrarios.py`. Inspecciona `resultados/auditoria/INFORME_AUDITORIA.md`, `resumen.json`, `clases.csv`, `incidencias.csv` y las imágenes de `resultados/auditoria/muestrarios/`.
+
+Con base en archivos reales y no en los nombres de las carpetas, entrégame:
+1. Inventario y estructura real de cada dataset, formatos, resoluciones, rutas y tamaños.
+2. Tipos de anotaciones (cajas, máscaras, polígonos, clasificación), clases y frecuencias; existencia de etiquetas IMO específicas y múltiples etiquetas por imagen.
+3. Matriz de compatibilidad técnica y semántica: qué sí se puede unificar, qué clases no equivalen y qué datos no son aptos para cada etapa de la tesis.
+4. Riesgos de imágenes duplicadas, data leakage, diferencias entre datos reales/sintéticos, calidad, licencia y desbalance de clases. Si algo no está confirmado, dilo.
+5. Propuesta de un formato común de trabajo, ontología de clases y plan de uniformización, SIN EJECUTAR LA CONVERSIÓN TODAVÍA.
+6. Recomendación metodológica para detección/segmentación/clasificación acorde al alcance académico.
+
+No entrenes nada, no descargues nada y no sobreescribas los datos originales. Muestra ejemplos concretos de rutas/archivos cuando fundamentes una conclusión. Documenta hallazgos en la bitácora con una sección nueva sin reescribir decisiones anteriores. Termina pidiendo mi aprobación para avanzar a la uniformización.

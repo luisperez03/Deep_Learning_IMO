@@ -1,0 +1,46 @@
+{
+  "script_sha256": "c1cfe0e04be17684cb6d23e8e66a39fef5aaf457be1387a93f60395a6bacd935",
+  "helper_sha256": "ccaeb01ec84665902aa4e7648b7aa7bbd9f6cde02ff1de06eece5ff2db8a3472",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "packages": {
+    "numpy": "2.3.5",
+    "Pillow": "12.3.0"
+  },
+  "config": {
+    "seed": 20261106,
+    "fractions": {
+      "train": 0.7,
+      "val": 0.15,
+      "test": 0.15
+    },
+    "group_policy": "all_candidate_edges_connected_components_conservative",
+    "quarantine_semantic_disagreements": true,
+    "manual_quarantine": {
+      "image_1461": "possible_missing_placard_in_basket"
+    },
+    "minimum_bbox_coverage": 0.05,
+    "resolution": 256,
+    "compare_resolutions": [
+      192,
+      256,
+      320
+    ],
+    "training_enabled": false,
+    "hardware_approved_by_user": false,
+    "protocol_approved_by_user": false,
+    "literature_selection_finalized": false
+  },
+  "inputs": {
+    "config/preentrenamiento.json": "2bdee8bb3104e6569505bc53a9c3296250ce056363a678a17edf013121461943",
+    "resultados/inicio_voc/inventario.csv": "a90a1ca5a64cf3b787ab9b5a1aa99611ff7e35b397b84071a856ace58e3d3c21",
+    "resultados/inicio_voc/resumen.json": "d5b1e603cf86f28c563a2552d4bd8150aae51e13b78900c2f65da8b58004d101",
+    "resultados/revision_voc/candidatos_similares.csv": "d6c9bc6f30cf3efb682c4f3f461983628e59366023a12f6385545703e93f0a03"
+  },
+  "artifacts": {
+    "manifest.csv": "eedc61a591f33b3259b493384eb901df03077a8f9921a5f719ffa77b063b79d9",
+    "train.csv": "fb536572de79fcc255c9ba291581604ef0db37fd33de2c6b7ee86543bcb387a0",
+    "val.csv": "630d2a72fe6fee60fc5a3fe99302fe74eb8ae633b33225548a4b6b9ee1c00208",
+    "test.csv": "7340a0cab140a8180b4a669260809eb79e86be7cb43ef87f5cac9bbd22317e81",
+    "normalization_train.json": "6fe0f53f427488358e295a49e1c7abd7dc69d3cb9f15e430964f30b298c3d02e"
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "protocol": {
+    "schema": 1,
+    "date_local": "2026-11-20",
+    "status": "Protocolo de nuevos complementos, posterior al test E2; exploratorio, no preregistro retroactivo",
+    "authorization": "Usuario solicita completar todos los requisitos parciales e incompletos",
+    "preserve_original_runs": true,
+    "use_test_for_selection": false,
+    "seeds": [
+      11,
+      23,
+      37,
+      53,
+      71
+    ],
+    "top3_by_validation": [
+      "transunet_2d",
+      "unet",
+      "fcn"
+    ],
+    "threshold": 0.5,
+    "alpha": 0.05,
+    "delta": 0.02,
+    "gap_margin_exploratory": 0.05,
+    "bootstrap_groups": 5000,
+    "baseline": {
+      "model": "HistGradientBoostingClassifier",
+      "features": "RGB, HSV, posiciones relativas, gradiente y medias/desviaciones locales a escalas 3 y 9",
+      "pixels_per_train_image": 256,
+      "sampling": "uniforme sin usar etiqueta; todas las imagenes train; semilla de corrida",
+      "max_leaf_nodes_candidates": [
+        15,
+        31,
+        63
+      ],
+      "max_iter": 100,
+      "learning_rate": 0.1,
+      "l2_regularization": 1.0,
+      "early_stopping": false,
+      "selection": "mayor Dice por grupos en validacion, promedio 5 semillas; empate menor numero de hojas",
+      "test": "solo configuracion elegida por validacion, 5 semillas; nueva evaluacion exploratoria separada"
+    },
+    "adversarial": {
+      "features": "RGB histogramas, medias/desviaciones, entropia, contraste, gradiente, geometria; sin mascara",
+      "unit": "promedio de descriptores por grupo",
+      "model": "StandardScaler + LogisticRegression C=1 class_weight=balanced",
+      "folds": 5,
+      "permutations": 200,
+      "seed": 20261120
+    },
+    "calibration": {
+      "bins_fixed": 15,
+      "bins_equal_mass": 15,
+      "temperature_fit": "validacion solamente",
+      "temperature_bounds": [
+        0.05,
+        10.0
+      ]
+    },
+    "robustness": {
+      "noise_sigma": [
+        0.03,
+        0.06,
+        0.12
+      ],
+      "gaussian_blur_sigma": [
+        0.5,
+        1.0,
+        2.0
+      ],
+      "brightness_factor": [
+        0.8,
+        0.6,
+        0.4
+      ]
+    },
+    "uncertainty": {
+      "method": "ensemble de cinco semillas por modelo top3",
+      "nominal_set_mass": 0.9,
+      "claim": "cobertura empirica de conjuntos de etiquetas, sin garantia conforme"
+    },
+    "border_metrics": {
+      "units": "pixeles del lienzo 256",
+      "empty_one_mask": "HD95 y ASSD penalizadas por diagonal del lienzo; reportar frecuencia separada",
+      "empty_both": 0.0
+    },
+    "interpretability": {
+      "method": "Integrated Gradients",
+      "steps": 16,
+      "baseline": "RGB medio de train",
+      "models": "top3 por validacion",
+      "seeds": [
+        11,
+        23,
+        37,
+        53,
+        71
+      ],
+      "cases": 100,
+      "fidelity_fractions": [
+        0.1,
+        0.2,
+        0.3
+      ],
+      "selection": "muestra estratificada de validacion por area, antes de mapas"
+    },
+    "limits": [
+      "Exposicion previa al test",
+      "Validacion ya utilizada para checkpoints",
+      "Grupos aproximan escenas",
+      "No cambiar umbral ni modelos cerrados tras estos diagnosticos",
+      "Q5 y Q6 permanecen omitidas"
+    ]
+  },
+  "sha256": "f5f1405a5737abd9daa0d2ee5be60582d12e80751c540c9cbf9269c0e1219b31"
+}

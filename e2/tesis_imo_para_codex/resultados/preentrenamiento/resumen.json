@@ -1,0 +1,48 @@
+{
+  "status_counts": {
+    "quarantine": 132,
+    "eligible_automatic_qc": 1451,
+    "excluded_no_usable_mask": 102
+  },
+  "all_similarity_groups": 937,
+  "largest_similarity_group": 3,
+  "quarantined_groups": 73,
+  "splits": {
+    "train": {
+      "images": 1015,
+      "groups": 567,
+      "foreground_fraction_median": 0.03170103092783505
+    },
+    "test": {
+      "images": 218,
+      "groups": 122,
+      "foreground_fraction_median": 0.026663792612372055
+    },
+    "val": {
+      "images": 218,
+      "groups": 122,
+      "foreground_fraction_median": 0.02848965109034268
+    }
+  },
+  "known_candidate_edges_crossing_splits": 0,
+  "limits": [
+    "Conservative similarity groups are not certified independent scenes",
+    "Automatic QC does not certify every annotation",
+    "Quarantine is not proof that every flagged mask is wrong",
+    "Training disabled until explicit hardware/protocol review"
+  ],
+  "resolution_train": {
+    "192": {
+      "empty": 0,
+      "less_than_16_pixels_total": 0
+    },
+    "256": {
+      "empty": 0,
+      "less_than_16_pixels_total": 0
+    },
+    "320": {
+      "empty": 0,
+      "less_than_16_pixels_total": 0
+    }
+  }
+}

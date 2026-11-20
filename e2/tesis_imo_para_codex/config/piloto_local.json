@@ -1,0 +1,14 @@
+{
+  "stage": "pilot_validation_only",
+  "models": ["fcn", "segnet", "unet"],
+  "seeds": [11, 23, 37, 53, 71],
+  "epochs": 30,
+  "patience": 5,
+  "lr": 0.001,
+  "minimum_free_ram_gib": 2.0,
+  "cpu_threads": 2,
+  "batch_size": 1,
+  "image_size": 256,
+  "test_allowed": false,
+  "note": "Piloto autorizado el 2026-11-07. Una tasa fija; no reemplaza búsqueda ni benchmark definitivo."
+}
