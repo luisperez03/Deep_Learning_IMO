@@ -61,3 +61,24 @@ La selección de las siete redes adicionales, sumadas a los baselines del Entreg
 ```
 
 Esta matriz fundamenta teóricamente que las diferencias observadas en el benchmark no responderán únicamente a la escala de parámetros, sino al **principio matemático** que rige el flujo de información y la preservación espacial de bordes en objetos pequeños.
+
+---
+
+## 4. Síntesis de los tres mecanismos transversales (20/11/2026)
+
+Fuentes con DOI verificado en DataCite (`evidencia_doi_registro.json`); cifras de los artículos del benchmark cotejadas con página en `RESULTADOS_ORIGINALES_7REDES.md`. Q5 y Q6 siguen omitidas: esta síntesis se apoya en las fuentes primarias de cada mecanismo, no en una búsqueda transversal ejecutada, y por eso no cierra la fila 24 del checklist.
+
+| | Atención (secuencias → visión) | Estado selectivo (series → visión) | Dilatación (señal 1D ↔ imagen) |
+|---|---|---|---|
+| Fuente primaria | Vaswani et al. (2017), `10.48550/arXiv.1706.03762` | Gu y Dao (2023), Mamba, `10.48550/arXiv.2312.00752` | Yu y Koltun (2015), `10.48550/arXiv.1511.07122`; WaveNet, van den Oord et al. (2016), `10.48550/arXiv.1609.03499` |
+| Operación | $\mathrm{softmax}(QK^\top/\sqrt{d})\,V$: cada posición pondera a todas las demás | $h_t=\bar A h_{t-1}+\bar B_t x_t,\ y_t=C_t h_t$, con $\bar B_t$, $C_t$ y el paso dependientes de la entrada | $y[i]=\sum_k x[i+r\,k]\,w[k]$: el mismo filtro con huecos de tamaño $r$ |
+| Qué transfiere | Relaciones entre posiciones lejanas en una sola capa | Contexto global con costo lineal en la longitud de la secuencia | Campo receptivo grande sin reducir la resolución |
+| Costo que trae | Cuadrático en el número de tokens; SegFormer lo reduce con reducción espacial, a cambio de detalle | La imagen debe volverse secuencia: el orden de escaneo es una decisión de diseño; kernels CUDA específicos | Con tasas grandes sobre mapas chicos, los pesos caen fuera del mapa |
+| Redes del benchmark | SegFormer-B0 (MiT), TransUNet (ViT-B/16 sobre ResNet-50). SegNeXt-T usa atención **convolucional**, no autoatención | VM-UNet (bloques VSS con escaneo 2D) | DeepLabv3+ (ASPP; r = 6, 12, 18 en el artículo, 12, 24, 36 en la implementación) |
+| Evidencia en los artículos originales | En la misma tabla y protocolo (ADE20K, 512 × 512), SegNeXt-T llega a 41,1 mIoU con 4,3 M parámetros y SegFormer-B0 a 37,4 con 3,8 M (SegNeXt, T. 9, p. 9): a esa escala, la autoatención no es necesaria para el contexto | En Synapse, VM-UNet reporta DSC 81,08 frente a 77,48 de TransUNet (VM-UNet, T. II, p. 6), con cifras recopiladas y sin repeticiones | DeepLabv3+ mejora con decodificador y convolución separable en VOC val (T. 5, p. 12); ninguna tabla aísla la dilatación en objetos pequeños |
+| Hipótesis para HAZMAT | El contexto global separa el rótulo de fondos con colores y bordes parecidos | Contexto global a menor costo que la atención | Ver el rombo entero y su entorno sin perder la resolución de 1/16 |
+| Qué la refuta en el benchmark | SegFormer-B0 y TransUNet sin ventaja de Dice sobre las CNN del mismo presupuesto, sobre todo en el grupo de rótulos pequeños | VM-UNet sin ventaja de Dice sobre TransUNet o con más costo medido por imagen | DeepLabv3+ sin ventaja sobre U-Net en rótulos pequeños |
+
+**Advertencia aritmética para la dilatación.** `scripts/modelos_e2.py` crea DeepLabv3+ con los valores por defecto de `segmentation_models_pytorch`. En la versión 0.6.0 (leída; el repositorio fija 0.5.0, que conviene confirmar) son paso de salida 16 y tasas ASPP (12, 24, 36), no las (6, 12, 18) del artículo. Con entrada de 256 × 256, ASPP opera sobre un mapa de 16 × 16. Con r = 24 y r = 36, los ocho pesos no centrales de cada filtro 3 × 3 caen fuera del mapa en toda posición y leen solo relleno: esas dos ramas se reducen a convoluciones 1 × 1. Con r = 12, cada posición ve a lo sumo un vecino por eje. En este benchmark, la dilatación de DeepLabv3+ aporta poco contexto; un resultado suyo no prueba ni refuta el mecanismo.
+
+**Lo que esta síntesis no afirma.** Las tres columnas son analogías funcionales entre modalidades, no genealogías demostradas (la dilatación ya existía en análisis de imagen antes de WaveNet). Ninguna cifra de los artículos originales se compara con el Dice de HAZMAT-13: los datasets, resoluciones y preentrenamientos son otros. La prueba de cada hipótesis es la fila "qué la refuta", con los resultados del benchmark y sus intervalos.

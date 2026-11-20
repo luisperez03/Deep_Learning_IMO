@@ -11,6 +11,21 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 
+# Alias de DOI adjudicados con el registro oficial (Crossref y doi.org) el 20/11/2026.
+# Evidencia: RESOLUCION_CONFLICTOS_DOI.md y evidencia_doi_registro.json (verificar_doi_registro.py).
+# Clave: DOI tal como llega en la exportacion (minusculas). Valor: DOI canonico.
+# El DOI original de cada registro se conserva en 'doi_original'; el ID del grupo absorbido,
+# en 'ids_absorbidos' del grupo que lo recibe. Ningun ID se renumera.
+DOI_ALIAS = {
+    '10.7717/peerjcs.2146': '10.7717/peerj-cs.2146',            # no registrado (404 Crossref y doi.org)
+    '10.1504/ijes.2021.10039166': '10.1504/ijes.2021.116134',   # alias registrado: doi.org 301 al canonico
+    '10.3788/cjl202118.1507001': '10.3788/cjl202148.1507004',   # no registrado (404 Crossref y doi.org)
+}
+
+
+def canon(doi):
+    return DOI_ALIAS.get(doi, doi) if doi else doi
+
 
 def parse_tagged(path, ris):
     records, current, key = [], {}, None
@@ -39,7 +54,12 @@ def norm_title(title):
 def main():
     previous_path = ROOT / 'registros_conciliados.json'
     previous = json.loads(previous_path.read_text(encoding='utf-8')) if previous_path.exists() else []
-    previous_doi = {g['doi']: g for g in previous if g['doi']}
+    previous_doi = {}
+    for g in previous:
+        key = canon(g['doi'])
+        if key and (key not in previous_doi or g['doi'] == key):
+            previous_doi[key] = g
+    previous_record_id = {(r['origen'], r['registro_origen']): g['id'] for g in previous for r in g['registros']}
     previous_title = {(norm_title(r['titulo']), r['anio']): g for g in previous for r in g['registros']}
     next_id = max((int(g['id'].split('-')[1]) for g in previous), default=0) + 1
     used_ids = set()
@@ -52,9 +72,10 @@ def main():
         files.append({'archivo': path.name, 'registros': len(raw), 'sha256': hashlib.sha256(path.read_bytes()).hexdigest()})
         for index, item in enumerate(raw, 1):
             get = lambda tag: ' '.join(item.get(tag, []))
-            doi = get('DO' if ris else 'DI').strip().lower().removeprefix('https://doi.org/')
+            doi_original = get('DO' if ris else 'DI').strip().lower().removeprefix('https://doi.org/')
+            doi = canon(doi_original)
             records.append({'origen': path.name, 'registro_origen': index,
-                'titulo': get('TI'), 'doi': doi, 'anio': get('PY'),
+                'titulo': get('TI'), 'doi': doi, 'doi_original': doi_original, 'anio': get('PY'),
                 'autores': item.get('AU', []), 'resumen': get('AB'),
                 'revista': get('T2') or get('JO') or get('SO'),
                 'tipo': get('TY') or get('DT'), 'idioma': get('LA'),
@@ -73,7 +94,7 @@ def main():
         if idx is None:
             idx = len(groups)
             old = previous_doi.get(r['doi']) or previous_title.get(title_key)
-            if old and old['id'] not in used_ids and (not old['doi'] or not r['doi'] or old['doi'] == r['doi']):
+            if old and old['id'] not in used_ids and (not old['doi'] or not r['doi'] or canon(old['doi']) == r['doi']):
                 stable_id = old['id']
             else:
                 stable_id = f'E2-{next_id:04d}'
@@ -89,8 +110,19 @@ def main():
         if r['doi']:
             doi_map[r['doi']] = idx
         title_map[title_key] = idx
+    alias_aplicados = {}
+    for group in groups:
+        absorbed = {previous_record_id.get((v['origen'], v['registro_origen'])) for v in group['registros']}
+        group['ids_absorbidos'] = sorted(i for i in absorbed if i and i != group['id'])
+        for v in group['registros']:
+            if v['doi_original'] != v['doi']:
+                a = alias_aplicados.setdefault(v['doi_original'], {'alias': v['doi_original'], 'canonico': v['doi'],
+                                                                   'grupo': group['id'], 'registros': 0})
+                a['registros'] += 1
     report = {'archivos': files, 'registros_importados': len(records), 'registros_unicos': len(groups),
               'duplicados_conciliados': len(records)-len(groups), 'coincidencias_ambiguas': ambiguities,
+              'alias_doi_aplicados': list(alias_aplicados.values()),
+              'ids_absorbidos': {g['id']: g['ids_absorbidos'] for g in groups if g['ids_absorbidos']},
               'nota': 'Conciliación de exportaciones disponibles; no es PRISMA final ni inclusión científica.'}
     (ROOT / 'registros_conciliados.json').write_text(json.dumps(groups, ensure_ascii=False, indent=2), encoding='utf-8')
     (ROOT / 'conciliacion.json').write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')

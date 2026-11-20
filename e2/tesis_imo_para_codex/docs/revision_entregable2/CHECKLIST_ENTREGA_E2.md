@@ -11,7 +11,7 @@ El usuario confirmó que el profesor acepta **diez modelos totales: tres E1 y si
 | ID | Requisito (página guía) | Estado | Evidencia / cierre necesario |
 |---|---|---|---|
 | 01 | Formulación entrada/salida/riesgo (2) | C | `metodos_e2.md`: segmentación binaria; no clasificación IMO |
-| 02 | Relevancia y ≥3 referencias aplicadas (2) | P | Fuentes de procedencia disponibles; verificar y completar BibTeX de aplicación |
+| 02 | Relevancia y ≥3 referencias aplicadas (2) | C | 20/11: seis estudios aplicados a rótulos HAZMAT con DOI verificado en Crossref y doi.org (`evidencia_doi_registro.json`), con tarea y método leídos del resumen en `APLICACION_Y_GAP.md`; en `libro/literatura.md` y en el BibTeX |
 | 03 | Métrica, δ y unidad heredados (2) | C | Dice por grupo, δ=0,02; IoU/mIoU/accuracy; independencia aproximada |
 | 04 | ≥3 RQ, H0/H1, α, efecto y decisión (2–3) | P | RQ1–4 integradas; temporalidad explícita; equivalencia no ejecutada |
 | 05 | Preregistro completo anterior al entrenamiento (42) | D | Configuración/cierre antes de test disponibles; no preregistro integral previo acreditado. No retrofechar |
@@ -43,7 +43,7 @@ El usuario confirmó que el profesor acepta **diez modelos totales: tres E1 y si
 | 26 | Número de redes y cuatro familias (11) | C | Diez totales aceptados por profesor según usuario; CNN/Transformer/híbrido/SSM |
 | 27 | Puntuación completa, citas/cuartiles y exclusiones (11) | P | Lista operativa; bibliometría y rúbrica definitiva sin cerrar |
 | 28 | Referencias, diagramas, matemáticas y adaptaciones (11) | C | Diez fichas, diez esquemas, DOI/BibTeX; compactas identificadas como adaptaciones |
-| 29 | Datasets/resultados/varianza/costo originales (11–12) | P | Fichas preliminares; faltan verificaciones numéricas completas |
+| 29 | Datasets/resultados/varianza/costo originales (11–12) | C | 20/11, siete redes nuevas: `RESULTADOS_ORIGINALES_7REDES.md`, dataset, métrica, cifra, varianza y costo con tabla y página del PDF de arXiv; `cotejar_resultados_originales.py` confirma 21 de 21 (`cotejo_resultados_originales.json`). Corrige seis cifras de las fichas del 18/11 |
 | 30 | Reproducibilidad de literatura y gap refutable (12) | P | Gap candidato; denominador de estudios incluidos no cerrado |
 | 31 | Paper guía justificado y documentado (16) | C | SegFormer-B0; condiciones originales separadas de HAZMAT |
 | 32 | Réplica original y discrepancia/IC (16–17) | F | ADE20K/escala única/checkpoint original no ejecutados |
@@ -107,7 +107,7 @@ El usuario confirmó que el profesor acepta **diez modelos totales: tres E1 y si
 | 70 | Código completo para todos los requisitos (58) | P | Benchmark disponible; diagnósticos F siguen sin evidencia ejecutada |
 | 71 | Datos/instrucciones/contrato (59) | P | Manifiestos y fuente probable; verificar obtención/licencia externa |
 | 72 | Resumen ≤250 palabras, discusión/RQ (62) | C | Índice y cierre E2 |
-| 73 | BibTeX completo (41) | P | Diez arquitecturas; completar aplicación/mecanismos |
+| 73 | BibTeX completo (41) | C | 20/11: `libro/referencias_e2.bib` con 21 entradas (10 arquitecturas en versión editorial si existe, 7 de aplicación, 4 de mecanismos), DOI verificados con `verificar_doi_registro.py`. Riesgo: `scripts/integrar_entregable2.py` (línea 186) lo reescribe con solo diez entradas |
 | 74 | Lista apéndice B completa y honesta (63) | C | 21 filas siguientes, sin convertir P/F/D en aprobados |
 | 75 | Presentación y defensa técnica (59) | F | Preparar diapositivas/guion y ensayar |
 | 76 | Publicación final | F | Solicitar autorización antes de GitHub/despliegue; Daniel puede tener cambios |
