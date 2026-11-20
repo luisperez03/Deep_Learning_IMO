@@ -1,0 +1,58 @@
+{
+  "alcance": "Prueba funcional en CPU con 6 imágenes de train y 4 de validación. No mide calidad ni tiempo de GPU; no ejecuta VM-UNet.",
+  "shim_ml_collections": true,
+  "torch": "2.14.1",
+  "pasos_ok": [
+    "cache_y_permutacion",
+    "variantes_construidas",
+    "piloto",
+    "estimar",
+    "ablacion",
+    "permutacion_fcn",
+    "permutacion_transunet",
+    "hpo",
+    "sobreajuste",
+    "reanudar_cerradas",
+    "resumen"
+  ],
+  "segundos_cpu": {
+    "piloto": 189.2,
+    "estimar": 0.1,
+    "ablacion": 209.6,
+    "permutacion_fcn": 6.7,
+    "permutacion_transunet": 75.1,
+    "hpo": 32.3,
+    "sobreajuste": 123.2,
+    "reanudar_cerradas": 5.8
+  },
+  "parametros_transunet": {
+    "completo": 105322001,
+    "sin_transformer": 20267537,
+    "sin_saltos": 103810577
+  },
+  "ablacion_epocas": {
+    "abl_sin_dice_s11": 2,
+    "abl_sin_saltos_s11": 2,
+    "abl_sin_transformer_s11": 2
+  },
+  "resultados_cerrados": [
+    "abl_sin_dice_s11",
+    "abl_sin_saltos_s11",
+    "abl_sin_transformer_s11",
+    "hpo_fcn_t00",
+    "hpo_fcn_t01",
+    "hpo_segformer_b0_t00",
+    "hpo_segformer_b0_t01",
+    "hpo_segnet_t00",
+    "hpo_segnet_t01",
+    "perm_fcn_b001",
+    "perm_fcn_b002",
+    "perm_transunet_2d_b001"
+  ],
+  "sin_last_pt_tras_cerrar": true,
+  "sobreajuste": [
+    "fcn",
+    "transunet_2d",
+    "unet"
+  ]
+}

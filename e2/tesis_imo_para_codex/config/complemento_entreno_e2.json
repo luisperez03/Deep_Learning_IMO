@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "experimento": "e2_complemento_entrenamiento_v1",
+  "estado": "Diseñado y probado en CPU con pocas imágenes; NO ejecutado en GPU. Ningún número de este archivo es un resultado del complemento.",
+  "exposicion_test": "El test ya fue observado en el benchmark cerrado. Todo lo de este complemento es exploratorio: se elige solo con validación, no se reabre el protocolo cerrado y, si se mira el test, es una sola pasada final declarada exploratoria.",
+  "protocolo_base": "config/experimento_e2.json",
+  "comun": {
+    "semillas": [11, 23, 37, 53, 71],
+    "datos": "train (1015) y val (218, 122 grupos) congelados; test no se carga",
+    "criterio_validacion": "Dice medio por grupo en validación (media de imágenes dentro del grupo y luego entre grupos), igual que el benchmark",
+    "cache_en_memoria": "Las imágenes y máscaras ya preprocesadas se guardan en RAM la primera vez que se leen. Los tensores son idénticos a los de load_example; solo cambia el tiempo."
+  },
+  "ablacion": {
+    "control_guia": "Sección 4.6: sobre el mejor modelo, aislar el aporte de al menos tres componentes, con el mismo número de semillas y con inferencia sobre cada diferencia (checklist 61).",
+    "modelo": "transunet_2d",
+    "eleccion_del_modelo": "Mejor Dice de validación del benchmark (0,8532 medio en cinco semillas). La elección no usa test.",
+    "referencia_articulo": "Chen et al. (2021), TransUNet: Transformers Make Strong Encoders for Medical Image Segmentation, arXiv:2102.04306. El artículo compara R50-U-Net, R50-ViT-CUP y TransUNet y estudia el número de conexiones de salto (0, 1, 3); entrena con 0,5 entropía cruzada + 0,5 Dice.",
+    "variantes": {
+      "sin_transformer": {
+        "cambio": "transformer.num_layers = 12 -> 0",
+        "queda": "ResNet-50 híbrida, proyección de parches, embedding posicional, LayerNorm final, decodificador CUP y las tres conexiones de salto",
+        "pregunta": "Cuánto aporta el codificador Transformer (12 bloques de autoatención) sobre un codificador-decodificador CNN equivalente; es el contraste R50-U-Net frente a TransUNet del artículo",
+        "perdida": "bce_dice"
+      },
+      "sin_saltos": {
+        "cambio": "n_skip = 3 -> 0",
+        "queda": "Codificador completo (ResNet-50 + 12 bloques Transformer) y decodificador en cascada sin concatenar mapas del codificador",
+        "pregunta": "Cuánto aportan las conexiones de salto; es el caso n_skip = 0 (R50-ViT-CUP) del estudio de saltos del artículo",
+        "perdida": "bce_dice"
+      },
+      "sin_dice": {
+        "cambio": "pérdida 0,5 BCE + 0,5 Dice -> BCE sola (peso 1), por imagen y solo en la zona válida",
+        "queda": "Arquitectura idéntica a la del benchmark",
+        "pregunta": "Cuánto aporta el término Dice de la pérdida compuesta; el artículo usa la mezcla. Al pasar a BCE sola también cambia la escala del gradiente: se declara y no se reajusta la tasa, porque la receta del benchmark se mantiene fija",
+        "perdida": "bce"
+      }
+    },
+    "control_opcional": {
+      "completo": "TransUNet sin cambios con la misma receta. Sirve de referencia en el mismo entorno si la GPU o las versiones difieren de las del benchmark; si no se corre, la referencia son las cinco corridas originales."
+    },
+    "receta": "La de transunet_2d en experimento_e2.json: SGD, lr 0,001, momento 0,9, weight decay 0,0001, lote 2, 30 épocas, paciencia 5, 256 px, sin pesos preentrenados",
+    "inferencia": "Por cada variante frente a la referencia: diferencia media pareada por semilla con IC95 t de Student y prueba t pareada; Wilcoxon exacto (con cinco pares su p mínimo bilateral es 0,0625); bootstrap pareado por grupo de validación (2000 remuestreos) e inversión de signos por grupo (10000); Holm sobre las tres variantes.",
+    "conservar": "best"
+  },
+  "sobreajuste": {
+    "control_guia": "Sección 11.1: verificar la implementación con una prueba de sanidad, sobreajustar un lote pequeño (checklist 41).",
+    "modelos": ["fcn", "segnet", "unet", "deeplabv3plus", "unetplusplus", "pidnet_s", "segnext_t", "segformer_b0", "transunet_2d", "vmunet"],
+    "imagenes": 4,
+    "semilla_eleccion_imagenes": 20261120,
+    "semilla_entrenamiento": 11,
+    "pasos": 500,
+    "registrar_cada": 25,
+    "umbral_dice": 0.9,
+    "regla": "Un lote fijo de 4 imágenes de train, presentado entero en cada paso, con el optimizador y la pérdida de la receta de cada red. Pasa si el Dice medio de esas 4 imágenes en modo evaluación supera 0,90 al final. El umbral se fija antes de correr; si una red no lo alcanza se reporta tal cual, sin cambiar la receta."
+  },
+  "permutacion": {
+    "control_guia": "Tabla A (sección 7.3): repetir el pipeline completo B >= 1000 veces permutando y en train, o B >= 200 si el costo es alto; p = (1 + #{s_b >= s_obs}) / (B + 1). Checklist 41 y 56.",
+    "que_se_permuta": "Las máscaras de train se barajan entre imágenes (una permutación aleatoria de las 1015 por réplica). Cada imagen conserva su zona válida; los píxeles de la máscara ajena que caen en el relleno no cuentan en la pérdida. Validación se evalúa con sus máscaras verdaderas.",
+    "pipeline": "Idéntico al benchmark: mismo orden de lotes que la semilla 11, 30 épocas, paciencia 5, mejor época por Dice de validación. s_b es el mejor Dice de validación de la réplica b.",
+    "semilla_entrenamiento": 11,
+    "semilla_permutaciones": 20261121,
+    "s_obs": "Dice de validación de la corrida original con la semilla 11 del mismo modelo (benchmark cerrado)",
+    "bloques": {
+      "pipeline_fcn": {
+        "modelo": "fcn",
+        "B": 200,
+        "motivo": "Control del pipeline (datos, partición, pérdida, evaluación), que es común a las 10 redes. Se usa la red más barata del benchmark para llegar al mínimo de la guía para modelos costosos (B = 200; p mínimo 1/201)."
+      },
+      "transunet": {
+        "modelo": "transunet_2d",
+        "B": 19,
+        "motivo": "Control específico del mejor modelo. B = 200 de TransUNet no cabe (estimado decenas de horas de L4). Con B = 19 el p mínimo es 1/20 = 0,05: alcanza para rechazar al 5 % solo si ninguna réplica iguala a s_obs. Queda por debajo del mínimo de la guía y se declara así."
+      }
+    },
+    "regla_de_B": "B se fija después del piloto de tiempos y antes de ver cualquier s_b. Si una sesión se corta, se reporta el B alcanzado y su p mínimo; no se detiene por el valor de los s_b.",
+    "conservar": "ninguno"
+  },
+  "hpo": {
+    "control_guia": "Secciones 4.1, 11.1 y 11.2: búsqueda aleatoria con el mismo número de intentos T y el mismo presupuesto por modelo, espacios comparables en amplitud relativa, selección solo con validación, registro de todas las configuraciones (checklist 37).",
+    "metodo": "Búsqueda aleatoria con una secuencia común de multiplicadores: el intento t usa el mismo multiplicador de tasa y el mismo weight decay en las 10 redes, aplicado sobre la receta de cada una. El intento 0 es la receta del benchmark.",
+    "espacio": {
+      "lr": "receta x 10^u, u ~ Uniforme(-1, 1) (escala logarítmica, una década hacia cada lado)",
+      "weight_decay": "uno de {0, 0,0001, 0,01} con igual probabilidad",
+      "fijos": "optimizador de la receta, lote 2, 256 px, arquitectura, pérdida"
+    },
+    "semilla_secuencia": 20261122,
+    "T_disenado": 8,
+    "T_recomendado_antes_del_domingo": 4,
+    "presupuesto_por_intento": {"epocas": 10, "paciencia": 3, "semilla": 11},
+    "orden": "Por intento y luego por red: si la sesión se corta, todo prefijo completo de intentos tiene el mismo presupuesto para las 10.",
+    "fase_2_disenada_no_programada": "Reentrenar la configuración ganadora de cada red con las cinco semillas y el protocolo completo (30 épocas, paciencia 5). Unas 17 horas de L4 estimadas; no cabe antes del domingo.",
+    "limitaciones": "Una semilla por intento y 10 épocas: la elección tiene ruido de semilla y favorece configuraciones que aprenden rápido. El espacio se limita a tasa y weight decay, los dos hiperparámetros comunes a los 10 optimizadores; no cubre lote, dropout, profundidad ni ancho que pide la guía como espacio mínimo.",
+    "conservar": "ninguno"
+  },
+  "referencia_original": {
+    "fuente": "resultados/auditoria_e2_recibida/auditoria.json (validación, mejor época, 50 corridas del benchmark)",
+    "dice_validacion_por_semilla": {
+      "transunet_2d": {"11": 0.855393475650485, "23": 0.8564149409243288, "37": 0.8610116672299574, "53": 0.8476957641145716, "71": 0.8456912956463668},
+      "fcn": {"11": 0.8230425256719672, "23": 0.832020887239471, "37": 0.8302626424488357, "53": 0.8272445949162313, "71": 0.8420489982060673}
+    },
+    "segundos_por_epoca_l4": {"fcn": 19.6, "segnet": 19.6, "unet": 19.7, "deeplabv3plus": 34.8, "unetplusplus": 36.1, "pidnet_s": 70.5, "segnext_t": 65.1, "segformer_b0": 48.0, "transunet_2d": 102.1, "vmunet": 106.7},
+    "epocas_medias": {"fcn": 29.2, "segnet": 19.6, "unet": 27.0, "deeplabv3plus": 21.2, "unetplusplus": 20.0, "pidnet_s": 23.4, "segnext_t": 22.6, "segformer_b0": 24.0, "transunet_2d": 24.4, "vmunet": 19.6},
+    "nota_tiempos": "Segundos totales de la corrida divididos por sus épocas; incluyen la validación de cada época y la lectura de imágenes desde disco."
+  }
+}
