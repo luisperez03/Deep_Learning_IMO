@@ -1,0 +1,222 @@
+{
+ "estado": "Exploratorio. Primera pasada asistida; no es segunda anotación independiente ni acuerdo entre anotadores.",
+ "muestra": {
+  "n": 100,
+  "particiones": {
+   "train": 82,
+   "val": 18
+  },
+  "seleccion": "al azar en train y validación; test excluido",
+  "revisor": [
+   "propuesta_automatica"
+  ]
+ },
+ "casos_confirmados_a_mano": 0,
+ "casos_por_confirmar": 12,
+ "veredictos": {
+  "ok": 88,
+  "error": 7,
+  "dudoso": 5
+ },
+ "tasa_imagenes_con_error": {
+  "dudoso_como_ok": {
+   "k": 7,
+   "n": 100,
+   "tasa": 0.07,
+   "ic95_wilson": [
+    0.0343,
+    0.1375
+   ]
+  },
+  "dudoso_como_error": {
+   "k": 12,
+   "n": 100,
+   "tasa": 0.12,
+   "ic95_wilson": [
+    0.07,
+    0.1981
+   ]
+  },
+  "sin_dudosos": {
+   "k": 7,
+   "n": 95,
+   "tasa": 0.0737,
+   "ic95_wilson": [
+    0.0361,
+    0.1444
+   ]
+  }
+ },
+ "por_tipo": {
+  "falta": 7
+ },
+ "por_particion": {
+  "train": {
+   "n": 82,
+   "ok": 72,
+   "error": 7,
+   "dudoso": 3,
+   "dudoso_como_ok": {
+    "k": 7,
+    "n": 82,
+    "tasa": 0.0854,
+    "ic95_wilson": [
+     0.042,
+     0.1659
+    ]
+   },
+   "dudoso_como_error": {
+    "k": 10,
+    "n": 82,
+    "tasa": 0.122,
+    "ic95_wilson": [
+     0.0676,
+     0.2101
+    ]
+   }
+  },
+  "val": {
+   "n": 18,
+   "ok": 16,
+   "error": 0,
+   "dudoso": 2,
+   "dudoso_como_ok": {
+    "k": 0,
+    "n": 18,
+    "tasa": 0.0,
+    "ic95_wilson": [
+     -0.0,
+     0.1759
+    ]
+   },
+   "dudoso_como_error": {
+    "k": 2,
+    "n": 18,
+    "tasa": 0.1111,
+    "ic95_wilson": [
+     0.031,
+     0.328
+    ]
+   }
+  }
+ },
+ "casos": [
+  {
+   "id": "image_0141",
+   "particion": "val",
+   "veredicto": "dudoso",
+   "tipo": "",
+   "nota": "Dos rótulos con máscara; en el borde izquierdo asoma un papel blanco con un número que podría ser la esquina de un rótulo sin máscara."
+  },
+  {
+   "id": "image_0243",
+   "particion": "train",
+   "veredicto": "error",
+   "tipo": "falta",
+   "nota": "Un rótulo con máscara; arriba asoma otro rótulo amarillo cortado por el borde de la foto, sin máscara."
+  },
+  {
+   "id": "image_0394",
+   "particion": "train",
+   "veredicto": "error",
+   "tipo": "falta",
+   "nota": "Dos rótulos con máscara; en el borde izquierdo asoma un oxidizer amarillo cortado, sin máscara."
+  },
+  {
+   "id": "image_0470",
+   "particion": "train",
+   "veredicto": "dudoso",
+   "tipo": "",
+   "nota": "Un rótulo con máscara; en el borde derecho asoma una esquina naranja (posible explosive) muy pequeña sin máscara."
+  },
+  {
+   "id": "image_0700",
+   "particion": "train",
+   "veredicto": "error",
+   "tipo": "falta",
+   "nota": "Dos rótulos con máscara; abajo a la derecha asoma la esquina de un tercero (borde y triángulo amarillo) sin máscara."
+  },
+  {
+   "id": "image_0754",
+   "particion": "train",
+   "veredicto": "error",
+   "tipo": "falta",
+   "nota": "Un poison con máscara; arriba hay dos rótulos cortados por el borde (uno legible, INHALATION HAZARD) sin máscara."
+  },
+  {
+   "id": "image_1001",
+   "particion": "val",
+   "veredicto": "dudoso",
+   "tipo": "",
+   "nota": "Dos rótulos con máscara; abajo a la derecha asoma una esquina amarilla mínima, quizá un rótulo, sin máscara."
+  },
+  {
+   "id": "image_1048",
+   "particion": "train",
+   "veredicto": "error",
+   "tipo": "falta",
+   "nota": "Un flammable con máscara; arriba hay un infectious substance grande y legible cortado por el borde, sin máscara."
+  },
+  {
+   "id": "image_1095",
+   "particion": "train",
+   "veredicto": "dudoso",
+   "tipo": "",
+   "nota": "Tres rótulos con máscara; en el de arriba el contorno sobresale unos píxeles por las esquinas izquierda e inferior."
+  },
+  {
+   "id": "image_1296",
+   "particion": "train",
+   "veredicto": "error",
+   "tipo": "falta",
+   "nota": "Un oxidizer con máscara; abajo a la derecha asoma la punta de otro rótulo amarillo con su borde, sin máscara."
+  },
+  {
+   "id": "image_1449",
+   "particion": "train",
+   "veredicto": "error",
+   "tipo": "falta",
+   "nota": "Un rótulo con máscara; arriba asoma otro rótulo rojo cortado por el borde, sin máscara."
+  },
+  {
+   "id": "image_1570",
+   "particion": "train",
+   "veredicto": "dudoso",
+   "tipo": "",
+   "nota": "Un rótulo con máscara; en el borde izquierdo asoma un trozo verde con reborde blanco, posible rótulo sin máscara."
+  }
+ ],
+ "rotulos_en_borde_anotados": {
+  "train": {
+   "imagenes": 1015,
+   "imagenes_con_region_anotada_en_borde": 86,
+   "fraccion_imagenes": 0.0847,
+   "regiones": 1711,
+   "regiones_que_tocan_borde": 94,
+   "fraccion_regiones": 0.0549
+  },
+  "val": {
+   "imagenes": 218,
+   "imagenes_con_region_anotada_en_borde": 21,
+   "fraccion_imagenes": 0.0963,
+   "regiones": 396,
+   "regiones_que_tocan_borde": 23,
+   "fraccion_regiones": 0.0581
+  },
+  "imagenes_de_la_muestra_ok_con_region_anotada_en_borde": 7,
+  "ids": [
+   "image_0450",
+   "image_0481",
+   "image_0862",
+   "image_0905",
+   "image_0967",
+   "image_1007",
+   "image_1564"
+  ]
+ },
+ "lectura": [
+  "Todos los errores de la primera pasada son del mismo tipo: un rótulo cortado por el borde de la foto que quedó sin máscara (tipo falta). No hubo contornos mal trazados, sobrantes ni clases cambiadas.",
+  "El conjunto sí anota muchos rótulos que tocan el borde (ver fracciones), así que la omisión no es una regla consistente sino una inconsistencia: el modelo recibe señales contradictorias justo en los rótulos cortados.",
+  "La tasa es por imagen, no por píxel: un rótulo cortado suele ser pequeño, así que el efecto sobre el Dice por imagen está acotado pero no cuantificado. No se corrigieron máscaras de test."
+ ]
+}
