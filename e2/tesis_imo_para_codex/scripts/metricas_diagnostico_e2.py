@@ -77,3 +77,46 @@ def label_set(p,y,v,mass=.9):
     correct=((pp>=.5)==yy)
     return {'coverage':float(np.mean(~single|correct)),'mean_set_size':float(np.mean(np.where(single,1,2))),
             'singleton_fraction':float(single.mean())}
+
+# --- Predicción conforme por píxel, condicionada a la clase (Mondrian) ---
+# Puntaje de no conformidad s = 1 - p(clase verdadera). Un umbral por clase: con uno solo, el fondo
+# (~97 % de los píxeles válidos, casi todos fáciles) se lleva la garantía y los píxeles de rótulo quedan
+# por debajo de la nominal. Garantía aproximada: los píxeles de una imagen no son intercambiables.
+
+def conformal_quantile(scores,alpha):
+    """k-ésimo menor puntaje con k = ceil((n+1)(1-alpha)); inf si k > n (muestra demasiado pequeña).
+    Estadístico de orden exacto: np.quantile(..., 'higher') en k/n puede tomar el k+1."""
+    s=np.asarray(scores,dtype='float64').ravel();n=len(s)
+    if n==0:raise ValueError('Sin puntajes de calibración')
+    k=int(np.ceil((n+1)*(1-alpha)-1e-12))
+    return float('inf') if k>n else float(np.partition(s,k-1)[k-1])
+
+def conformal_scores_by_class(p,y,v,group,store):
+    """Acumula en store[clase][grupo] hasta per_group puntajes por grupo y clase (muestreo sin reemplazo)."""
+    p=np.asarray(p,dtype='float32');y=np.asarray(y).astype(bool);v=np.asarray(v,bool)
+    for c,s in ((1,(1-p)[y&v]),(0,p[~y&v])):
+        if len(s):store[c].setdefault(group,[]).append(s)
+    return store
+
+def conformal_calibrate(store,alpha,per_group,seed):
+    """store[c][grupo] -> listas de puntajes. Cada grupo aporta como máximo per_group píxeles por clase."""
+    rng=np.random.default_rng(seed);cal={}
+    for c in (0,1):
+        chunks=[]
+        for g in sorted(store[c]):
+            s=np.concatenate(store[c][g]);chunks.append(rng.choice(s,min(per_group,len(s)),replace=False) if len(s)>per_group else s)
+        cal[c]=np.concatenate(chunks)
+    q={'background':conformal_quantile(cal[0],alpha),'label':conformal_quantile(cal[1],alpha),
+       'marginal':conformal_quantile(np.concatenate([cal[0],cal[1]]),alpha)}
+    return q,{'background':len(cal[0]),'label':len(cal[1])}
+
+def conformal_sets(p,y,v,q_label,q_background):
+    """Conjunto por píxel {c: 1-p_c <= q_c}. Devuelve conteos de cobertura y tamaño por clase verdadera."""
+    p=np.asarray(p,dtype='float32')[v];t=np.asarray(y).astype(bool)[v]
+    in_label=(1-p)<=q_label;in_bg=p<=q_background
+    covered=np.where(t,in_label,in_bg);size=in_label.astype(int)+in_bg.astype(int)
+    out={}
+    for name,sel in (('all',np.ones_like(t)),('label',t),('background',~t)):
+        out[name]={'covered':int(covered[sel].sum()),'pixels':int(sel.sum()),'size_sum':int(size[sel].sum()),
+                   'empty':int((size[sel]==0).sum()),'both':int((size[sel]==2).sum())}
+    return out
