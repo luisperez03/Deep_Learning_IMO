@@ -25,9 +25,10 @@ FILAS = {
            "MMD y adversarial (`scripts/shift_train_val_e2.py`). Sin cambio de distribución detectado"),
     "16": ("C", "Letterbox, tamaños, normalización train y, 20/11, formas, tono e histogramas por clase "
            "(`scripts/eda_clases_formas_e2.py`, tres figuras)"),
-    "32": ("F", "Preparado, sin ejecutar: protocolo a priori `config/replica_segformer.json` (checkpoint oficial, ADE20K "
-           "val, escala única, criterio fijado) y cuaderno `colab/Replica_SegFormer_ADE20K.ipynb` (T4, 15–30 min "
-           "estimados). Guía: `docs/REPLICA_SEGFORMER_LEEME.md`"),
+    "32": ("C", "20/11, Colab T4: checkpoint oficial de SegFormer-B0 en ADE20K val (2.000), escala única, mIoU 37,43 % "
+           "(IC95 35,47–38,30) frente a 37,4; D = +0,03 (IC95 −1,93 a +0,90); veredicto a priori `compatible`; "
+           "desviaciones D1 (−1,49 con el preprocesador de HF) y D2 (media por imagen). Réplica de evaluación, no de "
+           "entrenamiento. `resultados/replica_segformer/LECTURA.md`"),
     "33": ("F", "Preparado, sin ejecutar: protocolo `config/limitacion_segformer_area.json` y "
            "`scripts/limitacion_area_segformer.py` (4 redes piloto, terciles de área en validación); necesita el Dice por "
            "imagen de validación de los checkpoints (`scripts/extraer_validacion_por_imagen.py`)"),
@@ -67,7 +68,7 @@ APENDICE = {
     "B13": ("F", "ID63; kit listo, sin segunda anotación"),
     "B16": ("F", "ID59–60; preparado en `colab/Complemento_GPU_E2.ipynb`"),
     "B17": ("F", "ID62; preparado en `colab/Complemento_GPU_E2.ipynb`"),
-    "B19": ("F", "ID32–33; preparados el protocolo y el cuaderno de la réplica"),
+    "B19": ("P", "ID32 hecha (compatible); ID33, limitación, preparada sin ejecutar"),
     "B20": ("P", "Agregación 0; entorno limpio parcial (ID55)"),
 }
 

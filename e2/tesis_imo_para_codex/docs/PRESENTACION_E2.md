@@ -77,7 +77,9 @@ presupuesto. **[si se corrió]**
 
 ## 12. Réplica del paper guía
 
-SegFormer-B0 en ADE20K, escala única, contra 37,4 % mIoU, con el criterio fijado antes. **[si se corrió]** Y la
+SegFormer-B0 en ADE20K, escala única, contra 37,4 % mIoU, con el criterio fijado antes: 37,43 % (IC95 35,47–38,30),
+D = +0,03 puntos. Veredicto `compatible`: la cifra coincide, pero el IC de D sale del margen de ±1 punto. El
+preprocesador por defecto de Hugging Face resta 1,5 puntos. Es réplica de evaluación, no de entrenamiento. Y la
 limitación: el SegFormer-B0 de HAZMAT queda por debajo en todos los cuartiles de área; parece un déficit de nivel,
 no de tamaño.
 
