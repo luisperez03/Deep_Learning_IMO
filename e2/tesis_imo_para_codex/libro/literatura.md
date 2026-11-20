@@ -87,7 +87,21 @@ D = +0,03 puntos, con IC95 de −1,93 a +0,90. **Veredicto según el criterio fi
 
 Es una réplica de **evaluación**: confirma que los pesos publicados, con el preprocesamiento y la métrica del artículo, dan la cifra reportada. No replica el entrenamiento. Corrida en una GPU T4 con `colab/Replica_SegFormer_ADE20K.ipynb`; detalle en `resultados/replica_segformer/LECTURA.md` y salida completa en `resumen_replica.json`.
 
-La adaptación HAZMAT cambia dataset, objetivo, inicialización, resolución y pérdida: **su Dice no valida una réplica del paper**. Que la réplica de evaluación sea compatible indica que el último lugar en HAZMAT no viene de un modelo mal implementado, sino de las condiciones de la adaptación. El último lugar de SegFormer tampoco acredita una limitación intrínseca del mecanismo. Falta un piloto específico en al menos tres modelos, con condición medible, magnitud e IC.
+La adaptación HAZMAT cambia dataset, objetivo, inicialización, resolución y pérdida: **su Dice no valida una réplica del paper**. La réplica valida el checkpoint de Hugging Face y la métrica, no la implementación de SMP (`mit_b0`) entrenada en HAZMAT. El último lugar de SegFormer tampoco acredita una limitación intrínseca del mecanismo.
+
+### Limitación por área del rótulo
+
+El protocolo `config/limitacion_segformer_area.json`, fijado antes de mirar resultados por área, plantea que SegFormer-B0 pierde más Dice que otras redes en los rótulos pequeños. Unidad: los 122 grupos de validación, en terciles de la fracción de área (cortes 0,0195 y 0,0411); Δ es el Dice del tercil grande menos el del pequeño, promediado en las cinco semillas, con IC95 bootstrap por grupos. La limitación *existe* si el límite inferior del IC95 de Δ de SegFormer supera 0,02; es *específica* si además Δ de SegFormer supera al de U-Net, DeepLabv3+ y SegNeXt-T con significación tras Holm.
+
+| Red | Dice tercil pequeño | Dice tercil grande | Δ [IC95] |
+|---|---:|---:|---:|
+| SegFormer-B0 | 0,661 | 0,743 | 0,082 [−0,030; 0,194] |
+| U-Net | 0,782 | 0,864 | 0,081 [0,004; 0,150] |
+| DeepLabv3+ | 0,772 | 0,845 | 0,073 [−0,007; 0,148] |
+| SegNeXt-T | 0,699 | 0,819 | 0,120 [0,030; 0,207] |
+| TransUNet | 0,814 | 0,871 | 0,057 [−0,014; 0,119] |
+
+**Veredicto a priori: no confirmada.** El IC95 de Δ de SegFormer incluye valores menores que 0,02, y su diferencia de Δ con cada red piloto es casi nula (U-Net 0,001 [−0,076; 0,082]; DeepLabv3+ 0,010; SegNeXt-T −0,038; p de Holm ≥ 0,55). Lo que sí aparece es un déficit de nivel: en el tercil pequeño SegFormer queda 0,12 por debajo de U-Net [−0,184; −0,064] y 0,11 por debajo de DeepLabv3+. Todas las redes rinden menos en rótulos pequeños, en parte porque el Dice castiga más un mismo error de borde en un objeto pequeño; SegFormer no pierde más que las demás, parte más abajo. Datos: Dice por imagen de validación extraído de los 50 mejores checkpoints con `colab/Extraer_Validacion_E2.ipynb` (`resultados/validacion_por_imagen_e2/`), análisis en `resultados/limitacion_segformer_area/RESUMEN.md`.
 
 ## Gap y límites de la síntesis
 

@@ -16,7 +16,7 @@
 | 3 | `colab/Complemento_Entrenamiento_E2.ipynb`, ablación | L4 | ≈ 10 h (hasta 12,8 h) | 61 |
 | 4 | Mismo cuaderno, sobreajuste y permutación | L4 | 0,25 h + 6,5–33 h (FCN, B = 200) | 41, 56; B03 |
 | 5 | Mismo cuaderno, búsqueda igual, T = 4 | L4 | 2,3–5,8 h | 37; B06 |
-| 6 | Extracción del Dice por imagen de validación y limitación por área | CPU de Colab | lectura de 50 checkpoints | 33 |
+| 6 | Extracción del Dice por imagen de validación y limitación por área (**hecho**, 20/11, `colab/Extraer_Validacion_E2.ipynb`) | CPU de Colab | unos 4 min medidos | 33 (cerrada), B19 |
 
 La réplica es la más barata y cierra un requisito central: va primero. Los bloques 3 a 5 compiten por las mismas
 horas de L4; si no caben todos, el orden de la tabla es el de prioridad. Las sesiones de Colab se cortan: todos

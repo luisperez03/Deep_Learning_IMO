@@ -49,7 +49,7 @@ El usuario confirmó que el profesor acepta **diez modelos totales: tres E1 y si
 | 30 | Reproducibilidad de literatura y gap refutable (12) | P | Gap candidato; denominador de estudios incluidos no cerrado |
 | 31 | Paper guía justificado y documentado (16) | C | SegFormer-B0; condiciones originales separadas de HAZMAT |
 | 32 | Réplica original y discrepancia/IC (16–17) | C | 20/11, Colab T4: checkpoint oficial de SegFormer-B0 en ADE20K val (2.000), escala única, mIoU 37,43 % (IC95 35,47–38,30) frente a 37,4; D = +0,03 (IC95 −1,93 a +0,90); veredicto a priori `compatible`; desviaciones D1 (−1,49 con el preprocesador de HF) y D2 (media por imagen). Réplica de evaluación, no de entrenamiento. `resultados/replica_segformer/LECTURA.md` |
-| 33 | Limitación cuantificada y piloto ≥3 redes (17) | F | Preparado, sin ejecutar: protocolo `config/limitacion_segformer_area.json` y `scripts/limitacion_area_segformer.py` (4 redes piloto, terciles de área en validación); necesita el Dice por imagen de validación de los checkpoints (`scripts/extraer_validacion_por_imagen.py`) |
+| 33 | Limitación cuantificada y piloto ≥3 redes (17) | C | 20/11: protocolo a priori `config/limitacion_segformer_area.json`, terciles de área en los 122 grupos de validación, SegFormer frente a 3 redes piloto (U-Net, DeepLabv3+, SegNeXt-T), 5 semillas. Veredicto `no_confirmada`: Δ T3−T1 de SegFormer 0,082 [−0,030; 0,194] y sin diferencia con las piloto (p Holm ≥ 0,55); déficit de nivel, −0,12 frente a U-Net en el tercil pequeño. Dice por imagen extraído de los 50 checkpoints (`colab/Extraer_Validacion_E2.ipynb`). `resultados/limitacion_segformer_area/RESUMEN.md` |
 
 ## Implementación y rigor experimental — rúbrica 25 %
 
@@ -136,7 +136,7 @@ El usuario confirmó que el profesor acepta **diez modelos totales: tres E1 y si
 | B16 Robustez/explicabilidad/fidelidad/estabilidad | F | ID59–60; preparado en `colab/Complemento_GPU_E2.ipynb` |
 | B17 Incertidumbre top3/cobertura | F | ID62; preparado en `colab/Complemento_GPU_E2.ipynb` |
 | B18 Test una vez, pesos/umbrales fijos | D | Cierre E2 sí, exposición histórica E1 |
-| B19 Réplica/limitación paper | P | ID32 hecha (compatible); ID33, limitación, preparada sin ejecutar |
+| B19 Réplica/limitación paper | C | ID32 réplica compatible; ID33 limitación por área no confirmada (déficit de nivel) |
 | B20 Reproducción independiente/discrepancia | P | Agregación 0; entorno limpio parcial (ID55) |
 | B21 Extremo a extremo y entorno | P | Informe con un comando; experimentos faltantes |
 

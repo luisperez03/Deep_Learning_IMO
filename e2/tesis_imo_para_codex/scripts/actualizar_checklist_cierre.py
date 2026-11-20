@@ -29,9 +29,11 @@ FILAS = {
            "(IC95 35,47–38,30) frente a 37,4; D = +0,03 (IC95 −1,93 a +0,90); veredicto a priori `compatible`; "
            "desviaciones D1 (−1,49 con el preprocesador de HF) y D2 (media por imagen). Réplica de evaluación, no de "
            "entrenamiento. `resultados/replica_segformer/LECTURA.md`"),
-    "33": ("F", "Preparado, sin ejecutar: protocolo `config/limitacion_segformer_area.json` y "
-           "`scripts/limitacion_area_segformer.py` (4 redes piloto, terciles de área en validación); necesita el Dice por "
-           "imagen de validación de los checkpoints (`scripts/extraer_validacion_por_imagen.py`)"),
+    "33": ("C", "20/11: protocolo a priori `config/limitacion_segformer_area.json`, terciles de área en los 122 grupos "
+           "de validación, SegFormer frente a 3 redes piloto (U-Net, DeepLabv3+, SegNeXt-T), 5 semillas. Veredicto "
+           "`no_confirmada`: Δ T3−T1 de SegFormer 0,082 [−0,030; 0,194] y sin diferencia con las piloto (p Holm ≥ 0,55); "
+           "déficit de nivel, −0,12 frente a U-Net en el tercil pequeño. Dice por imagen extraído de los 50 checkpoints "
+           "(`colab/Extraer_Validacion_E2.ipynb`). `resultados/limitacion_segformer_area/RESUMEN.md`"),
     "37": ("F", "Preparado, sin ejecutar: búsqueda con el mismo espacio relativo y el mismo presupuesto para las 10 "
            "(`config/complemento_entreno_e2.json`, `colab/Complemento_Entrenamiento_E2.ipynb`), exploratoria por la "
            "exposición previa del test; T = 4 propuesto (2,3–5,8 h L4 estimadas)"),
@@ -68,7 +70,7 @@ APENDICE = {
     "B13": ("F", "ID63; kit listo, sin segunda anotación"),
     "B16": ("F", "ID59–60; preparado en `colab/Complemento_GPU_E2.ipynb`"),
     "B17": ("F", "ID62; preparado en `colab/Complemento_GPU_E2.ipynb`"),
-    "B19": ("P", "ID32 hecha (compatible); ID33, limitación, preparada sin ejecutar"),
+    "B19": ("C", "ID32 réplica compatible; ID33 limitación por área no confirmada (déficit de nivel)"),
     "B20": ("P", "Agregación 0; entorno limpio parcial (ID55)"),
 }
 

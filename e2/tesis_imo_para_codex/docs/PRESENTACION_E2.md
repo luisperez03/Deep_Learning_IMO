@@ -80,8 +80,9 @@ presupuesto. **[si se corrió]**
 SegFormer-B0 en ADE20K, escala única, contra 37,4 % mIoU, con el criterio fijado antes: 37,43 % (IC95 35,47–38,30),
 D = +0,03 puntos. Veredicto `compatible`: la cifra coincide, pero el IC de D sale del margen de ±1 punto. El
 preprocesador por defecto de Hugging Face resta 1,5 puntos. Es réplica de evaluación, no de entrenamiento. Y la
-limitación: el SegFormer-B0 de HAZMAT queda por debajo en todos los cuartiles de área; parece un déficit de nivel,
-no de tamaño.
+limitación por área, con criterio fijado antes: **no confirmada**. Todas las redes pierden Dice en los rótulos
+pequeños y SegFormer no pierde más que U-Net, DeepLabv3+ o SegNeXt-T (diferencias de Δ cercanas a cero, p de Holm
+≥ 0,55); lo que tiene es un déficit de nivel: 0,12 por debajo de U-Net ya en el tercil pequeño.
 
 ## 13. Amenazas a la validez y lo que no se hizo
 
