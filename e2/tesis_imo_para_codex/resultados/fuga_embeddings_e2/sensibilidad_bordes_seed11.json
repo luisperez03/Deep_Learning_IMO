@@ -1,0 +1,185 @@
+{
+ "fuente": "bordes_seed11",
+ "nota": "Solo seed11: Dice por imagen reconstruido de precisión y exhaustividad guardadas (exacto). No es el Dice oficial de cinco semillas; sirve para ver la dirección y el tamaño del cambio.",
+ "estado": "Exploratorio, posterior al test; no cambia selección ni conclusiones cerradas.",
+ "grupos_total": 122,
+ "grupos_excluidos": [
+  "g_image_0004",
+  "g_image_0059",
+  "g_image_0204",
+  "g_image_0398",
+  "g_image_0501",
+  "g_image_0563",
+  "g_image_0677",
+  "g_image_0750",
+  "g_image_1345"
+ ],
+ "grupos_restantes": 113,
+ "por_modelo": [
+  {
+   "modelo": "transunet_2d",
+   "Dice_todos": 0.8711542708275117,
+   "Dice_sin_casi_duplicados": 0.8663170643096625,
+   "cambio": -0.004837206517849246,
+   "Dice_solo_grupos_casi_duplicado": 0.9318880859960638,
+   "casi_menos_resto": 0.06557102168640128,
+   "casi_menos_resto_IC95": [
+    0.032088079462246226,
+    0.10065181761387533
+   ]
+  },
+  {
+   "modelo": "unet",
+   "Dice_todos": 0.8422430541558305,
+   "Dice_sin_casi_duplicados": 0.836601781805532,
+   "cambio": -0.005641272350298432,
+   "Dice_solo_grupos_casi_duplicado": 0.9130723625540225,
+   "casi_menos_resto": 0.07647058074849045,
+   "casi_menos_resto_IC95": [
+    0.027829205114046983,
+    0.12377552690107235
+   ]
+  },
+  {
+   "modelo": "fcn",
+   "Dice_todos": 0.8429925835119594,
+   "Dice_sin_casi_duplicados": 0.8369045376535862,
+   "cambio": -0.006088045858373192,
+   "Dice_solo_grupos_casi_duplicado": 0.9194313815115347,
+   "casi_menos_resto": 0.0825268438579485,
+   "casi_menos_resto_IC95": [
+    0.03944915701159503,
+    0.12525780385277027
+   ]
+  },
+  {
+   "modelo": "vmunet",
+   "Dice_todos": 0.878612057984686,
+   "Dice_sin_casi_duplicados": 0.8759754226063624,
+   "cambio": -0.002636635378323593,
+   "Dice_solo_grupos_casi_duplicado": 0.9117164799569686,
+   "casi_menos_resto": 0.035741057350606176,
+   "casi_menos_resto_IC95": [
+    -0.002382252474084136,
+    0.07425977720945103
+   ]
+  },
+  {
+   "modelo": "deeplabv3plus",
+   "Dice_todos": 0.8079230629043408,
+   "Dice_sin_casi_duplicados": 0.8000806864990417,
+   "cambio": -0.007842376405299056,
+   "Dice_solo_grupos_casi_duplicado": 0.9063884555486518,
+   "casi_menos_resto": 0.10630776904961003,
+   "casi_menos_resto_IC95": [
+    0.043197196101528855,
+    0.1644199031686212
+   ]
+  },
+  {
+   "modelo": "unetplusplus",
+   "Dice_todos": 0.8090159163908264,
+   "Dice_sin_casi_duplicados": 0.8012281424325683,
+   "cambio": -0.007787773958258026,
+   "Dice_solo_grupos_casi_duplicado": 0.9067957449778429,
+   "casi_menos_resto": 0.10556760254527453,
+   "casi_menos_resto_IC95": [
+    0.038082184061122556,
+    0.1703219236258722
+   ]
+  },
+  {
+   "modelo": "pidnet_s",
+   "Dice_todos": 0.7571412306260628,
+   "Dice_sin_casi_duplicados": 0.7474163134085476,
+   "cambio": -0.009724917217515117,
+   "Dice_solo_grupos_casi_duplicado": 0.879242969023752,
+   "casi_menos_resto": 0.13182665561520435,
+   "casi_menos_resto_IC95": [
+    0.050384288196523824,
+    0.20542803991755046
+   ]
+  },
+  {
+   "modelo": "segnext_t",
+   "Dice_todos": 0.7747294677967915,
+   "Dice_sin_casi_duplicados": 0.7668816953742252,
+   "cambio": -0.00784777242256629,
+   "Dice_solo_grupos_casi_duplicado": 0.8732626104356801,
+   "casi_menos_resto": 0.10638091506145486,
+   "casi_menos_resto_IC95": [
+    0.03146055790334087,
+    0.1758577539890185
+   ]
+  },
+  {
+   "modelo": "segformer_b0",
+   "Dice_todos": 0.6956701728226814,
+   "Dice_sin_casi_duplicados": 0.6913795741372879,
+   "cambio": -0.0042905986853934985,
+   "Dice_solo_grupos_casi_duplicado": 0.7495410229837329,
+   "casi_menos_resto": 0.05816144884644503,
+   "casi_menos_resto_IC95": [
+    -0.13405704031799726,
+    0.20708733969625479
+   ]
+  },
+  {
+   "modelo": "segnet",
+   "Dice_todos": 0.7779329730546798,
+   "Dice_sin_casi_duplicados": 0.7712845883099457,
+   "cambio": -0.006648384744734059,
+   "Dice_solo_grupos_casi_duplicado": 0.8614071370718954,
+   "casi_menos_resto": 0.0901225487619497,
+   "casi_menos_resto_IC95": [
+    -0.025254394738960233,
+    0.18118794144983652
+   ]
+  }
+ ],
+ "ranking_todos": [
+  "vmunet",
+  "transunet_2d",
+  "fcn",
+  "unet",
+  "unetplusplus",
+  "deeplabv3plus",
+  "segnet",
+  "segnext_t",
+  "pidnet_s",
+  "segformer_b0"
+ ],
+ "ranking_sin_casi_duplicados": [
+  "vmunet",
+  "transunet_2d",
+  "fcn",
+  "unet",
+  "unetplusplus",
+  "deeplabv3plus",
+  "segnet",
+  "segnext_t",
+  "pidnet_s",
+  "segformer_b0"
+ ],
+ "ranking_cambia": false,
+ "kendall_tau_rankings": 1.0,
+ "cambio_max_abs": 0.009724917217515117,
+ "contraste_transunet_menos_fcn": {
+  "todos": {
+   "diferencia": 0.028161687315552467,
+   "IC95": [
+    0.008492977291986344,
+    0.04926425572216253
+   ],
+   "grupos": 122
+  },
+  "sin_casi_duplicados": {
+   "diferencia": 0.029412526656076455,
+   "IC95": [
+    0.008156087905062764,
+    0.05167410328044735
+   ],
+   "grupos": 113
+  }
+ }
+}

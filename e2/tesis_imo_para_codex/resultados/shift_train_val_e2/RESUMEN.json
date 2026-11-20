@@ -1,0 +1,217 @@
+{
+ "estado": "Exploratorio; complemento del train/test ya hecho, no lo repite.",
+ "unidad": "grupo",
+ "grupos": {
+  "train": 567,
+  "val": 122
+ },
+ "ks_por_rasgo": [
+  {
+   "rasgo": "media_R",
+   "D": 0.03398675803047391,
+   "p": 0.999534254422996,
+   "p_holm": 1.0
+  },
+  {
+   "rasgo": "media_G",
+   "D": 0.07019978604678057,
+   "p": 0.6747148799240952,
+   "p_holm": 1.0
+  },
+  {
+   "rasgo": "media_B",
+   "D": 0.07206464856738076,
+   "p": 0.6431728714368438,
+   "p_holm": 1.0
+  },
+  {
+   "rasgo": "desv_R",
+   "D": 0.10149767253592379,
+   "p": 0.23361822476241922,
+   "p_holm": 1.0
+  },
+  {
+   "rasgo": "desv_G",
+   "D": 0.08542226848237766,
+   "p": 0.4289863300112059,
+   "p_holm": 1.0
+  },
+  {
+   "rasgo": "desv_B",
+   "D": 0.10175788591089135,
+   "p": 0.2308441330127134,
+   "p_holm": 1.0
+  },
+  {
+   "rasgo": "gradiente_medio",
+   "D": 0.05588805042356959,
+   "p": 0.8918374460116624,
+   "p_holm": 1.0
+  },
+  {
+   "rasgo": "contraste_gris",
+   "D": 0.06383901465868669,
+   "p": 0.7796673900157178,
+   "p_holm": 1.0
+  },
+  {
+   "rasgo": "aspecto",
+   "D": 0.04618787405672642,
+   "p": 0.9749293647688356,
+   "p_holm": 1.0
+  },
+  {
+   "rasgo": "foreground_fraction",
+   "D": 0.09311301934252758,
+   "p": 0.325452451272479,
+   "p_holm": 1.0
+  },
+  {
+   "rasgo": "regions",
+   "D": 0.07619914996964172,
+   "p": 0.5737768819069324,
+   "p_holm": 1.0
+  },
+  {
+   "rasgo": "perimeter_pixels",
+   "D": 0.07865672073322338,
+   "p": 0.5334180915408908,
+   "p_holm": 1.0
+  }
+ ],
+ "mmd": {
+  "solo_imagen": {
+   "mmd2": -0.0024802041045042245,
+   "p_permutacion": 0.9154228855721394,
+   "permutaciones": 200,
+   "nucleo": "gaussiano, ancho = mediana de d² (rasgos estandarizados)"
+  },
+  "con_mascara": {
+   "mmd2": -0.0022736659087783107,
+   "p_permutacion": 0.9303482587064676,
+   "permutaciones": 200,
+   "nucleo": "gaussiano, ancho = mediana de d² (rasgos estandarizados)"
+  }
+ },
+ "adversarial_train_val": {
+  "auc_crossfit": 0.4500101194090266,
+  "IC95_condicional_predicciones": [
+   0.3925448892056977,
+   0.5088206265460368
+  ],
+  "p_permutacion": 0.8955223880597015,
+  "auc_nulo_p95": 0.5618758493075432,
+  "permutaciones": 200,
+  "modelo": "StandardScaler + LogisticRegression C=1 balanceada, 5 folds estratificados, semilla 20261120"
+ },
+ "adversarial_train_test_existente": {
+  "auc_crossfit": 0.5597189695550351,
+  "CI95_conditional_predictions": [
+   0.5060959444008193,
+   0.6143308609906873
+  ],
+  "p_permutation_MC": 0.08955223880597014
+ },
+ "auditoria_de_origen_train_val": {
+  "archivo": "eda_ampliado.json",
+  "rasgos": "ancho, alto, aspecto, luminancia, contraste, saturación, nitidez, fracción etiquetada, número de regiones, área media de región; por grupo",
+  "ks_por_rasgo_grupos": [
+   {
+    "rasgo": "ancho",
+    "D": 0.0327,
+    "p": 0.999773458099907,
+    "p_holm": 1.0
+   },
+   {
+    "rasgo": "alto",
+    "D": 0.0509,
+    "p": 0.9434664547786107,
+    "p_holm": 1.0
+   },
+   {
+    "rasgo": "aspecto",
+    "D": 0.0462,
+    "p": 0.9749293647688356,
+    "p_holm": 1.0
+   },
+   {
+    "rasgo": "luminancia",
+    "D": 0.0502,
+    "p": 0.9490171119710072,
+    "p_holm": 1.0
+   },
+   {
+    "rasgo": "contraste",
+    "D": 0.0913,
+    "p": 0.3478406472659835,
+    "p_holm": 1.0
+   },
+   {
+    "rasgo": "saturacion",
+    "D": 0.0516,
+    "p": 0.9373494906096399,
+    "p_holm": 1.0
+   },
+   {
+    "rasgo": "nitidez",
+    "D": 0.0552,
+    "p": 0.900288527237802,
+    "p_holm": 1.0
+   },
+   {
+    "rasgo": "frac_etiqueta",
+    "D": 0.0931,
+    "p": 0.325452451272479,
+    "p_holm": 1.0
+   },
+   {
+    "rasgo": "n_regiones",
+    "D": 0.0762,
+    "p": 0.5737768819069324,
+    "p_holm": 1.0
+   },
+   {
+    "rasgo": "area_media_region",
+    "D": 0.103,
+    "p": 0.21960826789117485,
+    "p_holm": 1.0
+   }
+  ],
+  "mmd_grupos": {
+   "mmd2": -0.001313378898552764,
+   "p_perm": 0.6646706586826348,
+   "rasgos": [
+    "ancho",
+    "alto",
+    "aspecto",
+    "luminancia",
+    "contraste",
+    "saturacion",
+    "nitidez",
+    "frac_etiqueta",
+    "n_regiones",
+    "area_media_region"
+   ],
+   "nucleo": "gaussiano, ancho = mediana de d²"
+  },
+  "adversarial_imagenes_cv_por_grupo": {
+   "logistica": {
+    "auc_oof": 0.4915,
+    "permutaciones": 200,
+    "p_perm": 0.5472636815920398,
+    "auc_perm_p95": 0.5543
+   },
+   "gradient_boosting": {
+    "auc_oof": 0.4641,
+    "permutaciones": 20,
+    "p_perm": 0.9523809523809523,
+    "auc_perm_p95": 0.5717
+   }
+  },
+  "categorias_train_vs_val": {
+   "chi2_grupos": 14.02,
+   "p_perm": 0.26147704590818366
+  }
+ },
+ "lectura": "Sin rechazo no demuestra ausencia de shift: con ~690 grupos la potencia para cambios pequeños es limitada y los descriptores son globales (color, textura, geometría), no semánticos."
+}

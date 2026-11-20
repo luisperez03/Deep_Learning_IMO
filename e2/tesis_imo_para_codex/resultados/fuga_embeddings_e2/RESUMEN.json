@@ -1,0 +1,330 @@
+{
+ "estado": "Exploratorio, posterior al test. Solo imágenes; no usa máscaras ni predicciones.",
+ "particion": {
+  "sha256_proyecto": {
+   "train.csv": "fb536572de79fcc255c9ba291581604ef0db37fd33de2c6b7ee86543bcb387a0",
+   "val.csv": "630d2a72fe6fee60fc5a3fe99302fe74eb8ae633b33225548a4b6b9ee1c00208",
+   "test.csv": "7340a0cab140a8180b4a669260809eb79e86be7cb43ef87f5cac9bbd22317e81",
+   "normalization_train.json": "6fe0f53f427488358e295a49e1c7abd7dc69d3cb9f15e430964f30b298c3d02e"
+  },
+  "coincide_con_fijados": true,
+  "sha256_referencia": {
+   "train.csv": "fb536572de79fcc255c9ba291581604ef0db37fd33de2c6b7ee86543bcb387a0",
+   "val.csv": "630d2a72fe6fee60fc5a3fe99302fe74eb8ae633b33225548a4b6b9ee1c00208",
+   "test.csv": "7340a0cab140a8180b4a669260809eb79e86be7cb43ef87f5cac9bbd22317e81",
+   "normalization_train.json": "6fe0f53f427488358e295a49e1c7abd7dc69d3cb9f15e430964f30b298c3d02e"
+  },
+  "coincide_con_referencia": true,
+  "filas_distintas_id_grupo_particion": 0,
+  "imagenes_verificadas": 1451,
+  "imagenes_distintas": []
+ },
+ "embeddings": {
+  "origen": "caché",
+  "sha256": "fbc262d7893a07c4b6b098382d997890f48fc83c3d106cea8ebd903e84ad1bb8",
+  "modelo": "resnet50.tv_in1k (timm), promedio global, L2",
+  "entrada": "letterbox 256, ImageNet",
+  "variantes_val_test": "4 rotaciones de 90° x {original, volteo horizontal}"
+ },
+ "referencia": {
+  "coseno_pares_mismo_grupo_dhash_p5_p10_p50": [
+   0.9807,
+   0.9844,
+   0.9917
+  ],
+  "pares_mismo_grupo_dhash": 449,
+  "nota": "train: vista original, sin su grupo. *_original: vista original (comparable con train). val y test: máximo sobre 8 variantes (cota de rotaciones y volteos; sube por construcción)."
+ },
+ "coseno_maximo_contra_train": {
+  "train": {
+   "n": 1015,
+   "coseno_max_p50_p90": [
+    0.9238,
+    0.9605
+   ],
+   "fraccion_sobre": {
+    "0.90": 0.8187,
+    "0.92": 0.5448,
+    "0.94": 0.3103,
+    "0.95": 0.1823,
+    "0.96": 0.1084,
+    "0.97": 0.0424,
+    "0.98": 0.0099
+   }
+  },
+  "val_original": {
+   "n": 218,
+   "coseno_max_p50_p90": [
+    0.9258,
+    0.9585
+   ],
+   "fraccion_sobre": {
+    "0.90": 0.8211,
+    "0.92": 0.5688,
+    "0.94": 0.3624,
+    "0.95": 0.2018,
+    "0.96": 0.0872,
+    "0.97": 0.0229,
+    "0.98": 0.0046
+   }
+  },
+  "test_original": {
+   "n": 218,
+   "coseno_max_p50_p90": [
+    0.927,
+    0.9607
+   ],
+   "fraccion_sobre": {
+    "0.90": 0.7569,
+    "0.92": 0.5688,
+    "0.94": 0.3486,
+    "0.95": 0.2385,
+    "0.96": 0.1055,
+    "0.97": 0.0505,
+    "0.98": 0.0092
+   }
+  },
+  "val": {
+   "n": 218,
+   "coseno_max_p50_p90": [
+    0.9346,
+    0.9632
+   ],
+   "fraccion_sobre": {
+    "0.90": 0.9037,
+    "0.92": 0.7385,
+    "0.94": 0.4312,
+    "0.95": 0.2798,
+    "0.96": 0.133,
+    "0.97": 0.0596,
+    "0.98": 0.0138
+   }
+  },
+  "test": {
+   "n": 218,
+   "coseno_max_p50_p90": [
+    0.9368,
+    0.9644
+   ],
+   "fraccion_sobre": {
+    "0.90": 0.8945,
+    "0.92": 0.7339,
+    "0.94": 0.4679,
+    "0.95": 0.3119,
+    "0.96": 0.1606,
+    "0.97": 0.0596,
+    "0.98": 0.0138
+   }
+  }
+ },
+ "grupos_dhash_no_separan_sesiones": {
+  "umbral": 0.97,
+  "pares_train_de_grupos_distintos_sobre_umbral": 33,
+  "imagenes_train_con_casi_duplicado_en_otro_grupo": 43,
+  "fraccion_imagenes_train": 0.0424,
+  "grupos_train_afectados": 24,
+  "grupos_train": 567,
+  "lectura": "Los grupos se formaron con dHash/aHash, que no ven rotaciones, recortes ni cambios de encuadre; fotos casi iguales de una misma sesión quedan en grupos distintos dentro de train y entre particiones."
+ },
+ "casi_duplicados_contra_train": {
+  "umbral": 0.97,
+  "criterio": "coseno máximo sobre 8 variantes > umbral",
+  "val": {
+   "imagenes": 13,
+   "grupos": 8,
+   "grupos_total": 122,
+   "lista_grupos": [
+    "g_image_0030",
+    "g_image_0168",
+    "g_image_0213",
+    "g_image_0415",
+    "g_image_0594",
+    "g_image_0756",
+    "g_image_1094",
+    "g_image_1561"
+   ],
+   "pares": [
+    {
+     "id": "image_0030",
+     "group_id": "g_image_0030",
+     "train_mas_parecida": "image_1310",
+     "coseno": 0.9733
+    },
+    {
+     "id": "image_0168",
+     "group_id": "g_image_0168",
+     "train_mas_parecida": "image_0788",
+     "coseno": 0.9722
+    },
+    {
+     "id": "image_0213",
+     "group_id": "g_image_0213",
+     "train_mas_parecida": "image_1273",
+     "coseno": 0.9735
+    },
+    {
+     "id": "image_0415",
+     "group_id": "g_image_0415",
+     "train_mas_parecida": "image_1346",
+     "coseno": 0.9726
+    },
+    {
+     "id": "image_0511",
+     "group_id": "g_image_0415",
+     "train_mas_parecida": "image_1668",
+     "coseno": 0.9714
+    },
+    {
+     "id": "image_0610",
+     "group_id": "g_image_0168",
+     "train_mas_parecida": "image_1544",
+     "coseno": 0.9736
+    },
+    {
+     "id": "image_0756",
+     "group_id": "g_image_0756",
+     "train_mas_parecida": "image_0523",
+     "coseno": 0.9766
+    },
+    {
+     "id": "image_0962",
+     "group_id": "g_image_0756",
+     "train_mas_parecida": "image_1348",
+     "coseno": 0.9774
+    },
+    {
+     "id": "image_1058",
+     "group_id": "g_image_0213",
+     "train_mas_parecida": "image_1273",
+     "coseno": 0.9704
+    },
+    {
+     "id": "image_1094",
+     "group_id": "g_image_1094",
+     "train_mas_parecida": "image_0550",
+     "coseno": 0.9819
+    },
+    {
+     "id": "image_1156",
+     "group_id": "g_image_0594",
+     "train_mas_parecida": "image_0951",
+     "coseno": 0.9703
+    },
+    {
+     "id": "image_1330",
+     "group_id": "g_image_1094",
+     "train_mas_parecida": "image_0775",
+     "coseno": 0.9808
+    },
+    {
+     "id": "image_1561",
+     "group_id": "g_image_1561",
+     "train_mas_parecida": "image_1633",
+     "coseno": 0.9882
+    }
+   ]
+  },
+  "test": {
+   "imagenes": 13,
+   "grupos": 9,
+   "grupos_total": 122,
+   "lista_grupos": [
+    "g_image_0004",
+    "g_image_0059",
+    "g_image_0204",
+    "g_image_0398",
+    "g_image_0501",
+    "g_image_0563",
+    "g_image_0677",
+    "g_image_0750",
+    "g_image_1345"
+   ],
+   "pares": [
+    {
+     "id": "image_0004",
+     "group_id": "g_image_0004",
+     "train_mas_parecida": "image_1653",
+     "coseno": 0.9762
+    },
+    {
+     "id": "image_0059",
+     "group_id": "g_image_0059",
+     "train_mas_parecida": "image_1478",
+     "coseno": 0.9825
+    },
+    {
+     "id": "image_0204",
+     "group_id": "g_image_0204",
+     "train_mas_parecida": "image_0969",
+     "coseno": 0.9774
+    },
+    {
+     "id": "image_0398",
+     "group_id": "g_image_0398",
+     "train_mas_parecida": "image_1653",
+     "coseno": 0.9718
+    },
+    {
+     "id": "image_0501",
+     "group_id": "g_image_0501",
+     "train_mas_parecida": "image_1348",
+     "coseno": 0.9746
+    },
+    {
+     "id": "image_0563",
+     "group_id": "g_image_0563",
+     "train_mas_parecida": "image_1273",
+     "coseno": 0.9743
+    },
+    {
+     "id": "image_0585",
+     "group_id": "g_image_0501",
+     "train_mas_parecida": "image_0523",
+     "coseno": 0.9744
+    },
+    {
+     "id": "image_0750",
+     "group_id": "g_image_0750",
+     "train_mas_parecida": "image_0770",
+     "coseno": 0.9705
+    },
+    {
+     "id": "image_0819",
+     "group_id": "g_image_0204",
+     "train_mas_parecida": "image_1390",
+     "coseno": 0.9805
+    },
+    {
+     "id": "image_1118",
+     "group_id": "g_image_0059",
+     "train_mas_parecida": "image_0422",
+     "coseno": 0.9845
+    },
+    {
+     "id": "image_1423",
+     "group_id": "g_image_0677",
+     "train_mas_parecida": "image_0465",
+     "coseno": 0.975
+    },
+    {
+     "id": "image_1442",
+     "group_id": "g_image_0750",
+     "train_mas_parecida": "image_0091",
+     "coseno": 0.9707
+    },
+    {
+     "id": "image_1527",
+     "group_id": "g_image_1345",
+     "train_mas_parecida": "image_0982",
+     "coseno": 0.973
+    }
+   ]
+  }
+ },
+ "lectura": [
+  "Validación y test se parecen a train como train se parece a sí mismo entre grupos: la partición por grupos no añade fuga respecto de lo que ya hay entre grupos de train.",
+  "Pero los grupos dHash no separan sesiones: hay fotos casi iguales en grupos distintos, también entre particiones.",
+  "El Dice de test mide generalización a fotos nuevas de las mismas sesiones y escenas, no a sesiones nuevas.",
+  "La partición congelada no se modifica; la sensibilidad sin los grupos de test con casi duplicado está en resultados/fuga_embeddings_e2/sensibilidad_*.json."
+ ]
+}
