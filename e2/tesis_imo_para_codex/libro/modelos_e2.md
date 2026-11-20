@@ -122,7 +122,7 @@ Filtros separables multiescala; NMF de la cabeza puede usar inicialización alea
 
 ![Esquema de SegFormer-B0](figuras/e2/diagrama_segformer_b0.png)
 
-SMP 0.5.0; encoder mit_b0, sin pesos externos. Paper guía; réplica original pendiente.
+SMP 0.5.0; encoder mit_b0, sin pesos externos. Paper guía; réplica de evaluación en ADE20K compatible con el artículo (37,43 % frente a 37,4 % mIoU; capítulo de literatura).
 
 $\mathrm{Attention}(Q,K,V)=\mathrm{softmax}(QK^\top/\sqrt d)V$; reducción espacial de K,V disminuye costo.
 

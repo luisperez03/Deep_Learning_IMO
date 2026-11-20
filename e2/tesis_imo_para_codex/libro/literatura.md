@@ -69,13 +69,25 @@ Attention U-Net aumentaría representación CNN; SAM exige definir prompts sin g
 
 Estas propiedades motivan hipótesis; no prueban beneficio en HAZMAT. Las cuatro familias son categorías de diseño, no cuatro réplicas independientes de un efecto de familia.
 
-## Paper guía y réplica pendiente
+## Paper guía y réplica de evaluación
 
 Xie et al., *SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers*, NeurIPS 2021. [Artículo oficial](https://proceedings.neurips.cc/paper/2021/file/64f1f27bf1b4ec22924fd0acb550c235-Paper.pdf), [DOI del preprint](https://doi.org/10.48550/arXiv.2105.15203), [código de autores](https://github.com/NVlabs/SegFormer).
 
-Combina encoder Transformer jerárquico y decoder MLP ligero. B0 se seleccionó por disponibilidad de configuración y escala manejable. El plan documental propone evaluar ADE20K a escala única, con referencia de 37,4 % mIoU. Antes de ejecutar deben fijarse checkpoint, partición, resolución, protocolo original, tolerancia de éxito y cálculo de incertidumbre. No existe aún resultado ejecutado ni discrepancia de réplica.
+Combina encoder Transformer jerárquico y decoder MLP ligero. B0 se seleccionó por disponibilidad de configuración y escala manejable. El artículo reporta 37,4 % mIoU en la validación de ADE20K a escala única.
 
-La adaptación HAZMAT cambia dataset, objetivo, inicialización, resolución y pérdida: **su Dice no valida una réplica del paper**. El último lugar de SegFormer tampoco acredita una limitación intrínseca del mecanismo. Falta un piloto específico en al menos tres modelos, con condición medible, magnitud e IC.
+Antes de ejecutar se fijaron en `config/replica_segformer.json` el checkpoint oficial (`nvidia/segformer-b0-finetuned-ade-512-512`, revisión y SHA-256 fijados), los datos (las 2.000 imágenes de validación, con el SHA-256 del archivo), el preprocesamiento de la configuración original (redimensionado alineado a 2048 × 512 e inferencia sobre la imagen completa), la métrica (mIoU acumulado sobre 150 clases), la incertidumbre (bootstrap por imagen, 2.000 réplicas) y el criterio: *replicado* si el IC95 de la diferencia D con 37,4 cae dentro de ±1 punto; *compatible* si |D| ≤ 1 pero el IC sale de ese margen.
+
+| Variante | mIoU (%) | IC95 bootstrap por imagen (%) |
+|---|---:|---:|
+| Preprocesamiento de la configuración original (primaria) | 37,43 | 35,47–38,30 |
+| Preprocesador por defecto de Hugging Face, 512 × 512 sin proporción (D1) | 35,94 | 34,02–36,85 |
+| Media de IoU por imagen, que no es la métrica del artículo (D2) | 33,90 | — |
+
+D = +0,03 puntos, con IC95 de −1,93 a +0,90. **Veredicto según el criterio fijado: compatible.** La cifra coincide y 37,4 cae dentro del IC95, pero la incertidumbre por imagen es más ancha que el margen de ±1 punto, de modo que no alcanza la categoría de replicado. El preprocesamiento explica diferencias del orden de 1,5 puntos: quien evalúe con el preprocesador por defecto obtiene un número menor sin que el modelo cambie. La conversión de los pesos frente al archivo original de los autores (D3) no se evaluó.
+
+Es una réplica de **evaluación**: confirma que los pesos publicados, con el preprocesamiento y la métrica del artículo, dan la cifra reportada. No replica el entrenamiento. Corrida en una GPU T4 con `colab/Replica_SegFormer_ADE20K.ipynb`; detalle en `resultados/replica_segformer/LECTURA.md` y salida completa en `resumen_replica.json`.
+
+La adaptación HAZMAT cambia dataset, objetivo, inicialización, resolución y pérdida: **su Dice no valida una réplica del paper**. Que la réplica de evaluación sea compatible indica que el último lugar en HAZMAT no viene de un modelo mal implementado, sino de las condiciones de la adaptación. El último lugar de SegFormer tampoco acredita una limitación intrínseca del mecanismo. Falta un piloto específico en al menos tres modelos, con condición medible, magnitud e IC.
 
 ## Gap y límites de la síntesis
 
