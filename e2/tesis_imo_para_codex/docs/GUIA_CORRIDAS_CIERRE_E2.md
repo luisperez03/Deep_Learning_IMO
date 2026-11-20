@@ -1,16 +1,17 @@
 # Cierre del Entregable 2: qué correr antes del domingo, en qué orden
 
 > **Trazabilidad.** Escrito el 2026-11-20 a partir de `docs/COMPLEMENTO_GPU_LEEME.md`,
-> `docs/COMPLEMENTO_ENTRENAMIENTO_LEEME.md`, `docs/REPLICA_SEGFORMER_LEEME.md` y del checklist maestro. Ningún
-> cuaderno de esta guía se ha ejecutado en Colab: se probaron en CPU las partes que no necesitan GPU, Drive ni
-> descargas. Todos los tiempos son **estimados**; cada cuaderno trae una celda piloto que los mide antes de lanzar
+> `docs/COMPLEMENTO_ENTRENAMIENTO_LEEME.md`, `docs/REPLICA_SEGFORMER_LEEME.md` y del checklist maestro. La réplica
+> (bloque 1) se ejecutó el 20/11 en una T4: compatible, 37,43 % mIoU frente a 37,4 %
+> (`resultados/replica_segformer/LECTURA.md`). Los demás cuadernos no se han ejecutado: se probaron en CPU las partes
+> que no necesitan GPU, Drive ni descargas. Todos los tiempos son **estimados**; cada cuaderno trae una celda piloto que los mide antes de lanzar
 > el resto. El test ya fue observado: todo lo que sale de aquí es exploratorio y se reporta así.
 
 ## Prioridad por lo que cierra en el checklist
 
 | Orden | Cuaderno | GPU | Estimado | Filas que puede cerrar |
 |---|---|---|---|---|
-| 1 | `colab/Replica_SegFormer_ADE20K.ipynb` | T4 | 15–30 min | 32 (réplica del paper guía), B19 |
+| 1 | `colab/Replica_SegFormer_ADE20K.ipynb` (**hecho**, 20/11) | T4 | unos 15 min medidos | 32 (cerrada), B19 (parcial) |
 | 2 | `colab/Complemento_GPU_E2.ipynb` | L4 | lo mide su piloto | 57, 58, 59, 60, 62, 64; B16, B17 |
 | 3 | `colab/Complemento_Entrenamiento_E2.ipynb`, ablación | L4 | ≈ 10 h (hasta 12,8 h) | 61 |
 | 4 | Mismo cuaderno, sobreajuste y permutación | L4 | 0,25 h + 6,5–33 h (FCN, B = 200) | 41, 56; B03 |
