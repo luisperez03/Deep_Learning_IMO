@@ -1,0 +1,60 @@
+{
+  "schema": "limitacion_paper_guia_v1",
+  "estado": "Protocolo fijado el 2026-11-20, antes de calcular ningún resultado por área en VALIDACIÓN. No es un preregistro anterior a los experimentos definitivos: el benchmark de 10 redes x 5 semillas ya está entrenado y el test está abierto. Se declara qué se había visto antes (seccion evidencia_previa_vista).",
+  "item_checklist": 33,
+  "limitacion": {
+    "enunciado": "SegFormer-B0 pierde desempeño en rótulos pequeños: su codificador MiT empieza con una incrustación de parches de paso 4 y sus cuatro etapas trabajan a 1/4, 1/8, 1/16 y 1/32; la cabeza MLP predice a 1/4 de resolución y reescala de forma bilineal, sin conexiones a resolución completa (en el benchmark, segmentation_models_pytorch 0.6.0 Segformer con upsampling=4). Un rótulo de menos de unos 36x36 píxeles en imágenes de 256x256 queda en pocas decenas de celdas a 1/4 y en una o dos a 1/32.",
+    "mecanismo_y_prediccion": "Si la pérdida viene de la resolución de salida, la caída de Dice de los rótulos grandes a los pequeños debería ser mayor en SegFormer-B0 que en U-Net (decodificador con conexiones a resolución completa). DeepLabv3+ (decodificador a 1/4) y SegNeXt-T (cabeza a 1/8 en el artículo original) comparten parte del mecanismo y sirven para ver si la limitación es de la familia de salida reducida."
+  },
+  "evidencia_previa_vista": {
+    "fuente": "resultados/integracion_e2/analisis.json (clave strata): análisis exploratorio posterior al test, cuartiles de área definidos en train, grupos que pueden repetirse entre cuartiles.",
+    "lo_visto_en_test": "Dice Q4 - Q1 en test: SegFormer-B0 0,051; U-Net 0,082; DeepLabv3+ 0,083; SegNeXt-T 0,117. SegFormer-B0 queda por debajo de los demás en los cuatro cuartiles.",
+    "consecuencia": "La hipótesis de una caída específica de SegFormer ya tiene evidencia exploratoria en contra en test. Este protocolo la somete a una prueba distinta en validación (terciles por grupo, cada grupo en un solo estrato, cinco semillas), y el veredicto se informa sea cual sea. No se cambia el enunciado de la limitación después de ver validación."
+  },
+  "datos": {
+    "particion": "val (218 imágenes, 122 grupos de similitud). Test no se usa en este análisis.",
+    "por_imagen": "Dice por imagen de validación del mejor checkpoint de cada corrida (clave 'validation' de best_epoch_*.pt, escrita por scripts/experimento_e2_colab.py). Se extrae con scripts/extraer_validacion_por_imagen.py a un JSON por corrida.",
+    "area": "resultados/complementos_locales_e2/eda_por_imagen.json, campo foreground_fraction (solo máscaras; no depende de ningún modelo).",
+    "corridas_requeridas": "10 redes x 5 semillas (11, 23, 37, 53, 71); el análisis exige, como mínimo, las cinco semillas de las cuatro redes piloto."
+  },
+  "estratos": {
+    "variable": "área del grupo = media de foreground_fraction de sus imágenes de validación",
+    "cortes": "terciles de la variable sobre los 122 grupos de validación (np.quantile 1/3 y 2/3); T1 = pequeños, T3 = grandes; cada grupo pertenece a un único tercil",
+    "secundaria": "mismo análisis con terciles de smallest_region_pixels (región conexa más pequeña), solo descriptivo"
+  },
+  "metricas": {
+    "dice_grupo": "media del Dice de las imágenes del grupo (igual que la métrica principal del benchmark)",
+    "dice_estrato": "media de dice_grupo sobre los grupos del tercil, para cada semilla; luego media de las cinco semillas",
+    "brecha": "Delta_m = Dice_T3 - Dice_T1 de la red m (puntos de Dice absolutos)",
+    "brecha_relativa": "Dice_T1 / Dice_T3 de la red m (descriptivo)",
+    "interaccion": "C_c = Delta_segformer_b0 - Delta_c, por comparador c, sobre los mismos grupos (pareado)",
+    "nivel_pequenos": "Dice_T1_segformer_b0 - Dice_T1_c (descriptivo, separa nivel de pendiente)"
+  },
+  "incertidumbre": {
+    "unidad": "grupo de similitud",
+    "metodo": "bootstrap de grupos estratificado por tercil (se conservan los tamaños de cada tercil), pareado entre redes y semillas: el mismo remuestreo de grupos se aplica a todas",
+    "replicas": 5000,
+    "semilla": 20261120,
+    "intervalo": "percentil 95 %",
+    "valor_p": "bootstrap bilateral: 2 * min(P(C* <= 0), P(C* >= 0)), acotado a 1",
+    "multiplicidad": "Holm sobre las tres interacciones C_c de las redes piloto, alfa 0,05",
+    "semillas": "la DE entre semillas de Delta_m se informa aparte; las semillas no se remuestrean"
+  },
+  "redes": {
+    "paper_guia": "segformer_b0",
+    "piloto": ["unet", "deeplabv3plus", "segnext_t"],
+    "justificacion_piloto": "Fijadas antes de ver validación por su relación con el mecanismo: U-Net (resolución completa, contraste principal), DeepLabv3+ y SegNeXt-T (salida reducida). Las tres están en el Top 10 del benchmark.",
+    "descriptivas": "las 10 redes del benchmark, sin contraste confirmatorio"
+  },
+  "criterio_a_priori": {
+    "delta_minimo": 0.02,
+    "justificacion_delta": "Mismo margen de dos puntos de Dice que usa el resto del proyecto (config/complementos_e2_20261120.json).",
+    "L_existe": "límite inferior del IC95 de Delta_segformer_b0 > 0,02",
+    "especifica": "L_existe y las tres C_c con IC95 por encima de 0 y significativas tras Holm",
+    "compartida": "L_existe, al menos dos de las tres redes piloto con límite inferior del IC95 de Delta_c > 0,02, y ninguna C_c significativa tras Holm",
+    "parcial": "L_existe sin cumplir 'especifica' ni 'compartida'; se describe cuál comparador difiere",
+    "no_confirmada": "no se cumple L_existe",
+    "advertencia": "El Dice castiga más un mismo error de borde en un objeto pequeño; por eso la brecha de una sola red no prueba el mecanismo y el contraste entre redes (C_c) es la prueba de especificidad."
+  },
+  "relacion_entregable_3": "Si el veredicto es 'especifica' o 'parcial' con U-Net, el candidato para E3 es una salida de mayor resolución para SegFormer (conexiones de 1/2 o resolución completa). Si es 'compartida' o 'no_confirmada', el déficit de SegFormer-B0 desde cero es de nivel y no de tamaño, y la motivación de E3 debe venir de otra limitación."
+}
