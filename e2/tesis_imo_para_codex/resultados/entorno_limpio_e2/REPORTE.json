@@ -1,0 +1,487 @@
+{
+ "estado": "Exploratorio. Copia limpia desde git; datos como hermanos; intérprete con -E -s.",
+ "ref": "HEAD",
+ "commit": "a900dec9f13bd1ca441f643f4839f7b64d40dcf3",
+ "copia": "C:\\Proyectos\\estudio\\datos\\deep_learning\\entorno_limpio_e2_20261120\\e2\\tesis_imo_para_codex",
+ "datos_hermanos": "C:\\Proyectos\\estudio\\datos\\deep_learning\\entorno_limpio_e2_20261120\\e2\\VOC2012",
+ "entorno": {
+  "python": "3.12.16",
+  "numpy": "2.5.5",
+  "scipy": "1.18.1",
+  "pillow": "13.0.0",
+  "plataforma": "Windows-11-10.0.26200-SP0"
+ },
+ "faltan_en_el_snapshot": {
+  "resultados_test_e2_final/": {
+   "descripcion": "50 JSON de test por corrida y mascaras_seed11/ (2.180 PNG); los lee analisis_integracion_e2.py, integrar_entregable2.py, auditar_test_e2.py y completar_analisis_locales_e2.py",
+   "presente_en_copia": false
+  },
+  "tesis_imo_e2_arquitecturas_reales_v2/": {
+   "descripcion": "50 carpetas de corrida con history.json y checkpoints; los lee analisis_integracion_e2.py",
+   "presente_en_copia": false
+  },
+  "resultados/preentrenamiento/masks_binary/": {
+   "descripcion": "1.451 PNG binarios; reconstruibles con reconstruir_mascaras_binarias_e2.py",
+   "presente_en_copia": false
+  }
+ },
+ "pasos": {
+  "a_reproducir_entregable2": {
+   "orden": "-E -s scripts/reproducir_entregable2.py",
+   "codigo_salida": 1,
+   "segundos": 11.0,
+   "salida_final": [
+    "Ejecutando: -m unittest discover -s tests -p test_integracion_e2.py",
+    "Ejecutando: scripts/analisis_integracion_e2.py"
+   ],
+   "error_final": [
+    "Traceback (most recent call last):",
+    "  File \"C:\\Proyectos\\estudio\\datos\\deep_learning\\entorno_limpio_e2_20261120\\e2\\tesis_imo_para_codex\\scripts\\reproducir_entregable2.py\", line 12, in <module>",
+    "    subprocess.run([sys.executable,*args],cwd=P,check=True)",
+    "  File \"C:\\Proyectos\\estudio\\datos\\deep_learning\\env_limpio\\Lib\\subprocess.py\", line 571, in run",
+    "    raise CalledProcessError(retcode, process.args,",
+    "subprocess.CalledProcessError: Command '['C:\\\\Proyectos\\\\estudio\\\\datos\\\\deep_learning\\\\env_limpio\\\\python.exe', 'scripts/analisis_integracion_e2.py']' returned non-zero exit status 1."
+   ]
+  },
+  "b_tests": {
+   "test_auditoria.py": {
+    "orden": "-E -s -m unittest discover -s tests -p test_auditoria.py",
+    "codigo_salida": 0,
+    "segundos": 1.6,
+    "salida_final": [
+     "[AUDITOR�A] SeaFront: C:\\Users\\Daniel Carbono\\AppData\\Local\\Temp\\tmpe73d3eh4\\SeaFront_v1_0_0",
+     "",
+     "[LISTO] Auditor�a escrita en: C:\\Users\\Daniel Carbono\\AppData\\Local\\Temp\\tmpe73d3eh4\\resultados\\auditoria",
+     "No se han modificado las carpetas originales. Lee INFORME_AUDITORIA.md."
+    ],
+    "error_final": [
+     "....",
+     "----------------------------------------------------------------------",
+     "Ran 4 tests in 0.891s",
+     "OK"
+    ]
+   },
+   "test_complementos_locales_e2.py": {
+    "orden": "-E -s -m unittest discover -s tests -p test_complementos_locales_e2.py",
+    "codigo_salida": 0,
+    "segundos": 10.2,
+    "salida_final": [],
+    "error_final": [
+     "...",
+     "----------------------------------------------------------------------",
+     "Ran 3 tests in 0.003s",
+     "OK"
+    ]
+   },
+   "test_e2.py": {
+    "orden": "-E -s -m unittest discover -s tests -p test_e2.py",
+    "codigo_salida": 1,
+    "segundos": 10.4,
+    "salida_final": [],
+    "error_final": [
+     "  File \"C:\\Proyectos\\estudio\\datos\\deep_learning\\env_limpio\\Lib\\importlib\\metadata\\__init__.py\", line 399, in from_name",
+     "    raise PackageNotFoundError(name)",
+     "importlib.metadata.PackageNotFoundError: No package metadata was found for ml-collections",
+     "----------------------------------------------------------------------",
+     "Ran 4 tests in 3.776s",
+     "FAILED (errors=1)"
+    ]
+   },
+   "test_evaluacion_e2.py": {
+    "orden": "-E -s -m unittest discover -s tests -p test_evaluacion_e2.py",
+    "codigo_salida": 0,
+    "segundos": 5.6,
+    "salida_final": [],
+    "error_final": [
+     "..",
+     "----------------------------------------------------------------------",
+     "Ran 2 tests in 0.157s",
+     "OK"
+    ]
+   },
+   "test_inicio_voc.py": {
+    "orden": "-E -s -m unittest discover -s tests -p test_inicio_voc.py",
+    "codigo_salida": 0,
+    "segundos": 1.2,
+    "salida_final": [
+     "Resultados: C:\\Proyectos\\estudio\\datos\\deep_learning\\entorno_limpio_e2_20261120\\e2\\tesis_imo_para_codex\\resultados\\tests_tmp\\tmp_wvt7dok\\project\\results",
+     "{\"images\": 1, \"masks\": 1, \"status_counts\": {\"ok\": 1}}",
+     "Duplicados exactos: 0 grupos; entre splits: 0; discrepancias de clases XML/mascara: 0",
+     "Resultados: C:\\Proyectos\\estudio\\datos\\deep_learning\\entorno_limpio_e2_20261120\\e2\\tesis_imo_para_codex\\resultados\\tests_tmp\\tmp_wvt7dok\\project\\results"
+    ],
+    "error_final": [
+     "....",
+     "----------------------------------------------------------------------",
+     "Ran 4 tests in 0.407s",
+     "OK"
+    ]
+   },
+   "test_integracion_e2.py": {
+    "orden": "-E -s -m unittest discover -s tests -p test_integracion_e2.py",
+    "codigo_salida": 0,
+    "segundos": 5.2,
+    "salida_final": [],
+    "error_final": [
+     "....",
+     "----------------------------------------------------------------------",
+     "Ran 4 tests in 0.002s",
+     "OK"
+    ]
+   },
+   "test_metricas_diagnostico_e2.py": {
+    "orden": "-E -s -m unittest discover -s tests -p test_metricas_diagnostico_e2.py",
+    "codigo_salida": 0,
+    "segundos": 2.6,
+    "salida_final": [],
+    "error_final": [
+     "......",
+     "----------------------------------------------------------------------",
+     "Ran 6 tests in 0.004s",
+     "OK"
+    ]
+   },
+   "test_preparacion.py": {
+    "orden": "-E -s -m unittest discover -s tests -p test_preparacion.py",
+    "codigo_salida": 0,
+    "segundos": 0.8,
+    "salida_final": [],
+    "error_final": [
+     "......",
+     "----------------------------------------------------------------------",
+     "Ran 6 tests in 0.042s",
+     "OK"
+    ]
+   },
+   "test_revision_voc.py": {
+    "orden": "-E -s -m unittest discover -s tests -p test_revision_voc.py",
+    "codigo_salida": 0,
+    "segundos": 0.8,
+    "salida_final": [],
+    "error_final": [
+     "....",
+     "----------------------------------------------------------------------",
+     "Ran 4 tests in 0.017s",
+     "OK"
+    ]
+   }
+  },
+  "c_mascaras_binarias": {
+   "orden": "-E -s scripts/reconstruir_mascaras_binarias_e2.py --voc C:\\Proyectos\\estudio\\datos\\deep_learning\\entorno_limpio_e2_20261120\\e2\\VOC2012",
+   "codigo_salida": 0,
+   "segundos": 40.2,
+   "salida_final": [
+    " \"fallas\": [],",
+    " \"n_fallas\": 0,",
+    " \"destino\": \"C:\\\\Proyectos\\\\estudio\\\\datos\\\\deep_learning\\\\entorno_limpio_e2_20261120\\\\e2\\\\tesis_imo_para_codex\\\\resultados\\\\preentrenamiento\\\\masks_binary\"",
+    "}"
+   ],
+   "error_final": []
+  },
+  "b2_tests_con_mascaras": {
+   "test_auditoria.py": {
+    "orden": "-E -s -m unittest discover -s tests -p test_auditoria.py",
+    "codigo_salida": 0,
+    "segundos": 1.1,
+    "salida_final": [
+     "[AUDITOR�A] SeaFront: C:\\Users\\Daniel Carbono\\AppData\\Local\\Temp\\tmpt1s_vm8p\\SeaFront_v1_0_0",
+     "",
+     "[LISTO] Auditor�a escrita en: C:\\Users\\Daniel Carbono\\AppData\\Local\\Temp\\tmpt1s_vm8p\\resultados\\auditoria",
+     "No se han modificado las carpetas originales. Lee INFORME_AUDITORIA.md."
+    ],
+    "error_final": [
+     "....",
+     "----------------------------------------------------------------------",
+     "Ran 4 tests in 0.619s",
+     "OK"
+    ]
+   },
+   "test_complementos_locales_e2.py": {
+    "orden": "-E -s -m unittest discover -s tests -p test_complementos_locales_e2.py",
+    "codigo_salida": 0,
+    "segundos": 8.3,
+    "salida_final": [],
+    "error_final": [
+     "...",
+     "----------------------------------------------------------------------",
+     "Ran 3 tests in 0.003s",
+     "OK"
+    ]
+   },
+   "test_e2.py": {
+    "orden": "-E -s -m unittest discover -s tests -p test_e2.py",
+    "codigo_salida": 1,
+    "segundos": 11.6,
+    "salida_final": [],
+    "error_final": [
+     "  File \"C:\\Proyectos\\estudio\\datos\\deep_learning\\env_limpio\\Lib\\importlib\\metadata\\__init__.py\", line 399, in from_name",
+     "    raise PackageNotFoundError(name)",
+     "importlib.metadata.PackageNotFoundError: No package metadata was found for ml-collections",
+     "----------------------------------------------------------------------",
+     "Ran 4 tests in 4.287s",
+     "FAILED (errors=1)"
+    ]
+   },
+   "test_evaluacion_e2.py": {
+    "orden": "-E -s -m unittest discover -s tests -p test_evaluacion_e2.py",
+    "codigo_salida": 0,
+    "segundos": 5.9,
+    "salida_final": [],
+    "error_final": [
+     "..",
+     "----------------------------------------------------------------------",
+     "Ran 2 tests in 0.117s",
+     "OK"
+    ]
+   },
+   "test_inicio_voc.py": {
+    "orden": "-E -s -m unittest discover -s tests -p test_inicio_voc.py",
+    "codigo_salida": 0,
+    "segundos": 1.0,
+    "salida_final": [
+     "Resultados: C:\\Proyectos\\estudio\\datos\\deep_learning\\entorno_limpio_e2_20261120\\e2\\tesis_imo_para_codex\\resultados\\tests_tmp\\tmptt6yfozu\\project\\results",
+     "{\"images\": 1, \"masks\": 1, \"status_counts\": {\"ok\": 1}}",
+     "Duplicados exactos: 0 grupos; entre splits: 0; discrepancias de clases XML/mascara: 0",
+     "Resultados: C:\\Proyectos\\estudio\\datos\\deep_learning\\entorno_limpio_e2_20261120\\e2\\tesis_imo_para_codex\\resultados\\tests_tmp\\tmptt6yfozu\\project\\results"
+    ],
+    "error_final": [
+     "....",
+     "----------------------------------------------------------------------",
+     "Ran 4 tests in 0.371s",
+     "OK"
+    ]
+   },
+   "test_integracion_e2.py": {
+    "orden": "-E -s -m unittest discover -s tests -p test_integracion_e2.py",
+    "codigo_salida": 0,
+    "segundos": 4.4,
+    "salida_final": [],
+    "error_final": [
+     "....",
+     "----------------------------------------------------------------------",
+     "Ran 4 tests in 0.002s",
+     "OK"
+    ]
+   },
+   "test_metricas_diagnostico_e2.py": {
+    "orden": "-E -s -m unittest discover -s tests -p test_metricas_diagnostico_e2.py",
+    "codigo_salida": 0,
+    "segundos": 2.4,
+    "salida_final": [],
+    "error_final": [
+     "......",
+     "----------------------------------------------------------------------",
+     "Ran 6 tests in 0.003s",
+     "OK"
+    ]
+   },
+   "test_preparacion.py": {
+    "orden": "-E -s -m unittest discover -s tests -p test_preparacion.py",
+    "codigo_salida": 0,
+    "segundos": 0.7,
+    "salida_final": [],
+    "error_final": [
+     "......",
+     "----------------------------------------------------------------------",
+     "Ran 6 tests in 0.037s",
+     "OK"
+    ]
+   },
+   "test_revision_voc.py": {
+    "orden": "-E -s -m unittest discover -s tests -p test_revision_voc.py",
+    "codigo_salida": 0,
+    "segundos": 0.6,
+    "salida_final": [],
+    "error_final": [
+     "....",
+     "----------------------------------------------------------------------",
+     "Ran 4 tests in 0.017s",
+     "OK"
+    ]
+   }
+  },
+  "d_completar_analisis_locales": {
+   "orden": "-E -s scripts/completar_analisis_locales_e2.py",
+   "codigo_salida": 1,
+   "segundos": 127.9,
+   "salida_final": [
+    "Permutaci�n de dominio 50",
+    "Permutaci�n de dominio 100",
+    "Permutaci�n de dominio 150",
+    "Permutaci�n de dominio 200"
+   ],
+   "error_final": [
+    "    with Image.open(P.parent/'resultados_test_e2_final/mascaras_seed11'/model/(row['id']+'.png')) as im:pred=np.asarray(im)>0",
+    "         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "  File \"C:\\Proyectos\\estudio\\datos\\deep_learning\\env_limpio\\Lib\\site-packages\\PIL\\Image.py\", line 3654, in open",
+    "    fp = builtins.open(filename, \"rb\")",
+    "         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Proyectos\\\\estudio\\\\datos\\\\deep_learning\\\\entorno_limpio_e2_20261120\\\\e2\\\\resultados_test_e2_final\\\\mascaras_seed11\\\\fcn\\\\image_0003.png'"
+   ],
+   "comparacion": {
+    "eda_por_imagen.json": {
+     "discrepancia_max": 0.0,
+     "donde": null,
+     "hojas": 13059,
+     "hojas_no_numericas_distintas": 0
+    },
+    "descriptores_imagen.json": {
+     "discrepancia_max": 0.0014490927419354982,
+     "donde": "[1216]/features[19]",
+     "hojas": 87060,
+     "hojas_no_numericas_distintas": 0
+    },
+    "histogramas_rgb_por_clase.json": {
+     "discrepancia_max": 337.0,
+     "donde": "/train[0][0][19]",
+     "hojas": 576,
+     "hojas_no_numericas_distintas": 0
+    },
+    "validacion_adversarial.json": {
+     "discrepancia_max": 0.004481508130022516,
+     "donde": "/probability[339]",
+     "hojas": 2272,
+     "hojas_no_numericas_distintas": 0
+    }
+   }
+  },
+  "e_complementos_datos": {
+   "fuga": {
+    "orden": "-E -s scripts/fuga_embeddings_e2.py --voc C:\\Proyectos\\estudio\\datos\\deep_learning\\entorno_limpio_e2_20261120\\e2\\VOC2012 --embeddings C:\\Proyectos\\estudio\\datos\\deep_learning\\fuga_e2\\embeddings_resnet50.npz",
+    "codigo_salida": 0,
+    "segundos": 4.6,
+    "salida_final": [
+     "  \"lectura\": \"Los grupos se formaron con dHash/aHash, que no ven rotaciones, recortes ni cambios de encuadre; fotos casi iguales de una misma sesi�n quedan en grupos distintos dentro de train y entre particiones.\"",
+     " }",
+     "}",
+     "{'val': (13, 8), 'test': (13, 9)}"
+    ],
+    "error_final": [],
+    "comparacion": {
+     "RESUMEN.json": {
+      "discrepancia_max": 0.0,
+      "donde": null,
+      "hojas": 207,
+      "hojas_no_numericas_distintas": 6
+     },
+     "similitud_test_train.json": {
+      "discrepancia_max": 0.0,
+      "donde": null,
+      "hojas": 872,
+      "hojas_no_numericas_distintas": 0
+     },
+     "grupos_casi_duplicado.json": {
+      "discrepancia_max": 0.0,
+      "donde": null,
+      "hojas": 18,
+      "hojas_no_numericas_distintas": 0
+     }
+    }
+   },
+   "sensibilidad": {
+    "orden": "-E -s scripts/sensibilidad_casi_duplicados_e2.py --fuente bordes_seed11",
+    "codigo_salida": 0,
+    "segundos": 0.7,
+    "salida_final": [
+     "  ],",
+     "  \"grupos\": 113",
+     " }",
+     "}"
+    ],
+    "error_final": [],
+    "comparacion": {
+     "sensibilidad_bordes_seed11.json": {
+      "discrepancia_max": 0.0,
+      "donde": null,
+      "hojas": 125,
+      "hojas_no_numericas_distintas": 0
+     }
+    }
+   },
+   "eda_clases": {
+    "orden": "-E -s scripts/eda_clases_formas_e2.py --voc C:\\Proyectos\\estudio\\datos\\deep_learning\\entorno_limpio_e2_20261120\\e2\\VOC2012",
+    "codigo_salida": 0,
+    "segundos": 50.5,
+    "salida_final": [
+     "  \"train_test\": 0.02365548863410318",
+     " }",
+     "}",
+     "{'train': np.float64(0.9852), 'val': np.float64(0.965), 'test': np.float64(0.9819)}"
+    ],
+    "error_final": [
+     "C:\\Proyectos\\estudio\\datos\\deep_learning\\entorno_limpio_e2_20261120\\e2\\tesis_imo_para_codex\\scripts\\eda_clases_formas_e2.py:148: MatplotlibDeprecationWarning: vert: bool was deprecated in Matplotlib 3.11 and will be removed in 3.13. Use orientation: {'vertical', 'horizontal'} instead.",
+     "  ax.boxplot([[x[k] for x in formas['train'][c]] for c in orden], vert=False, showfliers=False)",
+     "C:\\Proyectos\\estudio\\datos\\deep_learning\\entorno_limpio_e2_20261120\\e2\\tesis_imo_para_codex\\scripts\\eda_clases_formas_e2.py:148: MatplotlibDeprecationWarning: vert: bool was deprecated in Matplotlib 3.11 and will be removed in 3.13. Use orientation: {'vertical', 'horizontal'} instead.",
+     "  ax.boxplot([[x[k] for x in formas['train'][c]] for c in orden], vert=False, showfliers=False)",
+     "C:\\Proyectos\\estudio\\datos\\deep_learning\\entorno_limpio_e2_20261120\\e2\\tesis_imo_para_codex\\scripts\\eda_clases_formas_e2.py:148: MatplotlibDeprecationWarning: vert: bool was deprecated in Matplotlib 3.11 and will be removed in 3.13. Use orientation: {'vertical', 'horizontal'} instead.",
+     "  ax.boxplot([[x[k] for x in formas['train'][c]] for c in orden], vert=False, showfliers=False)"
+    ],
+    "comparacion": {
+     "RESUMEN.json": {
+      "discrepancia_max": 0.0,
+      "donde": null,
+      "hojas": 624,
+      "hojas_no_numericas_distintas": 0
+     }
+    }
+   },
+   "gamma": {
+    "orden": "-E -s scripts/techo_reanotacion_e2.py gamma",
+    "codigo_salida": 0,
+    "segundos": 0.8,
+    "salida_final": [
+     "HIPOT�TICO s_techo=0,95 [('transunet_2d', 0.286), ('fcn', 0.316), ('unet', 0.339), ('vmunet', 0.363), ('segnet', 0.41), ('deeplabv3plus', 0.445), ('unetplusplus', 0.466), ('pidnet_s', 0.512), ('segnext_t', 0.559), ('segformer_b0', 0.802)]"
+    ],
+    "error_final": [],
+    "comparacion": {
+     "gamma.json": {
+      "discrepancia_max": 0.0,
+      "donde": null,
+      "hojas": 206,
+      "hojas_no_numericas_distintas": 0
+     }
+    }
+   },
+   "shift": {
+    "orden": "-E -s scripts/shift_train_val_e2.py",
+    "codigo_salida": 0,
+    "segundos": 134.0,
+    "salida_final": [
+     "  \"modelo\": \"StandardScaler + LogisticRegression C=1 balanceada, 5 folds estratificados, semilla 20261120\"",
+     " }",
+     "}",
+     "KS min p_holm 1.0 []"
+    ],
+    "error_final": [],
+    "comparacion": {
+     "RESUMEN.json": {
+      "discrepancia_max": 0.00030643049280221213,
+      "donde": "/adversarial_train_val/IC95_condicional_predicciones[1]",
+      "hojas": 73,
+      "hojas_no_numericas_distintas": 65
+     }
+    }
+   }
+  },
+  "f_libro": {
+   "orden": "build libro -W --keep-going",
+   "codigo_salida": 1,
+   "segundos": 18.4,
+   "salida_final": [
+    "",
+    "Building your book, returns a non-zero exit code (1). Look above for the cause.",
+    "",
+    "==============================================================================="
+   ],
+   "error_final": [
+    "\u001b[91mC:\\Proyectos\\estudio\\datos\\deep_learning\\entorno_limpio_e2_20261120\\e2\\tesis_imo_para_codex\\libro\\tablas_resultados.inc:10: WARNING: image file not readable: figuras/intervalos_pareados.png\u001b[39;49;00m",
+    "\u001b[91mC:\\Proyectos\\estudio\\datos\\deep_learning\\entorno_limpio_e2_20261120\\e2\\tesis_imo_para_codex\\libro\\tablas_resultados.inc:32: WARNING: image file not readable: figuras/qq_semillas.png\u001b[39;49;00m",
+    "\u001b[91mC:\\Proyectos\\estudio\\datos\\deep_learning\\entorno_limpio_e2_20261120\\e2\\tesis_imo_para_codex\\libro\\resultados.md:38: WARNING: image file not readable: figuras/comparacion.png\u001b[39;49;00m",
+    "\u001b[91mC:\\Proyectos\\estudio\\datos\\deep_learning\\entorno_limpio_e2_20261120\\e2\\tesis_imo_para_codex\\libro\\resultados.md:42: WARNING: image file not readable: figuras/errores.png\u001b[39;49;00m",
+    "\u001b[91mC:\\Proyectos\\estudio\\datos\\deep_learning\\entorno_limpio_e2_20261120\\e2\\tesis_imo_para_codex\\libro\\resultados.md:46: WARNING: image file not readable: figuras/contornos.png\u001b[39;49;00m",
+    "\u001b[91mC:\\Proyectos\\estudio\\datos\\deep_learning\\entorno_limpio_e2_20261120\\e2\\tesis_imo_para_codex\\libro\\resultados_e2.md:162: WARNING: image file not readable: figuras/e2/panel_validacion.png\u001b[39;49;00m"
+   ],
+   "html": true
+  }
+ },
+ "discrepancia_maxima_global": 337.0
+}

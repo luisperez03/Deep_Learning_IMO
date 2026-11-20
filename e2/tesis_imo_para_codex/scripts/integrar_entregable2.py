@@ -49,6 +49,7 @@ parts:
       - file: metodos_e2
       - file: resultados_e2
       - file: complementos_e2
+      - file: complementos_datos_e2
       - file: cierre_e2
       - file: checklist_e2
       - file: reproducibilidad_e2
