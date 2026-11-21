@@ -17,7 +17,7 @@ Los resultados no sostienen que una familia sea universalmente superior. Solo ha
 
 | Dimensión | Amenaza | Consecuencia y tratamiento |
 |---|---|---|
-| Interna | Recetas fijas distintas, auxiliares PIDNet y capacidades muy diferentes | No atribuir toda diferencia a arquitectura; no hay ajuste exhaustivo equitativo |
+| Interna | Recetas fijas distintas, auxiliares PIDNet y capacidades muy diferentes | No atribuir toda diferencia a arquitectura; la búsqueda equitativa (T = 4, exploratoria) muestra que SegFormer-B0 depende de la receta y que el resto se mueve poco |
 | Selección | Test ya observado en E1; cierre E2 después de validación | Declarar la cronología; no afinar usando los resultados actuales |
 | Estadística | Cinco semillas, una partición, grupos de similitud aproximados | IC condicionales; no usar píxeles como réplicas ni afirmar reproducibilidad entre datasets |
 | Constructo | Máscaras con omisiones y objetivo binario | Dice evalúa coincidencia con anotación disponible, no cumplimiento normativo IMO |
@@ -37,7 +37,7 @@ La evidencia local motiva investigar si mecanismos que preservan bordes de rótu
 
 1. **Informe y evidencia existente:** conservar esta integración, tablas, curvas, análisis estadístico, checklist y archivos reproducibles. Revisar juntos la redacción y la defensa técnica.
 2. **Complemento GPU sobre pesos congelados:** medir Dice de train para diagnóstico, probabilidades y calibración, robustez con tres severidades, incertidumbre predictiva en los tres mejores por validación, explicabilidad con fidelidad/estabilidad, bordes y costo comparable. Ejecutado en una L4 sobre los 50 checkpoints, exploratorio; resultados en el capítulo de diagnósticos. Lo más relevante para la discusión: las redes compactas (FCN, U-Net, SegNet) conservan entre el 68 y el 77 % del Dice limpio a lo largo de las severidades de ruido, desenfoque y brillo (área normalizada de la curva), frente a cerca del 92 % de TransUNet con ruido y desenfoque, lo que matiza el argumento de parsimonia.
-3. **Experimentos separados:** baseline clásico fuerte, tres ablaciones con cinco semillas, sanidad de etiquetas permutadas y réplica SegFormer en condiciones originales. No hacerlos pasar por parte del benchmark cerrado. El baseline clásico y la réplica de evaluación ya se ejecutaron (Dice 0,645; réplica compatible, 37,43 % frente a 37,4 % mIoU); las ablaciones y la permutación necesitan tiempo de cómputo.
+3. **Experimentos separados:** baseline clásico fuerte, tres ablaciones con cinco semillas, sanidad de etiquetas permutadas y réplica SegFormer en condiciones originales. No hacerlos pasar por parte del benchmark cerrado. Todos se ejecutaron: baseline clásico (Dice 0,645), réplica de evaluación compatible (37,43 % frente a 37,4 % mIoU) y, en {doc}`entrenamiento_complementario_e2`, la ablación de TransUNet (sin saltos −0,092, BCE sola −0,037, sin Transformer +0,007 con IC que incluye el cero), la permutación de máscaras con FCN (p = 0,005) y una búsqueda de hiperparámetros con el mismo presupuesto para las diez redes, exploratoria.
 4. **Trabajo documental y humano:** adjudicar cribado/DOI, verificar bibliometría y cuartiles cuando correspondan, completar fichas de resultados de artículos, estimar acuerdo de anotación y preparar defensa. Q5/Q6 siguen omitidas por instrucción del usuario; no se reabren automáticamente.
 5. **Control de entrega:** compilar localmente, revisar enlaces y cifras, ejecutar reproducción desde resultados y dejar registro de discrepancias. Solicitar autorización antes de publicar/subir a GitHub.
 

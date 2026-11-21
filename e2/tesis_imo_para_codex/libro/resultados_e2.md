@@ -107,7 +107,7 @@ El tiempo suma épocas de entrenamiento y validación; excluye parte de E/S, int
 ## Potencia y sobreajuste
 
 El JSON guarda DE pareada entre semillas, MDD con R=5 y R aproximado para δ=0,02, α/9 y potencia 0,80. Es planificación futura normal basada en un piloto pequeño, no potencia prospectiva ni potencia observada certificada.
-Los historiales contienen pérdida de entrenamiento y Dice de validación: son escalas distintas. No restarlas para calcular una brecha ni afirmar ausencia de sobreajuste. Falta Dice de train en modo evaluación en el checkpoint elegido y un margen δg fijado previamente.
+Los historiales contienen pérdida de entrenamiento y Dice de validación: son escalas distintas. No restarlas para calcular una brecha ni afirmar ausencia de sobreajuste. El Dice de train en modo evaluación en el checkpoint elegido está en {doc}`diagnosticos_e2` (exploratorio); el margen δg fijado previamente no existe.
 
 Discrepancia máxima al reconstruir la media principal desde los registros agrupados: 0. Esta es reproducción aritmética; no nueva inferencia en entorno limpio.
 

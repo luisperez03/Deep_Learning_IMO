@@ -73,7 +73,7 @@ La reanudación se realiza desde la última época completa; una interrupción p
 
 ![Pérdida de entrenamiento de las cincuenta corridas; escalas independientes por red](figuras/e2/curvas_perdida.png)
 
-Las curvas muestran la trayectoria y la variabilidad; no prueban ausencia de sobreajuste. El historial guarda pérdida de train y Dice de validación: **no se pueden restar**. Falta evaluar Dice de train con el checkpoint seleccionado y declarar un margen de sobreajuste δg; fijarlo hoy sería exploratorio. Tampoco se ejecutó permutación completa del pipeline con etiquetas aleatorias. Estas omisiones permanecen abiertas en el checklist.
+Las curvas muestran la trayectoria y la variabilidad; no prueban ausencia de sobreajuste. El historial guarda pérdida de train y Dice de validación: **no se pueden restar**. El Dice de train con el checkpoint seleccionado se midió después, sobre los 50 checkpoints congelados ({doc}`diagnosticos_e2`), y la permutación completa del pipeline con máscaras barajadas se corrió con FCN y B = 200 ({doc}`entrenamiento_complementario_e2`); ambos son exploratorios. No se declaró un margen de sobreajuste δg: fijarlo después de ver los resultados no sería un criterio previo.
 
 ## Ruta F4b: comprobación explícita
 
