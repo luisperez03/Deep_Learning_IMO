@@ -149,11 +149,17 @@ if not (ENV/'bin/python').exists():
 PY=str(ENV/'bin/python')
 def pip_install(*items):
     subprocess.run([sys.executable,'-m','uv','pip','install','--python',PY,*items],check=True)
+pip_install('setuptools==75.8.0')
 pip_install('torch==2.5.1','torchvision==0.20.1','--index-url','https://download.pytorch.org/whl/cu121')
 pip_install('-r',str(PROJECT/'requirements-e2.txt'))
 pip_install('transformers==4.46.3')
 pip_install('--no-deps','https://github.com/Dao-AILab/causal-conv1d/releases/download/v1.5.0.post8/causal_conv1d-1.5.0.post8%2Bcu12torch2.5cxx11abiFALSE-cp311-cp311-linux_x86_64.whl')
 pip_install('--no-deps','https://github.com/state-spaces/mamba/releases/download/v2.2.4/mamba_ssm-2.2.4%2Bcu12torch2.5cxx11abiFALSE-cp311-cp311-linux_x86_64.whl')
+# Como en Complemento_GPU_E2: las extensiones de Mamba cargan libc10/libcudart del venv, no las del sistema.
+site=ENV/'lib/python3.11/site-packages'
+dirs=[site/'torch/lib',*sorted((site/'nvidia').glob('*/lib'))]
+paths=[str(p) for p in dirs if p.is_dir()]+os.environ.get('LD_LIBRARY_PATH','').split(':')
+os.environ['LD_LIBRARY_PATH']=':'.join(dict.fromkeys(p for p in paths if p))
 subprocess.run([PY,'-c','import torch, torchvision, mamba_ssm; assert torch.cuda.is_available(); print(torch.__version__,torch.cuda.get_device_name(0))'],check=True)
 freeze=subprocess.check_output([sys.executable,'-m','uv','pip','freeze','--python',PY],text=True)
 (OUTPUT/'environment.freeze.txt').write_text(freeze)
