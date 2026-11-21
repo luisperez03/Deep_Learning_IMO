@@ -12,7 +12,7 @@
 | Orden | Cuaderno | GPU | Estimado | Filas que puede cerrar |
 |---|---|---|---|---|
 | 1 | `colab/Replica_SegFormer_ADE20K.ipynb` (**hecho**, 20/11) | T4 | unos 15 min medidos | 32 (cerrada), B19 (parcial) |
-| 2 | `colab/Complemento_GPU_E2.ipynb` | L4 | lo mide su piloto | 57, 58, 59, 60, 62, 64; B16, B17 |
+| 2 | `colab/Complemento_GPU_E2.ipynb` (**hecho**, 20/11) | L4 | piloto 1,8 h estimadas; corrida ≈ 1 h 45 min | 57, 58, 59, 60, 62, 64; B16, B17 (cerradas) |
 | 3 | `colab/Complemento_Entrenamiento_E2.ipynb`, ablación | L4 | ≈ 10 h (hasta 12,8 h) | 61 |
 | 4 | Mismo cuaderno, sobreajuste y permutación | L4 | 0,25 h + 6,5–33 h (FCN, B = 200) | 41, 56; B03 |
 | 5 | Mismo cuaderno, búsqueda igual, T = 4 | L4 | 2,3–5,8 h | 37; B06 |

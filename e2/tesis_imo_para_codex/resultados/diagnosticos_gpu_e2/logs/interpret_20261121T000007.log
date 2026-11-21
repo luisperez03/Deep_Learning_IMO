@@ -1,0 +1,11 @@
+
+$ /content/imo-e2-env/bin/python -u /content/imo_e2_complemento/tesis_imo_para_codex/scripts/diagnosticos_gpu_e2.py --runs /content/drive/MyDrive/tesis_imo_e2_arquitecturas_reales_v2 --output /content/piloto_diagnosticos --stage interpret --seeds 11 --limit 2
+Verificando datos y 50 checkpoints...
+Traceback (most recent call last):
+  File "/content/imo_e2_complemento/tesis_imo_para_codex/scripts/diagnosticos_gpu_e2.py", line 250, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/content/imo_e2_complemento/tesis_imo_para_codex/scripts/diagnosticos_gpu_e2.py", line 234, in main
+    raise RuntimeError('No mezclar firmas en una carpeta. GPU registrada: %s; actual: %s. Si cambió la GPU, el '
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: No mezclar firmas en una carpeta. GPU registrada: NVIDIA L4; actual: NVIDIA L4. Si cambió la GPU, el paquete o --limit, usa la misma GPU o una carpeta de salida nueva.

@@ -48,28 +48,31 @@ FILAS = {
            "y las corridas, que están fuera del repositorio (`resultados/entorno_limpio_e2/LECTURA.md`)"),
     "56": ("F", "Dice vacío = 0. Preparado, sin ejecutar: permutación de etiquetas del pipeline (FCN con B = 200; "
            "TransUNet con B = 19, por debajo del mínimo y así declarado) en `colab/Complemento_Entrenamiento_E2.ipynb`"),
-    "57": ("F", "Preparado, sin ejecutar: Dice de train en evaluación y brecha train/val en la etapa `clean` de "
-           "`colab/Complemento_GPU_E2.ipynb` (`docs/COMPLEMENTO_GPU_LEEME.md`)"),
-    "58": ("F", "Preparado, sin ejecutar: Brier, NLL, ECE fijo y adaptativo y temperatura ajustada en validación "
-           "(`scripts/metricas_diagnostico_e2.py`, etapa `clean`)"),
-    "59": ("F", "Preparado, sin ejecutar: etapa `robustness`, 10 redes × 5 semillas × 3 perturbaciones × 3 niveles"),
-    "60": ("F", "Preparado, sin ejecutar: etapa `interpret`, Integrated Gradients en el top 3 por validación (TransUNet, "
-           "U-Net, FCN), fidelidad por borrado y estabilidad entre semillas"),
+    "57": ("C", "20/11, L4, exploratorio (`colab/Complemento_GPU_E2.ipynb`, etapa `clean`): reproduce el Dice de test "
+           "cerrado (dif. máx. < 0,0001); brecha train−val positiva en las 10, de 0,026 (SegNet, IC con 0) a 0,213 "
+           "(SegFormer) y 0,147 (SegNeXt). `resultados/diagnosticos_gpu_e2/TABLAS.md`, capítulo `diagnosticos_e2`"),
+    "58": ("C", "20/11: Brier, NLL, ECE15 fijo y adaptativo, con y sin temperatura ajustada en validación; ECE15 0,008–"
+           "0,014; temperatura 1,6–2,6 en todas (sobreconfianza); la temperatura baja el Brier y sube levemente el ECE15"),
+    "59": ("C", "20/11: 10 redes × 5 semillas × ruido/desenfoque/brillo × 3 niveles en test. Área normalizada: redes "
+           "grandes 0,92–0,96 con ruido y desenfoque; FCN, U-Net y SegNet 0,68–0,77 en las tres perturbaciones"),
+    "60": ("C", "20/11: Integrated Gradients en 100 casos de validación del top 3 × 5 semillas; IG supera al borrado "
+           "aleatorio en el 89 % (TransUNet) y 100 % (U-Net, FCN) de los casos; Spearman entre semillas 0,73 / 0,92 / 0,92"),
     "61": ("F", "Preparado, sin ejecutar: TransUNet sin Transformer, sin conexiones de salto y con BCE sola, mismas 5 "
            "semillas (≈ 10 h L4 estimadas), en `colab/Complemento_Entrenamiento_E2.ipynb`"),
-    "62": ("F", "Preparado, sin ejecutar: ensamble de semillas del top 3 y predicción conforme por píxel con un umbral por "
-           "clase (Mondrian) calibrado en validación, con cobertura por clase y por estrato"),
+    "62": ("C", "20/11: ensamble de 5 semillas del top 3: +0,021 a +0,028 de Dice (IC sin 0; TransUNet 0,883); "
+           "predicción conforme Mondrian por clase calibrada en validación, cobertura test 0,903–0,912 (nominal 0,90), "
+           "con 34–37 % de grupos bajo el nominal (garantía marginal)"),
     "63": ("F", "Sin segunda anotación: no hay techo medido. Kit de reanotación de 50 imágenes de validación listo, con "
            "el cálculo de γ (`scripts/techo_reanotacion_e2.py`); los rótulos cortados por el borde se marcan aparte"),
-    "64": ("F", "Preparado, sin ejecutar: HD95/ASSD y precisión/recall de las cinco semillas en la etapa `clean`; "
-           "hoy solo la semilla 11 (`complementos_locales_e2/bordes_seed11_*`)"),
+    "64": ("C", "20/11: HD95/ASSD y precisión/recall de las 5 semillas en test (etapa `clean`); HD95 de 17,1 px "
+           "(TransUNet) a 34,3 (SegFormer, recall 0,688)"),
 }
 APENDICE = {
     "B03": ("P", "ID46; fuga por embeddings hecha; permutación de etiquetas preparada"),
     "B09": ("C", "Máscara vacía, baseline clásico (ID40) y tres E1"),
     "B13": ("F", "ID63; kit listo, sin segunda anotación"),
-    "B16": ("F", "ID59–60; preparado en `colab/Complemento_GPU_E2.ipynb`"),
-    "B17": ("F", "ID62; preparado en `colab/Complemento_GPU_E2.ipynb`"),
+    "B16": ("C", "ID59–60 ejecutados el 20/11 (exploratorio)"),
+    "B17": ("C", "ID62 ejecutado el 20/11 (exploratorio)"),
     "B19": ("C", "ID32 réplica compatible; ID33 limitación por área no confirmada (déficit de nivel)"),
     "B20": ("P", "Agregación 0; entorno limpio parcial (ID55)"),
 }

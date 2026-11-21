@@ -1,0 +1,76 @@
+{
+ "ESTIMADO": "extrapolado de un piloto con --limit, semilla 11; no es una medición de la corrida completa",
+ "gpu": "NVIDIA L4",
+ "per_model": [
+  {
+   "model": "deeplabv3plus",
+   "clean_min": 4.339905237958419,
+   "robustness_min": 3.7468908017284357,
+   "interpret_min": 0.0
+  },
+  {
+   "model": "fcn",
+   "clean_min": 2.9140692526434386,
+   "robustness_min": 1.2925555992248405,
+   "interpret_min": 4.142179191163223
+  },
+  {
+   "model": "pidnet_s",
+   "clean_min": 6.725920563734387,
+   "robustness_min": 5.28437376032889,
+   "interpret_min": 0.0
+  },
+  {
+   "model": "segformer_b0",
+   "clean_min": 4.845500340546683,
+   "robustness_min": 3.468676005752551,
+   "interpret_min": 0.0
+  },
+  {
+   "model": "segnet",
+   "clean_min": 2.738214173291984,
+   "robustness_min": 1.2103850900818618,
+   "interpret_min": 0.0
+  },
+  {
+   "model": "segnext_t",
+   "clean_min": 6.323918984057741,
+   "robustness_min": 4.859428738312071,
+   "interpret_min": 0.0
+  },
+  {
+   "model": "transunet_2d",
+   "clean_min": 8.020850139132193,
+   "robustness_min": 6.283524158561893,
+   "interpret_min": 14.514383737165039
+  },
+  {
+   "model": "unet",
+   "clean_min": 2.843464846075856,
+   "robustness_min": 1.1892308288534916,
+   "interpret_min": 0.893473869665589
+  },
+  {
+   "model": "unetplusplus",
+   "clean_min": 3.6542221711684135,
+   "robustness_min": 2.2606129066478124,
+   "interpret_min": 0.0
+  },
+  {
+   "model": "vmunet",
+   "clean_min": 8.346904883796489,
+   "robustness_min": 7.0448451030632855,
+   "interpret_min": 0.0
+  }
+ ],
+ "verification_seconds": {
+  "interpret": 14.814263809000295,
+  "clean": 174.6074851149997,
+  "robustness": 14.795378544000414
+ },
+ "total_hours": {
+  "clean": 0.8943849224053712,
+  "robustness": 0.6147852105825857,
+  "interpret": 0.32994901991350867
+ }
+}

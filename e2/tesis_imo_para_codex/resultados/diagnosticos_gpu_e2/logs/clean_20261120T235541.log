@@ -1,0 +1,78 @@
+
+$ /content/imo-e2-env/bin/python -u /content/imo_e2_complemento/tesis_imo_para_codex/scripts/diagnosticos_gpu_e2.py --runs /content/drive/MyDrive/tesis_imo_e2_arquitecturas_reales_v2 --output /content/piloto_diagnosticos --stage clean --seeds 11 --limit 8
+Verificando datos y 50 checkpoints...
+/content/imo-e2-env/lib/python3.11/site-packages/torch/nn/modules/conv.py:549: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  return F.conv2d(
+deeplabv3plus_seed11 train 8 / 8
+deeplabv3plus_seed11 val 8 / 8
+deeplabv3plus_seed11 test 8 / 8
+fcn_seed11 train 8 / 8
+fcn_seed11 val 8 / 8
+fcn_seed11 test 8 / 8
+pidnet_s_seed11 train 8 / 8
+pidnet_s_seed11 val 8 / 8
+pidnet_s_seed11 test 8 / 8
+/content/imo-e2-env/lib/python3.11/site-packages/segmentation_models_pytorch/encoders/mix_transformer.py:153: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  attn = (q @ k.transpose(-2, -1)) * self.scale
+/content/imo-e2-env/lib/python3.11/site-packages/segmentation_models_pytorch/encoders/mix_transformer.py:157: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  x = (attn @ v).transpose(1, 2).reshape(batch_size, N, C)
+/content/imo-e2-env/lib/python3.11/site-packages/torch/nn/modules/linear.py:125: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  return F.linear(input, self.weight, self.bias)
+segformer_b0_seed11 train 8 / 8
+segformer_b0_seed11 val 8 / 8
+segformer_b0_seed11 test 8 / 8
+/content/imo-e2-env/lib/python3.11/site-packages/torch/nn/functional.py:1040: UserWarning: max_unpooling2d_forward_out does not have a deterministic implementation, but you set 'torch.use_deterministic_algorithms(True, warn_only=True)'. You can file an issue at https://github.com/pytorch/pytorch/issues to help us prioritize adding deterministic support for this operation. (Triggered internally at ../aten/src/ATen/Context.cpp:91.)
+  return torch._C._nn.max_unpool2d(input, indices, output_size)
+segnet_seed11 train 8 / 8
+segnet_seed11 val 8 / 8
+segnet_seed11 test 8 / 8
+init cfg None
+spatial True
+S 1
+D 512
+R 16
+train_steps 6
+eval_steps 7
+inv_t 100
+eta 0.9
+rand_init True
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:48: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  coef = torch.bmm(x.transpose(1, 2), bases)
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:122: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  numerator = torch.bmm(x.transpose(1, 2), bases)
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:124: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  denominator = coef.bmm(bases.transpose(1, 2).bmm(bases))
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:129: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  numerator = torch.bmm(x, coef)
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:131: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  denominator = bases.bmm(coef.transpose(1, 2).bmm(coef))
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:139: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  numerator = torch.bmm(x.transpose(1, 2), bases)
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:141: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  denominator = coef.bmm(bases.transpose(1, 2).bmm(bases))
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:89: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  x = torch.bmm(bases, coef.transpose(1, 2))
+segnext_t_seed11 train 8 / 8
+segnext_t_seed11 val 8 / 8
+segnext_t_seed11 test 8 / 8
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/transunet/networks/vit_seg_modeling.py:82: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  attention_scores = torch.matmul(query_layer, key_layer.transpose(-1, -2))
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/transunet/networks/vit_seg_modeling.py:88: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  context_layer = torch.matmul(attention_probs, value_layer)
+transunet_2d_seed11 train 8 / 8
+transunet_2d_seed11 val 8 / 8
+transunet_2d_seed11 test 8 / 8
+unet_seed11 train 8 / 8
+unet_seed11 val 8 / 8
+unet_seed11 test 8 / 8
+unetplusplus_seed11 train 8 / 8
+unetplusplus_seed11 val 8 / 8
+unetplusplus_seed11 test 8 / 8
+/content/imo-e2-env/lib/python3.11/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/content/imo-e2-env/lib/python3.11/site-packages/torch/functional.py:402: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  return _VF.einsum(equation, operands)  # type: ignore[attr-defined]
+vmunet_seed11 train 8 / 8
+vmunet_seed11 val 8 / 8
+vmunet_seed11 test 8 / 8
+Etapa finalizada: clean

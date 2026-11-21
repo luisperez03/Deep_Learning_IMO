@@ -1,0 +1,1502 @@
+
+$ /content/imo-e2-env/bin/python -u /content/imo_e2_complemento/tesis_imo_para_codex/scripts/diagnosticos_gpu_e2.py --runs /content/drive/MyDrive/tesis_imo_e2_arquitecturas_reales_v2 --output /content/drive/MyDrive/tesis_imo_e2_diagnosticos_v1 --stage robustness
+Verificando datos y 50 checkpoints...
+/content/imo-e2-env/lib/python3.11/site-packages/torch/nn/modules/conv.py:549: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  return F.conv2d(
+deeplabv3plus_seed11 noise 0.03 100
+deeplabv3plus_seed11 noise 0.03 200
+deeplabv3plus_seed11 noise 0.03 Dice 0.7987
+deeplabv3plus_seed11 noise 0.06 100
+deeplabv3plus_seed11 noise 0.06 200
+deeplabv3plus_seed11 noise 0.06 Dice 0.7401
+deeplabv3plus_seed11 noise 0.12 100
+deeplabv3plus_seed11 noise 0.12 200
+deeplabv3plus_seed11 noise 0.12 Dice 0.5535
+deeplabv3plus_seed11 blur 0.5 100
+deeplabv3plus_seed11 blur 0.5 200
+deeplabv3plus_seed11 blur 0.5 Dice 0.7967
+deeplabv3plus_seed11 blur 1.0 100
+deeplabv3plus_seed11 blur 1.0 200
+deeplabv3plus_seed11 blur 1.0 Dice 0.7398
+deeplabv3plus_seed11 blur 2.0 100
+deeplabv3plus_seed11 blur 2.0 200
+deeplabv3plus_seed11 blur 2.0 Dice 0.5911
+deeplabv3plus_seed11 brightness 0.8 100
+deeplabv3plus_seed11 brightness 0.8 200
+deeplabv3plus_seed11 brightness 0.8 Dice 0.7675
+deeplabv3plus_seed11 brightness 0.6 100
+deeplabv3plus_seed11 brightness 0.6 200
+deeplabv3plus_seed11 brightness 0.6 Dice 0.6382
+deeplabv3plus_seed11 brightness 0.4 100
+deeplabv3plus_seed11 brightness 0.4 200
+deeplabv3plus_seed11 brightness 0.4 Dice 0.3406
+deeplabv3plus_seed23 noise 0.03 100
+deeplabv3plus_seed23 noise 0.03 200
+deeplabv3plus_seed23 noise 0.03 Dice 0.8239
+deeplabv3plus_seed23 noise 0.06 100
+deeplabv3plus_seed23 noise 0.06 200
+deeplabv3plus_seed23 noise 0.06 Dice 0.8129
+deeplabv3plus_seed23 noise 0.12 100
+deeplabv3plus_seed23 noise 0.12 200
+deeplabv3plus_seed23 noise 0.12 Dice 0.7056
+deeplabv3plus_seed23 blur 0.5 100
+deeplabv3plus_seed23 blur 0.5 200
+deeplabv3plus_seed23 blur 0.5 Dice 0.8176
+deeplabv3plus_seed23 blur 1.0 100
+deeplabv3plus_seed23 blur 1.0 200
+deeplabv3plus_seed23 blur 1.0 Dice 0.7857
+deeplabv3plus_seed23 blur 2.0 100
+deeplabv3plus_seed23 blur 2.0 200
+deeplabv3plus_seed23 blur 2.0 Dice 0.6853
+deeplabv3plus_seed23 brightness 0.8 100
+deeplabv3plus_seed23 brightness 0.8 200
+deeplabv3plus_seed23 brightness 0.8 Dice 0.7733
+deeplabv3plus_seed23 brightness 0.6 100
+deeplabv3plus_seed23 brightness 0.6 200
+deeplabv3plus_seed23 brightness 0.6 Dice 0.6248
+deeplabv3plus_seed23 brightness 0.4 100
+deeplabv3plus_seed23 brightness 0.4 200
+deeplabv3plus_seed23 brightness 0.4 Dice 0.2781
+deeplabv3plus_seed37 noise 0.03 100
+deeplabv3plus_seed37 noise 0.03 200
+deeplabv3plus_seed37 noise 0.03 Dice 0.8256
+deeplabv3plus_seed37 noise 0.06 100
+deeplabv3plus_seed37 noise 0.06 200
+deeplabv3plus_seed37 noise 0.06 Dice 0.8015
+deeplabv3plus_seed37 noise 0.12 100
+deeplabv3plus_seed37 noise 0.12 200
+deeplabv3plus_seed37 noise 0.12 Dice 0.6808
+deeplabv3plus_seed37 blur 0.5 100
+deeplabv3plus_seed37 blur 0.5 200
+deeplabv3plus_seed37 blur 0.5 Dice 0.8256
+deeplabv3plus_seed37 blur 1.0 100
+deeplabv3plus_seed37 blur 1.0 200
+deeplabv3plus_seed37 blur 1.0 Dice 0.8016
+deeplabv3plus_seed37 blur 2.0 100
+deeplabv3plus_seed37 blur 2.0 200
+deeplabv3plus_seed37 blur 2.0 Dice 0.7164
+deeplabv3plus_seed37 brightness 0.8 100
+deeplabv3plus_seed37 brightness 0.8 200
+deeplabv3plus_seed37 brightness 0.8 Dice 0.8144
+deeplabv3plus_seed37 brightness 0.6 100
+deeplabv3plus_seed37 brightness 0.6 200
+deeplabv3plus_seed37 brightness 0.6 Dice 0.7272
+deeplabv3plus_seed37 brightness 0.4 100
+deeplabv3plus_seed37 brightness 0.4 200
+deeplabv3plus_seed37 brightness 0.4 Dice 0.5416
+deeplabv3plus_seed53 noise 0.03 100
+deeplabv3plus_seed53 noise 0.03 200
+deeplabv3plus_seed53 noise 0.03 Dice 0.8155
+deeplabv3plus_seed53 noise 0.06 100
+deeplabv3plus_seed53 noise 0.06 200
+deeplabv3plus_seed53 noise 0.06 Dice 0.777
+deeplabv3plus_seed53 noise 0.12 100
+deeplabv3plus_seed53 noise 0.12 200
+deeplabv3plus_seed53 noise 0.12 Dice 0.571
+deeplabv3plus_seed53 blur 0.5 100
+deeplabv3plus_seed53 blur 0.5 200
+deeplabv3plus_seed53 blur 0.5 Dice 0.8123
+deeplabv3plus_seed53 blur 1.0 100
+deeplabv3plus_seed53 blur 1.0 200
+deeplabv3plus_seed53 blur 1.0 Dice 0.7883
+deeplabv3plus_seed53 blur 2.0 100
+deeplabv3plus_seed53 blur 2.0 200
+deeplabv3plus_seed53 blur 2.0 Dice 0.7167
+deeplabv3plus_seed53 brightness 0.8 100
+deeplabv3plus_seed53 brightness 0.8 200
+deeplabv3plus_seed53 brightness 0.8 Dice 0.8295
+deeplabv3plus_seed53 brightness 0.6 100
+deeplabv3plus_seed53 brightness 0.6 200
+deeplabv3plus_seed53 brightness 0.6 Dice 0.7581
+deeplabv3plus_seed53 brightness 0.4 100
+deeplabv3plus_seed53 brightness 0.4 200
+deeplabv3plus_seed53 brightness 0.4 Dice 0.5642
+deeplabv3plus_seed71 noise 0.03 100
+deeplabv3plus_seed71 noise 0.03 200
+deeplabv3plus_seed71 noise 0.03 Dice 0.7651
+deeplabv3plus_seed71 noise 0.06 100
+deeplabv3plus_seed71 noise 0.06 200
+deeplabv3plus_seed71 noise 0.06 Dice 0.7436
+deeplabv3plus_seed71 noise 0.12 100
+deeplabv3plus_seed71 noise 0.12 200
+deeplabv3plus_seed71 noise 0.12 Dice 0.6285
+deeplabv3plus_seed71 blur 0.5 100
+deeplabv3plus_seed71 blur 0.5 200
+deeplabv3plus_seed71 blur 0.5 Dice 0.7509
+deeplabv3plus_seed71 blur 1.0 100
+deeplabv3plus_seed71 blur 1.0 200
+deeplabv3plus_seed71 blur 1.0 Dice 0.7057
+deeplabv3plus_seed71 blur 2.0 100
+deeplabv3plus_seed71 blur 2.0 200
+deeplabv3plus_seed71 blur 2.0 Dice 0.5676
+deeplabv3plus_seed71 brightness 0.8 100
+deeplabv3plus_seed71 brightness 0.8 200
+deeplabv3plus_seed71 brightness 0.8 Dice 0.7025
+deeplabv3plus_seed71 brightness 0.6 100
+deeplabv3plus_seed71 brightness 0.6 200
+deeplabv3plus_seed71 brightness 0.6 Dice 0.5547
+deeplabv3plus_seed71 brightness 0.4 100
+deeplabv3plus_seed71 brightness 0.4 200
+deeplabv3plus_seed71 brightness 0.4 Dice 0.2859
+fcn_seed11 noise 0.03 100
+fcn_seed11 noise 0.03 200
+fcn_seed11 noise 0.03 Dice 0.8309
+fcn_seed11 noise 0.06 100
+fcn_seed11 noise 0.06 200
+fcn_seed11 noise 0.06 Dice 0.3107
+fcn_seed11 noise 0.12 100
+fcn_seed11 noise 0.12 200
+fcn_seed11 noise 0.12 Dice 0.0731
+fcn_seed11 blur 0.5 100
+fcn_seed11 blur 0.5 200
+fcn_seed11 blur 0.5 Dice 0.7784
+fcn_seed11 blur 1.0 100
+fcn_seed11 blur 1.0 200
+fcn_seed11 blur 1.0 Dice 0.5027
+fcn_seed11 blur 2.0 100
+fcn_seed11 blur 2.0 200
+fcn_seed11 blur 2.0 Dice 0.3398
+fcn_seed11 brightness 0.8 100
+fcn_seed11 brightness 0.8 200
+fcn_seed11 brightness 0.8 Dice 0.8063
+fcn_seed11 brightness 0.6 100
+fcn_seed11 brightness 0.6 200
+fcn_seed11 brightness 0.6 Dice 0.5604
+fcn_seed11 brightness 0.4 100
+fcn_seed11 brightness 0.4 200
+fcn_seed11 brightness 0.4 Dice 0.2649
+fcn_seed23 noise 0.03 100
+fcn_seed23 noise 0.03 200
+fcn_seed23 noise 0.03 Dice 0.8301
+fcn_seed23 noise 0.06 100
+fcn_seed23 noise 0.06 200
+fcn_seed23 noise 0.06 Dice 0.6719
+fcn_seed23 noise 0.12 100
+fcn_seed23 noise 0.12 200
+fcn_seed23 noise 0.12 Dice 0.1071
+fcn_seed23 blur 0.5 100
+fcn_seed23 blur 0.5 200
+fcn_seed23 blur 0.5 Dice 0.7825
+fcn_seed23 blur 1.0 100
+fcn_seed23 blur 1.0 200
+fcn_seed23 blur 1.0 Dice 0.5073
+fcn_seed23 blur 2.0 100
+fcn_seed23 blur 2.0 200
+fcn_seed23 blur 2.0 Dice 0.3391
+fcn_seed23 brightness 0.8 100
+fcn_seed23 brightness 0.8 200
+fcn_seed23 brightness 0.8 Dice 0.7452
+fcn_seed23 brightness 0.6 100
+fcn_seed23 brightness 0.6 200
+fcn_seed23 brightness 0.6 Dice 0.492
+fcn_seed23 brightness 0.4 100
+fcn_seed23 brightness 0.4 200
+fcn_seed23 brightness 0.4 Dice 0.1388
+fcn_seed37 noise 0.03 100
+fcn_seed37 noise 0.03 200
+fcn_seed37 noise 0.03 Dice 0.839
+fcn_seed37 noise 0.06 100
+fcn_seed37 noise 0.06 200
+fcn_seed37 noise 0.06 Dice 0.3826
+fcn_seed37 noise 0.12 100
+fcn_seed37 noise 0.12 200
+fcn_seed37 noise 0.12 Dice 0.0754
+fcn_seed37 blur 0.5 100
+fcn_seed37 blur 0.5 200
+fcn_seed37 blur 0.5 Dice 0.8433
+fcn_seed37 blur 1.0 100
+fcn_seed37 blur 1.0 200
+fcn_seed37 blur 1.0 Dice 0.5679
+fcn_seed37 blur 2.0 100
+fcn_seed37 blur 2.0 200
+fcn_seed37 blur 2.0 Dice 0.3141
+fcn_seed37 brightness 0.8 100
+fcn_seed37 brightness 0.8 200
+fcn_seed37 brightness 0.8 Dice 0.8561
+fcn_seed37 brightness 0.6 100
+fcn_seed37 brightness 0.6 200
+fcn_seed37 brightness 0.6 Dice 0.6804
+fcn_seed37 brightness 0.4 100
+fcn_seed37 brightness 0.4 200
+fcn_seed37 brightness 0.4 Dice 0.297
+fcn_seed53 noise 0.03 100
+fcn_seed53 noise 0.03 200
+fcn_seed53 noise 0.03 Dice 0.8257
+fcn_seed53 noise 0.06 100
+fcn_seed53 noise 0.06 200
+fcn_seed53 noise 0.06 Dice 0.378
+fcn_seed53 noise 0.12 100
+fcn_seed53 noise 0.12 200
+fcn_seed53 noise 0.12 Dice 0.072
+fcn_seed53 blur 0.5 100
+fcn_seed53 blur 0.5 200
+fcn_seed53 blur 0.5 Dice 0.8066
+fcn_seed53 blur 1.0 100
+fcn_seed53 blur 1.0 200
+fcn_seed53 blur 1.0 Dice 0.4099
+fcn_seed53 blur 2.0 100
+fcn_seed53 blur 2.0 200
+fcn_seed53 blur 2.0 Dice 0.1703
+fcn_seed53 brightness 0.8 100
+fcn_seed53 brightness 0.8 200
+fcn_seed53 brightness 0.8 Dice 0.8322
+fcn_seed53 brightness 0.6 100
+fcn_seed53 brightness 0.6 200
+fcn_seed53 brightness 0.6 Dice 0.5735
+fcn_seed53 brightness 0.4 100
+fcn_seed53 brightness 0.4 200
+fcn_seed53 brightness 0.4 Dice 0.1966
+fcn_seed71 noise 0.03 100
+fcn_seed71 noise 0.03 200
+fcn_seed71 noise 0.03 Dice 0.8537
+fcn_seed71 noise 0.06 100
+fcn_seed71 noise 0.06 200
+fcn_seed71 noise 0.06 Dice 0.5007
+fcn_seed71 noise 0.12 100
+fcn_seed71 noise 0.12 200
+fcn_seed71 noise 0.12 Dice 0.0848
+fcn_seed71 blur 0.5 100
+fcn_seed71 blur 0.5 200
+fcn_seed71 blur 0.5 Dice 0.8197
+fcn_seed71 blur 1.0 100
+fcn_seed71 blur 1.0 200
+fcn_seed71 blur 1.0 Dice 0.4969
+fcn_seed71 blur 2.0 100
+fcn_seed71 blur 2.0 200
+fcn_seed71 blur 2.0 Dice 0.2004
+fcn_seed71 brightness 0.8 100
+fcn_seed71 brightness 0.8 200
+fcn_seed71 brightness 0.8 Dice 0.7939
+fcn_seed71 brightness 0.6 100
+fcn_seed71 brightness 0.6 200
+fcn_seed71 brightness 0.6 Dice 0.5233
+fcn_seed71 brightness 0.4 100
+fcn_seed71 brightness 0.4 200
+fcn_seed71 brightness 0.4 Dice 0.2921
+pidnet_s_seed11 noise 0.03 100
+pidnet_s_seed11 noise 0.03 200
+pidnet_s_seed11 noise 0.03 Dice 0.747
+pidnet_s_seed11 noise 0.06 100
+pidnet_s_seed11 noise 0.06 200
+pidnet_s_seed11 noise 0.06 Dice 0.7168
+pidnet_s_seed11 noise 0.12 100
+pidnet_s_seed11 noise 0.12 200
+pidnet_s_seed11 noise 0.12 Dice 0.5048
+pidnet_s_seed11 blur 0.5 100
+pidnet_s_seed11 blur 0.5 200
+pidnet_s_seed11 blur 0.5 Dice 0.7479
+pidnet_s_seed11 blur 1.0 100
+pidnet_s_seed11 blur 1.0 200
+pidnet_s_seed11 blur 1.0 Dice 0.6991
+pidnet_s_seed11 blur 2.0 100
+pidnet_s_seed11 blur 2.0 200
+pidnet_s_seed11 blur 2.0 Dice 0.6325
+pidnet_s_seed11 brightness 0.8 100
+pidnet_s_seed11 brightness 0.8 200
+pidnet_s_seed11 brightness 0.8 Dice 0.729
+pidnet_s_seed11 brightness 0.6 100
+pidnet_s_seed11 brightness 0.6 200
+pidnet_s_seed11 brightness 0.6 Dice 0.5221
+pidnet_s_seed11 brightness 0.4 100
+pidnet_s_seed11 brightness 0.4 200
+pidnet_s_seed11 brightness 0.4 Dice 0.1774
+pidnet_s_seed23 noise 0.03 100
+pidnet_s_seed23 noise 0.03 200
+pidnet_s_seed23 noise 0.03 Dice 0.803
+pidnet_s_seed23 noise 0.06 100
+pidnet_s_seed23 noise 0.06 200
+pidnet_s_seed23 noise 0.06 Dice 0.7778
+pidnet_s_seed23 noise 0.12 100
+pidnet_s_seed23 noise 0.12 200
+pidnet_s_seed23 noise 0.12 Dice 0.566
+pidnet_s_seed23 blur 0.5 100
+pidnet_s_seed23 blur 0.5 200
+pidnet_s_seed23 blur 0.5 Dice 0.7989
+pidnet_s_seed23 blur 1.0 100
+pidnet_s_seed23 blur 1.0 200
+pidnet_s_seed23 blur 1.0 Dice 0.769
+pidnet_s_seed23 blur 2.0 100
+pidnet_s_seed23 blur 2.0 200
+pidnet_s_seed23 blur 2.0 Dice 0.6696
+pidnet_s_seed23 brightness 0.8 100
+pidnet_s_seed23 brightness 0.8 200
+pidnet_s_seed23 brightness 0.8 Dice 0.7859
+pidnet_s_seed23 brightness 0.6 100
+pidnet_s_seed23 brightness 0.6 200
+pidnet_s_seed23 brightness 0.6 Dice 0.686
+pidnet_s_seed23 brightness 0.4 100
+pidnet_s_seed23 brightness 0.4 200
+pidnet_s_seed23 brightness 0.4 Dice 0.345
+pidnet_s_seed37 noise 0.03 100
+pidnet_s_seed37 noise 0.03 200
+pidnet_s_seed37 noise 0.03 Dice 0.7789
+pidnet_s_seed37 noise 0.06 100
+pidnet_s_seed37 noise 0.06 200
+pidnet_s_seed37 noise 0.06 Dice 0.7533
+pidnet_s_seed37 noise 0.12 100
+pidnet_s_seed37 noise 0.12 200
+pidnet_s_seed37 noise 0.12 Dice 0.6126
+pidnet_s_seed37 blur 0.5 100
+pidnet_s_seed37 blur 0.5 200
+pidnet_s_seed37 blur 0.5 Dice 0.7737
+pidnet_s_seed37 blur 1.0 100
+pidnet_s_seed37 blur 1.0 200
+pidnet_s_seed37 blur 1.0 Dice 0.7369
+pidnet_s_seed37 blur 2.0 100
+pidnet_s_seed37 blur 2.0 200
+pidnet_s_seed37 blur 2.0 Dice 0.6562
+pidnet_s_seed37 brightness 0.8 100
+pidnet_s_seed37 brightness 0.8 200
+pidnet_s_seed37 brightness 0.8 Dice 0.7556
+pidnet_s_seed37 brightness 0.6 100
+pidnet_s_seed37 brightness 0.6 200
+pidnet_s_seed37 brightness 0.6 Dice 0.6604
+pidnet_s_seed37 brightness 0.4 100
+pidnet_s_seed37 brightness 0.4 200
+pidnet_s_seed37 brightness 0.4 Dice 0.4658
+pidnet_s_seed53 noise 0.03 100
+pidnet_s_seed53 noise 0.03 200
+pidnet_s_seed53 noise 0.03 Dice 0.7996
+pidnet_s_seed53 noise 0.06 100
+pidnet_s_seed53 noise 0.06 200
+pidnet_s_seed53 noise 0.06 Dice 0.7794
+pidnet_s_seed53 noise 0.12 100
+pidnet_s_seed53 noise 0.12 200
+pidnet_s_seed53 noise 0.12 Dice 0.6779
+pidnet_s_seed53 blur 0.5 100
+pidnet_s_seed53 blur 0.5 200
+pidnet_s_seed53 blur 0.5 Dice 0.7942
+pidnet_s_seed53 blur 1.0 100
+pidnet_s_seed53 blur 1.0 200
+pidnet_s_seed53 blur 1.0 Dice 0.7669
+pidnet_s_seed53 blur 2.0 100
+pidnet_s_seed53 blur 2.0 200
+pidnet_s_seed53 blur 2.0 Dice 0.7178
+pidnet_s_seed53 brightness 0.8 100
+pidnet_s_seed53 brightness 0.8 200
+pidnet_s_seed53 brightness 0.8 Dice 0.7837
+pidnet_s_seed53 brightness 0.6 100
+pidnet_s_seed53 brightness 0.6 200
+pidnet_s_seed53 brightness 0.6 Dice 0.7313
+pidnet_s_seed53 brightness 0.4 100
+pidnet_s_seed53 brightness 0.4 200
+pidnet_s_seed53 brightness 0.4 Dice 0.5008
+pidnet_s_seed71 noise 0.03 100
+pidnet_s_seed71 noise 0.03 200
+pidnet_s_seed71 noise 0.03 Dice 0.8096
+pidnet_s_seed71 noise 0.06 100
+pidnet_s_seed71 noise 0.06 200
+pidnet_s_seed71 noise 0.06 Dice 0.7804
+pidnet_s_seed71 noise 0.12 100
+pidnet_s_seed71 noise 0.12 200
+pidnet_s_seed71 noise 0.12 Dice 0.596
+pidnet_s_seed71 blur 0.5 100
+pidnet_s_seed71 blur 0.5 200
+pidnet_s_seed71 blur 0.5 Dice 0.8005
+pidnet_s_seed71 blur 1.0 100
+pidnet_s_seed71 blur 1.0 200
+pidnet_s_seed71 blur 1.0 Dice 0.7562
+pidnet_s_seed71 blur 2.0 100
+pidnet_s_seed71 blur 2.0 200
+pidnet_s_seed71 blur 2.0 Dice 0.633
+pidnet_s_seed71 brightness 0.8 100
+pidnet_s_seed71 brightness 0.8 200
+pidnet_s_seed71 brightness 0.8 Dice 0.7921
+pidnet_s_seed71 brightness 0.6 100
+pidnet_s_seed71 brightness 0.6 200
+pidnet_s_seed71 brightness 0.6 Dice 0.6768
+pidnet_s_seed71 brightness 0.4 100
+pidnet_s_seed71 brightness 0.4 200
+pidnet_s_seed71 brightness 0.4 Dice 0.2762
+/content/imo-e2-env/lib/python3.11/site-packages/segmentation_models_pytorch/encoders/mix_transformer.py:153: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  attn = (q @ k.transpose(-2, -1)) * self.scale
+/content/imo-e2-env/lib/python3.11/site-packages/segmentation_models_pytorch/encoders/mix_transformer.py:157: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  x = (attn @ v).transpose(1, 2).reshape(batch_size, N, C)
+/content/imo-e2-env/lib/python3.11/site-packages/torch/nn/modules/linear.py:125: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  return F.linear(input, self.weight, self.bias)
+segformer_b0_seed11 noise 0.03 100
+segformer_b0_seed11 noise 0.03 200
+segformer_b0_seed11 noise 0.03 Dice 0.6617
+segformer_b0_seed11 noise 0.06 100
+segformer_b0_seed11 noise 0.06 200
+segformer_b0_seed11 noise 0.06 Dice 0.5764
+segformer_b0_seed11 noise 0.12 100
+segformer_b0_seed11 noise 0.12 200
+segformer_b0_seed11 noise 0.12 Dice 0.4178
+segformer_b0_seed11 blur 0.5 100
+segformer_b0_seed11 blur 0.5 200
+segformer_b0_seed11 blur 0.5 Dice 0.7037
+segformer_b0_seed11 blur 1.0 100
+segformer_b0_seed11 blur 1.0 200
+segformer_b0_seed11 blur 1.0 Dice 0.7145
+segformer_b0_seed11 blur 2.0 100
+segformer_b0_seed11 blur 2.0 200
+segformer_b0_seed11 blur 2.0 Dice 0.7014
+segformer_b0_seed11 brightness 0.8 100
+segformer_b0_seed11 brightness 0.8 200
+segformer_b0_seed11 brightness 0.8 Dice 0.6372
+segformer_b0_seed11 brightness 0.6 100
+segformer_b0_seed11 brightness 0.6 200
+segformer_b0_seed11 brightness 0.6 Dice 0.5424
+segformer_b0_seed11 brightness 0.4 100
+segformer_b0_seed11 brightness 0.4 200
+segformer_b0_seed11 brightness 0.4 Dice 0.2159
+segformer_b0_seed23 noise 0.03 100
+segformer_b0_seed23 noise 0.03 200
+segformer_b0_seed23 noise 0.03 Dice 0.6721
+segformer_b0_seed23 noise 0.06 100
+segformer_b0_seed23 noise 0.06 200
+segformer_b0_seed23 noise 0.06 Dice 0.573
+segformer_b0_seed23 noise 0.12 100
+segformer_b0_seed23 noise 0.12 200
+segformer_b0_seed23 noise 0.12 Dice 0.372
+segformer_b0_seed23 blur 0.5 100
+segformer_b0_seed23 blur 0.5 200
+segformer_b0_seed23 blur 0.5 Dice 0.7305
+segformer_b0_seed23 blur 1.0 100
+segformer_b0_seed23 blur 1.0 200
+segformer_b0_seed23 blur 1.0 Dice 0.7457
+segformer_b0_seed23 blur 2.0 100
+segformer_b0_seed23 blur 2.0 200
+segformer_b0_seed23 blur 2.0 Dice 0.7412
+segformer_b0_seed23 brightness 0.8 100
+segformer_b0_seed23 brightness 0.8 200
+segformer_b0_seed23 brightness 0.8 Dice 0.6145
+segformer_b0_seed23 brightness 0.6 100
+segformer_b0_seed23 brightness 0.6 200
+segformer_b0_seed23 brightness 0.6 Dice 0.5275
+segformer_b0_seed23 brightness 0.4 100
+segformer_b0_seed23 brightness 0.4 200
+segformer_b0_seed23 brightness 0.4 Dice 0.2378
+segformer_b0_seed37 noise 0.03 100
+segformer_b0_seed37 noise 0.03 200
+segformer_b0_seed37 noise 0.03 Dice 0.6557
+segformer_b0_seed37 noise 0.06 100
+segformer_b0_seed37 noise 0.06 200
+segformer_b0_seed37 noise 0.06 Dice 0.5851
+segformer_b0_seed37 noise 0.12 100
+segformer_b0_seed37 noise 0.12 200
+segformer_b0_seed37 noise 0.12 Dice 0.4205
+segformer_b0_seed37 blur 0.5 100
+segformer_b0_seed37 blur 0.5 200
+segformer_b0_seed37 blur 0.5 Dice 0.7017
+segformer_b0_seed37 blur 1.0 100
+segformer_b0_seed37 blur 1.0 200
+segformer_b0_seed37 blur 1.0 Dice 0.7105
+segformer_b0_seed37 blur 2.0 100
+segformer_b0_seed37 blur 2.0 200
+segformer_b0_seed37 blur 2.0 Dice 0.701
+segformer_b0_seed37 brightness 0.8 100
+segformer_b0_seed37 brightness 0.8 200
+segformer_b0_seed37 brightness 0.8 Dice 0.6279
+segformer_b0_seed37 brightness 0.6 100
+segformer_b0_seed37 brightness 0.6 200
+segformer_b0_seed37 brightness 0.6 Dice 0.5362
+segformer_b0_seed37 brightness 0.4 100
+segformer_b0_seed37 brightness 0.4 200
+segformer_b0_seed37 brightness 0.4 Dice 0.2354
+segformer_b0_seed53 noise 0.03 100
+segformer_b0_seed53 noise 0.03 200
+segformer_b0_seed53 noise 0.03 Dice 0.6694
+segformer_b0_seed53 noise 0.06 100
+segformer_b0_seed53 noise 0.06 200
+segformer_b0_seed53 noise 0.06 Dice 0.5953
+segformer_b0_seed53 noise 0.12 100
+segformer_b0_seed53 noise 0.12 200
+segformer_b0_seed53 noise 0.12 Dice 0.4176
+segformer_b0_seed53 blur 0.5 100
+segformer_b0_seed53 blur 0.5 200
+segformer_b0_seed53 blur 0.5 Dice 0.7188
+segformer_b0_seed53 blur 1.0 100
+segformer_b0_seed53 blur 1.0 200
+segformer_b0_seed53 blur 1.0 Dice 0.7282
+segformer_b0_seed53 blur 2.0 100
+segformer_b0_seed53 blur 2.0 200
+segformer_b0_seed53 blur 2.0 Dice 0.7218
+segformer_b0_seed53 brightness 0.8 100
+segformer_b0_seed53 brightness 0.8 200
+segformer_b0_seed53 brightness 0.8 Dice 0.6395
+segformer_b0_seed53 brightness 0.6 100
+segformer_b0_seed53 brightness 0.6 200
+segformer_b0_seed53 brightness 0.6 Dice 0.5659
+segformer_b0_seed53 brightness 0.4 100
+segformer_b0_seed53 brightness 0.4 200
+segformer_b0_seed53 brightness 0.4 Dice 0.3303
+segformer_b0_seed71 noise 0.03 100
+segformer_b0_seed71 noise 0.03 200
+segformer_b0_seed71 noise 0.03 Dice 0.6807
+segformer_b0_seed71 noise 0.06 100
+segformer_b0_seed71 noise 0.06 200
+segformer_b0_seed71 noise 0.06 Dice 0.5909
+segformer_b0_seed71 noise 0.12 100
+segformer_b0_seed71 noise 0.12 200
+segformer_b0_seed71 noise 0.12 Dice 0.4106
+segformer_b0_seed71 blur 0.5 100
+segformer_b0_seed71 blur 0.5 200
+segformer_b0_seed71 blur 0.5 Dice 0.727
+segformer_b0_seed71 blur 1.0 100
+segformer_b0_seed71 blur 1.0 200
+segformer_b0_seed71 blur 1.0 Dice 0.7337
+segformer_b0_seed71 blur 2.0 100
+segformer_b0_seed71 blur 2.0 200
+segformer_b0_seed71 blur 2.0 Dice 0.7234
+segformer_b0_seed71 brightness 0.8 100
+segformer_b0_seed71 brightness 0.8 200
+segformer_b0_seed71 brightness 0.8 Dice 0.6522
+segformer_b0_seed71 brightness 0.6 100
+segformer_b0_seed71 brightness 0.6 200
+segformer_b0_seed71 brightness 0.6 Dice 0.5676
+segformer_b0_seed71 brightness 0.4 100
+segformer_b0_seed71 brightness 0.4 200
+segformer_b0_seed71 brightness 0.4 Dice 0.2473
+/content/imo-e2-env/lib/python3.11/site-packages/torch/nn/functional.py:1040: UserWarning: max_unpooling2d_forward_out does not have a deterministic implementation, but you set 'torch.use_deterministic_algorithms(True, warn_only=True)'. You can file an issue at https://github.com/pytorch/pytorch/issues to help us prioritize adding deterministic support for this operation. (Triggered internally at ../aten/src/ATen/Context.cpp:91.)
+  return torch._C._nn.max_unpool2d(input, indices, output_size)
+segnet_seed11 noise 0.03 100
+segnet_seed11 noise 0.03 200
+segnet_seed11 noise 0.03 Dice 0.7741
+segnet_seed11 noise 0.06 100
+segnet_seed11 noise 0.06 200
+segnet_seed11 noise 0.06 Dice 0.6969
+segnet_seed11 noise 0.12 100
+segnet_seed11 noise 0.12 200
+segnet_seed11 noise 0.12 Dice 0.0784
+segnet_seed11 blur 0.5 100
+segnet_seed11 blur 0.5 200
+segnet_seed11 blur 0.5 Dice 0.7523
+segnet_seed11 blur 1.0 100
+segnet_seed11 blur 1.0 200
+segnet_seed11 blur 1.0 Dice 0.5129
+segnet_seed11 blur 2.0 100
+segnet_seed11 blur 2.0 200
+segnet_seed11 blur 2.0 Dice 0.3357
+segnet_seed11 brightness 0.8 100
+segnet_seed11 brightness 0.8 200
+segnet_seed11 brightness 0.8 Dice 0.724
+segnet_seed11 brightness 0.6 100
+segnet_seed11 brightness 0.6 200
+segnet_seed11 brightness 0.6 Dice 0.4939
+segnet_seed11 brightness 0.4 100
+segnet_seed11 brightness 0.4 200
+segnet_seed11 brightness 0.4 Dice 0.0985
+segnet_seed23 noise 0.03 100
+segnet_seed23 noise 0.03 200
+segnet_seed23 noise 0.03 Dice 0.8109
+segnet_seed23 noise 0.06 100
+segnet_seed23 noise 0.06 200
+segnet_seed23 noise 0.06 Dice 0.5939
+segnet_seed23 noise 0.12 100
+segnet_seed23 noise 0.12 200
+segnet_seed23 noise 0.12 Dice 0.1067
+segnet_seed23 blur 0.5 100
+segnet_seed23 blur 0.5 200
+segnet_seed23 blur 0.5 Dice 0.8051
+segnet_seed23 blur 1.0 100
+segnet_seed23 blur 1.0 200
+segnet_seed23 blur 1.0 Dice 0.4694
+segnet_seed23 blur 2.0 100
+segnet_seed23 blur 2.0 200
+segnet_seed23 blur 2.0 Dice 0.1925
+segnet_seed23 brightness 0.8 100
+segnet_seed23 brightness 0.8 200
+segnet_seed23 brightness 0.8 Dice 0.7845
+segnet_seed23 brightness 0.6 100
+segnet_seed23 brightness 0.6 200
+segnet_seed23 brightness 0.6 Dice 0.5352
+segnet_seed23 brightness 0.4 100
+segnet_seed23 brightness 0.4 200
+segnet_seed23 brightness 0.4 Dice 0.1784
+segnet_seed37 noise 0.03 100
+segnet_seed37 noise 0.03 200
+segnet_seed37 noise 0.03 Dice 0.814
+segnet_seed37 noise 0.06 100
+segnet_seed37 noise 0.06 200
+segnet_seed37 noise 0.06 Dice 0.6267
+segnet_seed37 noise 0.12 100
+segnet_seed37 noise 0.12 200
+segnet_seed37 noise 0.12 Dice 0.0893
+segnet_seed37 blur 0.5 100
+segnet_seed37 blur 0.5 200
+segnet_seed37 blur 0.5 Dice 0.7921
+segnet_seed37 blur 1.0 100
+segnet_seed37 blur 1.0 200
+segnet_seed37 blur 1.0 Dice 0.4806
+segnet_seed37 blur 2.0 100
+segnet_seed37 blur 2.0 200
+segnet_seed37 blur 2.0 Dice 0.2311
+segnet_seed37 brightness 0.8 100
+segnet_seed37 brightness 0.8 200
+segnet_seed37 brightness 0.8 Dice 0.7848
+segnet_seed37 brightness 0.6 100
+segnet_seed37 brightness 0.6 200
+segnet_seed37 brightness 0.6 Dice 0.57
+segnet_seed37 brightness 0.4 100
+segnet_seed37 brightness 0.4 200
+segnet_seed37 brightness 0.4 Dice 0.154
+segnet_seed53 noise 0.03 100
+segnet_seed53 noise 0.03 200
+segnet_seed53 noise 0.03 Dice 0.7996
+segnet_seed53 noise 0.06 100
+segnet_seed53 noise 0.06 200
+segnet_seed53 noise 0.06 Dice 0.352
+segnet_seed53 noise 0.12 100
+segnet_seed53 noise 0.12 200
+segnet_seed53 noise 0.12 Dice 0.0882
+segnet_seed53 blur 0.5 100
+segnet_seed53 blur 0.5 200
+segnet_seed53 blur 0.5 Dice 0.8053
+segnet_seed53 blur 1.0 100
+segnet_seed53 blur 1.0 200
+segnet_seed53 blur 1.0 Dice 0.5477
+segnet_seed53 blur 2.0 100
+segnet_seed53 blur 2.0 200
+segnet_seed53 blur 2.0 Dice 0.359
+segnet_seed53 brightness 0.8 100
+segnet_seed53 brightness 0.8 200
+segnet_seed53 brightness 0.8 Dice 0.8025
+segnet_seed53 brightness 0.6 100
+segnet_seed53 brightness 0.6 200
+segnet_seed53 brightness 0.6 Dice 0.5943
+segnet_seed53 brightness 0.4 100
+segnet_seed53 brightness 0.4 200
+segnet_seed53 brightness 0.4 Dice 0.1873
+segnet_seed71 noise 0.03 100
+segnet_seed71 noise 0.03 200
+segnet_seed71 noise 0.03 Dice 0.867
+segnet_seed71 noise 0.06 100
+segnet_seed71 noise 0.06 200
+segnet_seed71 noise 0.06 Dice 0.5607
+segnet_seed71 noise 0.12 100
+segnet_seed71 noise 0.12 200
+segnet_seed71 noise 0.12 Dice 0.091
+segnet_seed71 blur 0.5 100
+segnet_seed71 blur 0.5 200
+segnet_seed71 blur 0.5 Dice 0.8289
+segnet_seed71 blur 1.0 100
+segnet_seed71 blur 1.0 200
+segnet_seed71 blur 1.0 Dice 0.3726
+segnet_seed71 blur 2.0 100
+segnet_seed71 blur 2.0 200
+segnet_seed71 blur 2.0 Dice 0.0886
+segnet_seed71 brightness 0.8 100
+segnet_seed71 brightness 0.8 200
+segnet_seed71 brightness 0.8 Dice 0.7815
+segnet_seed71 brightness 0.6 100
+segnet_seed71 brightness 0.6 200
+segnet_seed71 brightness 0.6 Dice 0.5517
+segnet_seed71 brightness 0.4 100
+segnet_seed71 brightness 0.4 200
+segnet_seed71 brightness 0.4 Dice 0.0792
+init cfg None
+spatial True
+S 1
+D 512
+R 16
+train_steps 6
+eval_steps 7
+inv_t 100
+eta 0.9
+rand_init True
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:48: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  coef = torch.bmm(x.transpose(1, 2), bases)
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:122: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  numerator = torch.bmm(x.transpose(1, 2), bases)
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:124: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  denominator = coef.bmm(bases.transpose(1, 2).bmm(bases))
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:129: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  numerator = torch.bmm(x, coef)
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:131: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  denominator = bases.bmm(coef.transpose(1, 2).bmm(coef))
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:139: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  numerator = torch.bmm(x.transpose(1, 2), bases)
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:141: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  denominator = coef.bmm(bases.transpose(1, 2).bmm(bases))
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:89: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  x = torch.bmm(bases, coef.transpose(1, 2))
+segnext_t_seed11 noise 0.03 100
+segnext_t_seed11 noise 0.03 200
+segnext_t_seed11 noise 0.03 Dice 0.7468
+segnext_t_seed11 noise 0.06 100
+segnext_t_seed11 noise 0.06 200
+segnext_t_seed11 noise 0.06 Dice 0.6329
+segnext_t_seed11 noise 0.12 100
+segnext_t_seed11 noise 0.12 200
+segnext_t_seed11 noise 0.12 Dice 0.3349
+segnext_t_seed11 blur 0.5 100
+segnext_t_seed11 blur 0.5 200
+segnext_t_seed11 blur 0.5 Dice 0.769
+segnext_t_seed11 blur 1.0 100
+segnext_t_seed11 blur 1.0 200
+segnext_t_seed11 blur 1.0 Dice 0.7301
+segnext_t_seed11 blur 2.0 100
+segnext_t_seed11 blur 2.0 200
+segnext_t_seed11 blur 2.0 Dice 0.6624
+segnext_t_seed11 brightness 0.8 100
+segnext_t_seed11 brightness 0.8 200
+segnext_t_seed11 brightness 0.8 Dice 0.7497
+segnext_t_seed11 brightness 0.6 100
+segnext_t_seed11 brightness 0.6 200
+segnext_t_seed11 brightness 0.6 Dice 0.6629
+segnext_t_seed11 brightness 0.4 100
+segnext_t_seed11 brightness 0.4 200
+segnext_t_seed11 brightness 0.4 Dice 0.3775
+init cfg None
+spatial True
+S 1
+D 512
+R 16
+train_steps 6
+eval_steps 7
+inv_t 100
+eta 0.9
+rand_init True
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:48: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  coef = torch.bmm(x.transpose(1, 2), bases)
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:122: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  numerator = torch.bmm(x.transpose(1, 2), bases)
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:124: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  denominator = coef.bmm(bases.transpose(1, 2).bmm(bases))
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:129: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  numerator = torch.bmm(x, coef)
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:131: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  denominator = bases.bmm(coef.transpose(1, 2).bmm(coef))
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:139: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  numerator = torch.bmm(x.transpose(1, 2), bases)
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:141: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  denominator = coef.bmm(bases.transpose(1, 2).bmm(bases))
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:89: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  x = torch.bmm(bases, coef.transpose(1, 2))
+segnext_t_seed23 noise 0.03 100
+segnext_t_seed23 noise 0.03 200
+segnext_t_seed23 noise 0.03 Dice 0.7536
+segnext_t_seed23 noise 0.06 100
+segnext_t_seed23 noise 0.06 200
+segnext_t_seed23 noise 0.06 Dice 0.6152
+segnext_t_seed23 noise 0.12 100
+segnext_t_seed23 noise 0.12 200
+segnext_t_seed23 noise 0.12 Dice 0.2982
+segnext_t_seed23 blur 0.5 100
+segnext_t_seed23 blur 0.5 200
+segnext_t_seed23 blur 0.5 Dice 0.765
+segnext_t_seed23 blur 1.0 100
+segnext_t_seed23 blur 1.0 200
+segnext_t_seed23 blur 1.0 Dice 0.7358
+segnext_t_seed23 blur 2.0 100
+segnext_t_seed23 blur 2.0 200
+segnext_t_seed23 blur 2.0 Dice 0.6816
+segnext_t_seed23 brightness 0.8 100
+segnext_t_seed23 brightness 0.8 200
+segnext_t_seed23 brightness 0.8 Dice 0.7466
+segnext_t_seed23 brightness 0.6 100
+segnext_t_seed23 brightness 0.6 200
+segnext_t_seed23 brightness 0.6 Dice 0.6597
+segnext_t_seed23 brightness 0.4 100
+segnext_t_seed23 brightness 0.4 200
+segnext_t_seed23 brightness 0.4 Dice 0.3949
+init cfg None
+spatial True
+S 1
+D 512
+R 16
+train_steps 6
+eval_steps 7
+inv_t 100
+eta 0.9
+rand_init True
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:48: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  coef = torch.bmm(x.transpose(1, 2), bases)
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:122: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  numerator = torch.bmm(x.transpose(1, 2), bases)
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:124: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  denominator = coef.bmm(bases.transpose(1, 2).bmm(bases))
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:129: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  numerator = torch.bmm(x, coef)
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:131: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  denominator = bases.bmm(coef.transpose(1, 2).bmm(coef))
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:139: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  numerator = torch.bmm(x.transpose(1, 2), bases)
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:141: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  denominator = coef.bmm(bases.transpose(1, 2).bmm(bases))
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:89: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  x = torch.bmm(bases, coef.transpose(1, 2))
+segnext_t_seed37 noise 0.03 100
+segnext_t_seed37 noise 0.03 200
+segnext_t_seed37 noise 0.03 Dice 0.7645
+segnext_t_seed37 noise 0.06 100
+segnext_t_seed37 noise 0.06 200
+segnext_t_seed37 noise 0.06 Dice 0.6576
+segnext_t_seed37 noise 0.12 100
+segnext_t_seed37 noise 0.12 200
+segnext_t_seed37 noise 0.12 Dice 0.3576
+segnext_t_seed37 blur 0.5 100
+segnext_t_seed37 blur 0.5 200
+segnext_t_seed37 blur 0.5 Dice 0.7816
+segnext_t_seed37 blur 1.0 100
+segnext_t_seed37 blur 1.0 200
+segnext_t_seed37 blur 1.0 Dice 0.7492
+segnext_t_seed37 blur 2.0 100
+segnext_t_seed37 blur 2.0 200
+segnext_t_seed37 blur 2.0 Dice 0.6763
+segnext_t_seed37 brightness 0.8 100
+segnext_t_seed37 brightness 0.8 200
+segnext_t_seed37 brightness 0.8 Dice 0.76
+segnext_t_seed37 brightness 0.6 100
+segnext_t_seed37 brightness 0.6 200
+segnext_t_seed37 brightness 0.6 Dice 0.6557
+segnext_t_seed37 brightness 0.4 100
+segnext_t_seed37 brightness 0.4 200
+segnext_t_seed37 brightness 0.4 Dice 0.3351
+init cfg None
+spatial True
+S 1
+D 512
+R 16
+train_steps 6
+eval_steps 7
+inv_t 100
+eta 0.9
+rand_init True
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:48: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  coef = torch.bmm(x.transpose(1, 2), bases)
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:122: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  numerator = torch.bmm(x.transpose(1, 2), bases)
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:124: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  denominator = coef.bmm(bases.transpose(1, 2).bmm(bases))
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:129: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  numerator = torch.bmm(x, coef)
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:131: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  denominator = bases.bmm(coef.transpose(1, 2).bmm(coef))
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:139: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  numerator = torch.bmm(x.transpose(1, 2), bases)
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:141: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  denominator = coef.bmm(bases.transpose(1, 2).bmm(bases))
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:89: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  x = torch.bmm(bases, coef.transpose(1, 2))
+segnext_t_seed53 noise 0.03 100
+segnext_t_seed53 noise 0.03 200
+segnext_t_seed53 noise 0.03 Dice 0.7612
+segnext_t_seed53 noise 0.06 100
+segnext_t_seed53 noise 0.06 200
+segnext_t_seed53 noise 0.06 Dice 0.571
+segnext_t_seed53 noise 0.12 100
+segnext_t_seed53 noise 0.12 200
+segnext_t_seed53 noise 0.12 Dice 0.263
+segnext_t_seed53 blur 0.5 100
+segnext_t_seed53 blur 0.5 200
+segnext_t_seed53 blur 0.5 Dice 0.7921
+segnext_t_seed53 blur 1.0 100
+segnext_t_seed53 blur 1.0 200
+segnext_t_seed53 blur 1.0 Dice 0.7677
+segnext_t_seed53 blur 2.0 100
+segnext_t_seed53 blur 2.0 200
+segnext_t_seed53 blur 2.0 Dice 0.6987
+segnext_t_seed53 brightness 0.8 100
+segnext_t_seed53 brightness 0.8 200
+segnext_t_seed53 brightness 0.8 Dice 0.788
+segnext_t_seed53 brightness 0.6 100
+segnext_t_seed53 brightness 0.6 200
+segnext_t_seed53 brightness 0.6 Dice 0.7234
+segnext_t_seed53 brightness 0.4 100
+segnext_t_seed53 brightness 0.4 200
+segnext_t_seed53 brightness 0.4 Dice 0.5218
+init cfg None
+spatial True
+S 1
+D 512
+R 16
+train_steps 6
+eval_steps 7
+inv_t 100
+eta 0.9
+rand_init True
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:48: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  coef = torch.bmm(x.transpose(1, 2), bases)
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:122: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  numerator = torch.bmm(x.transpose(1, 2), bases)
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:124: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  denominator = coef.bmm(bases.transpose(1, 2).bmm(bases))
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:129: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  numerator = torch.bmm(x, coef)
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:131: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  denominator = bases.bmm(coef.transpose(1, 2).bmm(coef))
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:139: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  numerator = torch.bmm(x.transpose(1, 2), bases)
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:141: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  denominator = coef.bmm(bases.transpose(1, 2).bmm(bases))
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/segnext/mmseg/models/decode_heads/ham_head.py:89: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  x = torch.bmm(bases, coef.transpose(1, 2))
+segnext_t_seed71 noise 0.03 100
+segnext_t_seed71 noise 0.03 200
+segnext_t_seed71 noise 0.03 Dice 0.7334
+segnext_t_seed71 noise 0.06 100
+segnext_t_seed71 noise 0.06 200
+segnext_t_seed71 noise 0.06 Dice 0.5922
+segnext_t_seed71 noise 0.12 100
+segnext_t_seed71 noise 0.12 200
+segnext_t_seed71 noise 0.12 Dice 0.3217
+segnext_t_seed71 blur 0.5 100
+segnext_t_seed71 blur 0.5 200
+segnext_t_seed71 blur 0.5 Dice 0.7654
+segnext_t_seed71 blur 1.0 100
+segnext_t_seed71 blur 1.0 200
+segnext_t_seed71 blur 1.0 Dice 0.739
+segnext_t_seed71 blur 2.0 100
+segnext_t_seed71 blur 2.0 200
+segnext_t_seed71 blur 2.0 Dice 0.6781
+segnext_t_seed71 brightness 0.8 100
+segnext_t_seed71 brightness 0.8 200
+segnext_t_seed71 brightness 0.8 Dice 0.7458
+segnext_t_seed71 brightness 0.6 100
+segnext_t_seed71 brightness 0.6 200
+segnext_t_seed71 brightness 0.6 Dice 0.6295
+segnext_t_seed71 brightness 0.4 100
+segnext_t_seed71 brightness 0.4 200
+segnext_t_seed71 brightness 0.4 Dice 0.2329
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/transunet/networks/vit_seg_modeling.py:82: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  attention_scores = torch.matmul(query_layer, key_layer.transpose(-1, -2))
+/content/imo_e2_complemento/tesis_imo_para_codex/third_party/e2/transunet/networks/vit_seg_modeling.py:88: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  context_layer = torch.matmul(attention_probs, value_layer)
+transunet_2d_seed11 noise 0.03 100
+transunet_2d_seed11 noise 0.03 200
+transunet_2d_seed11 noise 0.03 Dice 0.857
+transunet_2d_seed11 noise 0.06 100
+transunet_2d_seed11 noise 0.06 200
+transunet_2d_seed11 noise 0.06 Dice 0.7975
+transunet_2d_seed11 noise 0.12 100
+transunet_2d_seed11 noise 0.12 200
+transunet_2d_seed11 noise 0.12 Dice 0.6866
+transunet_2d_seed11 blur 0.5 100
+transunet_2d_seed11 blur 0.5 200
+transunet_2d_seed11 blur 0.5 Dice 0.8626
+transunet_2d_seed11 blur 1.0 100
+transunet_2d_seed11 blur 1.0 200
+transunet_2d_seed11 blur 1.0 Dice 0.8122
+transunet_2d_seed11 blur 2.0 100
+transunet_2d_seed11 blur 2.0 200
+transunet_2d_seed11 blur 2.0 Dice 0.6864
+transunet_2d_seed11 brightness 0.8 100
+transunet_2d_seed11 brightness 0.8 200
+transunet_2d_seed11 brightness 0.8 Dice 0.8675
+transunet_2d_seed11 brightness 0.6 100
+transunet_2d_seed11 brightness 0.6 200
+transunet_2d_seed11 brightness 0.6 Dice 0.856
+transunet_2d_seed11 brightness 0.4 100
+transunet_2d_seed11 brightness 0.4 200
+transunet_2d_seed11 brightness 0.4 Dice 0.7962
+transunet_2d_seed23 noise 0.03 100
+transunet_2d_seed23 noise 0.03 200
+transunet_2d_seed23 noise 0.03 Dice 0.8356
+transunet_2d_seed23 noise 0.06 100
+transunet_2d_seed23 noise 0.06 200
+transunet_2d_seed23 noise 0.06 Dice 0.7575
+transunet_2d_seed23 noise 0.12 100
+transunet_2d_seed23 noise 0.12 200
+transunet_2d_seed23 noise 0.12 Dice 0.6343
+transunet_2d_seed23 blur 0.5 100
+transunet_2d_seed23 blur 0.5 200
+transunet_2d_seed23 blur 0.5 Dice 0.846
+transunet_2d_seed23 blur 1.0 100
+transunet_2d_seed23 blur 1.0 200
+transunet_2d_seed23 blur 1.0 Dice 0.7678
+transunet_2d_seed23 blur 2.0 100
+transunet_2d_seed23 blur 2.0 200
+transunet_2d_seed23 blur 2.0 Dice 0.6313
+transunet_2d_seed23 brightness 0.8 100
+transunet_2d_seed23 brightness 0.8 200
+transunet_2d_seed23 brightness 0.8 Dice 0.8599
+transunet_2d_seed23 brightness 0.6 100
+transunet_2d_seed23 brightness 0.6 200
+transunet_2d_seed23 brightness 0.6 Dice 0.8422
+transunet_2d_seed23 brightness 0.4 100
+transunet_2d_seed23 brightness 0.4 200
+transunet_2d_seed23 brightness 0.4 Dice 0.7847
+transunet_2d_seed37 noise 0.03 100
+transunet_2d_seed37 noise 0.03 200
+transunet_2d_seed37 noise 0.03 Dice 0.841
+transunet_2d_seed37 noise 0.06 100
+transunet_2d_seed37 noise 0.06 200
+transunet_2d_seed37 noise 0.06 Dice 0.7902
+transunet_2d_seed37 noise 0.12 100
+transunet_2d_seed37 noise 0.12 200
+transunet_2d_seed37 noise 0.12 Dice 0.6523
+transunet_2d_seed37 blur 0.5 100
+transunet_2d_seed37 blur 0.5 200
+transunet_2d_seed37 blur 0.5 Dice 0.8483
+transunet_2d_seed37 blur 1.0 100
+transunet_2d_seed37 blur 1.0 200
+transunet_2d_seed37 blur 1.0 Dice 0.7846
+transunet_2d_seed37 blur 2.0 100
+transunet_2d_seed37 blur 2.0 200
+transunet_2d_seed37 blur 2.0 Dice 0.6226
+transunet_2d_seed37 brightness 0.8 100
+transunet_2d_seed37 brightness 0.8 200
+transunet_2d_seed37 brightness 0.8 Dice 0.8602
+transunet_2d_seed37 brightness 0.6 100
+transunet_2d_seed37 brightness 0.6 200
+transunet_2d_seed37 brightness 0.6 Dice 0.8475
+transunet_2d_seed37 brightness 0.4 100
+transunet_2d_seed37 brightness 0.4 200
+transunet_2d_seed37 brightness 0.4 Dice 0.7891
+transunet_2d_seed53 noise 0.03 100
+transunet_2d_seed53 noise 0.03 200
+transunet_2d_seed53 noise 0.03 Dice 0.8228
+transunet_2d_seed53 noise 0.06 100
+transunet_2d_seed53 noise 0.06 200
+transunet_2d_seed53 noise 0.06 Dice 0.7524
+transunet_2d_seed53 noise 0.12 100
+transunet_2d_seed53 noise 0.12 200
+transunet_2d_seed53 noise 0.12 Dice 0.6162
+transunet_2d_seed53 blur 0.5 100
+transunet_2d_seed53 blur 0.5 200
+transunet_2d_seed53 blur 0.5 Dice 0.8283
+transunet_2d_seed53 blur 1.0 100
+transunet_2d_seed53 blur 1.0 200
+transunet_2d_seed53 blur 1.0 Dice 0.751
+transunet_2d_seed53 blur 2.0 100
+transunet_2d_seed53 blur 2.0 200
+transunet_2d_seed53 blur 2.0 Dice 0.6066
+transunet_2d_seed53 brightness 0.8 100
+transunet_2d_seed53 brightness 0.8 200
+transunet_2d_seed53 brightness 0.8 Dice 0.8509
+transunet_2d_seed53 brightness 0.6 100
+transunet_2d_seed53 brightness 0.6 200
+transunet_2d_seed53 brightness 0.6 Dice 0.8448
+transunet_2d_seed53 brightness 0.4 100
+transunet_2d_seed53 brightness 0.4 200
+transunet_2d_seed53 brightness 0.4 Dice 0.7846
+transunet_2d_seed71 noise 0.03 100
+transunet_2d_seed71 noise 0.03 200
+transunet_2d_seed71 noise 0.03 Dice 0.8491
+transunet_2d_seed71 noise 0.06 100
+transunet_2d_seed71 noise 0.06 200
+transunet_2d_seed71 noise 0.06 Dice 0.8107
+transunet_2d_seed71 noise 0.12 100
+transunet_2d_seed71 noise 0.12 200
+transunet_2d_seed71 noise 0.12 Dice 0.6961
+transunet_2d_seed71 blur 0.5 100
+transunet_2d_seed71 blur 0.5 200
+transunet_2d_seed71 blur 0.5 Dice 0.8506
+transunet_2d_seed71 blur 1.0 100
+transunet_2d_seed71 blur 1.0 200
+transunet_2d_seed71 blur 1.0 Dice 0.774
+transunet_2d_seed71 blur 2.0 100
+transunet_2d_seed71 blur 2.0 200
+transunet_2d_seed71 blur 2.0 Dice 0.61
+transunet_2d_seed71 brightness 0.8 100
+transunet_2d_seed71 brightness 0.8 200
+transunet_2d_seed71 brightness 0.8 Dice 0.8618
+transunet_2d_seed71 brightness 0.6 100
+transunet_2d_seed71 brightness 0.6 200
+transunet_2d_seed71 brightness 0.6 Dice 0.8504
+transunet_2d_seed71 brightness 0.4 100
+transunet_2d_seed71 brightness 0.4 200
+transunet_2d_seed71 brightness 0.4 Dice 0.7976
+unet_seed11 noise 0.03 100
+unet_seed11 noise 0.03 200
+unet_seed11 noise 0.03 Dice 0.8355
+unet_seed11 noise 0.06 100
+unet_seed11 noise 0.06 200
+unet_seed11 noise 0.06 Dice 0.6137
+unet_seed11 noise 0.12 100
+unet_seed11 noise 0.12 200
+unet_seed11 noise 0.12 Dice 0.0848
+unet_seed11 blur 0.5 100
+unet_seed11 blur 0.5 200
+unet_seed11 blur 0.5 Dice 0.7944
+unet_seed11 blur 1.0 100
+unet_seed11 blur 1.0 200
+unet_seed11 blur 1.0 Dice 0.4136
+unet_seed11 blur 2.0 100
+unet_seed11 blur 2.0 200
+unet_seed11 blur 2.0 Dice 0.2179
+unet_seed11 brightness 0.8 100
+unet_seed11 brightness 0.8 200
+unet_seed11 brightness 0.8 Dice 0.756
+unet_seed11 brightness 0.6 100
+unet_seed11 brightness 0.6 200
+unet_seed11 brightness 0.6 Dice 0.5813
+unet_seed11 brightness 0.4 100
+unet_seed11 brightness 0.4 200
+unet_seed11 brightness 0.4 Dice 0.2313
+unet_seed23 noise 0.03 100
+unet_seed23 noise 0.03 200
+unet_seed23 noise 0.03 Dice 0.814
+unet_seed23 noise 0.06 100
+unet_seed23 noise 0.06 200
+unet_seed23 noise 0.06 Dice 0.7221
+unet_seed23 noise 0.12 100
+unet_seed23 noise 0.12 200
+unet_seed23 noise 0.12 Dice 0.1123
+unet_seed23 blur 0.5 100
+unet_seed23 blur 0.5 200
+unet_seed23 blur 0.5 Dice 0.8089
+unet_seed23 blur 1.0 100
+unet_seed23 blur 1.0 200
+unet_seed23 blur 1.0 Dice 0.5374
+unet_seed23 blur 2.0 100
+unet_seed23 blur 2.0 200
+unet_seed23 blur 2.0 Dice 0.414
+unet_seed23 brightness 0.8 100
+unet_seed23 brightness 0.8 200
+unet_seed23 brightness 0.8 Dice 0.8054
+unet_seed23 brightness 0.6 100
+unet_seed23 brightness 0.6 200
+unet_seed23 brightness 0.6 Dice 0.5624
+unet_seed23 brightness 0.4 100
+unet_seed23 brightness 0.4 200
+unet_seed23 brightness 0.4 Dice 0.2257
+unet_seed37 noise 0.03 100
+unet_seed37 noise 0.03 200
+unet_seed37 noise 0.03 Dice 0.8359
+unet_seed37 noise 0.06 100
+unet_seed37 noise 0.06 200
+unet_seed37 noise 0.06 Dice 0.434
+unet_seed37 noise 0.12 100
+unet_seed37 noise 0.12 200
+unet_seed37 noise 0.12 Dice 0.0725
+unet_seed37 blur 0.5 100
+unet_seed37 blur 0.5 200
+unet_seed37 blur 0.5 Dice 0.81
+unet_seed37 blur 1.0 100
+unet_seed37 blur 1.0 200
+unet_seed37 blur 1.0 Dice 0.4652
+unet_seed37 blur 2.0 100
+unet_seed37 blur 2.0 200
+unet_seed37 blur 2.0 Dice 0.2407
+unet_seed37 brightness 0.8 100
+unet_seed37 brightness 0.8 200
+unet_seed37 brightness 0.8 Dice 0.8334
+unet_seed37 brightness 0.6 100
+unet_seed37 brightness 0.6 200
+unet_seed37 brightness 0.6 Dice 0.6677
+unet_seed37 brightness 0.4 100
+unet_seed37 brightness 0.4 200
+unet_seed37 brightness 0.4 Dice 0.2161
+unet_seed53 noise 0.03 100
+unet_seed53 noise 0.03 200
+unet_seed53 noise 0.03 Dice 0.8389
+unet_seed53 noise 0.06 100
+unet_seed53 noise 0.06 200
+unet_seed53 noise 0.06 Dice 0.4211
+unet_seed53 noise 0.12 100
+unet_seed53 noise 0.12 200
+unet_seed53 noise 0.12 Dice 0.0836
+unet_seed53 blur 0.5 100
+unet_seed53 blur 0.5 200
+unet_seed53 blur 0.5 Dice 0.8275
+unet_seed53 blur 1.0 100
+unet_seed53 blur 1.0 200
+unet_seed53 blur 1.0 Dice 0.4046
+unet_seed53 blur 2.0 100
+unet_seed53 blur 2.0 200
+unet_seed53 blur 2.0 Dice 0.1358
+unet_seed53 brightness 0.8 100
+unet_seed53 brightness 0.8 200
+unet_seed53 brightness 0.8 Dice 0.8397
+unet_seed53 brightness 0.6 100
+unet_seed53 brightness 0.6 200
+unet_seed53 brightness 0.6 Dice 0.6538
+unet_seed53 brightness 0.4 100
+unet_seed53 brightness 0.4 200
+unet_seed53 brightness 0.4 Dice 0.258
+unet_seed71 noise 0.03 100
+unet_seed71 noise 0.03 200
+unet_seed71 noise 0.03 Dice 0.8269
+unet_seed71 noise 0.06 100
+unet_seed71 noise 0.06 200
+unet_seed71 noise 0.06 Dice 0.5777
+unet_seed71 noise 0.12 100
+unet_seed71 noise 0.12 200
+unet_seed71 noise 0.12 Dice 0.092
+unet_seed71 blur 0.5 100
+unet_seed71 blur 0.5 200
+unet_seed71 blur 0.5 Dice 0.8057
+unet_seed71 blur 1.0 100
+unet_seed71 blur 1.0 200
+unet_seed71 blur 1.0 Dice 0.4728
+unet_seed71 blur 2.0 100
+unet_seed71 blur 2.0 200
+unet_seed71 blur 2.0 Dice 0.2195
+unet_seed71 brightness 0.8 100
+unet_seed71 brightness 0.8 200
+unet_seed71 brightness 0.8 Dice 0.7878
+unet_seed71 brightness 0.6 100
+unet_seed71 brightness 0.6 200
+unet_seed71 brightness 0.6 Dice 0.5597
+unet_seed71 brightness 0.4 100
+unet_seed71 brightness 0.4 200
+unet_seed71 brightness 0.4 Dice 0.1703
+unetplusplus_seed11 noise 0.03 100
+unetplusplus_seed11 noise 0.03 200
+unetplusplus_seed11 noise 0.03 Dice 0.8098
+unetplusplus_seed11 noise 0.06 100
+unetplusplus_seed11 noise 0.06 200
+unetplusplus_seed11 noise 0.06 Dice 0.7984
+unetplusplus_seed11 noise 0.12 100
+unetplusplus_seed11 noise 0.12 200
+unetplusplus_seed11 noise 0.12 Dice 0.6646
+unetplusplus_seed11 blur 0.5 100
+unetplusplus_seed11 blur 0.5 200
+unetplusplus_seed11 blur 0.5 Dice 0.8062
+unetplusplus_seed11 blur 1.0 100
+unetplusplus_seed11 blur 1.0 200
+unetplusplus_seed11 blur 1.0 Dice 0.7816
+unetplusplus_seed11 blur 2.0 100
+unetplusplus_seed11 blur 2.0 200
+unetplusplus_seed11 blur 2.0 Dice 0.6745
+unetplusplus_seed11 brightness 0.8 100
+unetplusplus_seed11 brightness 0.8 200
+unetplusplus_seed11 brightness 0.8 Dice 0.7838
+unetplusplus_seed11 brightness 0.6 100
+unetplusplus_seed11 brightness 0.6 200
+unetplusplus_seed11 brightness 0.6 Dice 0.6812
+unetplusplus_seed11 brightness 0.4 100
+unetplusplus_seed11 brightness 0.4 200
+unetplusplus_seed11 brightness 0.4 Dice 0.5025
+unetplusplus_seed23 noise 0.03 100
+unetplusplus_seed23 noise 0.03 200
+unetplusplus_seed23 noise 0.03 Dice 0.8095
+unetplusplus_seed23 noise 0.06 100
+unetplusplus_seed23 noise 0.06 200
+unetplusplus_seed23 noise 0.06 Dice 0.8006
+unetplusplus_seed23 noise 0.12 100
+unetplusplus_seed23 noise 0.12 200
+unetplusplus_seed23 noise 0.12 Dice 0.663
+unetplusplus_seed23 blur 0.5 100
+unetplusplus_seed23 blur 0.5 200
+unetplusplus_seed23 blur 0.5 Dice 0.8066
+unetplusplus_seed23 blur 1.0 100
+unetplusplus_seed23 blur 1.0 200
+unetplusplus_seed23 blur 1.0 Dice 0.7786
+unetplusplus_seed23 blur 2.0 100
+unetplusplus_seed23 blur 2.0 200
+unetplusplus_seed23 blur 2.0 Dice 0.6708
+unetplusplus_seed23 brightness 0.8 100
+unetplusplus_seed23 brightness 0.8 200
+unetplusplus_seed23 brightness 0.8 Dice 0.7941
+unetplusplus_seed23 brightness 0.6 100
+unetplusplus_seed23 brightness 0.6 200
+unetplusplus_seed23 brightness 0.6 Dice 0.6963
+unetplusplus_seed23 brightness 0.4 100
+unetplusplus_seed23 brightness 0.4 200
+unetplusplus_seed23 brightness 0.4 Dice 0.445
+unetplusplus_seed37 noise 0.03 100
+unetplusplus_seed37 noise 0.03 200
+unetplusplus_seed37 noise 0.03 Dice 0.7998
+unetplusplus_seed37 noise 0.06 100
+unetplusplus_seed37 noise 0.06 200
+unetplusplus_seed37 noise 0.06 Dice 0.784
+unetplusplus_seed37 noise 0.12 100
+unetplusplus_seed37 noise 0.12 200
+unetplusplus_seed37 noise 0.12 Dice 0.6976
+unetplusplus_seed37 blur 0.5 100
+unetplusplus_seed37 blur 0.5 200
+unetplusplus_seed37 blur 0.5 Dice 0.8036
+unetplusplus_seed37 blur 1.0 100
+unetplusplus_seed37 blur 1.0 200
+unetplusplus_seed37 blur 1.0 Dice 0.7779
+unetplusplus_seed37 blur 2.0 100
+unetplusplus_seed37 blur 2.0 200
+unetplusplus_seed37 blur 2.0 Dice 0.687
+unetplusplus_seed37 brightness 0.8 100
+unetplusplus_seed37 brightness 0.8 200
+unetplusplus_seed37 brightness 0.8 Dice 0.7694
+unetplusplus_seed37 brightness 0.6 100
+unetplusplus_seed37 brightness 0.6 200
+unetplusplus_seed37 brightness 0.6 Dice 0.664
+unetplusplus_seed37 brightness 0.4 100
+unetplusplus_seed37 brightness 0.4 200
+unetplusplus_seed37 brightness 0.4 Dice 0.5084
+unetplusplus_seed53 noise 0.03 100
+unetplusplus_seed53 noise 0.03 200
+unetplusplus_seed53 noise 0.03 Dice 0.8069
+unetplusplus_seed53 noise 0.06 100
+unetplusplus_seed53 noise 0.06 200
+unetplusplus_seed53 noise 0.06 Dice 0.7801
+unetplusplus_seed53 noise 0.12 100
+unetplusplus_seed53 noise 0.12 200
+unetplusplus_seed53 noise 0.12 Dice 0.6808
+unetplusplus_seed53 blur 0.5 100
+unetplusplus_seed53 blur 0.5 200
+unetplusplus_seed53 blur 0.5 Dice 0.8069
+unetplusplus_seed53 blur 1.0 100
+unetplusplus_seed53 blur 1.0 200
+unetplusplus_seed53 blur 1.0 Dice 0.779
+unetplusplus_seed53 blur 2.0 100
+unetplusplus_seed53 blur 2.0 200
+unetplusplus_seed53 blur 2.0 Dice 0.6757
+unetplusplus_seed53 brightness 0.8 100
+unetplusplus_seed53 brightness 0.8 200
+unetplusplus_seed53 brightness 0.8 Dice 0.792
+unetplusplus_seed53 brightness 0.6 100
+unetplusplus_seed53 brightness 0.6 200
+unetplusplus_seed53 brightness 0.6 Dice 0.6775
+unetplusplus_seed53 brightness 0.4 100
+unetplusplus_seed53 brightness 0.4 200
+unetplusplus_seed53 brightness 0.4 Dice 0.4779
+unetplusplus_seed71 noise 0.03 100
+unetplusplus_seed71 noise 0.03 200
+unetplusplus_seed71 noise 0.03 Dice 0.7929
+unetplusplus_seed71 noise 0.06 100
+unetplusplus_seed71 noise 0.06 200
+unetplusplus_seed71 noise 0.06 Dice 0.7817
+unetplusplus_seed71 noise 0.12 100
+unetplusplus_seed71 noise 0.12 200
+unetplusplus_seed71 noise 0.12 Dice 0.6829
+unetplusplus_seed71 blur 0.5 100
+unetplusplus_seed71 blur 0.5 200
+unetplusplus_seed71 blur 0.5 Dice 0.7802
+unetplusplus_seed71 blur 1.0 100
+unetplusplus_seed71 blur 1.0 200
+unetplusplus_seed71 blur 1.0 Dice 0.747
+unetplusplus_seed71 blur 2.0 100
+unetplusplus_seed71 blur 2.0 200
+unetplusplus_seed71 blur 2.0 Dice 0.6023
+unetplusplus_seed71 brightness 0.8 100
+unetplusplus_seed71 brightness 0.8 200
+unetplusplus_seed71 brightness 0.8 Dice 0.7573
+unetplusplus_seed71 brightness 0.6 100
+unetplusplus_seed71 brightness 0.6 200
+unetplusplus_seed71 brightness 0.6 Dice 0.6091
+unetplusplus_seed71 brightness 0.4 100
+unetplusplus_seed71 brightness 0.4 200
+unetplusplus_seed71 brightness 0.4 Dice 0.3593
+/content/imo-e2-env/lib/python3.11/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/content/imo-e2-env/lib/python3.11/site-packages/torch/functional.py:402: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at ../aten/src/ATen/Context.cpp:208.)
+  return _VF.einsum(equation, operands)  # type: ignore[attr-defined]
+vmunet_seed11 noise 0.03 100
+vmunet_seed11 noise 0.03 200
+vmunet_seed11 noise 0.03 Dice 0.8724
+vmunet_seed11 noise 0.06 100
+vmunet_seed11 noise 0.06 200
+vmunet_seed11 noise 0.06 Dice 0.8656
+vmunet_seed11 noise 0.12 100
+vmunet_seed11 noise 0.12 200
+vmunet_seed11 noise 0.12 Dice 0.5756
+vmunet_seed11 blur 0.5 100
+vmunet_seed11 blur 0.5 200
+vmunet_seed11 blur 0.5 Dice 0.8745
+vmunet_seed11 blur 1.0 100
+vmunet_seed11 blur 1.0 200
+vmunet_seed11 blur 1.0 Dice 0.8464
+vmunet_seed11 blur 2.0 100
+vmunet_seed11 blur 2.0 200
+vmunet_seed11 blur 2.0 Dice 0.7365
+vmunet_seed11 brightness 0.8 100
+vmunet_seed11 brightness 0.8 200
+vmunet_seed11 brightness 0.8 Dice 0.8714
+vmunet_seed11 brightness 0.6 100
+vmunet_seed11 brightness 0.6 200
+vmunet_seed11 brightness 0.6 Dice 0.8188
+vmunet_seed11 brightness 0.4 100
+vmunet_seed11 brightness 0.4 200
+vmunet_seed11 brightness 0.4 Dice 0.6938
+vmunet_seed23 noise 0.03 100
+vmunet_seed23 noise 0.03 200
+vmunet_seed23 noise 0.03 Dice 0.7997
+vmunet_seed23 noise 0.06 100
+vmunet_seed23 noise 0.06 200
+vmunet_seed23 noise 0.06 Dice 0.7749
+vmunet_seed23 noise 0.12 100
+vmunet_seed23 noise 0.12 200
+vmunet_seed23 noise 0.12 Dice 0.541
+vmunet_seed23 blur 0.5 100
+vmunet_seed23 blur 0.5 200
+vmunet_seed23 blur 0.5 Dice 0.7906
+vmunet_seed23 blur 1.0 100
+vmunet_seed23 blur 1.0 200
+vmunet_seed23 blur 1.0 Dice 0.7415
+vmunet_seed23 blur 2.0 100
+vmunet_seed23 blur 2.0 200
+vmunet_seed23 blur 2.0 Dice 0.6234
+vmunet_seed23 brightness 0.8 100
+vmunet_seed23 brightness 0.8 200
+vmunet_seed23 brightness 0.8 Dice 0.7528
+vmunet_seed23 brightness 0.6 100
+vmunet_seed23 brightness 0.6 200
+vmunet_seed23 brightness 0.6 Dice 0.5755
+vmunet_seed23 brightness 0.4 100
+vmunet_seed23 brightness 0.4 200
+vmunet_seed23 brightness 0.4 Dice 0.321
+vmunet_seed37 noise 0.03 100
+vmunet_seed37 noise 0.03 200
+vmunet_seed37 noise 0.03 Dice 0.8524
+vmunet_seed37 noise 0.06 100
+vmunet_seed37 noise 0.06 200
+vmunet_seed37 noise 0.06 Dice 0.83
+vmunet_seed37 noise 0.12 100
+vmunet_seed37 noise 0.12 200
+vmunet_seed37 noise 0.12 Dice 0.6009
+vmunet_seed37 blur 0.5 100
+vmunet_seed37 blur 0.5 200
+vmunet_seed37 blur 0.5 Dice 0.8512
+vmunet_seed37 blur 1.0 100
+vmunet_seed37 blur 1.0 200
+vmunet_seed37 blur 1.0 Dice 0.8131
+vmunet_seed37 blur 2.0 100
+vmunet_seed37 blur 2.0 200
+vmunet_seed37 blur 2.0 Dice 0.6527
+vmunet_seed37 brightness 0.8 100
+vmunet_seed37 brightness 0.8 200
+vmunet_seed37 brightness 0.8 Dice 0.8305
+vmunet_seed37 brightness 0.6 100
+vmunet_seed37 brightness 0.6 200
+vmunet_seed37 brightness 0.6 Dice 0.7441
+vmunet_seed37 brightness 0.4 100
+vmunet_seed37 brightness 0.4 200
+vmunet_seed37 brightness 0.4 Dice 0.5198
+vmunet_seed53 noise 0.03 100
+vmunet_seed53 noise 0.03 200
+vmunet_seed53 noise 0.03 Dice 0.8236
+vmunet_seed53 noise 0.06 100
+vmunet_seed53 noise 0.06 200
+vmunet_seed53 noise 0.06 Dice 0.7929
+vmunet_seed53 noise 0.12 100
+vmunet_seed53 noise 0.12 200
+vmunet_seed53 noise 0.12 Dice 0.5786
+vmunet_seed53 blur 0.5 100
+vmunet_seed53 blur 0.5 200
+vmunet_seed53 blur 0.5 Dice 0.8312
+vmunet_seed53 blur 1.0 100
+vmunet_seed53 blur 1.0 200
+vmunet_seed53 blur 1.0 Dice 0.8224
+vmunet_seed53 blur 2.0 100
+vmunet_seed53 blur 2.0 200
+vmunet_seed53 blur 2.0 Dice 0.7443
+vmunet_seed53 brightness 0.8 100
+vmunet_seed53 brightness 0.8 200
+vmunet_seed53 brightness 0.8 Dice 0.8001
+vmunet_seed53 brightness 0.6 100
+vmunet_seed53 brightness 0.6 200
+vmunet_seed53 brightness 0.6 Dice 0.7213
+vmunet_seed53 brightness 0.4 100
+vmunet_seed53 brightness 0.4 200
+vmunet_seed53 brightness 0.4 Dice 0.4748
+vmunet_seed71 noise 0.03 100
+vmunet_seed71 noise 0.03 200
+vmunet_seed71 noise 0.03 Dice 0.8242
+vmunet_seed71 noise 0.06 100
+vmunet_seed71 noise 0.06 200
+vmunet_seed71 noise 0.06 Dice 0.8049
+vmunet_seed71 noise 0.12 100
+vmunet_seed71 noise 0.12 200
+vmunet_seed71 noise 0.12 Dice 0.5757
+vmunet_seed71 blur 0.5 100
+vmunet_seed71 blur 0.5 200
+vmunet_seed71 blur 0.5 Dice 0.8229
+vmunet_seed71 blur 1.0 100
+vmunet_seed71 blur 1.0 200
+vmunet_seed71 blur 1.0 Dice 0.7936
+vmunet_seed71 blur 2.0 100
+vmunet_seed71 blur 2.0 200
+vmunet_seed71 blur 2.0 Dice 0.6967
+vmunet_seed71 brightness 0.8 100
+vmunet_seed71 brightness 0.8 200
+vmunet_seed71 brightness 0.8 Dice 0.8194
+vmunet_seed71 brightness 0.6 100
+vmunet_seed71 brightness 0.6 200
+vmunet_seed71 brightness 0.6 Dice 0.7538
+vmunet_seed71 brightness 0.4 100
+vmunet_seed71 brightness 0.4 200
+vmunet_seed71 brightness 0.4 Dice 0.6156
+Etapa finalizada: robustness

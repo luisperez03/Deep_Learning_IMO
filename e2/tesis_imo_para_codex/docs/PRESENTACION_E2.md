@@ -66,9 +66,15 @@ parámetros.
 
 ## 10. Diagnósticos
 
-Calibración (Brier, ECE, temperatura), robustez con tres severidades, Integrated Gradients con fidelidad y
-estabilidad, e incertidumbre conforme por clase en el top 3. **[si se corrió]**; si no, el protocolo preparado y
-por qué falta.
+Sobre los 50 checkpoints, sin reentrenar; reproducen el test cerrado al cuarto decimal. Exploratorio.
+
+- **Robustez:** con ruido y desenfoque las redes grandes conservan 92–96 % del Dice; FCN, U-Net y SegNet, 68–77 %.
+  La parsimonia de FCN vale con imágenes limpias, no con imágenes degradadas.
+- **Ajuste:** brecha train−val grande en SegFormer (0,21) y SegNeXt (0,15): memorizan.
+- **Calibración:** temperatura 1,6–2,6 en todas: logits sobreconfiados; ECE15 ≤ 0,014.
+- **Ensamble de semillas:** +0,02 a +0,03 de Dice (TransUNet 0,883). Conforme: 0,90 en promedio, pero un tercio de
+  los grupos queda por debajo.
+- **Explicabilidad:** IG supera al azar en 89–100 % de los casos; mapas estables entre semillas (Spearman 0,73–0,92).
 
 ## 11. Ablación y controles de sanidad
 
