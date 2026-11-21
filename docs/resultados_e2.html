@@ -1,0 +1,934 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="es" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Resultados E2: benchmark e inferencia &#8212; Segmentación de etiquetas de mercancías peligrosas</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'resultados_e2';</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Complementos locales del 20 de noviembre" href="complementos_e2.html" />
+    <link rel="prev" title="Diseño experimental y ruta de segmentación E2" href="metodos_e2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Segmentación de etiquetas de mercancías peligrosas</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Entregable 2</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="problema.html">Problema y datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eda.html">EDA y preparación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="literatura.html">Literatura, selección operativa y paper guía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelos_e2.html">Fichas de las diez implementaciones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metodos_e2.html">Diseño experimental y ruta de segmentación E2</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Resultados E2: benchmark e inferencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="complementos_e2.html">Complementos locales del 20 de noviembre</a></li>
+<li class="toctree-l1"><a class="reference internal" href="complementos_datos_e2.html">Complementos de datos: fuga, shift, ruido, techo y EDA por clase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagnosticos_e2.html">Diagnósticos sobre los pesos congelados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entrenamiento_complementario_e2.html">Entrenamientos complementarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cierre_e2.html">Discusión, limitaciones y cierre pendiente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="checklist_e2.html">Verificación de requisitos del Entregable 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reproducibilidad_e2.html">Reproducción y archivos de entrega</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Antecedentes del Entregable 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="implementacion.html">Diseño experimental e implementación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resultados.html">Resultados y baseline</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Resultados E2: benchmark e inferencia</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-principal">Conclusión principal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limites-de-interpretacion">Límites de interpretación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-secundarias-completas">Métricas secundarias completas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ampliacion-estadistica-exploratoria">Ampliación estadística exploratoria</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supuestos-y-alcance">Supuestos y alcance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencia-trivial-y-recursos">Referencia trivial y recursos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-y-sobreajuste">Potencia y sobreajuste</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#segmentos-y-errores">Segmentos y errores</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sensibilidad-y-potencia-de-planificacion">Sensibilidad y potencia de planificación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desempeno-por-tamano-anotado">Desempeño por tamaño anotado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#revision-cualitativa-anterior-al-test">Revisión cualitativa anterior al test</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="resultados-e2-benchmark-e-inferencia">
+<h1>Resultados E2: benchmark e inferencia<a class="headerlink" href="#resultados-e2-benchmark-e-inferencia" title="Permalink to this heading">#</a></h1>
+<p>Se verificaron 50 corridas, 10900 registros por imagen y 2180 máscaras de semilla 11. Incidencias: 0.
+Test: 218 imágenes, 122 grupos; máscaras vacías: 0.
+Entrenamiento: NVIDIA L4; evaluación: Tesla T4. No comparar tiempos entre ambas GPUs como si fueran el mismo dispositivo.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Red</p></th>
+<th class="head text-right"><p>Dice validación</p></th>
+<th class="head text-right"><p>Dice test ± DE semillas</p></th>
+<th class="head text-right"><p>IC95 test por grupos</p></th>
+<th class="head text-right"><p>IoU test</p></th>
+<th class="head text-right"><p>Parámetros</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>transunet_2d</p></td>
+<td class="text-right"><p>0.8532</p></td>
+<td class="text-right"><p>0.8626 ± 0.0057</p></td>
+<td class="text-right"><p>[0.8363, 0.8852]</p></td>
+<td class="text-right"><p>0.7835</p></td>
+<td class="text-right"><p>105,322,001</p></td>
+</tr>
+<tr class="row-odd"><td><p>fcn</p></td>
+<td class="text-right"><p>0.8309</p></td>
+<td class="text-right"><p>0.8535 ± 0.0136</p></td>
+<td class="text-right"><p>[0.8282, 0.8744]</p></td>
+<td class="text-right"><p>0.7683</p></td>
+<td class="text-right"><p>72,145</p></td>
+</tr>
+<tr class="row-even"><td><p>unet</p></td>
+<td class="text-right"><p>0.8320</p></td>
+<td class="text-right"><p>0.8464 ± 0.0137</p></td>
+<td class="text-right"><p>[0.8177, 0.8702]</p></td>
+<td class="text-right"><p>0.7616</p></td>
+<td class="text-right"><p>118,273</p></td>
+</tr>
+<tr class="row-odd"><td><p>vmunet</p></td>
+<td class="text-right"><p>0.8207</p></td>
+<td class="text-right"><p>0.8391 ± 0.0297</p></td>
+<td class="text-right"><p>[0.8101, 0.8630]</p></td>
+<td class="text-right"><p>0.7526</p></td>
+<td class="text-right"><p>44,273,833</p></td>
+</tr>
+<tr class="row-even"><td><p>segnet</p></td>
+<td class="text-right"><p>0.8063</p></td>
+<td class="text-right"><p>0.8247 ± 0.0334</p></td>
+<td class="text-right"><p>[0.7949, 0.8499]</p></td>
+<td class="text-right"><p>0.7346</p></td>
+<td class="text-right"><p>85,761</p></td>
+</tr>
+<tr class="row-odd"><td><p>deeplabv3plus</p></td>
+<td class="text-right"><p>0.8133</p></td>
+<td class="text-right"><p>0.8140 ± 0.0246</p></td>
+<td class="text-right"><p>[0.7784, 0.8438]</p></td>
+<td class="text-right"><p>0.7282</p></td>
+<td class="text-right"><p>12,329,297</p></td>
+</tr>
+<tr class="row-even"><td><p>unetplusplus</p></td>
+<td class="text-right"><p>0.8099</p></td>
+<td class="text-right"><p>0.8076 ± 0.0059</p></td>
+<td class="text-right"><p>[0.7685, 0.8417]</p></td>
+<td class="text-right"><p>0.7264</p></td>
+<td class="text-right"><p>15,970,449</p></td>
+</tr>
+<tr class="row-odd"><td><p>pidnet_s</p></td>
+<td class="text-right"><p>0.7963</p></td>
+<td class="text-right"><p>0.7936 ± 0.0231</p></td>
+<td class="text-right"><p>[0.7526, 0.8287]</p></td>
+<td class="text-right"><p>0.7078</p></td>
+<td class="text-right"><p>7,716,291</p></td>
+</tr>
+<tr class="row-even"><td><p>segnext_t</p></td>
+<td class="text-right"><p>0.7594</p></td>
+<td class="text-right"><p>0.7792 ± 0.0104</p></td>
+<td class="text-right"><p>[0.7406, 0.8124]</p></td>
+<td class="text-right"><p>0.6813</p></td>
+<td class="text-right"><p>4,225,121</p></td>
+</tr>
+<tr class="row-odd"><td><p>segformer_b0</p></td>
+<td class="text-right"><p>0.7025</p></td>
+<td class="text-right"><p>0.7053 ± 0.0104</p></td>
+<td class="text-right"><p>[0.6613, 0.7439]</p></td>
+<td class="text-right"><p>0.5946</p></td>
+<td class="text-right"><p>3,714,401</p></td>
+</tr>
+</tbody>
+</table>
+<section id="conclusion-principal">
+<h2>Conclusión principal<a class="headerlink" href="#conclusion-principal" title="Permalink to this heading">#</a></h2>
+<p>TransUNet conserva el mayor promedio de Dice en test, mientras FCN pasa al segundo lugar y U-Net al tercero.
+La diferencia principal TransUNet–FCN es 0.00906 (aproximadamente 0.91 puntos porcentuales). IC95 pareado por grupos: [-0.00828, 0.02779].
+El intervalo incluye cero: esta evaluación no establece una mejora clara de TransUNet sobre FCN con este procedimiento. Tampoco demuestra equivalencia entre ambas.
+FCN compacta es una referencia favorable en coste/tamaño: 72.145 parámetros frente a 105.322.001 de TransUNet. Una recomendación basada en parsimonia es defendible; no confundirla con declarar a FCN ganadora en Dice.
+U-Net permanece competitiva. VM-UNet presenta mayor variación entre semillas. Los resultados bajos de SegFormer corresponden a esta adaptación desde cero y receta fija; no justifican inferioridad universal de los Transformers.</p>
+</section>
+<section id="limites-de-interpretacion">
+<h2>Límites de interpretación<a class="headerlink" href="#limites-de-interpretacion" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Los IC remuestrean grupos con cinco semillas fijas; la DE entre semillas se presenta aparte. Los grupos de similitud no equivalen necesariamente a escenas de captura independientes.</p></li>
+<li><p>El contraste principal se fijó tras validación y antes de test. Los contrastes restantes son exploratorios y no tienen ajuste de multiplicidad.</p></li>
+<li><p>Test tuvo exposición en E1. Se conservaron los checkpoints y umbral 0,5 fijados antes de esta evaluación; no describirlo como holdout nunca observado.</p></li>
+<li><p>No atribuir diferencias sólo a arquitectura: capacidad, optimizador y auxiliares PIDNet también difieren; no hubo búsqueda exhaustiva de hiperparámetros.</p></li>
+<li><p>Ausencia de imágenes negativas limita la evaluación de falsas alarmas en escenas sin etiquetas, en este test, que no tiene máscaras vacías.</p></li>
+<li><p>Los tiempos registrados incluyen carga, transferencia y escritura de máscaras de semilla 11; no son una medición de latencia pura ni un benchmark de FPS.</p></li>
+</ul>
+<p><img alt="Comparación validación y test, con intervalos de grupos y semillas fijas" src="_images/comparacion1.png" /></p>
+</section>
+<section id="metricas-secundarias-completas">
+<h2>Métricas secundarias completas<a class="headerlink" href="#metricas-secundarias-completas" title="Permalink to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Red</p></th>
+<th class="head text-right"><p>IoU etiqueta</p></th>
+<th class="head text-right"><p>mIoU</p></th>
+<th class="head text-right"><p>Exactitud válida</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TransUNet</p></td>
+<td class="text-right"><p>0.7835 ± 0.0079</p></td>
+<td class="text-right"><p>0.8868 ± 0.0041</p></td>
+<td class="text-right"><p>0.9905 ± 0.0003</p></td>
+</tr>
+<tr class="row-odd"><td><p>FCN compacta</p></td>
+<td class="text-right"><p>0.7683 ± 0.0157</p></td>
+<td class="text-right"><p>0.8788 ± 0.0084</p></td>
+<td class="text-right"><p>0.9899 ± 0.0010</p></td>
+</tr>
+<tr class="row-even"><td><p>U-Net compacta</p></td>
+<td class="text-right"><p>0.7616 ± 0.0151</p></td>
+<td class="text-right"><p>0.8750 ± 0.0082</p></td>
+<td class="text-right"><p>0.9889 ± 0.0014</p></td>
+</tr>
+<tr class="row-odd"><td><p>VM-UNet</p></td>
+<td class="text-right"><p>0.7526 ± 0.0346</p></td>
+<td class="text-right"><p>0.8705 ± 0.0182</p></td>
+<td class="text-right"><p>0.9890 ± 0.0018</p></td>
+</tr>
+<tr class="row-even"><td><p>SegNet compacta</p></td>
+<td class="text-right"><p>0.7346 ± 0.0384</p></td>
+<td class="text-right"><p>0.8603 ± 0.0211</p></td>
+<td class="text-right"><p>0.9868 ± 0.0037</p></td>
+</tr>
+<tr class="row-odd"><td><p>DeepLabv3+ R18</p></td>
+<td class="text-right"><p>0.7282 ± 0.0262</p></td>
+<td class="text-right"><p>0.8582 ± 0.0134</p></td>
+<td class="text-right"><p>0.9888 ± 0.0009</p></td>
+</tr>
+<tr class="row-even"><td><p>U-Net++ R18</p></td>
+<td class="text-right"><p>0.7264 ± 0.0076</p></td>
+<td class="text-right"><p>0.8564 ± 0.0035</p></td>
+<td class="text-right"><p>0.9870 ± 0.0011</p></td>
+</tr>
+<tr class="row-odd"><td><p>PIDNet-S</p></td>
+<td class="text-right"><p>0.7078 ± 0.0264</p></td>
+<td class="text-right"><p>0.8470 ± 0.0143</p></td>
+<td class="text-right"><p>0.9868 ± 0.0023</p></td>
+</tr>
+<tr class="row-even"><td><p>SegNeXt-T</p></td>
+<td class="text-right"><p>0.6813 ± 0.0115</p></td>
+<td class="text-right"><p>0.8328 ± 0.0063</p></td>
+<td class="text-right"><p>0.9850 ± 0.0011</p></td>
+</tr>
+<tr class="row-odd"><td><p>SegFormer-B0</p></td>
+<td class="text-right"><p>0.5946 ± 0.0108</p></td>
+<td class="text-right"><p>0.7883 ± 0.0056</p></td>
+<td class="text-right"><p>0.9827 ± 0.0006</p></td>
+</tr>
+</tbody>
+</table>
+<p>La dispersión es DE entre cinco semillas, no error estándar. Las métricas promedian grupos con igual peso.</p>
+</section>
+<section id="ampliacion-estadistica-exploratoria">
+<h2>Ampliación estadística exploratoria<a class="headerlink" href="#ampliacion-estadistica-exploratoria" title="Permalink to this heading">#</a></h2>
+<p><strong>Exploratorio, especificado después de observar test.</strong> Unidad: 122 grupos; cinco semillas fijas. No hay 610 réplicas independientes.
+Se conserva el contraste cerrado previo. Esta ampliación no sustituye un preregistro anterior al entrenamiento.</p>
+<p>Friedman por grupos: estadístico 321.48733; p = 7.1653448e-64.
+El contraste global detecta heterogeneidad del conjunto; no demuestra que TransUNet supere a FCN.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo − FCN</p></th>
+<th class="head text-right"><p>Diferencia</p></th>
+<th class="head text-right"><p>IC95</p></th>
+<th class="head text-right"><p>d_z (IC95)</p></th>
+<th class="head text-right"><p>p intercambio</p></th>
+<th class="head text-right"><p>p intercambio Holm(9)</p></th>
+<th class="head text-right"><p>p Wilcoxon Holm(9)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TransUNet</p></td>
+<td class="text-right"><p>0.00906</p></td>
+<td class="text-right"><p>[-0.00809, 0.02777]</p></td>
+<td class="text-right"><p>0.090 [-0.090, 0.255]</p></td>
+<td class="text-right"><p>0.33266</p></td>
+<td class="text-right"><p>0.33266</p></td>
+<td class="text-right"><p>0.204552</p></td>
+</tr>
+<tr class="row-odd"><td><p>U-Net compacta</p></td>
+<td class="text-right"><p>-0.00718</p></td>
+<td class="text-right"><p>[-0.01631, 0.00190]</p></td>
+<td class="text-right"><p>-0.141 [-0.309, 0.040]</p></td>
+<td class="text-right"><p>0.1257</p></td>
+<td class="text-right"><p>0.2514</p></td>
+<td class="text-right"><p>0.562787</p></td>
+</tr>
+<tr class="row-even"><td><p>VM-UNet</p></td>
+<td class="text-right"><p>-0.01449</p></td>
+<td class="text-right"><p>[-0.03004, 0.00080]</p></td>
+<td class="text-right"><p>-0.167 [-0.340, 0.009]</p></td>
+<td class="text-right"><p>0.06578</p></td>
+<td class="text-right"><p>0.19734</p></td>
+<td class="text-right"><p>0.0934246</p></td>
+</tr>
+<tr class="row-odd"><td><p>SegNet compacta</p></td>
+<td class="text-right"><p>-0.02886</p></td>
+<td class="text-right"><p>[-0.03901, -0.01932]</p></td>
+<td class="text-right"><p>-0.517 [-0.659, -0.374]</p></td>
+<td class="text-right"><p>2e-05</p></td>
+<td class="text-right"><p>0.00018</p></td>
+<td class="text-right"><p>7.26313e-08</p></td>
+</tr>
+<tr class="row-even"><td><p>DeepLabv3+ R18</p></td>
+<td class="text-right"><p>-0.03953</p></td>
+<td class="text-right"><p>[-0.06000, -0.02036]</p></td>
+<td class="text-right"><p>-0.354 [-0.492, -0.207]</p></td>
+<td class="text-right"><p>6e-05</p></td>
+<td class="text-right"><p>0.0003</p></td>
+<td class="text-right"><p>8.26072e-06</p></td>
+</tr>
+<tr class="row-odd"><td><p>U-Net++ R18</p></td>
+<td class="text-right"><p>-0.04594</p></td>
+<td class="text-right"><p>[-0.07204, -0.02088]</p></td>
+<td class="text-right"><p>-0.319 [-0.487, -0.147]</p></td>
+<td class="text-right"><p>0.00042</p></td>
+<td class="text-right"><p>0.00168</p></td>
+<td class="text-right"><p>0.0934246</p></td>
+</tr>
+<tr class="row-even"><td><p>PIDNet-S</p></td>
+<td class="text-right"><p>-0.05991</p></td>
+<td class="text-right"><p>[-0.08622, -0.03486]</p></td>
+<td class="text-right"><p>-0.410 [-0.552, -0.261]</p></td>
+<td class="text-right"><p>2e-05</p></td>
+<td class="text-right"><p>0.00018</p></td>
+<td class="text-right"><p>7.86423e-07</p></td>
+</tr>
+<tr class="row-odd"><td><p>SegNeXt-T</p></td>
+<td class="text-right"><p>-0.07435</p></td>
+<td class="text-right"><p>[-0.09565, -0.05374]</p></td>
+<td class="text-right"><p>-0.626 [-0.765, -0.484]</p></td>
+<td class="text-right"><p>2e-05</p></td>
+<td class="text-right"><p>0.00018</p></td>
+<td class="text-right"><p>3.53343e-12</p></td>
+</tr>
+<tr class="row-even"><td><p>SegFormer-B0</p></td>
+<td class="text-right"><p>-0.14827</p></td>
+<td class="text-right"><p>[-0.18053, -0.11755]</p></td>
+<td class="text-right"><p>-0.828 [-0.980, -0.693]</p></td>
+<td class="text-right"><p>2e-05</p></td>
+<td class="text-right"><p>0.00018</p></td>
+<td class="text-right"><p>9.58156e-16</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="supuestos-y-alcance">
+<h2>Supuestos y alcance<a class="headerlink" href="#supuestos-y-alcance" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Intercambio pareado: 49.999 cambios de signo Monte Carlo, p con corrección +1, bilateral sobre la media. Requiere intercambiabilidad del par bajo la nula; no es una prueba exacta exhaustiva ni una permutación de etiquetas con reentrenamiento.</p></li>
+<li><p>Wilcoxon usa aproximación asintótica con corrección de empates y cero excluido; responde a localización/rangos bajo simetría, no exactamente a la misma hipótesis de media. Shapiro por diferencia se conserva en JSON; normalidad no acredita independencia.</p></li>
+<li><p>Friedman/Nemenyi usan grupos como bloques, condicionales a modelos ya entrenados. La independencia de grupos es aproximada; la similitud no identifica escenas certificadas. No extrapolar a otros datasets.</p></li>
+<li><p>Holm se aplica por separado a los nueve contrastes contra FCN para cada procedimiento. Los IC95 son marginales, no simultáneos. No elegir la prueba que dé el p más favorable.</p></li>
+<li><p>d_z estandariza diferencias por grupo; no es d entre semillas. La probabilidad de superioridad por grupo y su dispersión se conservan en JSON.</p></li>
+<li><p>δ heredado = 0,02 Dice. El IC del contraste principal incluye cero y se extiende fuera de ±δ; no acredita superioridad relevante ni equivalencia.</p></li>
+</ul>
+</section>
+<section id="referencia-trivial-y-recursos">
+<h2>Referencia trivial y recursos<a class="headerlink" href="#referencia-trivial-y-recursos" title="Permalink to this heading">#</a></h2>
+<p>Máscara siempre vacía: Dice=0.0000, IoU=0.0000, mIoU=0.4812, exactitud=0.9625. No sustituye un clásico fuerte ajustado.
+El contraste frente a cero no prueba ausencia de fuga ni reemplaza la permutación completa de etiquetas.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo</p></th>
+<th class="head text-right"><p>Parámetros</p></th>
+<th class="head text-right"><p>Horas registradas (5 semillas)</p></th>
+<th class="head text-right"><p>Rango por grupos</p></th>
+<th class="head text-right"><p>Rango por semillas</p></th>
+<th class="head"><p>Pareto Dice/parámetros</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TransUNet</p></td>
+<td class="text-right"><p>105,322,001</p></td>
+<td class="text-right"><p>3.461</p></td>
+<td class="text-right"><p>3.180</p></td>
+<td class="text-right"><p>2.00</p></td>
+<td><p>Sí</p></td>
+</tr>
+<tr class="row-odd"><td><p>FCN compacta</p></td>
+<td class="text-right"><p>72,145</p></td>
+<td class="text-right"><p>0.795</p></td>
+<td class="text-right"><p>4.148</p></td>
+<td class="text-right"><p>2.20</p></td>
+<td><p>Sí</p></td>
+</tr>
+<tr class="row-even"><td><p>U-Net compacta</p></td>
+<td class="text-right"><p>118,273</p></td>
+<td class="text-right"><p>0.741</p></td>
+<td class="text-right"><p>4.180</p></td>
+<td class="text-right"><p>3.20</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>VM-UNet</p></td>
+<td class="text-right"><p>44,273,833</p></td>
+<td class="text-right"><p>2.905</p></td>
+<td class="text-right"><p>4.926</p></td>
+<td class="text-right"><p>4.20</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p>SegNet compacta</p></td>
+<td class="text-right"><p>85,761</p></td>
+<td class="text-right"><p>0.534</p></td>
+<td class="text-right"><p>5.516</p></td>
+<td class="text-right"><p>5.00</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>DeepLabv3+ R18</p></td>
+<td class="text-right"><p>12,329,297</p></td>
+<td class="text-right"><p>1.026</p></td>
+<td class="text-right"><p>5.713</p></td>
+<td class="text-right"><p>5.60</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p>U-Net++ R18</p></td>
+<td class="text-right"><p>15,970,449</p></td>
+<td class="text-right"><p>1.001</p></td>
+<td class="text-right"><p>4.770</p></td>
+<td class="text-right"><p>6.40</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>PIDNet-S</p></td>
+<td class="text-right"><p>7,716,291</p></td>
+<td class="text-right"><p>2.291</p></td>
+<td class="text-right"><p>6.508</p></td>
+<td class="text-right"><p>7.60</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p>SegNeXt-T</p></td>
+<td class="text-right"><p>4,225,121</p></td>
+<td class="text-right"><p>2.043</p></td>
+<td class="text-right"><p>7.533</p></td>
+<td class="text-right"><p>8.80</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>SegFormer-B0</p></td>
+<td class="text-right"><p>3,714,401</p></td>
+<td class="text-right"><p>1.599</p></td>
+<td class="text-right"><p>8.525</p></td>
+<td class="text-right"><p>10.00</p></td>
+<td><p>No</p></td>
+</tr>
+</tbody>
+</table>
+<p>El tiempo suma épocas de entrenamiento y validación; excluye parte de E/S, interrupciones e instalación. No es tiempo puro de entrenamiento ni latencia. Pareto se refiere a estimaciones puntuales, sin afirmar dominancia estadística.</p>
+</section>
+<section id="potencia-y-sobreajuste">
+<h2>Potencia y sobreajuste<a class="headerlink" href="#potencia-y-sobreajuste" title="Permalink to this heading">#</a></h2>
+<p>El JSON guarda DE pareada entre semillas, MDD con R=5 y R aproximado para δ=0,02, α/9 y potencia 0,80. Es planificación futura normal basada en un piloto pequeño, no potencia prospectiva ni potencia observada certificada.
+Los historiales contienen pérdida de entrenamiento y Dice de validación: son escalas distintas. No restarlas para calcular una brecha ni afirmar ausencia de sobreajuste. El Dice de train en modo evaluación en el checkpoint elegido está en <a class="reference internal" href="diagnosticos_e2.html"><span class="doc">Diagnósticos sobre los pesos congelados</span></a> (exploratorio); el margen δg fijado previamente no existe.</p>
+<p>Discrepancia máxima al reconstruir la media principal desde los registros agrupados: 0. Esta es reproducción aritmética; no nueva inferencia en entorno limpio.</p>
+</section>
+<section id="segmentos-y-errores">
+<h2>Segmentos y errores<a class="headerlink" href="#segmentos-y-errores" title="Permalink to this heading">#</a></h2>
+<p>Cuartiles de fracción de área positiva definidos en train: [0.018086360733893254, 0.0317840576171875, 0.05170468634959915]. Resultados por estrato e IC remuestreando grupos dentro del estrato en analisis.json. Un grupo puede aparecer en varios estratos; no tratarlos como independientes.
+La correlación de 1−Dice coincide con la de Dice y describe dificultad compartida. No es una medida de acuerdo humano ni demuestra ruido irreducible. Los subgrupos son descriptivos, no contrastes confirmatorios.</p>
+<p><img alt="Comparación de Dice frente a parámetros" src="_images/pareto.png" /></p>
+<p><img alt="Rangos medios y diferencia crítica de Nemenyi" src="_images/rangos_cd.png" /></p>
+<p>En el gráfico de rangos, dos rangos medios separados por más de la CD son diferentes según Nemenyi al 5 %, bajo el supuesto de bloques independientes. No es el mismo criterio que el contraste de medias contra FCN.</p>
+</section>
+<section id="sensibilidad-y-potencia-de-planificacion">
+<h2>Sensibilidad y potencia de planificación<a class="headerlink" href="#sensibilidad-y-potencia-de-planificacion" title="Permalink to this heading">#</a></h2>
+<p>UNet++ ilustra la necesidad de no elegir pruebas por su resultado: intercambio de medias y Wilcoxon de rangos no producen la misma decisión tras Holm. La distribución de errores puede combinar muchos casos competitivos y algunas caídas grandes. Se conservan ambas respuestas y sus hipótesis.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Red frente a FCN</p></th>
+<th class="head text-right"><p>DE de diferencia entre semillas</p></th>
+<th class="head text-right"><p>MDD aproximada con 5 semillas</p></th>
+<th class="head text-right"><p>R aproximado para δ=0,02</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TransUNet</p></td>
+<td class="text-right"><p>0.0181</p></td>
+<td class="text-right"><p>0.0293</p></td>
+<td class="text-right"><p>11</p></td>
+</tr>
+<tr class="row-odd"><td><p>U-Net compacta</p></td>
+<td class="text-right"><p>0.0136</p></td>
+<td class="text-right"><p>0.0220</p></td>
+<td class="text-right"><p>7</p></td>
+</tr>
+<tr class="row-even"><td><p>VM-UNet</p></td>
+<td class="text-right"><p>0.0299</p></td>
+<td class="text-right"><p>0.0483</p></td>
+<td class="text-right"><p>30</p></td>
+</tr>
+<tr class="row-odd"><td><p>SegNet compacta</p></td>
+<td class="text-right"><p>0.0280</p></td>
+<td class="text-right"><p>0.0453</p></td>
+<td class="text-right"><p>26</p></td>
+</tr>
+<tr class="row-even"><td><p>DeepLabv3+ R18</p></td>
+<td class="text-right"><p>0.0310</p></td>
+<td class="text-right"><p>0.0501</p></td>
+<td class="text-right"><p>32</p></td>
+</tr>
+<tr class="row-odd"><td><p>U-Net++ R18</p></td>
+<td class="text-right"><p>0.0183</p></td>
+<td class="text-right"><p>0.0295</p></td>
+<td class="text-right"><p>11</p></td>
+</tr>
+<tr class="row-even"><td><p>PIDNet-S</p></td>
+<td class="text-right"><p>0.0239</p></td>
+<td class="text-right"><p>0.0387</p></td>
+<td class="text-right"><p>19</p></td>
+</tr>
+<tr class="row-odd"><td><p>SegNeXt-T</p></td>
+<td class="text-right"><p>0.0152</p></td>
+<td class="text-right"><p>0.0246</p></td>
+<td class="text-right"><p>8</p></td>
+</tr>
+<tr class="row-even"><td><p>SegFormer-B0</p></td>
+<td class="text-right"><p>0.0182</p></td>
+<td class="text-right"><p>0.0294</p></td>
+<td class="text-right"><p>11</p></td>
+</tr>
+</tbody>
+</table>
+<p>Son aproximaciones normales para planificar una evaluación futura, con α/9 y potencia objetivo 0,80. No justifican retrospectivamente el tamaño del experimento ni garantizan potencia de Wilcoxon.</p>
+</section>
+<section id="desempeno-por-tamano-anotado">
+<h2>Desempeño por tamaño anotado<a class="headerlink" href="#desempeno-por-tamano-anotado" title="Permalink to this heading">#</a></h2>
+<p>Cuartiles definidos por fracción de área en train: 0.0181, 0.0318, 0.0517. Las columnas muestran Dice y no representan pruebas entre subgrupos independientes.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Red</p></th>
+<th class="head text-right"><p>Q1 menor área</p></th>
+<th class="head text-right"><p>Q2</p></th>
+<th class="head text-right"><p>Q3</p></th>
+<th class="head text-right"><p>Q4 mayor área</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TransUNet</p></td>
+<td class="text-right"><p>0.8475 [0.7970, 0.8897]</p></td>
+<td class="text-right"><p>0.8580 [0.8122, 0.8961]</p></td>
+<td class="text-right"><p>0.8618 [0.8073, 0.9026]</p></td>
+<td class="text-right"><p>0.9163 [0.8831, 0.9427]</p></td>
+</tr>
+<tr class="row-odd"><td><p>FCN compacta</p></td>
+<td class="text-right"><p>0.8114 [0.7545, 0.8608]</p></td>
+<td class="text-right"><p>0.8541 [0.8126, 0.8898]</p></td>
+<td class="text-right"><p>0.8587 [0.8075, 0.9014]</p></td>
+<td class="text-right"><p>0.9044 [0.8649, 0.9361]</p></td>
+</tr>
+<tr class="row-even"><td><p>U-Net compacta</p></td>
+<td class="text-right"><p>0.8114 [0.7506, 0.8622]</p></td>
+<td class="text-right"><p>0.8418 [0.7898, 0.8859]</p></td>
+<td class="text-right"><p>0.8395 [0.7765, 0.8928]</p></td>
+<td class="text-right"><p>0.8929 [0.8296, 0.9379]</p></td>
+</tr>
+<tr class="row-odd"><td><p>VM-UNet</p></td>
+<td class="text-right"><p>0.8210 [0.7798, 0.8589]</p></td>
+<td class="text-right"><p>0.8269 [0.7757, 0.8704]</p></td>
+<td class="text-right"><p>0.8360 [0.7687, 0.8906]</p></td>
+<td class="text-right"><p>0.8891 [0.8243, 0.9377]</p></td>
+</tr>
+<tr class="row-even"><td><p>SegNet compacta</p></td>
+<td class="text-right"><p>0.7900 [0.7304, 0.8411]</p></td>
+<td class="text-right"><p>0.8178 [0.7687, 0.8635]</p></td>
+<td class="text-right"><p>0.8194 [0.7533, 0.8738]</p></td>
+<td class="text-right"><p>0.8874 [0.8309, 0.9329]</p></td>
+</tr>
+<tr class="row-odd"><td><p>DeepLabv3+ R18</p></td>
+<td class="text-right"><p>0.7931 [0.7393, 0.8445]</p></td>
+<td class="text-right"><p>0.7991 [0.7341, 0.8543]</p></td>
+<td class="text-right"><p>0.8133 [0.7428, 0.8707]</p></td>
+<td class="text-right"><p>0.8764 [0.8164, 0.9270]</p></td>
+</tr>
+<tr class="row-even"><td><p>U-Net++ R18</p></td>
+<td class="text-right"><p>0.8189 [0.7638, 0.8655]</p></td>
+<td class="text-right"><p>0.8018 [0.7329, 0.8629]</p></td>
+<td class="text-right"><p>0.7731 [0.6813, 0.8548]</p></td>
+<td class="text-right"><p>0.8346 [0.7442, 0.9130]</p></td>
+</tr>
+<tr class="row-odd"><td><p>PIDNet-S</p></td>
+<td class="text-right"><p>0.7866 [0.7248, 0.8396]</p></td>
+<td class="text-right"><p>0.7971 [0.7289, 0.8560]</p></td>
+<td class="text-right"><p>0.7636 [0.6659, 0.8492]</p></td>
+<td class="text-right"><p>0.8339 [0.7364, 0.9111]</p></td>
+</tr>
+<tr class="row-even"><td><p>SegNeXt-T</p></td>
+<td class="text-right"><p>0.7438 [0.6792, 0.8032]</p></td>
+<td class="text-right"><p>0.7756 [0.7141, 0.8329]</p></td>
+<td class="text-right"><p>0.7588 [0.6698, 0.8367]</p></td>
+<td class="text-right"><p>0.8614 [0.7835, 0.9215]</p></td>
+</tr>
+<tr class="row-odd"><td><p>SegFormer-B0</p></td>
+<td class="text-right"><p>0.6947 [0.6204, 0.7599]</p></td>
+<td class="text-right"><p>0.7053 [0.6268, 0.7760]</p></td>
+<td class="text-right"><p>0.6584 [0.5637, 0.7458]</p></td>
+<td class="text-right"><p>0.7464 [0.6470, 0.8329]</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="revision-cualitativa-anterior-al-test">
+<h2>Revisión cualitativa anterior al test<a class="headerlink" href="#revision-cualitativa-anterior-al-test" title="Permalink to this heading">#</a></h2>
+<p><img alt="Casos dirigidos de validación con FCN, U-Net y TransUNet, semilla 11" src="_images/panel_validacion.png" /></p>
+<p>Se seleccionaron seis casos de validación por criterios explícitos: peor y segundo peor promedio, menor área, mayor desacuerdo, caso central y mejor promedio, en grupos diferentes. La visualización fija semilla 11; no representa una frecuencia de errores ni una explicación Grad-CAM. La evidencia detallada se conserva en <code class="docutils literal notranslate"><span class="pre">resultados/revision_visual_e2/casos.json</span></code> y <code class="docutils literal notranslate"><span class="pre">OBSERVACIONES.md</span></code>. Los ejemplos muestran dificultades con oclusión, iluminación y cobertura de anotación; no se editaron etiquetas tras observar predicciones.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="metodos_e2.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Diseño experimental y ruta de segmentación E2</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="complementos_e2.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Complementos locales del 20 de noviembre</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-principal">Conclusión principal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limites-de-interpretacion">Límites de interpretación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-secundarias-completas">Métricas secundarias completas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ampliacion-estadistica-exploratoria">Ampliación estadística exploratoria</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supuestos-y-alcance">Supuestos y alcance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencia-trivial-y-recursos">Referencia trivial y recursos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-y-sobreajuste">Potencia y sobreajuste</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#segmentos-y-errores">Segmentos y errores</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sensibilidad-y-potencia-de-planificacion">Sensibilidad y potencia de planificación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desempeno-por-tamano-anotado">Desempeño por tamaño anotado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#revision-cualitativa-anterior-al-test">Revisión cualitativa anterior al test</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Luis Perez y Daniel Carbono
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,526 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="es" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Fichas de las diez implementaciones &#8212; Segmentación de etiquetas de mercancías peligrosas</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'modelos_e2';</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Diseño experimental y ruta de segmentación E2" href="metodos_e2.html" />
+    <link rel="prev" title="Literatura, selección operativa y paper guía" href="literatura.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Segmentación de etiquetas de mercancías peligrosas</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Entregable 2</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="problema.html">Problema y datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eda.html">EDA y preparación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="literatura.html">Literatura, selección operativa y paper guía</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Fichas de las diez implementaciones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metodos_e2.html">Diseño experimental y ruta de segmentación E2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resultados_e2.html">Resultados E2: benchmark e inferencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="complementos_e2.html">Complementos locales del 20 de noviembre</a></li>
+<li class="toctree-l1"><a class="reference internal" href="complementos_datos_e2.html">Complementos de datos: fuga, shift, ruido, techo y EDA por clase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagnosticos_e2.html">Diagnósticos sobre los pesos congelados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entrenamiento_complementario_e2.html">Entrenamientos complementarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cierre_e2.html">Discusión, limitaciones y cierre pendiente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="checklist_e2.html">Verificación de requisitos del Entregable 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reproducibilidad_e2.html">Reproducción y archivos de entrega</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Antecedentes del Entregable 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="implementacion.html">Diseño experimental e implementación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resultados.html">Resultados y baseline</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Fichas de las diez implementaciones</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fcn-compacta">FCN compacta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#segnet-compacta">SegNet compacta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#u-net-compacta">U-Net compacta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deeplabv3-r18">DeepLabv3+ R18</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#u-net-r18">U-Net++ R18</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pidnet-s">PIDNet-S</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#segnext-t">SegNeXt-T</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#segformer-b0">SegFormer-B0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transunet">TransUNet</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vm-unet">VM-UNet</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="fichas-de-las-diez-implementaciones">
+<h1>Fichas de las diez implementaciones<a class="headerlink" href="#fichas-de-las-diez-implementaciones" title="Permalink to this heading">#</a></h1>
+<p>Las fichas describen el código ejecutado. Cada diagrama es un esquema de mecanismos, no un volcado completo de capas. Las dimensiones exactas se consultan en el código y la configuración fijada. Las referencias arXiv conservan el año del preprint; no se confunde con el año de publicación editorial.
+Las cifras de este benchmark proceden de los artefactos auditados. Las tablas numéricas originales de los artículos, FLOPs adaptados y tiempos de los papers no están certificados por estas fichas; su cotejo continúa pendiente en el checklist. No se inventan cuartiles de conferencias.</p>
+<section id="fcn-compacta">
+<h2>FCN compacta<a class="headerlink" href="#fcn-compacta" title="Permalink to this heading">#</a></h2>
+<p><strong>Familia:</strong> CNN. <strong>Parámetros medidos:</strong> 72,145.
+<strong>Fuente primaria:</strong> Long, Jonathan; Shelhamer, Evan; Darrell, Trevor (2014). <em>Fully Convolutional Networks for Semantic Segmentation</em>. <a class="reference external" href="https://doi.org/10.48550/arXiv.1411.4038">DOI del preprint</a>; <a class="reference external" href="https://arxiv.org/abs/1411.4038">texto y versiones</a>.</p>
+<p><img alt="Esquema de FCN compacta" src="_images/diagrama_fcn.png" /></p>
+<p>Implementación compacta local; no FCN-8s original, sin sus fusiones laterales. Dos reducciones espaciales.</p>
+<p><span class="math notranslate nohighlight">\(h_j=\mathrm{ReLU}(b_j+\sum_i W_{ji}*x_i)\)</span>; la interpolación devuelve la salida al lienzo.</p>
+<p>Costo convolucional O(HW k² Ci Co). Bajo tamaño; el mapa grueso puede perder detalle. Artículo fundacional excluido de la ventana reciente con justificación.</p>
+<p><strong>Receta:</strong> Adam, lr=0.001, weight decay=0.0; cinco semillas; mismo tamaño, criterio de parada y salida de un logit.
+<strong>Resultado local:</strong> Dice test 0.8535 ± 0.0136; no sustituye el resultado del artículo original.</p>
+</section>
+<section id="segnet-compacta">
+<h2>SegNet compacta<a class="headerlink" href="#segnet-compacta" title="Permalink to this heading">#</a></h2>
+<p><strong>Familia:</strong> CNN. <strong>Parámetros medidos:</strong> 85,761.
+<strong>Fuente primaria:</strong> Badrinarayanan, Vijay; Kendall, Alex; Cipolla, Roberto (2015). <em>SegNet: A Deep Convolutional Encoder-Decoder Architecture for Image Segmentation</em>. <a class="reference external" href="https://doi.org/10.48550/arXiv.1511.00561">DOI del preprint</a>; <a class="reference external" href="https://arxiv.org/abs/1511.00561">texto y versiones</a>.</p>
+<p><img alt="Esquema de SegNet compacta" src="_images/diagrama_segnet.png" /></p>
+<p>Compacta local 16/32/64; no encoder VGG16 completo del artículo.</p>
+<p><span class="math notranslate nohighlight">\(u=\mathrm{Unpool}(z,\operatorname{argmaxpool}(h))\)</span> reutiliza posiciones, no todos los valores del encoder.</p>
+<p>Convoluciones más almacenamiento de índices; ahorra mapas de skip pero no certifica menor latencia sin medición.</p>
+<p><strong>Receta:</strong> Adam, lr=0.001, weight decay=0.0; cinco semillas; mismo tamaño, criterio de parada y salida de un logit.
+<strong>Resultado local:</strong> Dice test 0.8247 ± 0.0334; no sustituye el resultado del artículo original.</p>
+</section>
+<section id="u-net-compacta">
+<h2>U-Net compacta<a class="headerlink" href="#u-net-compacta" title="Permalink to this heading">#</a></h2>
+<p><strong>Familia:</strong> CNN. <strong>Parámetros medidos:</strong> 118,273.
+<strong>Fuente primaria:</strong> Ronneberger, Olaf; Fischer, Philipp; Brox, Thomas (2015). <em>U-Net: Convolutional Networks for Biomedical Image Segmentation</em>. <a class="reference external" href="https://doi.org/10.48550/arXiv.1505.04597">DOI del preprint</a>; <a class="reference external" href="https://arxiv.org/abs/1505.04597">texto y versiones</a>.</p>
+<p><img alt="Esquema de U-Net compacta" src="_images/diagrama_unet.png" /></p>
+<p>U-Net compacta local; encoder propio, no ResNet-18. Dos niveles de reducción.</p>
+<p><span class="math notranslate nohighlight">\(d_l=\mathrm{Conv}([e_l,\mathrm{Up}(d_{l+1})])\)</span> preserva detalle por concatenación.</p>
+<p>Convoluciones y activaciones de skip; fundamento médico, adaptación binaria HAZMAT sin preentrenamiento.</p>
+<p><strong>Receta:</strong> Adam, lr=0.001, weight decay=0.0; cinco semillas; mismo tamaño, criterio de parada y salida de un logit.
+<strong>Resultado local:</strong> Dice test 0.8464 ± 0.0137; no sustituye el resultado del artículo original.</p>
+</section>
+<section id="deeplabv3-r18">
+<h2>DeepLabv3+ R18<a class="headerlink" href="#deeplabv3-r18" title="Permalink to this heading">#</a></h2>
+<p><strong>Familia:</strong> CNN. <strong>Parámetros medidos:</strong> 12,329,297.
+<strong>Fuente primaria:</strong> Chen, Liang-Chieh; Zhu, Yukun; Papandreou, George; Schroff, Florian; Adam, Hartwig (2018). <em>Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation</em>. <a class="reference external" href="https://doi.org/10.48550/arXiv.1802.02611">DOI del preprint</a>; <a class="reference external" href="https://arxiv.org/abs/1802.02611">texto y versiones</a>.</p>
+<p><img alt="Esquema de DeepLabv3+ R18" src="_images/diagrama_deeplabv3plus.png" /></p>
+<p>SMP 0.5.0, ResNet-18; no Xception de los resultados principales del paper.</p>
+<p><span class="math notranslate nohighlight">\((x*_r w)(i)=\sum_k x(i+r k)w(k)\)</span>; ASPP combina distintas dilataciones.</p>
+<p>Contexto multiescala y refinamiento. Cambian backbone, clases y receta; sus cifras originales no son una referencia numérica directamente comparable.</p>
+<p><strong>Receta:</strong> AdamW, lr=0.0005, weight decay=0.01; cinco semillas; mismo tamaño, criterio de parada y salida de un logit.
+<strong>Resultado local:</strong> Dice test 0.8140 ± 0.0246; no sustituye el resultado del artículo original.</p>
+</section>
+<section id="u-net-r18">
+<h2>U-Net++ R18<a class="headerlink" href="#u-net-r18" title="Permalink to this heading">#</a></h2>
+<p><strong>Familia:</strong> CNN. <strong>Parámetros medidos:</strong> 15,970,449.
+<strong>Fuente primaria:</strong> Zhou, Zongwei; Siddiquee, Md Mahfuzur Rahman; Tajbakhsh, Nima; Liang, Jianming (2019). <em>UNet++: Redesigning Skip Connections to Exploit Multiscale Features in Image Segmentation</em>. <a class="reference external" href="https://doi.org/10.48550/arXiv.1912.05074">DOI del preprint</a>; <a class="reference external" href="https://arxiv.org/abs/1912.05074">texto y versiones</a>.</p>
+<p><img alt="Esquema de U-Net++ R18" src="_images/diagrama_unetplusplus.png" /></p>
+<p>SMP sin supervisión profunda ni poda. Su encoder y tamaño difieren de la U-Net compacta.</p>
+<p><span class="math notranslate nohighlight">\(x^{i,j}=H([x^{i,0},\ldots,x^{i,j-1},U(x^{i+1,j-1})])\)</span> representa la fusión anidada.</p>
+<p>Más conexiones y memoria de activaciones. Comparar estas redes no aísla el efecto de los skips.</p>
+<p><strong>Receta:</strong> Adam, lr=0.0005, weight decay=0.0; cinco semillas; mismo tamaño, criterio de parada y salida de un logit.
+<strong>Resultado local:</strong> Dice test 0.8076 ± 0.0059; no sustituye el resultado del artículo original.</p>
+</section>
+<section id="pidnet-s">
+<h2>PIDNet-S<a class="headerlink" href="#pidnet-s" title="Permalink to this heading">#</a></h2>
+<p><strong>Familia:</strong> CNN. <strong>Parámetros medidos:</strong> 7,716,291.
+<strong>Fuente primaria:</strong> Xu, Jiacong; Xiong, Zixiang; Bhattacharyya, Shankar P. (2022). <em>PIDNet: A Real-time Semantic Segmentation Network Inspired by PID Controllers</em>. <a class="reference external" href="https://doi.org/10.48550/arXiv.2206.02066">DOI del preprint</a>; <a class="reference external" href="https://arxiv.org/abs/2206.02066">texto y versiones</a>.</p>
+<p><img alt="Esquema de PIDNet-S" src="_images/diagrama_pidnet_s.png" /></p>
+<p>Código de autores; m=2, n=3, planes=32, ppm=96, head=128. Tres salidas conservadas.</p>
+<p><span class="math notranslate nohighlight">\(L=L_{principal}+0,4L_{aux}+1,0L_{borde}\)</span> en nuestra receta; el objetivo de borde deriva de la máscara.</p>
+<p>La analogía PID es estructural; no es un controlador físico. Las pérdidas auxiliares impiden atribuir toda diferencia solo a la topología.</p>
+<p><strong>Receta:</strong> AdamW, lr=0.001, weight decay=0.01; cinco semillas; mismo tamaño, criterio de parada y salida de un logit.
+<strong>Resultado local:</strong> Dice test 0.7936 ± 0.0231; no sustituye el resultado del artículo original.</p>
+</section>
+<section id="segnext-t">
+<h2>SegNeXt-T<a class="headerlink" href="#segnext-t" title="Permalink to this heading">#</a></h2>
+<p><strong>Familia:</strong> CNN con atención convolucional. <strong>Parámetros medidos:</strong> 4,225,121.
+<strong>Fuente primaria:</strong> Guo, Meng-Hao; Lu, Cheng-Ze; Hou, Qibin; Liu, Zhengning; Cheng, Ming-Ming; Hu, Shi-Min (2022). <em>SegNeXt: Rethinking Convolutional Attention Design for Semantic Segmentation</em>. <a class="reference external" href="https://doi.org/10.48550/arXiv.2209.08575">DOI del preprint</a>; <a class="reference external" href="https://arxiv.org/abs/2209.08575">texto y versiones</a>.</p>
+<p><img alt="Esquema de SegNeXt-T" src="_images/diagrama_segnext_t.png" /></p>
+<p>Fuentes de autores con capa de compatibilidad local; SyncBN adaptada a ejecución monodispositivo. No es un Transformer.</p>
+<p><span class="math notranslate nohighlight">\(\mathrm{Att}(F)=F\odot \mathrm{Conv}_{1\times1}(\sum_i \mathrm{Branch}_i(\mathrm{DWConv}(F)))\)</span> resume la atención convolucional.</p>
+<p>Filtros separables multiescala; NMF de la cabeza puede usar inicialización aleatoria, por lo que se fija RNG de evaluación.</p>
+<p><strong>Receta:</strong> AdamW, lr=0.0001, weight decay=0.01; cinco semillas; mismo tamaño, criterio de parada y salida de un logit.
+<strong>Resultado local:</strong> Dice test 0.7792 ± 0.0104; no sustituye el resultado del artículo original.</p>
+</section>
+<section id="segformer-b0">
+<h2>SegFormer-B0<a class="headerlink" href="#segformer-b0" title="Permalink to this heading">#</a></h2>
+<p><strong>Familia:</strong> Transformer. <strong>Parámetros medidos:</strong> 3,714,401.
+<strong>Fuente primaria:</strong> Xie, Enze; Wang, Wenhai; Yu, Zhiding; Anandkumar, Anima; Alvarez, Jose M.; Luo, Ping (2021). <em>SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers</em>. <a class="reference external" href="https://doi.org/10.48550/arXiv.2105.15203">DOI del preprint</a>; <a class="reference external" href="https://arxiv.org/abs/2105.15203">texto y versiones</a>.</p>
+<p><img alt="Esquema de SegFormer-B0" src="_images/diagrama_segformer_b0.png" /></p>
+<p>SMP 0.5.0; encoder mit_b0, sin pesos externos. Paper guía; réplica de evaluación en ADE20K compatible con el artículo (37,43 % frente a 37,4 % mIoU; capítulo de literatura).</p>
+<p><span class="math notranslate nohighlight">\(\mathrm{Attention}(Q,K,V)=\mathrm{softmax}(QK^\top/\sqrt d)V\)</span>; reducción espacial de K,V disminuye costo.</p>
+<p>Atención densa O(N²d), reducida según el factor espacial de cada etapa. No afirmar costo cuadrático idéntico al ViT estándar.</p>
+<p><strong>Receta:</strong> AdamW, lr=6e-05, weight decay=0.01; cinco semillas; mismo tamaño, criterio de parada y salida de un logit.
+<strong>Resultado local:</strong> Dice test 0.7053 ± 0.0104; no sustituye el resultado del artículo original.</p>
+</section>
+<section id="transunet">
+<h2>TransUNet<a class="headerlink" href="#transunet" title="Permalink to this heading">#</a></h2>
+<p><strong>Familia:</strong> Híbrido CNN–Transformer. <strong>Parámetros medidos:</strong> 105,322,001.
+<strong>Fuente primaria:</strong> Chen, Jieneng; Lu, Yongyi; Yu, Qihang; Luo, Xiangde; Adeli, Ehsan; Wang, Yan; Lu, Le; Yuille, Alan L.; Zhou, Yuyin (2021). <em>TransUNet: Transformers Make Strong Encoders for Medical Image Segmentation</em>. <a class="reference external" href="https://doi.org/10.48550/arXiv.2102.04306">DOI del preprint</a>; <a class="reference external" href="https://arxiv.org/abs/2102.04306">texto y versiones</a>.</p>
+<p><img alt="Esquema de TransUNet" src="_images/diagrama_transunet_2d.png" /></p>
+<p>Código de autores; variante R50-ViT-B/16, tamaño 256, grid 16×16, n_skip=3. Sin carga de pesos.</p>
+<p><span class="math notranslate nohighlight">\(z_{l+1}=z_l+\mathrm{MSA}(\mathrm{LN}(z_l))\)</span> seguido de bloque MLP residual; decoder recupera resolución.</p>
+<p>Atención de tokens y CNN; gran capacidad y costo. Su liderazgo de media no prueba que la atención cause la mejora.</p>
+<p><strong>Receta:</strong> SGD, lr=0.001, weight decay=0.0001; cinco semillas; mismo tamaño, criterio de parada y salida de un logit.
+<strong>Resultado local:</strong> Dice test 0.8626 ± 0.0057; no sustituye el resultado del artículo original.</p>
+</section>
+<section id="vm-unet">
+<h2>VM-UNet<a class="headerlink" href="#vm-unet" title="Permalink to this heading">#</a></h2>
+<p><strong>Familia:</strong> SSM visual. <strong>Parámetros medidos:</strong> 44,273,833.
+<strong>Fuente primaria:</strong> Ruan, Jiacheng; Li, Jincheng; Xiang, Suncheng (2024). <em>VM-UNet: Vision Mamba UNet for Medical Image Segmentation</em>. <a class="reference external" href="https://doi.org/10.48550/arXiv.2402.02491">DOI del preprint</a>; <a class="reference external" href="https://arxiv.org/abs/2402.02491">texto y versiones</a>.</p>
+<p><img alt="Esquema de VM-UNet" src="_images/diagrama_vmunet.png" /></p>
+<p>VSSM de autores, drop_path=0,2; selective_scan CUDA real. No sustitución por GRU.</p>
+<p><span class="math notranslate nohighlight">\(h_t=\bar A_t h_{t-1}+\bar B_t x_t,\quad y_t=C_t h_t\)</span> resume el mecanismo selectivo; escaneos visuales relacionan posiciones.</p>
+<p>Costo lineal en longitud para dimensiones fijas del estado. Requiere extensiones CUDA; no extrapolar eficiencia teórica a latencia no medida.</p>
+<p><strong>Receta:</strong> AdamW, lr=0.001, weight decay=0.01; cinco semillas; mismo tamaño, criterio de parada y salida de un logit.
+<strong>Resultado local:</strong> Dice test 0.8391 ± 0.0297; no sustituye el resultado del artículo original.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="literatura.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Literatura, selección operativa y paper guía</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="metodos_e2.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Diseño experimental y ruta de segmentación E2</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fcn-compacta">FCN compacta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#segnet-compacta">SegNet compacta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#u-net-compacta">U-Net compacta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deeplabv3-r18">DeepLabv3+ R18</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#u-net-r18">U-Net++ R18</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pidnet-s">PIDNet-S</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#segnext-t">SegNeXt-T</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#segformer-b0">SegFormer-B0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transunet">TransUNet</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vm-unet">VM-UNet</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Luis Perez y Daniel Carbono
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

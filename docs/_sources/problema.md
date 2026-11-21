@@ -1,5 +1,7 @@
 # Problema y datos
 
+Este capítulo conserva datos y decisiones del E1. Las diez redes, hipótesis y recetas se describen en [Métodos E2](metodos_e2.md). Test ya se observó en E1: «test reservado» no significa históricamente nunca visto.
+
 En una inspección portuaria interesa localizar el rótulo antes de leer su símbolo o asignarle una clase IMO. La pregunta experimental es cuánto cambia el solapamiento de la máscara al cambiar el mecanismo de reconstrucción espacial, manteniendo datos, pérdida y presupuesto. La hipótesis operativa es que recuperar detalle del codificador podría beneficiar los contornos pequeños. Los tres contrastes se evalúan en ambos sentidos.
 
 Una fotografía RGB pertenece a $X=[0,1]^{H\times W\times 3}$ y su máscara a $Y=\{0,1\}^{H\times W}$. El modelo $f_\theta$ produce un logit por píxel. Se minimiza una combinación de entropía cruzada binaria y pérdida Dice en el área válida. Una probabilidad de al menos 0,5 indica etiqueta. Las etiquetas contiguas pueden formar una sola región. No se predice identidad de instancia ni clase de mercancía.

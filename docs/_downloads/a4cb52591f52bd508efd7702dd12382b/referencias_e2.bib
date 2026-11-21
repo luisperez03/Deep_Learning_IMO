@@ -1,0 +1,244 @@
+% Referencias del Entregable 2. Metadatos y DOI verificados el 20/11/2026 contra el registro
+% oficial (Crossref para DOI editoriales, DataCite para DOI de arXiv) con
+% docs/revision_entregable2/verificar_doi_registro.py; evidencia en evidencia_doi_registro.json.
+% Las arquitecturas publicadas citan la version editorial y conservan el preprint en eprint.
+% SegNeXt y SegFormer (NeurIPS) no tienen DOI editorial; TransUNet se cita como preprint.
+% ATENCION: scripts/integrar_entregable2.py (linea 186) reescribe este archivo con solo las diez
+% arquitecturas en formato arXiv. No volver a correrlo sin quitar esa escritura.
+
+% ---------------------------------------------------------------- Arquitecturas del benchmark
+
+@inproceedings{fcn,
+  title = {Fully Convolutional Networks for Semantic Segmentation},
+  author = {Long, Jonathan and Shelhamer, Evan and Darrell, Trevor},
+  booktitle = {2015 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages = {3431--3440},
+  year = {2015},
+  publisher = {IEEE},
+  doi = {10.1109/CVPR.2015.7298965},
+  eprint = {1411.4038},
+  archivePrefix = {arXiv}
+}
+
+@article{segnet,
+  title = {SegNet: A Deep Convolutional Encoder-Decoder Architecture for Image Segmentation},
+  author = {Badrinarayanan, Vijay and Kendall, Alex and Cipolla, Roberto},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  volume = {39},
+  number = {12},
+  pages = {2481--2495},
+  year = {2017},
+  doi = {10.1109/TPAMI.2016.2644615},
+  eprint = {1511.00561},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{unet,
+  title = {U-Net: Convolutional Networks for Biomedical Image Segmentation},
+  author = {Ronneberger, Olaf and Fischer, Philipp and Brox, Thomas},
+  booktitle = {Medical Image Computing and Computer-Assisted Intervention -- MICCAI 2015},
+  series = {Lecture Notes in Computer Science},
+  pages = {234--241},
+  year = {2015},
+  publisher = {Springer International Publishing},
+  doi = {10.1007/978-3-319-24574-4_28},
+  eprint = {1505.04597},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{deeplabv3plus,
+  title = {Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation},
+  author = {Chen, Liang-Chieh and Zhu, Yukun and Papandreou, George and Schroff, Florian and Adam, Hartwig},
+  booktitle = {Computer Vision -- ECCV 2018},
+  series = {Lecture Notes in Computer Science},
+  pages = {833--851},
+  year = {2018},
+  publisher = {Springer International Publishing},
+  doi = {10.1007/978-3-030-01234-2_49},
+  eprint = {1802.02611},
+  archivePrefix = {arXiv}
+}
+
+@article{unetplusplus,
+  title = {UNet++: Redesigning Skip Connections to Exploit Multiscale Features in Image Segmentation},
+  author = {Zhou, Zongwei and Siddiquee, Md Mahfuzur Rahman and Tajbakhsh, Nima and Liang, Jianming},
+  journal = {IEEE Transactions on Medical Imaging},
+  volume = {39},
+  number = {6},
+  pages = {1856--1867},
+  year = {2020},
+  doi = {10.1109/TMI.2019.2959609},
+  eprint = {1912.05074},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{pidnet_s,
+  title = {PIDNet: A Real-time Semantic Segmentation Network Inspired by PID Controllers},
+  author = {Xu, Jiacong and Xiong, Zixiang and Bhattacharyya, Shankar P.},
+  booktitle = {2023 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages = {19529--19539},
+  year = {2023},
+  publisher = {IEEE},
+  doi = {10.1109/CVPR52729.2023.01871},
+  eprint = {2206.02066},
+  archivePrefix = {arXiv}
+}
+
+@misc{segnext_t,
+  title = {SegNeXt: Rethinking Convolutional Attention Design for Semantic Segmentation},
+  author = {Guo, Meng-Hao and Lu, Cheng-Ze and Hou, Qibin and Liu, Zhengning and Cheng, Ming-Ming and Hu, Shi-Min},
+  year = {2022},
+  eprint = {2209.08575},
+  archivePrefix = {arXiv},
+  doi = {10.48550/arXiv.2209.08575},
+  url = {https://arxiv.org/abs/2209.08575},
+  note = {Presentado en NeurIPS 2022; las actas no asignan DOI}
+}
+
+@misc{segformer_b0,
+  title = {SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers},
+  author = {Xie, Enze and Wang, Wenhai and Yu, Zhiding and Anandkumar, Anima and Alvarez, Jose M. and Luo, Ping},
+  year = {2021},
+  eprint = {2105.15203},
+  archivePrefix = {arXiv},
+  doi = {10.48550/arXiv.2105.15203},
+  url = {https://proceedings.neurips.cc/paper/2021/file/64f1f27bf1b4ec22924fd0acb550c235-Paper.pdf},
+  note = {NeurIPS 2021; las actas no asignan DOI}
+}
+
+@misc{transunet_2d,
+  title = {TransUNet: Transformers Make Strong Encoders for Medical Image Segmentation},
+  author = {Chen, Jieneng and Lu, Yongyi and Yu, Qihang and Luo, Xiangde and Adeli, Ehsan and Wang, Yan and Lu, Le and Yuille, Alan L. and Zhou, Yuyin},
+  year = {2021},
+  eprint = {2102.04306},
+  archivePrefix = {arXiv},
+  doi = {10.48550/arXiv.2102.04306},
+  url = {https://arxiv.org/abs/2102.04306},
+  note = {Preprint; la extension de 2024 en Medical Image Analysis es otro trabajo y no se cita aqui}
+}
+
+@article{vmunet,
+  title = {VM-UNet: Vision Mamba UNet for Medical Image Segmentation},
+  author = {Ruan, Jiacheng and Li, Jincheng and Xiang, Suncheng},
+  journal = {ACM Transactions on Multimedia Computing, Communications, and Applications},
+  year = {2025},
+  publisher = {Association for Computing Machinery (ACM)},
+  doi = {10.1145/3767748},
+  eprint = {2402.02491},
+  archivePrefix = {arXiv},
+  note = {Cifras cotejadas contra arXiv:2402.02491v2; volumen y paginas no figuran en Crossref al 20/11/2026}
+}
+
+% ---------------------------------------------------------------- Aplicacion al problema (rotulos HAZMAT)
+
+@article{sharifi2021deephazmat,
+  title = {A deep learning based hazardous materials ({HAZMAT}) sign detection robot with restricted computational resources},
+  author = {Sharifi, Amir and Zibaei, Ahmadreza and Rezaei, Mahdi},
+  journal = {Machine Learning with Applications},
+  volume = {6},
+  pages = {100104},
+  year = {2021},
+  doi = {10.1016/j.mlwa.2021.100104}
+}
+
+@misc{sharifi2020deephazmat_preprint,
+  title = {DeepHAZMAT: Hazardous Materials Sign Detection and Segmentation with Restricted Computational Resources},
+  author = {Sharifi, Amir and Zibaei, Ahmadreza and Rezaei, Mahdi},
+  year = {2020},
+  eprint = {2007.06392},
+  archivePrefix = {arXiv},
+  doi = {10.48550/arXiv.2007.06392},
+  note = {Version previa de sharifi2021deephazmat; no es un estudio distinto}
+}
+
+@article{zhang2024zeroshot_placard,
+  title = {A Visual and Textual Information Fusion-Based Zero-Shot Framework for Hazardous Material Placard Detection and Recognition},
+  author = {Zhang, Ran and Bahrami, Zhila and Feng, Ke and Liu, Zheng},
+  journal = {IEEE Transactions on Artificial Intelligence},
+  volume = {5},
+  number = {4},
+  pages = {1755--1768},
+  year = {2024},
+  doi = {10.1109/TAI.2023.3298588}
+}
+
+@inproceedings{mohamed2018hazmat_attention,
+  title = {Seeing Signs of Danger: Attention-Accelerated Hazmat Label Detection},
+  author = {Mohamed, Mahmoud A. and Tunnermann, Jan and Mertsching, Barbel},
+  booktitle = {2018 IEEE International Symposium on Safety, Security, and Rescue Robotics (SSRR)},
+  pages = {1--6},
+  year = {2018},
+  publisher = {IEEE},
+  doi = {10.1109/SSRR.2018.8468639}
+}
+
+@article{edlinger2019hazmat_rescue,
+  title = {Hazmat label recognition and localization for rescue robots in disaster scenarios},
+  author = {Edlinger, Raimund and Zauner, Gerald and Zauner, Michael},
+  journal = {Electronic Imaging},
+  volume = {31},
+  number = {7},
+  pages = {463-1--463-6},
+  year = {2019},
+  doi = {10.2352/ISSN.2470-1173.2019.7.IRIACV-463}
+}
+
+@inproceedings{zhao2013hazmat_mobile,
+  title = {Mobile-based hazmat sign detection and recognition},
+  author = {Zhao, Bin and Parra, Albert and Delp, Edward J.},
+  booktitle = {2013 IEEE Global Conference on Signal and Information Processing},
+  pages = {735--738},
+  year = {2013},
+  publisher = {IEEE},
+  doi = {10.1109/GlobalSIP.2013.6736996}
+}
+
+@article{thongkor2016hazmat_fourier,
+  title = {{HAZMAT} Sign Location Detection Based on Fourier Shape Descriptors},
+  author = {Thongkor, Kharittha and Parra Pozo, Albert and Zhao, Bin and Amornraksa, Thumrongrat and Delp, Edward J.},
+  journal = {Electronic Imaging},
+  volume = {28},
+  number = {11},
+  pages = {1--5},
+  year = {2016},
+  doi = {10.2352/ISSN.2470-1173.2016.11.IMAWM-459}
+}
+
+% ---------------------------------------------------------------- Mecanismos transversales
+
+@misc{vaswani2017attention,
+  title = {Attention Is All You Need},
+  author = {Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N. and Kaiser, Lukasz and Polosukhin, Illia},
+  year = {2017},
+  eprint = {1706.03762},
+  archivePrefix = {arXiv},
+  doi = {10.48550/arXiv.1706.03762},
+  note = {NeurIPS 2017; las actas no asignan DOI}
+}
+
+@misc{gu2023mamba,
+  title = {Mamba: Linear-Time Sequence Modeling with Selective State Spaces},
+  author = {Gu, Albert and Dao, Tri},
+  year = {2023},
+  eprint = {2312.00752},
+  archivePrefix = {arXiv},
+  doi = {10.48550/arXiv.2312.00752}
+}
+
+@misc{yu2015dilated,
+  title = {Multi-Scale Context Aggregation by Dilated Convolutions},
+  author = {Yu, Fisher and Koltun, Vladlen},
+  year = {2015},
+  eprint = {1511.07122},
+  archivePrefix = {arXiv},
+  doi = {10.48550/arXiv.1511.07122}
+}
+
+@misc{oord2016wavenet,
+  title = {WaveNet: A Generative Model for Raw Audio},
+  author = {van den Oord, Aaron and Dieleman, Sander and Zen, Heiga and Simonyan, Karen and Vinyals, Oriol and Graves, Alex and Kalchbrenner, Nal and Senior, Andrew and Kavukcuoglu, Koray},
+  year = {2016},
+  eprint = {1609.03499},
+  archivePrefix = {arXiv},
+  doi = {10.48550/arXiv.1609.03499}
+}

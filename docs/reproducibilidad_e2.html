@@ -1,0 +1,429 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="es" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Reproducción y archivos de entrega &#8212; Segmentación de etiquetas de mercancías peligrosas</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reproducibilidad_e2';</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Diseño experimental e implementación" href="implementacion.html" />
+    <link rel="prev" title="Verificación de requisitos del Entregable 2" href="checklist_e2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Segmentación de etiquetas de mercancías peligrosas</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Entregable 2</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="problema.html">Problema y datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eda.html">EDA y preparación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="literatura.html">Literatura, selección operativa y paper guía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelos_e2.html">Fichas de las diez implementaciones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metodos_e2.html">Diseño experimental y ruta de segmentación E2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resultados_e2.html">Resultados E2: benchmark e inferencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="complementos_e2.html">Complementos locales del 20 de noviembre</a></li>
+<li class="toctree-l1"><a class="reference internal" href="complementos_datos_e2.html">Complementos de datos: fuga, shift, ruido, techo y EDA por clase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagnosticos_e2.html">Diagnósticos sobre los pesos congelados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entrenamiento_complementario_e2.html">Entrenamientos complementarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cierre_e2.html">Discusión, limitaciones y cierre pendiente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="checklist_e2.html">Verificación de requisitos del Entregable 2</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Reproducción y archivos de entrega</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Antecedentes del Entregable 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="implementacion.html">Diseño experimental e implementación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resultados.html">Resultados y baseline</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Reproducción y archivos de entrega</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regenerar-el-informe-local">Regenerar el informe local</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduccion-experimental">Reproducción experimental</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-descargable">Evidencia descargable</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="reproduccion-y-archivos-de-entrega">
+<h1>Reproducción y archivos de entrega<a class="headerlink" href="#reproduccion-y-archivos-de-entrega" title="Permalink to this heading">#</a></h1>
+<section id="regenerar-el-informe-local">
+<h2>Regenerar el informe local<a class="headerlink" href="#regenerar-el-informe-local" title="Permalink to this heading">#</a></h2>
+<p>Desde la raíz <code class="docutils literal notranslate"><span class="pre">tesis_imo_para_codex</span></code>, con el entorno <code class="docutils literal notranslate"><span class="pre">.venv-libro</span></code> ya instalado:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">.\.</span><span class="n">venv-libro</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">python</span><span class="p">.</span><span class="n">exe</span> <span class="n">scripts</span><span class="p">\</span><span class="n">reproducir_entregable2</span><span class="p">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Este comando regenera análisis exploratorios, figuras, capítulos e índice, ejecuta las pruebas del análisis y compila el libro con advertencias tratadas como errores. Lee los resultados originales en las carpetas hermanas <code class="docutils literal notranslate"><span class="pre">resultados_test_e2_final</span></code> y <code class="docutils literal notranslate"><span class="pre">tesis_imo_e2_arquitecturas_reales_v2</span></code>, los manifiestos y datos locales. No entrena ni publica. La reproducción del informe no es una repetición independiente de inferencia.</p>
+<p>El resultado se abre en <code class="docutils literal notranslate"><span class="pre">libro/_build/html/index.html</span></code>. Dependencias exactas del informe en <a class="reference download internal" download="" href="_downloads/fbd29bb3c2f98540cb687ad05f4c6884/requirements-libro.txt"><code class="xref download docutils literal notranslate"><span class="pre">requirements-libro.txt</span></code></a>. El comando supone la estructura local y datos disponibles; no descarga silenciosamente datasets.</p>
+</section>
+<section id="reproduccion-experimental">
+<h2>Reproducción experimental<a class="headerlink" href="#reproduccion-experimental" title="Permalink to this heading">#</a></h2>
+<p>Los notebooks de entrenamiento v2 y test cerrado están en la carpeta superior: <code class="docutils literal notranslate"><span class="pre">Benchmark_E2_Colab_v2.ipynb</span></code> y <code class="docutils literal notranslate"><span class="pre">Evaluacion_Final_E2_Colab.ipynb</span></code>, junto con sus ZIP versionados. El paquete antiguo de prototipos no describe este benchmark. Los pesos se conservan en las cincuenta carpetas originales y no se incluyen en el libro HTML.</p>
+<p>La normalización y geometría se fijaron con train; cada corrida selecciona por validación. Test E2 se ejecutó con checkpoints y umbral fijados. Repetir entrenamientos/inferencia debe ser una decisión explícita de reproducción; no es necesario para recompilar el documento.</p>
+</section>
+<section id="evidencia-descargable">
+<h2>Evidencia descargable<a class="headerlink" href="#evidencia-descargable" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="_downloads/205cb7d43cadc0b63a037de15f95954d/experimento_e2.json"><code class="xref download docutils literal notranslate"><span class="pre">Configuración</span> <span class="pre">aplicada</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/4c7545ec115966a2561533cb964c9e82/protocolo_test_e2_cerrado.json"><code class="xref download docutils literal notranslate"><span class="pre">Protocolo</span> <span class="pre">cerrado</span> <span class="pre">de</span> <span class="pre">test</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/168118dfe3fa2d35ad7a3dfdb947e19e/sources.lock.json"><code class="xref download docutils literal notranslate"><span class="pre">Fuentes</span> <span class="pre">de</span> <span class="pre">autores</span> <span class="pre">y</span> <span class="pre">hashes</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/4f4d3e03f2b3e5a5f9fd6badecdd7fa6/auditoria.json"><code class="xref download docutils literal notranslate"><span class="pre">Auditoría</span> <span class="pre">del</span> <span class="pre">entrenamiento</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/78cbe8fc50650e085f56d0cf6f9c5f0b/AUDITORIA.json"><code class="xref download docutils literal notranslate"><span class="pre">Auditoría</span> <span class="pre">del</span> <span class="pre">test</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/2ce4d4f98ebd77a04cad5c81918a93d3/analisis.json"><code class="xref download docutils literal notranslate"><span class="pre">Análisis</span> <span class="pre">exploratorio</span> <span class="pre">completo</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/67c88b0555e93507c3bc4020a1554458/analisis_integracion_e2.py"><code class="xref download docutils literal notranslate"><span class="pre">Código</span> <span class="pre">del</span> <span class="pre">análisis</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/5a6bd80a9c36781c61a28ac2abc3ddc2/auditar_test_e2.py"><code class="xref download docutils literal notranslate"><span class="pre">Código</span> <span class="pre">de</span> <span class="pre">auditoría</span> <span class="pre">de</span> <span class="pre">test</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/abdd1ba3a6684b43207e62fd9fd653cc/test_integracion_e2.py"><code class="xref download docutils literal notranslate"><span class="pre">Pruebas</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">integración</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/95bd41265f0d3fb113fd8d5f9f0e3ab7/CHECKLIST_ENTREGA_E2.md"><code class="xref download docutils literal notranslate"><span class="pre">Checklist</span> <span class="pre">de</span> <span class="pre">entrega</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/a4cb52591f52bd508efd7702dd12382b/referencias_e2.bib"><code class="xref download docutils literal notranslate"><span class="pre">Referencias</span> <span class="pre">BibTeX</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">diez</span> <span class="pre">arquitecturas</span></code></a></p></li>
+</ul>
+<p>Las auditorías verificaron la consistencia de los artefactos recibidos. Falta una repetición experimental independiente en entorno limpio que informe discrepancia de inferencia, no solo de agregación aritmética. Los originales, fotografías y pesos no deben publicarse sin revisar licencias. No se realizó push ni despliegue; cualquier publicación requiere autorización del usuario.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="checklist_e2.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Verificación de requisitos del Entregable 2</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="implementacion.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Diseño experimental e implementación</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regenerar-el-informe-local">Regenerar el informe local</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduccion-experimental">Reproducción experimental</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-descargable">Evidencia descargable</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Luis Perez y Daniel Carbono
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

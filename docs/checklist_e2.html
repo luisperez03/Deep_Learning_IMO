@@ -1,0 +1,984 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="es" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Verificación de requisitos del Entregable 2 &#8212; Segmentación de etiquetas de mercancías peligrosas</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'checklist_e2';</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Reproducción y archivos de entrega" href="reproducibilidad_e2.html" />
+    <link rel="prev" title="Discusión, limitaciones y cierre pendiente" href="cierre_e2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Segmentación de etiquetas de mercancías peligrosas</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Entregable 2</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="problema.html">Problema y datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eda.html">EDA y preparación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="literatura.html">Literatura, selección operativa y paper guía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelos_e2.html">Fichas de las diez implementaciones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metodos_e2.html">Diseño experimental y ruta de segmentación E2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resultados_e2.html">Resultados E2: benchmark e inferencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="complementos_e2.html">Complementos locales del 20 de noviembre</a></li>
+<li class="toctree-l1"><a class="reference internal" href="complementos_datos_e2.html">Complementos de datos: fuga, shift, ruido, techo y EDA por clase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagnosticos_e2.html">Diagnósticos sobre los pesos congelados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entrenamiento_complementario_e2.html">Entrenamientos complementarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cierre_e2.html">Discusión, limitaciones y cierre pendiente</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Verificación de requisitos del Entregable 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reproducibilidad_e2.html">Reproducción y archivos de entrega</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Antecedentes del Entregable 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="implementacion.html">Diseño experimental e implementación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resultados.html">Resultados y baseline</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Verificación de requisitos del Entregable 2</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problema-hipotesis-datos-y-eda-rubrica-15">Problema, hipótesis, datos y EDA — rúbrica 15 %</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#literatura-paper-guia-y-gap-rubrica-15">Literatura, paper guía y gap — rúbrica 15 %</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-y-rigor-experimental-rubrica-25">Implementación y rigor experimental — rúbrica 25 %</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchmark-e-inferencia-rubrica-20">Benchmark e inferencia — rúbrica 20 %</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ruta-f4b-y-diagnosticos-rubrica-15">Ruta F4b y diagnósticos — rúbrica 15 %</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducibilidad-redaccion-y-defensa-rubrica-10">Reproducibilidad, redacción y defensa — rúbrica 10 %</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apendice-b-las-21-casillas-originales">Apéndice B: las 21 casillas originales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orden-de-cierre-para-el-domingo">Orden de cierre para el domingo</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="verificacion-de-requisitos-del-entregable-2">
+<h1>Verificación de requisitos del Entregable 2<a class="headerlink" href="#verificacion-de-requisitos-del-entregable-2" title="Permalink to this heading">#</a></h1>
+<p>Revisado el 20/11/2026 contra la guía original de 65 páginas, incluida ruta F4b y apéndice B. Entrega prevista: domingo 22/11/2026. Este control no garantiza una nota.</p>
+<p><strong>C:</strong> cubierto con evidencia. <strong>P:</strong> parcial. <strong>F:</strong> falta ejecutar/verificar. <strong>D:</strong> desviación histórica no reparable retroactivamente. <strong>NA:</strong> no aplica con motivo. Un plan o un script no acreditan una ejecución. No convertir el número de filas en porcentaje de calificación.</p>
+<p>El usuario confirmó que el profesor acepta <strong>diez modelos totales: tres E1 y siete nuevos</strong>. No se infieren dispensas de otros requisitos. Q5/Q6 siguen omitidas por instrucción explícita.</p>
+<p><strong>Actualización del 20/11 (tarde).</strong> Se integraron los complementos de datos, fuga, ruido, bibliografía y los cuadernos preparados de diagnóstico GPU, entrenamiento y réplica. Lo preparado sin ejecutar sigue en F, con su ruta. Orden de corridas: <code class="docutils literal notranslate"><span class="pre">docs/GUIA_CORRIDAS_CIERRE_E2.md</span></code>.</p>
+<p><strong>Actualización del 21/11.</strong> Se corrió el complemento de entrenamiento en L4: sobreajuste, búsqueda T = 4, permutación de FCN con B = 200 y ablación de TransUNet (filas 37, 41, 46, 56, 61). Exploratorio: el test ya estaba observado y no se cargó.</p>
+<section id="problema-hipotesis-datos-y-eda-rubrica-15">
+<h2>Problema, hipótesis, datos y EDA — rúbrica 15 %<a class="headerlink" href="#problema-hipotesis-datos-y-eda-rubrica-15" title="Permalink to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>ID</p></th>
+<th class="head"><p>Requisito (página guía)</p></th>
+<th class="head"><p>Estado</p></th>
+<th class="head"><p>Evidencia / cierre necesario</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>01</p></td>
+<td><p>Formulación entrada/salida/riesgo (2)</p></td>
+<td><p>C</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">metodos_e2.md</span></code>: segmentación binaria; no clasificación IMO</p></td>
+</tr>
+<tr class="row-odd"><td><p>02</p></td>
+<td><p>Relevancia y ≥3 referencias aplicadas (2)</p></td>
+<td><p>C</p></td>
+<td><p>20/11: seis estudios aplicados a rótulos HAZMAT con DOI verificado en Crossref y <a class="reference external" href="http://doi.org">doi.org</a> (<code class="docutils literal notranslate"><span class="pre">evidencia_doi_registro.json</span></code>), con tarea y método leídos del resumen en <code class="docutils literal notranslate"><span class="pre">APLICACION_Y_GAP.md</span></code>; en <code class="docutils literal notranslate"><span class="pre">libro/literatura.md</span></code> y en el BibTeX</p></td>
+</tr>
+<tr class="row-even"><td><p>03</p></td>
+<td><p>Métrica, δ y unidad heredados (2)</p></td>
+<td><p>C</p></td>
+<td><p>Dice por grupo, δ=0,02; IoU/mIoU/accuracy; independencia aproximada</p></td>
+</tr>
+<tr class="row-odd"><td><p>04</p></td>
+<td><p>≥3 RQ, H0/H1, α, efecto y decisión (2–3)</p></td>
+<td><p>P</p></td>
+<td><p>RQ1–4 integradas; temporalidad explícita; equivalencia no ejecutada</p></td>
+</tr>
+<tr class="row-even"><td><p>05</p></td>
+<td><p>Preregistro completo anterior al entrenamiento (42)</p></td>
+<td><p>D</p></td>
+<td><p>Configuración/cierre antes de test disponibles; no preregistro integral previo acreditado. No retrofechar</p></td>
+</tr>
+<tr class="row-odd"><td><p>06</p></td>
+<td><p>Potencia y número de ejecuciones prospectivos (43)</p></td>
+<td><p>D</p></td>
+<td><p>Cinco semillas; MDD/R añadidos solo para planificación futura</p></td>
+</tr>
+<tr class="row-even"><td><p>07</p></td>
+<td><p>Data Card, procedencia, versión/hash (3)</p></td>
+<td><p>P</p></td>
+<td><p>Tamaños, objetivo y manifiestos; origen HAZMAT13 probable, sin identidad externa certificada</p></td>
+</tr>
+<tr class="row-odd"><td><p>08</p></td>
+<td><p>Licencias, adquisición, geografía, ética (3,41)</p></td>
+<td><p>P</p></td>
+<td><p>Límites declarados; falta verificar licencia de imágenes externas y metadatos de adquisición</p></td>
+</tr>
+<tr class="row-even"><td><p>09</p></td>
+<td><p>Distribución, desbalance y entropía (3–4)</p></td>
+<td><p>C</p></td>
+<td><p>Conteos/áreas/píxeles y, 20/11, entropía de la distribución de clases y de áreas (<code class="docutils literal notranslate"><span class="pre">scripts/eda_clases_formas_e2.py</span></code>, capítulo <code class="docutils literal notranslate"><span class="pre">complementos_datos_e2</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>Faltantes, corrupción y consistencia (4)</p></td>
+<td><p>C</p></td>
+<td><p>102 máscaras no utilizables, 132 cuarentena, geometría y hashes</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>Duplicados y similitud residual (4,44)</p></td>
+<td><p>C</p></td>
+<td><p>Hashes/dHash/aHash y, 20/11, embeddings ResNet-50 (<code class="docutils literal notranslate"><span class="pre">scripts/fuga_embeddings_e2.py</span></code>): los grupos dHash no separan sesiones; 9 grupos de test y 8 de val con casi duplicado (coseno &gt; 0,97); sensibilidad sin ellos: el Dice baja 0,003–0,010 y el orden no cambia (<code class="docutils literal notranslate"><span class="pre">scripts/sensibilidad_casi_duplicados_e2.py</span></code>, semilla 11)</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>Ruido de etiqueta y acuerdo independiente (4,48)</p></td>
+<td><p>P</p></td>
+<td><p>20/11: revisión manual de 100 imágenes, primera pasada: 7 errores (IC95 3,4–13,8 %), todos rótulos cortados por el borde, y 5 dudosas; 12 casos por confirmar a mano (<code class="docutils literal notranslate"><span class="pre">resultados/ruido_etiqueta_e2/</span></code>). Sin segunda anotación independiente: el acuerdo sigue pendiente</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p>Sesgos y atajos (4)</p></td>
+<td><p>P</p></td>
+<td><p>Origen XML y limitaciones documentados; falta prueba de atajos</p></td>
+</tr>
+<tr class="row-odd"><td><p>14</p></td>
+<td><p>Particiones y semillas regenerables (4)</p></td>
+<td><p>C</p></td>
+<td><p>1015/218/218 imágenes, 567/122/122 grupos, semilla 20261106</p></td>
+</tr>
+<tr class="row-even"><td><p>15</p></td>
+<td><p>Shift / validación adversarial (4,45)</p></td>
+<td><p>C</p></td>
+<td><p>Train/test: adversarial con 200 permutaciones (<code class="docutils literal notranslate"><span class="pre">complementos_locales_e2</span></code>); train/val, 20/11: KS con Holm, MMD y adversarial (<code class="docutils literal notranslate"><span class="pre">scripts/shift_train_val_e2.py</span></code>). Sin cambio de distribución detectado</p></td>
+</tr>
+<tr class="row-odd"><td><p>16</p></td>
+<td><p>Geometría, canales, intensidad y formas (7–8)</p></td>
+<td><p>C</p></td>
+<td><p>Letterbox, tamaños, normalización train y, 20/11, formas, tono e histogramas por clase (<code class="docutils literal notranslate"><span class="pre">scripts/eda_clases_formas_e2.py</span></code>, tres figuras)</p></td>
+</tr>
+<tr class="row-even"><td><p>17</p></td>
+<td><p>Tabla hallazgo–decisión–riesgo (9,61)</p></td>
+<td><p>C</p></td>
+<td><p>Tabla integrada al EDA</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="literatura-paper-guia-y-gap-rubrica-15">
+<h2>Literatura, paper guía y gap — rúbrica 15 %<a class="headerlink" href="#literatura-paper-guia-y-gap-rubrica-15" title="Permalink to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>ID</p></th>
+<th class="head"><p>Requisito (página guía)</p></th>
+<th class="head"><p>Estado</p></th>
+<th class="head"><p>Evidencia / cierre necesario</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>18</p></td>
+<td><p>≥2 bases, ecuaciones, filtros, fechas/conteos (9–10)</p></td>
+<td><p>C</p></td>
+<td><p>Scopus/WoS, protocolo, bitácora, 13 exportaciones Q0–Q4</p></td>
+</tr>
+<tr class="row-odd"><td><p>19</p></td>
+<td><p>Inclusión/exclusión y excepciones antiguas (10)</p></td>
+<td><p>C</p></td>
+<td><p>Criterios documentados; aplicación final distinta de definición</p></td>
+</tr>
+<tr class="row-even"><td><p>20</p></td>
+<td><p>PRISMA completo y exclusiones razonadas (10)</p></td>
+<td><p>P</p></td>
+<td><p>9646 registros, 6325 grupos provisionales; precribado automático, sin elegibilidad final</p></td>
+</tr>
+<tr class="row-odd"><td><p>21</p></td>
+<td><p>DOI adjudicados y aplicados a registros (10)</p></td>
+<td><p>F</p></td>
+<td><p>Tres pares ambiguos; falta correspondencia y conteo definitivo</p></td>
+</tr>
+<tr class="row-even"><td><p>22</p></td>
+<td><p>Extracción/calidad de cada incluido (10–12)</p></td>
+<td><p>P</p></td>
+<td><p>Siete fichas preliminares; falta cotejo completo de tablas originales</p></td>
+</tr>
+<tr class="row-odd"><td><p>23</p></td>
+<td><p>Acuerdo de revisores si hay varios (10)</p></td>
+<td><p>NA</p></td>
+<td><p>Sin dos cribados completos independientes; no inventar kappa</p></td>
+</tr>
+<tr class="row-even"><td><p>24</p></td>
+<td><p>Tres búsquedas transversales ejecutadas (10)</p></td>
+<td><p>P</p></td>
+<td><p>Q5/Q6 omitidas; fuentes suplementarias no sustituyen consultas</p></td>
+</tr>
+<tr class="row-odd"><td><p>25</p></td>
+<td><p>Tabla de mecanismos/fuentes/transferibilidad (10)</p></td>
+<td><p>C</p></td>
+<td><p>Literatura: mecanismos e hipótesis con riesgos</p></td>
+</tr>
+<tr class="row-even"><td><p>26</p></td>
+<td><p>Número de redes y cuatro familias (11)</p></td>
+<td><p>C</p></td>
+<td><p>Diez totales aceptados por profesor según usuario; CNN/Transformer/híbrido/SSM</p></td>
+</tr>
+<tr class="row-odd"><td><p>27</p></td>
+<td><p>Puntuación completa, citas/cuartiles y exclusiones (11)</p></td>
+<td><p>P</p></td>
+<td><p>Lista operativa; bibliometría y rúbrica definitiva sin cerrar</p></td>
+</tr>
+<tr class="row-even"><td><p>28</p></td>
+<td><p>Referencias, diagramas, matemáticas y adaptaciones (11)</p></td>
+<td><p>C</p></td>
+<td><p>Diez fichas, diez esquemas, DOI/BibTeX; compactas identificadas como adaptaciones</p></td>
+</tr>
+<tr class="row-odd"><td><p>29</p></td>
+<td><p>Datasets/resultados/varianza/costo originales (11–12)</p></td>
+<td><p>C</p></td>
+<td><p>20/11, siete redes nuevas: <code class="docutils literal notranslate"><span class="pre">RESULTADOS_ORIGINALES_7REDES.md</span></code>, dataset, métrica, cifra, varianza y costo con tabla y página del PDF de arXiv; <code class="docutils literal notranslate"><span class="pre">cotejar_resultados_originales.py</span></code> confirma 21 de 21 (<code class="docutils literal notranslate"><span class="pre">cotejo_resultados_originales.json</span></code>). Corrige seis cifras de las fichas del 18/11</p></td>
+</tr>
+<tr class="row-even"><td><p>30</p></td>
+<td><p>Reproducibilidad de literatura y gap refutable (12)</p></td>
+<td><p>P</p></td>
+<td><p>Gap candidato; denominador de estudios incluidos no cerrado</p></td>
+</tr>
+<tr class="row-odd"><td><p>31</p></td>
+<td><p>Paper guía justificado y documentado (16)</p></td>
+<td><p>C</p></td>
+<td><p>SegFormer-B0; condiciones originales separadas de HAZMAT</p></td>
+</tr>
+<tr class="row-even"><td><p>32</p></td>
+<td><p>Réplica original y discrepancia/IC (16–17)</p></td>
+<td><p>C</p></td>
+<td><p>20/11, Colab T4: checkpoint oficial de SegFormer-B0 en ADE20K val (2.000), escala única, mIoU 37,43 % (IC95 35,47–38,30) frente a 37,4; D = +0,03 (IC95 −1,93 a +0,90); veredicto a priori <code class="docutils literal notranslate"><span class="pre">compatible</span></code>; desviaciones D1 (−1,49 con el preprocesador de HF) y D2 (media por imagen). Réplica de evaluación, no de entrenamiento. <code class="docutils literal notranslate"><span class="pre">resultados/replica_segformer/LECTURA.md</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>33</p></td>
+<td><p>Limitación cuantificada y piloto ≥3 redes (17)</p></td>
+<td><p>C</p></td>
+<td><p>20/11: protocolo a priori <code class="docutils literal notranslate"><span class="pre">config/limitacion_segformer_area.json</span></code>, terciles de área en los 122 grupos de validación, SegFormer frente a 3 redes piloto (U-Net, DeepLabv3+, SegNeXt-T), 5 semillas. Veredicto <code class="docutils literal notranslate"><span class="pre">no_confirmada</span></code>: Δ T3−T1 de SegFormer 0,082 [−0,030; 0,194] y sin diferencia con las piloto (p Holm ≥ 0,55); déficit de nivel, −0,12 frente a U-Net en el tercil pequeño. Dice por imagen extraído de los 50 checkpoints (<code class="docutils literal notranslate"><span class="pre">colab/Extraer_Validacion_E2.ipynb</span></code>). <code class="docutils literal notranslate"><span class="pre">resultados/limitacion_segformer_area/RESUMEN.md</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="implementacion-y-rigor-experimental-rubrica-25">
+<h2>Implementación y rigor experimental — rúbrica 25 %<a class="headerlink" href="#implementacion-y-rigor-experimental-rubrica-25" title="Permalink to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>ID</p></th>
+<th class="head"><p>Requisito (página guía)</p></th>
+<th class="head"><p>Estado</p></th>
+<th class="head"><p>Evidencia / cierre necesario</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>34</p></td>
+<td><p>Diez implementaciones y fuentes fijadas (12–14)</p></td>
+<td><p>C</p></td>
+<td><p>Adaptadores reales, SMP fijado, fuentes con commit/hash</p></td>
+</tr>
+<tr class="row-odd"><td><p>35</p></td>
+<td><p>≥5 ejecuciones/red y registros (13)</p></td>
+<td><p>C</p></td>
+<td><p>50 corridas auditadas; pruebas de rangos actuales usan 122 grupos, no 5 pares</p></td>
+</tr>
+<tr class="row-even"><td><p>36</p></td>
+<td><p>Datos/resolución/pérdida base/parada comparables (12–15)</p></td>
+<td><p>C</p></td>
+<td><p>Pipeline común; auxiliares PIDNet y recetas distintas explícitos</p></td>
+</tr>
+<tr class="row-odd"><td><p>37</p></td>
+<td><p>Búsqueda equitativa de hiperparámetros (13,46–47)</p></td>
+<td><p>C</p></td>
+<td><p>21/11, L4, exploratoria: búsqueda aleatoria T = 4 con el mismo espacio relativo (tasa × 10^u común, weight decay) y el mismo presupuesto (10 épocas, semilla 11) para las 10, elección por validación, 40 configuraciones registradas. La receta gana solo en VM-UNet; SegFormer-B0 sube de 0,660 a 0,782; las dos primeras no cambian. Sin la fase de 5 semillas × 30 épocas (diseñada, ≈ 17 h). <code class="docutils literal notranslate"><span class="pre">resultados/complemento_entreno_e2/</span></code>, capítulo <code class="docutils literal notranslate"><span class="pre">entrenamiento_complementario_e2</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>38</p></td>
+<td><p>Arquitectura indefinida: 1000 + finalistas (52–58)</p></td>
+<td><p>P</p></td>
+<td><p>Siete variantes publicadas definidas; justificar herencia de compactas locales. No afirmar búsqueda realizada</p></td>
+</tr>
+<tr class="row-odd"><td><p>39</p></td>
+<td><p>Tres E1 y baseline trivial adicional (11,22)</p></td>
+<td><p>C</p></td>
+<td><p>Tres compactas reentrenadas E2 y máscara vacía evaluada</p></td>
+</tr>
+<tr class="row-even"><td><p>40</p></td>
+<td><p>Clásico fuerte no profundo ajustado (11,46)</p></td>
+<td><p>C</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">scripts/baseline_clasico_e2.py</span></code>: HistGradientBoosting, 13 rasgos, 3 configuraciones × 5 semillas, elección por validación; Dice test 0,645 (IC95 grupos 0,605–0,682) en <code class="docutils literal notranslate"><span class="pre">resultados/baseline_clasico_e2/</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>41</p></td>
+<td><p>Sanidad de aprendizaje y preflight (46)</p></td>
+<td><p>C</p></td>
+<td><p>Diez preflight GPU y entrenamiento completo; 21/11, sobreajuste a un lote de 4 imágenes (500 pasos): 9 de 10 pasan (Dice ≥ 0,90); VM-UNet 0,750, falla en la imagen de rótulo más pequeño. <code class="docutils literal notranslate"><span class="pre">resultados/complemento_entreno_e2/</span></code>, capítulo <code class="docutils literal notranslate"><span class="pre">entrenamiento_complementario_e2</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>42</p></td>
+<td><p>Curvas train y validación (13)</p></td>
+<td><p>C</p></td>
+<td><p>50 curvas; pérdida train y Dice val no se restan</p></td>
+</tr>
+<tr class="row-odd"><td><p>43</p></td>
+<td><p>Configuración, versiones, semillas/hardware (13,41)</p></td>
+<td><p>C</p></td>
+<td><p>Freeze/config; L4 train/T4 test; determinismo warn_only</p></td>
+</tr>
+<tr class="row-even"><td><p>44</p></td>
+<td><p>Parámetros, FLOPs, memoria/latencia homogénea (13,48)</p></td>
+<td><p>P</p></td>
+<td><p>Parámetros y horas; FLOPs, pico y latencia pura pendientes</p></td>
+</tr>
+<tr class="row-odd"><td><p>45</p></td>
+<td><p>Costo total/energía cuando sea posible (48)</p></td>
+<td><p>P</p></td>
+<td><p>Horas de épocas; excluyen interrupciones/E/S; no inventar energía</p></td>
+</tr>
+<tr class="row-even"><td><p>46</p></td>
+<td><p>Auditoría completa de fuga (44–46)</p></td>
+<td><p>C</p></td>
+<td><p>Integridad, partición, adversarial, embeddings y casi duplicados (ID 11) y, 21/11, permutación de máscaras del pipeline (ID 56): p = 0,005</p></td>
+</tr>
+<tr class="row-odd"><td><p>47</p></td>
+<td><p>Test nunca usado para decisiones y una evaluación (4,63)</p></td>
+<td><p>D</p></td>
+<td><p>E2 con pesos/umbral cerrados; test ya expuesto en E1</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="benchmark-e-inferencia-rubrica-20">
+<h2>Benchmark e inferencia — rúbrica 20 %<a class="headerlink" href="#benchmark-e-inferencia-rubrica-20" title="Permalink to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>ID</p></th>
+<th class="head"><p>Requisito (página guía)</p></th>
+<th class="head"><p>Estado</p></th>
+<th class="head"><p>Evidencia / cierre necesario</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>48</p></td>
+<td><p>Métricas por caso/corrida, media/DE/IC (15,17)</p></td>
+<td><p>C</p></td>
+<td><p>10900 registros; cuatro métricas, IC grupos y DE semillas separados</p></td>
+</tr>
+<tr class="row-odd"><td><p>49</p></td>
+<td><p>Jerarquía, pareamiento y efectos (50–51)</p></td>
+<td><p>C</p></td>
+<td><p>Grupo como bloque; IC de diferencias y d_z; no pseudorreplicación de píxeles</p></td>
+</tr>
+<tr class="row-even"><td><p>50</p></td>
+<td><p>Tres procedimientos y multiplicidad (23,51)</p></td>
+<td><p>P</p></td>
+<td><p>Bootstrap/intercambio, Wilcoxon-Holm, Friedman/Nemenyi; ampliación posterior explícita</p></td>
+</tr>
+<tr class="row-odd"><td><p>51</p></td>
+<td><p>Supuestos y sensibilidad (18,51)</p></td>
+<td><p>P</p></td>
+<td><p>Shapiro/estimandos documentados; independencia aproximada y simetría no certificadas</p></td>
+</tr>
+<tr class="row-even"><td><p>52</p></td>
+<td><p>Ranking/CD/Pareto (17–18)</p></td>
+<td><p>C</p></td>
+<td><p>Rangos grupos/semillas; CD Nemenyi; Pareto puntual Dice/parámetros</p></td>
+</tr>
+<tr class="row-odd"><td><p>53</p></td>
+<td><p>Descomposición de varianza/modelo mixto (50)</p></td>
+<td><p>P</p></td>
+<td><p>DE semillas y correlación disponibles; falta descomposición formal con diagnóstico</p></td>
+</tr>
+<tr class="row-even"><td><p>54</p></td>
+<td><p>Equivalencia/relevancia δ (48)</p></td>
+<td><p>P</p></td>
+<td><p>δ interpretado; no equivalencia demostrada ni TOST ejecutado</p></td>
+</tr>
+<tr class="row-odd"><td><p>55</p></td>
+<td><p>Reproducción independiente/discrepancia (41,63)</p></td>
+<td><p>P</p></td>
+<td><p>Reagregación desde registros: 0. 20/11, entorno limpio (<code class="docutils literal notranslate"><span class="pre">scripts/prueba_entorno_limpio_e2.py</span></code>): lo que corre con el repositorio coincide (máx. 0,0014); la reproducción completa necesita los resultados del test y las corridas, que están fuera del repositorio (<code class="docutils literal notranslate"><span class="pre">resultados/entorno_limpio_e2/LECTURA.md</span></code>)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ruta-f4b-y-diagnosticos-rubrica-15">
+<h2>Ruta F4b y diagnósticos — rúbrica 15 %<a class="headerlink" href="#ruta-f4b-y-diagnosticos-rubrica-15" title="Permalink to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>ID</p></th>
+<th class="head"><p>Requisito (página guía)</p></th>
+<th class="head"><p>Estado</p></th>
+<th class="head"><p>Evidencia / cierre necesario</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>56</p></td>
+<td><p>Adecuación frente a trivial/permutación (23,36)</p></td>
+<td><p>C</p></td>
+<td><p>Dice vacío = 0. 21/11: permutación de máscaras en train del pipeline completo, FCN, B = 200: Dice val real 0,823 frente a nula media 0,465 (máx. 0,592), p = 1/201 = 0,005. La de TransUNet (B = 19) no se corrió. <code class="docutils literal notranslate"><span class="pre">resultados/complemento_entreno_e2/</span></code>, capítulo <code class="docutils literal notranslate"><span class="pre">entrenamiento_complementario_e2</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>57</p></td>
+<td><p>Brecha train/val con margen de sobreajuste (25,36)</p></td>
+<td><p>C</p></td>
+<td><p>20/11, L4, exploratorio (<code class="docutils literal notranslate"><span class="pre">colab/Complemento_GPU_E2.ipynb</span></code>, etapa <code class="docutils literal notranslate"><span class="pre">clean</span></code>): reproduce el Dice de test cerrado (dif. máx. &lt; 0,0001); brecha train−val positiva en las 10, de 0,026 (SegNet, IC con 0) a 0,213 (SegFormer) y 0,147 (SegNeXt). <code class="docutils literal notranslate"><span class="pre">resultados/diagnosticos_gpu_e2/TABLAS.md</span></code>, capítulo <code class="docutils literal notranslate"><span class="pre">diagnosticos_e2</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>58</p></td>
+<td><p>Brier/ECE fijo y adaptativo/calibración (15,49)</p></td>
+<td><p>C</p></td>
+<td><p>20/11: Brier, NLL, ECE15 fijo y adaptativo, con y sin temperatura ajustada en validación; ECE15 0,008–0,014; temperatura 1,6–2,6 en todas (sobreconfianza); la temperatura baja el Brier y sube levemente el ECE15</p></td>
+</tr>
+<tr class="row-odd"><td><p>59</p></td>
+<td><p>Robustez con ≥3 severidades (16)</p></td>
+<td><p>C</p></td>
+<td><p>20/11: 10 redes × 5 semillas × ruido/desenfoque/brillo × 3 niveles en test. Área normalizada: redes grandes 0,92–0,96 con ruido y desenfoque; FCN, U-Net y SegNet 0,68–0,77 en las tres perturbaciones</p></td>
+</tr>
+<tr class="row-even"><td><p>60</p></td>
+<td><p>Explicabilidad top3 + fidelidad/estabilidad (16)</p></td>
+<td><p>C</p></td>
+<td><p>20/11: Integrated Gradients en 100 casos de validación del top 3 × 5 semillas; IG supera al borrado aleatorio en el 89 % (TransUNet) y 100 % (U-Net, FCN) de los casos; Spearman entre semillas 0,73 / 0,92 / 0,92</p></td>
+</tr>
+<tr class="row-odd"><td><p>61</p></td>
+<td><p>Ablación ≥3 componentes, mismas semillas (16)</p></td>
+<td><p>C</p></td>
+<td><p>21/11: TransUNet, 3 componentes × 5 semillas pareadas, referencia del benchmark: sin saltos −0,092 [−0,105; −0,079], BCE sola −0,037 [−0,043; −0,031] (p Holm &lt; 0,001); sin Transformer +0,007 [−0,001; 0,015], p Holm 0,065. <code class="docutils literal notranslate"><span class="pre">resultados/complemento_entreno_e2/</span></code>, capítulo <code class="docutils literal notranslate"><span class="pre">entrenamiento_complementario_e2</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>62</p></td>
+<td><p>Incertidumbre predictiva top3/cobertura (49)</p></td>
+<td><p>C</p></td>
+<td><p>20/11: ensamble de 5 semillas del top 3: +0,021 a +0,028 de Dice (IC sin 0; TransUNet 0,883); predicción conforme Mondrian por clase calibrada en validación, cobertura test 0,903–0,912 (nominal 0,90), con 34–37 % de grupos bajo el nominal (garantía marginal)</p></td>
+</tr>
+<tr class="row-odd"><td><p>63</p></td>
+<td><p>Techo y γ (48–49)</p></td>
+<td><p>F</p></td>
+<td><p>Sin segunda anotación: no hay techo medido. Kit de reanotación de 50 imágenes de validación listo, con el cálculo de γ (<code class="docutils literal notranslate"><span class="pre">scripts/techo_reanotacion_e2.py</span></code>); los rótulos cortados por el borde se marcan aparte</p></td>
+</tr>
+<tr class="row-even"><td><p>64</p></td>
+<td><p>HD95/ASSD y precisión/recall (36)</p></td>
+<td><p>C</p></td>
+<td><p>20/11: HD95/ASSD y precisión/recall de las 5 semillas en test (etapa <code class="docutils literal notranslate"><span class="pre">clean</span></code>); HD95 de 17,1 px (TransUNet) a 34,3 (SegFormer, recall 0,688)</p></td>
+</tr>
+<tr class="row-odd"><td><p>65</p></td>
+<td><p>Taxonomía previa, ≥100 casos/modelo e IC (49)</p></td>
+<td><p>P</p></td>
+<td><p>Panel dirigido y estratos; sin etiquetado sistemático de 100 errores/modelo</p></td>
+</tr>
+<tr class="row-even"><td><p>66</p></td>
+<td><p>Errores compartidos/diversidad/ensemble (49–50)</p></td>
+<td><p>P</p></td>
+<td><p>Matriz de correlación disponible; ensemble y ganancia pendientes</p></td>
+</tr>
+<tr class="row-odd"><td><p>67</p></td>
+<td><p>Subgrupos, atajos y daño potencial (41,50)</p></td>
+<td><p>P</p></td>
+<td><p>Cuartiles de área con IC descriptivos; faltan negativos/validación operacional</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="reproducibilidad-redaccion-y-defensa-rubrica-10">
+<h2>Reproducibilidad, redacción y defensa — rúbrica 10 %<a class="headerlink" href="#reproducibilidad-redaccion-y-defensa-rubrica-10" title="Permalink to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>ID</p></th>
+<th class="head"><p>Requisito (página guía)</p></th>
+<th class="head"><p>Estado</p></th>
+<th class="head"><p>Evidencia / cierre necesario</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>68</p></td>
+<td><p>Jupyter Book y celdas reproducibles (58,62)</p></td>
+<td><p>P</p></td>
+<td><p>Libro/scripts integrados; notebooks sin ejecución automática; prueba limpia pendiente</p></td>
+</tr>
+<tr class="row-odd"><td><p>69</p></td>
+<td><p>Un comando para tablas/figuras, entorno fijado (40)</p></td>
+<td><p>C</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reproducir_entregable2.py</span></code>, <code class="docutils literal notranslate"><span class="pre">requirements-libro.txt</span></code>; requiere datos/resultados locales</p></td>
+</tr>
+<tr class="row-even"><td><p>70</p></td>
+<td><p>Código completo para todos los requisitos (58)</p></td>
+<td><p>P</p></td>
+<td><p>Benchmark disponible; diagnósticos F siguen sin evidencia ejecutada</p></td>
+</tr>
+<tr class="row-odd"><td><p>71</p></td>
+<td><p>Datos/instrucciones/contrato (59)</p></td>
+<td><p>P</p></td>
+<td><p>Manifiestos y fuente probable; verificar obtención/licencia externa</p></td>
+</tr>
+<tr class="row-even"><td><p>72</p></td>
+<td><p>Resumen ≤250 palabras, discusión/RQ (62)</p></td>
+<td><p>C</p></td>
+<td><p>Índice y cierre E2</p></td>
+</tr>
+<tr class="row-odd"><td><p>73</p></td>
+<td><p>BibTeX completo (41)</p></td>
+<td><p>C</p></td>
+<td><p>20/11: <code class="docutils literal notranslate"><span class="pre">libro/referencias_e2.bib</span></code> con 21 entradas (10 arquitecturas en versión editorial si existe, 7 de aplicación, 4 de mecanismos), DOI verificados con <code class="docutils literal notranslate"><span class="pre">verificar_doi_registro.py</span></code>. Riesgo: <code class="docutils literal notranslate"><span class="pre">scripts/integrar_entregable2.py</span></code> (línea 186) lo reescribe con solo diez entradas</p></td>
+</tr>
+<tr class="row-even"><td><p>74</p></td>
+<td><p>Lista apéndice B completa y honesta (63)</p></td>
+<td><p>C</p></td>
+<td><p>21 filas siguientes, sin convertir P/F/D en aprobados</p></td>
+</tr>
+<tr class="row-odd"><td><p>75</p></td>
+<td><p>Presentación y defensa técnica (59)</p></td>
+<td><p>F</p></td>
+<td><p>Preparar diapositivas/guion y ensayar</p></td>
+</tr>
+<tr class="row-even"><td><p>76</p></td>
+<td><p>Publicación final</p></td>
+<td><p>C</p></td>
+<td><p>21/11: rama <code class="docutils literal notranslate"><span class="pre">cierre-e2</span></code> integrada en <code class="docutils literal notranslate"><span class="pre">main</span></code> y libro compilado sin advertencias, publicado en GitHub Pages (<code class="docutils literal notranslate"><span class="pre">docs/</span></code>, <a class="reference external" href="https://luisperez03.github.io/Deep_Learning_IMO/">https://luisperez03.github.io/Deep_Learning_IMO/</a>)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="apendice-b-las-21-casillas-originales">
+<h2>Apéndice B: las 21 casillas originales<a class="headerlink" href="#apendice-b-las-21-casillas-originales" title="Permalink to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ítem</p></th>
+<th class="head"><p>Estado</p></th>
+<th class="head"><p>Evidencia o límite</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>B01 Preregistro anterior al entrenamiento</p></td>
+<td><p>D</p></td>
+<td><p>ID05; no retrofechar</p></td>
+</tr>
+<tr class="row-odd"><td><p>B02 Hash dataset/test</p></td>
+<td><p>C</p></td>
+<td><p>Manifiestos y protocolo cerrado</p></td>
+</tr>
+<tr class="row-even"><td><p>B03 Auditoría de fuga completamente aprobada</p></td>
+<td><p>C</p></td>
+<td><p>ID46: fuga por embeddings y permutación de máscaras (p = 0,005) hechas</p></td>
+</tr>
+<tr class="row-odd"><td><p>B04 Particiones/semillas regenerables</p></td>
+<td><p>C</p></td>
+<td><p>ID14</p></td>
+</tr>
+<tr class="row-even"><td><p>B05 Pipeline y ajustes solo train</p></td>
+<td><p>C</p></td>
+<td><p>Normalización/pesos train; selección val</p></td>
+</tr>
+<tr class="row-odd"><td><p>B06 Presupuesto igual/configuraciones</p></td>
+<td><p>C</p></td>
+<td><p>Recetas fijas en el benchmark; búsqueda equitativa exploratoria T = 4 (ID37)</p></td>
+</tr>
+<tr class="row-even"><td><p>B07 ≥5 ejecuciones; ≥6 para rangos por semillas</p></td>
+<td><p>C</p></td>
+<td><p>Cinco corridas; rangos usan grupos</p></td>
+</tr>
+<tr class="row-odd"><td><p>B08 Potencia/R</p></td>
+<td><p>D</p></td>
+<td><p>ID06; planificación posterior</p></td>
+</tr>
+<tr class="row-even"><td><p>B09 Trivial/clásico/tres E1</p></td>
+<td><p>C</p></td>
+<td><p>Máscara vacía, baseline clásico (ID40) y tres E1</p></td>
+</tr>
+<tr class="row-odd"><td><p>B10 Software/hardware/determinismo</p></td>
+<td><p>C</p></td>
+<td><p>ID43</p></td>
+</tr>
+<tr class="row-even"><td><p>B11 Tablas A/B/C con pruebas/IC/efectos</p></td>
+<td><p>P</p></td>
+<td><p>Comparación avanzada; ajuste/sobreajuste pendientes</p></td>
+</tr>
+<tr class="row-odd"><td><p>B12 Familias/multiplicidad a priori</p></td>
+<td><p>D</p></td>
+<td><p>Ampliación Holm posterior al test</p></td>
+</tr>
+<tr class="row-even"><td><p>B13 Techo/γ</p></td>
+<td><p>F</p></td>
+<td><p>ID63; kit listo, sin segunda anotación</p></td>
+</tr>
+<tr class="row-odd"><td><p>B14 Arquitecturas sin diseño y dos fases</p></td>
+<td><p>P</p></td>
+<td><p>ID38; compactas heredadas requieren justificación</p></td>
+</tr>
+<tr class="row-even"><td><p>B15 Selección val/equivalencia/sesgo ganador</p></td>
+<td><p>P</p></td>
+<td><p>Checkpoints por val; equivalencia no demostrada</p></td>
+</tr>
+<tr class="row-odd"><td><p>B16 Robustez/explicabilidad/fidelidad/estabilidad</p></td>
+<td><p>C</p></td>
+<td><p>ID59–60 ejecutados el 20/11 (exploratorio)</p></td>
+</tr>
+<tr class="row-even"><td><p>B17 Incertidumbre top3/cobertura</p></td>
+<td><p>C</p></td>
+<td><p>ID62 ejecutado el 20/11 (exploratorio)</p></td>
+</tr>
+<tr class="row-odd"><td><p>B18 Test una vez, pesos/umbrales fijos</p></td>
+<td><p>D</p></td>
+<td><p>Cierre E2 sí, exposición histórica E1</p></td>
+</tr>
+<tr class="row-even"><td><p>B19 Réplica/limitación paper</p></td>
+<td><p>C</p></td>
+<td><p>ID32 réplica compatible; ID33 limitación por área no confirmada (déficit de nivel)</p></td>
+</tr>
+<tr class="row-odd"><td><p>B20 Reproducción independiente/discrepancia</p></td>
+<td><p>P</p></td>
+<td><p>Agregación 0; entorno limpio parcial (ID55)</p></td>
+</tr>
+<tr class="row-even"><td><p>B21 Extremo a extremo y entorno</p></td>
+<td><p>P</p></td>
+<td><p>Informe con un comando; experimentos faltantes</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="orden-de-cierre-para-el-domingo">
+<h2>Orden de cierre para el domingo<a class="headerlink" href="#orden-de-cierre-para-el-domingo" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Revisar evidencia integrada y compilar. No llamar definitivo al informe con requisitos centrales F.</p></li>
+<li><p>Ejecutar complemento GPU con pesos congelados: calibración, robustez, explicabilidad, incertidumbre, bordes y costo. Protocolo antes de esa ejecución; carácter exploratorio explícito.</p></li>
+<li><p>Definir presupuesto para réplica original, clásico fuerte y ablaciones. No seleccionar variantes usando test ni prometer cómputo no realizado.</p></li>
+<li><p>Adjudicar bibliografía y anotación humana con trazabilidad; Q5/Q6 siguen omitidas.</p></li>
+<li><p>Preparar defensa, reproducción limpia y revisión final. Solicitar autorización al llegar a publicación.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="cierre_e2.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Discusión, limitaciones y cierre pendiente</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="reproducibilidad_e2.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Reproducción y archivos de entrega</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problema-hipotesis-datos-y-eda-rubrica-15">Problema, hipótesis, datos y EDA — rúbrica 15 %</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#literatura-paper-guia-y-gap-rubrica-15">Literatura, paper guía y gap — rúbrica 15 %</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-y-rigor-experimental-rubrica-25">Implementación y rigor experimental — rúbrica 25 %</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchmark-e-inferencia-rubrica-20">Benchmark e inferencia — rúbrica 20 %</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ruta-f4b-y-diagnosticos-rubrica-15">Ruta F4b y diagnósticos — rúbrica 15 %</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducibilidad-redaccion-y-defensa-rubrica-10">Reproducibilidad, redacción y defensa — rúbrica 10 %</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apendice-b-las-21-casillas-originales">Apéndice B: las 21 casillas originales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orden-de-cierre-para-el-domingo">Orden de cierre para el domingo</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Luis Perez y Daniel Carbono
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,771 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="es" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Entrenamientos complementarios &#8212; Segmentación de etiquetas de mercancías peligrosas</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'entrenamiento_complementario_e2';</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Discusión, limitaciones y cierre pendiente" href="cierre_e2.html" />
+    <link rel="prev" title="Diagnósticos sobre los pesos congelados" href="diagnosticos_e2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Segmentación de etiquetas de mercancías peligrosas</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Entregable 2</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="problema.html">Problema y datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eda.html">EDA y preparación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="literatura.html">Literatura, selección operativa y paper guía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelos_e2.html">Fichas de las diez implementaciones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metodos_e2.html">Diseño experimental y ruta de segmentación E2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resultados_e2.html">Resultados E2: benchmark e inferencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="complementos_e2.html">Complementos locales del 20 de noviembre</a></li>
+<li class="toctree-l1"><a class="reference internal" href="complementos_datos_e2.html">Complementos de datos: fuga, shift, ruido, techo y EDA por clase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagnosticos_e2.html">Diagnósticos sobre los pesos congelados</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Entrenamientos complementarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cierre_e2.html">Discusión, limitaciones y cierre pendiente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="checklist_e2.html">Verificación de requisitos del Entregable 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reproducibilidad_e2.html">Reproducción y archivos de entrega</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Antecedentes del Entregable 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="implementacion.html">Diseño experimental e implementación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resultados.html">Resultados y baseline</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Entrenamientos complementarios</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prueba-de-sanidad-sobreajustar-un-lote">Prueba de sanidad: sobreajustar un lote</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ablacion-de-transunet">Ablación de TransUNet</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#permutacion-de-mascaras-en-train">Permutación de máscaras en train</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-de-hiperparametros">Búsqueda de hiperparámetros</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computo">Cómputo</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="entrenamientos-complementarios">
+<h1>Entrenamientos complementarios<a class="headerlink" href="#entrenamientos-complementarios" title="Permalink to this heading">#</a></h1>
+<p><strong>Exploratorio, posterior a la exposición del test.</strong> Lo que exige volver a entrenar y el benchmark no cubría. Corrido
+en una GPU L4 con <code class="docutils literal notranslate"><span class="pre">colab/Complemento_Entrenamiento_E2.ipynb</span></code> y <code class="docutils literal notranslate"><span class="pre">scripts/complemento_entreno_e2.py</span></code>, con el entorno y
+el protocolo del benchmark (<code class="docutils literal notranslate"><span class="pre">config/complemento_entreno_e2.json</span></code>). Aquí no se carga el test: todo se mide en train o
+en validación.</p>
+<section id="prueba-de-sanidad-sobreajustar-un-lote">
+<h2>Prueba de sanidad: sobreajustar un lote<a class="headerlink" href="#prueba-de-sanidad-sobreajustar-un-lote" title="Permalink to this heading">#</a></h2>
+<p>Una implementación correcta debe poder memorizar un lote pequeño. Cada red se entrenó 500 pasos sobre el mismo lote
+fijo de 4 imágenes de train, con el optimizador y la pérdida de su receta, y se midió el Dice de esas 4 imágenes en
+modo evaluación. La regla, fijada antes de correr: pasa si el Dice medio del lote llega a 0,90; si no, se reporta tal
+cual, sin cambiar la receta.</p>
+<p><strong>Nueve de diez redes pasan</strong>, con Dice del lote entre 0,967 (SegNeXt-T) y 1,000 (U-Net++). <strong>VM-UNet no pasa</strong>
+(0,750). La tabla por imagen muestra dónde está el fallo:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Red</p></th>
+<th class="head text-right"><p>image_0264 (3,0 %)</p></th>
+<th class="head text-right"><p>image_0796 (13,4 %)</p></th>
+<th class="head text-right"><p>image_1231 (1,1 %)</p></th>
+<th class="head text-right"><p>image_1250 (13,2 %)</p></th>
+<th class="head text-right"><p>Dice del lote</p></th>
+<th class="head text-center"><p>Pasa</p></th>
+<th class="head text-right"><p>Pérdida paso 1 → 200 → 500</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>U-Net++ R18</p></td>
+<td class="text-right"><p>1,000</p></td>
+<td class="text-right"><p>1,000</p></td>
+<td class="text-right"><p>1,000</p></td>
+<td class="text-right"><p>1,000</p></td>
+<td class="text-right"><p>1,000</p></td>
+<td class="text-center"><p>sí</p></td>
+<td class="text-right"><p>0,894 → 0,015 → 0,002</p></td>
+</tr>
+<tr class="row-odd"><td><p>TransUNet</p></td>
+<td class="text-right"><p>0,999</p></td>
+<td class="text-right"><p>1,000</p></td>
+<td class="text-right"><p>1,000</p></td>
+<td class="text-right"><p>0,999</p></td>
+<td class="text-right"><p>1,000</p></td>
+<td class="text-center"><p>sí</p></td>
+<td class="text-right"><p>0,809 → 0,024 → 0,007</p></td>
+</tr>
+<tr class="row-even"><td><p>DeepLabv3+ R18</p></td>
+<td class="text-right"><p>0,994</p></td>
+<td class="text-right"><p>1,000</p></td>
+<td class="text-right"><p>0,993</p></td>
+<td class="text-right"><p>1,000</p></td>
+<td class="text-right"><p>0,996</p></td>
+<td class="text-center"><p>sí</p></td>
+<td class="text-right"><p>0,821 → 0,011 → 0,005</p></td>
+</tr>
+<tr class="row-odd"><td><p>SegNet compacta</p></td>
+<td class="text-right"><p>0,990</p></td>
+<td class="text-right"><p>0,998</p></td>
+<td class="text-right"><p>0,985</p></td>
+<td class="text-right"><p>0,996</p></td>
+<td class="text-right"><p>0,992</p></td>
+<td class="text-center"><p>sí</p></td>
+<td class="text-right"><p>0,787 → 0,027 → 0,006</p></td>
+</tr>
+<tr class="row-even"><td><p>U-Net compacta</p></td>
+<td class="text-right"><p>0,981</p></td>
+<td class="text-right"><p>0,993</p></td>
+<td class="text-right"><p>0,981</p></td>
+<td class="text-right"><p>0,995</p></td>
+<td class="text-right"><p>0,988</p></td>
+<td class="text-center"><p>sí</p></td>
+<td class="text-right"><p>0,837 → 0,018 → 0,006</p></td>
+</tr>
+<tr class="row-odd"><td><p>PIDNet-S</p></td>
+<td class="text-right"><p>0,973</p></td>
+<td class="text-right"><p>0,994</p></td>
+<td class="text-right"><p>0,981</p></td>
+<td class="text-right"><p>0,997</p></td>
+<td class="text-right"><p>0,986</p></td>
+<td class="text-center"><p>sí</p></td>
+<td class="text-right"><p>5,405 → 0,035 → 0,031</p></td>
+</tr>
+<tr class="row-even"><td><p>SegFormer-B0</p></td>
+<td class="text-right"><p>0,969</p></td>
+<td class="text-right"><p>0,996</p></td>
+<td class="text-right"><p>0,964</p></td>
+<td class="text-right"><p>0,996</p></td>
+<td class="text-right"><p>0,981</p></td>
+<td class="text-center"><p>sí</p></td>
+<td class="text-right"><p>0,729 → 0,041 → 0,025</p></td>
+</tr>
+<tr class="row-odd"><td><p>FCN compacta</p></td>
+<td class="text-right"><p>0,969</p></td>
+<td class="text-right"><p>0,996</p></td>
+<td class="text-right"><p>0,955</p></td>
+<td class="text-right"><p>0,994</p></td>
+<td class="text-right"><p>0,978</p></td>
+<td class="text-center"><p>sí</p></td>
+<td class="text-right"><p>0,811 → 0,026 → 0,016</p></td>
+</tr>
+<tr class="row-even"><td><p>SegNeXt-T</p></td>
+<td class="text-right"><p>0,956</p></td>
+<td class="text-right"><p>0,993</p></td>
+<td class="text-right"><p>0,924</p></td>
+<td class="text-right"><p>0,993</p></td>
+<td class="text-right"><p>0,967</p></td>
+<td class="text-center"><p>sí</p></td>
+<td class="text-right"><p>0,774 → 0,131 → 0,048</p></td>
+</tr>
+<tr class="row-odd"><td><p>VM-UNet</p></td>
+<td class="text-right"><p>1,000</p></td>
+<td class="text-right"><p>1,000</p></td>
+<td class="text-right"><p>0,000</p></td>
+<td class="text-right"><p>1,000</p></td>
+<td class="text-right"><p>0,750</p></td>
+<td class="text-center"><p><strong>no</strong></p></td>
+<td class="text-right"><p>0,768 → 0,141 → 0,137</p></td>
+</tr>
+</tbody>
+</table>
+<p>VM-UNet memoriza tres de las cuatro imágenes con Dice de 1,000 y en la cuarta, image_1231, no predice nada: Dice 0.
+Su promedio, 0,750, es exactamente (1 + 1 + 0 + 1) / 4. image_1231 es la del rótulo más pequeño del lote, alrededor
+del 1 % de una foto de 1000 × 1000, unos 25 × 25 píxeles tras reducirla a 256. Las otras nueve redes sí la aprenden
+(de 0,924 en SegNeXt-T a 1,000).</p>
+<p><strong>No es falta de pasos.</strong> La pérdida de VM-UNet baja hasta el paso 150 y desde el 200 queda plana (0,141 → 0,137
+en los 300 pasos siguientes). Las demás redes siguen bajando hasta el final. La red quedó en un mínimo local en el que
+el rótulo pequeño se predice vacío.</p>
+<p><strong>Lectura.</strong> Una red mal conectada no memoriza tres imágenes con Dice de 1,000, así que el resultado no apunta a un
+error de implementación. Apunta a una dificultad de VM-UNet con objetos pequeños o a una optimización inestable, que
+encaja con su dispersión entre semillas en el test del benchmark (± 0,030, la segunda mayor de las diez después
+de SegNet). Una explicación posible, no
+probada, es que la reducción inicial de resolución deje un rótulo de ese tamaño en muy pocas celdas del mapa de
+rasgos. No se repitió con más pasos ni con otra semilla: la regla se fijó antes y la curva ya muestra que más pasos
+no cambian el resultado.</p>
+</section>
+<section id="ablacion-de-transunet">
+<h2>Ablación de TransUNet<a class="headerlink" href="#ablacion-de-transunet" title="Permalink to this heading">#</a></h2>
+<p>TransUNet fue la red con mejor Dice de validación del benchmark (0,853, media de cinco semillas), y por eso se eligió
+sin mirar el test. Se le quitó un componente a la vez y se reentrenó con las mismas cinco semillas y el mismo protocolo
+(SGD, 30 épocas como máximo, paciencia 5, sin pesos preentrenados): sin el Transformer del codificador (cero bloques
+de autoatención; quedan la ResNet-50, el decodificador y las tres conexiones de salto), sin las conexiones de salto (el
+decodificador solo recibe la salida del codificador) y con BCE sola en lugar de 0,5 BCE + 0,5 Dice. Son los contrastes
+que estudia el artículo de TransUNet (Chen et al., 2021): R50-U-Net frente a TransUNet y el número de saltos. La referencia son las cinco corridas de la red completa del benchmark, pareadas por semilla.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variante</p></th>
+<th class="head text-right"><p>Parámetros</p></th>
+<th class="head text-right"><p>Dice val medio</p></th>
+<th class="head text-right"><p>Diferencia</p></th>
+<th class="head text-right"><p>IC95 t (semillas)</p></th>
+<th class="head text-right"><p>p t, Holm</p></th>
+<th class="head text-right"><p>p Wilcoxon</p></th>
+<th class="head text-right"><p>IC95 bootstrap (grupos)</p></th>
+<th class="head text-right"><p>Épocas</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TransUNet completa (benchmark)</p></td>
+<td class="text-right"><p>105,3 M</p></td>
+<td class="text-right"><p>0,853</p></td>
+<td class="text-right"><p>—</p></td>
+<td class="text-right"><p>—</p></td>
+<td class="text-right"><p>—</p></td>
+<td class="text-right"><p>—</p></td>
+<td class="text-right"><p>—</p></td>
+<td class="text-right"><p>30 máx.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sin Transformer</p></td>
+<td class="text-right"><p>20,3 M</p></td>
+<td class="text-right"><p>0,861</p></td>
+<td class="text-right"><p>0,007</p></td>
+<td class="text-right"><p>[−0,001; 0,015]</p></td>
+<td class="text-right"><p>0,065</p></td>
+<td class="text-right"><p>0,1250</p></td>
+<td class="text-right"><p>[0,001; 0,014]</p></td>
+<td class="text-right"><p>27–30</p></td>
+</tr>
+<tr class="row-even"><td><p>Sin conexiones de salto</p></td>
+<td class="text-right"><p>103,8 M</p></td>
+<td class="text-right"><p>0,761</p></td>
+<td class="text-right"><p>−0,092</p></td>
+<td class="text-right"><p>[−0,105; −0,079]</p></td>
+<td class="text-right"><p>&lt; 0,001</p></td>
+<td class="text-right"><p>0,0625</p></td>
+<td class="text-right"><p>[−0,109; −0,076]</p></td>
+<td class="text-right"><p>12–28</p></td>
+</tr>
+<tr class="row-odd"><td><p>BCE sola (sin Dice)</p></td>
+<td class="text-right"><p>105,3 M</p></td>
+<td class="text-right"><p>0,816</p></td>
+<td class="text-right"><p>−0,037</p></td>
+<td class="text-right"><p>[−0,043; −0,031]</p></td>
+<td class="text-right"><p>&lt; 0,001</p></td>
+<td class="text-right"><p>0,0625</p></td>
+<td class="text-right"><p>[−0,049; −0,026]</p></td>
+<td class="text-right"><p>18–30</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Las conexiones de salto son el componente que más pesa</strong>: sin ellas el Dice cae 0,092, con un intervalo lejos del
+cero. Sin el detalle fino que traen del codificador, la red pierde el contorno de los rótulos. <strong>El término Dice de la
+pérdida aporta 0,037</strong>: con BCE sola, la red optimiza un criterio dominado por el fondo y queda más lejos del Dice
+que se mide. Al quitar el Dice también cambia la escala del gradiente y la tasa no se reajustó, porque la receta se
+mantuvo fija; parte de la caída puede venir de ahí.</p>
+<p><strong>El Transformer no aporta en estos datos.</strong> Sin él, el Dice no baja: sube 0,007, con un intervalo t entre semillas que
+incluye el cero (p de Holm 0,065), con una red cinco veces más chica (20,3 M parámetros frente a 105,3 M). El intervalo
+bootstrap por grupos excluye el cero, pero remuestrea los grupos con las semillas fijas y no recoge la variación entre
+semillas, que es la que aquí manda. La lectura prudente es que el Transformer no mejora a la U con ResNet-50: la
+ventaja de TransUNet en el benchmark viene de la ResNet-50 y de las conexiones de salto. Encaja con entrenar desde
+cero con 1.015 imágenes, pocas para que doce bloques de autoatención aprendan algo que las convoluciones no capten.</p>
+<p>Con 5 pares, el Wilcoxon exacto no puede bajar de 0,0625: las dos variantes con caída tienen las cinco diferencias del
+mismo signo, que es lo máximo que la prueba puede mostrar con ese tamaño. La referencia viene de las corridas del
+benchmark y no de un control reentrenado en la misma sesión; con el mismo entorno, semillas y receta, la diferencia
+de ejecución entre sesiones es pequeña frente a las caídas observadas, pero no es cero.</p>
+</section>
+<section id="permutacion-de-mascaras-en-train">
+<h2>Permutación de máscaras en train<a class="headerlink" href="#permutacion-de-mascaras-en-train" title="Permalink to this heading">#</a></h2>
+<p>La prueba responde si el pipeline aprende la relación entre imagen y rótulo o solo regularidades que no dependen de
+ella. En cada réplica se barajaron las 1.015 máscaras de train entre imágenes y se reentrenó FCN compacta con el pipeline
+completo del benchmark (mismo orden de lotes que la semilla 11, 30 épocas como máximo, paciencia 5). La validación se
+midió con sus máscaras verdaderas. Se eligió FCN porque es la red más barata del benchmark; la versión con TransUNet
+(B = 19, por debajo del mínimo de la guía) no se corrió.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Pipeline</p></th>
+<th class="head text-right"><p>B</p></th>
+<th class="head text-right"><p>Dice val real</p></th>
+<th class="head text-right"><p>Nula: mín.</p></th>
+<th class="head text-right"><p>media</p></th>
+<th class="head text-right"><p>mediana</p></th>
+<th class="head text-right"><p>máx.</p></th>
+<th class="head text-right"><p>p</p></th>
+<th class="head text-right"><p>Épocas por réplica</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>FCN compacta</p></td>
+<td class="text-right"><p>200</p></td>
+<td class="text-right"><p>0,823</p></td>
+<td class="text-right"><p>0,045</p></td>
+<td class="text-right"><p>0,465</p></td>
+<td class="text-right"><p>0,490</p></td>
+<td class="text-right"><p>0,592</p></td>
+<td class="text-right"><p>0,0050</p></td>
+<td class="text-right"><p>6–24 (media 11,8)</p></td>
+</tr>
+</tbody>
+</table>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="_images/permutacion_fcn.png"><img alt="_images/permutacion_fcn.png" src="_images/permutacion_fcn.png" style="width: 85%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 1 </span><span class="caption-text">Dice de validación de las 200 réplicas con máscaras permutadas (gris) y de la FCN entrenada con sus máscaras (rojo).</span><a class="headerlink" href="#id1" title="Enlace permanente a esta imagen">#</a></p>
+</figcaption>
+</figure>
+<p>Ninguna de las 200 réplicas llega al Dice real: p = 0,005, el mínimo posible con B = 200. <strong>La distribución nula no
+está en cero.</strong> Su media es 0,465. Con las máscaras barajadas, la red no puede aprender qué imagen va con qué rótulo,
+pero sí dónde suelen caer los rótulos y de qué tamaño son, y con eso ya solapa casi la mitad. Ese 0,465 es lo que
+el pipeline obtiene sin información de la imagen; el 0,823 real lo supera en 0,36.</p>
+</section>
+<section id="busqueda-de-hiperparametros">
+<h2>Búsqueda de hiperparámetros<a class="headerlink" href="#busqueda-de-hiperparametros" title="Permalink to this heading">#</a></h2>
+<p>El benchmark entrenó cada red con la receta de su artículo, sin búsqueda. La búsqueda mide cuánto depende la comparación
+de esa elección. Se probaron T = 4 configuraciones por red con el mismo presupuesto (10 épocas como máximo, paciencia 3,
+semilla 11). El intento 0 es la receta; los otros tres multiplican su tasa de aprendizaje por el mismo factor en las 10
+redes, sorteado en escala logarítmica dentro de una década hacia cada lado, y fijan el weight decay. La elección se hace
+solo con validación.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Red</p></th>
+<th class="head text-right"><p>Receta (t0)</p></th>
+<th class="head text-right"><p>t1: lr × 0,1</p></th>
+<th class="head text-right"><p>t2: lr × 9,3</p></th>
+<th class="head text-right"><p>t3: lr × 1,19, sin wd</p></th>
+<th class="head text-right"><p>Mejor − receta</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TransUNet</p></td>
+<td class="text-right"><p>0,813</p></td>
+<td class="text-right"><p>0,742</p></td>
+<td class="text-right"><p><strong>0,814</strong></p></td>
+<td class="text-right"><p>0,805</p></td>
+<td class="text-right"><p>0,001</p></td>
+</tr>
+<tr class="row-odd"><td><p>VM-UNet</p></td>
+<td class="text-right"><p><strong>0,801</strong></p></td>
+<td class="text-right"><p>0,750</p></td>
+<td class="text-right"><p>0,009</p></td>
+<td class="text-right"><p>0,758</p></td>
+<td class="text-right"><p>0,000</p></td>
+</tr>
+<tr class="row-even"><td><p>U-Net++ R18</p></td>
+<td class="text-right"><p>0,774</p></td>
+<td class="text-right"><p><strong>0,785</strong></p></td>
+<td class="text-right"><p>0,659</p></td>
+<td class="text-right"><p>0,764</p></td>
+<td class="text-right"><p>0,011</p></td>
+</tr>
+<tr class="row-odd"><td><p>SegFormer-B0</p></td>
+<td class="text-right"><p>0,660</p></td>
+<td class="text-right"><p>0,540</p></td>
+<td class="text-right"><p><strong>0,782</strong></p></td>
+<td class="text-right"><p>0,668</p></td>
+<td class="text-right"><p>0,122</p></td>
+</tr>
+<tr class="row-even"><td><p>SegNet compacta</p></td>
+<td class="text-right"><p>0,753</p></td>
+<td class="text-right"><p>0,736</p></td>
+<td class="text-right"><p>0,000</p></td>
+<td class="text-right"><p><strong>0,781</strong></p></td>
+<td class="text-right"><p>0,028</p></td>
+</tr>
+<tr class="row-odd"><td><p>SegNeXt-T</p></td>
+<td class="text-right"><p>0,735</p></td>
+<td class="text-right"><p>0,654</p></td>
+<td class="text-right"><p><strong>0,779</strong></p></td>
+<td class="text-right"><p>0,746</p></td>
+<td class="text-right"><p>0,045</p></td>
+</tr>
+<tr class="row-even"><td><p>PIDNet-S</p></td>
+<td class="text-right"><p>0,756</p></td>
+<td class="text-right"><p>0,656</p></td>
+<td class="text-right"><p>0,737</p></td>
+<td class="text-right"><p><strong>0,778</strong></p></td>
+<td class="text-right"><p>0,022</p></td>
+</tr>
+<tr class="row-odd"><td><p>FCN compacta</p></td>
+<td class="text-right"><p>0,753</p></td>
+<td class="text-right"><p>0,710</p></td>
+<td class="text-right"><p>0,667</p></td>
+<td class="text-right"><p><strong>0,771</strong></p></td>
+<td class="text-right"><p>0,019</p></td>
+</tr>
+<tr class="row-even"><td><p>U-Net compacta</p></td>
+<td class="text-right"><p>0,767</p></td>
+<td class="text-right"><p>0,734</p></td>
+<td class="text-right"><p>0,628</p></td>
+<td class="text-right"><p><strong>0,770</strong></p></td>
+<td class="text-right"><p>0,003</p></td>
+</tr>
+<tr class="row-odd"><td><p>DeepLabv3+ R18</p></td>
+<td class="text-right"><p>0,715</p></td>
+<td class="text-right"><p>0,722</p></td>
+<td class="text-right"><p>0,688</p></td>
+<td class="text-right"><p><strong>0,728</strong></p></td>
+<td class="text-right"><p>0,013</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p><strong>La receta es la mejor solo en VM-UNet.</strong> En TransUNet empata con t2 (0,813 frente a 0,814). En las otras ocho redes
+algún intento la supera, en seis de ellas por menos de 0,03, del orden de lo que mueve cambiar de semilla (la
+desviación entre semillas llega a 0,033 en el test del benchmark).</p></li>
+<li><p><strong>SegFormer-B0 es la excepción.</strong> Con la tasa multiplicada por 9,3 sube de 0,660 a 0,782 y pasa del último lugar a
+la mitad de la tabla. Su último lugar en el benchmark depende en buena parte de la receta, que fija una tasa baja
+(6 × 10⁻⁵, la de su artículo). SegNeXt-T mejora 0,045 por la misma vía.</p></li>
+<li><p><strong>Una tasa alta rompe dos redes.</strong> Con t2, SegNet compacta y VM-UNet colapsan a predecir fondo (Dice 0,000 y 0,009) y
+la paciencia las detiene en la época 4 o 5. VM-UNet también es la que no memorizó el lote en la prueba de sanidad:
+las dos pruebas apuntan a una optimización frágil.</p></li>
+<li><p><strong>Las dos primeras no cambian.</strong> TransUNet (0,814) y VM-UNet (0,801) siguen arriba con su mejor configuración.</p></li>
+</ul>
+<p>Es exploratoria. Una semilla y 10 épocas favorecen las configuraciones que aprenden rápido y dejan ruido de semilla en
+la elección. El espacio cubre solo tasa y weight decay, los dos hiperparámetros comunes a los diez optimizadores, y no
+el lote, el dropout ni la profundidad. Reentrenar la configuración ganadora de cada red con cinco semillas y 30 épocas
+quedó diseñado (unas 17 h de L4) y no se corrió.</p>
+</section>
+<section id="computo">
+<h2>Cómputo<a class="headerlink" href="#computo" title="Permalink to this heading">#</a></h2>
+<p>Tiempo de GPU L4 sumado de los registros de cada corrida (<code class="docutils literal notranslate"><span class="pre">resultados/complemento_entreno_e2/corridas.csv</span></code>): ablación
+7,4 h, permutación 3,8 h, búsqueda 3,9 h y sobreajuste 0,1 h; unas 15 h en total, repartidas en dos sesiones
+paralelas.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="diagnosticos_e2.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Diagnósticos sobre los pesos congelados</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="cierre_e2.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Discusión, limitaciones y cierre pendiente</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prueba-de-sanidad-sobreajustar-un-lote">Prueba de sanidad: sobreajustar un lote</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ablacion-de-transunet">Ablación de TransUNet</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#permutacion-de-mascaras-en-train">Permutación de máscaras en train</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-de-hiperparametros">Búsqueda de hiperparámetros</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computo">Cómputo</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Luis Perez y Daniel Carbono
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

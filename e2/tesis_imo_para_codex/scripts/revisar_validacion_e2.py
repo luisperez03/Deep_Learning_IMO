@@ -1,5 +1,11 @@
-"""Casos de validación seleccionados explícitamente, sin modificar modelos."""
+"""Casos de validación seleccionados explícitamente, sin modificar modelos.
+
+  python revisar_validacion_e2.py                 # selecciona los casos con los 50 checkpoints y dibuja el panel
+  python revisar_validacion_e2.py --desde-casos   # reusa resultados/revision_visual_e2/casos.json y solo carga
+                                                  # los tres checkpoints de semilla 11 que se dibujan
+"""
 import json
+import sys
 import statistics as st
 from collections import defaultdict
 from pathlib import Path
@@ -18,6 +24,14 @@ OUT=PROJECT/'resultados/revision_visual_e2'
 def main():
     OUT.mkdir(parents=True,exist_ok=True);torch.set_num_threads(2)
     rows={r['id']:r for r in partition('val')}
+    if '--desde-casos' in sys.argv:
+        manifest=json.loads((OUT/'casos.json').read_text(encoding='utf-8'));selected=manifest['cases']
+    else:
+        manifest,selected=seleccionar(rows)
+    dibujar(rows,selected,manifest)
+
+
+def seleccionar(rows):
     scores=defaultdict(lambda:defaultdict(list))
     for p in sorted(RUNS.glob('*_seed*/result.json')):
         result=json.loads(p.read_text())
@@ -48,6 +62,11 @@ def main():
     manifest={'split':'val','selection':'descriptive, not representative sample; distinct similarity groups',
               'illustration_seed':11,'negative_images':len(negatives),'cases':selected}
     (OUT/'casos.json').write_text(json.dumps(manifest,indent=2,ensure_ascii=False),encoding='utf-8')
+    return manifest,selected
+
+
+@torch.inference_mode()
+def dibujar(rows,selected,manifest):
     models=['fcn','unet','transunet_2d'];predictions={}
     for name in models:
         folder=RUNS/f'{name}_seed11';r=json.loads((folder/'result.json').read_text())

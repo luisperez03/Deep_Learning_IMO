@@ -1,0 +1,644 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="es" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Diseño experimental y ruta de segmentación E2 &#8212; Segmentación de etiquetas de mercancías peligrosas</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'metodos_e2';</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Resultados E2: benchmark e inferencia" href="resultados_e2.html" />
+    <link rel="prev" title="Fichas de las diez implementaciones" href="modelos_e2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Segmentación de etiquetas de mercancías peligrosas</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Entregable 2</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="problema.html">Problema y datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eda.html">EDA y preparación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="literatura.html">Literatura, selección operativa y paper guía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelos_e2.html">Fichas de las diez implementaciones</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Diseño experimental y ruta de segmentación E2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resultados_e2.html">Resultados E2: benchmark e inferencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="complementos_e2.html">Complementos locales del 20 de noviembre</a></li>
+<li class="toctree-l1"><a class="reference internal" href="complementos_datos_e2.html">Complementos de datos: fuga, shift, ruido, techo y EDA por clase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagnosticos_e2.html">Diagnósticos sobre los pesos congelados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entrenamiento_complementario_e2.html">Entrenamientos complementarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cierre_e2.html">Discusión, limitaciones y cierre pendiente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="checklist_e2.html">Verificación de requisitos del Entregable 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reproducibilidad_e2.html">Reproducción y archivos de entrega</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Antecedentes del Entregable 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="implementacion.html">Diseño experimental e implementación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resultados.html">Resultados y baseline</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Diseño experimental y ruta de segmentación E2</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pregunta-estimando-y-alcance">Pregunta, estimando y alcance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preguntas-e-hipotesis">Preguntas e hipótesis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-contrato-y-trazabilidad">Datos, contrato y trazabilidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#receta-realmente-ejecutada">Receta realmente ejecutada</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-integridad-y-reproducibilidad">Registro, integridad y reproducibilidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-de-ajuste-y-sobreajuste">Diagnóstico de ajuste y sobreajuste</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ruta-f4b-comprobacion-explicita">Ruta F4b: comprobación explícita</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="diseno-experimental-y-ruta-de-segmentacion-e2">
+<h1>Diseño experimental y ruta de segmentación E2<a class="headerlink" href="#diseno-experimental-y-ruta-de-segmentacion-e2" title="Permalink to this heading">#</a></h1>
+<section id="pregunta-estimando-y-alcance">
+<h2>Pregunta, estimando y alcance<a class="headerlink" href="#pregunta-estimando-y-alcance" title="Permalink to this heading">#</a></h2>
+<p>Se estudia segmentación semántica binaria de rótulos: una imagen RGB produce un logit por píxel; no se distingue la clase IMO ni la identidad de cada instancia. La ruta aplicable es <strong>F4b, SG1–SG7</strong> de la guía. Las rutas de regresión temporal, espacial y de lenguaje no aplican. La posición espacial de los píxeles no convierte esta tarea en regresión geográfica.</p>
+<p>Sean <span class="math notranslate nohighlight">\(p_\theta(x)=\sigma(f_\theta(x))\)</span> y <span class="math notranslate nohighlight">\(v\)</span> la máscara de píxeles válidos. El riesgo esperado es <span class="math notranslate nohighlight">\(R(\theta)=\mathbb E[L(p_\theta(X),Y;v)]\)</span>. Los pesos minimizan el riesgo empírico en entrenamiento. El test estima desempeño de los checkpoints fijados, no se usa para minimizar pérdidas ni elegir umbral. El riesgo basado en la pérdida y el Dice de evaluación son objetos diferentes.</p>
+<p>La métrica primaria heredada es Dice de etiqueta, promediado primero por imagen dentro de cada grupo de similitud, después por grupo con igual peso y finalmente por las cinco semillas. IoU de etiqueta, mIoU etiqueta/fondo y exactitud válida son secundarias. Se conserva <strong>δ = 0,02 Dice absoluto</strong>, propuesto en E1 como umbral de trabajo académico; no es un umbral de seguridad portuaria validado.</p>
+</section>
+<section id="preguntas-e-hipotesis">
+<h2>Preguntas e hipótesis<a class="headerlink" href="#preguntas-e-hipotesis" title="Permalink to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Pregunta</p></th>
+<th class="head"><p>Hipótesis / criterio</p></th>
+<th class="head"><p>Estado temporal y respuesta posible</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>RQ1. ¿TransUNet mejora el Dice frente a la FCN de referencia?</p></td>
+<td><p>Diferencia media Δ; H0: Δ=0 frente a Δ≠0; α=0,05. Para mejora práctica, exigir evidencia por encima de δ=0,02.</p></td>
+<td><p>Contraste principal fijado después de validación y antes de test; no preregistrado antes del entrenamiento. IC pareado de grupos cerrado. Las pruebas añadidas posteriormente son exploratorias.</p></td>
+</tr>
+<tr class="row-odd"><td><p>RQ2. ¿Existen diferencias entre las diez adaptaciones bajo la receta aplicada?</p></td>
+<td><p>H0 global de rangos intercambiables; Friedman y post-hoc. Nueve contrastes contra FCN, Holm por procedimiento, α=0,05.</p></td>
+<td><p>Exploratoria posterior al test. Condicional a cinco semillas y una partición; no afirma diferencias universales entre familias.</p></td>
+</tr>
+<tr class="row-even"><td><p>RQ3. ¿Una alternativa de menor tamaño conserva desempeño dentro de ±0,02 respecto de TransUNet?</p></td>
+<td><p>H0 de no equivalencia: Δ≤−0,02 o Δ≥0,02; H1: −0,02&lt;Δ&lt;0,02. Se requiere TOST o intervalo equivalente apropiado.</p></td>
+<td><p>Pregunta exploratoria; Pareto describe tamaño/desempeño. El IC95 actual no acredita equivalencia; no se declara un resultado TOST no ejecutado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>RQ4. ¿El área anotada se asocia con dificultad compartida?</p></td>
+<td><p>Describir Dice por cuartiles de área definidos en train e IC por grupos.</p></td>
+<td><p>Exploratoria, sin declaración causal ni prueba confirmatoria. Permite proponer un experimento futuro sobre resolución/bordes.</p></td>
+</tr>
+</tbody>
+</table>
+<p>La familia de nueve contrastes añadida en esta integración se declara ahora. No se presenta como decisión anterior al test. La hipótesis futura de E3 debe validarse en una evaluación independiente y no ajustando el modelo al test ya visto.</p>
+</section>
+<section id="datos-contrato-y-trazabilidad">
+<h2>Datos, contrato y trazabilidad<a class="headerlink" href="#datos-contrato-y-trazabilidad" title="Permalink to this heading">#</a></h2>
+<p>Se heredan las particiones del E1: 1.015 imágenes/567 grupos en train; 218/122 en validación; 218/122 en test. Otras 132 imágenes permanecen en cuarentena y 102 no tienen máscara utilizable. Los originales se conservan intactos. Ver el capítulo de datos y EDA para procedencia y límites de licencia.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Campo del contrato</p></th>
+<th class="head"><p>Regla aplicada</p></th>
+<th class="head"><p>Evidencia</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ID y grupo</p></td>
+<td><p>ID único; cada grupo pertenece a una sola partición</p></td>
+<td><p>Manifiestos <code class="docutils literal notranslate"><span class="pre">train.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">val.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">test.csv</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Imagen</p></td>
+<td><p>RGB; integridad SHA-256; geometría compartida con máscara</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dataset_ready.load_example</span></code>, manifiestos</p></td>
+</tr>
+<tr class="row-even"><td><p>Objetivo derivado</p></td>
+<td><p>Valores 0/1; unión de categorías anotadas</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">preparar_base.binary_mask</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Entrada</p></td>
+<td><p>Letterbox a 256×256; imagen bilineal y máscara vecino más cercano</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">preparar_base.letterbox</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Zona válida</p></td>
+<td><p>Excluir padding en pérdida y métricas; no inferir que el relleno es fondo observado</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dataset_ready.metrics</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Normalización</p></td>
+<td><p>Media [0,604051; 0,560752; 0,507238], DE [0,232527; 0,226602; 0,239677], calculadas solo en train</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">normalization_train.json</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Orden y sellado</p></td>
+<td><p>Orden de test y hashes de los 50 checkpoints fijados antes de evaluación E2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">config/protocolo_test_e2_cerrado.json</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>El EDA global y el test del E1 ya se habían observado. Por tanto, este test es reservado para la selección de checkpoints de E2, <strong>pero no es un holdout históricamente virgen</strong>. Los grupos proceden de similitud visual, no de identificadores certificados de escena. Cero enlaces conocidos entre particiones no prueba independencia absoluta ni ausencia de todos los duplicados posibles.</p>
+</section>
+<section id="receta-realmente-ejecutada">
+<h2>Receta realmente ejecutada<a class="headerlink" href="#receta-realmente-ejecutada" title="Permalink to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Componente</p></th>
+<th class="head"><p>Valor</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Modelos y familias</p></td>
+<td><p>Diez: siete CNN, un Transformer, un híbrido CNN–Transformer y un SSM</p></td>
+</tr>
+<tr class="row-odd"><td><p>Aceptación docente del número</p></td>
+<td><p>El usuario confirmó el 19/11 que el profesor acepta 3 del E1 + 7 nuevos; no se infiere aprobación de otros requisitos</p></td>
+</tr>
+<tr class="row-even"><td><p>Inicialización</p></td>
+<td><p>Aleatoria para las diez redes; sin pesos externos</p></td>
+</tr>
+<tr class="row-odd"><td><p>Semillas</p></td>
+<td><p>11, 23, 37, 53, 71; Python, NumPy y PyTorch</p></td>
+</tr>
+<tr class="row-even"><td><p>Resolución / batch</p></td>
+<td><p>256×256; batch 2, último lote 3 para evitar un singleton con BatchNorm</p></td>
+</tr>
+<tr class="row-odd"><td><p>Presupuesto</p></td>
+<td><p>Una receta fija por red; máximo 30 épocas y paciencia 5</p></td>
+</tr>
+<tr class="row-even"><td><p>Selección</p></td>
+<td><p>Máximo Dice de validación por grupos; primer máximo ante empate; no reentrenamiento train+val</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pérdida</p></td>
+<td><p>½ BCEWithLogits + ½ Dice suave por imagen válida; PIDNet agrega auxiliar P (0,4) y borde D (1,0)</p></td>
+</tr>
+<tr class="row-even"><td><p>Aumentos</p></td>
+<td><p>Ninguno; por ello no hay transformación geométrica aleatoria desincronizada</p></td>
+</tr>
+<tr class="row-odd"><td><p>Precisión / scheduler / clipping</p></td>
+<td><p>FP32; tasa fija; sin scheduler ni gradient clipping</p></td>
+</tr>
+<tr class="row-even"><td><p>Inferencia</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">eval</span></code>, sin gradientes, batch 1, umbral 0,5; RNG fijo para operaciones estocásticas de SegNeXt</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hardware</p></td>
+<td><p>Entrenamiento NVIDIA L4; evaluación final Tesla T4</p></td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Red</p></th>
+<th class="head"><p>Optimizador</p></th>
+<th class="head text-right"><p>Tasa</p></th>
+<th class="head text-right"><p>Weight decay</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>FCN compacta</p></td>
+<td><p>Adam</p></td>
+<td class="text-right"><p>0.001</p></td>
+<td class="text-right"><p>0.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>SegNet compacta</p></td>
+<td><p>Adam</p></td>
+<td class="text-right"><p>0.001</p></td>
+<td class="text-right"><p>0.0</p></td>
+</tr>
+<tr class="row-even"><td><p>U-Net compacta</p></td>
+<td><p>Adam</p></td>
+<td class="text-right"><p>0.001</p></td>
+<td class="text-right"><p>0.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>DeepLabv3+ R18</p></td>
+<td><p>AdamW</p></td>
+<td class="text-right"><p>0.0005</p></td>
+<td class="text-right"><p>0.01</p></td>
+</tr>
+<tr class="row-even"><td><p>U-Net++ R18</p></td>
+<td><p>Adam</p></td>
+<td class="text-right"><p>0.0005</p></td>
+<td class="text-right"><p>0.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>PIDNet-S</p></td>
+<td><p>AdamW</p></td>
+<td class="text-right"><p>0.001</p></td>
+<td class="text-right"><p>0.01</p></td>
+</tr>
+<tr class="row-even"><td><p>SegNeXt-T</p></td>
+<td><p>AdamW</p></td>
+<td class="text-right"><p>0.0001</p></td>
+<td class="text-right"><p>0.01</p></td>
+</tr>
+<tr class="row-odd"><td><p>SegFormer-B0</p></td>
+<td><p>AdamW</p></td>
+<td class="text-right"><p>6e-05</p></td>
+<td class="text-right"><p>0.01</p></td>
+</tr>
+<tr class="row-even"><td><p>TransUNet</p></td>
+<td><p>SGD</p></td>
+<td class="text-right"><p>0.001</p></td>
+<td class="text-right"><p>0.0001</p></td>
+</tr>
+<tr class="row-odd"><td><p>VM-UNet</p></td>
+<td><p>AdamW</p></td>
+<td class="text-right"><p>0.001</p></td>
+<td class="text-right"><p>0.01</p></td>
+</tr>
+</tbody>
+</table>
+<p>SGD de TransUNet utiliza momentum 0,9. No hubo búsqueda posterior para seleccionar estas tasas.</p>
+<p>Se igualaron datos, resolución, semillas, máximo de épocas y regla de parada. <strong>No hubo búsqueda sistemática de hiperparámetros ni igualdad de horas de GPU.</strong> Las tasas, optimizadores, capacidad y auxiliares difieren. Este experimento compara adaptaciones completas bajo recetas fijas; no aísla causalmente la arquitectura ni representa el mejor resultado posible de cada red. La autorización histórica de no ajustar hiperparámetros en E1 no acredita una excepción equivalente para E2.</p>
+<p>Las tres redes compactas del E1 conservan su código, pero se reentrenaron dentro del protocolo E2. Sus métricas E1 no se mezclan con las cincuenta corridas nuevas. FCN compacta no es FCN-8s original; U-Net compacta no usa ResNet-18.</p>
+</section>
+<section id="registro-integridad-y-reproducibilidad">
+<h2>Registro, integridad y reproducibilidad<a class="headerlink" href="#registro-integridad-y-reproducibilidad" title="Permalink to this heading">#</a></h2>
+<p>Cada corrida conserva configuración, huella de código/datos/entorno, historial, mejor checkpoint y último checkpoint. La auditoría del entrenamiento verificó 100 hashes. La auditoría de test cotejó protocolo, firmas, 50 resultados, 10.900 registros y 2.180 máscaras de semilla 11. Las restantes semillas fueron comprobadas mediante sus registros; no se repitió inferencia.</p>
+<p>El entorno fija Python 3.11, PyTorch 2.5.1+cu121, torchvision 0.20.1+cu121, SMP 0.5.0, timm 1.0.15 y las extensiones Mamba documentadas. Los paquetes completos están en los archivos <code class="docutils literal notranslate"><span class="pre">environment.freeze.txt</span></code>. Se activan algoritmos deterministas con <code class="docutils literal notranslate"><span class="pre">warn_only=True</span></code>; no se promete igualdad bit a bit entre GPU/backend. Fuentes oficiales locales fijadas por commit y hash en <code class="docutils literal notranslate"><span class="pre">third_party/e2/sources.lock.json</span></code>.</p>
+<p>La reanudación se realiza desde la última época completa; una interrupción puede repetir trabajo parcial. El tiempo registrado no reconstruye toda la facturación Colab. Los resultados locales no certifican que no hubiera reinicios no anotados.</p>
+</section>
+<section id="diagnostico-de-ajuste-y-sobreajuste">
+<h2>Diagnóstico de ajuste y sobreajuste<a class="headerlink" href="#diagnostico-de-ajuste-y-sobreajuste" title="Permalink to this heading">#</a></h2>
+<p><img alt="Cinco curvas de validación por cada red, sin promediar épocas con distinto número de corridas" src="_images/curvas_validacion.png" /></p>
+<p><img alt="Pérdida de entrenamiento de las cincuenta corridas; escalas independientes por red" src="_images/curvas_perdida.png" /></p>
+<p>Las curvas muestran la trayectoria y la variabilidad; no prueban ausencia de sobreajuste. El historial guarda pérdida de train y Dice de validación: <strong>no se pueden restar</strong>. El Dice de train con el checkpoint seleccionado se midió después, sobre los 50 checkpoints congelados (<a class="reference internal" href="diagnosticos_e2.html"><span class="doc">Diagnósticos sobre los pesos congelados</span></a>), y la permutación completa del pipeline con máscaras barajadas se corrió con FCN y B = 200 (<a class="reference internal" href="entrenamiento_complementario_e2.html"><span class="doc">Entrenamientos complementarios</span></a>); ambos son exploratorios. No se declaró un margen de sobreajuste δg: fijarlo después de ver los resultados no sería un criterio previo.</p>
+</section>
+<section id="ruta-f4b-comprobacion-explicita">
+<h2>Ruta F4b: comprobación explícita<a class="headerlink" href="#ruta-f4b-comprobacion-explicita" title="Permalink to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Paso</p></th>
+<th class="head"><p>Evidencia y estado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>SG1 imagen/máscara</p></td>
+<td><p>Alineación y auditoría geométrica disponibles; calidad semántica no certificada en cada caso; no hay doble anotación</p></td>
+</tr>
+<tr class="row-odd"><td><p>SG2 partición</p></td>
+<td><p>Grupos, cuarentena, hashes y cero enlaces de similitud conocidos cruzados; riesgo residual declarado</p></td>
+</tr>
+<tr class="row-even"><td><p>SG3 normalización</p></td>
+<td><p>Solo train; letterbox compartido; no tiling</p></td>
+</tr>
+<tr class="row-odd"><td><p>SG4 aumentos</p></td>
+<td><p>No se aplicaron; estudiar su efecto requiere ablación nueva</p></td>
+</tr>
+<tr class="row-even"><td><p>SG5 entrenamiento</p></td>
+<td><p>Diez redes × cinco semillas; misma pérdida base, con auxiliares PIDNet declarados; búsqueda de ajuste y clásico fuerte pendientes</p></td>
+</tr>
+<tr class="row-odd"><td><p>SG6 métricas</p></td>
+<td><p>Dice, IoU, mIoU, exactitud por imagen/grupo; bordes y precisión/recall completos pendientes</p></td>
+</tr>
+<tr class="row-even"><td><p>SG7 inferencia</p></td>
+<td><p>IC pareado previo; ampliación exploratoria con intercambio de signos, Wilcoxon-Holm, Friedman y Nemenyi</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="modelos_e2.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Fichas de las diez implementaciones</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="resultados_e2.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Resultados E2: benchmark e inferencia</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pregunta-estimando-y-alcance">Pregunta, estimando y alcance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preguntas-e-hipotesis">Preguntas e hipótesis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-contrato-y-trazabilidad">Datos, contrato y trazabilidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#receta-realmente-ejecutada">Receta realmente ejecutada</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-integridad-y-reproducibilidad">Registro, integridad y reproducibilidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-de-ajuste-y-sobreajuste">Diagnóstico de ajuste y sobreajuste</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ruta-f4b-comprobacion-explicita">Ruta F4b: comprobación explícita</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Luis Perez y Daniel Carbono
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,12 +1,13 @@
 
+
 <!DOCTYPE html>
 
 
-<html lang="es" data-content_root="./" >
+<html lang="es" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>EDA y preparación &#8212; Segmentación de etiquetas de mercancías peligrosas</title>
   
@@ -14,85 +15,84 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    <script src="_static/documentation_options.js?v=78d55cf8"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
-    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
-    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=b8b12719"></script>
-    <script src="_static/translations.js?v=d190bf04"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js?v=f930bc37"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'eda';</script>
-    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Búsqueda" href="search.html" />
-    <link rel="next" title="Diseño experimental e implementación" href="implementacion.html" />
-    <link rel="prev" title="Estado del arte y elección de modelos" href="literatura.html" />
+    <link rel="next" title="Literatura, selección operativa y paper guía" href="literatura.html" />
+    <link rel="prev" title="Problema y datos" href="problema.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
-  <meta name="docsearch:version" content="" />
-  
-    
-    <script src="_static/searchtools.js"></script>
-    <script src="_static/language_data.js"></script>
-    <script src="searchindex.js"></script>
-  
   </head>
-  <body data-default-mode="">
   
   
-  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
   
-  <div id="pst-scroll-pixel-helper"></div>
   
-  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
   
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
   
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
   
-  
-  <dialog id="pst-search-dialog">
-    
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -100,6 +100,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -107,69 +108,16 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
-
-  <div class="pst-async-banner-revealer d-none">
-  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
-</div>
-
-  
-    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
-<div class="bd-header__inner bd-page-width">
-  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
-    <span class="fa-solid fa-bars"></span>
-  </button>
-  
-  
-  <div class="col-lg-9 navbar-header-items">
-    
-    
-    <div class="navbar-header-items__end">
-      
-        <div class="navbar-item navbar-persistent--container">
-          
-
-<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Búsqueda</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button>
-        </div>
-      
-      
-    </div>
-    
+</form></div>
   </div>
   
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
   
-    <div class="navbar-persistent--mobile">
-
-<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Búsqueda</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button>
-    </div>
-  
-
-  
-    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
-      <span class="fa-solid fa-outdent"></span>
-    </button>
-  
-</div>
-
-    </header>
-  
-
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
-      
-      
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -182,9 +130,6 @@
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
-
-  
-    
   
 
 <a class="navbar-brand logo" href="index.html">
@@ -193,23 +138,29 @@
   
   
   
-  
     <p class="title logo__title">Segmentación de etiquetas de mercancías peligrosas</p>
   
 </a></div>
-        <div class="sidebar-primary-item">
-
-<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Búsqueda</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
-        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Entregable 2</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="problema.html">Problema y datos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="literatura.html">Estado del arte y elección de modelos</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">EDA y preparación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="literatura.html">Literatura, selección operativa y paper guía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelos_e2.html">Fichas de las diez implementaciones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metodos_e2.html">Diseño experimental y ruta de segmentación E2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resultados_e2.html">Resultados E2: benchmark e inferencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="complementos_e2.html">Complementos locales del 20 de noviembre</a></li>
+<li class="toctree-l1"><a class="reference internal" href="complementos_datos_e2.html">Complementos de datos: fuga, shift, ruido, techo y EDA por clase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagnosticos_e2.html">Diagnósticos sobre los pesos congelados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entrenamiento_complementario_e2.html">Entrenamientos complementarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cierre_e2.html">Discusión, limitaciones y cierre pendiente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="checklist_e2.html">Verificación de requisitos del Entregable 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reproducibilidad_e2.html">Reproducción y archivos de entrega</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Antecedentes del Entregable 1</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="implementacion.html">Diseño experimental e implementación</a></li>
 <li class="toctree-l1"><a class="reference internal" href="resultados.html">Resultados y baseline</a></li>
 </ul>
@@ -220,19 +171,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
       
-      <main id="main-content" class="bd-main" role="main">
+      <main id="main-content" class="bd-main">
         
         
 
@@ -241,14 +187,14 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article d-print-none">
+              <div class="bd-header-article">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</button></div>
+</label></div>
       
     </div>
   
@@ -262,7 +208,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  class="btn btn-sm btn-fullscreen-button"
   title="Modo de pantalla completa"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -275,20 +221,26 @@
 </button>
 
 
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
-</button>
-
-
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
-<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</button>
+</label>
 </div></div>
       
     </div>
@@ -308,7 +260,8 @@
                 <h2> Contenido </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="pst-show_toc_level nav section-nav flex-column">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trazabilidad-de-decisiones-del-eda-para-e2">Trazabilidad de decisiones del EDA para E2</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cuantas-imagenes-contienen-cada-categoria">Cuántas imágenes contienen cada categoría</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cobertura-geometria-y-objetivo">Cobertura, geometría y objetivo</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#las-13-categorias-que-aparecen-en-las-mascaras-originales">Las 13 categorías que aparecen en las máscaras originales</a></li>
@@ -328,15 +281,74 @@
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article">
+                <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="eda-y-preparacion">
-<h1>EDA y preparación<a class="headerlink" href="#eda-y-preparacion" title="Link to this heading">#</a></h1>
+<h1>EDA y preparación<a class="headerlink" href="#eda-y-preparacion" title="Permalink to this heading">#</a></h1>
+<section id="trazabilidad-de-decisiones-del-eda-para-e2">
+<h2>Trazabilidad de decisiones del EDA para E2<a class="headerlink" href="#trazabilidad-de-decisiones-del-eda-para-e2" title="Permalink to this heading">#</a></h2>
+<p>Se conserva el EDA del E1; no se redefinió la partición tras observar E2. Los análisis nuevos por área son exploratorios y no cambian la receta.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Hallazgo</p></th>
+<th class="head"><p>Evidencia</p></th>
+<th class="head"><p>Decisión aplicada</p></th>
+<th class="head"><p>Impacto en modelo/validación</p></th>
+<th class="head"><p>Riesgo residual</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Fondo dominante</p></td>
+<td><p>4,38 % positivos en pares originales</p></td>
+<td><p>Dice primario, BCE + Dice</p></td>
+<td><p>Evitar exactitud como único criterio</p></td>
+<td><p>No acredita calibración</p></td>
+</tr>
+<tr class="row-odd"><td><p>Aspectos heterogéneos</p></td>
+<td><p>Distribución alto/ancho</p></td>
+<td><p>Letterbox 256, máscara vecino cercano</p></td>
+<td><p>Geometría común, padding excluido</p></td>
+<td><p>Pérdida de detalles pequeños</p></td>
+</tr>
+<tr class="row-even"><td><p>Similitud entre fotos</p></td>
+<td><p>748 enlaces perceptuales</p></td>
+<td><p>Componentes en una partición</p></td>
+<td><p>Bootstrap por grupo</p></td>
+<td><p>No identifica todas las escenas</p></td>
+</tr>
+<tr class="row-odd"><td><p>Máscaras faltantes/alertas</p></td>
+<td><p>102 no utilizables; cuarentena 132</p></td>
+<td><p>Excluir sin convertir en fondo</p></td>
+<td><p>Evitar negativos falsos conocidos</p></td>
+<td><p>Omisiones pueden persistir</p></td>
+</tr>
+<tr class="row-even"><td><p>RGB variable</p></td>
+<td><p>Estadísticos solo train</p></td>
+<td><p>Media/DE común</p></td>
+<td><p>Sin ajuste usando test</p></td>
+<td><p>No prueba ausencia de shift</p></td>
+</tr>
+<tr class="row-odd"><td><p>Test sin negativos completos</p></td>
+<td><p>218 máscaras auditadas</p></td>
+<td><p>Restringir población de inferencia</p></td>
+<td><p>No estimar falsa alarma operacional</p></td>
+<td><p>No representa escenas sin etiquetas</p></td>
+</tr>
+<tr class="row-even"><td><p>Área anotada variable</p></td>
+<td><p>Cuartiles train 0,01809 / 0,03178 / 0,05170</p></td>
+<td><p>Describir Dice por estrato</p></td>
+<td><p>IC por grupos dentro del estrato</p></td>
+<td><p>Análisis posterior, no causal</p></td>
+</tr>
+</tbody>
+</table>
+<p>Pendientes: ruido/techo con anotación independiente, validación adversarial, similitud residual y diagnóstico de atajos. No se presentan como ejecutados.</p>
 <p>El <a class="reference download internal" download="" href="_downloads/fcd78d233bd35580683a1db17a3734b0/eda_original.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">cuaderno</span> <span class="pre">de</span> <span class="pre">EDA</span> <span class="pre">original</span></code></a> conserva el análisis previo a la partición definitiva. Sus menciones a trabajos pendientes reflejan esa fecha. Aquí se integran sus diagnósticos con los manifiestos y máscaras usados en las corridas.</p>
+</section>
 <section id="cuantas-imagenes-contienen-cada-categoria">
-<span id="conteo-por-categoria"></span><h2>Cuántas imágenes contienen cada categoría<a class="headerlink" href="#cuantas-imagenes-contienen-cada-categoria" title="Link to this heading">#</a></h2>
+<span id="conteo-por-categoria"></span><h2>Cuántas imágenes contienen cada categoría<a class="headerlink" href="#cuantas-imagenes-contienen-cada-categoria" title="Permalink to this heading">#</a></h2>
 <p>La tabla cuenta fotografías entre los <strong>1.583 pares con máscara utilizable</strong>. Una foto con dos rótulos de la misma categoría cuenta una vez en esa fila. Si contiene dos categorías diferentes, cuenta en ambas filas; por eso la suma de las filas puede superar 1.583. Las 102 imágenes sin máscara quedan fuera de este recuento.</p>
-<div class="pst-scrollable-table-container"><table class="table">
+<table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Categoría original</p></th>
 <th class="head text-right"><p>Total con máscara</p></th>
@@ -440,13 +452,12 @@
 </tr>
 </tbody>
 </table>
-</div>
 <p>La columna <strong>Total con máscara</strong> reúne entrenamiento (1.015 fotos), validación (218), test (218) y cuarentena (132). Para reconstruir los conteos se cruzó el campo <code class="docutils literal notranslate"><span class="pre">classes</span></code> de <code class="docutils literal notranslate"><span class="pre">resultados/inicio_voc/inventario.csv</span></code> con el manifiesto por ID de imagen y se cotejó cada total con <code class="docutils literal notranslate"><span class="pre">distribucion_clases.csv</span></code>. El fondo es la categoría negativa por píxel y queda fuera de las 13 categorías de rótulos.</p>
 </section>
 <section id="cobertura-geometria-y-objetivo">
-<h2>Cobertura, geometría y objetivo<a class="headerlink" href="#cobertura-geometria-y-objetivo" title="Link to this heading">#</a></h2>
+<h2>Cobertura, geometría y objetivo<a class="headerlink" href="#cobertura-geometria-y-objetivo" title="Permalink to this heading">#</a></h2>
 <section id="las-13-categorias-que-aparecen-en-las-mascaras-originales">
-<h3>Las 13 categorías que aparecen en las máscaras originales<a class="headerlink" href="#las-13-categorias-que-aparecen-en-las-mascaras-originales" title="Link to this heading">#</a></h3>
+<h3>Las 13 categorías que aparecen en las máscaras originales<a class="headerlink" href="#las-13-categorias-que-aparecen-en-las-mascaras-originales" title="Permalink to this heading">#</a></h3>
 <p>¿Qué cuenta como «etiqueta» para la red? En la galería, cada fotografía es un recorte real de entrenamiento. El título traduce el nombre de la categoría; debajo aparece el identificador exacto de la paleta VOC y de la imagen. Para el experimento binario, los píxeles anotados de cualquiera de estas 13 categorías se convierten en <strong>1 (etiqueta)</strong> y el fondo en <strong>0</strong>. Los nombres proceden del corpus y su equivalencia con divisiones IMO requeriría una revisión específica.</p>
 <div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
 <div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-3 sd-g-2 sd-g-xs-2 sd-g-sm-2 sd-g-md-2 sd-g-lg-2 docutils">
@@ -585,23 +596,23 @@ Sustancia infecciosa</div>
 <p><strong>Cómo se eligieron los ejemplos.</strong> Para cada categoría se tomó la fotografía elegible de entrenamiento con mayor fracción anotada entre las que tienen solo esa categoría. El recorte abarca sus píxeles y añade un margen de contexto. Así se aprecia el pictograma; la galería sobrerrepresenta deliberadamente los rótulos grandes. Los gráficos siguientes cuantifican el tamaño y el desbalance en las imágenes completas.</p>
 </section>
 <section id="cuanto-espacio-ocupa-una-etiqueta">
-<h3>Cuánto espacio ocupa una etiqueta<a class="headerlink" href="#cuanto-espacio-ocupa-una-etiqueta" title="Link to this heading">#</a></h3>
+<h3>Cuánto espacio ocupa una etiqueta<a class="headerlink" href="#cuanto-espacio-ocupa-una-etiqueta" title="Permalink to this heading">#</a></h3>
 <p><img alt="Fotografía de entrenamiento, regiones de dos categorías y unión binaria de las máscaras" src="_images/objetivo_binario.png" /></p>
 <p>En <code class="docutils literal notranslate"><span class="pre">image_1165</span></code>, la máscara original distingue sólido inflamable y radiactivo. La columna central usa dos colores de visualización para hacer legible esa diferencia. A la derecha se muestra la máscara binaria guardada que recibió el modelo. Conserva las dos regiones, incluso cuando ya no se puede deducir la clase a partir de sus valores.</p>
 <p>La función que construyó la máscara comprueba la paleta antes de asignar 1 a los píxeles anotados. El valor RGB empaquetado cero corresponde al fondo negro.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">binary_mask</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span><span class="n">colors</span><span class="p">):</span>
-    <span class="n">rgb</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">mask</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">'RGB'</span><span class="p">))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">binary_mask</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span><span class="n">colors</span><span class="p">):</span>
+    <span class="n">rgb</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">mask</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">))</span>
     <span class="n">packed</span><span class="o">=</span><span class="n">rgb</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint32</span><span class="p">)</span><span class="o">*</span><span class="mi">65536</span><span class="o">+</span><span class="n">rgb</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint32</span><span class="p">)</span><span class="o">*</span><span class="mi">256</span><span class="o">+</span><span class="n">rgb</span><span class="p">[:,:,</span><span class="mi">2</span><span class="p">]</span>
     <span class="n">allowed</span><span class="o">=</span><span class="p">[</span><span class="n">r</span><span class="o">*</span><span class="mi">65536</span><span class="o">+</span><span class="n">g</span><span class="o">*</span><span class="mi">256</span><span class="o">+</span><span class="n">b</span> <span class="k">for</span> <span class="n">r</span><span class="p">,</span><span class="n">g</span><span class="p">,</span><span class="n">b</span> <span class="ow">in</span> <span class="n">colors</span><span class="p">]</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">packed</span><span class="p">,</span><span class="n">allowed</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span><span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'Color desconocido; no convertir automáticamente'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">packed</span><span class="p">,</span><span class="n">allowed</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span><span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Color desconocido; no convertir automáticamente&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">packed</span><span class="o">!=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><img alt="Proporciones de fondo y etiqueta en los pares originales" src="_images/08_balance_pixeles.png" /></p>
 <p>El fondo domina el recuento. Un clasificador que declarase fondo en todos los píxeles alcanzaría una exactitud alta y perdería el rótulo entero. Se eligió Dice de etiqueta como métrica primaria y se combinó Dice suave con BCE en la pérdida.</p>
 <p><strong>De los conteos al porcentaje.</strong> <code class="docutils literal notranslate"><span class="pre">eda_entregable.py</span></code> lee los píxeles por categoría de los 1.583 pares válidos en <code class="docutils literal notranslate"><span class="pre">resultados/inicio_voc/resumen.json</span></code>. La variable <code class="docutils literal notranslate"><span class="pre">fg</span></code> es la fracción de píxeles de etiqueta; multiplicarla por 100 produce el 4,38 % reportado.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">((</span><span class="n">initial</span><span class="o">/</span><span class="s2">"resumen.json"</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">())[</span><span class="s2">"pixel_counts_valid_pairs"</span><span class="p">]</span>
-<span class="n">fg</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">counts</span><span class="p">[</span><span class="s2">"background"</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">((</span><span class="n">initial</span><span class="o">/</span><span class="s2">&quot;resumen.json&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">())[</span><span class="s2">&quot;pixel_counts_valid_pairs&quot;</span><span class="p">]</span>
+<span class="n">fg</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">counts</span><span class="p">[</span><span class="s2">&quot;background&quot;</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
 <span class="n">entropy</span> <span class="o">=</span> <span class="o">-</span><span class="n">fg</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">fg</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">fg</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">fg</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -612,27 +623,27 @@ Sustancia infecciosa</div>
 </section>
 </section>
 <section id="calidad-de-las-anotaciones">
-<h2>Calidad de las anotaciones<a class="headerlink" href="#calidad-de-las-anotaciones" title="Link to this heading">#</a></h2>
+<h2>Calidad de las anotaciones<a class="headerlink" href="#calidad-de-las-anotaciones" title="Permalink to this heading">#</a></h2>
 <p><img alt="Fotografía, máscara y revisión de cobertura del caso image_1461" src="_images/revision_1461.png" /></p>
 <p>En la cesta se distingue un rótulo aparentemente omitido mientras dos rótulos inferiores sí tienen máscara. Esta clase de error persiste al binarizar. Se puso el grupo en cuarentena. En <code class="docutils literal notranslate"><span class="pre">image_0025</span></code> la discrepancia parece semántica y en <code class="docutils literal notranslate"><span class="pre">image_1251</span></code> la mano oculta parte de las etiquetas. Los paneles se eligieron para diagnóstico, por lo que su frecuencia de problemas no estima una tasa de error poblacional.</p>
 <p>De los 1.685 JPG, 102 carecen de máscara utilizable. Los 102 figuran sin asignación en las particiones heredadas y con origen XML desconocido. Entre los 1.583 pares con máscara solo uno tiene origen desconocido. La ausencia se concentra en un subconjunto identificable; estos metadatos no bastan para explicar la causa. Se excluyeron de la supervisión, sin convertirlos en ejemplos de fondo. En 69 pares no coinciden los conjuntos de clases XML y máscara. También falta el XML de <code class="docutils literal notranslate"><span class="pre">image_1018</span></code>. La cuarentena incluye alertas de cobertura inferior al 5 % en cajas y se propaga dentro del grupo. No existe una segunda anotación independiente para estimar acuerdo o un techo de Dice humano.</p>
 </section>
 <section id="similitud-procedencia-y-fugas">
-<h2>Similitud, procedencia y fugas<a class="headerlink" href="#similitud-procedencia-y-fugas" title="Link to this heading">#</a></h2>
+<h2>Similitud, procedencia y fugas<a class="headerlink" href="#similitud-procedencia-y-fugas" title="Permalink to this heading">#</a></h2>
 <p><img alt="Pares de fotografías con firmas perceptuales próximas" src="_images/11_similitud.png" /></p>
 <p>De 1.418.770 pares examinados, 748 cumplieron simultáneamente distancias dHash y aHash de hasta 6 bits sobre 64. De ellos, 146 cruzaban entrenamiento y validación heredados, aunque no se encontraron JPG ni matrices RGB exactamente iguales. Doce pares revisados mostraron composiciones casi coincidentes. La decisión fue mantener juntas las componentes conexas de todos los enlaces candidatos. En la nueva asignación cruzan particiones <strong>cero enlaces conocidos</strong>. Rotaciones y recortes podrían escapar a estos hashes.</p>
 <p>En la validación heredada, 33 imágenes provenían de la carpeta XML <code class="docutils literal notranslate"><span class="pre">00_javad</span></code> y 151 de <code class="docutils literal notranslate"><span class="pre">00_misaq</span></code>. Una carpeta puede compartir fondos con otra. Esta concentración y la falta de identificadores certificados de cámara o escena limitan la interpretación del origen. Un grupo visual aproxima dependencia sin garantizarla.</p>
 <p>En los 1.583 pares originales, la etiqueta ocupa 4.38 % de los píxeles y el fondo 95.62 %. La razón fondo/etiqueta es 21.8 y la entropía binaria es 0.260 bits por píxel.</p>
 </section>
 <section id="regiones-que-llegan-al-modelo">
-<h2>Regiones que llegan al modelo<a class="headerlink" href="#regiones-que-llegan-al-modelo" title="Link to this heading">#</a></h2>
+<h2>Regiones que llegan al modelo<a class="headerlink" href="#regiones-que-llegan-al-modelo" title="Permalink to this heading">#</a></h2>
 <p>En las 1.015 máscaras de entrenamiento a 256 × 256, la mediana de componentes por imagen es 1. Hay 1709 regiones de ocho vecinos. Los percentiles 10, 50 y 90 de área son 219.0, 719.0, 2943.8 píxeles. La razón mediana entre el lado largo y el corto de su caja envolvente es 1.07. Una componente puede reunir rótulos en contacto o dividir uno ocluido. El área total de etiqueta nunca baja de 16 píxeles en las máscaras de entrenamiento a esta resolución, pero componentes individuales pueden ser menores. Esto sustenta conservar el encuadre y medir solapamiento de la clase pequeña.</p>
 <p><img alt="Histogramas de RGB por clase en entrenamiento" src="_images/rgb_train.png" /></p>
 <p>Las intensidades de etiqueta y fondo se solapan en los tres canales. Un umbral de color único perdería parte de ambas distribuciones. Para normalizar se usaron exclusivamente píxeles válidos de train, con medias RGB 0,604/0,561/0,507 y desviaciones 0,233/0,227/0,240.</p>
 </section>
 <section id="comparacion-de-las-particiones-congeladas">
-<h2>Comparación de las particiones congeladas<a class="headerlink" href="#comparacion-de-las-particiones-congeladas" title="Link to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="table">
+<h2>Comparación de las particiones congeladas<a class="headerlink" href="#comparacion-de-las-particiones-congeladas" title="Permalink to this heading">#</a></h2>
+<table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Partición</p></th>
 <th class="head"><p>Imágenes</p></th>
@@ -670,7 +681,6 @@ Sustancia infecciosa</div>
 </tr>
 </tbody>
 </table>
-</div>
 <p>El test tiene menor fracción mediana de etiqueta que train. Para el brillo de miniaturas se compararon las medias de grupo entre las tres particiones. El estadístico es la suma de desviaciones cuadráticas de cada media de partición respecto de la global, ponderadas por el número de grupos. Una permutación exploratoria de etiquetas de partición entre grupos, conservando sus tamaños en número de grupos (4.999 permutaciones, semilla 20261107), da p = 0,5068. El diagnóstico cubre un atributo y presupone intercambiabilidad de grupos. Ni un brillo similar ni el resultado de esta prueba certifican igualdad de dominio. Se conservaron las particiones originales del experimento.</p>
 </section>
 </section>
@@ -700,47 +710,49 @@ Sustancia infecciosa</div>
 
               
               
-              
-              
-                <footer class="prev-next-footer d-print-none">
+                <footer class="bd-footer-article">
                   
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="literatura.html"
+       href="problema.html"
        title="página anterior">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">anterior</p>
-        <p class="prev-next-title">Estado del arte y elección de modelos</p>
+        <p class="prev-next-title">Problema y datos</p>
       </div>
     </a>
     <a class="right-next"
-       href="implementacion.html"
+       href="literatura.html"
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">Diseño experimental e implementación</p>
+        <p class="prev-next-title">Literatura, selección operativa y paper guía</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
-
-  <div class="sidebar-secondary-item"><div
-    id="pst-page-navigation-heading-2"
-    class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contenido
   </div>
-  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="pst-show_toc_level nav section-nav flex-column">
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trazabilidad-de-decisiones-del-eda-para-e2">Trazabilidad de decisiones del EDA para E2</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cuantas-imagenes-contienen-cada-categoria">Cuántas imágenes contienen cada categoría</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cobertura-geometria-y-objetivo">Cobertura, geometría y objetivo</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#las-13-categorias-que-aparecen-en-las-mascaras-originales">Las 13 categorías que aparecen en las máscaras originales</a></li>
@@ -772,7 +784,6 @@ Por Luis Perez y Daniel Carbono
   
   <div class="footer-item">
     
-
   </div>
   
   <div class="footer-item">
@@ -792,8 +803,8 @@ Por Luis Perez y Daniel Carbono
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -1,5 +1,21 @@
 # EDA y preparación
 
+## Trazabilidad de decisiones del EDA para E2
+
+Se conserva el EDA del E1; no se redefinió la partición tras observar E2. Los análisis nuevos por área son exploratorios y no cambian la receta.
+
+| Hallazgo | Evidencia | Decisión aplicada | Impacto en modelo/validación | Riesgo residual |
+|---|---|---|---|---|
+| Fondo dominante | 4,38 % positivos en pares originales | Dice primario, BCE + Dice | Evitar exactitud como único criterio | No acredita calibración |
+| Aspectos heterogéneos | Distribución alto/ancho | Letterbox 256, máscara vecino cercano | Geometría común, padding excluido | Pérdida de detalles pequeños |
+| Similitud entre fotos | 748 enlaces perceptuales | Componentes en una partición | Bootstrap por grupo | No identifica todas las escenas |
+| Máscaras faltantes/alertas | 102 no utilizables; cuarentena 132 | Excluir sin convertir en fondo | Evitar negativos falsos conocidos | Omisiones pueden persistir |
+| RGB variable | Estadísticos solo train | Media/DE común | Sin ajuste usando test | No prueba ausencia de shift |
+| Test sin negativos completos | 218 máscaras auditadas | Restringir población de inferencia | No estimar falsa alarma operacional | No representa escenas sin etiquetas |
+| Área anotada variable | Cuartiles train 0,01809 / 0,03178 / 0,05170 | Describir Dice por estrato | IC por grupos dentro del estrato | Análisis posterior, no causal |
+
+Pendientes: ruido/techo con anotación independiente, validación adversarial, similitud residual y diagnóstico de atajos. No se presentan como ejecutados.
+
 El {download}`cuaderno de EDA original <eda_original.ipynb>` conserva el análisis previo a la partición definitiva. Sus menciones a trabajos pendientes reflejan esa fecha. Aquí se integran sus diagnósticos con los manifiestos y máscaras usados en las corridas.
 
 (conteo-por-categoria)=

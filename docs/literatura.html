@@ -1,98 +1,98 @@
 
+
 <!DOCTYPE html>
 
 
-<html lang="es" data-content_root="./" >
+<html lang="es" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Estado del arte y elección de modelos &#8212; Segmentación de etiquetas de mercancías peligrosas</title>
+    <title>Literatura, selección operativa y paper guía &#8212; Segmentación de etiquetas de mercancías peligrosas</title>
   
   
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    <script src="_static/documentation_options.js?v=78d55cf8"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
-    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
-    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=b8b12719"></script>
-    <script src="_static/translations.js?v=d190bf04"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js?v=f930bc37"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'literatura';</script>
-    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Búsqueda" href="search.html" />
-    <link rel="next" title="EDA y preparación" href="eda.html" />
-    <link rel="prev" title="Problema y datos" href="problema.html" />
+    <link rel="next" title="Fichas de las diez implementaciones" href="modelos_e2.html" />
+    <link rel="prev" title="EDA y preparación" href="eda.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
-  <meta name="docsearch:version" content="" />
-  
-    
-    <script src="_static/searchtools.js"></script>
-    <script src="_static/language_data.js"></script>
-    <script src="searchindex.js"></script>
-  
   </head>
-  <body data-default-mode="">
   
   
-  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
   
-  <div id="pst-scroll-pixel-helper"></div>
   
-  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
   
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
   
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
   
-  
-  <dialog id="pst-search-dialog">
-    
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -100,6 +100,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -107,69 +108,16 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
-
-  <div class="pst-async-banner-revealer d-none">
-  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
-</div>
-
-  
-    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
-<div class="bd-header__inner bd-page-width">
-  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
-    <span class="fa-solid fa-bars"></span>
-  </button>
-  
-  
-  <div class="col-lg-9 navbar-header-items">
-    
-    
-    <div class="navbar-header-items__end">
-      
-        <div class="navbar-item navbar-persistent--container">
-          
-
-<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Búsqueda</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button>
-        </div>
-      
-      
-    </div>
-    
+</form></div>
   </div>
   
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
   
-    <div class="navbar-persistent--mobile">
-
-<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Búsqueda</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button>
-    </div>
-  
-
-  
-    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
-      <span class="fa-solid fa-outdent"></span>
-    </button>
-  
-</div>
-
-    </header>
-  
-
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
-      
-      
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -182,9 +130,6 @@
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
-
-  
-    
   
 
 <a class="navbar-brand logo" href="index.html">
@@ -193,23 +138,29 @@
   
   
   
-  
     <p class="title logo__title">Segmentación de etiquetas de mercancías peligrosas</p>
   
 </a></div>
-        <div class="sidebar-primary-item">
-
-<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Búsqueda</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
-        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Entregable 2</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="problema.html">Problema y datos</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Estado del arte y elección de modelos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="eda.html">EDA y preparación</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Literatura, selección operativa y paper guía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelos_e2.html">Fichas de las diez implementaciones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metodos_e2.html">Diseño experimental y ruta de segmentación E2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resultados_e2.html">Resultados E2: benchmark e inferencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="complementos_e2.html">Complementos locales del 20 de noviembre</a></li>
+<li class="toctree-l1"><a class="reference internal" href="complementos_datos_e2.html">Complementos de datos: fuga, shift, ruido, techo y EDA por clase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagnosticos_e2.html">Diagnósticos sobre los pesos congelados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entrenamiento_complementario_e2.html">Entrenamientos complementarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cierre_e2.html">Discusión, limitaciones y cierre pendiente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="checklist_e2.html">Verificación de requisitos del Entregable 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reproducibilidad_e2.html">Reproducción y archivos de entrega</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Antecedentes del Entregable 1</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="implementacion.html">Diseño experimental e implementación</a></li>
 <li class="toctree-l1"><a class="reference internal" href="resultados.html">Resultados y baseline</a></li>
 </ul>
@@ -220,19 +171,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
       
-      <main id="main-content" class="bd-main" role="main">
+      <main id="main-content" class="bd-main">
         
         
 
@@ -241,14 +187,14 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article d-print-none">
+              <div class="bd-header-article">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</button></div>
+</label></div>
       
     </div>
   
@@ -262,7 +208,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  class="btn btn-sm btn-fullscreen-button"
   title="Modo de pantalla completa"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -275,20 +221,26 @@
 </button>
 
 
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
-</button>
-
-
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
-<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</button>
+</label>
 </div></div>
       
     </div>
@@ -299,7 +251,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Estado del arte y elección de modelos</h1>
+    <h1>Literatura, selección operativa y paper guía</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -308,12 +260,17 @@
                 <h2> Contenido </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuentes-de-aplicacion-y-criterios-de-lectura">Fuentes de aplicación y criterios de lectura</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-exploratoria-complementaria">Búsqueda exploratoria complementaria</a></li>
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcance-de-la-revision">Alcance de la revisión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identificacion-y-precribado-verificables">Identificación y precribado verificables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antecedentes-y-pertinencia">Antecedentes y pertinencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diversidad-y-comparacion-critica">Diversidad y comparación crítica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mecanismos-transferibles">Mecanismos transferibles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paper-guia-y-replica-de-evaluacion">Paper guía y réplica de evaluación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitacion-por-area-del-rotulo">Limitación por área del rótulo</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#articulos-que-fundamentan-las-tres-arquitecturas">Artículos que fundamentan las tres arquitecturas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gap-y-limites-de-la-sintesis">Gap y límites de la síntesis</a></li>
 </ul>
             </nav>
         </div>
@@ -323,104 +280,227 @@
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article">
+                <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="estado-del-arte-y-eleccion-de-modelos">
-<h1>Estado del arte y elección de modelos<a class="headerlink" href="#estado-del-arte-y-eleccion-de-modelos" title="Link to this heading">#</a></h1>
-<p>La revisión responde a dos preguntas. ¿Qué han medido otros estudios sobre rótulos de mercancías peligrosas? ¿Cómo justificar las tres redes del experimento de segmentación binaria? Para la primera usamos las cuatro fuentes aprobadas en la matriz bibliográfica del proyecto. Para la segunda acudimos a los artículos originales de FCN, SegNet y U-Net.</p>
-<section id="fuentes-de-aplicacion-y-criterios-de-lectura">
-<h2>Fuentes de aplicación y criterios de lectura<a class="headerlink" href="#fuentes-de-aplicacion-y-criterios-de-lectura" title="Link to this heading">#</a></h2>
-<p>La <a class="reference download internal" download="" href="_downloads/4702f42440f5956305f20c7af23a3d4f/Estado_del_arte_IMO_matriz_4_fuentes.xlsx"><code class="xref download docutils literal notranslate"><span class="pre">matriz</span> <span class="pre">bibliográfica</span> <span class="pre">del</span> <span class="pre">proyecto</span></code></a>, fechada el 7 de noviembre de 2026, identifica cada estudio por autor, tarea, método, datos, métricas, alcance de la lectura y aporte a la tesis. Para interpretar un resultado comprobamos <strong>qué se predice</strong> (caja, máscara, clase o texto) y <strong>sobre qué unidad se evalúa</strong> (imagen, rótulo o secuencia).</p>
-<div class="pst-scrollable-table-container"><table class="table">
+  <section class="tex2jax_ignore mathjax_ignore" id="literatura-seleccion-operativa-y-paper-guia">
+<h1>Literatura, selección operativa y paper guía<a class="headerlink" href="#literatura-seleccion-operativa-y-paper-guia" title="Permalink to this heading">#</a></h1>
+<section id="alcance-de-la-revision">
+<h2>Alcance de la revisión<a class="headerlink" href="#alcance-de-la-revision" title="Permalink to this heading">#</a></h2>
+<p>Se investigan antecedentes de localización de rótulos, arquitecturas de segmentación transferibles y mecanismos de otras modalidades. Las ecuaciones exactas, filtros y versiones están en el <a class="reference download internal" download="" href="_downloads/2d36296572d11b7181d11624b904fee0/PROTOCOLO_BUSQUEDA.md"><code class="xref download docutils literal notranslate"><span class="pre">protocolo</span> <span class="pre">de</span> <span class="pre">búsqueda</span></code></a>; fechas y conteos, en la <a class="reference download internal" download="" href="_downloads/19c9a3dd960939001cb679bae335b7be/BITACORA_BUSQUEDAS.md"><code class="xref download docutils literal notranslate"><span class="pre">bitácora</span></code></a>. Se consultaron Scopus y Web of Science Core Collection, con ventana 2019–2026 y excepciones fundacionales explícitas para FCN, SegNet, U-Net y DeepLabv3+.</p>
+<p>La selección de siete candidatas nuevas fue aceptada como <strong>lista de trabajo</strong>. No equivale a una revisión sistemática completa de todas las referencias recuperadas. Según confirmación del usuario, el profesor acepta diez modelos totales, incluyendo las tres redes del E1.</p>
+</section>
+<section id="identificacion-y-precribado-verificables">
+<h2>Identificación y precribado verificables<a class="headerlink" href="#identificacion-y-precribado-verificables" title="Permalink to this heading">#</a></h2>
+<table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Fuente y lectura registrada</p></th>
-<th class="head"><p>Qué se evaluó</p></th>
-<th class="head"><p>Qué aporta a este entregable</p></th>
+<tr class="row-odd"><th class="head"><p>Etapa</p></th>
+<th class="head text-right"><p>Conteo</p></th>
+<th class="head"><p>Alcance de la evidencia</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Emami (2026), tesis de maestría. Resumen y registro institucional. <a class="reference external" href="https://hdl.handle.net/10388/19451">Repositorio</a></p></td>
-<td><p>Localización, clasificación visual y lectura condicional de texto. La matriz registra mAP&#64;50 de 96,2 % para la primera etapa.</p></td>
-<td><p>Fundamenta la separación de tareas. Ese resultado corresponde a detección; el resumen no acredita máscaras de rótulos.</p></td>
+<tr class="row-even"><td><p>Scopus Q0–Q4</p></td>
+<td class="text-right"><p>6.399</p></td>
+<td><p>Registros exportados</p></td>
 </tr>
-<tr class="row-odd"><td><p>Sharifi, Zibaei y Rezaei (2021). Texto completo. <a class="reference external" href="https://doi.org/10.1016/j.mlwa.2021.100104">Artículo</a></p></td>
-<td><p>DeepHAZMAT detecta señales con YOLOv3-tiny y usa GrabCut y refinamiento geométrico para aislarlas. Los autores describen 1.685 fotografías originales y 13 categorías HAZMAT.</p></td>
-<td><p>Es el antecedente directo para localizar y aislar el rótulo. La prepublicación y el artículo publicado se citan como versiones de un solo estudio. <a class="reference external" href="https://arxiv.org/abs/2007.06392">Prepublicación</a></p></td>
+<tr class="row-odd"><td><p>WoS Q0–Q4</p></td>
+<td class="text-right"><p>3.247</p></td>
+<td><p>Registros exportados</p></td>
 </tr>
-<tr class="row-even"><td><p>Gaweesh, Khan y Ahmed (2021). Resumen editorial. <a class="reference external" href="https://doi.org/10.1177/03611981211026653">Artículo</a></p></td>
-<td><p>Reconocimiento de información de rótulos en grabaciones de carretera mediante AlexNet. La matriz recoge una exactitud del 95 %.</p></td>
-<td><p>Aporta contexto sobre reconocimiento en transporte. La exactitud se refiere a identificación y no cuantifica el solapamiento de máscaras.</p></td>
+<tr class="row-even"><td><p>Total bruto</p></td>
+<td class="text-right"><p>9.646</p></td>
+<td><p>Trece archivos</p></td>
 </tr>
-<tr class="row-odd"><td><p>Brylka, Bierwirth y Schwanecke (2021). Texto completo. <a class="reference external" href="https://doi.org/10.15480/882.3959">Artículo</a></p></td>
-<td><p>YOLOv4-tiny detecta etiquetas de mercancías peligrosas; dos U-Net intervienen en el módulo de códigos de barras. Al umbral de 75 %, la precisión fue 97,6 %, el recall por imagen 38,5 % y la detección por secuencia 96,2 %.</p></td>
-<td><p>Una secuencia puede contener una detección aunque numerosos fotogramas individuales fallen. La presencia de U-Net en este artículo no demuestra su uso para segmentar el rótulo peligroso.</p></td>
+<tr class="row-odd"><td><p>Duplicados técnicos</p></td>
+<td class="text-right"><p>3.321</p></td>
+<td><p>Conciliación con reglas DOI/título</p></td>
+</tr>
+<tr class="row-even"><td><p>Grupos provisionales</p></td>
+<td class="text-right"><p>6.325</p></td>
+<td><p>Tres pares con DOI contradictorios, adjudicados el 20/11 con Crossref y <a class="reference external" href="http://doi.org">doi.org</a>; alias en el parser, fusión aún no aplicada: se esperan 6.322 grupos y 3.324 duplicados</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sugerencia automática: retener</p></td>
+<td class="text-right"><p>2.186</p></td>
+<td><p>20 dominio, 507 arquitectura, 1.659 mecanismo</p></td>
+</tr>
+<tr class="row-even"><td><p>Sugerencia automática: excluir</p></td>
+<td class="text-right"><p>2.052</p></td>
+<td><p>No son exclusiones humanas definitivas</p></td>
+</tr>
+<tr class="row-odd"><td><p>Duda</p></td>
+<td class="text-right"><p>2.087</p></td>
+<td><p>Requiere inspección</p></td>
+</tr>
+<tr class="row-even"><td><p>Elegibles e incluidos definitivos</p></td>
+<td class="text-right"><p>No cerrado</p></td>
+<td><p>No se deducen del número de redes entrenadas</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<p><strong>Cómo rastrear las cifras.</strong> La hoja <em>Matriz bibliografica</em>, filas 5–8, contiene los cuatro registros. <em>Evaluacion critica</em> explica por qué se usa cada fuente y <em>Referencias APA</em> proporciona los identificadores. En <em>Umbrales Brylka</em>, la fila 10 conserva las tres cifras del umbral de 75 %. El F1 de esa hoja se calcula a partir de precisión y recall; se distingue de las cifras publicadas por los autores.</p>
-<p><strong>Recorrido de la revisión</strong></p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Cuatro antecedentes de aplicación aprobados
-  ├─ Texto completo → Sharifi et al. y Brylka et al.
-  └─ Resumen → Emami y Gaweesh et al.
-             ↓
-Lectura por tarea, métrica y unidad de evaluación
-             ↓
-Antecedente de máscaras → DeepHAZMAT (GrabCut)
-Pregunta del experimento → comparar tres redes de segmentación binaria
-             ↑
-Fundamentos de arquitectura → Long et al., Badrinarayanan et al., Ronneberger et al.
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>9.646 registros importados
+  └─ 3.321 duplicados técnicos
+      └─ 6.325 grupos provisionales
+          ├─ 2.186 sugerencias de retención
+          ├─ 2.052 sugerencias de exclusión
+          └─ 2.087 dudas
+Adjudicación humana, recuperación y elegibilidad final: pendientes
+
+Selección operativa paralela: 3 redes E1 + 7 candidatas nuevas
+(no es una etapa final demostrada del flujo PRISMA)
 </pre></div>
 </div>
-<section id="busqueda-exploratoria-complementaria">
-<h3>Búsqueda exploratoria complementaria<a class="headerlink" href="#busqueda-exploratoria-complementaria" title="Link to this heading">#</a></h3>
-<p>El 6 de noviembre se hicieron nueve consultas abiertas sobre el corpus y las arquitecturas. Este registro complementa la matriz aprobada del día siguiente. Las cadenas se transcriben del <a class="reference download internal" download="" href="_downloads/fe94c00ba643a0b6a3821490327c3a12/PROCEDENCIA_Y_LITERATURA.md"><code class="xref download docutils literal notranslate"><span class="pre">registro</span> <span class="pre">de</span> <span class="pre">procedencia</span> <span class="pre">y</span> <span class="pre">literatura</span></code></a>.</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>hazardous material placard segmentation dataset 1685 images 13 classes
-hazmat placard segmentation dataset poison oxygen inhalation hazard VOC2012
-SeaFront dataset hazardous goods placards segmentation baseline
-"hazmat" "segmentation" "U-Net" "FCN"
-"hazardous" "placard" "SegNet"
-"HAZMAT13" "segmentation" "U-Net"
-"hazmat" "U-Net" segmentation signs
-"hazmat" "SegNet" segmentation
-"hazmat" "FCN" segmentation
-</pre></div>
-</div>
+<p>Los conteos son aritméticamente coherentes, pero no acreditan la elegibilidad. Los tres pares de DOI son el mismo artículo en cada caso: dos variantes no están registradas y la tercera es un alias que el propio registro redirige al canónico (<a class="reference download internal" download="" href="_downloads/1015d7ecb0035df89016d9f3441db51c/RESOLUCION_CONFLICTOS_DOI.md"><code class="xref download docutils literal notranslate"><span class="pre">resolución</span> <span class="pre">con</span> <span class="pre">evidencia</span></code></a>). Los alias ya están en <code class="docutils literal notranslate"><span class="pre">procesar_exportaciones.py</span></code>, pero las exportaciones no están en el repositorio: 6.322 es el conteo esperado, no uno ejecutado, y no se usa como cifra cerrada hasta correr el parser. No se informa kappa porque no hay dos cribados independientes completos.</p>
+<p><strong>Q5 y Q6 se omitieron por decisión del usuario.</strong> Las fuentes suplementarias no sustituyen tres ecuaciones transversales ejecutadas. Este requisito continúa como alcance reducido; no se reabren las consultas automáticamente.</p>
 </section>
+<section id="antecedentes-y-pertinencia">
+<h2>Antecedentes y pertinencia<a class="headerlink" href="#antecedentes-y-pertinencia" title="Permalink to this heading">#</a></h2>
+<p>Seis estudios aplicados a rótulos de mercancía peligrosa, con DOI verificado, ubican el problema: Sharifi et al. (2021, <em>Machine Learning with Applications</em>, DOI 10.1016/j.mlwa.2021.100104), Zhang et al. (2024, <em>IEEE Transactions on Artificial Intelligence</em>, DOI 10.1109/TAI.2023.3298588), Mohamed et al. (2018, IEEE SSRR, DOI 10.1109/SSRR.2018.8468639), Edlinger et al. (2019, <em>Electronic Imaging</em>, DOI 10.2352/ISSN.2470-1173.2019.7.IRIACV-463), Zhao et al. (2013, IEEE GlobalSIP, DOI 10.1109/GlobalSIP.2013.6736996) y Thongkor et al. (2016, <em>Electronic Imaging</em>, DOI 10.2352/ISSN.2470-1173.2016.11.IMAWM-459). Todos detectan, reconocen o localizan el rótulo; qué hace cada uno está en <a class="reference download internal" download="" href="_downloads/5ca1f4bf5d3d49a2ed6648db028f24fc/APLICACION_Y_GAP.md"><code class="xref download docutils literal notranslate"><span class="pre">aplicación</span> <span class="pre">y</span> <span class="pre">gap</span></code></a>, leído de los resúmenes.</p>
+<p>Se distingue detección de cajas, clasificación y segmentación de píxeles. DeepHAZMAT combina detección y segmentación algorítmica; su desempeño no equivale al Dice binario local. La identificación de la copia local como HAZMAT13 es probable, sin certificación byte a byte frente a una descarga externa. Fuentes y reservas en el capítulo de datos y la <a class="reference download internal" download="" href="_downloads/fe94c00ba643a0b6a3821490327c3a12/PROCEDENCIA_Y_LITERATURA.md"><code class="xref download docutils literal notranslate"><span class="pre">matriz</span> <span class="pre">documental</span> <span class="pre">de</span> <span class="pre">procedencia</span></code></a>.</p>
+<p>FCN fundamenta predicción densa convolucional; SegNet reutiliza índices de pooling; U-Net transporta características de mayor resolución al decoder. Se usan adaptaciones compactas, no reproducciones exactas. <a class="reference external" href="https://www.cv-foundation.org/openaccess/content_cvpr_2015/html/Long_Fully_Convolutional_Networks_2015_CVPR_paper.html">FCN, CVPR</a>, <a class="reference external" href="https://arxiv.org/abs/1511.00561">SegNet</a>, <a class="reference external" href="https://arxiv.org/abs/1505.04597">U-Net</a>.</p>
 </section>
-<section id="articulos-que-fundamentan-las-tres-arquitecturas">
-<h2>Artículos que fundamentan las tres arquitecturas<a class="headerlink" href="#articulos-que-fundamentan-las-tres-arquitecturas" title="Link to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="table">
+<section id="diversidad-y-comparacion-critica">
+<h2>Diversidad y comparación crítica<a class="headerlink" href="#diversidad-y-comparacion-critica" title="Permalink to this heading">#</a></h2>
+<table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Artículo</p></th>
-<th class="head"><p>Datos y comparación</p></th>
-<th class="head"><p>Resultado o aporte</p></th>
-<th class="head"><p>Alcance para este experimento</p></th>
+<tr class="row-odd"><th class="head"><p>Familia</p></th>
+<th class="head"><p>Implementaciones</p></th>
+<th class="head"><p>Aporte y límite</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Long, Shelhamer y Darrell (2015), <em>Fully Convolutional Networks for Semantic Segmentation</em>. <a class="reference external" href="https://doi.org/10.48550/arXiv.1411.4038">Artículo</a></p></td>
-<td><p>PASCAL VOC, NYUDv2 y SIFT Flow. Transfiere redes de clasificación a predicción densa</p></td>
-<td><p>62,2 % de IoU media en PASCAL VOC 2012</p></td>
-<td><p>Fundamenta la salida espacial. PASCAL VOC del artículo y nuestro corpus de rótulos son distintos</p></td>
+<tr class="row-even"><td><p>CNN</p></td>
+<td><p>FCN, SegNet, U-Net compactas; DeepLabv3+ R18; U-Net++ R18; PIDNet-S; SegNeXt-T</p></td>
+<td><p>Localidad, multiescala, skips y bordes; capacidades y auxiliares diferentes</p></td>
 </tr>
-<tr class="row-odd"><td><p>Badrinarayanan, Kendall y Cipolla, <em>SegNet: A Deep Convolutional Encoder-Decoder Architecture for Image Segmentation</em> (prepublicación 2015, revisión 2016). <a class="reference external" href="https://doi.org/10.48550/arXiv.1511.00561">Artículo</a></p></td>
-<td><p>Escenas viales e interiores SUN RGB-D. Incluye FCN entre los comparadores</p></td>
-<td><p>Recupera posiciones con índices de máximos y estudia memoria frente a precisión</p></td>
-<td><p>Uso comparativo de FCN en escenas generales. SegNet es el método propuesto en ese artículo</p></td>
+<tr class="row-odd"><td><p>Transformer</p></td>
+<td><p>SegFormer-B0</p></td>
+<td><p>Atención jerárquica y decoder MLP; receta local distinta del artículo</p></td>
 </tr>
-<tr class="row-even"><td><p>Ronneberger, Fischer y Brox (2015), <em>U-Net: Convolutional Networks for Biomedical Image Segmentation</em>. <a class="reference external" href="https://doi.org/10.48550/arXiv.1505.04597">Artículo</a></p></td>
-<td><p>Segmentación biomédica, incluidas imágenes de microscopía</p></td>
-<td><p>Combina representación profunda y rasgos de alta resolución mediante concatenación</p></td>
-<td><p>Fundamenta la hipótesis sobre contornos. Su dominio y protocolo difieren del test HAZMAT</p></td>
+<tr class="row-even"><td><p>Híbrido</p></td>
+<td><p>TransUNet R50-ViT-B/16</p></td>
+<td><p>Contexto global con características CNN; mucho mayor tamaño</p></td>
+</tr>
+<tr class="row-odd"><td><p>SSM visual</p></td>
+<td><p>VM-UNet</p></td>
+<td><p>Estados selectivos y escaneo; dependencia de kernels CUDA</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<p><strong>Cómo leer las cifras publicadas.</strong> En CamVid, la variante de SegNet entrenada sobre 3,5 mil imágenes y evaluada tras 140 mil iteraciones obtuvo 60,10 % de mIoU. Su codificador sigue las 13 capas convolucionales de VGG16. En microscopía, U-Net obtuvo IoU 0,9203 en PhC-U373 y 0,7756 en DIC-HeLa. Las tablas citadas presentan estimaciones puntuales; no ofrecen una dispersión entre semillas comparable a la de estas corridas. Tanto la resolución y la definición de clase como la política de aumentos difieren entre protocolos. <a class="reference external" href="https://arxiv.org/pdf/1511.00561">SegNet, tabla de CamVid</a> · <a class="reference external" href="https://arxiv.org/pdf/1505.04597">U-Net, tabla 2</a></p>
-<p><strong>Qué se puede comparar.</strong> La matriz destaca un riesgo concreto en Sharifi et al.: al aumentar el número de imágenes, importa en qué momento se separan las fotografías originales y sus variantes. Para nuestro experimento, todas las imágenes conectadas por los enlaces de similitud detectados se asignan al mismo grupo antes de la partición. En Brylka et al., la diferencia entre recall por imagen y detección por secuencia ilustra por qué también declaramos la unidad de evaluación.</p>
-<p>En el antecedente directo, Sharifi y colaboradores informan 87,65 % de IoU y 97,58 % de F1 como promedios sobre las 13 categorías. La tabla del artículo no ofrece IC para esos promedios. Aquí se evalúa una máscara binaria por imagen y se pondera por grupo de similitud. Restar directamente ambos resultados mezclaría definiciones de clase, unidad de agregación y particiones. La verificación del artículo publicado complementa la lectura histórica de su prepublicación. <a class="reference external" href="https://eprints.whiterose.ac.uk/id/eprint/176122/7/1-s2.0-S2666827021000529-main.pdf">Sharifi et al., tabla 3</a></p>
-<p><strong>Decisión experimental.</strong> De las cuatro fuentes aprobadas, Sharifi et al. es la que documenta explícitamente el aislamiento del rótulo con una máscara. Brylka et al. emplean U-Net para códigos de barras. La elección de FCN, SegNet y U-Net para este entregable se apoya en sus artículos de arquitectura: permiten comparar la reconstrucción desde un mapa grueso, la recuperación de posiciones de máximos y la incorporación de características superficiales. La revisión aporta esta justificación metodológica; su alcance no establece un ranking de frecuencia en HAZMAT.</p>
+<p>Las <a class="reference internal" href="modelos_e2.html"><span class="doc std std-doc">fichas de implementación</span></a> incluyen diez diagramas, mecanismos matemáticos, referencias y parámetros medidos. Los resultados originales de las siete redes nuevas (dataset, métrica, cifra, varianza y costo, con tabla y página del PDF) están cotejados en <a class="reference download internal" download="" href="_downloads/4d69086fad684a94af21ec1bd8991581/RESULTADOS_ORIGINALES_7REDES.md"><code class="xref download docutils literal notranslate"><span class="pre">resultados</span> <span class="pre">originales</span></code></a>: 21 de 21 cifras confirmadas. Solo UNet++ reporta varianza entre corridas (20 corridas, media ± DE). Las <a class="reference download internal" download="" href="_downloads/bba7b756d4d883455f278c761cedb6ae/FICHAS_EXTRACCION_7REDES.md"><code class="xref download docutils literal notranslate"><span class="pre">fichas</span> <span class="pre">bibliográficas</span> <span class="pre">preliminares</span></code></a> conservan campos del artículo y advertencias de verificación. Los FLOPs de un paper a otra resolución no son FLOPs de nuestra adaptación.</p>
+<p>Attention U-Net aumentaría representación CNN; SAM exige definir prompts sin ground truth; YOLO-seg requiere armonizar instancia y máscara semántica. Son razones operativas, no pruebas de inferioridad. La puntuación completa por citación normalizada/cuártil sigue pendiente. Los subtotales históricos no son un ranking validado. PIDNet no obtiene evidencia directa de dominio HAZMAT solo por incorporar bordes; U-Net compacta no comparte backbone ResNet-18 con U-Net++.</p>
+</section>
+<section id="mecanismos-transferibles">
+<h2>Mecanismos transferibles<a class="headerlink" href="#mecanismos-transferibles" title="Permalink to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Mecanismo</p></th>
+<th class="head"><p>Fuente primaria</p></th>
+<th class="head"><p>Propiedad transferible</p></th>
+<th class="head"><p>Riesgo</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Autoatención</p></td>
+<td><p><a class="reference external" href="https://arxiv.org/abs/1706.03762">Vaswani et al.</a>, secuencias</p></td>
+<td><p>Relaciones distantes</p></td>
+<td><p>Costo y pérdida de detalle por reducción</p></td>
+</tr>
+<tr class="row-odd"><td><p>Estado selectivo</p></td>
+<td><p><a class="reference external" href="https://arxiv.org/abs/2312.00752">Mamba</a>, secuencias</p></td>
+<td><p>Contexto con estado de dimensión fija</p></td>
+<td><p>Orden de escaneo y portabilidad</p></td>
+</tr>
+<tr class="row-even"><td><p>Dilatación multiescala</p></td>
+<td><p><a class="reference external" href="https://arxiv.org/abs/1511.07122">Yu y Koltun</a>, <a class="reference external" href="https://arxiv.org/abs/1609.03499">WaveNet</a></p></td>
+<td><p>Campo receptivo amplio sin pooling adicional</p></td>
+<td><p>No afirmar genealogía unidireccional audio→visión; escala inadecuada para objetos pequeños</p></td>
+</tr>
+<tr class="row-odd"><td><p>Detalle/contexto/borde</p></td>
+<td><p><a class="reference external" href="https://arxiv.org/abs/2206.02066">PIDNet</a>, analogía de control</p></td>
+<td><p>Fusión guiada por fronteras</p></td>
+<td><p>Es una analogía estructural, no un controlador físico</p></td>
+</tr>
+</tbody>
+</table>
+<p>Estas propiedades motivan hipótesis; no prueban beneficio en HAZMAT. Las cuatro familias son categorías de diseño, no cuatro réplicas independientes de un efecto de familia.</p>
+</section>
+<section id="paper-guia-y-replica-de-evaluacion">
+<h2>Paper guía y réplica de evaluación<a class="headerlink" href="#paper-guia-y-replica-de-evaluacion" title="Permalink to this heading">#</a></h2>
+<p>Xie et al., <em>SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers</em>, NeurIPS 2021. <a class="reference external" href="https://proceedings.neurips.cc/paper/2021/file/64f1f27bf1b4ec22924fd0acb550c235-Paper.pdf">Artículo oficial</a>, <a class="reference external" href="https://doi.org/10.48550/arXiv.2105.15203">DOI del preprint</a>, <a class="reference external" href="https://github.com/NVlabs/SegFormer">código de autores</a>.</p>
+<p>Combina encoder Transformer jerárquico y decoder MLP ligero. B0 se seleccionó por disponibilidad de configuración y escala manejable. El artículo reporta 37,4 % mIoU en la validación de ADE20K a escala única.</p>
+<p>Antes de ejecutar se fijaron en <code class="docutils literal notranslate"><span class="pre">config/replica_segformer.json</span></code> el checkpoint oficial (<code class="docutils literal notranslate"><span class="pre">nvidia/segformer-b0-finetuned-ade-512-512</span></code>, revisión y SHA-256 fijados), los datos (las 2.000 imágenes de validación, con el SHA-256 del archivo), el preprocesamiento de la configuración original (redimensionado alineado a 2048 × 512 e inferencia sobre la imagen completa), la métrica (mIoU acumulado sobre 150 clases), la incertidumbre (bootstrap por imagen, 2.000 réplicas) y el criterio: <em>replicado</em> si el IC95 de la diferencia D con 37,4 cae dentro de ±1 punto; <em>compatible</em> si |D| ≤ 1 pero el IC sale de ese margen.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variante</p></th>
+<th class="head text-right"><p>mIoU (%)</p></th>
+<th class="head text-right"><p>IC95 bootstrap por imagen (%)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Preprocesamiento de la configuración original (primaria)</p></td>
+<td class="text-right"><p>37,43</p></td>
+<td class="text-right"><p>35,47–38,30</p></td>
+</tr>
+<tr class="row-odd"><td><p>Preprocesador por defecto de Hugging Face, 512 × 512 sin proporción (D1)</p></td>
+<td class="text-right"><p>35,94</p></td>
+<td class="text-right"><p>34,02–36,85</p></td>
+</tr>
+<tr class="row-even"><td><p>Media de IoU por imagen, que no es la métrica del artículo (D2)</p></td>
+<td class="text-right"><p>33,90</p></td>
+<td class="text-right"><p>—</p></td>
+</tr>
+</tbody>
+</table>
+<p>D = +0,03 puntos, con IC95 de −1,93 a +0,90. <strong>Veredicto según el criterio fijado: compatible.</strong> La cifra coincide y 37,4 cae dentro del IC95, pero la incertidumbre por imagen es más ancha que el margen de ±1 punto, de modo que no alcanza la categoría de replicado. El preprocesamiento explica diferencias del orden de 1,5 puntos: quien evalúe con el preprocesador por defecto obtiene un número menor sin que el modelo cambie. La conversión de los pesos frente al archivo original de los autores (D3) no se evaluó.</p>
+<p>Es una réplica de <strong>evaluación</strong>: confirma que los pesos publicados, con el preprocesamiento y la métrica del artículo, dan la cifra reportada. No replica el entrenamiento. Corrida en una GPU T4 con <code class="docutils literal notranslate"><span class="pre">colab/Replica_SegFormer_ADE20K.ipynb</span></code>; detalle en <code class="docutils literal notranslate"><span class="pre">resultados/replica_segformer/LECTURA.md</span></code> y salida completa en <code class="docutils literal notranslate"><span class="pre">resumen_replica.json</span></code>.</p>
+<p>La adaptación HAZMAT cambia dataset, objetivo, inicialización, resolución y pérdida: <strong>su Dice no valida una réplica del paper</strong>. La réplica valida el checkpoint de Hugging Face y la métrica, no la implementación de SMP (<code class="docutils literal notranslate"><span class="pre">mit_b0</span></code>) entrenada en HAZMAT. El último lugar de SegFormer tampoco acredita una limitación intrínseca del mecanismo.</p>
+<section id="limitacion-por-area-del-rotulo">
+<h3>Limitación por área del rótulo<a class="headerlink" href="#limitacion-por-area-del-rotulo" title="Permalink to this heading">#</a></h3>
+<p>El protocolo <code class="docutils literal notranslate"><span class="pre">config/limitacion_segformer_area.json</span></code>, fijado antes de mirar resultados por área, plantea que SegFormer-B0 pierde más Dice que otras redes en los rótulos pequeños. Unidad: los 122 grupos de validación, en terciles de la fracción de área (cortes 0,0195 y 0,0411); Δ es el Dice del tercil grande menos el del pequeño, promediado en las cinco semillas, con IC95 bootstrap por grupos. La limitación <em>existe</em> si el límite inferior del IC95 de Δ de SegFormer supera 0,02; es <em>específica</em> si además Δ de SegFormer supera al de U-Net, DeepLabv3+ y SegNeXt-T con significación tras Holm.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Red</p></th>
+<th class="head text-right"><p>Dice tercil pequeño</p></th>
+<th class="head text-right"><p>Dice tercil grande</p></th>
+<th class="head text-right"><p>Δ [IC95]</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>SegFormer-B0</p></td>
+<td class="text-right"><p>0,661</p></td>
+<td class="text-right"><p>0,743</p></td>
+<td class="text-right"><p>0,082 [−0,030; 0,194]</p></td>
+</tr>
+<tr class="row-odd"><td><p>U-Net</p></td>
+<td class="text-right"><p>0,782</p></td>
+<td class="text-right"><p>0,864</p></td>
+<td class="text-right"><p>0,081 [0,004; 0,150]</p></td>
+</tr>
+<tr class="row-even"><td><p>DeepLabv3+</p></td>
+<td class="text-right"><p>0,772</p></td>
+<td class="text-right"><p>0,845</p></td>
+<td class="text-right"><p>0,073 [−0,007; 0,148]</p></td>
+</tr>
+<tr class="row-odd"><td><p>SegNeXt-T</p></td>
+<td class="text-right"><p>0,699</p></td>
+<td class="text-right"><p>0,819</p></td>
+<td class="text-right"><p>0,120 [0,030; 0,207]</p></td>
+</tr>
+<tr class="row-even"><td><p>TransUNet</p></td>
+<td class="text-right"><p>0,814</p></td>
+<td class="text-right"><p>0,871</p></td>
+<td class="text-right"><p>0,057 [−0,014; 0,119]</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Veredicto a priori: no confirmada.</strong> El IC95 de Δ de SegFormer incluye valores menores que 0,02, y su diferencia de Δ con cada red piloto es casi nula (U-Net 0,001 [−0,076; 0,082]; DeepLabv3+ 0,010; SegNeXt-T −0,038; p de Holm ≥ 0,55). Lo que sí aparece es un déficit de nivel: en el tercil pequeño SegFormer queda 0,12 por debajo de U-Net [−0,184; −0,064] y 0,11 por debajo de DeepLabv3+. Todas las redes rinden menos en rótulos pequeños, en parte porque el Dice castiga más un mismo error de borde en un objeto pequeño; SegFormer no pierde más que las demás, parte más abajo. Datos: Dice por imagen de validación extraído de los 50 mejores checkpoints con <code class="docutils literal notranslate"><span class="pre">colab/Extraer_Validacion_E2.ipynb</span></code> (<code class="docutils literal notranslate"><span class="pre">resultados/validacion_por_imagen_e2/</span></code>), análisis en <code class="docutils literal notranslate"><span class="pre">resultados/limitacion_segformer_area/RESUMEN.md</span></code>.</p>
+</section>
+</section>
+<section id="gap-y-limites-de-la-sintesis">
+<h2>Gap y límites de la síntesis<a class="headerlink" href="#gap-y-limites-de-la-sintesis" title="Permalink to this heading">#</a></h2>
+<p>En los seis estudios aplicados identificados no se encontró ninguno que segmente el rótulo por píxel con una red profunda ni que compare arquitecturas con varias semillas; el único que produce máscara usa GrabCut sobre la caja del detector. La afirmación es refutable: basta un estudio revisado por pares que haga cualquiera de las dos cosas. Su denominador son esos seis estudios, no el corpus: los 20 registros de dominio y las 2.087 dudas del precribado no se han revisado a texto completo, así que la conclusión queda condicionada a esa revisión y no se escribe «ningún estudio previo». Tampoco hay denominador final para estimar proporción de estudios con datos o código.</p>
+<p>La síntesis de los tres mecanismos transversales (atención, estado selectivo y dilatación), con fuente primaria, hipótesis para HAZMAT y el resultado del benchmark que refutaría cada una, está en <a class="reference download internal" download="" href="_downloads/65d22e7cf84e36905fbe82acdc663b51/MECANISMOS_TRANSVERSALES.md"><code class="xref download docutils literal notranslate"><span class="pre">mecanismos</span></code></a>, sección 4.</p>
+<p>No se asignan cuartiles sin año, categoría y fuente. El <a class="reference download internal" download="" href="_downloads/a4cb52591f52bd508efd7702dd12382b/referencias_e2.bib"><code class="xref download docutils literal notranslate"><span class="pre">BibTeX</span></code></a> reúne 21 referencias (diez arquitecturas en su versión editorial cuando existe, siete de aplicación y cuatro de mecanismos), con DOI verificados el 20/11/2026 en Crossref o DataCite.</p>
 </section>
 </section>
 
@@ -449,52 +529,58 @@ SeaFront dataset hazardous goods placards segmentation baseline
 
               
               
-              
-              
-                <footer class="prev-next-footer d-print-none">
+                <footer class="bd-footer-article">
                   
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="problema.html"
+       href="eda.html"
        title="página anterior">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">anterior</p>
-        <p class="prev-next-title">Problema y datos</p>
+        <p class="prev-next-title">EDA y preparación</p>
       </div>
     </a>
     <a class="right-next"
-       href="eda.html"
+       href="modelos_e2.html"
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">EDA y preparación</p>
+        <p class="prev-next-title">Fichas de las diez implementaciones</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
-
-  <div class="sidebar-secondary-item"><div
-    id="pst-page-navigation-heading-2"
-    class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contenido
   </div>
-  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuentes-de-aplicacion-y-criterios-de-lectura">Fuentes de aplicación y criterios de lectura</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-exploratoria-complementaria">Búsqueda exploratoria complementaria</a></li>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcance-de-la-revision">Alcance de la revisión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identificacion-y-precribado-verificables">Identificación y precribado verificables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antecedentes-y-pertinencia">Antecedentes y pertinencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diversidad-y-comparacion-critica">Diversidad y comparación crítica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mecanismos-transferibles">Mecanismos transferibles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paper-guia-y-replica-de-evaluacion">Paper guía y réplica de evaluación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitacion-por-area-del-rotulo">Limitación por área del rótulo</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#articulos-que-fundamentan-las-tres-arquitecturas">Artículos que fundamentan las tres arquitecturas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gap-y-limites-de-la-sintesis">Gap y límites de la síntesis</a></li>
 </ul>
   </nav></div>
 
@@ -516,7 +602,6 @@ Por Luis Perez y Daniel Carbono
   
   <div class="footer-item">
     
-
   </div>
   
   <div class="footer-item">
@@ -536,8 +621,8 @@ Por Luis Perez y Daniel Carbono
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>

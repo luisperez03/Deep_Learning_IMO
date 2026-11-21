@@ -114,7 +114,7 @@ El usuario confirmó que el profesor acepta **diez modelos totales: tres E1 y si
 | 73 | BibTeX completo (41) | C | 20/11: `libro/referencias_e2.bib` con 21 entradas (10 arquitecturas en versión editorial si existe, 7 de aplicación, 4 de mecanismos), DOI verificados con `verificar_doi_registro.py`. Riesgo: `scripts/integrar_entregable2.py` (línea 186) lo reescribe con solo diez entradas |
 | 74 | Lista apéndice B completa y honesta (63) | C | 21 filas siguientes, sin convertir P/F/D en aprobados |
 | 75 | Presentación y defensa técnica (59) | F | Preparar diapositivas/guion y ensayar |
-| 76 | Publicación final | F | Solicitar autorización antes de GitHub/despliegue; Daniel puede tener cambios |
+| 76 | Publicación final | C | 21/11: rama `cierre-e2` integrada en `main` y libro compilado sin advertencias, publicado en GitHub Pages (`docs/`, https://luisperez03.github.io/Deep_Learning_IMO/) |
 
 ## Apéndice B: las 21 casillas originales
 

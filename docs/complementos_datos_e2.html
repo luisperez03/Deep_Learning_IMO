@@ -1,0 +1,975 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="es" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Complementos de datos: fuga, shift, ruido, techo y EDA por clase &#8212; Segmentación de etiquetas de mercancías peligrosas</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'complementos_datos_e2';</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Diagnósticos sobre los pesos congelados" href="diagnosticos_e2.html" />
+    <link rel="prev" title="Complementos locales del 20 de noviembre" href="complementos_e2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Segmentación de etiquetas de mercancías peligrosas</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Entregable 2</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="problema.html">Problema y datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eda.html">EDA y preparación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="literatura.html">Literatura, selección operativa y paper guía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelos_e2.html">Fichas de las diez implementaciones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metodos_e2.html">Diseño experimental y ruta de segmentación E2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resultados_e2.html">Resultados E2: benchmark e inferencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="complementos_e2.html">Complementos locales del 20 de noviembre</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Complementos de datos: fuga, shift, ruido, techo y EDA por clase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagnosticos_e2.html">Diagnósticos sobre los pesos congelados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entrenamiento_complementario_e2.html">Entrenamientos complementarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cierre_e2.html">Discusión, limitaciones y cierre pendiente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="checklist_e2.html">Verificación de requisitos del Entregable 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reproducibilidad_e2.html">Reproducción y archivos de entrega</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Antecedentes del Entregable 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="implementacion.html">Diseño experimental e implementación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resultados.html">Resultados y baseline</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Complementos de datos: fuga, shift, ruido, techo y EDA por clase</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuga-residual-por-embeddings-controles-11-y-46">Fuga residual por embeddings (controles 11 y 46)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sensibilidad-del-dice-sin-los-9-grupos">Sensibilidad del Dice sin los 9 grupos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shift-train-validacion-control-15">Shift train/validación (control 15)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ruido-de-etiqueta-control-12">Ruido de etiqueta (control 12)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#techo-de-desempeno-y-control-63">Techo de desempeño y γ (control 63)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-por-clase-entropia-areas-formas-y-color-controles-09-y-16">EDA por clase: entropía, áreas, formas y color (controles 09 y 16)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduccion-en-entorno-limpio-controles-55-y-68">Reproducción en entorno limpio (controles 55 y 68)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trazabilidad">Trazabilidad</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="complementos-de-datos-fuga-shift-ruido-techo-y-eda-por-clase">
+<h1>Complementos de datos: fuga, shift, ruido, techo y EDA por clase<a class="headerlink" href="#complementos-de-datos-fuga-shift-ruido-techo-y-eda-por-clase" title="Permalink to this heading">#</a></h1>
+<p>Este capítulo reúne análisis que se cierran en CPU con los datos y los registros del repositorio, sin checkpoints
+ni inferencia nueva. <strong>Todos son exploratorios y posteriores a la apertura del test</strong>: no cambian la selección de
+modelos, el umbral, el ranking oficial ni las conclusiones cerradas en <code class="docutils literal notranslate"><span class="pre">resultados_e2.md</span></code>. Cada cifra sale de un
+script versionado y de un JSON en <code class="docutils literal notranslate"><span class="pre">resultados/</span></code>; la tabla final dice cuál.</p>
+<p><strong>Partición.</strong> Antes de reutilizar cálculos hechos sobre la misma partición en otro árbol de trabajo se verificó que
+es la misma: SHA-256 idénticos de <code class="docutils literal notranslate"><span class="pre">train.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">val.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">test.csv</span></code> y <code class="docutils literal notranslate"><span class="pre">normalization_train.json</span></code>, cero filas
+distintas en id, grupo y partición, y las 1.451 imágenes con el SHA-256 de los manifiestos
+(<code class="docutils literal notranslate"><span class="pre">resultados/fuga_embeddings_e2/RESUMEN.json</span></code>, campo <code class="docutils literal notranslate"><span class="pre">particion</span></code>). Las 1.451 máscaras binarias, que el snapshot no
+trae, se regeneraron con <code class="docutils literal notranslate"><span class="pre">reconstruir_mascaras_binarias_e2.py</span></code> y coinciden byte a byte con los SHA-256 del
+manifiesto.</p>
+<section id="fuga-residual-por-embeddings-controles-11-y-46">
+<h2>Fuga residual por embeddings (controles 11 y 46)<a class="headerlink" href="#fuga-residual-por-embeddings-controles-11-y-46" title="Permalink to this heading">#</a></h2>
+<p>Los grupos de similitud se formaron con dHash y aHash, que no ven rotaciones, recortes ni cambios de encuadre. Para
+buscar lo que se les escapó, cada imagen se representó con una ResNet-50 de ImageNet-1k (promedio global, 2.048
+dimensiones, mismo letterbox a 256) y se midió el <strong>coseno máximo contra train</strong>. Ese máximo, tomado sobre unas
+mil comparaciones, es alto aunque no haya fuga, así que no se compara con un percentil de pares sueltos: la
+referencia es la misma estadística dentro de train, cada imagen contra el resto de train <strong>sin su propio grupo</strong>.
+Como ancla, los pares dentro de un mismo grupo dHash (casi duplicados conocidos) tienen coseno con percentil 5 de
+0,981 y mediana de 0,992.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fracción de imágenes con coseno máximo contra train mayor que…</p></th>
+<th class="head text-right"><p>0,90</p></th>
+<th class="head text-right"><p>0,94</p></th>
+<th class="head text-right"><p>0,96</p></th>
+<th class="head text-right"><p>0,97</p></th>
+<th class="head text-right"><p>0,98</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Train fuera de su grupo (referencia)</p></td>
+<td class="text-right"><p>0,82</p></td>
+<td class="text-right"><p>0,31</p></td>
+<td class="text-right"><p>0,11</p></td>
+<td class="text-right"><p>0,042</p></td>
+<td class="text-right"><p>0,010</p></td>
+</tr>
+<tr class="row-odd"><td><p>Validación, vista original</p></td>
+<td class="text-right"><p>0,82</p></td>
+<td class="text-right"><p>0,36</p></td>
+<td class="text-right"><p>0,09</p></td>
+<td class="text-right"><p>0,023</p></td>
+<td class="text-right"><p>0,005</p></td>
+</tr>
+<tr class="row-even"><td><p>Test, vista original</p></td>
+<td class="text-right"><p>0,76</p></td>
+<td class="text-right"><p>0,35</p></td>
+<td class="text-right"><p>0,11</p></td>
+<td class="text-right"><p>0,050</p></td>
+<td class="text-right"><p>0,009</p></td>
+</tr>
+<tr class="row-odd"><td><p>Validación, máximo sobre rotaciones de 90° y volteos</p></td>
+<td class="text-right"><p>0,90</p></td>
+<td class="text-right"><p>0,43</p></td>
+<td class="text-right"><p>0,13</p></td>
+<td class="text-right"><p>0,060</p></td>
+<td class="text-right"><p>0,014</p></td>
+</tr>
+<tr class="row-even"><td><p>Test, máximo sobre rotaciones de 90° y volteos</p></td>
+<td class="text-right"><p>0,89</p></td>
+<td class="text-right"><p>0,47</p></td>
+<td class="text-right"><p>0,16</p></td>
+<td class="text-right"><p>0,060</p></td>
+<td class="text-right"><p>0,014</p></td>
+</tr>
+</tbody>
+</table>
+<p>Las dos últimas filas toman el máximo sobre ocho variantes de cada imagen; eso sube la cifra por construcción y
+sirve como cota de duplicados girados, no como comparación con train.</p>
+<p><strong>Lectura.</strong></p>
+<ol class="arabic simple">
+<li><p><strong>La partición no añade fuga respecto de la que ya hay entre grupos dentro de train.</strong> Validación y test se
+parecen a train como train se parece a sí mismo fuera de su grupo, a todas las alturas.</p></li>
+<li><p><strong>Los grupos dHash no separan sesiones de fotos.</strong> Dentro de train hay 33 pares de grupos distintos por encima
+de 0,97: 43 imágenes (4,2 %) de 24 grupos tienen, en otro grupo, una foto casi igual. Por encima de 0,97 se ve
+casi la misma fotografía con un encuadre apenas distinto; entre 0,95 y 0,96, la misma sesión con otro encuadre;
+entre 0,92 y 0,94, la misma escena montada con rótulos distintos.</p></li>
+<li><p><strong>Casi duplicados de val y test frente a train.</strong> Con rotaciones y volteos, 13 imágenes de test en <strong>9 grupos de
+122</strong> y 13 imágenes de validación en 8 grupos superan 0,97. Los 9 grupos de test son <code class="docutils literal notranslate"><span class="pre">g_image_0004</span></code>,
+<code class="docutils literal notranslate"><span class="pre">g_image_0059</span></code>, <code class="docutils literal notranslate"><span class="pre">g_image_0204</span></code>, <code class="docutils literal notranslate"><span class="pre">g_image_0398</span></code>, <code class="docutils literal notranslate"><span class="pre">g_image_0501</span></code>, <code class="docutils literal notranslate"><span class="pre">g_image_0563</span></code>, <code class="docutils literal notranslate"><span class="pre">g_image_0677</span></code>, <code class="docutils literal notranslate"><span class="pre">g_image_0750</span></code> y
+<code class="docutils literal notranslate"><span class="pre">g_image_1345</span></code> (<code class="docutils literal notranslate"><span class="pre">grupos_casi_duplicado.json</span></code>).</p></li>
+<li><p><strong>Alcance.</strong> El Dice de test mide generalización a fotos nuevas de las mismas sesiones y escenas, no a sesiones
+nuevas. Es optimista respecto de una operación real, y lo es para todos los modelos.</p></li>
+</ol>
+<section id="sensibilidad-del-dice-sin-los-9-grupos">
+<h3>Sensibilidad del Dice sin los 9 grupos<a class="headerlink" href="#sensibilidad-del-dice-sin-los-9-grupos" title="Permalink to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">sensibilidad_casi_duplicados_e2.py</span></code> repite el resumen por grupos quitando esos 9 grupos. Los 50 JSON de test por
+corrida no están en el repositorio; sí están la precisión y la exhaustividad por imagen de las 10 redes con semilla
+11 (<code class="docutils literal notranslate"><span class="pre">bordes_seed11_por_imagen.json</span></code>), y de ellas el Dice por imagen sale exacto: 2PR/(P+R) = 2TP/(2TP+FP+FN). La
+auditoría del test recalculó esas 2.180 máscaras contra los JSON sin incidencias. Es <strong>una semilla</strong>, no el promedio
+de cinco, por eso la segunda columna no coincide con la oficial. Con los 50 JSON presentes como hermanos del
+proyecto, el mismo script usa las cinco semillas sin cambios; su cálculo se probó con 50 JSON sintéticos
+(<code class="docutils literal notranslate"><span class="pre">--fuente</span> <span class="pre">simular</span></code>).</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Red</p></th>
+<th class="head text-right"><p>Dice oficial (5 semillas)</p></th>
+<th class="head text-right"><p>Dice seed11, 122 grupos</p></th>
+<th class="head text-right"><p>Sin los 9 grupos (113)</p></th>
+<th class="head text-right"><p>Cambio</p></th>
+<th class="head text-right"><p>Dice en los 9 menos el resto [IC 95 %]</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TransUNet</p></td>
+<td class="text-right"><p>0,8626</p></td>
+<td class="text-right"><p>0,8712</p></td>
+<td class="text-right"><p>0,8663</p></td>
+<td class="text-right"><p>−0,0048</p></td>
+<td class="text-right"><p>+0,066 [+0,032; +0,101]</p></td>
+</tr>
+<tr class="row-odd"><td><p>U-Net</p></td>
+<td class="text-right"><p>0,8464</p></td>
+<td class="text-right"><p>0,8422</p></td>
+<td class="text-right"><p>0,8366</p></td>
+<td class="text-right"><p>−0,0056</p></td>
+<td class="text-right"><p>+0,076 [+0,028; +0,124]</p></td>
+</tr>
+<tr class="row-even"><td><p>FCN</p></td>
+<td class="text-right"><p>0,8535</p></td>
+<td class="text-right"><p>0,8430</p></td>
+<td class="text-right"><p>0,8369</p></td>
+<td class="text-right"><p>−0,0061</p></td>
+<td class="text-right"><p>+0,083 [+0,039; +0,125]</p></td>
+</tr>
+<tr class="row-odd"><td><p>VM-UNet</p></td>
+<td class="text-right"><p>0,8391</p></td>
+<td class="text-right"><p>0,8786</p></td>
+<td class="text-right"><p>0,8760</p></td>
+<td class="text-right"><p>−0,0026</p></td>
+<td class="text-right"><p>+0,036 [−0,002; +0,074]</p></td>
+</tr>
+<tr class="row-even"><td><p>DeepLabv3+</p></td>
+<td class="text-right"><p>0,8140</p></td>
+<td class="text-right"><p>0,8079</p></td>
+<td class="text-right"><p>0,8001</p></td>
+<td class="text-right"><p>−0,0078</p></td>
+<td class="text-right"><p>+0,106 [+0,043; +0,164]</p></td>
+</tr>
+<tr class="row-odd"><td><p>U-Net++</p></td>
+<td class="text-right"><p>0,8076</p></td>
+<td class="text-right"><p>0,8090</p></td>
+<td class="text-right"><p>0,8012</p></td>
+<td class="text-right"><p>−0,0078</p></td>
+<td class="text-right"><p>+0,106 [+0,038; +0,170]</p></td>
+</tr>
+<tr class="row-even"><td><p>PIDNet-S</p></td>
+<td class="text-right"><p>0,7936</p></td>
+<td class="text-right"><p>0,7571</p></td>
+<td class="text-right"><p>0,7474</p></td>
+<td class="text-right"><p>−0,0097</p></td>
+<td class="text-right"><p>+0,132 [+0,050; +0,205]</p></td>
+</tr>
+<tr class="row-odd"><td><p>SegNeXt-T</p></td>
+<td class="text-right"><p>0,7792</p></td>
+<td class="text-right"><p>0,7747</p></td>
+<td class="text-right"><p>0,7669</p></td>
+<td class="text-right"><p>−0,0078</p></td>
+<td class="text-right"><p>+0,106 [+0,031; +0,176]</p></td>
+</tr>
+<tr class="row-even"><td><p>SegFormer-B0</p></td>
+<td class="text-right"><p>0,7053</p></td>
+<td class="text-right"><p>0,6957</p></td>
+<td class="text-right"><p>0,6914</p></td>
+<td class="text-right"><p>−0,0043</p></td>
+<td class="text-right"><p>+0,058 [−0,134; +0,207]</p></td>
+</tr>
+<tr class="row-odd"><td><p>SegNet</p></td>
+<td class="text-right"><p>0,8247</p></td>
+<td class="text-right"><p>0,7779</p></td>
+<td class="text-right"><p>0,7713</p></td>
+<td class="text-right"><p>−0,0066</p></td>
+<td class="text-right"><p>+0,090 [−0,025; +0,181]</p></td>
+</tr>
+</tbody>
+</table>
+<p>Los grupos con casi duplicado son más fáciles para casi todas las redes (entre 4 y 13 puntos más de Dice), que es
+lo que se espera si parte del acierto viene de haber visto esa sesión. Pero pesan 9 de 122 grupos: quitarlos baja
+el Dice entre 0,003 y 0,010, <strong>el ranking de seed11 no cambia</strong> (τ de Kendall = 1) y la diferencia TransUNet − FCN
+en seed11 pasa de 0,0282 [0,0085; 0,0493] a 0,0294 [0,0082; 0,0517]. La fuga residual detectada no explica el
+orden de los modelos; sí recorta el alcance de la conclusión al de sesiones conocidas.</p>
+</section>
+</section>
+<section id="shift-train-validacion-control-15">
+<h2>Shift train/validación (control 15)<a class="headerlink" href="#shift-train-validacion-control-15" title="Permalink to this heading">#</a></h2>
+<p>El análisis existente es train/test (AUC 0,560, p de permutación 0,090). <code class="docutils literal notranslate"><span class="pre">shift_train_val_e2.py</span></code> hace el par que
+faltaba, train/validación, con <strong>los mismos 61 descriptores por imagen, sin máscara</strong>, el mismo clasificador
+(regresión logística estandarizada y balanceada, 5 folds, semilla 20261120) y 200 permutaciones, y añade dos
+pruebas que no dependen de un clasificador. Unidad: grupo (567 de train, 122 de validación). Validación ya se usó
+para elegir checkpoints, así que un shift train/val afectaría a la selección, no al test.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Prueba</p></th>
+<th class="head"><p>Resultado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>KS por rasgo (9 de imagen y 3 de máscara), Holm</p></td>
+<td><p>D máximo 0,10 (desviación de R y de B); ningún p ajustado bajo 1</p></td>
+</tr>
+<tr class="row-odd"><td><p>MMD, núcleo gaussiano, 61 descriptores</p></td>
+<td><p>MMD² = −0,0025, p = 0,92 (200 permutaciones)</p></td>
+</tr>
+<tr class="row-even"><td><p>MMD con fracción etiquetada, regiones y perímetro</p></td>
+<td><p>MMD² = −0,0023, p = 0,93</p></td>
+</tr>
+<tr class="row-odd"><td><p>Clasificador adversarial train/val</p></td>
+<td><p>AUC 0,450, IC 95 % condicional [0,393; 0,509], p = 0,90; percentil 95 del nulo 0,562</p></td>
+</tr>
+</tbody>
+</table>
+<p>Una AUC algo menor que 0,5 es lo habitual cuando no hay señal y se valida cruzado (las predicciones fuera de fold
+quedan levemente anticorrelacionadas con la etiqueta). La auditoría de origen sobre la misma partición, con otros
+diez rasgos (ancho, alto, aspecto, luminancia, contraste, saturación, nitidez, fracción etiquetada, regiones y área
+media de región), dio lo mismo: ningún KS significativo tras Holm, MMD p = 0,66, AUC adversarial 0,49 (p = 0,55)
+con logística y 0,46 con gradient boosting, y χ² de categorías train/val p = 0,26. Los KS de los rasgos comunes
+coinciden exactamente (aspecto D = 0,046; fracción etiquetada 0,093; regiones 0,076).</p>
+<p>No rechazar no demuestra ausencia de shift: los descriptores son globales y la potencia frente a cambios pequeños
+con unos 690 grupos es limitada.</p>
+</section>
+<section id="ruido-de-etiqueta-control-12">
+<h2>Ruido de etiqueta (control 12)<a class="headerlink" href="#ruido-de-etiqueta-control-12" title="Permalink to this heading">#</a></h2>
+<p>Se revisaron 100 imágenes al azar de train (82) y validación (18), nunca de test, comparando la máscara con la foto.
+Es una <strong>primera pasada asistida, no una segunda anotación</strong>: los 12 casos marcados como error o dudoso esperan
+confirmación a mano en <code class="docutils literal notranslate"><span class="pre">resultados/ruido_etiqueta_e2/confirmar.csv</span></code> (columnas <code class="docutils literal notranslate"><span class="pre">confirma</span></code> y <code class="docutils literal notranslate"><span class="pre">veredicto_final</span></code>
+vacías). Al llenarlas, <code class="docutils literal notranslate"><span class="pre">ruido_etiqueta_e2.py</span> <span class="pre">--confirmar</span></code> recalcula todo.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Lectura</p></th>
+<th class="head text-right"><p>Imágenes con error</p></th>
+<th class="head text-right"><p>Tasa</p></th>
+<th class="head text-right"><p>IC 95 % Wilson</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Dudosos como correctos</p></td>
+<td class="text-right"><p>7 de 100</p></td>
+<td class="text-right"><p>7,0 %</p></td>
+<td class="text-right"><p>3,4 % a 13,8 %</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dudosos como errores</p></td>
+<td class="text-right"><p>12 de 100</p></td>
+<td class="text-right"><p>12,0 %</p></td>
+<td class="text-right"><p>7,0 % a 19,8 %</p></td>
+</tr>
+<tr class="row-even"><td><p>Sin dudosos</p></td>
+<td class="text-right"><p>7 de 95</p></td>
+<td class="text-right"><p>7,4 %</p></td>
+<td class="text-right"><p>3,6 % a 14,4 %</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Hallazgo: los siete errores son del mismo tipo.</strong> En todos, un rótulo cortado por el borde de la foto quedó sin
+máscara (tipo <em>falta</em>). No hubo contornos mal trazados, regiones sobrantes ni clases cambiadas; cuatro de los cinco
+dudosos son también esquinas en el borde. Las banderas automáticas (cajas contra instancias) no detectan este error,
+porque un rótulo sin máscara tampoco tiene caja.</p>
+<p>¿Es una regla de anotación o una inconsistencia? Si el conjunto nunca anotara rótulos cortados, sería una regla que
+el modelo puede aprender. No es así: <strong>86 de las 1.015 imágenes de train (8,5 %) y 21 de las 218 de validación
+(9,6 %) tienen al menos una región anotada que toca el borde</strong> (94 de 1.711 regiones de train). En la muestra hay
+siete imágenes correctas con región anotada en el borde y siete con un rótulo cortado omitido. El modelo recibe
+señales contradictorias justo en los rótulos cortados, y el error en test sobre ellos es en parte irreducible
+respecto de estas etiquetas.</p>
+<p>Límites: la tasa es por imagen, no por píxel. Un rótulo cortado suele ser pequeño, así que su efecto en el Dice por
+imagen está acotado pero no está medido. No se corrigió ninguna máscara, y menos de test.</p>
+</section>
+<section id="techo-de-desempeno-y-control-63">
+<h2>Techo de desempeño y γ (control 63)<a class="headerlink" href="#techo-de-desempeno-y-control-63" title="Permalink to this heading">#</a></h2>
+<p>La guía pide al menos una cota de referencia (acuerdo entre anotadores, ruido irreducible o desempeño humano) y
+γ = (s_techo − s_mejor)/(s_techo − s_base), la fracción del margen aún sin cubrir. <strong>No hay segunda anotación
+independiente ni desempeño humano documentado, y no se inventa ninguno.</strong></p>
+<p><strong>Kit de reanotación listo.</strong> <code class="docutils literal notranslate"><span class="pre">techo_reanotacion_e2.py</span> <span class="pre">preparar</span></code> sortea 50 imágenes de <strong>validación</strong> (nunca test),
+una por grupo, estratificadas por tercil del área etiquetada del grupo (17, 17 y 16; semilla 20261117); la muestra
+coincide con la sorteada antes en el otro árbol (<code class="docutils literal notranslate"><span class="pre">resultados/techo_e2/muestra.csv</span></code>). Quien reanota recibe solo las
+fotos, sin máscara ni predicciones, con instrucciones de marcar los rótulos cortados <strong>aparte</strong>, para no confundir
+la inconsistencia del conjunto con desacuerdo. <code class="docutils literal notranslate"><span class="pre">medir</span></code> calcula Dice e IoU contra la máscara del conjunto con la
+misma geometría y métrica que los modelos (letterbox 256, zona válida, <code class="docutils literal notranslate"><span class="pre">dataset_ready.metrics</span></code>), media por grupo con
+IC bootstrap, por tercil y con o sin cortados; se probó con reanotaciones fabricadas por erosión y dilatación de
+2 px (Dice 0,936 en 12 imágenes: un desacuerdo de contorno de 2 px ya cuesta unos 6 puntos en rótulos de este
+tamaño). <code class="docutils literal notranslate"><span class="pre">gamma</span></code> toma el techo medido y da γ por red.</p>
+<p><strong>Cota defendible con los datos disponibles: sobre γ, no sobre el techo.</strong> Con s_base el clásico
+HistGradientBoosting elegido en validación (0,6533 en validación, 0,6447 en test), γ(t) = (t − s)/(t − s_base)
+crece con t siempre que la red supere al clásico, y ningún techo pasa de Dice 1. Por tanto γ calculado con t = 1 es
+una <strong>cota superior</strong> de γ válida para cualquier techo: TransUNet deja sin cubrir <strong>a lo sumo</strong> el 42 % del margen
+sobre el clásico en validación y el 39 % en test. No hay cota inferior sin un techo: si el techo real estuviera
+cerca de 0,86, γ sería casi cero. Las columnas con t = 0,95 y t = 0,90 son <strong>hipotéticas</strong>, no estimaciones; solo
+muestran cuánto cambia γ con el techo.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Red</p></th>
+<th class="head text-right"><p>γ val, t = 1 (cota)</p></th>
+<th class="head text-right"><p>γ test, t = 1 (cota)</p></th>
+<th class="head text-right"><p>γ test si t = 0,95 (hipotético)</p></th>
+<th class="head text-right"><p>γ test si t = 0,90 (hipotético)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TransUNet</p></td>
+<td class="text-right"><p>0,423</p></td>
+<td class="text-right"><p>0,387</p></td>
+<td class="text-right"><p>0,286</p></td>
+<td class="text-right"><p>0,146</p></td>
+</tr>
+<tr class="row-odd"><td><p>FCN</p></td>
+<td class="text-right"><p>0,488</p></td>
+<td class="text-right"><p>0,412</p></td>
+<td class="text-right"><p>0,316</p></td>
+<td class="text-right"><p>0,182</p></td>
+</tr>
+<tr class="row-even"><td><p>U-Net</p></td>
+<td class="text-right"><p>0,485</p></td>
+<td class="text-right"><p>0,432</p></td>
+<td class="text-right"><p>0,339</p></td>
+<td class="text-right"><p>0,210</p></td>
+</tr>
+<tr class="row-odd"><td><p>VM-UNet</p></td>
+<td class="text-right"><p>0,517</p></td>
+<td class="text-right"><p>0,453</p></td>
+<td class="text-right"><p>0,363</p></td>
+<td class="text-right"><p>0,239</p></td>
+</tr>
+<tr class="row-even"><td><p>SegNet</p></td>
+<td class="text-right"><p>0,559</p></td>
+<td class="text-right"><p>0,493</p></td>
+<td class="text-right"><p>0,410</p></td>
+<td class="text-right"><p>0,295</p></td>
+</tr>
+<tr class="row-odd"><td><p>DeepLabv3+</p></td>
+<td class="text-right"><p>0,538</p></td>
+<td class="text-right"><p>0,523</p></td>
+<td class="text-right"><p>0,445</p></td>
+<td class="text-right"><p>0,337</p></td>
+</tr>
+<tr class="row-even"><td><p>U-Net++</p></td>
+<td class="text-right"><p>0,548</p></td>
+<td class="text-right"><p>0,541</p></td>
+<td class="text-right"><p>0,466</p></td>
+<td class="text-right"><p>0,362</p></td>
+</tr>
+<tr class="row-odd"><td><p>PIDNet-S</p></td>
+<td class="text-right"><p>0,587</p></td>
+<td class="text-right"><p>0,581</p></td>
+<td class="text-right"><p>0,512</p></td>
+<td class="text-right"><p>0,417</p></td>
+</tr>
+<tr class="row-even"><td><p>SegNeXt-T</p></td>
+<td class="text-right"><p>0,694</p></td>
+<td class="text-right"><p>0,621</p></td>
+<td class="text-right"><p>0,559</p></td>
+<td class="text-right"><p>0,473</p></td>
+</tr>
+<tr class="row-odd"><td><p>SegFormer-B0</p></td>
+<td class="text-right"><p>0,858</p></td>
+<td class="text-right"><p>0,829</p></td>
+<td class="text-right"><p>0,802</p></td>
+<td class="text-right"><p>0,763</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Una cota del techo por ruido no es defendible todavía.</strong> La guía admite estimar el error irreducible desde la tasa
+de ruido, pero aquí faltan tres cosas: la tasa no está confirmada a mano, no hay área por píxel de los rótulos
+omitidos y la omisión es sistemática en parte (el modelo puede aprenderla a medias). El camino corto para tenerla:
+confirmar los 12 casos y trazar los rótulos omitidos en esas imágenes; el Dice entre máscara original y corregida en
+la muestra de 100, con IC, sería una cota de ruido. Los estimadores de error de Bayes por vecinos no tienen sentido a
+nivel de píxel en segmentación y no se usan.</p>
+<p><strong>Qué se reporta si nadie alcanza a reanotar antes de la entrega.</strong> El techo y γ se declaran <strong>no estimados</strong>, con
+esta limitación explícita: no hay doble anotación; Dice = 1 es un máximo matemático, no un techo; el consenso entre
+redes no es un techo humano. Se reportan la cota superior de γ con t = 1 (tabla, primeras dos columnas), la tasa de
+ruido de la primera pasada con su IC y su tipo único (rótulos cortados por el borde), y el kit listo con su prueba,
+para que la medición se haga sin cambiar nada del protocolo.</p>
+</section>
+<section id="eda-por-clase-entropia-areas-formas-y-color-controles-09-y-16">
+<h2>EDA por clase: entropía, áreas, formas y color (controles 09 y 16)<a class="headerlink" href="#eda-por-clase-entropia-areas-formas-y-color-controles-09-y-16" title="Permalink to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">complementos_locales_e2/</span></code> ya tenía la fracción de primer plano, la entropía binaria por imagen, las regiones, el
+perímetro y los histogramas RGB de primer plano y fondo. <code class="docutils literal notranslate"><span class="pre">eda_clases_formas_e2.py</span></code> añade lo que faltaba por
+<strong>categoría</strong> (13 clases de rótulo). Formas y color se miden solo en train y validación; del test solo la presencia
+por clase, que ya estaba publicada.</p>
+<p><strong>Entropía de la distribución de clases.</strong> La entropía de Shannon (en bits) mide cuán repartidas están las clases; se
+normaliza por log₂ 13 (1 = todas iguales) y se expresa como número efectivo de clases, 2^H.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Partición</p></th>
+<th class="head text-right"><p>H por presencia en imagen</p></th>
+<th class="head text-right"><p>Normalizada</p></th>
+<th class="head text-right"><p>Clases efectivas</p></th>
+<th class="head text-right"><p>H por píxeles normalizada</p></th>
+<th class="head text-right"><p>Clases efectivas por píxeles</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Train</p></td>
+<td class="text-right"><p>3,646</p></td>
+<td class="text-right"><p>0,985</p></td>
+<td class="text-right"><p>12,5</p></td>
+<td class="text-right"><p>0,971</p></td>
+<td class="text-right"><p>12,1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Validación</p></td>
+<td class="text-right"><p>3,571</p></td>
+<td class="text-right"><p>0,965</p></td>
+<td class="text-right"><p>11,9</p></td>
+<td class="text-right"><p>0,882</p></td>
+<td class="text-right"><p>9,6</p></td>
+</tr>
+<tr class="row-even"><td><p>Test</p></td>
+<td class="text-right"><p>3,634</p></td>
+<td class="text-right"><p>0,982</p></td>
+<td class="text-right"><p>12,4</p></td>
+<td class="text-right"><p>—</p></td>
+<td class="text-right"><p>—</p></td>
+</tr>
+</tbody>
+</table>
+<p>Por imagen el conjunto está casi balanceado entre clases. Por píxeles, validación lo está menos (9,6 clases
+efectivas), porque pocas imágenes con rótulos grandes concentran píxeles. La divergencia de Jensen-Shannon entre las
+distribuciones de presencia es pequeña: 0,027 bits train/val y 0,024 bits train/test (0 = iguales, 1 = disjuntas). El
+desbalance relevante no es entre clases sino rótulo contra fondo (mediana de 3,2 % de píxeles de primer plano en
+train).</p>
+<p><strong>Entropía de la distribución de áreas.</strong> Con la fracción de primer plano por imagen en 12 intervalos logarítmicos
+fijos entre 0,001 y 1, la entropía normalizada es 0,72 en train, 0,72 en validación y 0,66 en test: el test tiene
+menos imágenes con rótulos grandes (14 de 218 por encima del 10 % de la foto, frente a 130 de 1.015 en train), lo que
+coincide con su menor fracción media de primer plano (0,038 frente a 0,047).</p>
+<p><img alt="Área de cada región por clase en train, escala logarítmica" src="_images/eda_clases_areas.png" /></p>
+<p><strong>Tamaño por clase.</strong> La mediana del área de una región va del 0,9 % de la foto (corrosivo, explosivo) al 5,4 %
+(sustancia infecciosa) y 2,9 % (gas no inflamable). Las clases pequeñas son las que más arriesga un modelo que pierde
+resolución.</p>
+<p><img alt="Solidez, extensión y circularidad de las regiones por clase en train" src="_images/eda_clases_formas.png" /></p>
+<p><strong>Forma por clase.</strong> Las 13 clases tienen la misma forma: rombos convexos (solidez mediana 0,98 en todas, percentil
+10 ≥ 0,95), con circularidad mediana 0,71 a 0,73, cerca del π/4 ≈ 0,785 de un cuadrado. La extensión (área sobre
+caja alineada) va de 0,5 (rombo de frente) a 0,9 (rombo girado o visto en perspectiva), con mediana entre 0,52 y
+0,75 según la clase. La forma no distingue clases: lo que las separa es color y contenido, y para la tarea binaria
+la forma es una señal fuerte y común. La fracción de regiones que toca el borde de la foto va de 0 (tóxico) a 8,2 %
+(radiactivo).</p>
+<p><img alt="Histograma de tono de los píxeles de cada clase en train" src="_images/eda_clases_tono.png" /></p>
+<p><strong>Color por clase.</strong> El tono dominante separa las clases de color: inflamable, sólido inflamable y combustión
+espontánea en rojos (0–20°), explosivo en naranja (20–40°), oxígeno, peróxido orgánico y radiactivo en amarillos
+(40–60°), gas no inflamable en verde (160–180°). Las de fondo blanco o blanco y negro (corrosivo, tóxico, sustancia
+infecciosa, peligro por inhalación y peligroso) tienen pocos píxeles saturados y su histograma refleja sobre todo el
+tinte de la iluminación (azules, 200–240°). Un modelo que se apoye en color tiene más difícil esas clases.</p>
+</section>
+<section id="reproduccion-en-entorno-limpio-controles-55-y-68">
+<h2>Reproducción en entorno limpio (controles 55 y 68)<a class="headerlink" href="#reproduccion-en-entorno-limpio-controles-55-y-68" title="Permalink to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">prueba_entorno_limpio_e2.py</span></code> copió el proyecto desde git (commit <code class="docutils literal notranslate"><span class="pre">a900dec</span></code>, solo lo versionado) a una carpeta
+nueva, puso <code class="docutils literal notranslate"><span class="pre">VOC2012</span></code> como hermano del proyecto (enlace al conjunto, SHA-256 de las 1.451 imágenes verificado) y
+corrió todo con un intérprete aislado (<code class="docutils literal notranslate"><span class="pre">-E</span> <span class="pre">-s</span></code>, variables de entorno mínimas): Python 3.12.16, numpy 2.5.5, scipy
+1.18.1, scikit-learn 1.9.1, Pillow 13.0.0, Windows 11. El proyecto declara numpy 2.2.6, scipy 1.15.3, scikit-learn
+1.6.1 y Pillow 11.3.0: la prueba es también de portabilidad entre versiones. Detalle en
+<code class="docutils literal notranslate"><span class="pre">resultados/entorno_limpio_e2/REPORTE.json</span></code>.</p>
+<p><strong>La orden de reproducción no corre completa desde el snapshot.</strong> <code class="docutils literal notranslate"><span class="pre">scripts/reproducir_entregable2.py</span></code> falla en su
+segundo paso, <code class="docutils literal notranslate"><span class="pre">analisis_integracion_e2.py</span></code>, porque lee artefactos que el repositorio no lleva. Faltan, con
+precisión:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Falta</p></th>
+<th class="head"><p>Qué es</p></th>
+<th class="head"><p>Quién lo lee</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">../resultados_test_e2_final/</span></code></p></td>
+<td><p>50 JSON de test por corrida y <code class="docutils literal notranslate"><span class="pre">mascaras_seed11/</span></code> (2.180 PNG)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">analisis_integracion_e2.py</span></code>, <code class="docutils literal notranslate"><span class="pre">integrar_entregable2.py</span></code>, <code class="docutils literal notranslate"><span class="pre">auditar_test_e2.py</span></code>, <code class="docutils literal notranslate"><span class="pre">completar_analisis_locales_e2.py</span></code> (bordes y sumas de cuadrados)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">../tesis_imo_e2_arquitecturas_reales_v2/</span></code></p></td>
+<td><p>50 carpetas de corrida con <code class="docutils literal notranslate"><span class="pre">history.json</span></code> (y checkpoints)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">analisis_integracion_e2.py</span></code> (curvas y costo)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">resultados/preentrenamiento/masks_binary/</span></code></p></td>
+<td><p>1.451 máscaras binarias</p></td>
+<td><p>todo lo que carga ejemplos; <strong>reconstruibles</strong>: <code class="docutils literal notranslate"><span class="pre">reconstruir_mascaras_binarias_e2.py</span></code> las regenera idénticas byte a byte (1.451/1.451 por SHA-256)</p></td>
+</tr>
+<tr class="row-odd"><td><p>30 figuras de <code class="docutils literal notranslate"><span class="pre">libro/figuras/</span></code> y <code class="docutils literal notranslate"><span class="pre">libro/eda_original.ipynb</span></code></p></td>
+<td><p>imágenes del libro del Entregable 1 y del EDA, y el cuaderno descargable</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">jupyter-book</span> <span class="pre">build</span> <span class="pre">libro</span> <span class="pre">-W</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>paquete <code class="docutils literal notranslate"><span class="pre">ml-collections</span></code></p></td>
+<td><p>dependencia de TransUNet</p></td>
+<td><p>un test de <code class="docutils literal notranslate"><span class="pre">test_e2.py</span></code> (reanudación de entrenamiento)</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tests.</strong> 8 de 9 archivos pasan (36 de 37 pruebas). El que falla, <code class="docutils literal notranslate"><span class="pre">test_e2.py</span></code>, falla en una sola prueba por la
+falta de <code class="docutils literal notranslate"><span class="pre">ml-collections</span></code> en el entorno, no por un resultado distinto.</p>
+<p><strong>Re-ejecución desde datos.</strong> <code class="docutils literal notranslate"><span class="pre">completar_analisis_locales_e2.py</span></code> corrió en la copia hasta donde pide las máscaras de
+test de seed11 (EDA por imagen, descriptores, histogramas y adversarial train/test con 200 permutaciones):</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Salida regenerada</p></th>
+<th class="head"><p>Discrepancia máxima con lo versionado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">eda_por_imagen.json</span></code> (13.059 valores)</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">descriptores_imagen.json</span></code> (87.060 valores)</p></td>
+<td><p>0,0014 en un bin de histograma de una imagen</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">histogramas_rgb_por_clase.json</span></code></p></td>
+<td><p>337 conteos en un bin de millones; 0,005 % del total, 0,12 % relativo en el peor bin</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">validacion_adversarial.json</span></code></p></td>
+<td><p>AUC 0,55981 frente a 0,55972 (Δ 0,0001); IC [0,5062; 0,6144] frente a [0,5061; 0,6143]; p de permutación idéntico, 0,0896</p></td>
+</tr>
+</tbody>
+</table>
+<p>Las diferencias vienen del remuestreo bilineal del letterbox (Pillow 13 frente a 11.3), que mueve algunos píxeles de
+bin; las máscaras, que usan vecino más cercano, reproducen exacto. Ninguna conclusión cambia.</p>
+<p><strong>Complementos de este capítulo.</strong> Fuga por embeddings, sensibilidad sin casi duplicados, EDA por clase y γ se
+reproducen con discrepancia 0; el shift train/val, con 0,0003 (en el IC condicional del adversarial), por la misma
+razón de los descriptores. La <strong>discrepancia máxima global</strong> es la de los histogramas (337 conteos, 0,005 % del
+total); en estadísticos, 0,0045 en una probabilidad fuera de fold del adversarial.</p>
+<p><strong>Libro.</strong> Con jupyter-book 0.15.1 (el disponible; el proyecto pide 1.0.4) el HTML se construye, pero <code class="docutils literal notranslate"><span class="pre">-W</span></code> lo
+detiene por 31 avisos: 30 figuras no versionadas y el cuaderno <code class="docutils literal notranslate"><span class="pre">eda_original.ipynb</span></code>. Ninguno sale del capítulo
+nuevo. Para cerrar los controles 55 y 68 hacen falta esos archivos en el repositorio o como hermanos, y repetir con
+los 50 JSON de test presentes.</p>
+</section>
+<section id="trazabilidad">
+<h2>Trazabilidad<a class="headerlink" href="#trazabilidad" title="Permalink to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Resultado</p></th>
+<th class="head"><p>Script</p></th>
+<th class="head"><p>Salida</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Máscaras binarias</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">scripts/reconstruir_mascaras_binarias_e2.py</span> <span class="pre">--voc</span> <span class="pre">VOC2012</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">resultados/preentrenamiento/masks_binary/</span></code> (no versionada)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fuga por embeddings</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">scripts/fuga_embeddings_e2.py</span> <span class="pre">--voc</span> <span class="pre">…</span> <span class="pre">--embeddings</span> <span class="pre">…</span> <span class="pre">--protocolo-referencia</span> <span class="pre">…</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">resultados/fuga_embeddings_e2/RESUMEN.json</span></code>, <code class="docutils literal notranslate"><span class="pre">similitud_*_train.json</span></code>, <code class="docutils literal notranslate"><span class="pre">grupos_casi_duplicado.json</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Sensibilidad sin casi duplicados</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">scripts/sensibilidad_casi_duplicados_e2.py</span> <span class="pre">[--fuente</span> <span class="pre">bordes_seed11</span> <span class="pre">/</span> <span class="pre">resultados_test</span> <span class="pre">/</span> <span class="pre">simular]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">resultados/fuga_embeddings_e2/sensibilidad_*.json</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Shift train/val</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">scripts/shift_train_val_e2.py</span> <span class="pre">--origen</span> <span class="pre">eda_ampliado.json</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">resultados/shift_train_val_e2/RESUMEN.json</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Ruido de etiqueta</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">scripts/ruido_etiqueta_e2.py</span> <span class="pre">--hoja</span> <span class="pre">…</span> <span class="pre">--confirmar</span> <span class="pre">…</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">resultados/ruido_etiqueta_e2/</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Techo y γ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">scripts/techo_reanotacion_e2.py</span> <span class="pre">preparar</span> <span class="pre">/</span> <span class="pre">medir</span> <span class="pre">/</span> <span class="pre">gamma</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">resultados/techo_e2/</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>EDA por clase</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">scripts/eda_clases_formas_e2.py</span> <span class="pre">--voc</span> <span class="pre">…</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">resultados/eda_clases_e2/RESUMEN.json</span></code>, <code class="docutils literal notranslate"><span class="pre">libro/figuras/e2/eda_clases_*.png</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Entorno limpio</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">scripts/prueba_entorno_limpio_e2.py</span> <span class="pre">--destino</span> <span class="pre">…</span> <span class="pre">--voc</span> <span class="pre">…</span> <span class="pre">--python</span> <span class="pre">…</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">resultados/entorno_limpio_e2/REPORTE.json</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Los embeddings (<code class="docutils literal notranslate"><span class="pre">embeddings_resnet50.npz</span></code>, 1 + 8 + 8 vistas) quedan fuera del repositorio por tamaño; el script
+los recalcula con <code class="docutils literal notranslate"><span class="pre">--calcular</span></code> (necesita <code class="docutils literal notranslate"><span class="pre">timm</span></code> con <code class="docutils literal notranslate"><span class="pre">resnet50.tv_in1k</span></code>).</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="complementos_e2.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Complementos locales del 20 de noviembre</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="diagnosticos_e2.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Diagnósticos sobre los pesos congelados</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuga-residual-por-embeddings-controles-11-y-46">Fuga residual por embeddings (controles 11 y 46)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sensibilidad-del-dice-sin-los-9-grupos">Sensibilidad del Dice sin los 9 grupos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shift-train-validacion-control-15">Shift train/validación (control 15)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ruido-de-etiqueta-control-12">Ruido de etiqueta (control 12)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#techo-de-desempeno-y-control-63">Techo de desempeño y γ (control 63)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-por-clase-entropia-areas-formas-y-color-controles-09-y-16">EDA por clase: entropía, áreas, formas y color (controles 09 y 16)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduccion-en-entorno-limpio-controles-55-y-68">Reproducción en entorno limpio (controles 55 y 68)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trazabilidad">Trazabilidad</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Luis Perez y Daniel Carbono
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

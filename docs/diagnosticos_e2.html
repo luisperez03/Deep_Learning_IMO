@@ -1,0 +1,917 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="es" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Diagnósticos sobre los pesos congelados &#8212; Segmentación de etiquetas de mercancías peligrosas</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'diagnosticos_e2';</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Entrenamientos complementarios" href="entrenamiento_complementario_e2.html" />
+    <link rel="prev" title="Complementos de datos: fuga, shift, ruido, techo y EDA por clase" href="complementos_datos_e2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Segmentación de etiquetas de mercancías peligrosas</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Entregable 2</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="problema.html">Problema y datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eda.html">EDA y preparación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="literatura.html">Literatura, selección operativa y paper guía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelos_e2.html">Fichas de las diez implementaciones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metodos_e2.html">Diseño experimental y ruta de segmentación E2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resultados_e2.html">Resultados E2: benchmark e inferencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="complementos_e2.html">Complementos locales del 20 de noviembre</a></li>
+<li class="toctree-l1"><a class="reference internal" href="complementos_datos_e2.html">Complementos de datos: fuga, shift, ruido, techo y EDA por clase</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Diagnósticos sobre los pesos congelados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entrenamiento_complementario_e2.html">Entrenamientos complementarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cierre_e2.html">Discusión, limitaciones y cierre pendiente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="checklist_e2.html">Verificación de requisitos del Entregable 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reproducibilidad_e2.html">Reproducción y archivos de entrega</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Antecedentes del Entregable 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="implementacion.html">Diseño experimental e implementación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resultados.html">Resultados y baseline</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Diagnósticos sobre los pesos congelados</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lo-que-muestran">Lo que muestran</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tablas">Tablas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduccion-del-test-cerrado-y-brecha-train-validacion-fila-57">Reproducción del test cerrado y brecha train/validación (fila 57)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calibracion-en-test-fila-58">Calibración en test (fila 58)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bordes-precision-y-recall-en-test-fila-64">Bordes, precisión y recall en test (fila 64)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#costo-de-inferencia">Costo de inferencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#robustez-en-test-fila-59">Robustez en test (fila 59)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ensamble-de-semillas-y-prediccion-conforme-fila-62">Ensamble de semillas y predicción conforme (fila 62)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explicabilidad-integrated-gradients-en-validacion-fila-60">Explicabilidad: Integrated Gradients en validación (fila 60)</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="diagnosticos-sobre-los-pesos-congelados">
+<h1>Diagnósticos sobre los pesos congelados<a class="headerlink" href="#diagnosticos-sobre-los-pesos-congelados" title="Permalink to this heading">#</a></h1>
+<p><strong>Exploratorio, posterior a la exposición del test.</strong> Se evaluaron de nuevo los 50 checkpoints cerrados (10 redes ×
+5 semillas), sin reentrenar ni cambiar umbral, modelo o checkpoint. Corrida en una GPU L4 con
+<code class="docutils literal notranslate"><span class="pre">colab/Complemento_GPU_E2.ipynb</span></code> y <code class="docutils literal notranslate"><span class="pre">scripts/diagnosticos_gpu_e2.py</span></code>; resumen con <code class="docutils literal notranslate"><span class="pre">scripts/resumir_diagnosticos_gpu_e2.py</span></code>
+y tablas con <code class="docutils literal notranslate"><span class="pre">scripts/leer_diagnosticos_gpu_e2.py</span></code>. Salidas en <code class="docutils literal notranslate"><span class="pre">resultados/diagnosticos_gpu_e2/</span></code>.</p>
+<p><strong>Control de identidad.</strong> La etapa <code class="docutils literal notranslate"><span class="pre">clean</span></code> reproduce el Dice de test cerrado de las diez redes con diferencia máxima
+menor que 0,0001: los pesos evaluados son los mismos del benchmark.</p>
+<section id="lo-que-muestran">
+<h2>Lo que muestran<a class="headerlink" href="#lo-que-muestran" title="Permalink to this heading">#</a></h2>
+<p><strong>Ajuste a los datos.</strong> El Dice de train, medido en modo evaluación con el mismo checkpoint, supera al de validación
+en las diez redes; en SegNet la brecha (0,026) tiene un IC que incluye el cero. Es moderada en FCN, U-Net y DeepLabv3+ (≈ 0,05) y grande en SegNeXt-T (0,147
+[0,110; 0,186]) y SegFormer-B0 (0,213 [0,166; 0,260]). El último lugar de SegFormer no es falta de capacidad para
+ajustar: memoriza train y generaliza peor, lo que es coherente con entrenarlo desde cero con 1.015 imágenes. La
+validación ya se usó para elegir checkpoints, así que la brecha es diagnóstica, no una prueba.</p>
+<p><strong>Calibración.</strong> El ECE con 15 intervalos queda entre 0,008 y 0,014 en todas las redes. Es bajo en buena parte
+porque el fondo domina los píxeles y es fácil. La temperatura ajustada en validación es mayor que 1 en todas las
+redes y semillas (1,6 a 2,6): los logits están sobreconfiados. Dividirlos por esa temperatura baja el Brier en todas
+las redes, pero sube levemente el ECE15. Las dos métricas miden cosas distintas y no se elige entre ellas con el test.</p>
+<p><strong>Robustez.</strong> El resultado más claro. Con ruido y desenfoque, las redes grandes conservan entre el 92 y el 96 % del
+Dice limpio (TransUNet, VM-UNet, DeepLabv3+, UNet++, PIDNet-S), y con cambios de brillo entre el 84 y el 98 %. Las
+tres compactas del E1 conservan entre el 68 y el 77 % con las tres perturbaciones (FCN, U-Net y SegNet; 72 mil a
+118 mil parámetros). El argumento de
+parsimonia a favor de FCN vale con imágenes limpias, pero no con imágenes degradadas: ahí la diferencia con TransUNet
+es grande y su IC no se cruza. SegFormer-B0 mejora levemente con desenfoque (1,018 [1,006; 1,033]).</p>
+<p><strong>Bordes.</strong> TransUNet tiene el menor HD95 (17,1 píxeles) y SegFormer-B0 el mayor (34,3), con el recall más bajo
+(0,688): pierde partes del rótulo más de lo que inventa.</p>
+<p><strong>Ensamble e incertidumbre.</strong> Promediar las cinco semillas sube el Dice entre 0,021 y 0,028 en las tres mejores
+redes, con IC que excluye el cero; el ensamble de TransUNet llega a 0,883. La predicción conforme con un umbral por
+clase, calibrada en validación para una cobertura de 0,90, la cumple en promedio en test (0,903 a 0,912), pero entre
+el 34 y el 37 % de los grupos queda por debajo: la garantía es marginal, no por imagen.</p>
+<p><strong>Explicabilidad.</strong> En las tres redes, borrar los píxeles que Integrated Gradients marca como importantes baja la
+predicción más que borrar píxeles al azar, en el 89 % de los casos para TransUNet y en el 100 % para U-Net y FCN. Los
+mapas son estables entre semillas en U-Net y FCN (Spearman ≈ 0,92) y menos en TransUNet (0,73). La ventaja está en
+unidades de logit, que no se comparan entre redes.</p>
+</section>
+<section id="tablas">
+<h2>Tablas<a class="headerlink" href="#tablas" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="reproduccion-del-test-cerrado-y-brecha-train-validacion-fila-57">
+<h2>Reproducción del test cerrado y brecha train/validación (fila 57)<a class="headerlink" href="#reproduccion-del-test-cerrado-y-brecha-train-validacion-fila-57" title="Permalink to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Red</p></th>
+<th class="head text-right"><p>Dice test clean</p></th>
+<th class="head text-right"><p>Dice test cerrado</p></th>
+<th class="head text-right"><p>Dif.</p></th>
+<th class="head text-right"><p>Dice train</p></th>
+<th class="head text-right"><p>Dice val</p></th>
+<th class="head text-right"><p>Brecha train−val [IC95]</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>transunet_2d</p></td>
+<td class="text-right"><p>0,8626</p></td>
+<td class="text-right"><p>0,8626</p></td>
+<td class="text-right"><p>-0,0000</p></td>
+<td class="text-right"><p>0,941</p></td>
+<td class="text-right"><p>0,853</p></td>
+<td class="text-right"><p>0,087 [0,063; 0,115]</p></td>
+</tr>
+<tr class="row-odd"><td><p>fcn</p></td>
+<td class="text-right"><p>0,8535</p></td>
+<td class="text-right"><p>0,8535</p></td>
+<td class="text-right"><p>0,0000</p></td>
+<td class="text-right"><p>0,881</p></td>
+<td class="text-right"><p>0,831</p></td>
+<td class="text-right"><p>0,050 [0,020; 0,081]</p></td>
+</tr>
+<tr class="row-even"><td><p>unet</p></td>
+<td class="text-right"><p>0,8464</p></td>
+<td class="text-right"><p>0,8464</p></td>
+<td class="text-right"><p>0,0000</p></td>
+<td class="text-right"><p>0,881</p></td>
+<td class="text-right"><p>0,832</p></td>
+<td class="text-right"><p>0,049 [0,020; 0,081]</p></td>
+</tr>
+<tr class="row-odd"><td><p>vmunet</p></td>
+<td class="text-right"><p>0,8391</p></td>
+<td class="text-right"><p>0,8391</p></td>
+<td class="text-right"><p>0,0000</p></td>
+<td class="text-right"><p>0,878</p></td>
+<td class="text-right"><p>0,821</p></td>
+<td class="text-right"><p>0,057 [0,026; 0,090]</p></td>
+</tr>
+<tr class="row-even"><td><p>segnet</p></td>
+<td class="text-right"><p>0,8247</p></td>
+<td class="text-right"><p>0,8247</p></td>
+<td class="text-right"><p>-0,0000</p></td>
+<td class="text-right"><p>0,832</p></td>
+<td class="text-right"><p>0,806</p></td>
+<td class="text-right"><p>0,026 [-0,007; 0,061]</p></td>
+</tr>
+<tr class="row-odd"><td><p>deeplabv3plus</p></td>
+<td class="text-right"><p>0,8140</p></td>
+<td class="text-right"><p>0,8140</p></td>
+<td class="text-right"><p>-0,0000</p></td>
+<td class="text-right"><p>0,868</p></td>
+<td class="text-right"><p>0,813</p></td>
+<td class="text-right"><p>0,055 [0,024; 0,089]</p></td>
+</tr>
+<tr class="row-even"><td><p>unetplusplus</p></td>
+<td class="text-right"><p>0,8076</p></td>
+<td class="text-right"><p>0,8076</p></td>
+<td class="text-right"><p>-0,0000</p></td>
+<td class="text-right"><p>0,865</p></td>
+<td class="text-right"><p>0,810</p></td>
+<td class="text-right"><p>0,055 [0,021; 0,093]</p></td>
+</tr>
+<tr class="row-odd"><td><p>pidnet_s</p></td>
+<td class="text-right"><p>0,7937</p></td>
+<td class="text-right"><p>0,7936</p></td>
+<td class="text-right"><p>0,0000</p></td>
+<td class="text-right"><p>0,883</p></td>
+<td class="text-right"><p>0,796</p></td>
+<td class="text-right"><p>0,087 [0,053; 0,123]</p></td>
+</tr>
+<tr class="row-even"><td><p>segnext_t</p></td>
+<td class="text-right"><p>0,7792</p></td>
+<td class="text-right"><p>0,7792</p></td>
+<td class="text-right"><p>-0,0000</p></td>
+<td class="text-right"><p>0,906</p></td>
+<td class="text-right"><p>0,759</p></td>
+<td class="text-right"><p>0,147 [0,110; 0,186]</p></td>
+</tr>
+<tr class="row-odd"><td><p>segformer_b0</p></td>
+<td class="text-right"><p>0,7053</p></td>
+<td class="text-right"><p>0,7053</p></td>
+<td class="text-right"><p>-0,0000</p></td>
+<td class="text-right"><p>0,915</p></td>
+<td class="text-right"><p>0,703</p></td>
+<td class="text-right"><p>0,213 [0,166; 0,260]</p></td>
+</tr>
+</tbody>
+</table>
+<p>Diferencia máxima con el test cerrado: 0,0000.</p>
+</section>
+<section id="calibracion-en-test-fila-58">
+<h2>Calibración en test (fila 58)<a class="headerlink" href="#calibracion-en-test-fila-58" title="Permalink to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Red</p></th>
+<th class="head text-right"><p>ECE15 bruto</p></th>
+<th class="head text-right"><p>ECE15 con temperatura</p></th>
+<th class="head text-right"><p>Brier bruto</p></th>
+<th class="head text-right"><p>Brier con temperatura</p></th>
+<th class="head"><p>Temperatura (semillas)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>transunet_2d</p></td>
+<td class="text-right"><p>0,0079</p></td>
+<td class="text-right"><p>0,0087</p></td>
+<td class="text-right"><p>0,0081</p></td>
+<td class="text-right"><p>0,0073</p></td>
+<td><p>1,94, 1,90, 1,91, 1,78, 1,79</p></td>
+</tr>
+<tr class="row-odd"><td><p>fcn</p></td>
+<td class="text-right"><p>0,0082</p></td>
+<td class="text-right"><p>0,0096</p></td>
+<td class="text-right"><p>0,0083</p></td>
+<td class="text-right"><p>0,0076</p></td>
+<td><p>2,26, 1,80, 1,81, 1,86, 2,13</p></td>
+</tr>
+<tr class="row-even"><td><p>unet</p></td>
+<td class="text-right"><p>0,0095</p></td>
+<td class="text-right"><p>0,0107</p></td>
+<td class="text-right"><p>0,0095</p></td>
+<td class="text-right"><p>0,0085</p></td>
+<td><p>2,01, 1,93, 1,75, 1,83, 2,02</p></td>
+</tr>
+<tr class="row-odd"><td><p>vmunet</p></td>
+<td class="text-right"><p>0,0091</p></td>
+<td class="text-right"><p>0,0098</p></td>
+<td class="text-right"><p>0,0094</p></td>
+<td class="text-right"><p>0,0086</p></td>
+<td><p>1,80, 1,68, 1,91, 1,79, 1,66</p></td>
+</tr>
+<tr class="row-even"><td><p>segnet</p></td>
+<td class="text-right"><p>0,0112</p></td>
+<td class="text-right"><p>0,0130</p></td>
+<td class="text-right"><p>0,0113</p></td>
+<td class="text-right"><p>0,0101</p></td>
+<td><p>1,67, 1,59, 2,07, 1,87, 1,79</p></td>
+</tr>
+<tr class="row-odd"><td><p>deeplabv3plus</p></td>
+<td class="text-right"><p>0,0092</p></td>
+<td class="text-right"><p>0,0098</p></td>
+<td class="text-right"><p>0,0093</p></td>
+<td class="text-right"><p>0,0085</p></td>
+<td><p>1,91, 2,09, 2,17, 2,21, 2,14</p></td>
+</tr>
+<tr class="row-even"><td><p>unetplusplus</p></td>
+<td class="text-right"><p>0,0114</p></td>
+<td class="text-right"><p>0,0128</p></td>
+<td class="text-right"><p>0,0113</p></td>
+<td class="text-right"><p>0,0100</p></td>
+<td><p>2,07, 2,01, 1,91, 2,03, 1,93</p></td>
+</tr>
+<tr class="row-odd"><td><p>pidnet_s</p></td>
+<td class="text-right"><p>0,0111</p></td>
+<td class="text-right"><p>0,0116</p></td>
+<td class="text-right"><p>0,0112</p></td>
+<td class="text-right"><p>0,0100</p></td>
+<td><p>2,24, 2,05, 2,47, 2,50, 2,39</p></td>
+</tr>
+<tr class="row-even"><td><p>segnext_t</p></td>
+<td class="text-right"><p>0,0126</p></td>
+<td class="text-right"><p>0,0136</p></td>
+<td class="text-right"><p>0,0129</p></td>
+<td class="text-right"><p>0,0113</p></td>
+<td><p>2,47, 2,42, 2,41, 2,63, 2,54</p></td>
+</tr>
+<tr class="row-odd"><td><p>segformer_b0</p></td>
+<td class="text-right"><p>0,0138</p></td>
+<td class="text-right"><p>0,0144</p></td>
+<td class="text-right"><p>0,0143</p></td>
+<td class="text-right"><p>0,0131</p></td>
+<td><p>1,98, 2,43, 1,97, 2,25, 2,04</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bordes-precision-y-recall-en-test-fila-64">
+<h2>Bordes, precisión y recall en test (fila 64)<a class="headerlink" href="#bordes-precision-y-recall-en-test-fila-64" title="Permalink to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Red</p></th>
+<th class="head text-right"><p>HD95 (px)</p></th>
+<th class="head text-right"><p>ASSD (px)</p></th>
+<th class="head text-right"><p>Precisión</p></th>
+<th class="head text-right"><p>Recall</p></th>
+<th class="head text-right"><p>Predicción vacía</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>transunet_2d</p></td>
+<td class="text-right"><p>17,1</p></td>
+<td class="text-right"><p>4,9</p></td>
+<td class="text-right"><p>0,865</p></td>
+<td class="text-right"><p>0,886</p></td>
+<td class="text-right"><p>0,003</p></td>
+</tr>
+<tr class="row-odd"><td><p>fcn</p></td>
+<td class="text-right"><p>22,8</p></td>
+<td class="text-right"><p>4,8</p></td>
+<td class="text-right"><p>0,844</p></td>
+<td class="text-right"><p>0,889</p></td>
+<td class="text-right"><p>0,000</p></td>
+</tr>
+<tr class="row-even"><td><p>unet</p></td>
+<td class="text-right"><p>24,6</p></td>
+<td class="text-right"><p>6,2</p></td>
+<td class="text-right"><p>0,832</p></td>
+<td class="text-right"><p>0,891</p></td>
+<td class="text-right"><p>0,003</p></td>
+</tr>
+<tr class="row-odd"><td><p>vmunet</p></td>
+<td class="text-right"><p>20,0</p></td>
+<td class="text-right"><p>4,8</p></td>
+<td class="text-right"><p>0,839</p></td>
+<td class="text-right"><p>0,868</p></td>
+<td class="text-right"><p>0,000</p></td>
+</tr>
+<tr class="row-even"><td><p>segnet</p></td>
+<td class="text-right"><p>25,9</p></td>
+<td class="text-right"><p>5,8</p></td>
+<td class="text-right"><p>0,809</p></td>
+<td class="text-right"><p>0,881</p></td>
+<td class="text-right"><p>0,000</p></td>
+</tr>
+<tr class="row-odd"><td><p>deeplabv3plus</p></td>
+<td class="text-right"><p>23,7</p></td>
+<td class="text-right"><p>9,2</p></td>
+<td class="text-right"><p>0,831</p></td>
+<td class="text-right"><p>0,829</p></td>
+<td class="text-right"><p>0,011</p></td>
+</tr>
+<tr class="row-even"><td><p>unetplusplus</p></td>
+<td class="text-right"><p>23,7</p></td>
+<td class="text-right"><p>7,8</p></td>
+<td class="text-right"><p>0,814</p></td>
+<td class="text-right"><p>0,840</p></td>
+<td class="text-right"><p>0,007</p></td>
+</tr>
+<tr class="row-odd"><td><p>pidnet_s</p></td>
+<td class="text-right"><p>21,3</p></td>
+<td class="text-right"><p>7,7</p></td>
+<td class="text-right"><p>0,817</p></td>
+<td class="text-right"><p>0,800</p></td>
+<td class="text-right"><p>0,007</p></td>
+</tr>
+<tr class="row-even"><td><p>segnext_t</p></td>
+<td class="text-right"><p>25,2</p></td>
+<td class="text-right"><p>6,5</p></td>
+<td class="text-right"><p>0,776</p></td>
+<td class="text-right"><p>0,816</p></td>
+<td class="text-right"><p>0,002</p></td>
+</tr>
+<tr class="row-odd"><td><p>segformer_b0</p></td>
+<td class="text-right"><p>34,3</p></td>
+<td class="text-right"><p>8,6</p></td>
+<td class="text-right"><p>0,788</p></td>
+<td class="text-right"><p>0,688</p></td>
+<td class="text-right"><p>0,002</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="costo-de-inferencia">
+<h2>Costo de inferencia<a class="headerlink" href="#costo-de-inferencia" title="Permalink to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Red</p></th>
+<th class="head text-right"><p>Parámetros</p></th>
+<th class="head text-right"><p>GFLOPs</p></th>
+<th class="head text-right"><p>Latencia mediana (ms)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>transunet_2d</p></td>
+<td class="text-right"><p>105.322.001</p></td>
+<td class="text-right"><p>76,8</p></td>
+<td class="text-right"><p>39,0</p></td>
+</tr>
+<tr class="row-odd"><td><p>fcn</p></td>
+<td class="text-right"><p>72.145</p></td>
+<td class="text-right"><p>1,3</p></td>
+<td class="text-right"><p>2,1</p></td>
+</tr>
+<tr class="row-even"><td><p>unet</p></td>
+<td class="text-right"><p>118.273</p></td>
+<td class="text-right"><p>3,7</p></td>
+<td class="text-right"><p>1,3</p></td>
+</tr>
+<tr class="row-odd"><td><p>vmunet</p></td>
+<td class="text-right"><p>44.273.833</p></td>
+<td class="text-right"><p>19,5</p></td>
+<td class="text-right"><p>44,2</p></td>
+</tr>
+<tr class="row-even"><td><p>segnet</p></td>
+<td class="text-right"><p>85.761</p></td>
+<td class="text-right"><p>2,1</p></td>
+<td class="text-right"><p>1,5</p></td>
+</tr>
+<tr class="row-odd"><td><p>deeplabv3plus</p></td>
+<td class="text-right"><p>12.329.297</p></td>
+<td class="text-right"><p>9,1</p></td>
+<td class="text-right"><p>9,5</p></td>
+</tr>
+<tr class="row-even"><td><p>unetplusplus</p></td>
+<td class="text-right"><p>15.970.449</p></td>
+<td class="text-right"><p>31,9</p></td>
+<td class="text-right"><p>9,0</p></td>
+</tr>
+<tr class="row-odd"><td><p>pidnet_s</p></td>
+<td class="text-right"><p>7.716.291</p></td>
+<td class="text-right"><p>3,1</p></td>
+<td class="text-right"><p>32,4</p></td>
+</tr>
+<tr class="row-even"><td><p>segnext_t</p></td>
+<td class="text-right"><p>4.225.121</p></td>
+<td class="text-right"><p>3,1</p></td>
+<td class="text-right"><p>28,8</p></td>
+</tr>
+<tr class="row-odd"><td><p>segformer_b0</p></td>
+<td class="text-right"><p>3.714.401</p></td>
+<td class="text-right"><p>3,5</p></td>
+<td class="text-right"><p>17,8</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="robustez-en-test-fila-59">
+<h2>Robustez en test (fila 59)<a class="headerlink" href="#robustez-en-test-fila-59" title="Permalink to this heading">#</a></h2>
+<p>Área bajo la curva de Dice en severidad ordinal 0–3, normalizada por el Dice limpio (1 = no cae).</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Red</p></th>
+<th class="head text-right"><p>Ruido [IC95]</p></th>
+<th class="head text-right"><p>Desenfoque [IC95]</p></th>
+<th class="head text-right"><p>Brillo [IC95]</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>transunet_2d</p></td>
+<td class="text-right"><p>0,921 [0,903; 0,937]</p></td>
+<td class="text-right"><p>0,917 [0,894; 0,938]</p></td>
+<td class="text-right"><p>0,980 [0,968; 0,990]</p></td>
+</tr>
+<tr class="row-odd"><td><p>fcn</p></td>
+<td class="text-right"><p>0,684 [0,670; 0,699]</p></td>
+<td class="text-right"><p>0,729 [0,695; 0,763]</p></td>
+<td class="text-right"><p>0,749 [0,722; 0,776]</p></td>
+</tr>
+<tr class="row-even"><td><p>unet</p></td>
+<td class="text-right"><p>0,729 [0,714; 0,744]</p></td>
+<td class="text-right"><p>0,714 [0,681; 0,747]</p></td>
+<td class="text-right"><p>0,765 [0,738; 0,791]</p></td>
+</tr>
+<tr class="row-odd"><td><p>vmunet</p></td>
+<td class="text-right"><p>0,936 [0,925; 0,945]</p></td>
+<td class="text-right"><p>0,954 [0,943; 0,965]</p></td>
+<td class="text-right"><p>0,882 [0,863; 0,900]</p></td>
+</tr>
+<tr class="row-even"><td><p>segnet</p></td>
+<td class="text-right"><p>0,742 [0,729; 0,756]</p></td>
+<td class="text-right"><p>0,730 [0,699; 0,760]</p></td>
+<td class="text-right"><p>0,730 [0,703; 0,757]</p></td>
+</tr>
+<tr class="row-odd"><td><p>deeplabv3plus</p></td>
+<td class="text-right"><p>0,943 [0,929; 0,955]</p></td>
+<td class="text-right"><p>0,942 [0,924; 0,957]</p></td>
+<td class="text-right"><p>0,838 [0,813; 0,862]</p></td>
+</tr>
+<tr class="row-even"><td><p>unetplusplus</p></td>
+<td class="text-right"><p>0,964 [0,954; 0,973]</p></td>
+<td class="text-right"><p>0,953 [0,937; 0,967]</p></td>
+<td class="text-right"><p>0,858 [0,830; 0,883]</p></td>
+</tr>
+<tr class="row-odd"><td><p>pidnet_s</p></td>
+<td class="text-right"><p>0,942 [0,931; 0,951]</p></td>
+<td class="text-right"><p>0,948 [0,930; 0,963]</p></td>
+<td class="text-right"><p>0,839 [0,816; 0,861]</p></td>
+</tr>
+<tr class="row-even"><td><p>segnext_t</p></td>
+<td class="text-right"><p>0,818 [0,797; 0,838]</p></td>
+<td class="text-right"><p>0,962 [0,946; 0,976]</p></td>
+<td class="text-right"><p>0,856 [0,834; 0,876]</p></td>
+</tr>
+<tr class="row-odd"><td><p>segformer_b0</p></td>
+<td class="text-right"><p>0,855 [0,833; 0,875]</p></td>
+<td class="text-right"><p>1,018 [1,006; 1,033]</p></td>
+<td class="text-right"><p>0,785 [0,751; 0,821]</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ensamble-de-semillas-y-prediccion-conforme-fila-62">
+<h2>Ensamble de semillas y predicción conforme (fila 62)<a class="headerlink" href="#ensamble-de-semillas-y-prediccion-conforme-fila-62" title="Permalink to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Red</p></th>
+<th class="head text-right"><p>Dice ensamble [IC95]</p></th>
+<th class="head text-right"><p>Ganancia sobre la semilla media [IC95]</p></th>
+<th class="head text-right"><p>Cobertura conforme (nominal 0,90)</p></th>
+<th class="head text-right"><p>Grupos bajo el nominal</p></th>
+<th class="head text-right"><p>Tamaño medio del conjunto</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>transunet_2d</p></td>
+<td class="text-right"><p>0,883 [0,855; 0,907]</p></td>
+<td class="text-right"><p>0,021 [0,012; 0,029]</p></td>
+<td class="text-right"><p>0,912</p></td>
+<td class="text-right"><p>0,36</p></td>
+<td class="text-right"><p>0,916</p></td>
+</tr>
+<tr class="row-odd"><td><p>unet</p></td>
+<td class="text-right"><p>0,874 [0,847; 0,899]</p></td>
+<td class="text-right"><p>0,028 [0,021; 0,035]</p></td>
+<td class="text-right"><p>0,903</p></td>
+<td class="text-right"><p>0,37</p></td>
+<td class="text-right"><p>0,908</p></td>
+</tr>
+<tr class="row-even"><td><p>fcn</p></td>
+<td class="text-right"><p>0,878 [0,855; 0,898]</p></td>
+<td class="text-right"><p>0,024 [0,018; 0,031]</p></td>
+<td class="text-right"><p>0,904</p></td>
+<td class="text-right"><p>0,34</p></td>
+<td class="text-right"><p>0,909</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="explicabilidad-integrated-gradients-en-validacion-fila-60">
+<h2>Explicabilidad: Integrated Gradients en validación (fila 60)<a class="headerlink" href="#explicabilidad-integrated-gradients-en-validacion-fila-60" title="Permalink to this heading">#</a></h2>
+<p>Ventaja de IG sobre un orden aleatorio al borrar (caída) o insertar (subida) el 10 % de píxeles más atribuidos, en unidades del logit medio de la región del rótulo: no es comparable entre redes, que tienen escalas de logit distintas. Estabilidad como Spearman medio entre pares de semillas.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Red</p></th>
+<th class="head text-right"><p>Borrado: ventaja [IC95]</p></th>
+<th class="head text-right"><p>Casos donde IG gana</p></th>
+<th class="head text-right"><p>Inserción: ventaja [IC95]</p></th>
+<th class="head text-right"><p>Spearman entre semillas [IC95]</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>transunet_2d</p></td>
+<td class="text-right"><p>4,50 [3,50; 5,58]</p></td>
+<td class="text-right"><p>0,89</p></td>
+<td class="text-right"><p>9,05 [8,24; 9,85]</p></td>
+<td class="text-right"><p>0,730 [0,712; 0,748]</p></td>
+</tr>
+<tr class="row-odd"><td><p>unet</p></td>
+<td class="text-right"><p>18,14 [16,72; 19,53]</p></td>
+<td class="text-right"><p>1,00</p></td>
+<td class="text-right"><p>7,08 [6,46; 7,68]</p></td>
+<td class="text-right"><p>0,917 [0,896; 0,935]</p></td>
+</tr>
+<tr class="row-even"><td><p>fcn</p></td>
+<td class="text-right"><p>18,31 [16,92; 19,62]</p></td>
+<td class="text-right"><p>1,00</p></td>
+<td class="text-right"><p>6,77 [6,21; 7,35]</p></td>
+<td class="text-right"><p>0,915 [0,891; 0,934]</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="complementos_datos_e2.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Complementos de datos: fuga, shift, ruido, techo y EDA por clase</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="entrenamiento_complementario_e2.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Entrenamientos complementarios</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lo-que-muestran">Lo que muestran</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tablas">Tablas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduccion-del-test-cerrado-y-brecha-train-validacion-fila-57">Reproducción del test cerrado y brecha train/validación (fila 57)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calibracion-en-test-fila-58">Calibración en test (fila 58)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bordes-precision-y-recall-en-test-fila-64">Bordes, precisión y recall en test (fila 64)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#costo-de-inferencia">Costo de inferencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#robustez-en-test-fila-59">Robustez en test (fila 59)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ensamble-de-semillas-y-prediccion-conforme-fila-62">Ensamble de semillas y predicción conforme (fila 62)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explicabilidad-integrated-gradients-en-validacion-fila-60">Explicabilidad: Integrated Gradients en validación (fila 60)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Luis Perez y Daniel Carbono
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
