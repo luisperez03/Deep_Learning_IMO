@@ -145,11 +145,13 @@ PILOT='''# 4. Piloto: ~10-20 min según la GPU (también estimado). Escribe OUTP
 N = 8
 if PILOT.exists(): shutil.rmtree(PILOT)
 PILOT.mkdir(parents=True)
-for name, limit in [('clean', N), ('robustness', N), ('interpret', 2)]:
-    stage(name, '--seeds', '11', '--limit', str(limit), output=PILOT)
+# --limit entra en la firma de la carpeta: interpret (limit 2) va en su propia subcarpeta
+PILOT_IG = PILOT/'interpret'
+for name, limit, out in [('clean', N, PILOT), ('robustness', N, PILOT), ('interpret', 2, PILOT_IG)]:
+    stage(name, '--seeds', '11', '--limit', str(limit), output=out)
 cfg = json.loads((PROJECT/'config/complementos_e2_20261120.json').read_text())
 FULL = {'train': 1015, 'val': 218, 'test': 218}; SEEDS = 5
-logs = {json.loads(p.read_text())['stage']: json.loads(p.read_text()) for p in sorted((PILOT/'tiempos').glob('*.json'))}
+logs = {json.loads(p.read_text())['stage']: json.loads(p.read_text()) for p in sorted(PILOT.glob('**/tiempos/*.json'))}
 load = {r['folder'].rsplit('_seed', 1)[0]: r['load_seconds'] for r in logs['clean']['runs']}
 rows = []; total = {'clean': 0., 'robustness': 0., 'interpret': 0.}
 for f in sorted(PILOT.glob('*_seed11_clean.json')):
@@ -158,7 +160,7 @@ for f in sorted(PILOT.glob('*_seed11_clean.json')):
     clean_s = SEEDS * (sum(per[k] * FULL[k] for k in FULL) + (s['total'] - sum(s[k] for k in FULL)) + load[m])
     rob = [json.loads(p.read_text()) for p in PILOT.glob(f'{m}_seed11_*_*.json') if '_clean' not in p.name and '_interpret' not in p.name]
     rob_s = SEEDS * (sum(x['seconds'] / x['images'] for x in rob) * FULL['test'] + load[m]) if rob else float('nan')
-    ip = PILOT/f'{m}_seed11_interpret.json'
+    ip = PILOT_IG/f'{m}_seed11_interpret.json'
     int_s = SEEDS * (json.loads(ip.read_text())['seconds'] / json.loads(ip.read_text())['cases'] * cfg['interpretability']['cases'] + load[m]) if ip.exists() else 0.
     total['clean'] += clean_s; total['robustness'] += rob_s; total['interpret'] += int_s
     rows.append({'model': m, 'clean_min': clean_s / 60, 'robustness_min': rob_s / 60, 'interpret_min': int_s / 60})
