@@ -8,6 +8,8 @@ El usuario confirmó que el profesor acepta **diez modelos totales: tres E1 y si
 
 **Actualización del 20/11 (tarde).** Se integraron los complementos de datos, fuga, ruido, bibliografía y los cuadernos preparados de diagnóstico GPU, entrenamiento y réplica. Lo preparado sin ejecutar sigue en F, con su ruta. Orden de corridas: `docs/GUIA_CORRIDAS_CIERRE_E2.md`.
 
+**Actualización del 21/11.** Se corrió el complemento de entrenamiento en L4: sobreajuste, búsqueda T = 4, permutación de FCN con B = 200 y ablación de TransUNet (filas 37, 41, 46, 56, 61). Exploratorio: el test ya estaba observado y no se cargó.
+
 ## Problema, hipótesis, datos y EDA — rúbrica 15 %
 
 | ID | Requisito (página guía) | Estado | Evidencia / cierre necesario |
@@ -58,16 +60,16 @@ El usuario confirmó que el profesor acepta **diez modelos totales: tres E1 y si
 | 34 | Diez implementaciones y fuentes fijadas (12–14) | C | Adaptadores reales, SMP fijado, fuentes con commit/hash |
 | 35 | ≥5 ejecuciones/red y registros (13) | C | 50 corridas auditadas; pruebas de rangos actuales usan 122 grupos, no 5 pares |
 | 36 | Datos/resolución/pérdida base/parada comparables (12–15) | C | Pipeline común; auxiliares PIDNet y recetas distintas explícitos |
-| 37 | Búsqueda equitativa de hiperparámetros (13,46–47) | F | Preparado, sin ejecutar: búsqueda con el mismo espacio relativo y el mismo presupuesto para las 10 (`config/complemento_entreno_e2.json`, `colab/Complemento_Entrenamiento_E2.ipynb`), exploratoria por la exposición previa del test; T = 4 propuesto (2,3–5,8 h L4 estimadas) |
+| 37 | Búsqueda equitativa de hiperparámetros (13,46–47) | C | 21/11, L4, exploratoria: búsqueda aleatoria T = 4 con el mismo espacio relativo (tasa × 10^u común, weight decay) y el mismo presupuesto (10 épocas, semilla 11) para las 10, elección por validación, 40 configuraciones registradas. La receta gana solo en VM-UNet; SegFormer-B0 sube de 0,660 a 0,782; las dos primeras no cambian. Sin la fase de 5 semillas × 30 épocas (diseñada, ≈ 17 h). `resultados/complemento_entreno_e2/`, capítulo `entrenamiento_complementario_e2` |
 | 38 | Arquitectura indefinida: 1000 + finalistas (52–58) | P | Siete variantes publicadas definidas; justificar herencia de compactas locales. No afirmar búsqueda realizada |
 | 39 | Tres E1 y baseline trivial adicional (11,22) | C | Tres compactas reentrenadas E2 y máscara vacía evaluada |
 | 40 | Clásico fuerte no profundo ajustado (11,46) | C | `scripts/baseline_clasico_e2.py`: HistGradientBoosting, 13 rasgos, 3 configuraciones × 5 semillas, elección por validación; Dice test 0,645 (IC95 grupos 0,605–0,682) en `resultados/baseline_clasico_e2/` |
-| 41 | Sanidad de aprendizaje y preflight (46) | P | Diez preflight GPU y entrenamiento completo. Preparado, sin ejecutar: sobreajuste deliberado a un lote (10 redes × 500 pasos) en `colab/Complemento_Entrenamiento_E2.ipynb` |
+| 41 | Sanidad de aprendizaje y preflight (46) | C | Diez preflight GPU y entrenamiento completo; 21/11, sobreajuste a un lote de 4 imágenes (500 pasos): 9 de 10 pasan (Dice ≥ 0,90); VM-UNet 0,750, falla en la imagen de rótulo más pequeño. `resultados/complemento_entreno_e2/`, capítulo `entrenamiento_complementario_e2` |
 | 42 | Curvas train y validación (13) | C | 50 curvas; pérdida train y Dice val no se restan |
 | 43 | Configuración, versiones, semillas/hardware (13,41) | C | Freeze/config; L4 train/T4 test; determinismo warn_only |
 | 44 | Parámetros, FLOPs, memoria/latencia homogénea (13,48) | P | Parámetros y horas; FLOPs, pico y latencia pura pendientes |
 | 45 | Costo total/energía cuando sea posible (48) | P | Horas de épocas; excluyen interrupciones/E/S; no inventar energía |
-| 46 | Auditoría completa de fuga (44–46) | P | Integridad, partición, adversarial y, 20/11, embeddings y casi duplicados (ID 11). Pendiente: permutación de etiquetas (ID 56) |
+| 46 | Auditoría completa de fuga (44–46) | C | Integridad, partición, adversarial, embeddings y casi duplicados (ID 11) y, 21/11, permutación de máscaras del pipeline (ID 56): p = 0,005 |
 | 47 | Test nunca usado para decisiones y una evaluación (4,63) | D | E2 con pesos/umbral cerrados; test ya expuesto en E1 |
 
 ## Benchmark e inferencia — rúbrica 20 %
@@ -87,12 +89,12 @@ El usuario confirmó que el profesor acepta **diez modelos totales: tres E1 y si
 
 | ID | Requisito (página guía) | Estado | Evidencia / cierre necesario |
 |---|---|---|---|
-| 56 | Adecuación frente a trivial/permutación (23,36) | F | Dice vacío = 0. Preparado, sin ejecutar: permutación de etiquetas del pipeline (FCN con B = 200; TransUNet con B = 19, por debajo del mínimo y así declarado) en `colab/Complemento_Entrenamiento_E2.ipynb` |
+| 56 | Adecuación frente a trivial/permutación (23,36) | C | Dice vacío = 0. 21/11: permutación de máscaras en train del pipeline completo, FCN, B = 200: Dice val real 0,823 frente a nula media 0,465 (máx. 0,592), p = 1/201 = 0,005. La de TransUNet (B = 19) no se corrió. `resultados/complemento_entreno_e2/`, capítulo `entrenamiento_complementario_e2` |
 | 57 | Brecha train/val con margen de sobreajuste (25,36) | C | 20/11, L4, exploratorio (`colab/Complemento_GPU_E2.ipynb`, etapa `clean`): reproduce el Dice de test cerrado (dif. máx. < 0,0001); brecha train−val positiva en las 10, de 0,026 (SegNet, IC con 0) a 0,213 (SegFormer) y 0,147 (SegNeXt). `resultados/diagnosticos_gpu_e2/TABLAS.md`, capítulo `diagnosticos_e2` |
 | 58 | Brier/ECE fijo y adaptativo/calibración (15,49) | C | 20/11: Brier, NLL, ECE15 fijo y adaptativo, con y sin temperatura ajustada en validación; ECE15 0,008–0,014; temperatura 1,6–2,6 en todas (sobreconfianza); la temperatura baja el Brier y sube levemente el ECE15 |
 | 59 | Robustez con ≥3 severidades (16) | C | 20/11: 10 redes × 5 semillas × ruido/desenfoque/brillo × 3 niveles en test. Área normalizada: redes grandes 0,92–0,96 con ruido y desenfoque; FCN, U-Net y SegNet 0,68–0,77 en las tres perturbaciones |
 | 60 | Explicabilidad top3 + fidelidad/estabilidad (16) | C | 20/11: Integrated Gradients en 100 casos de validación del top 3 × 5 semillas; IG supera al borrado aleatorio en el 89 % (TransUNet) y 100 % (U-Net, FCN) de los casos; Spearman entre semillas 0,73 / 0,92 / 0,92 |
-| 61 | Ablación ≥3 componentes, mismas semillas (16) | F | Preparado, sin ejecutar: TransUNet sin Transformer, sin conexiones de salto y con BCE sola, mismas 5 semillas (≈ 10 h L4 estimadas), en `colab/Complemento_Entrenamiento_E2.ipynb` |
+| 61 | Ablación ≥3 componentes, mismas semillas (16) | C | 21/11: TransUNet, 3 componentes × 5 semillas pareadas, referencia del benchmark: sin saltos −0,092 [−0,105; −0,079], BCE sola −0,037 [−0,043; −0,031] (p Holm < 0,001); sin Transformer +0,007 [−0,001; 0,015], p Holm 0,065. `resultados/complemento_entreno_e2/`, capítulo `entrenamiento_complementario_e2` |
 | 62 | Incertidumbre predictiva top3/cobertura (49) | C | 20/11: ensamble de 5 semillas del top 3: +0,021 a +0,028 de Dice (IC sin 0; TransUNet 0,883); predicción conforme Mondrian por clase calibrada en validación, cobertura test 0,903–0,912 (nominal 0,90), con 34–37 % de grupos bajo el nominal (garantía marginal) |
 | 63 | Techo y γ (48–49) | F | Sin segunda anotación: no hay techo medido. Kit de reanotación de 50 imágenes de validación listo, con el cálculo de γ (`scripts/techo_reanotacion_e2.py`); los rótulos cortados por el borde se marcan aparte |
 | 64 | HD95/ASSD y precisión/recall (36) | C | 20/11: HD95/ASSD y precisión/recall de las 5 semillas en test (etapa `clean`); HD95 de 17,1 px (TransUNet) a 34,3 (SegFormer, recall 0,688) |
@@ -120,10 +122,10 @@ El usuario confirmó que el profesor acepta **diez modelos totales: tres E1 y si
 |---|---|---|
 | B01 Preregistro anterior al entrenamiento | D | ID05; no retrofechar |
 | B02 Hash dataset/test | C | Manifiestos y protocolo cerrado |
-| B03 Auditoría de fuga completamente aprobada | P | ID46; fuga por embeddings hecha; permutación de etiquetas preparada |
+| B03 Auditoría de fuga completamente aprobada | C | ID46: fuga por embeddings y permutación de máscaras (p = 0,005) hechas |
 | B04 Particiones/semillas regenerables | C | ID14 |
 | B05 Pipeline y ajustes solo train | C | Normalización/pesos train; selección val |
-| B06 Presupuesto igual/configuraciones | P | Recetas fijas, no búsqueda ID37 |
+| B06 Presupuesto igual/configuraciones | C | Recetas fijas en el benchmark; búsqueda equitativa exploratoria T = 4 (ID37) |
 | B07 ≥5 ejecuciones; ≥6 para rangos por semillas | C | Cinco corridas; rangos usan grupos |
 | B08 Potencia/R | D | ID06; planificación posterior |
 | B09 Trivial/clásico/tres E1 | C | Máscara vacía, baseline clásico (ID40) y tres E1 |

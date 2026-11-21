@@ -78,8 +78,16 @@ Sobre los 50 checkpoints, sin reentrenar; reproducen el test cerrado al cuarto d
 
 ## 11. Ablación y controles de sanidad
 
-TransUNet sin Transformer, sin conexiones de salto y con BCE sola; permutación de etiquetas; búsqueda con el mismo
-presupuesto. **[si se corrió]**
+Exploratorio, en validación (el test no se cargó).
+
+- **Ablación de TransUNet, 5 semillas pareadas:** sin conexiones de salto −0,092 de Dice; con BCE sola −0,037 (p de
+  Holm < 0,001). Sin Transformer, +0,007 con IC que incluye el cero y una red cinco veces más chica: lo que gana
+  TransUNet aquí viene de la ResNet-50 y los saltos, no de la autoatención.
+- **Permutación de máscaras (FCN, B = 200):** Dice real 0,823 frente a 0,465 de media con máscaras barajadas;
+  p = 0,005, el mínimo posible. El pipeline aprende de la imagen; el 0,465 es lo que da saber dónde caen los rótulos.
+- **Sobreajuste a un lote:** 9 de 10 redes memorizan 4 imágenes; VM-UNet falla en la de rótulo más pequeño.
+- **Búsqueda con el mismo presupuesto (T = 4, 10 épocas):** la receta gana solo en VM-UNet; SegFormer-B0 sube de
+  0,660 a 0,782 con más tasa; TransUNet y VM-UNet siguen arriba.
 
 ## 12. Réplica del paper guía
 

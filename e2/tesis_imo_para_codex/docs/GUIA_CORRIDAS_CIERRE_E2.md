@@ -13,9 +13,9 @@
 |---|---|---|---|---|
 | 1 | `colab/Replica_SegFormer_ADE20K.ipynb` (**hecho**, 20/11) | T4 | unos 15 min medidos | 32 (cerrada), B19 (parcial) |
 | 2 | `colab/Complemento_GPU_E2.ipynb` (**hecho**, 20/11) | L4 | piloto 1,8 h estimadas; corrida ≈ 1 h 45 min | 57, 58, 59, 60, 62, 64; B16, B17 (cerradas) |
-| 3 | `colab/Complemento_Entrenamiento_E2.ipynb`, ablación | L4 | ≈ 10 h (hasta 12,8 h) | 61 |
-| 4 | Mismo cuaderno, sobreajuste y permutación | L4 | 0,25 h + 6,5–33 h (FCN, B = 200) | 41, 56; B03 |
-| 5 | Mismo cuaderno, búsqueda igual, T = 4 | L4 | 2,3–5,8 h | 37; B06 |
+| 3 | `colab/Complemento_Entrenamiento_E2.ipynb`, ablación (**hecho**, 21/11) | L4 | ≈ 10 h; 7,4 h medidas | 61 (cerrada) |
+| 4 | Mismo cuaderno, sobreajuste y permutación (**hecho**, 21/11; TransUNet B = 19 sin correr) | L4 | 0,25 h + 6,5–33 h; 0,1 h + 3,8 h medidas | 41, 56; B03 (cerradas) |
+| 5 | Mismo cuaderno, búsqueda igual, T = 4 (**hecho**, 21/11) | L4 | 2,3–5,8 h; 3,9 h medidas | 37; B06 (cerradas) |
 | 6 | Extracción del Dice por imagen de validación y limitación por área (**hecho**, 20/11, `colab/Extraer_Validacion_E2.ipynb`) | CPU de Colab | unos 4 min medidos | 33 (cerrada), B19 |
 
 La réplica es la más barata y cierra un requisito central: va primero. Los bloques 3 a 5 compiten por las mismas

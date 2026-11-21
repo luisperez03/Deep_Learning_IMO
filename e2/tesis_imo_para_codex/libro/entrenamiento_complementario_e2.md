@@ -35,3 +35,91 @@ de SegNet). Una explicación posible, no
 probada, es que la reducción inicial de resolución deje un rótulo de ese tamaño en muy pocas celdas del mapa de
 rasgos. No se repitió con más pasos ni con otra semilla: la regla se fijó antes y la curva ya muestra que más pasos
 no cambian el resultado.
+
+## Ablación de TransUNet
+
+TransUNet fue la red con mejor Dice de validación del benchmark (0,853, media de cinco semillas), y por eso se eligió
+sin mirar el test. Se le quitó un componente a la vez y se reentrenó con las mismas cinco semillas y el mismo protocolo
+(SGD, 30 épocas como máximo, paciencia 5, sin pesos preentrenados): sin el Transformer del codificador (cero bloques
+de autoatención; quedan la ResNet-50, el decodificador y las tres conexiones de salto), sin las conexiones de salto (el
+decodificador solo recibe la salida del codificador) y con BCE sola en lugar de 0,5 BCE + 0,5 Dice. Son los contrastes
+que estudia el artículo de TransUNet (Chen et al., 2021): R50-U-Net frente a TransUNet y el número de saltos. La referencia son las cinco corridas de la red completa del benchmark, pareadas por semilla.
+
+```{include} ../resultados/complemento_entreno_e2/TABLA_ABLACION.md
+:start-line: 4
+```
+
+**Las conexiones de salto son el componente que más pesa**: sin ellas el Dice cae 0,092, con un intervalo lejos del
+cero. Sin el detalle fino que traen del codificador, la red pierde el contorno de los rótulos. **El término Dice de la
+pérdida aporta 0,037**: con BCE sola, la red optimiza un criterio dominado por el fondo y queda más lejos del Dice
+que se mide. Al quitar el Dice también cambia la escala del gradiente y la tasa no se reajustó, porque la receta se
+mantuvo fija; parte de la caída puede venir de ahí.
+
+**El Transformer no aporta en estos datos.** Sin él, el Dice no baja: sube 0,007, con un intervalo t entre semillas que
+incluye el cero (p de Holm 0,065), con una red cinco veces más chica (20,3 M parámetros frente a 105,3 M). El intervalo
+bootstrap por grupos excluye el cero, pero remuestrea los grupos con las semillas fijas y no recoge la variación entre
+semillas, que es la que aquí manda. La lectura prudente es que el Transformer no mejora a la U con ResNet-50: la
+ventaja de TransUNet en el benchmark viene de la ResNet-50 y de las conexiones de salto. Encaja con entrenar desde
+cero con 1.015 imágenes, pocas para que doce bloques de autoatención aprendan algo que las convoluciones no capten.
+
+Con 5 pares, el Wilcoxon exacto no puede bajar de 0,0625: las dos variantes con caída tienen las cinco diferencias del
+mismo signo, que es lo máximo que la prueba puede mostrar con ese tamaño. La referencia viene de las corridas del
+benchmark y no de un control reentrenado en la misma sesión; con el mismo entorno, semillas y receta, la diferencia
+de ejecución entre sesiones es pequeña frente a las caídas observadas, pero no es cero.
+
+## Permutación de máscaras en train
+
+La prueba responde si el pipeline aprende la relación entre imagen y rótulo o solo regularidades que no dependen de
+ella. En cada réplica se barajaron las 1.015 máscaras de train entre imágenes y se reentrenó FCN compacta con el pipeline
+completo del benchmark (mismo orden de lotes que la semilla 11, 30 épocas como máximo, paciencia 5). La validación se
+midió con sus máscaras verdaderas. Se eligió FCN porque es la red más barata del benchmark; la versión con TransUNet
+(B = 19, por debajo del mínimo de la guía) no se corrió.
+
+```{include} ../resultados/complemento_entreno_e2/TABLA_PERMUTACION.md
+:start-line: 4
+```
+
+```{figure} ../resultados/complemento_entreno_e2/permutacion_fcn.png
+:width: 85%
+
+Dice de validación de las 200 réplicas con máscaras permutadas (gris) y de la FCN entrenada con sus máscaras (rojo).
+```
+
+Ninguna de las 200 réplicas llega al Dice real: p = 0,005, el mínimo posible con B = 200. **La distribución nula no
+está en cero.** Su media es 0,465. Con las máscaras barajadas, la red no puede aprender qué imagen va con qué rótulo,
+pero sí dónde suelen caer los rótulos y de qué tamaño son, y con eso ya solapa casi la mitad. Ese 0,465 es lo que
+el pipeline obtiene sin información de la imagen; el 0,823 real lo supera en 0,36.
+
+## Búsqueda de hiperparámetros
+
+El benchmark entrenó cada red con la receta de su artículo, sin búsqueda. La búsqueda mide cuánto depende la comparación
+de esa elección. Se probaron T = 4 configuraciones por red con el mismo presupuesto (10 épocas como máximo, paciencia 3,
+semilla 11). El intento 0 es la receta; los otros tres multiplican su tasa de aprendizaje por el mismo factor en las 10
+redes, sorteado en escala logarítmica dentro de una década hacia cada lado, y fijan el weight decay. La elección se hace
+solo con validación.
+
+```{include} ../resultados/complemento_entreno_e2/TABLA_HPO.md
+:start-line: 4
+```
+
+- **La receta es la mejor solo en VM-UNet.** En TransUNet empata con t2 (0,813 frente a 0,814). En las otras ocho redes
+  algún intento la supera, en seis de ellas por menos de 0,03, del orden de lo que mueve cambiar de semilla (la
+  desviación entre semillas llega a 0,033 en el test del benchmark).
+- **SegFormer-B0 es la excepción.** Con la tasa multiplicada por 9,3 sube de 0,660 a 0,782 y pasa del último lugar a
+  la mitad de la tabla. Su último lugar en el benchmark depende en buena parte de la receta, que fija una tasa baja
+  (6 × 10⁻⁵, la de su artículo). SegNeXt-T mejora 0,045 por la misma vía.
+- **Una tasa alta rompe dos redes.** Con t2, SegNet compacta y VM-UNet colapsan a predecir fondo (Dice 0,000 y 0,009) y
+  la paciencia las detiene en la época 4 o 5. VM-UNet también es la que no memorizó el lote en la prueba de sanidad:
+  las dos pruebas apuntan a una optimización frágil.
+- **Las dos primeras no cambian.** TransUNet (0,814) y VM-UNet (0,801) siguen arriba con su mejor configuración.
+
+Es exploratoria. Una semilla y 10 épocas favorecen las configuraciones que aprenden rápido y dejan ruido de semilla en
+la elección. El espacio cubre solo tasa y weight decay, los dos hiperparámetros comunes a los diez optimizadores, y no
+el lote, el dropout ni la profundidad. Reentrenar la configuración ganadora de cada red con cinco semillas y 30 épocas
+quedó diseñado (unas 17 h de L4) y no se corrió.
+
+## Cómputo
+
+Tiempo de GPU L4 sumado de los registros de cada corrida (`resultados/complemento_entreno_e2/corridas.csv`): ablación
+7,4 h, permutación 3,8 h, búsqueda 3,9 h y sobreajuste 0,1 h; unas 15 h en total, repartidas en dos sesiones
+paralelas.
