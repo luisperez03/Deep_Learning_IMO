@@ -1,0 +1,8 @@
+{
+ "fecha": "2026-11-22",
+ "procedimiento": "Submuestra aleatoria de 20 de las 200 decisiones de la muestra (random.Random(7).sample sobre las filas de cribado_manual.csv con estrato distinto de NUCLEO_DOMINIO, en el orden del archivo). Una segunda pasada de otro modelo de IA leyó título y resumen y comprobó la decisión contra CRITERIOS_ELEGIBILIDAD.md. No es un segundo revisor independiente ni da kappa: mide la consistencia en la aplicación de los criterios.",
+ "ids": ["E2-3096", "E2-1441", "E2-3727", "E2-5394", "E2-0308", "E2-0585", "E2-4574", "E2-0746", "E2-3501", "E2-4940", "E2-0499", "E2-4386", "E2-2064", "E2-0272", "E2-0678", "E2-4004", "E2-3910", "E2-0573", "E2-2313", "E2-0741"],
+ "coinciden": 20,
+ "revisadas": 20,
+ "observaciones": "E2-1441 (U-Net en carreteras satelitales, sin mecanismo nuevo) y E2-2064 (fórmulas en documentos) entran como contexto por arquitectura de la línea candidata y por objetos pequeños; son las inclusiones más laxas de la submuestra."
+}

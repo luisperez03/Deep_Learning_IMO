@@ -95,10 +95,12 @@ PUNTOS = {
 SELECCIONADAS = ['DeepLabv3+', 'UNet++', 'PIDNet-S', 'SegNeXt-T', 'SegFormer-B0', 'TransUNet', 'VM-UNet']
 # Rango de la sede (no es cuartil: el protocolo prohíbe asignar cuartiles a conferencias).
 SEDE = {
-    'DeepLabv3+': 'ECCV, CORE A* (ICORE2026)', 'UNet++': 'IEEE TMI (revista); cuartil no verificado',
+    'DeepLabv3+': 'ECCV, CORE A* (ICORE2026)',
+    'UNet++': 'IEEE TMI (revista): Q1 en SJR 2020 en sus cuatro categorías (Q1 también en 2025, SJR 2,501)',
     'PIDNet-S': 'CVPR, CORE A* (ICORE2026)', 'SegNeXt-T': 'NeurIPS, CORE A* (ICORE2026)',
     'SegFormer-B0': 'NeurIPS, CORE A* (ICORE2026)', 'TransUNet': 'Preprint arXiv; no aplica',
-    'VM-UNet': 'ACM TOMM (revista, 2025); cuartil no verificado', 'Attention U-Net': 'MIDL 2018; sin rango CORE',
+    'VM-UNet': 'ACM TOMM (revista, 2025): Q1 en SJR 2025 en Computer Networks and Communications y en Hardware and '
+               'Architecture (SJR 0,925)', 'Attention U-Net': 'MIDL 2018; sin rango CORE',
     'Swin-Unet': 'Taller de ECCV 2022; el rango de ECCV no se extiende a sus talleres',
 }
 
@@ -171,9 +173,17 @@ def main():
     md += ['## Cuartiles', '',
            'El protocolo pide fuente, categoría y año del cuartil y prohíbe asignarlo a conferencias. Cinco candidatas son '
            'de conferencia (rango CORE en la tabla de justificación, consultado en portal.core.edu.au, ICORE2026), una es '
-           'preprint y una de taller. Las dos de revista (IEEE TMI para UNet++ y ACM TOMM para VM-UNet) quedan sin cuartil: '
-           'SCImago exige una verificación de navegador que no se automatiza. El cuartil no entra en la rúbrica, de modo '
-           'que el total no depende de él.', '']
+           'preprint y una de taller. Las dos de revista son Q1. Fuente: SCImago Journal Rank, datos de Scopus de marzo '
+           'de 2026, leído a mano el 22/11/2026 (la página exige una verificación de navegador que no se automatiza). '
+           'Año del cuartil: el de publicación de la versión citada.', '',
+           '| Revista | Candidata | Año | Cuartil y categoría | Año más reciente (2025) |', '|---|---|---|---|---|',
+           '| IEEE Transactions on Medical Imaging (ISSN 0278-0062) | UNet++ | 2020 | Q1 en Computer Science '
+           'Applications, Electrical and Electronic Engineering, Radiological and Ultrasound Technology y Software | '
+           'Q1, SJR 2,501; puesto 38 de 1.030 en Computer Science Applications |',
+           '| ACM Transactions on Multimedia Computing, Communications and Applications (ISSN 1551-6857) | VM-UNet | 2025 | '
+           'Q1 en Computer Networks and Communications y en Hardware and Architecture | Q1, SJR 0,925; puesto 91 de 564 '
+           'en Computer Networks and Communications |', '',
+           'El cuartil no entra en la rúbrica: el total no depende de él.', '']
     (ROOT / 'PUNTUACION_DEFINITIVA.md').write_text('\n'.join(md), encoding='utf-8')
     for r in orden:
         print(f"{r:16s} {tabla[r]['total_100']:6.2f} sin_cit {tabla[r]['sin_citacion_90_a_100']:6.2f} sin_viab {tabla[r]['sin_viabilidad_90_a_100']:6.2f}")

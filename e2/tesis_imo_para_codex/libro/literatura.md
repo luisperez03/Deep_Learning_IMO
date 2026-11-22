@@ -6,34 +6,44 @@ Se investigan antecedentes de localización de rótulos, arquitecturas de segmen
 
 La selección de siete candidatas nuevas fue aceptada como **lista de trabajo**. No equivale a una revisión sistemática completa de todas las referencias recuperadas. Según confirmación del usuario, el profesor acepta diez modelos totales, incluyendo las tres redes del E1.
 
-## Identificación y precribado verificables
+## Identificación, cribado y elegibilidad
 
-| Etapa | Conteo | Alcance de la evidencia |
+| Etapa | Conteo | Evidencia |
 |---|---:|---|
 | Scopus Q0–Q4 | 6.399 | Registros exportados |
 | WoS Q0–Q4 | 3.247 | Registros exportados |
-| Total bruto | 9.646 | Trece archivos |
-| Duplicados técnicos | 3.321 | Conciliación con reglas DOI/título |
-| Grupos provisionales | 6.325 | Tres pares con DOI contradictorios, adjudicados el 20/11 con Crossref y doi.org; alias en el parser, fusión aún no aplicada: se esperan 6.322 grupos y 3.324 duplicados |
-| Sugerencia automática: retener | 2.186 | 20 dominio, 507 arquitectura, 1.659 mecanismo |
-| Sugerencia automática: excluir | 2.052 | No son exclusiones humanas definitivas |
-| Duda | 2.087 | Requiere inspección |
-| Elegibles e incluidos definitivos | No cerrado | No se deducen del número de redes entrenadas |
+| Total importado | 9.646 | Trece archivos; sha256 fijados en `conciliacion.json` |
+| Duplicados | 3.324 | DOI normalizado y título/año; incluye los tres pares de DOI fusionados con sus alias |
+| Grupos únicos | **6.322** | `procesar_exportaciones.py`, sin coincidencias ambiguas |
+| Precribado automático: retener | 3.687 | 23 dominio, 343 arquitectura, 3.321 mecanismo |
+| Precribado automático: excluir | 2.513 | 2.143 dominio no transferible, 185 tarea, 124 tipo documental, 61 detección |
+| Precribado automático: duda | 122 | |
+| Núcleo de dominio revisado | 25 | Incluidos 10; excluidos 15 con motivo |
+| Muestra de validación del precribado | 200 | Aleatoria estratificada, título y resumen |
 
 ```text
-9.646 registros importados
-  └─ 3.321 duplicados técnicos
-      └─ 6.325 grupos provisionales
-          ├─ 2.186 sugerencias de retención
-          ├─ 2.052 sugerencias de exclusión
-          └─ 2.087 dudas
-Adjudicación humana, recuperación y elegibilidad final: pendientes
+9.646 registros importados (Scopus 6.399, WoS 3.247)
+  └─ 3.324 duplicados
+      └─ 6.322 grupos únicos
+          ├─ Núcleo de dominio (precribado de dominio, mención de rótulos o consultas Q0/Q1): 25
+          │     ├─ excluidos: 15 (13 tarea sin transferencia, 2 sin método original)
+          │     └─ INCLUIDOS: 10 estudios sobre rótulos o placas de mercancía peligrosa
+          └─ Resto: 6.297 con decisión automática
+                ├─ muestra revisada: 200 (60 excluir, 60 duda, 40 mecanismo, 40 arquitectura)
+                └─ incluibles estimados a título y resumen: 3.103 (2.256–3.940), no evaluados
+                   a texto completo: fuera del alcance de la síntesis
 
-Selección operativa paralela: 3 redes E1 + 7 candidatas nuevas
-(no es una etapa final demostrada del flujo PRISMA)
+Síntesis: 10 estudios de dominio + 9 arquitecturas puntuadas (fichas cotejadas)
+          + fuentes primarias de los mecanismos
 ```
 
-Los conteos son aritméticamente coherentes, pero no acreditan la elegibilidad. Los tres pares de DOI son el mismo artículo en cada caso: dos variantes no están registradas y la tercera es un alias que el propio registro redirige al canónico ({download}`resolución con evidencia <../docs/revision_entregable2/RESOLUCION_CONFLICTOS_DOI.md>`). Los alias ya están en `procesar_exportaciones.py`, pero las exportaciones no están en el repositorio: 6.322 es el conteo esperado, no uno ejecutado, y no se usa como cifra cerrada hasta correr el parser. No se informa kappa porque no hay dos cribados independientes completos.
+Los tres pares de DOI son el mismo artículo en cada caso: dos variantes no están registradas y la tercera es un alias que el propio registro redirige al canónico ({download}`resolución con evidencia <../docs/revision_entregable2/RESOLUCION_CONFLICTOS_DOI.md>`). Con los alias en el parser, los tres pares se fusionan sin perder identificadores: cada grupo absorbido queda registrado en el que lo recibe.
+
+**El precribado se reconstruyó.** Del filtro automático original solo quedaron los conteos, sin sus reglas ni sus decisiones por registro. `precribado_reconstruido.py` lo sustituye con las mismas ocho categorías y reglas explícitas. Coincide en lo que importa para el gap (23 registros de dominio frente a 20) y difiere en el resto: manda a "mecanismo" casi todas las antiguas dudas, porque términos como atención o Transformer aparecen en casi todo el corpus.
+
+**Su error se midió, y es grande.** Una muestra aleatoria estratificada de 200 registros (semilla fija) se revisó a título y resumen con criterios escritos antes de empezar ({download}`criterios <../docs/revision_entregable2/CRITERIOS_ELEGIBILIDAD.md>`), sin ver la decisión del filtro. En el estrato de exclusión, 22 de 60 registros eran incluibles (37 %, IC95 de Wilson 26–49 %): el filtro descarta como "dominio no transferible" muchos estudios médicos 2D con mecanismos generales que los criterios sí admiten. En los estratos de retención sobra entre el 20 % (arquitectura) y el 45 % (mecanismo). Por eso ninguna decisión automática se presenta como exclusión humana. El corpus se usa en dos niveles: el núcleo de dominio, revisado registro por registro, y una estimación de cuántos incluibles hay en el resto (unos 3.100), que no se leyeron a texto completo y quedan fuera de la síntesis. Flujo completo con exclusiones por motivo en {download}`PRISMA <../docs/revision_entregable2/PRISMA_FINAL.md>`.
+
+Las decisiones las propone un asistente de IA con esos criterios. Una segunda pasada sobre 20 de las 200 coincidió en las 20. No es un segundo revisor independiente, así que no se informa kappa.
 
 **Búsquedas transversales: el requisito no se cumple.** La guía pide tres búsquedas transversales (mecanismos de otras modalidades) ejecutadas en las bases; se ejecutó una parte. Q5 llegó a mostrar conteos piloto (38 en Scopus y 14 en WoS), pero la exportación falló en las dos bases el 18/11 por la caída de la sesión institucional, y Q6 no se ejecutó; después se decidió no reabrirlas. Un fallo de exportación no es un resultado cero, así que esos 52 registros no se suman al corpus ni se cuentan como cribados.
 
@@ -135,10 +145,12 @@ El protocolo `config/limitacion_segformer_area.json`, fijado antes de mirar resu
 
 ## Gap y límites de la síntesis
 
-En los seis estudios aplicados identificados no se encontró ninguno que segmente el rótulo por píxel con una red profunda ni que compare arquitecturas con varias semillas; el único que produce máscara usa GrabCut sobre la caja del detector. La afirmación es refutable: basta un estudio revisado por pares que haga cualquiera de las dos cosas. Su denominador son esos seis estudios, no el corpus: los 20 registros de dominio y las 2.087 dudas del precribado no se han revisado a texto completo, así que la conclusión queda condicionada a esa revisión y no se escribe "ningún estudio previo". Tampoco hay denominador final para estimar proporción de estudios con datos o código.
+**Afirmación.** Ningún estudio de los identificados sobre rótulos o placas de mercancía peligrosa segmenta el rótulo por píxel con una red profunda ni compara arquitecturas de segmentación con varias semillas. El denominador son 13 estudios: los 10 de dominio que el cribado incluyó del corpus y tres anteriores a 2019, fuera de la ventana de búsqueda, hallados por búsqueda dirigida (Mohamed et al., 2018; Zhao et al., 2013; Thongkor et al., 2016). Los 13 detectan, reconocen, clasifican o localizan. El único que produce máscara, DeepHAZMAT, la obtiene con GrabCut sobre la caja del detector. E2-0007 publica un conjunto RGB-D de señales hazmat, pero su segmentación es de planos sobre la nube de puntos y su detector, yolov3-tiny, da cajas.
 
-El cierre está definido y su script, probado: `cribado_nucleo.py` lleva a texto completo todo registro de dominio (los marcados `RETENER_DOMINIO` y cualquiera que mencione rótulos o mercancía peligrosa en título o resumen) y revisa a mano una muestra aleatoria estratificada de 200 registros del precribado (semilla fija) para estimar, con IC95 de Wilson, cuántos incluibles perdió el filtro y cuántos retenidos sobran. De ahí salen el flujo PRISMA con exclusiones por motivo y el denominador del gap. Falta correrlo: necesita las exportaciones originales.
+**Qué la refuta.** Un solo estudio revisado por pares que segmente por píxel rótulos o placas de mercancía peligrosa con una red profunda, o que compare arquitecturas de segmentación sobre ese objeto informando la variabilidad entre corridas.
+
+**Alcance de la lectura.** Dos de los diez se leyeron a texto completo: E2-0007 y DeepHAZMAT, en sus versiones de arXiv. Los otros ocho se decidieron con el resumen, que en todos declara el método: un detector de cajas (YOLO u otro), un clasificador o visión clásica (umbral en HSV, OpenCV). Su texto completo no se pudo leer: IEEE Xplore no cargó a través del ezproxy, Uninorte no tiene suscripción a Springer ni a SPIE, e IS&T no ofrece el PDF. Por eso la afirmación se acota a "en los estudios identificados", y no a "ningún estudio previo". No se estima la proporción de estudios con datos o código: el denominador es de 13 y su propósito es el gap, no esa estadística.
 
 La síntesis de los tres mecanismos transversales (atención, estado selectivo y dilatación), con fuente primaria, hipótesis para HAZMAT y el resultado del benchmark que refutaría cada una, está en {download}`mecanismos <../docs/revision_entregable2/MECANISMOS_TRANSVERSALES.md>`, sección 4.
 
-No se asignan cuartiles sin año, categoría y fuente: las cinco conferencias llevan su rango CORE (ECCV, CVPR y NeurIPS son A* en ICORE2026) y las dos revistas (IEEE TMI y ACM TOMM) quedan sin cuartil porque SCImago no se pudo consultar de forma automatizada; el cuartil no entra en la rúbrica. El {download}`BibTeX <referencias_e2.bib>` reúne 21 referencias (diez arquitecturas en su versión editorial cuando existe, siete de aplicación y cuatro de mecanismos), con DOI verificados el 20/11/2026 en Crossref o DataCite.
+No se asignan cuartiles sin año, categoría y fuente: las cinco conferencias llevan su rango CORE (ECCV, CVPR y NeurIPS son A* en ICORE2026) y las dos revistas son Q1 en SCImago en el año de la versión citada: IEEE TMI en 2020, en sus cuatro categorías, para UNet++; ACM TOMM en 2025, en Computer Networks and Communications y en Hardware and Architecture, para VM-UNet. Ambas siguen en Q1 en 2025. La consulta, a mano, fue el 22/11/2026, con datos de Scopus de marzo de 2026. El cuartil no entra en la rúbrica. El {download}`BibTeX <referencias_e2.bib>` reúne 21 referencias (diez arquitecturas en su versión editorial cuando existe, siete de aplicación y cuatro de mecanismos), con DOI verificados el 20/11/2026 en Crossref o DataCite.

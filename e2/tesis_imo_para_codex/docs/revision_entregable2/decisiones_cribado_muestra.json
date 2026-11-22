@@ -1,0 +1,1402 @@
+[
+ {
+  "id": "E2-0052",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Supresión de clutter en espectros radar rango-Doppler; la entrada no es una imagen RGB y el aporte es propio de la modalidad."
+ },
+ {
+  "id": "E2-0053",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Red codificador-decodificador 2D con refinamiento de bordes y fusión multiescala; cumple las cuatro condiciones."
+ },
+ {
+  "id": "E2-0124",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Swin-UNet para segmentación semántica 2D con contexto global; arquitectura de la línea candidata."
+ },
+ {
+  "id": "E2-0128",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Mejora de DeepLabv3+ (ASPP) contra pérdida de bordes y objetos pequeños; arquitectura candidata."
+ },
+ {
+  "id": "E2-0145",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Variante de DeepLabV3+ con atención local-global contra bordes borrosos y objetos pequeños."
+ },
+ {
+  "id": "E2-0149",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Segmentación con YOLO-Seg para objetos pequeños en imágenes de alta resolución; mecanismo transferible."
+ },
+ {
+  "id": "E2-0160",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Refuerzo de rasgos profundos para segmentar objetos pequeños tras el submuestreo; mecanismo transferible aunque la imagen sea infrarroja 2D."
+ },
+ {
+  "id": "E2-0258",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "DeepLabv3+ con patrón binario local para objetos pequeños y clases desbalanceadas; mecanismo transferible."
+ },
+ {
+  "id": "E2-0270",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "SegFormer mejorado para objetivos pequeños; arquitectura candidata."
+ },
+ {
+  "id": "E2-0272",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "U-Net eficiente con convoluciones separables y atención agrupada para objetos pequeños e iluminación variable."
+ },
+ {
+  "id": "E2-0286",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "SegNeXt con fusión multiescala, atención de coordenadas y pérdida ponderada por bordes; la entrada es Sentinel-2 más DEM pero el mecanismo es general."
+ },
+ {
+  "id": "E2-0303",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "DeepLabv3+ ligero con función de activación por atención; arquitectura candidata."
+ },
+ {
+  "id": "E2-0308",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "DeepLabv3+ ligero con convolución gaussiana-dilatada y fusión multiescala contra bordes irregulares y objetos pequeños."
+ },
+ {
+  "id": "E2-0406",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Método de explicabilidad (Eigen-CAM) para modelos de segmentación; no propone ni compara una red de segmentación."
+ },
+ {
+  "id": "E2-0499",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Red CNN-Transformer con percepción de fase y frecuencia para segmentación 2D de alta resolución con extracción fina de objetos."
+ },
+ {
+  "id": "E2-0524",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "DeepLabV3+ mejorado (tasas de dilatación del ASPP, módulo de ubicación) para objetos pequeños."
+ },
+ {
+  "id": "E2-0541",
+  "decision_manual": "excluir",
+  "motivo": "sin método original",
+  "clasificacion": "",
+  "nota": "Actas de congreso (revisión de congreso); no es un estudio original."
+ },
+ {
+  "id": "E2-0573",
+  "decision_manual": "excluir",
+  "motivo": "sin método original",
+  "clasificacion": "",
+  "nota": "Comparación descriptiva de algoritmos de detección con y sin anclas; es una revisión y además la tarea es detección, no segmentación."
+ },
+ {
+  "id": "E2-0585",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "SegFormer modificado con pérdida para objetos pequeños y superpuestos; arquitectura candidata."
+ },
+ {
+  "id": "E2-0591",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Pérdida de región y píxel que reequilibra clases para segmentar objetos pequeños (grietas); aplicable a cualquier red."
+ },
+ {
+  "id": "E2-0609",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Recuperación de imágenes guiada por saliencia; no es segmentación."
+ },
+ {
+  "id": "E2-0651",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "U doble en cascada para segmentación de objetos diminutos con predicción de centroide; mecanismo transferible a objetos pequeños."
+ },
+ {
+  "id": "E2-0678",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Estimación de pose y predicción de comportamiento; no es segmentación."
+ },
+ {
+  "id": "E2-0741",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Segmentación de objetos pequeños con dos redes colaborativas; mecanismo para objetos pequeños de bajo contraste."
+ },
+ {
+  "id": "E2-0746",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "DeepLabv3+ mejorado para segmentar poros pequeños en superficie de hormigón."
+ },
+ {
+  "id": "E2-0755",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Pronóstico de rayos con entrada espacio-temporal de radar (red 3D); aporte propio de la modalidad."
+ },
+ {
+  "id": "E2-0768",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "El aporte es fusionar RGB con nDSM (modelo digital de superficie); depende de una modalidad adicional."
+ },
+ {
+  "id": "E2-0910",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "DeepLabv3+ mejorado con pérdida de información mutua y optimización de bordes por superpíxeles."
+ },
+ {
+  "id": "E2-0915",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Transformer dual con agregación selectiva de bordes y objetos pequeños en imágenes médicas 2D; mecanismo general."
+ },
+ {
+  "id": "E2-0946",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Segmentación 3D de órganos y tumores en CT; el aporte depende del volumen."
+ },
+ {
+  "id": "E2-0963",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "U-Net sobre parches espacio-temporales para detectar drones; el aporte depende de la entrada de video, además de una clasificación posterior."
+ },
+ {
+  "id": "E2-0970",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Red convolucional 3D sobre tensor alrededor del objetivo para objetos tenues; no es segmentación semántica estándar de imagen 2D."
+ },
+ {
+  "id": "E2-1089",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Comparación de cuatro codificadores ResNet en UNet con informe de métricas; arquitectura candidata y comparación."
+ },
+ {
+  "id": "E2-1190",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Segmentación de nubes de puntos 3D en interiores; el aporte es propio de la modalidad."
+ },
+ {
+  "id": "E2-1222",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Bloques no locales piramidales asimétricos para contexto global en segmentación 2D."
+ },
+ {
+  "id": "E2-1333",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Fusión de embeddings de AlphaEarth con imágenes GF-1; el aporte depende de datos de teledetección específicos."
+ },
+ {
+  "id": "E2-1365",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Escaneo Mamba semántico-estructural para modelar dependencia global en segmentación 2D; el componente semisupervisado es secundario."
+ },
+ {
+  "id": "E2-1422",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Segmentación de nubes de puntos por proyección esférica; el aporte es propio de la modalidad."
+ },
+ {
+  "id": "E2-1441",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "U-Net para segmentar carreteras en imágenes satelitales; arquitectura candidata."
+ },
+ {
+  "id": "E2-1486",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Decodificación jerárquica con restricción de bordes para segmentación de vocabulario abierto; aborda multiescala y bordes."
+ },
+ {
+  "id": "E2-1544",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "DeepKANSeg: red basada en KAN para segmentación con recuperación de detalle; arquitectura de línea cercana."
+ },
+ {
+  "id": "E2-1553",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Compara SegFormer, DeepLabv3+, PSPNet y U-Net++ en segmentación; se cumple como comparación de arquitecturas."
+ },
+ {
+  "id": "E2-1577",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "CSWin-UNet con compuerta de atención y mezcla de expertos en las conexiones; arquitectura candidata 2D."
+ },
+ {
+  "id": "E2-1622",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Segmentación de defectos en termografía infrarroja con dinámica térmica temporal; el aporte depende de la modalidad."
+ },
+ {
+  "id": "E2-1639",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Prior estructural para segmentación con generalización de dominio con modelos de fundación; mecanismo transferible a fondo y estructura."
+ },
+ {
+  "id": "E2-1645",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "La tarea principal es clasificación multitarea de hematomas; la segmentación es auxiliar."
+ },
+ {
+  "id": "E2-1668",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Localización de manipulación de imágenes; el aporte depende de pistas de bajo nivel de la falsificación."
+ },
+ {
+  "id": "E2-1700",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Compara estrategias de pseudoetiquetado para segmentación débilmente supervisada de viñedos; el aporte es la anotación, no la arquitectura."
+ },
+ {
+  "id": "E2-1719",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Fusión multimodal y multimodelo para cobertura del suelo; el aporte depende de datos multimodales de teledetección."
+ },
+ {
+  "id": "E2-1756",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Evalúa arquitecturas Transformer de segmentación en escenas exteriores; comparación de arquitecturas."
+ },
+ {
+  "id": "E2-1765",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Ajuste fino activo evaluado en clasificación de imágenes; no es segmentación."
+ },
+ {
+  "id": "E2-1985",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "SegFormer mejorado con convolución serpenteante y atención para grietas finas y variación de escala."
+ },
+ {
+  "id": "E2-2014",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Segmentación de defectos con modelo de difusión y atención para equilibrar detalle local y dependencia global."
+ },
+ {
+  "id": "E2-2053",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "U-Net con bloque Mamba multiescala global; arquitectura candidata."
+ },
+ {
+  "id": "E2-2064",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "contexto",
+  "nota": "Segmentación multietiqueta de expresiones pequeñas en documentos con codificador-decodificador ligero; relevante por objetos pequeños, el aporte es de dominio."
+ },
+ {
+  "id": "E2-2115",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "DeepLabV3+ con Contextual Transformer y excitación agregada para segmentación de imagen."
+ },
+ {
+  "id": "E2-2166",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "SegFormer con codificación posicional dinámica y contexto local; arquitectura candidata."
+ },
+ {
+  "id": "E2-2171",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "U de codificador-decodificador con núcleo grande, saltos multiescala, rama de contornos y pérdida compuesta; imágenes de rayos X 2D de frutas."
+ },
+ {
+  "id": "E2-2193",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Segmentación médica 3D; el aporte depende del volumen."
+ },
+ {
+  "id": "E2-2201",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "U-Net++ con módulos Inception y atención sensible a bordes para fusión multiescala."
+ },
+ {
+  "id": "E2-2215",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Eliminación de nubes con fusión SAR-óptico; no es segmentación."
+ },
+ {
+  "id": "E2-2313",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "SAM con adaptación de bajo rango y mejora multiescala para segmentación con bordes pobres."
+ },
+ {
+  "id": "E2-2438",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Preentrenamiento autosupervisado sobre imágenes multiespectrales; el aporte depende de bandas espectrales."
+ },
+ {
+  "id": "E2-2452",
+  "decision_manual": "excluir",
+  "motivo": "sin método original",
+  "clasificacion": "",
+  "nota": "Actas de congreso (revisión de congreso); no es un estudio original."
+ },
+ {
+  "id": "E2-2480",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "SwinSegFormer jerárquico con decodificador ligero y características multiescala."
+ },
+ {
+  "id": "E2-2506",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Fusión de imágenes médicas multimodales; no es segmentación."
+ },
+ {
+  "id": "E2-2516",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Compara combinaciones de codificadores y decodificadores de segmentación en cortes 2D; comparación de arquitecturas."
+ },
+ {
+  "id": "E2-2569",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Segmentación de imágenes hiperespectrales con autocodificador espectral-espacial; el aporte depende de las bandas."
+ },
+ {
+  "id": "E2-2580",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Pseudo mixup y autodestilación para segmentar defectos; método de entrenamiento aplicable a cualquier red."
+ },
+ {
+  "id": "E2-2595",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Red en U ligera para segmentación 2D de lesiones con eficiencia; mecanismo transferible."
+ },
+ {
+  "id": "E2-2723",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Atención híbrida filtrada para segmentación multiescala con baja complejidad computacional."
+ },
+ {
+  "id": "E2-2747",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Conjunto de SegFormer para segmentación de úlceras en imágenes 2D."
+ },
+ {
+  "id": "E2-2853",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Backbone convolucional con agrupamiento dinámico para dependencias globales, evaluado también en segmentación semántica; la segmentación no es su único objetivo."
+ },
+ {
+  "id": "E2-2859",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "SegFormer adaptado para defectos de bordes difusos."
+ },
+ {
+  "id": "E2-2900",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "U-Net por descomposición de dominio para imágenes de ultra alta resolución; aborda eficiencia y pérdida espacial."
+ },
+ {
+  "id": "E2-2965",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "U-Net híbrida con Swin y fusión deformable para delimitar bordes; arquitectura candidata 2D."
+ },
+ {
+  "id": "E2-2975",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Autocodificador enmascarado para clasificación de imágenes médicas; no es segmentación."
+ },
+ {
+  "id": "E2-2991",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Backbone mixto CNN-Transformer con fusión multiescala para segmentación 2D."
+ },
+ {
+  "id": "E2-3022",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "contexto",
+  "nota": "Conjunto de datos de mortalidad de árboles con referencias de modelos de segmentación convolucionales y de transformers; su aporte es principalmente el conjunto."
+ },
+ {
+  "id": "E2-3030",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Detección de cambios en edificios con pares temporales de imágenes; el aporte depende de la entrada bitemporal."
+ },
+ {
+  "id": "E2-3053",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Segmentación con modelo de difusión bilateral y estimación de profundidad auxiliar; mecanismo general para objetos con fondo confuso."
+ },
+ {
+  "id": "E2-3086",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "SegFormer para segmentar el ventrículo en cuadros 2D de ecocardiografía."
+ },
+ {
+  "id": "E2-3096",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "TransUNet con fusión de atención multidominio para bordes borrosos y diferencias de escala."
+ },
+ {
+  "id": "E2-3100",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Swin Transformer con DenseASPP y atención de coordenadas para segmentación multiescala."
+ },
+ {
+  "id": "E2-3135",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Supresión de ruido de fondo con atención en rasgos de bajo nivel dentro de una red CNN-Transformer 2D."
+ },
+ {
+  "id": "E2-3156",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Mejora de imágenes con poca luz; no es segmentación."
+ },
+ {
+  "id": "E2-3173",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Doble decodificador para contexto global y detalle local en segmentación de objetos salientes."
+ },
+ {
+  "id": "E2-3192",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Segmentación de tumor cerebral con RM multisecuencia; el aporte es propio de la modalidad."
+ },
+ {
+  "id": "E2-3295",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Atención anatómica específica de la mama en ecografía; el aporte depende de la modalidad."
+ },
+ {
+  "id": "E2-3336",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Atención inversa multiescala con detalle realzado para bordes finos en imágenes de cistoscopía 2D."
+ },
+ {
+  "id": "E2-3349",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Integra datos de sensores con imágenes para enfermedad en duraznos; el aporte depende de datos no visuales."
+ },
+ {
+  "id": "E2-3384",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Percepción urbana con datos multimodales de polarización; el aporte depende de la modalidad."
+ },
+ {
+  "id": "E2-3437",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Verificación formal de redes de segmentación; no propone ni compara arquitecturas de segmentación."
+ },
+ {
+  "id": "E2-3501",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Red multiescala de selección de núcleos con Transformer para marcas viales pequeñas y borrosas."
+ },
+ {
+  "id": "E2-3537",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Adaptación de dominio no supervisada con GAN; el aporte es la adaptación, no una arquitectura ni una dificultad de HAZMAT-13."
+ },
+ {
+  "id": "E2-3539",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Preentrenamiento autosupervisado de representaciones evaluado sobre clasificación; no es segmentación."
+ },
+ {
+  "id": "E2-3567",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "SegNet con conexiones residuales múltiples para reducir pérdida de información en el muestreo."
+ },
+ {
+  "id": "E2-3573",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Convierte clasificadores en segmentadores mediante guía por explicaciones; segmentación débil sin mecanismo de arquitectura pertinente."
+ },
+ {
+  "id": "E2-3611",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Red de agregación entre capas en tiempo real para escenas urbanas con objetos pequeños y eficiencia."
+ },
+ {
+  "id": "E2-3672",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Evalúa estructuras codificador-decodificador para segmentación de nubes; comparación de arquitecturas."
+ },
+ {
+  "id": "E2-3710",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Segmentación semántica 2D con fusión multinivel y pérdida sensible a la localización; aporte general sobre bordes y resolución."
+ },
+ {
+  "id": "E2-3727",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Segmentación 2D de prendas con pirámide espacial y fusión multiescala; mejora bordes (Boundary IoU)."
+ },
+ {
+  "id": "E2-3732",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Segmentación 2D de lesiones foliares que compara LinkNet-34, SegNet y PSPNet con distintos codificadores."
+ },
+ {
+  "id": "E2-3813",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Segmentación de nubes de puntos 3D interiores; el aporte depende de la nube de puntos."
+ },
+ {
+  "id": "E2-3827",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Segmentación 2D de núcleos con SegFormer-b0 y b4; evalúa una arquitectura de transformadores candidata."
+ },
+ {
+  "id": "E2-3866",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "contexto",
+  "nota": "Aplicación de U-Net a imágenes satelitales 2D; sin mecanismo nuevo, solo contexto de la arquitectura (ambiguo)."
+ },
+ {
+  "id": "E2-3904",
+  "decision_manual": "excluir",
+  "motivo": "sin método original",
+  "clasificacion": "",
+  "nota": "Revisión de literatura sobre segmentación semántica profunda."
+ },
+ {
+  "id": "E2-3910",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Red híbrida PVT y BiSeNet de dos ramas (global y local), ligera, en imágenes 2D."
+ },
+ {
+  "id": "E2-3955",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Fusión de DeepLabv3+ y transformador con atención para mejorar bordes y multiescala en imágenes 2D."
+ },
+ {
+  "id": "E2-3969",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Segmentación 2D de tejido necrótico con SegFormer; arquitectura de transformadores candidata."
+ },
+ {
+  "id": "E2-3998",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Estrategias de fusión de tokens en SegFormer para eficiencia en alta resolución."
+ },
+ {
+  "id": "E2-4004",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Segmentación con cámaras de campo de luz; el aporte depende de las subaperturas."
+ },
+ {
+  "id": "E2-4005",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "contexto",
+  "nota": "SegFormer eficiente con entrenamiento adversarial de dominio; el aporte es la adaptación, pertinencia débil (ambiguo)."
+ },
+ {
+  "id": "E2-4006",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Segmentación de nubes de puntos a gran escala; aporte propio de la modalidad."
+ },
+ {
+  "id": "E2-4011",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "contexto",
+  "nota": "U-Net sobre imágenes satelitales 2D frente a métodos clásicos; sin mecanismo nuevo (ambiguo)."
+ },
+ {
+  "id": "E2-4016",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "U-Net con bloques residuales y compuertas de atención sobre cortes sísmicos; la entrada de frecuencia es propia pero el resto transfiere (ambiguo)."
+ },
+ {
+  "id": "E2-4031",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "contexto",
+  "nota": "Segmentación de carreteras con cGAN y codificador-decodificador en imágenes aéreas 2D; mecanismo débil."
+ },
+ {
+  "id": "E2-4076",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Segmentación de acciones en video; la tarea es temporal, no por píxel."
+ },
+ {
+  "id": "E2-4077",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Segmentación de instancias con atención cruzada guiada por semántica para separar objeto de fondo parecido."
+ },
+ {
+  "id": "E2-4205",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Detección de cambios bitemporal con supervisión por parches; la entrada y el aporte no transfieren."
+ },
+ {
+  "id": "E2-4213",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Clasificación de formularios; la segmentación es solo preprocesamiento."
+ },
+ {
+  "id": "E2-4219",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Preentrenamiento multitarea para modelos fundacionales de teledetección; el aporte no es de segmentación (ambiguo)."
+ },
+ {
+  "id": "E2-4257",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Autosupervisión para detección de células en microscopía; no es segmentación con red."
+ },
+ {
+  "id": "E2-4280",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Compara U-Net, ViT y ConvMixer en segmentación 2D de vasos retinianos."
+ },
+ {
+  "id": "E2-4284",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Cuantificación de incertidumbre en segmentación; el aporte no apunta a una dificultad de HAZMAT-13 (ambiguo)."
+ },
+ {
+  "id": "E2-4321",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Segmentación de carreteras con GAN asimétrica y pérdida de similitud estructural; mejora conectividad y bordes."
+ },
+ {
+  "id": "E2-4327",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Segmentación 2D de cortes de RM comparando codificadores y decodificadores (FPN, PAN, LinkNet, MAnet); el mecanismo no depende de la modalidad."
+ },
+ {
+  "id": "E2-4359",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Segmentación de instancias por contorno con transformador y pérdida adaptativa para mejorar bordes."
+ },
+ {
+  "id": "E2-4378",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "TransUNet modificado con fusión multiescala y mayor precisión en daños pequeños, imágenes 2D."
+ },
+ {
+  "id": "E2-4386",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Segmentación de mapas históricos con contexto espaciotemporal; el aporte depende de la secuencia temporal (ambiguo)."
+ },
+ {
+  "id": "E2-4418",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Fusión de granularidad fina y gruesa guiada por atención en codificador-decodificador para segmentación 2D."
+ },
+ {
+  "id": "E2-4420",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Compara catorce redes basadas en U-Net y SegNet con distintos codificadores en imágenes RGB."
+ },
+ {
+  "id": "E2-4437",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "TransUNet con ASPP y atención en el decodificador para campo receptivo y multiescala."
+ },
+ {
+  "id": "E2-4441",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Segmentación panóptica RGB-D; el aporte es la fusión con profundidad (ambiguo)."
+ },
+ {
+  "id": "E2-4461",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "U-Net ligera de solo convoluciones con contexto global por núcleos grandes; eficiencia."
+ },
+ {
+  "id": "E2-4471",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Condiciona el backbone con detección de bordes semánticos como tarea auxiliar; mejora bordes sin costo de inferencia."
+ },
+ {
+  "id": "E2-4495",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Segmentación médica multimodal; el aporte es la fusión entre modalidades."
+ },
+ {
+  "id": "E2-4574",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Red híbrida CNN y transformador con fusión multiescala para rocas pequeñas y parecidas al fondo, con luz y polvo."
+ },
+ {
+  "id": "E2-4676",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Segmentación de video médico; el aporte depende de la dimensión temporal."
+ },
+ {
+  "id": "E2-4698",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Refinamiento de segmentación de nubes de puntos LiDAR; aporte propio de la modalidad."
+ },
+ {
+  "id": "E2-4740",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Compara U-Net y SegNet en segmentación multiclase de basura con baja proporción objeto-fondo."
+ },
+ {
+  "id": "E2-4804",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Atención dual con transformadores en segmentación 2D de ecografías; compara backbones y pérdidas."
+ },
+ {
+  "id": "E2-4805",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Segmentación 3D de volúmenes de RM; el aporte depende del volumen."
+ },
+ {
+  "id": "E2-4806",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Clasificación hiperespectral con puntos dispersos; el aporte depende de las bandas espectrales."
+ },
+ {
+  "id": "E2-4818",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Estimación de profundidad monocular; no es segmentación."
+ },
+ {
+  "id": "E2-4833",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Swin-Unet mejorado con ResNet en el cuello para lesiones multiescala en OCT 2D."
+ },
+ {
+  "id": "E2-4846",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "U-Net modificada y más ligera para segmentación 2D de carreteras en imágenes aéreas."
+ },
+ {
+  "id": "E2-4929",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Aprendizaje semisupervisado CNN-ViT en segmentación médica; el aporte es el esquema de entrenamiento, no una dificultad de HAZMAT-13 (ambiguo)."
+ },
+ {
+  "id": "E2-4932",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Monitoreo de deforestación con imágenes Landsat multitemporales; el aporte es la aplicación y depende de lo multitemporal (ambiguo)."
+ },
+ {
+  "id": "E2-4940",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Poda dinámica y destilación de SegFormer para eficiencia en segmentación."
+ },
+ {
+  "id": "E2-4942",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Segmentación de imágenes SAR con GAN; el aporte depende de la modalidad radar."
+ },
+ {
+  "id": "E2-4969",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Compara U-Net, U-Net++ y U-Net++ con supervisión profunda en segmentación de maleza."
+ },
+ {
+  "id": "E2-5032",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Compara U-Net, SegNet y Poly-YOLOv3 en segmentación de derrames sobre imágenes aéreas ópticas."
+ },
+ {
+  "id": "E2-5099",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Atención residual en cascada sobre características multiescala con refinamiento de bordes."
+ },
+ {
+  "id": "E2-5112",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Compara varias redes de segmentación (U-Net residual, PSPNet, FCN-DenseNet, GCN) sobre imágenes 2D de campo de ondas; la entrada es atípica (ambiguo)."
+ },
+ {
+  "id": "E2-5183",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Compara modelos ViT con U-Net en segmentación 2D de ecocardiografía; mecanismo general."
+ },
+ {
+  "id": "E2-5204",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Compara doce arquitecturas codificador-decodificador y el efecto de conexiones residuales; entrada de rango láser 2D (ambiguo)."
+ },
+ {
+  "id": "E2-5267",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Compresión de imágenes; la segmentación no es el aporte."
+ },
+ {
+  "id": "E2-5302",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Comparación de arquitecturas de transformadores en segmentación de edificios y cuatro arquitecturas nuevas."
+ },
+ {
+  "id": "E2-5314",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Módulos de pooling en tira y mixto en codificador-decodificador para estructuras alargadas en imágenes 2D."
+ },
+ {
+  "id": "E2-5315",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Red superficial de alta resolución y pérdida de similitud estructural para objetos de proporción pequeña."
+ },
+ {
+  "id": "E2-5320",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "CED-Net: codificadores-decodificadores pequeños en cascada, comparados con U-Net, SegNet, FCN-8s y DeepLabv3."
+ },
+ {
+  "id": "E2-5323",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Segmentación con pocos ejemplos; el aporte es el metaaprendizaje del clasificador, no una dificultad de HAZMAT-13."
+ },
+ {
+  "id": "E2-5340",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Traducción de imagen entre modalidades; no es segmentación con red."
+ },
+ {
+  "id": "E2-5344",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Compara FCN, U-Net y DeepLabv3 en segmentación de personas en vista cenital."
+ },
+ {
+  "id": "E2-5379",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Compara U-Net y PSPNet con métodos clásicos en segmentación de racimos de uva con iluminación natural."
+ },
+ {
+  "id": "E2-5394",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Aprendizaje continuo en traducción de imágenes; no apunta a segmentación pertinente."
+ },
+ {
+  "id": "E2-5404",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Compara U-Net, U-Net con ResNet y DeepLab v3+ con distintas pérdidas en imágenes aéreas; usa también modelo de alturas."
+ },
+ {
+  "id": "E2-5410",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Segmentación de nubes de puntos LiDAR; aporte propio de la modalidad."
+ },
+ {
+  "id": "E2-5435",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Reconocimiento facial con aumento de características; no es segmentación."
+ },
+ {
+  "id": "E2-5444",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Ratio Unpooling en SegNet para bordes más precisos y sombras; mecanismo general."
+ },
+ {
+  "id": "E2-5447",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "Adaptación de dominio en codificador-decodificador ante cambios de luz y clases escasas (ambiguo)."
+ },
+ {
+  "id": "E2-5458",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Segmentación 3D de vértebras en CT; el aporte depende del volumen."
+ },
+ {
+  "id": "E2-5470",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Segmentación médica con pocos ejemplos; el aporte es el esquema few-shot, no una dificultad de HAZMAT-13."
+ },
+ {
+  "id": "E2-5481",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Compresión de imágenes para percepción automotriz; no propone red de segmentación."
+ },
+ {
+  "id": "E2-5540",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "contexto",
+  "nota": "Discriminador adversarial para continuidad espacial en segmentación semántica 2D; mecanismo débil."
+ },
+ {
+  "id": "E2-5541",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Mejora SegNet con index pooling y U-Net, y propone un integrado de ambos en imágenes remotas 2D."
+ },
+ {
+  "id": "E2-5561",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "contexto",
+  "nota": "U-Net aplicada a segmentación sísmica 2D frente a una red bayesiana; sin mecanismo nuevo (ambiguo)."
+ },
+ {
+  "id": "E2-5568",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Evalúa seis modelos de transformadores y seis CNN en segmentación de imágenes histopatológicas 2D."
+ },
+ {
+  "id": "E2-5570",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Clasificación de cobertura en PolSAR con coherencia interferométrica; aporte propio de la modalidad."
+ },
+ {
+  "id": "E2-5571",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "Compara SegNet y DeepLabV3+ en segmentación de grietas pequeñas en imágenes de baldosas en color."
+ },
+ {
+  "id": "E2-5600",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "arquitectura candidata",
+  "nota": "CyclicNet: codificador-decodificador con bloques clique, comparado con arquitecturas actuales en CamVid y Cityscapes."
+ },
+ {
+  "id": "E2-5655",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "contexto",
+  "nota": "SegNet con selección de ROI por K-means en imágenes satelitales; aporte débil (ambiguo)."
+ },
+ {
+  "id": "E2-5688",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Predicción de campos de flujo en medios porosos; no es segmentación de objetos."
+ },
+ {
+  "id": "E2-5705",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Segmentación de objetos en video; el aporte depende de la secuencia temporal."
+ },
+ {
+  "id": "E2-5718",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Segmentación de nubes de puntos con CRF continuo; aporte propio de la modalidad."
+ },
+ {
+  "id": "E2-5734",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Segmentación 3D de nubes de puntos; aporte propio de la modalidad."
+ },
+ {
+  "id": "E2-5873",
+  "decision_manual": "incluir",
+  "motivo": "",
+  "clasificacion": "mecanismo transferible",
+  "nota": "ECA-TransUnet con atención de canal, contexto global y bordes mejor definidos; la entrada multibanda MODIS es propia (ambiguo)."
+ },
+ {
+  "id": "E2-5892",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Segmentación panóptica conjunta con estimación de profundidad; el aporte es la profundidad por objeto (ambiguo)."
+ },
+ {
+  "id": "E2-5980",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Arquitectura Conformer para verificación de hablante; señal de audio 1D."
+ },
+ {
+  "id": "E2-6048",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Clasificación de láminas completas con transformadores; no es segmentación por píxel."
+ },
+ {
+  "id": "E2-6054",
+  "decision_manual": "excluir",
+  "motivo": "sin método original",
+  "clasificacion": "",
+  "nota": "Revisión narrativa sobre transformadores en segmentación médica."
+ },
+ {
+  "id": "E2-6115",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Clasificación de parásitos de malaria con DeiT; no es segmentación."
+ },
+ {
+  "id": "E2-6128",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Traducción automática multimodal; no es segmentación."
+ },
+ {
+  "id": "E2-6140",
+  "decision_manual": "excluir",
+  "motivo": "sin método original",
+  "clasificacion": "",
+  "nota": "Revisión de literatura sobre aprendizaje profundo en calidad de alimentos."
+ },
+ {
+  "id": "E2-6149",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Poda de transformadores para traducción automática; no es segmentación de imágenes."
+ },
+ {
+  "id": "E2-6189",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Modelado de dinámica de robots con señales de torque; no es imagen."
+ },
+ {
+  "id": "E2-6261",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Generación de descripciones de imágenes con grafo de conocimiento; no es segmentación."
+ },
+ {
+  "id": "E2-6289",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Resumen de video guiado por texto; no es segmentación."
+ },
+ {
+  "id": "E2-6298",
+  "decision_manual": "excluir",
+  "motivo": "tarea sin transferencia",
+  "clasificacion": "",
+  "nota": "Mamba en procesamiento de voz; señal 1D."
+ }
+]

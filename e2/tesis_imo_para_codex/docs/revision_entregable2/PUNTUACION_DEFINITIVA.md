@@ -36,7 +36,7 @@ Siete de nueve, con al menos una CNN, un Transformer, un híbrido y un SSM; dese
 - Viabilidad 4/4: Entrenada en el benchmark, 5 semillas.
 - Recencia 2/4: NeurIPS 2021.
 
-**UNet++** (IEEE TMI (revista); cuartil no verificado; licencia del código: NOASSERTION; 5199 citas en OpenAlex).
+**UNet++** (IEEE TMI (revista): Q1 en SJR 2020 en sus cuatro categorías (Q1 también en 2025, SJR 2,501); licencia del código: NOASSERTION; 5199 citas en OpenAlex).
 
 - Pertinencia 3/4: Análisis estratificado por tamaño de tumor en siete grupos con prueba t (Fig. 7).
 - Reproducibilidad 3/4: Código de autores; el README no publica pesos entrenados.
@@ -84,7 +84,7 @@ Siete de nueve, con al menos una CNN, un Transformer, un híbrido y un SSM; dese
 - Viabilidad 3/4: Configuración pública plausible; sin piloto.
 - Recencia 0/4: 2018; sin excepción fundacional.
 
-**VM-UNet** (ACM TOMM (revista, 2025); cuartil no verificado; licencia del código: Apache-2.0; 1486 citas en OpenAlex).
+**VM-UNet** (ACM TOMM (revista, 2025): Q1 en SJR 2025 en Computer Networks and Communications y en Hardware and Architecture (SJR 0,925); licencia del código: Apache-2.0; 1486 citas en OpenAlex).
 
 - Pertinencia 2/4: Objetos pequeños y bordes complejos solo en figuras cualitativas.
 - Reproducibilidad 3/4: Código de autores (Apache-2.0); el README no publica pesos del modelo entrenado.
@@ -102,4 +102,11 @@ Siete de nueve, con al menos una CNN, un Transformer, un híbrido y un SSM; dese
 
 ## Cuartiles
 
-El protocolo pide fuente, categoría y año del cuartil y prohíbe asignarlo a conferencias. Cinco candidatas son de conferencia (rango CORE en la tabla de justificación, consultado en portal.core.edu.au, ICORE2026), una es preprint y una de taller. Las dos de revista (IEEE TMI para UNet++ y ACM TOMM para VM-UNet) quedan sin cuartil: SCImago exige una verificación de navegador que no se automatiza. El cuartil no entra en la rúbrica, de modo que el total no depende de él.
+El protocolo pide fuente, categoría y año del cuartil y prohíbe asignarlo a conferencias. Cinco candidatas son de conferencia (rango CORE en la tabla de justificación, consultado en portal.core.edu.au, ICORE2026), una es preprint y una de taller. Las dos de revista son Q1. Fuente: SCImago Journal Rank, datos de Scopus de marzo de 2026, leído a mano el 22/11/2026 (la página exige una verificación de navegador que no se automatiza). Año del cuartil: el de publicación de la versión citada.
+
+| Revista | Candidata | Año | Cuartil y categoría | Año más reciente (2025) |
+|---|---|---|---|---|
+| IEEE Transactions on Medical Imaging (ISSN 0278-0062) | UNet++ | 2020 | Q1 en Computer Science Applications, Electrical and Electronic Engineering, Radiological and Ultrasound Technology y Software | Q1, SJR 2,501; puesto 38 de 1.030 en Computer Science Applications |
+| ACM Transactions on Multimedia Computing, Communications and Applications (ISSN 1551-6857) | VM-UNet | 2025 | Q1 en Computer Networks and Communications y en Hardware and Architecture | Q1, SJR 0,925; puesto 91 de 564 en Computer Networks and Communications |
+
+El cuartil no entra en la rúbrica: el total no depende de él.
