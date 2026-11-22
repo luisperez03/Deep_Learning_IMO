@@ -18,8 +18,8 @@ rótulos.
 
 ## 3. Lo que el EDA cambió
 
-Ruido de etiqueta: 7 de 100 en revisión manual (IC95 3,4–13,8 %), todos rótulos cortados por el borde: parece una
-regla de anotación del conjunto, no descuido. Sin cambio de distribución entre particiones (KS, MMD y
+Ruido de etiqueta: 10 de 100 confirmados a mano (IC95 5,5–17,4 %), todos rótulos cortados por el borde sin
+máscara; el conjunto a veces sí los anota, así que es inconsistencia, no una regla. Sin cambio de distribución entre particiones (KS, MMD y
 clasificador adversarial). Entropía, formas y tono por clase.
 
 ## 4. Fuga
@@ -101,8 +101,8 @@ pequeños y SegFormer no pierde más que U-Net, DeepLabv3+ o SegNeXt-T (diferenc
 ## 13. Amenazas a la validez y lo que no se hizo
 
 El preregistro integral no es anterior al entrenamiento y la potencia no fue prospectiva (se dice, no se
-retrofecha). El test se vio en el E1. Recetas distintas por red y sin búsqueda sistemática en el benchmark. Sin
-segunda anotación, no hay techo humano medido. Un solo conjunto de datos.
+retrofecha). El test se vio en el E1. Recetas distintas por red y sin búsqueda sistemática en el benchmark. Techo
+humano con una sola segunda persona y 50 imágenes. Un solo conjunto de datos.
 
 ## Preguntas que conviene llevar respondidas
 
@@ -115,5 +115,5 @@ segunda anotación, no hay techo humano medido. Un solo conjunto de datos.
   evaluación y no se eligió nada con ella; se declara que no es un conjunto nunca observado.
 - **¿Hay fuga?** Se auditó con hashes, dHash y embeddings; el efecto de los casi duplicados se cuantifica y no
   cambia el orden.
-- **¿Qué es el techo de desempeño?** El acuerdo entre dos anotadores; sin segunda anotación no se inventa: se
-  reporta como limitación, con el kit listo.
+- **¿Qué es el techo de desempeño?** El acuerdo entre dos anotadores: Dice 0,941 (IC95 0,928–0,953) en 50 imágenes
+  de validación. TransUNet llega a 0,866 en las mismas imágenes y cubre el 70 % del margen sobre el clásico (γ 0,31).

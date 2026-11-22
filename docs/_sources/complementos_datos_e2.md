@@ -105,25 +105,29 @@ con unos 690 grupos es limitada.
 ## Ruido de etiqueta (control 12)
 
 Se revisaron 100 imágenes al azar de train (82) y validación (18), nunca de test, comparando la máscara con la foto.
-Es una **primera pasada asistida, no una segunda anotación**: los 12 casos marcados como error o dudoso esperan
-confirmación a mano en `resultados/ruido_etiqueta_e2/confirmar.csv` (columnas `confirma` y `veredicto_final`
-vacías). Al llenarlas, `ruido_etiqueta_e2.py --confirmar` recalcula todo.
+Una primera pasada asistida marcó 7 errores y 5 dudosos; esos 12 casos se confirmaron después a mano, uno por uno,
+con la foto ampliada junto a la máscara (`resultados/ruido_etiqueta_e2/confirmar.csv`, columnas `confirma` y
+`veredicto_final`; `ruido_etiqueta_e2.py --confirmar` recalcula todo). Se confirmaron los 7 errores y 3 de los 5
+dudosos; los otros 2 resultaron correctos (en uno, el contorno sobresale unos píxeles, lo que no se cuenta como error).
 
-| Lectura | Imágenes con error | Tasa | IC 95 % Wilson |
+| Partición | Imágenes con error | Tasa | IC 95 % Wilson |
 |---|---:|---:|---:|
-| Dudosos como correctos | 7 de 100 | 7,0 % | 3,4 % a 13,8 % |
-| Dudosos como errores | 12 de 100 | 12,0 % | 7,0 % a 19,8 % |
-| Sin dudosos | 7 de 95 | 7,4 % | 3,6 % a 14,4 % |
+| Train y validación | 10 de 100 | 10,0 % | 5,5 % a 17,4 % |
+| Train | 9 de 82 | 11,0 % | 5,9 % a 19,6 % |
+| Validación | 1 de 18 | 5,6 % | 1,0 % a 25,8 % |
 
-**Hallazgo: los siete errores son del mismo tipo.** En todos, un rótulo cortado por el borde de la foto quedó sin
-máscara (tipo *falta*). No hubo contornos mal trazados, regiones sobrantes ni clases cambiadas; cuatro de los cinco
-dudosos son también esquinas en el borde. Las banderas automáticas (cajas contra instancias) no detectan este error,
-porque un rótulo sin máscara tampoco tiene caja.
+El IC de Wilson es el intervalo de confianza para una proporción que se usa con muestras chicas o tasas cercanas a
+0: no se sale de [0, 1] y no es simétrico. La revisión la hizo una sola persona; no mide acuerdo entre anotadores
+(eso lo hace el techo, más abajo).
+
+**Hallazgo: los diez errores son del mismo tipo.** En todos, un rótulo cortado por el borde de la foto quedó sin
+máscara (tipo *falta*). No hubo contornos mal trazados, regiones sobrantes ni clases cambiadas. Las banderas
+automáticas (cajas contra instancias) no detectan este error, porque un rótulo sin máscara tampoco tiene caja.
 
 ¿Es una regla de anotación o una inconsistencia? Si el conjunto nunca anotara rótulos cortados, sería una regla que
 el modelo puede aprender. No es así: **86 de las 1.015 imágenes de train (8,5 %) y 21 de las 218 de validación
 (9,6 %) tienen al menos una región anotada que toca el borde** (94 de 1.711 regiones de train). En la muestra hay
-siete imágenes correctas con región anotada en el borde y siete con un rótulo cortado omitido. El modelo recibe
+ocho imágenes correctas con región anotada en el borde y diez con un rótulo cortado omitido. El modelo recibe
 señales contradictorias justo en los rótulos cortados, y el error en test sobre ellos es en parte irreducible
 respecto de estas etiquetas.
 
@@ -133,52 +137,34 @@ imagen está acotado pero no está medido. No se corrigió ninguna máscara, y m
 ## Techo de desempeño y γ (control 63)
 
 La guía pide al menos una cota de referencia (acuerdo entre anotadores, ruido irreducible o desempeño humano) y
-γ = (s_techo − s_mejor)/(s_techo − s_base), la fracción del margen aún sin cubrir. **No hay segunda anotación
-independiente ni desempeño humano documentado, y no se inventa ninguno.**
+γ = (s_techo − s_red)/(s_techo − s_base), la fracción del margen sobre un modelo base que la red aún no cubre.
 
-**Kit de reanotación listo.** `techo_reanotacion_e2.py preparar` sortea 50 imágenes de **validación** (nunca test),
-una por grupo, estratificadas por tercil del área etiquetada del grupo (17, 17 y 16; semilla 20261117); la muestra
-coincide con la sorteada antes en el otro árbol (`resultados/techo_e2/muestra.csv`). Quien reanota recibe solo las
-fotos, sin máscara ni predicciones, con instrucciones de marcar los rótulos cortados **aparte**, para no confundir
-la inconsistencia del conjunto con desacuerdo. `medir` calcula Dice e IoU contra la máscara del conjunto con la
-misma geometría y métrica que los modelos (letterbox 256, zona válida, `dataset_ready.metrics`), media por grupo con
-IC bootstrap, por tercil y con o sin cortados; se probó con reanotaciones fabricadas por erosión y dilatación de
-2 px (Dice 0,936 en 12 imágenes: un desacuerdo de contorno de 2 px ya cuesta unos 6 puntos en rótulos de este
-tamaño). `gamma` toma el techo medido y da γ por red.
+**Medición.** Una segunda persona, que no había visto las máscaras ni las predicciones, reanotó 50 imágenes de
+**validación** (nunca test), una por grupo, estratificadas por tercil del área etiquetada del grupo (17, 17 y 16;
+semilla 20261117; `resultados/techo_e2/muestra.csv`). Recibió solo las fotos, con instrucciones de marcar los
+rótulos cortados por el borde aparte, y las anotó con polígonos. `techo_reanotacion_e2.py medir` compara su máscara
+con la del conjunto con la misma geometría y métrica que los modelos (letterbox 256, zona válida,
+`dataset_ready.metrics`), media por grupo con IC bootstrap. El cálculo se había probado antes con reanotaciones
+fabricadas por erosión y dilatación de 2 px (Dice 0,936 en 12 imágenes). `gamma` usa como base el clásico
+HistGradientBoosting elegido en validación.
 
-**Cota defendible con los datos disponibles: sobre γ, no sobre el techo.** Con s_base el clásico
-HistGradientBoosting elegido en validación (0,6533 en validación, 0,6447 en test), γ(t) = (t − s)/(t − s_base)
-crece con t siempre que la red supere al clásico, y ningún techo pasa de Dice 1. Por tanto γ calculado con t = 1 es
-una **cota superior** de γ válida para cualquier techo: TransUNet deja sin cubrir **a lo sumo** el 42 % del margen
-sobre el clásico en validación y el 39 % en test. No hay cota inferior sin un techo: si el techo real estuviera
-cerca de 0,86, γ sería casi cero. Las columnas con t = 0,95 y t = 0,90 son **hipotéticas**, no estimaciones; solo
-muestran cuánto cambia γ con el techo.
+```{include} ../resultados/techo_e2/TABLA.md
+:start-line: 4
+```
 
-| Red | γ val, t = 1 (cota) | γ test, t = 1 (cota) | γ test si t = 0,95 (hipotético) | γ test si t = 0,90 (hipotético) |
-|---|---:|---:|---:|---:|
-| TransUNet | 0,423 | 0,387 | 0,286 | 0,146 |
-| FCN | 0,488 | 0,412 | 0,316 | 0,182 |
-| U-Net | 0,485 | 0,432 | 0,339 | 0,210 |
-| VM-UNet | 0,517 | 0,453 | 0,363 | 0,239 |
-| SegNet | 0,559 | 0,493 | 0,410 | 0,295 |
-| DeepLabv3+ | 0,538 | 0,523 | 0,445 | 0,337 |
-| U-Net++ | 0,548 | 0,541 | 0,466 | 0,362 |
-| PIDNet-S | 0,587 | 0,581 | 0,512 | 0,417 |
-| SegNeXt-T | 0,694 | 0,621 | 0,559 | 0,473 |
-| SegFormer-B0 | 0,858 | 0,829 | 0,802 | 0,763 |
+**Lectura.** Dos personas coinciden en Dice 0,941: ese es el techo práctico de esta tarea con estas etiquetas, no 1.
+Sobre las mismas 50 imágenes, TransUNet llega a 0,866 y la U-Net compacta a 0,864, a unos 0,075 del techo. TransUNet
+cubre cerca del 70 % del margen entre el clásico y el techo (γ = 0,31 en validación y 0,27 en test); SegFormer-B0
+apenas el 20 %. El margen que queda es real y mayor que las diferencias entre las mejores redes, así que hay espacio
+para mejorar sin pedir más precisión que la humana. El acuerdo humano baja poco en los rótulos pequeños (0,933 en el
+tercil de menor área frente a 0,950 en el mayor). TransUNet, en cambio, queda a 0,11 del techo en el tercil pequeño
+(0,825), a 0,03 en el medio (0,908) y a 0,09 en el grande (0,865): la mayor distancia está en los rótulos pequeños,
+que es una dificultad de los modelos más que de la anotación. La segunda anotación no marcó rótulos cortados en estas 50
+imágenes, así que el resultado con y sin cortados coincide.
 
-**Una cota del techo por ruido no es defendible todavía.** La guía admite estimar el error irreducible desde la tasa
-de ruido, pero aquí faltan tres cosas: la tasa no está confirmada a mano, no hay área por píxel de los rótulos
-omitidos y la omisión es sistemática en parte (el modelo puede aprenderla a medias). El camino corto para tenerla:
-confirmar los 12 casos y trazar los rótulos omitidos en esas imágenes; el Dice entre máscara original y corregida en
-la muestra de 100, con IC, sería una cota de ruido. Los estimadores de error de Bayes por vecinos no tienen sentido a
-nivel de píxel en segmentación y no se usan.
-
-**Qué se reporta si nadie alcanza a reanotar antes de la entrega.** El techo y γ se declaran **no estimados**, con
-esta limitación explícita: no hay doble anotación; Dice = 1 es un máximo matemático, no un techo; el consenso entre
-redes no es un techo humano. Se reportan la cota superior de γ con t = 1 (tabla, primeras dos columnas), la tasa de
-ruido de la primera pasada con su IC y su tipo único (rótulos cortados por el borde), y el kit listo con su prueba,
-para que la medición se haga sin cambiar nada del protocolo.
+Límites: una sola segunda persona, 50 imágenes de validación; el techo compara contra la máscara del conjunto, que
+tiene su propio ruido (los rótulos cortados omitidos, arriba), así que mide acuerdo con esas etiquetas, no exactitud
+absoluta. γ en test usa un techo medido en validación.
 
 ## EDA por clase: entropía, áreas, formas y color (controles 09 y 16)
 

@@ -31,320 +31,172 @@
    "segformer_b0": 0.7052682567580981
   }
  },
- "techo_medido": null,
- "aviso": "NO HAY TECHO MEDIDO. Las filas siguientes son γ para valores HIPOTÉTICOS de s_techo, no estimaciones: muestran a partir de qué techo el margen restante sería pequeño. No reportar ninguna como techo del problema.",
- "gamma_hipotetico": {
-  "0.88": [
+ "techo_medido": {
+  "Dice": 0.9412765990858953,
+  "IC95": [
+   0.9280328032347301,
+   0.9525434088582103
+  ],
+  "imagenes": 50,
+  "particion": "validación (50 imágenes, una por grupo)"
+ },
+ "gamma_con_techo_medido": [
+  {
+   "modelo": "transunet_2d",
+   "gamma_val": 0.30571024143729514,
+   "gamma_test": 0.26525469430107984
+  },
+  {
+   "modelo": "fcn",
+   "gamma_val": 0.38320981329887643,
+   "gamma_test": 0.29580660559959154
+  },
+  {
+   "modelo": "unet",
+   "gamma_val": 0.379478616458777,
+   "gamma_test": 0.3200000411474897
+  },
+  {
+   "modelo": "vmunet",
+   "gamma_val": 0.41862758459162264,
+   "gamma_test": 0.3446679216998926
+  },
+  {
+   "modelo": "segnet",
+   "gamma_val": 0.4688512243662285,
+   "gamma_test": 0.39310716896216313
+  },
+  {
+   "modelo": "deeplabv3plus",
+   "gamma_val": 0.4442752017957578,
+   "gamma_test": 0.4291020860658225
+  },
+  {
+   "modelo": "unetplusplus",
+   "gamma_val": 0.4563007152432318,
+   "gamma_test": 0.4506944405312088
+  },
+  {
+   "modelo": "pidnet_s",
+   "gamma_val": 0.5033242202721249,
+   "gamma_test": 0.49778651561641346
+  },
+  {
+   "modelo": "segnext_t",
+   "gamma_val": 0.6315672346241689,
+   "gamma_test": 0.5464983859989496
+  },
+  {
+   "modelo": "segformer_b0",
+   "gamma_val": 0.8291116566515083,
+   "gamma_test": 0.7957371251570854
+  }
+ ],
+ "gamma_extremos_IC": {
+  "0.9280": [
    {
     "modelo": "transunet_2d",
-    "gamma_val": 0.11803895232168561,
-    "gamma_test": 0.07392461005843551
+    "gamma_val": 0.27224035599701624,
+    "gamma_test": 0.23091229675707012
    },
    {
     "modelo": "fcn",
-    "gamma_val": 0.21648719061222327,
-    "gamma_test": 0.11243233913105
+    "gamma_val": 0.35347597863550595,
+    "gamma_test": 0.2628922211036472
    },
    {
     "modelo": "unet",
-    "gamma_val": 0.2117474256457912,
-    "gamma_test": 0.1429258245405735
+    "gamma_val": 0.349564910597174,
+    "gamma_test": 0.28821647106450843
    },
    {
     "modelo": "vmunet",
-    "gamma_val": 0.2614786286833355,
-    "gamma_test": 0.17401730198780663
+    "gamma_val": 0.3906011476438288,
+    "gamma_test": 0.31403734184893856
    },
    {
     "modelo": "segnet",
-    "gamma_val": 0.3252780631522066,
-    "gamma_test": 0.2350702878986345
+    "gamma_val": 0.4432459371601935,
+    "gamma_test": 0.3647406660278096
    },
    {
     "modelo": "deeplabv3plus",
-    "gamma_val": 0.2940589729284227,
-    "gamma_test": 0.2804383993164774
+    "gamma_val": 0.41748516910000943,
+    "gamma_test": 0.4024180052485612
    },
    {
     "modelo": "unetplusplus",
-    "gamma_val": 0.30933506523455157,
-    "gamma_test": 0.3076534736098312
+    "gamma_val": 0.4300904009611335,
+    "gamma_test": 0.4250195981741457
    },
    {
     "modelo": "pidnet_s",
-    "gamma_val": 0.369069346562055,
-    "gamma_test": 0.3670084792960587
+    "gamma_val": 0.4793807856420837,
+    "gamma_test": 0.47431278261140003
    },
    {
     "modelo": "segnext_t",
-    "gamma_val": 0.5319773282806686,
-    "gamma_test": 0.428405080280639
+    "gamma_val": 0.6138060588362639,
+    "gamma_test": 0.5253014724643211
    },
    {
     "modelo": "segformer_b0",
-    "gamma_val": 0.7829193640308677,
-    "gamma_test": 0.7425464034903937
+    "gamma_val": 0.8208735785228699,
+    "gamma_test": 0.7861897666412458
    }
   ],
-  "0.90": [
+  "0.9525": [
    {
     "modelo": "transunet_2d",
-    "gamma_val": 0.18954175500438258,
-    "gamma_test": 0.14646857680436665
+    "gamma_val": 0.3318515721651822,
+    "gamma_test": 0.2921445104155848
    },
    {
     "modelo": "fcn",
-    "gamma_val": 0.28000854674977194,
-    "gamma_test": 0.18195980911262877
+    "gamma_val": 0.4064331376550473,
+    "gamma_test": 0.32157829918865605
    },
    {
     "modelo": "unet",
-    "gamma_val": 0.2756530464626579,
-    "gamma_test": 0.21006459224635204
+    "gamma_val": 0.4028424274768998,
+    "gamma_test": 0.34488631630922273
    },
    {
     "modelo": "vmunet",
-    "gamma_val": 0.3213524156597766,
-    "gamma_test": 0.23872052380767597
+    "gamma_val": 0.44051736245428763,
+    "gamma_test": 0.3686514149495211
    },
    {
     "modelo": "segnet",
-    "gamma_val": 0.37997946934595445,
-    "gamma_test": 0.2949909338853048
+    "gamma_val": 0.48884998660967394,
+    "gamma_test": 0.4153179085221733
    },
    {
     "modelo": "deeplabv3plus",
-    "gamma_val": 0.35129138936812276,
-    "gamma_test": 0.3368051415910219
+    "gamma_val": 0.46519929806014676,
+    "gamma_test": 0.4499955028822004
    },
    {
     "modelo": "unetplusplus",
-    "gamma_val": 0.36532901040978577,
-    "gamma_test": 0.3618883274161488
+    "gamma_val": 0.47677202804030605,
+    "gamma_test": 0.47079763189592333
    },
    {
     "modelo": "pidnet_s",
-    "gamma_val": 0.42022048315475974,
-    "gamma_test": 0.4165937682770137
+    "gamma_val": 0.522025008613402,
+    "gamma_test": 0.5161662563790352
    },
    {
     "modelo": "segnext_t",
-    "gamma_val": 0.5699211046357237,
-    "gamma_test": 0.4731808763968504
+    "gamma_val": 0.6454394294130104,
+    "gamma_test": 0.5630953957566635
    },
    {
     "modelo": "segformer_b0",
-    "gamma_val": 0.8005186377411923,
-    "gamma_test": 0.7627139895710385
-   }
-  ],
-  "0.92": [
-   {
-    "modelo": "transunet_2d",
-    "gamma_val": 0.25032018509645665,
-    "gamma_test": 0.20847273761524893
-   },
-   {
-    "modelo": "fcn",
-    "gamma_val": 0.3340026303172683,
-    "gamma_test": 0.24138573552508813
-   },
-   {
-    "modelo": "unet",
-    "gamma_val": 0.3299737606386415,
-    "gamma_test": 0.26744886741361884
-   },
-   {
-    "modelo": "vmunet",
-    "gamma_val": 0.37224601198835766,
-    "gamma_test": 0.2940231099586653
-   },
-   {
-    "modelo": "segnet",
-    "gamma_val": 0.42647646621247576,
-    "gamma_test": 0.3462057975921869
-   },
-   {
-    "modelo": "deeplabv3plus",
-    "gamma_val": 0.3999397820334713,
-    "gamma_test": 0.38498244301454015
-   },
-   {
-    "modelo": "unetplusplus",
-    "gamma_val": 0.4129246843516122,
-    "gamma_test": 0.4082434793027145
-   },
-   {
-    "modelo": "pidnet_s",
-    "gamma_val": 0.4636996988342615,
-    "gamma_test": 0.458974883754155
-   },
-   {
-    "modelo": "segnext_t",
-    "gamma_val": 0.6021738705707725,
-    "gamma_test": 0.5114512631341537
-   },
-   {
-    "modelo": "segformer_b0",
-    "gamma_val": 0.8154782782971153,
-    "gamma_test": 0.7799514568147463
-   }
-  ],
-  "0.95": [
-   {
-    "modelo": "transunet_2d",
-    "gamma_val": 0.32612384610511924,
-    "gamma_test": 0.2862477467485485
-   },
-   {
-    "modelo": "fcn",
-    "gamma_val": 0.4013447647064493,
-    "gamma_test": 0.31592673259754006
-   },
-   {
-    "modelo": "unet",
-    "gamma_val": 0.39772327303813476,
-    "gamma_test": 0.33942891628251093
-   },
-   {
-    "modelo": "vmunet",
-    "gamma_val": 0.4357211777298725,
-    "gamma_test": 0.3633919891877089
-   },
-   {
-    "modelo": "segnet",
-    "gamma_val": 0.4844681350175288,
-    "gamma_test": 0.4104472362387424
-   },
-   {
-    "modelo": "deeplabv3plus",
-    "gamma_val": 0.46061470010282257,
-    "gamma_test": 0.44541371100090144
-   },
-   {
-    "modelo": "unetplusplus",
-    "gamma_val": 0.4722866377205846,
-    "gamma_test": 0.4663891313719283
-   },
-   {
-    "modelo": "pidnet_s",
-    "gamma_val": 0.5179275510722758,
-    "gamma_test": 0.5121356974835392
-   },
-   {
-    "modelo": "segnext_t",
-    "gamma_val": 0.6423999463649055,
-    "gamma_test": 0.5594557783005983
-   },
-   {
-    "modelo": "segformer_b0",
-    "gamma_val": 0.8341361396435621,
-    "gamma_test": 0.8015732988779491
-   }
-  ],
-  "0.98": [
-   {
-    "modelo": "transunet_2d",
-    "gamma_val": 0.38800549609844015,
-    "gamma_test": 0.35010595790748755
-   },
-   {
-    "modelo": "fcn",
-    "gamma_val": 0.4563189220838648,
-    "gamma_test": 0.37712961491276004
-   },
-   {
-    "modelo": "unet",
-    "gamma_val": 0.4530299898607497,
-    "gamma_test": 0.3985290978334051
-   },
-   {
-    "modelo": "vmunet",
-    "gamma_val": 0.4875385693626537,
-    "gamma_test": 0.42034823499251434
-   },
-   {
-    "modelo": "segnet",
-    "gamma_val": 0.5318091222966628,
-    "gamma_test": 0.46319352839558037
-   },
-   {
-    "modelo": "deeplabv3plus",
-    "gamma_val": 0.5101461342496766,
-    "gamma_test": 0.4950316115923554
-   },
-   {
-    "modelo": "unetplusplus",
-    "gamma_val": 0.5207462447160672,
-    "gamma_test": 0.514130396454214
-   },
-   {
-    "modelo": "pidnet_s",
-    "gamma_val": 0.5621959798978816,
-    "gamma_test": 0.5557840943958907
-   },
-   {
-    "modelo": "segnext_t",
-    "gamma_val": 0.675238148501513,
-    "gamma_test": 0.5988705273342801
-   },
-   {
-    "modelo": "segformer_b0",
-    "gamma_val": 0.8493673201710145,
-    "gamma_test": 0.819326201404142
-   }
-  ],
-  "1.00": [
-   {
-    "modelo": "transunet_2d",
-    "gamma_val": 0.42331021793513657,
-    "gamma_test": 0.38668732546069723
-   },
-   {
-    "modelo": "fcn",
-    "gamma_val": 0.48768278091157724,
-    "gamma_test": 0.4121898693836605
-   },
-   {
-    "modelo": "unet",
-    "gamma_val": 0.4845835805186282,
-    "gamma_test": 0.4323848138727049
-   },
-   {
-    "modelo": "vmunet",
-    "gamma_val": 0.5171014300506921,
-    "gamma_test": 0.4529757910173888
-   },
-   {
-    "modelo": "segnet",
-    "gamma_val": 0.5588181045643431,
-    "gamma_test": 0.4934093998620671
-   },
-   {
-    "modelo": "deeplabv3plus",
-    "gamma_val": 0.5384048103663618,
-    "gamma_test": 0.5234553745793415
-   },
-   {
-    "modelo": "unetplusplus",
-    "gamma_val": 0.5483934219564253,
-    "gamma_test": 0.5414791231682075
-   },
-   {
-    "modelo": "pidnet_s",
-    "gamma_val": 0.5874520059735323,
-    "gamma_test": 0.580788209318324
-   },
-   {
-    "modelo": "segnext_t",
-    "gamma_val": 0.6939730011141254,
-    "gamma_test": 0.6214493843872904
-   },
-   {
-    "modelo": "segformer_b0",
-    "gamma_val": 0.8580570139950195,
-    "gamma_test": 0.8294960047960753
+    "gamma_val": 0.835545927999917,
+    "gamma_test": 0.8032126287104171
    }
   ]
- }
+ },
+ "comparabilidad": "El techo se mide en 50 imágenes de validación y s_k es el Dice de validación de las 218 imágenes; γ_test mezcla particiones y es solo orientativo."
 }

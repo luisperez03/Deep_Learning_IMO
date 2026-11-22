@@ -10,6 +10,8 @@ El usuario confirmó que el profesor acepta **diez modelos totales: tres E1 y si
 
 **Actualización del 21/11.** Se corrió el complemento de entrenamiento en L4: sobreajuste, búsqueda T = 4, permutación de FCN con B = 200 y ablación de TransUNet (filas 37, 41, 46, 56, 61). Exploratorio: el test ya estaba observado y no se cargó.
 
+**Actualización del 22/11.** Revisión humana: los 12 casos de ruido de etiqueta confirmados a mano (fila 12) y techo por segunda anotación independiente de 50 imágenes de validación (fila 63).
+
 ## Problema, hipótesis, datos y EDA — rúbrica 15 %
 
 | ID | Requisito (página guía) | Estado | Evidencia / cierre necesario |
@@ -25,7 +27,7 @@ El usuario confirmó que el profesor acepta **diez modelos totales: tres E1 y si
 | 09 | Distribución, desbalance y entropía (3–4) | C | Conteos/áreas/píxeles y, 20/11, entropía de la distribución de clases y de áreas (`scripts/eda_clases_formas_e2.py`, capítulo `complementos_datos_e2`) |
 | 10 | Faltantes, corrupción y consistencia (4) | C | 102 máscaras no utilizables, 132 cuarentena, geometría y hashes |
 | 11 | Duplicados y similitud residual (4,44) | C | Hashes/dHash/aHash y, 20/11, embeddings ResNet-50 (`scripts/fuga_embeddings_e2.py`): los grupos dHash no separan sesiones; 9 grupos de test y 8 de val con casi duplicado (coseno > 0,97); sensibilidad sin ellos: el Dice baja 0,003–0,010 y el orden no cambia (`scripts/sensibilidad_casi_duplicados_e2.py`, semilla 11) |
-| 12 | Ruido de etiqueta y acuerdo independiente (4,48) | P | 20/11: revisión manual de 100 imágenes, primera pasada: 7 errores (IC95 3,4–13,8 %), todos rótulos cortados por el borde, y 5 dudosas; 12 casos por confirmar a mano (`resultados/ruido_etiqueta_e2/`). Sin segunda anotación independiente: el acuerdo sigue pendiente |
+| 12 | Ruido de etiqueta y acuerdo independiente (4,48) | C | 22/11: 100 imágenes de train/val; los 12 casos de la primera pasada confirmados a mano: 10 de 100 con rótulo cortado por el borde sin máscara (IC95 Wilson 5,5–17,4 %), todos tipo falta; el conjunto a veces los anota (8,5 % de train con región en el borde): inconsistencia. Acuerdo entre anotadores: ID 63. `resultados/ruido_etiqueta_e2/`, capítulo `complementos_datos_e2` |
 | 13 | Sesgos y atajos (4) | P | Origen XML y limitaciones documentados; falta prueba de atajos |
 | 14 | Particiones y semillas regenerables (4) | C | 1015/218/218 imágenes, 567/122/122 grupos, semilla 20261106 |
 | 15 | Shift / validación adversarial (4,45) | C | Train/test: adversarial con 200 permutaciones (`complementos_locales_e2`); train/val, 20/11: KS con Holm, MMD y adversarial (`scripts/shift_train_val_e2.py`). Sin cambio de distribución detectado |
@@ -96,7 +98,7 @@ El usuario confirmó que el profesor acepta **diez modelos totales: tres E1 y si
 | 60 | Explicabilidad top3 + fidelidad/estabilidad (16) | C | 20/11: Integrated Gradients en 100 casos de validación del top 3 × 5 semillas; IG supera al borrado aleatorio en el 89 % (TransUNet) y 100 % (U-Net, FCN) de los casos; Spearman entre semillas 0,73 / 0,92 / 0,92 |
 | 61 | Ablación ≥3 componentes, mismas semillas (16) | C | 21/11: TransUNet, 3 componentes × 5 semillas pareadas, referencia del benchmark: sin saltos −0,092 [−0,105; −0,079], BCE sola −0,037 [−0,043; −0,031] (p Holm < 0,001); sin Transformer +0,007 [−0,001; 0,015], p Holm 0,065. `resultados/complemento_entreno_e2/`, capítulo `entrenamiento_complementario_e2` |
 | 62 | Incertidumbre predictiva top3/cobertura (49) | C | 20/11: ensamble de 5 semillas del top 3: +0,021 a +0,028 de Dice (IC sin 0; TransUNet 0,883); predicción conforme Mondrian por clase calibrada en validación, cobertura test 0,903–0,912 (nominal 0,90), con 34–37 % de grupos bajo el nominal (garantía marginal) |
-| 63 | Techo y γ (48–49) | F | Sin segunda anotación: no hay techo medido. Kit de reanotación de 50 imágenes de validación listo, con el cálculo de γ (`scripts/techo_reanotacion_e2.py`); los rótulos cortados por el borde se marcan aparte |
+| 63 | Techo y γ (48–49) | C | 22/11: segunda anotación independiente de 50 imágenes de validación (una por grupo, por tercil de área): techo Dice 0,941 (IC95 0,928–0,953). TransUNet 0,866 en las mismas 50; γ 0,31 (val) y 0,27 (test). `scripts/techo_reanotacion_e2.py medir/gamma`, `scripts/tabla_techo_e2.py`, `resultados/techo_e2/` |
 | 64 | HD95/ASSD y precisión/recall (36) | C | 20/11: HD95/ASSD y precisión/recall de las 5 semillas en test (etapa `clean`); HD95 de 17,1 px (TransUNet) a 34,3 (SegFormer, recall 0,688) |
 | 65 | Taxonomía previa, ≥100 casos/modelo e IC (49) | P | Panel dirigido y estratos; sin etiquetado sistemático de 100 errores/modelo |
 | 66 | Errores compartidos/diversidad/ensemble (49–50) | P | Matriz de correlación disponible; ensemble y ganancia pendientes |
@@ -132,7 +134,7 @@ El usuario confirmó que el profesor acepta **diez modelos totales: tres E1 y si
 | B10 Software/hardware/determinismo | C | ID43 |
 | B11 Tablas A/B/C con pruebas/IC/efectos | P | Comparación avanzada; ajuste/sobreajuste pendientes |
 | B12 Familias/multiplicidad a priori | D | Ampliación Holm posterior al test |
-| B13 Techo/γ | F | ID63; kit listo, sin segunda anotación |
+| B13 Techo/γ | C | ID63: techo 0,941 por reanotación independiente; γ por red |
 | B14 Arquitecturas sin diseño y dos fases | P | ID38; compactas heredadas requieren justificación |
 | B15 Selección val/equivalencia/sesgo ganador | P | Checkpoints por val; equivalencia no demostrada |
 | B16 Robustez/explicabilidad/fidelidad/estabilidad | C | ID59–60 ejecutados el 20/11 (exploratorio) |

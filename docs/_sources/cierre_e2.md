@@ -27,7 +27,7 @@ Los resultados no sostienen que una familia sea universalmente superior. Solo ha
 
 ## Techo y margen restante
 
-No existe doble anotación independiente ni desempeño humano medido. Por eso **el techo empírico y γ no se han estimado**. Dice=1 es un máximo matemático, no un techo humano estimado. Los casos visuales dirigidos no permiten estimar una tasa poblacional de ruido. Se requiere una muestra estratificada anotada por un segundo evaluador, identificadores de caso y protocolo explícito; no corregir máscaras del test para favorecer resultados.
+Una segunda anotación independiente de 50 imágenes de validación da un techo de Dice 0,941 (IC95 0,928–0,953), no 1 ({doc}`complementos_datos_e2`). Sobre esas mismas imágenes TransUNet llega a 0,866: le falta cerca de 0,075 y cubre el 70 % del margen sobre el clásico (γ = 0,31 en validación, 0,27 en test). El margen restante es mayor que las diferencias entre las mejores redes y se concentra en los rótulos pequeños. Es una sola segunda persona y una muestra de 50; el techo mide acuerdo con las etiquetas del conjunto, que omiten rótulos cortados por el borde en un 10 % de las imágenes (IC95 5,5–17,4 %).
 
 ## Gap e hipótesis para una siguiente fase
 

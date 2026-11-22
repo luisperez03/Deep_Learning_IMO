@@ -287,6 +287,7 @@ document.write(`
 <p>El usuario confirmó que el profesor acepta <strong>diez modelos totales: tres E1 y siete nuevos</strong>. No se infieren dispensas de otros requisitos. Q5/Q6 siguen omitidas por instrucción explícita.</p>
 <p><strong>Actualización del 20/11 (tarde).</strong> Se integraron los complementos de datos, fuga, ruido, bibliografía y los cuadernos preparados de diagnóstico GPU, entrenamiento y réplica. Lo preparado sin ejecutar sigue en F, con su ruta. Orden de corridas: <code class="docutils literal notranslate"><span class="pre">docs/GUIA_CORRIDAS_CIERRE_E2.md</span></code>.</p>
 <p><strong>Actualización del 21/11.</strong> Se corrió el complemento de entrenamiento en L4: sobreajuste, búsqueda T = 4, permutación de FCN con B = 200 y ablación de TransUNet (filas 37, 41, 46, 56, 61). Exploratorio: el test ya estaba observado y no se cargó.</p>
+<p><strong>Actualización del 22/11.</strong> Revisión humana: los 12 casos de ruido de etiqueta confirmados a mano (fila 12) y techo por segunda anotación independiente de 50 imágenes de validación (fila 63).</p>
 <section id="problema-hipotesis-datos-y-eda-rubrica-15">
 <h2>Problema, hipótesis, datos y EDA — rúbrica 15 %<a class="headerlink" href="#problema-hipotesis-datos-y-eda-rubrica-15" title="Permalink to this heading">#</a></h2>
 <table class="table">
@@ -355,8 +356,8 @@ document.write(`
 </tr>
 <tr class="row-odd"><td><p>12</p></td>
 <td><p>Ruido de etiqueta y acuerdo independiente (4,48)</p></td>
-<td><p>P</p></td>
-<td><p>20/11: revisión manual de 100 imágenes, primera pasada: 7 errores (IC95 3,4–13,8 %), todos rótulos cortados por el borde, y 5 dudosas; 12 casos por confirmar a mano (<code class="docutils literal notranslate"><span class="pre">resultados/ruido_etiqueta_e2/</span></code>). Sin segunda anotación independiente: el acuerdo sigue pendiente</p></td>
+<td><p>C</p></td>
+<td><p>22/11: 100 imágenes de train/val; los 12 casos de la primera pasada confirmados a mano: 10 de 100 con rótulo cortado por el borde sin máscara (IC95 Wilson 5,5–17,4 %), todos tipo falta; el conjunto a veces los anota (8,5 % de train con región en el borde): inconsistencia. Acuerdo entre anotadores: ID 63. <code class="docutils literal notranslate"><span class="pre">resultados/ruido_etiqueta_e2/</span></code>, capítulo <code class="docutils literal notranslate"><span class="pre">complementos_datos_e2</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p>13</p></td>
 <td><p>Sesgos y atajos (4)</p></td>
@@ -666,8 +667,8 @@ document.write(`
 </tr>
 <tr class="row-odd"><td><p>63</p></td>
 <td><p>Techo y γ (48–49)</p></td>
-<td><p>F</p></td>
-<td><p>Sin segunda anotación: no hay techo medido. Kit de reanotación de 50 imágenes de validación listo, con el cálculo de γ (<code class="docutils literal notranslate"><span class="pre">scripts/techo_reanotacion_e2.py</span></code>); los rótulos cortados por el borde se marcan aparte</p></td>
+<td><p>C</p></td>
+<td><p>22/11: segunda anotación independiente de 50 imágenes de validación (una por grupo, por tercil de área): techo Dice 0,941 (IC95 0,928–0,953). TransUNet 0,866 en las mismas 50; γ 0,31 (val) y 0,27 (test). <code class="docutils literal notranslate"><span class="pre">scripts/techo_reanotacion_e2.py</span> <span class="pre">medir/gamma</span></code>, <code class="docutils literal notranslate"><span class="pre">scripts/tabla_techo_e2.py</span></code>, <code class="docutils literal notranslate"><span class="pre">resultados/techo_e2/</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p>64</p></td>
 <td><p>HD95/ASSD y precisión/recall (36)</p></td>
@@ -810,8 +811,8 @@ document.write(`
 <td><p>Ampliación Holm posterior al test</p></td>
 </tr>
 <tr class="row-even"><td><p>B13 Techo/γ</p></td>
-<td><p>F</p></td>
-<td><p>ID63; kit listo, sin segunda anotación</p></td>
+<td><p>C</p></td>
+<td><p>ID63: techo 0,941 por reanotación independiente; γ por red</p></td>
 </tr>
 <tr class="row-odd"><td><p>B14 Arquitecturas sin diseño y dos fases</p></td>
 <td><p>P</p></td>

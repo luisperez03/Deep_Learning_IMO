@@ -90,11 +90,14 @@ def main(argv=None):
         e, d = vs.count('error'), vs.count('dudoso')
         por_split[s] = {'n': len(vs), 'ok': vs.count('ok'), 'error': e, 'dudoso': d,
                         'dudoso_como_ok': tasa(e, len(vs)), 'dudoso_como_error': tasa(e + d, len(vs))}
+    # veredicto_final admite 'error:<tipo>' (p. ej. 'error:falta'); el tipo confirmado a mano manda sobre el de la hoja.
+    tipo = {h['id']: (final[h['id']].split(':', 1)[1].strip() if ':' in final.get(h['id'], '') else h['tipo_error'])
+            for h in hoja}
     tipos = {}
     for h in hoja:
         if ver[h['id']] == 'error':
-            tipos[h['tipo_error'] or 'sin_tipo'] = tipos.get(h['tipo_error'] or 'sin_tipo', 0) + 1
-    casos = [{'id': h['id'], 'particion': h['particion'], 'veredicto': ver[h['id']], 'tipo': h['tipo_error'], 'nota': h['nota']}
+            tipos[tipo[h['id']] or 'sin_tipo'] = tipos.get(tipo[h['id']] or 'sin_tipo', 0) + 1
+    casos = [{'id': h['id'], 'particion': h['particion'], 'veredicto': ver[h['id']], 'tipo': tipo[h['id']], 'nota': h['nota']}
              for h in hoja if ver[h['id']] != 'ok']
 
     est_borde, ids_borde = {}, set()
@@ -102,7 +105,10 @@ def main(argv=None):
         est_borde[s], ids = borde(s); ids_borde |= ids
     ok_con_borde = [h['id'] for h in hoja if ver[h['id']] == 'ok' and h['id'] in ids_borde]
 
-    R = {'estado': 'Exploratorio. Primera pasada asistida; no es segunda anotación independiente ni acuerdo entre anotadores.',
+    estado = ('Exploratorio. Primera pasada asistida con los casos de error y dudosos confirmados a mano; no es acuerdo '
+              'entre anotadores.' if conf and confirmados == len(conf) else
+              'Exploratorio. Primera pasada asistida; no es segunda anotación independiente ni acuerdo entre anotadores.')
+    R = {'estado': estado,
          'muestra': {'n': n, 'particiones': {s: sum(h['particion'] == s for h in hoja) for s in ('train', 'val')},
                      'seleccion': 'al azar en train y validación; test excluido', 'revisor': sorted({h.get('revisor', '') for h in hoja})},
          'casos_confirmados_a_mano': confirmados,

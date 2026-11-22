@@ -1,5 +1,5 @@
 {
- "estado": "Exploratorio. Primera pasada asistida; no es segunda anotación independiente ni acuerdo entre anotadores.",
+ "estado": "Exploratorio. Primera pasada asistida con los casos de error y dudosos confirmados a mano; no es acuerdo entre anotadores.",
  "muestra": {
   "n": 100,
   "particiones": {
@@ -11,103 +11,96 @@
    "propuesta_automatica"
   ]
  },
- "casos_confirmados_a_mano": 0,
- "casos_por_confirmar": 12,
+ "casos_confirmados_a_mano": 12,
+ "casos_por_confirmar": 0,
  "veredictos": {
-  "ok": 88,
-  "error": 7,
-  "dudoso": 5
+  "ok": 90,
+  "error": 10,
+  "dudoso": 0
  },
  "tasa_imagenes_con_error": {
   "dudoso_como_ok": {
-   "k": 7,
+   "k": 10,
    "n": 100,
-   "tasa": 0.07,
+   "tasa": 0.1,
    "ic95_wilson": [
-    0.0343,
-    0.1375
+    0.0552,
+    0.1744
    ]
   },
   "dudoso_como_error": {
-   "k": 12,
+   "k": 10,
    "n": 100,
-   "tasa": 0.12,
+   "tasa": 0.1,
    "ic95_wilson": [
-    0.07,
-    0.1981
+    0.0552,
+    0.1744
    ]
   },
   "sin_dudosos": {
-   "k": 7,
-   "n": 95,
-   "tasa": 0.0737,
+   "k": 10,
+   "n": 100,
+   "tasa": 0.1,
    "ic95_wilson": [
-    0.0361,
-    0.1444
+    0.0552,
+    0.1744
    ]
   }
  },
  "por_tipo": {
-  "falta": 7
+  "falta": 10
  },
  "por_particion": {
   "train": {
    "n": 82,
-   "ok": 72,
-   "error": 7,
-   "dudoso": 3,
+   "ok": 73,
+   "error": 9,
+   "dudoso": 0,
    "dudoso_como_ok": {
-    "k": 7,
+    "k": 9,
     "n": 82,
-    "tasa": 0.0854,
+    "tasa": 0.1098,
     "ic95_wilson": [
-     0.042,
-     0.1659
+     0.0588,
+     0.1956
     ]
    },
    "dudoso_como_error": {
-    "k": 10,
+    "k": 9,
     "n": 82,
-    "tasa": 0.122,
+    "tasa": 0.1098,
     "ic95_wilson": [
-     0.0676,
-     0.2101
+     0.0588,
+     0.1956
     ]
    }
   },
   "val": {
    "n": 18,
-   "ok": 16,
-   "error": 0,
-   "dudoso": 2,
+   "ok": 17,
+   "error": 1,
+   "dudoso": 0,
    "dudoso_como_ok": {
-    "k": 0,
+    "k": 1,
     "n": 18,
-    "tasa": 0.0,
+    "tasa": 0.0556,
     "ic95_wilson": [
-     -0.0,
-     0.1759
+     0.0099,
+     0.2576
     ]
    },
    "dudoso_como_error": {
-    "k": 2,
+    "k": 1,
     "n": 18,
-    "tasa": 0.1111,
+    "tasa": 0.0556,
     "ic95_wilson": [
-     0.031,
-     0.328
+     0.0099,
+     0.2576
     ]
    }
   }
  },
  "casos": [
-  {
-   "id": "image_0141",
-   "particion": "val",
-   "veredicto": "dudoso",
-   "tipo": "",
-   "nota": "Dos rótulos con máscara; en el borde izquierdo asoma un papel blanco con un número que podría ser la esquina de un rótulo sin máscara."
-  },
   {
    "id": "image_0243",
    "particion": "train",
@@ -125,8 +118,8 @@
   {
    "id": "image_0470",
    "particion": "train",
-   "veredicto": "dudoso",
-   "tipo": "",
+   "veredicto": "error",
+   "tipo": "falta",
    "nota": "Un rótulo con máscara; en el borde derecho asoma una esquina naranja (posible explosive) muy pequeña sin máscara."
   },
   {
@@ -146,8 +139,8 @@
   {
    "id": "image_1001",
    "particion": "val",
-   "veredicto": "dudoso",
-   "tipo": "",
+   "veredicto": "error",
+   "tipo": "falta",
    "nota": "Dos rótulos con máscara; abajo a la derecha asoma una esquina amarilla mínima, quizá un rótulo, sin máscara."
   },
   {
@@ -156,13 +149,6 @@
    "veredicto": "error",
    "tipo": "falta",
    "nota": "Un flammable con máscara; arriba hay un infectious substance grande y legible cortado por el borde, sin máscara."
-  },
-  {
-   "id": "image_1095",
-   "particion": "train",
-   "veredicto": "dudoso",
-   "tipo": "",
-   "nota": "Tres rótulos con máscara; en el de arriba el contorno sobresale unos píxeles por las esquinas izquierda e inferior."
   },
   {
    "id": "image_1296",
@@ -181,8 +167,8 @@
   {
    "id": "image_1570",
    "particion": "train",
-   "veredicto": "dudoso",
-   "tipo": "",
+   "veredicto": "error",
+   "tipo": "falta",
    "nota": "Un rótulo con máscara; en el borde izquierdo asoma un trozo verde con reborde blanco, posible rótulo sin máscara."
   }
  ],
@@ -203,7 +189,7 @@
    "regiones_que_tocan_borde": 23,
    "fraccion_regiones": 0.0581
   },
-  "imagenes_de_la_muestra_ok_con_region_anotada_en_borde": 7,
+  "imagenes_de_la_muestra_ok_con_region_anotada_en_borde": 8,
   "ids": [
    "image_0450",
    "image_0481",
@@ -211,6 +197,7 @@
    "image_0905",
    "image_0967",
    "image_1007",
+   "image_1095",
    "image_1564"
   ]
  },

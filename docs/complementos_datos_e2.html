@@ -507,43 +507,46 @@ con unos 690 grupos es limitada.</p>
 <section id="ruido-de-etiqueta-control-12">
 <h2>Ruido de etiqueta (control 12)<a class="headerlink" href="#ruido-de-etiqueta-control-12" title="Permalink to this heading">#</a></h2>
 <p>Se revisaron 100 imágenes al azar de train (82) y validación (18), nunca de test, comparando la máscara con la foto.
-Es una <strong>primera pasada asistida, no una segunda anotación</strong>: los 12 casos marcados como error o dudoso esperan
-confirmación a mano en <code class="docutils literal notranslate"><span class="pre">resultados/ruido_etiqueta_e2/confirmar.csv</span></code> (columnas <code class="docutils literal notranslate"><span class="pre">confirma</span></code> y <code class="docutils literal notranslate"><span class="pre">veredicto_final</span></code>
-vacías). Al llenarlas, <code class="docutils literal notranslate"><span class="pre">ruido_etiqueta_e2.py</span> <span class="pre">--confirmar</span></code> recalcula todo.</p>
+Una primera pasada asistida marcó 7 errores y 5 dudosos; esos 12 casos se confirmaron después a mano, uno por uno,
+con la foto ampliada junto a la máscara (<code class="docutils literal notranslate"><span class="pre">resultados/ruido_etiqueta_e2/confirmar.csv</span></code>, columnas <code class="docutils literal notranslate"><span class="pre">confirma</span></code> y
+<code class="docutils literal notranslate"><span class="pre">veredicto_final</span></code>; <code class="docutils literal notranslate"><span class="pre">ruido_etiqueta_e2.py</span> <span class="pre">--confirmar</span></code> recalcula todo). Se confirmaron los 7 errores y 3 de los 5
+dudosos; los otros 2 resultaron correctos (en uno, el contorno sobresale unos píxeles, lo que no se cuenta como error).</p>
 <table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Lectura</p></th>
+<tr class="row-odd"><th class="head"><p>Partición</p></th>
 <th class="head text-right"><p>Imágenes con error</p></th>
 <th class="head text-right"><p>Tasa</p></th>
 <th class="head text-right"><p>IC 95 % Wilson</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Dudosos como correctos</p></td>
-<td class="text-right"><p>7 de 100</p></td>
-<td class="text-right"><p>7,0 %</p></td>
-<td class="text-right"><p>3,4 % a 13,8 %</p></td>
+<tr class="row-even"><td><p>Train y validación</p></td>
+<td class="text-right"><p>10 de 100</p></td>
+<td class="text-right"><p>10,0 %</p></td>
+<td class="text-right"><p>5,5 % a 17,4 %</p></td>
 </tr>
-<tr class="row-odd"><td><p>Dudosos como errores</p></td>
-<td class="text-right"><p>12 de 100</p></td>
-<td class="text-right"><p>12,0 %</p></td>
-<td class="text-right"><p>7,0 % a 19,8 %</p></td>
+<tr class="row-odd"><td><p>Train</p></td>
+<td class="text-right"><p>9 de 82</p></td>
+<td class="text-right"><p>11,0 %</p></td>
+<td class="text-right"><p>5,9 % a 19,6 %</p></td>
 </tr>
-<tr class="row-even"><td><p>Sin dudosos</p></td>
-<td class="text-right"><p>7 de 95</p></td>
-<td class="text-right"><p>7,4 %</p></td>
-<td class="text-right"><p>3,6 % a 14,4 %</p></td>
+<tr class="row-even"><td><p>Validación</p></td>
+<td class="text-right"><p>1 de 18</p></td>
+<td class="text-right"><p>5,6 %</p></td>
+<td class="text-right"><p>1,0 % a 25,8 %</p></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Hallazgo: los siete errores son del mismo tipo.</strong> En todos, un rótulo cortado por el borde de la foto quedó sin
-máscara (tipo <em>falta</em>). No hubo contornos mal trazados, regiones sobrantes ni clases cambiadas; cuatro de los cinco
-dudosos son también esquinas en el borde. Las banderas automáticas (cajas contra instancias) no detectan este error,
-porque un rótulo sin máscara tampoco tiene caja.</p>
+<p>El IC de Wilson es el intervalo de confianza para una proporción que se usa con muestras chicas o tasas cercanas a
+0: no se sale de [0, 1] y no es simétrico. La revisión la hizo una sola persona; no mide acuerdo entre anotadores
+(eso lo hace el techo, más abajo).</p>
+<p><strong>Hallazgo: los diez errores son del mismo tipo.</strong> En todos, un rótulo cortado por el borde de la foto quedó sin
+máscara (tipo <em>falta</em>). No hubo contornos mal trazados, regiones sobrantes ni clases cambiadas. Las banderas
+automáticas (cajas contra instancias) no detectan este error, porque un rótulo sin máscara tampoco tiene caja.</p>
 <p>¿Es una regla de anotación o una inconsistencia? Si el conjunto nunca anotara rótulos cortados, sería una regla que
 el modelo puede aprender. No es así: <strong>86 de las 1.015 imágenes de train (8,5 %) y 21 de las 218 de validación
 (9,6 %) tienen al menos una región anotada que toca el borde</strong> (94 de 1.711 regiones de train). En la muestra hay
-siete imágenes correctas con región anotada en el borde y siete con un rótulo cortado omitido. El modelo recibe
+ocho imágenes correctas con región anotada en el borde y diez con un rótulo cortado omitido. El modelo recibe
 señales contradictorias justo en los rótulos cortados, y el error en test sobre ellos es en parte irreducible
 respecto de estas etiquetas.</p>
 <p>Límites: la tasa es por imagen, no por píxel. Un rótulo cortado suele ser pequeño, así que su efecto en el Dice por
@@ -552,107 +555,111 @@ imagen está acotado pero no está medido. No se corrigió ninguna máscara, y m
 <section id="techo-de-desempeno-y-control-63">
 <h2>Techo de desempeño y γ (control 63)<a class="headerlink" href="#techo-de-desempeno-y-control-63" title="Permalink to this heading">#</a></h2>
 <p>La guía pide al menos una cota de referencia (acuerdo entre anotadores, ruido irreducible o desempeño humano) y
-γ = (s_techo − s_mejor)/(s_techo − s_base), la fracción del margen aún sin cubrir. <strong>No hay segunda anotación
-independiente ni desempeño humano documentado, y no se inventa ninguno.</strong></p>
-<p><strong>Kit de reanotación listo.</strong> <code class="docutils literal notranslate"><span class="pre">techo_reanotacion_e2.py</span> <span class="pre">preparar</span></code> sortea 50 imágenes de <strong>validación</strong> (nunca test),
-una por grupo, estratificadas por tercil del área etiquetada del grupo (17, 17 y 16; semilla 20261117); la muestra
-coincide con la sorteada antes en el otro árbol (<code class="docutils literal notranslate"><span class="pre">resultados/techo_e2/muestra.csv</span></code>). Quien reanota recibe solo las
-fotos, sin máscara ni predicciones, con instrucciones de marcar los rótulos cortados <strong>aparte</strong>, para no confundir
-la inconsistencia del conjunto con desacuerdo. <code class="docutils literal notranslate"><span class="pre">medir</span></code> calcula Dice e IoU contra la máscara del conjunto con la
-misma geometría y métrica que los modelos (letterbox 256, zona válida, <code class="docutils literal notranslate"><span class="pre">dataset_ready.metrics</span></code>), media por grupo con
-IC bootstrap, por tercil y con o sin cortados; se probó con reanotaciones fabricadas por erosión y dilatación de
-2 px (Dice 0,936 en 12 imágenes: un desacuerdo de contorno de 2 px ya cuesta unos 6 puntos en rótulos de este
-tamaño). <code class="docutils literal notranslate"><span class="pre">gamma</span></code> toma el techo medido y da γ por red.</p>
-<p><strong>Cota defendible con los datos disponibles: sobre γ, no sobre el techo.</strong> Con s_base el clásico
-HistGradientBoosting elegido en validación (0,6533 en validación, 0,6447 en test), γ(t) = (t − s)/(t − s_base)
-crece con t siempre que la red supere al clásico, y ningún techo pasa de Dice 1. Por tanto γ calculado con t = 1 es
-una <strong>cota superior</strong> de γ válida para cualquier techo: TransUNet deja sin cubrir <strong>a lo sumo</strong> el 42 % del margen
-sobre el clásico en validación y el 39 % en test. No hay cota inferior sin un techo: si el techo real estuviera
-cerca de 0,86, γ sería casi cero. Las columnas con t = 0,95 y t = 0,90 son <strong>hipotéticas</strong>, no estimaciones; solo
-muestran cuánto cambia γ con el techo.</p>
+γ = (s_techo − s_red)/(s_techo − s_base), la fracción del margen sobre un modelo base que la red aún no cubre.</p>
+<p><strong>Medición.</strong> Una segunda persona, que no había visto las máscaras ni las predicciones, reanotó 50 imágenes de
+<strong>validación</strong> (nunca test), una por grupo, estratificadas por tercil del área etiquetada del grupo (17, 17 y 16;
+semilla 20261117; <code class="docutils literal notranslate"><span class="pre">resultados/techo_e2/muestra.csv</span></code>). Recibió solo las fotos, con instrucciones de marcar los
+rótulos cortados por el borde aparte, y las anotó con polígonos. <code class="docutils literal notranslate"><span class="pre">techo_reanotacion_e2.py</span> <span class="pre">medir</span></code> compara su máscara
+con la del conjunto con la misma geometría y métrica que los modelos (letterbox 256, zona válida,
+<code class="docutils literal notranslate"><span class="pre">dataset_ready.metrics</span></code>), media por grupo con IC bootstrap. El cálculo se había probado antes con reanotaciones
+fabricadas por erosión y dilatación de 2 px (Dice 0,936 en 12 imágenes). <code class="docutils literal notranslate"><span class="pre">gamma</span></code> usa como base el clásico
+HistGradientBoosting elegido en validación.</p>
+<p><strong>Techo:</strong> Dice 0,941 (IC95 bootstrap por grupos 0,928–0,953); mediana 0,953; IoU 0,892; por tercil de área (pequeño, medio, grande): 0,933, 0,941, 0,950. Clásico: 0,653 en validación y 0,645 en test.</p>
 <table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Red</p></th>
-<th class="head text-right"><p>γ val, t = 1 (cota)</p></th>
-<th class="head text-right"><p>γ test, t = 1 (cota)</p></th>
-<th class="head text-right"><p>γ test si t = 0,95 (hipotético)</p></th>
-<th class="head text-right"><p>γ test si t = 0,90 (hipotético)</p></th>
+<th class="head text-right"><p>Dice val (122 grupos)</p></th>
+<th class="head text-right"><p>Dice en las 50 del techo</p></th>
+<th class="head text-right"><p>Distancia al techo (mismas 50)</p></th>
+<th class="head text-right"><p>γ val</p></th>
+<th class="head text-right"><p>γ test</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>TransUNet</p></td>
-<td class="text-right"><p>0,423</p></td>
-<td class="text-right"><p>0,387</p></td>
-<td class="text-right"><p>0,286</p></td>
-<td class="text-right"><p>0,146</p></td>
+<td class="text-right"><p>0,853</p></td>
+<td class="text-right"><p>0,866</p></td>
+<td class="text-right"><p>0,075</p></td>
+<td class="text-right"><p>0,306</p></td>
+<td class="text-right"><p>0,265</p></td>
 </tr>
-<tr class="row-odd"><td><p>FCN</p></td>
-<td class="text-right"><p>0,488</p></td>
-<td class="text-right"><p>0,412</p></td>
-<td class="text-right"><p>0,316</p></td>
-<td class="text-right"><p>0,182</p></td>
+<tr class="row-odd"><td><p>U-Net compacta</p></td>
+<td class="text-right"><p>0,832</p></td>
+<td class="text-right"><p>0,864</p></td>
+<td class="text-right"><p>0,077</p></td>
+<td class="text-right"><p>0,379</p></td>
+<td class="text-right"><p>0,320</p></td>
 </tr>
-<tr class="row-even"><td><p>U-Net</p></td>
-<td class="text-right"><p>0,485</p></td>
-<td class="text-right"><p>0,432</p></td>
-<td class="text-right"><p>0,339</p></td>
-<td class="text-right"><p>0,210</p></td>
+<tr class="row-even"><td><p>FCN compacta</p></td>
+<td class="text-right"><p>0,831</p></td>
+<td class="text-right"><p>0,851</p></td>
+<td class="text-right"><p>0,091</p></td>
+<td class="text-right"><p>0,383</p></td>
+<td class="text-right"><p>0,296</p></td>
 </tr>
 <tr class="row-odd"><td><p>VM-UNet</p></td>
-<td class="text-right"><p>0,517</p></td>
-<td class="text-right"><p>0,453</p></td>
-<td class="text-right"><p>0,363</p></td>
-<td class="text-right"><p>0,239</p></td>
+<td class="text-right"><p>0,821</p></td>
+<td class="text-right"><p>0,837</p></td>
+<td class="text-right"><p>0,105</p></td>
+<td class="text-right"><p>0,419</p></td>
+<td class="text-right"><p>0,345</p></td>
 </tr>
-<tr class="row-even"><td><p>SegNet</p></td>
-<td class="text-right"><p>0,559</p></td>
-<td class="text-right"><p>0,493</p></td>
-<td class="text-right"><p>0,410</p></td>
-<td class="text-right"><p>0,295</p></td>
+<tr class="row-even"><td><p>DeepLabv3+ R18</p></td>
+<td class="text-right"><p>0,813</p></td>
+<td class="text-right"><p>0,820</p></td>
+<td class="text-right"><p>0,121</p></td>
+<td class="text-right"><p>0,444</p></td>
+<td class="text-right"><p>0,429</p></td>
 </tr>
-<tr class="row-odd"><td><p>DeepLabv3+</p></td>
-<td class="text-right"><p>0,538</p></td>
-<td class="text-right"><p>0,523</p></td>
-<td class="text-right"><p>0,445</p></td>
-<td class="text-right"><p>0,337</p></td>
+<tr class="row-odd"><td><p>U-Net++ R18</p></td>
+<td class="text-right"><p>0,810</p></td>
+<td class="text-right"><p>0,804</p></td>
+<td class="text-right"><p>0,137</p></td>
+<td class="text-right"><p>0,456</p></td>
+<td class="text-right"><p>0,451</p></td>
 </tr>
-<tr class="row-even"><td><p>U-Net++</p></td>
-<td class="text-right"><p>0,548</p></td>
-<td class="text-right"><p>0,541</p></td>
-<td class="text-right"><p>0,466</p></td>
-<td class="text-right"><p>0,362</p></td>
+<tr class="row-even"><td><p>SegNet compacta</p></td>
+<td class="text-right"><p>0,806</p></td>
+<td class="text-right"><p>0,828</p></td>
+<td class="text-right"><p>0,114</p></td>
+<td class="text-right"><p>0,469</p></td>
+<td class="text-right"><p>0,393</p></td>
 </tr>
 <tr class="row-odd"><td><p>PIDNet-S</p></td>
-<td class="text-right"><p>0,587</p></td>
-<td class="text-right"><p>0,581</p></td>
-<td class="text-right"><p>0,512</p></td>
-<td class="text-right"><p>0,417</p></td>
+<td class="text-right"><p>0,796</p></td>
+<td class="text-right"><p>0,797</p></td>
+<td class="text-right"><p>0,144</p></td>
+<td class="text-right"><p>0,503</p></td>
+<td class="text-right"><p>0,498</p></td>
 </tr>
 <tr class="row-even"><td><p>SegNeXt-T</p></td>
-<td class="text-right"><p>0,694</p></td>
-<td class="text-right"><p>0,621</p></td>
-<td class="text-right"><p>0,559</p></td>
-<td class="text-right"><p>0,473</p></td>
+<td class="text-right"><p>0,759</p></td>
+<td class="text-right"><p>0,765</p></td>
+<td class="text-right"><p>0,177</p></td>
+<td class="text-right"><p>0,632</p></td>
+<td class="text-right"><p>0,546</p></td>
 </tr>
 <tr class="row-odd"><td><p>SegFormer-B0</p></td>
-<td class="text-right"><p>0,858</p></td>
+<td class="text-right"><p>0,703</p></td>
+<td class="text-right"><p>0,717</p></td>
+<td class="text-right"><p>0,225</p></td>
 <td class="text-right"><p>0,829</p></td>
-<td class="text-right"><p>0,802</p></td>
-<td class="text-right"><p>0,763</p></td>
+<td class="text-right"><p>0,796</p></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Una cota del techo por ruido no es defendible todavía.</strong> La guía admite estimar el error irreducible desde la tasa
-de ruido, pero aquí faltan tres cosas: la tasa no está confirmada a mano, no hay área por píxel de los rótulos
-omitidos y la omisión es sistemática en parte (el modelo puede aprenderla a medias). El camino corto para tenerla:
-confirmar los 12 casos y trazar los rótulos omitidos en esas imágenes; el Dice entre máscara original y corregida en
-la muestra de 100, con IC, sería una cota de ruido. Los estimadores de error de Bayes por vecinos no tienen sentido a
-nivel de píxel en segmentación y no se usan.</p>
-<p><strong>Qué se reporta si nadie alcanza a reanotar antes de la entrega.</strong> El techo y γ se declaran <strong>no estimados</strong>, con
-esta limitación explícita: no hay doble anotación; Dice = 1 es un máximo matemático, no un techo; el consenso entre
-redes no es un techo humano. Se reportan la cota superior de γ con t = 1 (tabla, primeras dos columnas), la tasa de
-ruido de la primera pasada con su IC y su tipo único (rótulos cortados por el borde), y el kit listo con su prueba,
-para que la medición se haga sin cambiar nada del protocolo.</p>
+<p><strong>Lectura.</strong> Dos personas coinciden en Dice 0,941: ese es el techo práctico de esta tarea con estas etiquetas, no 1.
+Sobre las mismas 50 imágenes, TransUNet llega a 0,866 y la U-Net compacta a 0,864, a unos 0,075 del techo. TransUNet
+cubre cerca del 70 % del margen entre el clásico y el techo (γ = 0,31 en validación y 0,27 en test); SegFormer-B0
+apenas el 20 %. El margen que queda es real y mayor que las diferencias entre las mejores redes, así que hay espacio
+para mejorar sin pedir más precisión que la humana. El acuerdo humano baja poco en los rótulos pequeños (0,933 en el
+tercil de menor área frente a 0,950 en el mayor). TransUNet, en cambio, queda a 0,11 del techo en el tercil pequeño
+(0,825), a 0,03 en el medio (0,908) y a 0,09 en el grande (0,865): la mayor distancia está en los rótulos pequeños,
+que es una dificultad de los modelos más que de la anotación. La segunda anotación no marcó rótulos cortados en estas 50
+imágenes, así que el resultado con y sin cortados coincide.</p>
+<p>Límites: una sola segunda persona, 50 imágenes de validación; el techo compara contra la máscara del conjunto, que
+tiene su propio ruido (los rótulos cortados omitidos, arriba), así que mide acuerdo con esas etiquetas, no exactitud
+absoluta. γ en test usa un techo medido en validación.</p>
 </section>
 <section id="eda-por-clase-entropia-areas-formas-y-color-controles-09-y-16">
 <h2>EDA por clase: entropía, áreas, formas y color (controles 09 y 16)<a class="headerlink" href="#eda-por-clase-entropia-areas-formas-y-color-controles-09-y-16" title="Permalink to this heading">#</a></h2>

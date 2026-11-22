@@ -337,7 +337,7 @@ document.write(`
 </section>
 <section id="techo-y-margen-restante">
 <h2>Techo y margen restante<a class="headerlink" href="#techo-y-margen-restante" title="Permalink to this heading">#</a></h2>
-<p>No existe doble anotación independiente ni desempeño humano medido. Por eso <strong>el techo empírico y γ no se han estimado</strong>. Dice=1 es un máximo matemático, no un techo humano estimado. Los casos visuales dirigidos no permiten estimar una tasa poblacional de ruido. Se requiere una muestra estratificada anotada por un segundo evaluador, identificadores de caso y protocolo explícito; no corregir máscaras del test para favorecer resultados.</p>
+<p>Una segunda anotación independiente de 50 imágenes de validación da un techo de Dice 0,941 (IC95 0,928–0,953), no 1 (<a class="reference internal" href="complementos_datos_e2.html"><span class="doc">Complementos de datos: fuga, shift, ruido, techo y EDA por clase</span></a>). Sobre esas mismas imágenes TransUNet llega a 0,866: le falta cerca de 0,075 y cubre el 70 % del margen sobre el clásico (γ = 0,31 en validación, 0,27 en test). El margen restante es mayor que las diferencias entre las mejores redes y se concentra en los rótulos pequeños. Es una sola segunda persona y una muestra de 50; el techo mide acuerdo con las etiquetas del conjunto, que omiten rótulos cortados por el borde en un 10 % de las imágenes (IC95 5,5–17,4 %).</p>
 </section>
 <section id="gap-e-hipotesis-para-una-siguiente-fase">
 <h2>Gap e hipótesis para una siguiente fase<a class="headerlink" href="#gap-e-hipotesis-para-una-siguiente-fase" title="Permalink to this heading">#</a></h2>
