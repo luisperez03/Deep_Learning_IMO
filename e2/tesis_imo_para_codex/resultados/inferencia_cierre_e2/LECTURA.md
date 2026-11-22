@@ -4,22 +4,26 @@
 > observarlo. Scripts: `scripts/inferencia_cierre_e2.py` (Python, numpy/scipy) y `scripts/varianza_mixta_val_e2.R`
 > (R 4.5.0, lme4 2.0.1, lmerTest). Datos: los Dice por imagen de validación de las 50 corridas
 > (`resultados/validacion_por_imagen_e2/`) y, para test, solo los resúmenes de `resultados/integracion_e2/analisis.json`
-> (los Dice por grupo del test no están en el repositorio). Salidas: `inferencia.json`, `TABLAS.md`,
-> `varianza_mixta.json`, `varianza_mixta_diagnostico.png`, `varianza_mixta.log`. Semillas de los generadores fijas
-> (20261122; el intercambio del libro, 20261120).
+> (primera pasada). Segunda pasada: `scripts/inferencia_test_grupos_e2.py` con los Dice por grupo del test de
+> `../resultados_test_e2_final/` (50 JSON, fuera del repositorio por `.gitignore`); reproduce los nueve contrastes de
+> `analisis.json` con discrepancia 0. Salidas: `inferencia.json`, `inferencia_test.json`, `TABLAS.md` (la sección de
+> test la escribe el segundo script), `varianza_mixta.json`, `varianza_mixta_diagnostico.png`, `varianza_mixta.log`.
+> Semillas de los generadores fijas (20261122 y 20261123; el intercambio del libro, 20261120).
 
 Comandos, desde la raíz del proyecto:
 
 ```
 python scripts/inferencia_cierre_e2.py
+python scripts/inferencia_test_grupos_e2.py
 "C:\Program Files\R\R-4.5.0\bin\Rscript.exe" scripts/varianza_mixta_val_e2.R 200
 ```
 
 ## Qué es validación y qué es test
 
-- **Test**: un TOST con t pareado exacto. Del libro se tienen, por contraste red − FCN, la media de la diferencia por
-  grupo, d_z = media/DE y n = 122 grupos; de ahí DE = media/d_z y el TOST sale sin aproximación adicional. No hay
-  bootstrap, ni simetría, ni max-T en test, porque necesitan los 122 valores por grupo.
+- **Test**: con los 122 Dice por grupo (segunda pasada) se hace todo: TOST con t y bootstrap, simetría, cuatro
+  procedimientos, max-T, sensibilidad y sesgo del ganador. En la primera pasada solo se tenían media, d_z y n por
+  contraste, y el TOST t salió de DE = media/d_z; con los grupos da los mismos p e IC90 (diferencia 0). Las cifras
+  de test de este documento son las de la segunda pasada; la sección final las resume.
 - **Validación**: es el conjunto con el que se eligió el checkpoint de cada corrida. Los niveles están sesgados al alza
   y las diferencias pueden estarlo. Se usa para lo que el test no permite sin sus grupos, y cada resultado se lee como
   validación.
@@ -53,7 +57,7 @@ indeterminado, no "empate".
 
 Supuesto del TOST t: normalidad de la media de 122 diferencias. Las diferencias son asimétricas (Shapiro p < 1e-6 en
 las nueve); en validación el bootstrap, que no la necesita, da las mismas decisiones que t, lo que respalda usar t
-en test.
+en test. Con los grupos del test (segunda pasada) el bootstrap también coincide con t en test.
 
 ## Descomposición de varianza (fila 53)
 
@@ -135,9 +139,52 @@ PIDNet, SegNeXt y SegFormer. La familia se fijó después del test: esa desviaci
   de una diferencia estimada en el conjunto que eligió los checkpoints; por eso la lectura principal sigue siendo la
   del test.
 
-## Lo que no se pudo hacer aquí
+## Test con los Dice por grupo (segunda pasada)
 
-- Bootstrap, simetría y max-T en test: necesitan los Dice por grupo del test (`resultados_test_e2_final`), fuera del
-  repositorio.
+Tablas completas en la sección de test de `TABLAS.md`; números en `inferencia_test.json`.
+
+**Comparación con la primera pasada.** El TOST t desde media, d_z y n coincide exactamente con el recalculado desde
+los grupos (p e IC90 idénticos). El intercambio y Wilcoxon reproducen los p del libro. Lo nuevo es todo lo que
+necesitaba los grupos.
+
+**Equivalencia (fila 54).** Bootstrap y t coinciden en las 18 decisiones (nueve frente a FCN, nueve frente a TransUNet):
+
+| Contraste | Diferencia | IC90 t | IC90 bootstrap | p TOST t / boot | Holm(9) t / boot | Lectura |
+|---|---:|---:|---:|---:|---:|---|
+| TransUNet − FCN | 0,0091 | [−0,0061; 0,0242] | [−0,0056; 0,0244] | 0,117 / 0,117 | 0,94 / 0,93 | indeterminado |
+| U-Net − FCN | −0,0072 | [−0,0148; 0,0005] | [−0,0148; 0,0002] | 0,0032 / 0,0044 | 0,028 / 0,040 | equivalentes |
+| U-Net − TransUNet | −0,0162 | [−0,0336; 0,0011] | [−0,0341; 0,0004] | 0,36 / 0,34 | 1 / 1 | no equivalentes |
+
+Ninguna red es equivalente a TransUNet en test (RQ3: no). Pero la equivalencia es frágil frente a las semillas: sin la
+semilla 53, U-Net − FCN deja de ser equivalente (p TOST 0,062 sin ajuste); sin la semilla 23, TransUNet − FCN sí lo
+sería (0,041 sin ajuste, IC90 [−0,011; 0,019]). La ventaja de TransUNet sobre FCN va de 0,004 a 0,014 según la
+semilla que se quite. Con cinco semillas fijas, la conclusión de equivalencia depende de qué entrenamientos entraron:
+se informa como condicional a ellas.
+
+**Simetría y procedimientos (fila 51).** En test la simetría se rechaza en 6 de 9 contrastes con FCN (SegNet,
+DeepLabv3+, U-Net++, PIDNet, SegNeXt, SegFormer; bootstrap simetrizado p ≤ 0,0014); las diferencias tienen cola
+izquierda: en pocos grupos la red pierde mucho frente a FCN. Los cuatro procedimientos con Holm(9) coinciden en 8 de 9;
+la excepción es U-Net++: media −0,046 pero mediana −0,001; t e intercambio rechazan, Wilcoxon (0,093) y signo (1) no.
+Su desventaja es de pocos grupos con fallos grandes, no un desplazamiento general.
+
+**Sin un grupo o sin una semilla.** Las seis redes claramente peores no cambian de decisión. Cambian las que están en
+el borde, sin ajuste por multiplicidad: VM-UNet (p t 0,067 sin ajuste) pasa a rechazar al quitar 6 de los 122 grupos
+o la semilla 11; U-Net (p t 0,12) pasa a rechazar con 1 grupo o sin la semilla 53; el TOST de TransUNet − FCN se
+vuelve equivalente al quitar 1 grupo o la semilla 23. Con Holm ninguna de las tres rechazaría.
+
+**Dependencia entre grupos vecinos.** Autocorrelación de lag 1 entre −0,21 y 0,11; ninguna significativa con
+Holm(9). SegFormer da −0,21 (p = 0,017 sin ajuste, 0,16 con Holm).
+
+**Multiplicidad (fila 50).** max-T con IC95 simultáneos (cuantil 2,77) rechaza las mismas seis redes que t-Holm e
+intercambio-Holm del libro: SegNet, DeepLabv3+, U-Net++, PIDNet, SegNeXt y SegFormer. TransUNet (p 0,90; IC
+simultáneo [−0,016; 0,034]), U-Net y VM-UNet no se distinguen de FCN.
+
+**Sesgo del ganador en test (B15).** TransUNet es la primera en test, pero gana solo en el 83 % de los bootstrap de
+grupos (FCN en el 16 %). El máximo sobreestima su nivel en 0,0023 (Dice corregido 0,8603 frente a 0,8626) y, si se
+elige en una mitad de los grupos y se mide en la otra, el optimismo es 0,0050. En validación, con un ganador mucho más
+claro, las dos cifras eran ≈ 0. Decir "TransUNet es la mejor en test" lleva este sesgo pequeño y una probabilidad de
+ser otra de cerca del 17 %.
+
+## Lo que no se pudo hacer aquí
 - Separar el optimismo del checkpoint de la diferencia entre validación y test: necesita el Dice por imagen por época.
 - Certificar la independencia entre grupos: los grupos son de similitud aproximada.

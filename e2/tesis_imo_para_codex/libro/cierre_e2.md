@@ -2,7 +2,7 @@
 
 ## Qué permite concluir el experimento
 
-TransUNet presenta el mayor Dice medio de test en esta comparación, seguido de FCN y U-Net compactas. Su mejora frente a FCN es menor que el margen práctico heredado de 0,02 y el IC pareado incluye cero. Esto no demuestra equivalencia ni descarta una mejora relevante: el extremo superior supera 0,02. FCN constituye una referencia de menor tamaño; no debe presentarse como ganadora en Dice ni como más rápida sin medir latencia comparable.
+TransUNet presenta el mayor Dice medio de test en esta comparación, seguido de FCN y U-Net compactas. Su mejora frente a FCN es menor que el margen práctico heredado de 0,02 y el IC pareado incluye cero. Esto no demuestra equivalencia ni descarta una mejora relevante: el extremo superior supera 0,02, y el TOST con δ = 0,02 queda indeterminado (IC90 [−0,0061; 0,0242], p = 0,117). FCN constituye una referencia de menor tamaño; no debe presentarse como ganadora en Dice ni como más rápida sin medir latencia comparable.
 
 Los resultados no sostienen que una familia sea universalmente superior. Solo hay un representante Transformer, uno híbrido y uno SSM, con capacidad y optimizadores diferentes. En especial, la puntuación de SegFormer entrenado desde cero a 256 píxeles no es una réplica de su artículo ni demuestra que la autoatención sea inadecuada para HAZMAT.
 
@@ -10,7 +10,7 @@ Los resultados no sostienen que una familia sea universalmente superior. Solo ha
 
 - **RQ1:** mayor estimación puntual para TransUNet, sin mejora clara frente a FCN con el IC cerrado. La ampliación estadística se presenta separada y como exploratoria.
 - **RQ2:** el contraste global y los contrastes corregidos permiten describir heterogeneidad entre estas diez adaptaciones; ver los valores p en resultados. Una diferencia global no prueba todas las diferencias pareadas.
-- **RQ3:** existen alternativas compactas competitivas; la equivalencia práctica con TransUNet no está demostrada.
+- **RQ3:** existen alternativas compactas competitivas, pero ninguna es equivalente a TransUNet por TOST con δ = 0,02 (la más cercana, FCN, p = 0,117; luego U-Net, p = 0,36). La respuesta es no, condicional a las cinco semillas.
 - **RQ4:** los estratos de área y la correlación de errores permiten localizar dificultades; no prueban que el tamaño sea su causa ni que las anotaciones sean correctas.
 
 ## Amenazas a la validez
