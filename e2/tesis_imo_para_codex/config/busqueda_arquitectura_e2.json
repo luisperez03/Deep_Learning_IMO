@@ -1,0 +1,120 @@
+{
+  "schema": 1,
+  "experimento": "e2_busqueda_arquitectura_compactas_v1",
+  "fecha_protocolo": "2026-11-22",
+  "estado": "Protocolo fijado antes de correr. Ningún número de este archivo es un resultado de la búsqueda.",
+  "documento": "docs/PROTOCOLO_BUSQUEDA_ARQUITECTURA_E2.md",
+  "control_guia": "Sección 14 (14.1 a 14.7) y sección 4.1: todo modelo sin arquitectura definida en su artículo recorre el espacio obligatorio de 1000 arquitecturas en dos fases. Checklist 38 y B14.",
+  "exposicion_test": "El test del benchmark ya fue observado. Esta búsqueda no carga el test: el ajuste previo, el cribado, los finalistas y la selección usan solo validación, y todo se declara exploratorio. El paso A6 de la guía (una sola pasada por test) no se hace en esta búsqueda.",
+  "protocolo_base": "config/experimento_e2.json",
+  "familias": {
+    "fcn": "Codificador de 3 bloques convolucionales (conv 3x3 + ReLU, dos veces) con max pooling entre bloques; cabezal 1x1 sobre el bloque 3 e interpolación bilineal a la resolución de entrada. Sin decodificador.",
+    "unet": "Codificador de 3 niveles; decodificador espejo de 2 bloques que concatena el mapa del codificador del mismo nivel (d2: w3+w2 -> w2; d1: w2+w1 -> w1); cabezal 1x1.",
+    "segnet": "Codificador de 3 niveles con índices de max pooling; reducción 1x1 w3 -> w2; decodificador espejo con max unpooling (d2: w2 -> w1; d1: w1 -> w1); cabezal 1x1."
+  },
+  "espacio": {
+    "profundidad": 3,
+    "anchos": [16, 32, 64, 128, 256],
+    "que_es_w_i": "Canales de los dos conv 3x3 del bloque del nivel i del codificador; el decodificador espeja los anchos (sección 14.2, fila de codificador-decodificador).",
+    "dropout_p": 0.2,
+    "capa_dropout": "torch.nn.Dropout (elemento a elemento), la misma en las tres familias",
+    "posiciones_dropout": {
+      "fcn": "b_i = 1: dropout tras el bloque i del codificador (el del bloque 3 queda antes del cabezal 1x1).",
+      "unet": "b_1: tras e1 y tras su espejo d1; b_2: tras e2 y tras su espejo d2; b_3: tras e3, que es el cuello y no tiene espejo.",
+      "segnet": "b_1: tras e1 y tras su espejo d1; b_2: tras e2 y tras su espejo d2; b_3: tras e3 (antes de la reducción 1x1), cuello sin espejo."
+    },
+    "cardinalidad": 1000,
+    "orden_identificadores": "Producto cartesiano itertools.product(W, W, W, {0,1}, {0,1}, {0,1}); el identificador es a0000 a a0999 en ese orden.",
+    "listado": "config/arquitecturas_compactas_e2.csv"
+  },
+  "referencia": {"w": [64, 64, 64], "b": [0, 1, 0], "papel": "Arquitectura de referencia de la guía: ajuste previo y control en la fase 2."},
+  "heredada": {"w": [16, 32, 64], "b": [0, 0, 0], "papel": "La compacta del benchmark. Está dentro del espacio y es numéricamente idéntica a modelos_base.py con la misma semilla; entra en la fase 2 como segundo control para la comparación."},
+  "receta": {
+    "fuente": "Receta de fcn, unet y segnet en config/experimento_e2.json",
+    "optimizer": "Adam", "lr": 0.001, "weight_decay": 0.0,
+    "batch_size": 2, "size": 256, "perdida": "0,5 BCE + 0,5 Dice suave por imagen, solo en la zona válida",
+    "umbral": 0.5, "precision": "float32 con TF32 de cuDNN por defecto y algoritmos deterministas, como el benchmark",
+    "criterio_validacion": "Dice medio por grupo en validación (media de imágenes dentro del grupo y luego entre grupos)",
+    "inicializacion": "La de PyTorch por defecto, tras setup_seed(semilla), igual en todas las arquitecturas"
+  },
+  "ajuste_previo": {
+    "control_guia": "14.3: los hiperparámetros se fijan antes de la búsqueda con la arquitectura de referencia (64,64,64) con dropout (0,1,0), usando solo validación.",
+    "que_se_ajusta": "Solo la tasa de aprendizaje de Adam, por familia; el resto de la receta queda fijo.",
+    "lr": [0.0003, 0.001, 0.003],
+    "presupuesto": "El de la fase 1 (semilla, épocas y paciencia)",
+    "regla": "Se queda la tasa con mayor Dice de validación. Si su ventaja sobre la receta (0,001) es menor que 0,005, se queda la receta. La tasa elegida queda fija para las 1000 arquitecturas y para la fase 2 de esa familia."
+  },
+  "fase1": {
+    "semilla": 97,
+    "epocas": 6,
+    "paciencia": 5,
+    "fraccion_de_epocas": "6 de 30 = 20 %, dentro del 20-30 % que da la guía como ejemplo",
+    "semilla_orden": 20261122,
+    "orden": "Las 1000 arquitecturas en una permutación fija (semilla_orden); para cada una, las tres familias seguidas. Cualquier prefijo cortado es una muestra aleatoria del espacio, igual para las tres familias.",
+    "metrica": "Mejor Dice de validación por grupo entre las épocas corridas",
+    "registro": "Por época: pérdida de entrenamiento, pérdida de validación y Dice de validación por grupo; parámetros, MACs y segundos. No guarda pesos.",
+    "exhaustiva": "Las 1000 de cada familia, sin poda previa"
+  },
+  "fidelidad_fase1": {
+    "control_guia": "14.4: si el cómputo no alcanza, no se recorta en silencio: se declara la desviación, se justifica y se reporta su efecto. Las 1000 arquitecturas, la semilla y las 6 épocas no cambian en ninguna opción.",
+    "opciones": [
+      {"nombre": "A", "px": 256, "fraccion_train": 1.0, "descripcion": "La del protocolo: imagen completa a 256 px, todo train"},
+      {"nombre": "B", "px": 128, "fraccion_train": 1.0, "descripcion": "La red ve la imagen reducida a 128 px por promedio de área; su salida vuelve a 256 por interpolación bilineal y la pérdida y el Dice se miden a 256 contra la máscara original. Todo train. Cómputo de la red / 4"},
+      {"nombre": "C", "px": 128, "fraccion_train": 0.5, "descripcion": "Como B, entrenando con la mitad de train elegida por grupos de similitud (semilla_subconjunto), la misma para todas. Validación completa"}
+    ],
+    "semilla_subconjunto": 20261123,
+    "regla": "Con el piloto en L4 se estiman las horas de ajuste previo + fase 1 + repetición de cada opción. Se elige la primera opción, en el orden A, B, C, cuya estimación no pase del presupuesto de horas que se fija antes de ver el piloto. Si ninguna cabe, se usa C y se registra que excede el presupuesto. La elección queda en fidelidad.json y no se cambia después de empezar el ajuste previo. La fase 2 es siempre a fidelidad completa.",
+    "efecto": "Se reporta la correlación de rangos entre la fase 1 y la fase 2 en los finalistas: si es baja, el cribado reducido fue poco informativo y se declara."
+  },
+  "ruido": {
+    "control_guia": "14.4: estimar el ruido por semilla con un piloto de arquitecturas repetidas y elegir k en consecuencia; 14.6: repetir la fase 1 con al menos dos semillas en una muestra representativa.",
+    "arquitecturas": "Las primeras 40 del orden de la fase 1 (muestra aleatoria del espacio), en las tres familias",
+    "n_arquitecturas": 40,
+    "semilla_extra": 98,
+    "estimador": "sigma_semilla^2 = media de (d^2)/2 con d la diferencia entre las semillas 97 y 98 de la misma arquitectura; sigma_arq^2 = varianza de las 1000 de la fase 1 menos sigma_semilla^2 (truncada en 0); r = sigma_semilla / sigma_arq, por familia",
+    "regla_k": "k = 10 si r <= 1 en las tres familias; k = 20 si r > 1 en alguna. El mismo k para las tres (14.4: mismo |A|, k y R)."
+  },
+  "finalistas": {
+    "orden": "Dice de la fase 1 descendente; empate exacto, menos parámetros",
+    "controles": "Se añaden la referencia (64,64,64)/(0,1,0) y la heredada (16,32,64)/(0,0,0) si no están entre los k",
+    "nota": "La fase 1 es un cribado: el ganador es el mejor entre los finalistas, no necesariamente el mejor de las 1000."
+  },
+  "fase2": {
+    "semillas": [11, 23, 37, 53, 71],
+    "nota_semillas": "Las del benchmark, distintas de las de la fase 1 (97, 98). Con la misma semilla el orden de lotes es el mismo que en el benchmark, así que la heredada se compara pareada por semilla.",
+    "epocas": 30,
+    "paciencia": 5,
+    "orden": "Por semilla y luego por familia y arquitectura: un corte deja el mismo número de semillas en todos los finalistas",
+    "registro": "Por corrida: Dice de validación por grupo en la mejor época, predicciones por imagen de validación, Dice de entrenamiento por grupo con los pesos de la mejor época (brecha train-validación), parámetros, MACs y segundos. Guarda el mejor checkpoint."
+  },
+  "seleccion": {
+    "control_guia": "14.5",
+    "delta": 0.02,
+    "nota_delta": "δ = 0,02 de Dice, heredado del preregistro",
+    "regla": "(i) Mayor media de Dice de validación en las 5 semillas de la fase 2. (ii) Empate técnico con el mejor: diferencia de medias menor que δ o intervalos t al 95 % de las medias solapados. Entre los empatados (incluido el mejor), la de menos parámetros; si empatan en parámetros, la de mayor media. Los controles (referencia y heredada) compiten como cualquier finalista.",
+    "indistinguibles": "TOST pareado por semilla con margen ±δ frente al mejor (dos t unilaterales al 5 %, 4 gl); se reporta el tamaño del conjunto equivalente",
+    "prohibido": "Mirar el test para elegir o reabrir la búsqueda después de verlo"
+  },
+  "comparacion_heredada": {
+    "pregunta": "¿La arquitectura ganadora de cada familia supera a la compacta heredada del benchmark, en validación?",
+    "contraste": "Ganadora frente a heredada, ambas de la fase 2 (misma receta, mismas 5 semillas): diferencia media pareada por semilla con IC95 t; bootstrap por grupo de validación (2000 remuestreos) del Dice medio en las 5 semillas; TOST con ±δ.",
+    "contraste_secundario": "Ganadora frente a las 5 corridas originales del benchmark (resultados/validacion_por_imagen_e2/ o auditoría), solo descriptivo: la receta puede diferir si el ajuste previo cambia la tasa.",
+    "lectura": "Si la heredada cae en el conjunto equivalente al ganador, la herencia queda justificada por la búsqueda. Si el ganador la supera por más de δ, se declara que el benchmark subestimó esa familia y se reporta la diferencia, sin cambiar las conclusiones del test ya cerrado."
+  },
+  "analisis_espacio": {
+    "control_guia": "14.6",
+    "superficie": "Mapa de calor del Dice de la fase 1 sobre (w1, w2) por w3, uno por patrón de dropout (figuras en local)",
+    "modelo_lineal": "y = b0 + sum_i sum_w beta_iw 1[w_i = w] + sum_i gamma_i b_i + sum_{i<j} lambda_ij b_i b_j + e, por familia, con IC95 y proporción de varianza (suma de cuadrados tipo II)",
+    "pruebas_factores": "F parcial por factor (anchos de cada capa, dropout de cada posición, interacciones de dropout) con Holm por el número de factores; tendencia sobre log2 w por capa",
+    "dropout": "Wilcoxon pareado entre (0,0,0) y la media de los 7 patrones con dropout, con las 125 combinaciones de anchos como bloques; tamaño de efecto r = Z/sqrt(n)",
+    "pareto": "Dice de validación frente a parámetros y frente a segundos; arquitecturas no dominadas",
+    "sensibilidad": "Dispersión entre arquitecturas (rango, DE) frente a la DE por semilla (fase 2 y repetición). Si son parecidas, la arquitectura es irrelevante para este problema y se concluye así.",
+    "sobreajuste": "Brecha train-validación de la fase 2 por finalista; en la fase 1, pérdida de validación menos pérdida de entrenamiento en la última época, por ancho total y patrón de dropout",
+    "borde": "Se informa si el ganador cae en el borde del espacio (algún w_i = 256 o = 16)",
+    "correlacion": "Spearman entre el Dice de la fase 1 y la media de la fase 2 en los finalistas"
+  },
+  "computo": {
+    "formula": "C_total = m (|A| t1 + (k + 2) R t2) + ajuste previo + repetición; m = 3, |A| = 1000, R = 5",
+    "estimacion": "resultados/busqueda_arquitectura_e2/estimacion_costo_local.json (local) y estimacion_computo.json del piloto en L4"
+  }
+}

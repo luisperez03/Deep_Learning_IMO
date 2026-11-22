@@ -1,0 +1,386 @@
+{
+  "estimado": true,
+  "fecha": "2026-11-22",
+  "equipo_cpu": {
+    "procesador": "AMD64 Family 25 Model 68 Stepping 1, AuthenticAMD",
+    "hilos_torch": 6,
+    "torch": "2.14.1"
+  },
+  "cpu_medido": [
+    {
+      "familia": "fcn",
+      "w": [
+        16,
+        16,
+        16
+      ],
+      "b": [
+        0,
+        0,
+        0
+      ],
+      "parametros": 12065,
+      "macs": 273743872,
+      "segundos_por_paso_lote2": 0.06,
+      "segundos_por_imagen_val": 0.0101,
+      "segundos_por_epoca_cpu_sin_lectura": 32.5
+    },
+    {
+      "familia": "fcn",
+      "w": [
+        16,
+        32,
+        64
+      ],
+      "b": [
+        0,
+        0,
+        0
+      ],
+      "parametros": 72145,
+      "macs": 632553472,
+      "segundos_por_paso_lote2": 0.08,
+      "segundos_por_imagen_val": 0.0149,
+      "segundos_por_epoca_cpu_sin_lectura": 43.6
+    },
+    {
+      "familia": "fcn",
+      "w": [
+        64,
+        64,
+        64
+      ],
+      "b": [
+        0,
+        1,
+        0
+      ],
+      "parametros": 186497,
+      "macs": 4039376896,
+      "segundos_por_paso_lote2": 0.424,
+      "segundos_por_imagen_val": 0.0623,
+      "segundos_por_epoca_cpu_sin_lectura": 229.0
+    },
+    {
+      "familia": "fcn",
+      "w": [
+        128,
+        128,
+        128
+      ],
+      "b": [
+        0,
+        0,
+        0
+      ],
+      "parametros": 741633,
+      "macs": 15930490880,
+      "segundos_por_paso_lote2": 1.117,
+      "segundos_por_imagen_val": 0.1922,
+      "segundos_por_epoca_cpu_sin_lectura": 609.4
+    },
+    {
+      "familia": "fcn",
+      "w": [
+        256,
+        256,
+        256
+      ],
+      "b": [
+        1,
+        1,
+        1
+      ],
+      "parametros": 2957825,
+      "macs": 63267930112,
+      "segundos_por_paso_lote2": 4.852,
+      "segundos_por_imagen_val": 0.6226,
+      "segundos_por_epoca_cpu_sin_lectura": 2600.7
+    },
+    {
+      "familia": "unet",
+      "w": [
+        16,
+        16,
+        16
+      ],
+      "b": [
+        0,
+        0,
+        0
+      ],
+      "parametros": 25953,
+      "macs": 840957952,
+      "segundos_por_paso_lote2": 0.143,
+      "segundos_por_imagen_val": 0.0206,
+      "segundos_por_epoca_cpu_sin_lectura": 77.0
+    },
+    {
+      "familia": "unet",
+      "w": [
+        16,
+        32,
+        64
+      ],
+      "b": [
+        0,
+        0,
+        0
+      ],
+      "parametros": 118273,
+      "macs": 1841299456,
+      "segundos_por_paso_lote2": 0.248,
+      "segundos_por_imagen_val": 0.0404,
+      "segundos_por_epoca_cpu_sin_lectura": 134.8
+    },
+    {
+      "familia": "unet",
+      "w": [
+        64,
+        64,
+        64
+      ],
+      "b": [
+        0,
+        1,
+        0
+      ],
+      "parametros": 407937,
+      "macs": 13103005696,
+      "segundos_por_paso_lote2": 1.19,
+      "segundos_por_imagen_val": 0.1932,
+      "segundos_por_epoca_cpu_sin_lectura": 646.4
+    },
+    {
+      "familia": "unet",
+      "w": [
+        128,
+        128,
+        128
+      ],
+      "b": [
+        0,
+        0,
+        0
+      ],
+      "parametros": 1626881,
+      "macs": 52177141760,
+      "segundos_por_paso_lote2": 3.554,
+      "segundos_por_imagen_val": 0.5496,
+      "segundos_por_epoca_cpu_sin_lectura": 1925.3
+    },
+    {
+      "familia": "unet",
+      "w": [
+        256,
+        256,
+        256
+      ],
+      "b": [
+        1,
+        1,
+        1
+      ],
+      "parametros": 6497793,
+      "macs": 208238804992,
+      "segundos_por_paso_lote2": 13.787,
+      "segundos_por_imagen_val": 1.8906,
+      "segundos_por_epoca_cpu_sin_lectura": 7416.2
+    },
+    {
+      "familia": "segnet",
+      "w": [
+        16,
+        16,
+        16
+      ],
+      "b": [
+        0,
+        0,
+        0
+      ],
+      "parametros": 21617,
+      "macs": 653262848,
+      "segundos_por_paso_lote2": 0.123,
+      "segundos_por_imagen_val": 0.0174,
+      "segundos_por_epoca_cpu_sin_lectura": 66.3
+    },
+    {
+      "familia": "segnet",
+      "w": [
+        16,
+        32,
+        64
+      ],
+      "b": [
+        0,
+        0,
+        0
+      ],
+      "parametros": 85761,
+      "macs": 1056964608,
+      "segundos_por_paso_lote2": 0.156,
+      "segundos_por_imagen_val": 0.0201,
+      "segundos_por_epoca_cpu_sin_lectura": 83.6
+    },
+    {
+      "familia": "segnet",
+      "w": [
+        64,
+        64,
+        64
+      ],
+      "b": [
+        0,
+        1,
+        0
+      ],
+      "parametros": 338369,
+      "macs": 10099884032,
+      "segundos_por_paso_lote2": 0.946,
+      "segundos_por_imagen_val": 0.1468,
+      "segundos_por_epoca_cpu_sin_lectura": 512.5
+    },
+    {
+      "familia": "segnet",
+      "w": [
+        128,
+        128,
+        128
+      ],
+      "b": [
+        0,
+        0,
+        0
+      ],
+      "parametros": 1348481,
+      "macs": 40164655104,
+      "segundos_por_paso_lote2": 2.686,
+      "segundos_por_imagen_val": 0.4951,
+      "segundos_por_epoca_cpu_sin_lectura": 1472.2
+    },
+    {
+      "familia": "segnet",
+      "w": [
+        256,
+        256,
+        256
+      ],
+      "b": [
+        1,
+        1,
+        1
+      ],
+      "parametros": 5383937,
+      "macs": 160188858368,
+      "segundos_por_paso_lote2": 12.322,
+      "segundos_por_imagen_val": 1.5976,
+      "segundos_por_epoca_cpu_sin_lectura": 6608.0
+    }
+  ],
+  "cpu_ajuste_epoca_vs_macs": {
+    "a_segundos": 71.12186039820944,
+    "c_segundos_por_mac": 1.1450516879243812e-11,
+    "r2": 0.9928649875073766,
+    "gmacs_por_segundo": 87.3
+  },
+  "l4_calibracion": {
+    "fuente": "segundos_por_epoca_l4 del benchmark (lectura desde disco, sin caché)",
+    "macs_benchmark": {
+      "fcn": 632553472,
+      "segnet": 1056964608,
+      "unet": 1841299456,
+      "deeplabv3plus": 4562092032,
+      "unetplusplus": 15967715328
+    },
+    "segundos_epoca_l4": {
+      "fcn": 19.6,
+      "segnet": 19.6,
+      "unet": 19.7,
+      "deeplabv3plus": 34.8,
+      "unetplusplus": 36.1
+    },
+    "a_segundos": 20.7082882815686,
+    "c_segundos_por_mac": 3.344620955021449e-13,
+    "r2": 0.652411718863155,
+    "tflops_efectivos": 5.98,
+    "nota": "ResNet-18 de las redes SMP es menos eficiente por MAC que convoluciones 3x3 anchas a resolución completa: la estimación del cómputo tiende a ser alta. El término fijo a incluye lectura desde disco, que la caché en RAM reduce."
+  },
+  "l4_segundos_epoca_mediana_por_familia": {
+    "fcn": 32.1,
+    "unet": 54.7,
+    "segnet": 36.1
+  },
+  "horas_l4_fase1_por_familia_6_epocas": {
+    "fcn": 62.7,
+    "unet": 122.8,
+    "segnet": 107.6
+  },
+  "horas_l4_repeticion_ruido": 8.2,
+  "horas_l4_ajuste_previo": 0.5,
+  "horas_l4_fase2_calibracion_smp": {
+    "k10": {
+      "mediana_30_epocas": 61.4,
+      "mas_caros_30_epocas": 264.1,
+      "mas_caros_22_epocas": 193.7
+    },
+    "k20": {
+      "mediana_30_epocas": 112.7,
+      "mas_caros_30_epocas": 478.3,
+      "mas_caros_22_epocas": 350.8
+    }
+  },
+  "escenarios_fidelidad_fase1": {
+    "A": {
+      "px": 256,
+      "fraccion_train": 1.0,
+      "horas_ajuste_fase1_ruido": {
+        "8_TFLOPS_a5s": 174.6,
+        "8_TFLOPS_a12s": 211.1,
+        "15_TFLOPS_a5s": 105.3,
+        "15_TFLOPS_a12s": 141.8,
+        "25_TFLOPS_a5s": 73.6,
+        "25_TFLOPS_a12s": 110.1
+      }
+    },
+    "B": {
+      "px": 128,
+      "fraccion_train": 1.0,
+      "horas_ajuste_fase1_ruido": {
+        "8_TFLOPS_a5s": 63.2,
+        "8_TFLOPS_a12s": 99.7,
+        "15_TFLOPS_a5s": 45.9,
+        "15_TFLOPS_a12s": 82.4,
+        "25_TFLOPS_a5s": 38.0,
+        "25_TFLOPS_a12s": 74.5
+      }
+    },
+    "C": {
+      "px": 128,
+      "fraccion_train": 0.5,
+      "horas_ajuste_fase1_ruido": {
+        "8_TFLOPS_a5s": 45.9,
+        "8_TFLOPS_a12s": 82.4,
+        "15_TFLOPS_a5s": 36.6,
+        "15_TFLOPS_a12s": 73.1,
+        "25_TFLOPS_a5s": 32.4,
+        "25_TFLOPS_a12s": 68.9
+      }
+    }
+  },
+  "fase2_rangos_24_epocas_a5s": {
+    "k10_8_TFLOPS_mediana": 24.2,
+    "k10_8_TFLOPS_mas_caros": 145.3,
+    "k10_15_TFLOPS_mediana": 15.7,
+    "k10_15_TFLOPS_mas_caros": 80.3,
+    "k10_25_TFLOPS_mediana": 11.8,
+    "k10_25_TFLOPS_mas_caros": 50.6,
+    "k20_8_TFLOPS_mediana": 44.3,
+    "k20_8_TFLOPS_mas_caros": 263.0,
+    "k20_15_TFLOPS_mediana": 28.8,
+    "k20_15_TFLOPS_mas_caros": 145.4,
+    "k20_25_TFLOPS_mediana": 21.7,
+    "k20_25_TFLOPS_mas_caros": 91.6
+  },
+  "supuestos_rangos": "Rendimiento efectivo de 8, 15 o 25 TFLOPS (TF32 de cuDNN en L4) y sobrecosto fijo de 5 o 12 s por época con la caché llena, un proceso. Fase 2: 5 semillas, 24 épocas medias, k + 2 arquitecturas por familia."
+}

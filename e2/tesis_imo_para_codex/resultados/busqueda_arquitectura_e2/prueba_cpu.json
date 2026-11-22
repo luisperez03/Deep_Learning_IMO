@@ -1,0 +1,85 @@
+{
+  "que_es": "Prueba funcional en CPU; ningún número es un resultado de la búsqueda",
+  "fecha": "2026-11-22 14:52",
+  "torch": "2.14.1",
+  "comprobaciones": [
+    {
+      "que": "fcn: (16,32,64)/(0,0,0) idéntica a modelos_base con la misma semilla",
+      "ok": true
+    },
+    {
+      "que": "unet: (16,32,64)/(0,0,0) idéntica a modelos_base con la misma semilla",
+      "ok": true
+    },
+    {
+      "que": "segnet: (16,32,64)/(0,0,0) idéntica a modelos_base con la misma semilla",
+      "ok": true
+    },
+    {
+      "que": "1000 arquitecturas distintas",
+      "ok": true
+    },
+    {
+      "que": "125 sin dropout y 875 con al menos uno",
+      "ok": true
+    },
+    {
+      "que": "listado versionado coincide con las redes (3 filas muestreadas)",
+      "ok": true
+    },
+    {
+      "que": "dropout en el codificador y su espejo (cuello sin espejo)",
+      "ok": true
+    },
+    {
+      "que": "piloto a 256 y 128 px y estimación de las tres opciones de fidelidad",
+      "ok": true
+    },
+    {
+      "que": "regla de fidelidad: sin presupuesto queda C y se registra",
+      "ok": true
+    },
+    {
+      "que": "mitad de train por grupos: 508 de 1015",
+      "ok": true
+    },
+    {
+      "que": "entrada a 128 px, salida a 256",
+      "ok": true
+    },
+    {
+      "que": "ajuste previo: 3 tasas por familia y regla aplicada",
+      "ok": true
+    },
+    {
+      "que": "fase 1: 4 arquitecturas x 3 familias + repetición de ruido, en dos fragmentos, con la fidelidad C",
+      "ok": true
+    },
+    {
+      "que": "rehacer la fase 1 terminada no reentrena (1.4 s)",
+      "ok": true
+    },
+    {
+      "que": "finalistas con k y los dos controles",
+      "ok": true
+    },
+    {
+      "que": "fase 2 cortada tras la época 1 se reanuda y termina igual que sin corte",
+      "ok": true
+    },
+    {
+      "que": "fase 2: 36 corridas con brecha train-val y mejor checkpoint",
+      "ok": true
+    },
+    {
+      "que": "resumidor: ganador por familia y comparación con la heredada",
+      "ok": true
+    }
+  ],
+  "segundos": 4267.9,
+  "ganadores_de_prueba_sin_valor": {
+    "fcn": "a0056",
+    "unet": "a0056",
+    "segnet": "a0056"
+  }
+}
