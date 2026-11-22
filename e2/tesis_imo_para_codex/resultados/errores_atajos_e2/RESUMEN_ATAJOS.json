@@ -1,0 +1,1258 @@
+{
+ "archivos": 50,
+ "config": "config/errores_atajos_e2_20261122.json",
+ "config_sha256": "9eb58e95f971d7d055f2d217e9c4df6110f567d4ff7cbd1aa727f9f994a4e1d4",
+ "script_sha256": "7c9a52cf301e39b37022b524247957a010fc2aac8d14acfbd14b648087f5da60",
+ "modelos": {
+  "transunet_2d": {
+   "semillas": [
+    11,
+    23,
+    37,
+    53,
+    71
+   ],
+   "C1": {
+    "Dice_condicion": 0.7358,
+    "Dice_C0": 0.8532,
+    "delta": -0.1175,
+    "IC95": [
+     -0.1441,
+     -0.091
+    ],
+    "p_unilateral_H0_delta_mayor_igual_menos_d": 0.00024993751562109475,
+    "p_holm": 0.005,
+    "decision": "dependencia material"
+   },
+   "C3": {
+    "Dice_condicion": 0.5216,
+    "Dice_C0": 0.8532,
+    "delta": -0.3316,
+    "IC95": [
+     -0.3816,
+     -0.2837
+    ],
+    "p_unilateral_H0_delta_mayor_igual_menos_d": 0.00024993751562109475,
+    "p_holm": 0.005,
+    "decision": "dependencia material"
+   },
+   "C2_fraccion_zona_predicha": {
+    "estimacion": 0.0362,
+    "IC95": [
+     0.0224,
+     0.0524
+    ]
+   },
+   "C2_tasa_falsa_alarma": {
+    "estimacion": 0.4762,
+    "IC95": [
+     0.4131,
+     0.5426
+    ]
+   },
+   "C2_decision": "sin atajo de contexto material",
+   "taxonomia_exacta": {
+    "casos": 188,
+    "eje_A": [
+     {
+      "categoria": "A1_omision_total",
+      "casos": 0,
+      "frecuencia": 0.0,
+      "IC95_grupos": [
+       0.0,
+       0.0
+      ]
+     },
+     {
+      "categoria": "A2_deteccion_desplazada",
+      "casos": 2,
+      "frecuencia": 0.0106,
+      "IC95_grupos": [
+       0.0,
+       0.0359
+      ]
+     },
+     {
+      "categoria": "A3_subsegmentacion",
+      "casos": 61,
+      "frecuencia": 0.3245,
+      "IC95_grupos": [
+       0.2071,
+       0.4534
+      ]
+     },
+     {
+      "categoria": "A4_exceso_adyacente",
+      "casos": 62,
+      "frecuencia": 0.3298,
+      "IC95_grupos": [
+       0.1942,
+       0.4719
+      ]
+     },
+     {
+      "categoria": "A5_falso_positivo_distante",
+      "casos": 37,
+      "frecuencia": 0.1968,
+      "IC95_grupos": [
+       0.0931,
+       0.32
+      ]
+     },
+     {
+      "categoria": "A6_error_mixto",
+      "casos": 26,
+      "frecuencia": 0.1383,
+      "IC95_grupos": [
+       0.0751,
+       0.2071
+      ]
+     }
+    ],
+    "acuerdo_con_sustituto_HD95": 0.8617,
+    "rotulos_omitidos_en_varios": 32
+   },
+   "C2_falsa_alarma_por_exceso_previo": {
+    "sin_exceso_distante_en_limpia": {
+     "pares": 860,
+     "tasa": 0.3698
+    },
+    "con_exceso_distante_en_limpia": {
+     "pares": 230,
+     "tasa": 0.8435
+    }
+   },
+   "C2_pixeles_predichos_mediana": 32.0,
+   "reproduce_Dice_diagnosticos": {
+    "pares": 1090,
+    "max_abs_dif": 0.0,
+    "pares_con_dif_mayor_1e-3": 0
+   }
+  },
+  "fcn": {
+   "semillas": [
+    11,
+    23,
+    37,
+    53,
+    71
+   ],
+   "C1": {
+    "Dice_condicion": 0.8564,
+    "Dice_C0": 0.8309,
+    "delta": 0.0255,
+    "IC95": [
+     0.0122,
+     0.0401
+    ],
+    "p_unilateral_H0_delta_mayor_igual_menos_d": 1.0,
+    "p_holm": 1.0,
+    "decision": "sin dependencia material"
+   },
+   "C3": {
+    "Dice_condicion": 0.4292,
+    "Dice_C0": 0.8309,
+    "delta": -0.4017,
+    "IC95": [
+     -0.4525,
+     -0.3523
+    ],
+    "p_unilateral_H0_delta_mayor_igual_menos_d": 0.00024993751562109475,
+    "p_holm": 0.005,
+    "decision": "dependencia material"
+   },
+   "C2_fraccion_zona_predicha": {
+    "estimacion": 0.0136,
+    "IC95": [
+     0.0068,
+     0.0229
+    ]
+   },
+   "C2_tasa_falsa_alarma": {
+    "estimacion": 0.3205,
+    "IC95": [
+     0.2475,
+     0.3951
+    ]
+   },
+   "C2_decision": "sin atajo de contexto material",
+   "taxonomia_exacta": {
+    "casos": 246,
+    "eje_A": [
+     {
+      "categoria": "A1_omision_total",
+      "casos": 2,
+      "frecuencia": 0.0081,
+      "IC95_grupos": [
+       0.0,
+       0.0216
+      ]
+     },
+     {
+      "categoria": "A2_deteccion_desplazada",
+      "casos": 2,
+      "frecuencia": 0.0081,
+      "IC95_grupos": [
+       0.0,
+       0.0215
+      ]
+     },
+     {
+      "categoria": "A3_subsegmentacion",
+      "casos": 59,
+      "frecuencia": 0.2398,
+      "IC95_grupos": [
+       0.1322,
+       0.3626
+      ]
+     },
+     {
+      "categoria": "A4_exceso_adyacente",
+      "casos": 61,
+      "frecuencia": 0.248,
+      "IC95_grupos": [
+       0.1521,
+       0.3513
+      ]
+     },
+     {
+      "categoria": "A5_falso_positivo_distante",
+      "casos": 70,
+      "frecuencia": 0.2846,
+      "IC95_grupos": [
+       0.1675,
+       0.4075
+      ]
+     },
+     {
+      "categoria": "A6_error_mixto",
+      "casos": 52,
+      "frecuencia": 0.2114,
+      "IC95_grupos": [
+       0.1421,
+       0.2883
+      ]
+     }
+    ],
+    "acuerdo_con_sustituto_HD95": 0.7846,
+    "rotulos_omitidos_en_varios": 1
+   },
+   "C2_falsa_alarma_por_exceso_previo": {
+    "sin_exceso_distante_en_limpia": {
+     "pares": 763,
+     "tasa": 0.1075
+    },
+    "con_exceso_distante_en_limpia": {
+     "pares": 327,
+     "tasa": 0.7523
+    }
+   },
+   "C2_pixeles_predichos_mediana": 0.0,
+   "reproduce_Dice_diagnosticos": {
+    "pares": 1090,
+    "max_abs_dif": 0.0,
+    "pares_con_dif_mayor_1e-3": 0
+   }
+  },
+  "unet": {
+   "semillas": [
+    11,
+    23,
+    37,
+    53,
+    71
+   ],
+   "C1": {
+    "Dice_condicion": 0.8545,
+    "Dice_C0": 0.832,
+    "delta": 0.0225,
+    "IC95": [
+     0.0093,
+     0.0374
+    ],
+    "p_unilateral_H0_delta_mayor_igual_menos_d": 1.0,
+    "p_holm": 1.0,
+    "decision": "sin dependencia material"
+   },
+   "C3": {
+    "Dice_condicion": 0.5008,
+    "Dice_C0": 0.832,
+    "delta": -0.3312,
+    "IC95": [
+     -0.3808,
+     -0.2841
+    ],
+    "p_unilateral_H0_delta_mayor_igual_menos_d": 0.00024993751562109475,
+    "p_holm": 0.005,
+    "decision": "dependencia material"
+   },
+   "C2_fraccion_zona_predicha": {
+    "estimacion": 0.0139,
+    "IC95": [
+     0.0069,
+     0.0235
+    ]
+   },
+   "C2_tasa_falsa_alarma": {
+    "estimacion": 0.3066,
+    "IC95": [
+     0.2393,
+     0.3779
+    ]
+   },
+   "C2_decision": "sin atajo de contexto material",
+   "taxonomia_exacta": {
+    "casos": 259,
+    "eje_A": [
+     {
+      "categoria": "A1_omision_total",
+      "casos": 2,
+      "frecuencia": 0.0077,
+      "IC95_grupos": [
+       0.0,
+       0.0253
+      ]
+     },
+     {
+      "categoria": "A2_deteccion_desplazada",
+      "casos": 1,
+      "frecuencia": 0.0039,
+      "IC95_grupos": [
+       0.0,
+       0.0131
+      ]
+     },
+     {
+      "categoria": "A3_subsegmentacion",
+      "casos": 56,
+      "frecuencia": 0.2162,
+      "IC95_grupos": [
+       0.1209,
+       0.331
+      ]
+     },
+     {
+      "categoria": "A4_exceso_adyacente",
+      "casos": 95,
+      "frecuencia": 0.3668,
+      "IC95_grupos": [
+       0.242,
+       0.4906
+      ]
+     },
+     {
+      "categoria": "A5_falso_positivo_distante",
+      "casos": 72,
+      "frecuencia": 0.278,
+      "IC95_grupos": [
+       0.1661,
+       0.3992
+      ]
+     },
+     {
+      "categoria": "A6_error_mixto",
+      "casos": 33,
+      "frecuencia": 0.1274,
+      "IC95_grupos": [
+       0.0774,
+       0.1836
+      ]
+     }
+    ],
+    "acuerdo_con_sustituto_HD95": 0.7181,
+    "rotulos_omitidos_en_varios": 2
+   },
+   "C2_falsa_alarma_por_exceso_previo": {
+    "sin_exceso_distante_en_limpia": {
+     "pares": 722,
+     "tasa": 0.0859
+    },
+    "con_exceso_distante_en_limpia": {
+     "pares": 368,
+     "tasa": 0.7038
+    }
+   },
+   "C2_pixeles_predichos_mediana": 0.0,
+   "reproduce_Dice_diagnosticos": {
+    "pares": 1090,
+    "max_abs_dif": 0.0,
+    "pares_con_dif_mayor_1e-3": 0
+   }
+  },
+  "vmunet": {
+   "semillas": [
+    11,
+    23,
+    37,
+    53,
+    71
+   ],
+   "C1": {
+    "Dice_condicion": 0.7983,
+    "Dice_C0": 0.8207,
+    "delta": -0.0224,
+    "IC95": [
+     -0.0396,
+     -0.0037
+    ],
+    "p_unilateral_H0_delta_mayor_igual_menos_d": 0.3784053986503374,
+    "p_holm": 1.0,
+    "decision": "indeterminado"
+   },
+   "C3": {
+    "Dice_condicion": 0.5328,
+    "Dice_C0": 0.8207,
+    "delta": -0.288,
+    "IC95": [
+     -0.3248,
+     -0.2513
+    ],
+    "p_unilateral_H0_delta_mayor_igual_menos_d": 0.00024993751562109475,
+    "p_holm": 0.005,
+    "decision": "dependencia material"
+   },
+   "C2_fraccion_zona_predicha": {
+    "estimacion": 0.0548,
+    "IC95": [
+     0.0333,
+     0.0808
+    ]
+   },
+   "C2_tasa_falsa_alarma": {
+    "estimacion": 0.5885,
+    "IC95": [
+     0.5295,
+     0.6475
+    ]
+   },
+   "C2_decision": "sin atajo de contexto material",
+   "taxonomia_exacta": {
+    "casos": 253,
+    "eje_A": [
+     {
+      "categoria": "A1_omision_total",
+      "casos": 1,
+      "frecuencia": 0.004,
+      "IC95_grupos": [
+       0.0,
+       0.013
+      ]
+     },
+     {
+      "categoria": "A2_deteccion_desplazada",
+      "casos": 4,
+      "frecuencia": 0.0158,
+      "IC95_grupos": [
+       0.0,
+       0.0423
+      ]
+     },
+     {
+      "categoria": "A3_subsegmentacion",
+      "casos": 68,
+      "frecuencia": 0.2688,
+      "IC95_grupos": [
+       0.1789,
+       0.3733
+      ]
+     },
+     {
+      "categoria": "A4_exceso_adyacente",
+      "casos": 98,
+      "frecuencia": 0.3874,
+      "IC95_grupos": [
+       0.2639,
+       0.5119
+      ]
+     },
+     {
+      "categoria": "A5_falso_positivo_distante",
+      "casos": 46,
+      "frecuencia": 0.1818,
+      "IC95_grupos": [
+       0.0874,
+       0.2863
+      ]
+     },
+     {
+      "categoria": "A6_error_mixto",
+      "casos": 36,
+      "frecuencia": 0.1423,
+      "IC95_grupos": [
+       0.0902,
+       0.1969
+      ]
+     }
+    ],
+    "acuerdo_con_sustituto_HD95": 0.751,
+    "rotulos_omitidos_en_varios": 30
+   },
+   "C2_falsa_alarma_por_exceso_previo": {
+    "sin_exceso_distante_en_limpia": {
+     "pares": 784,
+     "tasa": 0.4579
+    },
+    "con_exceso_distante_en_limpia": {
+     "pares": 306,
+     "tasa": 0.9085
+    }
+   },
+   "C2_pixeles_predichos_mediana": 138.0,
+   "reproduce_Dice_diagnosticos": {
+    "pares": 1090,
+    "max_abs_dif": 0.0,
+    "pares_con_dif_mayor_1e-3": 0
+   }
+  },
+  "segnet": {
+   "semillas": [
+    11,
+    23,
+    37,
+    53,
+    71
+   ],
+   "C1": {
+    "Dice_condicion": 0.8418,
+    "Dice_C0": 0.8063,
+    "delta": 0.0356,
+    "IC95": [
+     0.0211,
+     0.0509
+    ],
+    "p_unilateral_H0_delta_mayor_igual_menos_d": 1.0,
+    "p_holm": 1.0,
+    "decision": "sin dependencia material"
+   },
+   "C3": {
+    "Dice_condicion": 0.4191,
+    "Dice_C0": 0.8063,
+    "delta": -0.3872,
+    "IC95": [
+     -0.4413,
+     -0.3337
+    ],
+    "p_unilateral_H0_delta_mayor_igual_menos_d": 0.00024993751562109475,
+    "p_holm": 0.005,
+    "decision": "dependencia material"
+   },
+   "C2_fraccion_zona_predicha": {
+    "estimacion": 0.0153,
+    "IC95": [
+     0.0081,
+     0.0251
+    ]
+   },
+   "C2_tasa_falsa_alarma": {
+    "estimacion": 0.3303,
+    "IC95": [
+     0.2623,
+     0.4016
+    ]
+   },
+   "C2_decision": "sin atajo de contexto material",
+   "taxonomia_exacta": {
+    "casos": 324,
+    "eje_A": [
+     {
+      "categoria": "A1_omision_total",
+      "casos": 5,
+      "frecuencia": 0.0154,
+      "IC95_grupos": [
+       0.0,
+       0.0407
+      ]
+     },
+     {
+      "categoria": "A2_deteccion_desplazada",
+      "casos": 3,
+      "frecuencia": 0.0093,
+      "IC95_grupos": [
+       0.0,
+       0.0245
+      ]
+     },
+     {
+      "categoria": "A3_subsegmentacion",
+      "casos": 57,
+      "frecuencia": 0.1759,
+      "IC95_grupos": [
+       0.1004,
+       0.2659
+      ]
+     },
+     {
+      "categoria": "A4_exceso_adyacente",
+      "casos": 125,
+      "frecuencia": 0.3858,
+      "IC95_grupos": [
+       0.2588,
+       0.5152
+      ]
+     },
+     {
+      "categoria": "A5_falso_positivo_distante",
+      "casos": 96,
+      "frecuencia": 0.2963,
+      "IC95_grupos": [
+       0.1915,
+       0.4118
+      ]
+     },
+     {
+      "categoria": "A6_error_mixto",
+      "casos": 38,
+      "frecuencia": 0.1173,
+      "IC95_grupos": [
+       0.0727,
+       0.1693
+      ]
+     }
+    ],
+    "acuerdo_con_sustituto_HD95": 0.7407,
+    "rotulos_omitidos_en_varios": 2
+   },
+   "C2_falsa_alarma_por_exceso_previo": {
+    "sin_exceso_distante_en_limpia": {
+     "pares": 717,
+     "tasa": 0.1032
+    },
+    "con_exceso_distante_en_limpia": {
+     "pares": 373,
+     "tasa": 0.7373
+    }
+   },
+   "C2_pixeles_predichos_mediana": 0.0,
+   "reproduce_Dice_diagnosticos": {
+    "pares": 1090,
+    "max_abs_dif": 0.0,
+    "pares_con_dif_mayor_1e-3": 0
+   }
+  },
+  "deeplabv3plus": {
+   "semillas": [
+    11,
+    23,
+    37,
+    53,
+    71
+   ],
+   "C1": {
+    "Dice_condicion": 0.8153,
+    "Dice_C0": 0.8133,
+    "delta": 0.0019,
+    "IC95": [
+     -0.014,
+     0.0192
+    ],
+    "p_unilateral_H0_delta_mayor_igual_menos_d": 0.9965008747813047,
+    "p_holm": 1.0,
+    "decision": "sin dependencia material"
+   },
+   "C3": {
+    "Dice_condicion": 0.4451,
+    "Dice_C0": 0.8133,
+    "delta": -0.3682,
+    "IC95": [
+     -0.4179,
+     -0.317
+    ],
+    "p_unilateral_H0_delta_mayor_igual_menos_d": 0.00024993751562109475,
+    "p_holm": 0.005,
+    "decision": "dependencia material"
+   },
+   "C2_fraccion_zona_predicha": {
+    "estimacion": 0.0685,
+    "IC95": [
+     0.0452,
+     0.0964
+    ]
+   },
+   "C2_tasa_falsa_alarma": {
+    "estimacion": 0.4352,
+    "IC95": [
+     0.3656,
+     0.5057
+    ]
+   },
+   "C2_decision": "sin atajo de contexto material",
+   "taxonomia_exacta": {
+    "casos": 265,
+    "eje_A": [
+     {
+      "categoria": "A1_omision_total",
+      "casos": 3,
+      "frecuencia": 0.0113,
+      "IC95_grupos": [
+       0.0,
+       0.0249
+      ]
+     },
+     {
+      "categoria": "A2_deteccion_desplazada",
+      "casos": 4,
+      "frecuencia": 0.0151,
+      "IC95_grupos": [
+       0.0,
+       0.0382
+      ]
+     },
+     {
+      "categoria": "A3_subsegmentacion",
+      "casos": 103,
+      "frecuencia": 0.3887,
+      "IC95_grupos": [
+       0.2717,
+       0.5185
+      ]
+     },
+     {
+      "categoria": "A4_exceso_adyacente",
+      "casos": 75,
+      "frecuencia": 0.283,
+      "IC95_grupos": [
+       0.1587,
+       0.4107
+      ]
+     },
+     {
+      "categoria": "A5_falso_positivo_distante",
+      "casos": 42,
+      "frecuencia": 0.1585,
+      "IC95_grupos": [
+       0.0717,
+       0.2601
+      ]
+     },
+     {
+      "categoria": "A6_error_mixto",
+      "casos": 38,
+      "frecuencia": 0.1434,
+      "IC95_grupos": [
+       0.0935,
+       0.1953
+      ]
+     }
+    ],
+    "acuerdo_con_sustituto_HD95": 0.7962,
+    "rotulos_omitidos_en_varios": 78
+   },
+   "C2_falsa_alarma_por_exceso_previo": {
+    "sin_exceso_distante_en_limpia": {
+     "pares": 898,
+     "tasa": 0.3252
+    },
+    "con_exceso_distante_en_limpia": {
+     "pares": 192,
+     "tasa": 0.9062
+    }
+   },
+   "C2_pixeles_predichos_mediana": 0.0,
+   "reproduce_Dice_diagnosticos": {
+    "pares": 1090,
+    "max_abs_dif": 0.0,
+    "pares_con_dif_mayor_1e-3": 0
+   }
+  },
+  "unetplusplus": {
+   "semillas": [
+    11,
+    23,
+    37,
+    53,
+    71
+   ],
+   "C1": {
+    "Dice_condicion": 0.8096,
+    "Dice_C0": 0.8099,
+    "delta": -0.0003,
+    "IC95": [
+     -0.0191,
+     0.0202
+    ],
+    "p_unilateral_H0_delta_mayor_igual_menos_d": 0.9800049987503124,
+    "p_holm": 1.0,
+    "decision": "sin dependencia material"
+   },
+   "C3": {
+    "Dice_condicion": 0.5102,
+    "Dice_C0": 0.8099,
+    "delta": -0.2997,
+    "IC95": [
+     -0.3409,
+     -0.2577
+    ],
+    "p_unilateral_H0_delta_mayor_igual_menos_d": 0.00024993751562109475,
+    "p_holm": 0.005,
+    "decision": "dependencia material"
+   },
+   "C2_fraccion_zona_predicha": {
+    "estimacion": 0.0817,
+    "IC95": [
+     0.0581,
+     0.1094
+    ]
+   },
+   "C2_tasa_falsa_alarma": {
+    "estimacion": 0.4811,
+    "IC95": [
+     0.418,
+     0.5435
+    ]
+   },
+   "C2_decision": "sin atajo de contexto material",
+   "taxonomia_exacta": {
+    "casos": 279,
+    "eje_A": [
+     {
+      "categoria": "A1_omision_total",
+      "casos": 10,
+      "frecuencia": 0.0358,
+      "IC95_grupos": [
+       0.0,
+       0.087
+      ]
+     },
+     {
+      "categoria": "A2_deteccion_desplazada",
+      "casos": 4,
+      "frecuencia": 0.0143,
+      "IC95_grupos": [
+       0.0,
+       0.0321
+      ]
+     },
+     {
+      "categoria": "A3_subsegmentacion",
+      "casos": 104,
+      "frecuencia": 0.3728,
+      "IC95_grupos": [
+       0.2603,
+       0.5033
+      ]
+     },
+     {
+      "categoria": "A4_exceso_adyacente",
+      "casos": 91,
+      "frecuencia": 0.3262,
+      "IC95_grupos": [
+       0.2205,
+       0.4354
+      ]
+     },
+     {
+      "categoria": "A5_falso_positivo_distante",
+      "casos": 30,
+      "frecuencia": 0.1075,
+      "IC95_grupos": [
+       0.0517,
+       0.1724
+      ]
+     },
+     {
+      "categoria": "A6_error_mixto",
+      "casos": 40,
+      "frecuencia": 0.1434,
+      "IC95_grupos": [
+       0.0781,
+       0.2116
+      ]
+     }
+    ],
+    "acuerdo_con_sustituto_HD95": 0.7706,
+    "rotulos_omitidos_en_varios": 119
+   },
+   "C2_falsa_alarma_por_exceso_previo": {
+    "sin_exceso_distante_en_limpia": {
+     "pares": 918,
+     "tasa": 0.3878
+    },
+    "con_exceso_distante_en_limpia": {
+     "pares": 172,
+     "tasa": 0.9419
+    }
+   },
+   "C2_pixeles_predichos_mediana": 4.5,
+   "reproduce_Dice_diagnosticos": {
+    "pares": 1090,
+    "max_abs_dif": 0.0,
+    "pares_con_dif_mayor_1e-3": 0
+   }
+  },
+  "pidnet_s": {
+   "semillas": [
+    11,
+    23,
+    37,
+    53,
+    71
+   ],
+   "C1": {
+    "Dice_condicion": 0.7971,
+    "Dice_C0": 0.7963,
+    "delta": 0.0007,
+    "IC95": [
+     -0.019,
+     0.0228
+    ],
+    "p_unilateral_H0_delta_mayor_igual_menos_d": 0.9817545613596601,
+    "p_holm": 1.0,
+    "decision": "sin dependencia material"
+   },
+   "C3": {
+    "Dice_condicion": 0.4725,
+    "Dice_C0": 0.7963,
+    "delta": -0.3238,
+    "IC95": [
+     -0.3671,
+     -0.2812
+    ],
+    "p_unilateral_H0_delta_mayor_igual_menos_d": 0.00024993751562109475,
+    "p_holm": 0.005,
+    "decision": "dependencia material"
+   },
+   "C2_fraccion_zona_predicha": {
+    "estimacion": 0.0762,
+    "IC95": [
+     0.053,
+     0.1032
+    ]
+   },
+   "C2_tasa_falsa_alarma": {
+    "estimacion": 0.4525,
+    "IC95": [
+     0.3852,
+     0.5197
+    ]
+   },
+   "C2_decision": "sin atajo de contexto material",
+   "taxonomia_exacta": {
+    "casos": 288,
+    "eje_A": [
+     {
+      "categoria": "A1_omision_total",
+      "casos": 1,
+      "frecuencia": 0.0035,
+      "IC95_grupos": [
+       0.0,
+       0.0119
+      ]
+     },
+     {
+      "categoria": "A2_deteccion_desplazada",
+      "casos": 12,
+      "frecuencia": 0.0417,
+      "IC95_grupos": [
+       0.0182,
+       0.0678
+      ]
+     },
+     {
+      "categoria": "A3_subsegmentacion",
+      "casos": 114,
+      "frecuencia": 0.3958,
+      "IC95_grupos": [
+       0.293,
+       0.5057
+      ]
+     },
+     {
+      "categoria": "A4_exceso_adyacente",
+      "casos": 72,
+      "frecuencia": 0.25,
+      "IC95_grupos": [
+       0.1541,
+       0.3515
+      ]
+     },
+     {
+      "categoria": "A5_falso_positivo_distante",
+      "casos": 36,
+      "frecuencia": 0.125,
+      "IC95_grupos": [
+       0.062,
+       0.1957
+      ]
+     },
+     {
+      "categoria": "A6_error_mixto",
+      "casos": 53,
+      "frecuencia": 0.184,
+      "IC95_grupos": [
+       0.1275,
+       0.2456
+      ]
+     }
+    ],
+    "acuerdo_con_sustituto_HD95": 0.8229,
+    "rotulos_omitidos_en_varios": 95
+   },
+   "C2_falsa_alarma_por_exceso_previo": {
+    "sin_exceso_distante_en_limpia": {
+     "pares": 929,
+     "tasa": 0.3488
+    },
+    "con_exceso_distante_en_limpia": {
+     "pares": 161,
+     "tasa": 0.9503
+    }
+   },
+   "C2_pixeles_predichos_mediana": 0.0,
+   "reproduce_Dice_diagnosticos": {
+    "pares": 1090,
+    "max_abs_dif": 0.0,
+    "pares_con_dif_mayor_1e-3": 0
+   }
+  },
+  "segnext_t": {
+   "semillas": [
+    11,
+    23,
+    37,
+    53,
+    71
+   ],
+   "C1": {
+    "Dice_condicion": 0.7094,
+    "Dice_C0": 0.7592,
+    "delta": -0.0498,
+    "IC95": [
+     -0.0795,
+     -0.0201
+    ],
+    "p_unilateral_H0_delta_mayor_igual_menos_d": 0.02474381404648838,
+    "p_holm": 0.198,
+    "decision": "indeterminado"
+   },
+   "C3": {
+    "Dice_condicion": 0.4462,
+    "Dice_C0": 0.7592,
+    "delta": -0.3129,
+    "IC95": [
+     -0.3592,
+     -0.2679
+    ],
+    "p_unilateral_H0_delta_mayor_igual_menos_d": 0.00024993751562109475,
+    "p_holm": 0.005,
+    "decision": "dependencia material"
+   },
+   "C2_fraccion_zona_predicha": {
+    "estimacion": 0.0728,
+    "IC95": [
+     0.0488,
+     0.1014
+    ]
+   },
+   "C2_tasa_falsa_alarma": {
+    "estimacion": 0.5156,
+    "IC95": [
+     0.441,
+     0.5885
+    ]
+   },
+   "C2_decision": "sin atajo de contexto material",
+   "taxonomia_exacta": {
+    "casos": 373,
+    "eje_A": [
+     {
+      "categoria": "A1_omision_total",
+      "casos": 0,
+      "frecuencia": 0.0,
+      "IC95_grupos": [
+       0.0,
+       0.0
+      ]
+     },
+     {
+      "categoria": "A2_deteccion_desplazada",
+      "casos": 7,
+      "frecuencia": 0.0188,
+      "IC95_grupos": [
+       0.0024,
+       0.0459
+      ]
+     },
+     {
+      "categoria": "A3_subsegmentacion",
+      "casos": 104,
+      "frecuencia": 0.2788,
+      "IC95_grupos": [
+       0.1797,
+       0.3879
+      ]
+     },
+     {
+      "categoria": "A4_exceso_adyacente",
+      "casos": 144,
+      "frecuencia": 0.3861,
+      "IC95_grupos": [
+       0.263,
+       0.5126
+      ]
+     },
+     {
+      "categoria": "A5_falso_positivo_distante",
+      "casos": 40,
+      "frecuencia": 0.1072,
+      "IC95_grupos": [
+       0.0439,
+       0.1844
+      ]
+     },
+     {
+      "categoria": "A6_error_mixto",
+      "casos": 78,
+      "frecuencia": 0.2091,
+      "IC95_grupos": [
+       0.1321,
+       0.29
+      ]
+     }
+    ],
+    "acuerdo_con_sustituto_HD95": 0.748,
+    "rotulos_omitidos_en_varios": 57
+   },
+   "C2_falsa_alarma_por_exceso_previo": {
+    "sin_exceso_distante_en_limpia": {
+     "pares": 818,
+     "tasa": 0.3619
+    },
+    "con_exceso_distante_en_limpia": {
+     "pares": 272,
+     "tasa": 0.9412
+    }
+   },
+   "C2_pixeles_predichos_mediana": 54.0,
+   "reproduce_Dice_diagnosticos": {
+    "pares": 1090,
+    "max_abs_dif": 0.1282,
+    "pares_con_dif_mayor_1e-3": 792
+   }
+  },
+  "segformer_b0": {
+   "semillas": [
+    11,
+    23,
+    37,
+    53,
+    71
+   ],
+   "C1": {
+    "Dice_condicion": 0.4873,
+    "Dice_C0": 0.7025,
+    "delta": -0.2152,
+    "IC95": [
+     -0.2632,
+     -0.1678
+    ],
+    "p_unilateral_H0_delta_mayor_igual_menos_d": 0.00024993751562109475,
+    "p_holm": 0.005,
+    "decision": "dependencia material"
+   },
+   "C3": {
+    "Dice_condicion": 0.2834,
+    "Dice_C0": 0.7025,
+    "delta": -0.4191,
+    "IC95": [
+     -0.4688,
+     -0.3704
+    ],
+    "p_unilateral_H0_delta_mayor_igual_menos_d": 0.00024993751562109475,
+    "p_holm": 0.005,
+    "decision": "dependencia material"
+   },
+   "C2_fraccion_zona_predicha": {
+    "estimacion": 0.0946,
+    "IC95": [
+     0.0652,
+     0.1279
+    ]
+   },
+   "C2_tasa_falsa_alarma": {
+    "estimacion": 0.5205,
+    "IC95": [
+     0.4459,
+     0.5934
+    ]
+   },
+   "C2_decision": "sin atajo de contexto material",
+   "taxonomia_exacta": {
+    "casos": 482,
+    "eje_A": [
+     {
+      "categoria": "A1_omision_total",
+      "casos": 8,
+      "frecuencia": 0.0166,
+      "IC95_grupos": [
+       0.002,
+       0.0371
+      ]
+     },
+     {
+      "categoria": "A2_deteccion_desplazada",
+      "casos": 25,
+      "frecuencia": 0.0519,
+      "IC95_grupos": [
+       0.0148,
+       0.0975
+      ]
+     },
+     {
+      "categoria": "A3_subsegmentacion",
+      "casos": 264,
+      "frecuencia": 0.5477,
+      "IC95_grupos": [
+       0.4478,
+       0.6455
+      ]
+     },
+     {
+      "categoria": "A4_exceso_adyacente",
+      "casos": 61,
+      "frecuencia": 0.1266,
+      "IC95_grupos": [
+       0.0615,
+       0.2049
+      ]
+     },
+     {
+      "categoria": "A5_falso_positivo_distante",
+      "casos": 24,
+      "frecuencia": 0.0498,
+      "IC95_grupos": [
+       0.0185,
+       0.0877
+      ]
+     },
+     {
+      "categoria": "A6_error_mixto",
+      "casos": 100,
+      "frecuencia": 0.2075,
+      "IC95_grupos": [
+       0.137,
+       0.2797
+      ]
+     }
+    ],
+    "acuerdo_con_sustituto_HD95": 0.9378,
+    "rotulos_omitidos_en_varios": 159
+   },
+   "C2_falsa_alarma_por_exceso_previo": {
+    "sin_exceso_distante_en_limpia": {
+     "pares": 678,
+     "tasa": 0.3437
+    },
+    "con_exceso_distante_en_limpia": {
+     "pares": 412,
+     "tasa": 0.801
+    }
+   },
+   "C2_pixeles_predichos_mediana": 61.5,
+   "reproduce_Dice_diagnosticos": {
+    "pares": 1090,
+    "max_abs_dif": 0.0,
+    "pares_con_dif_mayor_1e-3": 0
+   }
+  }
+ }
+}

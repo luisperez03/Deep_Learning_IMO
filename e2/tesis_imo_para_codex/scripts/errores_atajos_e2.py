@@ -8,7 +8,7 @@ config/errores_atajos_e2_20261122.json (su SHA-256 queda en cada salida).
   python scripts/errores_atajos_e2.py analizar
   python scripts/errores_atajos_e2.py atajos    --entrada RUTA/atajos_errores_e2     (JSON del cuaderno Atajos_Errores_E2)
   python scripts/errores_atajos_e2.py revision  --entrada RUTA/atajos_errores_e2 --voc RUTA/VOC2012 --destino CARPETA
-  python scripts/errores_atajos_e2.py medir-revision --hoja CARPETA/hoja_revision_errores.csv
+  python scripts/errores_atajos_e2.py medir-revision --hoja CARPETA/hoja_revision_errores.xlsx   (o el .csv)
 
 `atributos`, `extraer` y `analizar` son locales: solo usan la imagen, la máscara real y los conteos TP/FP/FN/HD95 por
 imagen. `atajos` y `revision` necesitan las predicciones del cuaderno de Colab. Los paneles de revisión llevan
@@ -571,17 +571,30 @@ def escribir_tablas(tax, comp, sub_v, sub_t, dano_v, dano_t):
 
 # ---------------------------------------------------------------- después de Colab: atajos y taxonomía exacta
 
+def eje_a_exacto(f):
+    """Eje A con componentes predichas (Colab): el exceso es distante si más de la mitad de los píxeles de exceso está
+    en componentes sin contacto con la máscara real dilatada 5 px. Las demás categorías no cambian."""
+    a = eje_a({'TP': f['TP'], 'FP': f['FP'], 'FN': f['FN'], 'HD95': f['HD95']})
+    if a in ('A4_exceso_adyacente', 'A5_falso_positivo_distante'):
+        return 'A5_falso_positivo_distante' if f['fp_px_distantes'] > 0.5 * f['FP'] else 'A4_exceso_adyacente'
+    return a
+
+
+def leer_atajos(ent):
+    filas = []
+    for p in sorted(Path(ent).glob('*_seed*_atajos.json')):
+        r = json.loads(p.read_text(encoding='utf-8'))
+        filas += [{'model': r['model'], 'seed': r['seed'], **d} for d in r['details']]
+    return filas
+
+
 def cmd_atajos(a):
     ent = Path(a.entrada)
     at, um, corr, ruido = cargar()
     archivos = sorted(ent.glob('*_seed*_atajos.json'))
     if not archivos:
         raise SystemExit(f'No hay *_atajos.json en {ent}')
-    filas = []
-    for p in archivos:
-        r = json.loads(p.read_text(encoding='utf-8'))
-        for d in r['details']:
-            filas.append({'model': r['model'], 'seed': r['seed'], **d})
+    filas = leer_atajos(ent)
     ids = sorted({f['id'] for f in filas})
     G = Grupos([at[i]['group_id'] for i in ids], CFG['bootstrap']['seed'] + 3)
     delta = CFG['delta']; res = {'archivos': len(archivos), **firma(), 'modelos': {}}
@@ -612,20 +625,24 @@ def cmd_atajos(a):
             r[key] = {'estimacion': r4(est), 'IC95': ic(bs)}
         r['C2_decision'] = ('atajo de contexto' if r['C2_fraccion_zona_predicha']['IC95'][0] > 0.10
                             else 'sin atajo de contexto material')
-        # taxonomía exacta frente al sustituto HD95
-        acuerdo, total, exacta = 0, 0, Counter()
-        for f in fm:
-            if f['Dice_C0'] >= ERR:
-                continue
-            fx = {'TP': f['TP'], 'FP': f['FP'], 'FN': f['FN'], 'HD95': f['HD95']}
-            a_proxy = eje_a(fx)
-            if a_proxy in ('A4_exceso_adyacente', 'A5_falso_positivo_distante'):
-                a_ex = 'A5_falso_positivo_distante' if f['fp_px_distantes'] > 0.5 * f['FP'] else 'A4_exceso_adyacente'
-            else:
-                a_ex = a_proxy
-            exacta[a_ex] += 1; total += 1; acuerdo += a_ex == a_proxy
-        r['taxonomia_exacta'] = {'casos': total, 'A': dict(exacta), 'acuerdo_con_sustituto_HD95': r4(acuerdo / total) if total else None,
+        # taxonomía exacta frente al sustituto HD95 (casos = pares con Dice limpio < 0,80 en esta corrida)
+        casos = [{**f, 'A': eje_a_exacto(f), 'A_proxy': eje_a(f)} for f in fm if f['Dice_C0'] < ERR]
+        r['taxonomia_exacta'] = {'casos': len(casos),
+                                 'eje_A': frecuencias(G, casos, CAT_A, 'A') if casos else [],
+                                 'acuerdo_con_sustituto_HD95': r4(np.mean([c['A'] == c['A_proxy'] for c in casos])) if casos else None,
                                  'rotulos_omitidos_en_varios': int(sum(f['gt_omitidas'] for f in fm if f['gt_componentes'] >= 2))}
+        # falsas alarmas del negativo sintético según si la imagen limpia ya tenía exceso distante (rótulos sin anotar u
+        # objetos parecidos que siguen en la foto) o no (la alarma aparece con el borrado)
+        r['C2_falsa_alarma_por_exceso_previo'] = {
+            etiqueta: {'pares': len(sub), 'tasa': r4(np.mean([f['C2_falsa_alarma'] for f in sub])) if sub else None}
+            for etiqueta, sub in [('sin_exceso_distante_en_limpia', [f for f in fm if f['fp_px_distantes'] == 0]),
+                                  ('con_exceso_distante_en_limpia', [f for f in fm if f['fp_px_distantes'] > 0])]}
+        r['C2_pixeles_predichos_mediana'] = float(np.median([f['C2_pixeles_predichos'] for f in fm]))
+        # control: la condición limpia debe reproducir el Dice por imagen de los diagnósticos GPU
+        ref = {(f['seed'], f['id']): f['Dice'] for f in corr if f['split'] == 'val' and f['model'] == m}
+        difs = [abs(f['Dice_C0'] - ref[(f['seed'], f['id'])]) for f in fm if (f['seed'], f['id']) in ref]
+        r['reproduce_Dice_diagnosticos'] = {'pares': len(difs), 'max_abs_dif': r4(max(difs)) if difs else None,
+                                            'pares_con_dif_mayor_1e-3': int(sum(d > 1e-3 for d in difs))}
         res['modelos'][m] = r
     adj = holm(np.array([p for _, _, p in pruebas]))
     for (m, c, _), pa in zip(pruebas, adj):
@@ -644,10 +661,25 @@ def cmd_atajos(a):
                     fmt(r['C2_fraccion_zona_predicha']['estimacion'], r['C2_fraccion_zona_predicha']['IC95']),
                     fmt(r['C2_tasa_falsa_alarma']['estimacion'], r['C2_tasa_falsa_alarma']['IC95'])]
                    for m, r in res['modelos'].items()]), '',
-         '## Taxonomía exacta con componentes predichas', '',
-         tabla_md(['Red', 'Casos', 'Acuerdo con HD95', 'Rótulos omitidos en imágenes con varios'],
-                  [[m, r['taxonomia_exacta']['casos'], fmt(r['taxonomia_exacta']['acuerdo_con_sustituto_HD95']),
-                    r['taxonomia_exacta']['rotulos_omitidos_en_varios']] for m, r in res['modelos'].items()])]
+         '## Falsas alarmas en el negativo sintético, según la imagen limpia', '',
+         'Tasa de imágenes con al menos 50 píxeles predichos tras borrar los rótulos anotados, separando las que en la '
+         'imagen limpia ya tenían exceso distante (lo que queda puede ser un rótulo sin anotar) de las que no.', '',
+         tabla_md(['Red', 'Sin exceso distante previo (pares)', 'Con exceso distante previo (pares)', 'Píxeles predichos (mediana)'],
+                  [[m] + [f"{fmt(r['C2_falsa_alarma_por_exceso_previo'][k]['tasa'])} ({r['C2_falsa_alarma_por_exceso_previo'][k]['pares']})"
+                          for k in ['sin_exceso_distante_en_limpia', 'con_exceso_distante_en_limpia']] + [r['C2_pixeles_predichos_mediana']]
+                   for m, r in res['modelos'].items()]), '',
+         '## Taxonomía exacta con componentes predichas (eje A)', '',
+         'Frecuencia [IC95 por grupos]; el exceso es distante si más de la mitad de sus píxeles está en componentes sin '
+         'contacto con la máscara real dilatada 5 px.', '',
+         tabla_md(['Red', 'Casos', 'Acuerdo con HD95'] + [c.split('_', 1)[1].replace('_', ' ') for c in CAT_A] +
+                  ['Rótulos omitidos en imágenes con varios'],
+                  [[m, r['taxonomia_exacta']['casos'], fmt(r['taxonomia_exacta']['acuerdo_con_sustituto_HD95'])] +
+                   [fmt(x['frecuencia'], x['IC95_grupos']) for x in r['taxonomia_exacta']['eje_A']] +
+                   [r['taxonomia_exacta']['rotulos_omitidos_en_varios']] for m, r in res['modelos'].items()]), '',
+         '## Control: la imagen limpia reproduce el Dice de los diagnósticos', '',
+         tabla_md(['Red', 'Pares', 'Máx. diferencia', 'Pares con diferencia > 0,001'],
+                  [[m, r['reproduce_Dice_diagnosticos']['pares'], fmt(r['reproduce_Dice_diagnosticos']['max_abs_dif']),
+                    r['reproduce_Dice_diagnosticos']['pares_con_dif_mayor_1e-3']] for m, r in res['modelos'].items()])]
     (OUT / 'TABLAS_ATAJOS.md').write_text('\n'.join(L) + '\n', encoding='utf-8')
     print('\n'.join(L))
 
@@ -673,6 +705,9 @@ def cmd_revision(a):
     ent, voc, dest = Path(a.entrada), Path(a.voc), Path(a.destino)
     dest.mkdir(parents=True, exist_ok=True)
     muestra = leer_csv(OUT / 'muestra_revision.csv')
+    exactas = {(f['model'], f['seed'], f['id']): eje_a_exacto(f) for f in leer_atajos(ent)}
+    for c in muestra:
+        c['A_asignada'] = exactas.get((c['model'], int(c['seed']), c['id']), c['A_asignada'])
     filas = {f['id']: f for split in ['val'] for f in read_csv(PROJECT / 'resultados/preentrenamiento' / f'{split}.csv')}
     cache = {}
     paginas, actual = [], []
@@ -695,48 +730,139 @@ def cmd_revision(a):
             paginas.append(actual); actual = []
     if actual:
         paginas.append(actual)
-    from PIL import ImageDraw
-    for k, pag in enumerate(paginas, 1):
-        lienzo = Image.new('RGB', (776, 4 * 280), 'white'); d = ImageDraw.Draw(lienzo)
-        for j, (c, tira) in enumerate(pag):
-            d.text((4, j * 280 + 4), f"caso {c['n']}  ({c['id']})", fill='black')
-            lienzo.paste(Image.fromarray(tira), (0, j * 280 + 20))
-        lienzo.save(dest / f'pagina_{k:02d}.png')
+    paginas_pdf = dibujar_paginas(paginas, dest)
     hoja = [{'n': c['n'], 'id': c['id'], 'pagina': (k // 4) + 1, 'A_asignada': c['A_asignada'], 'B_asignada': c['B_asignada'],
              'acuerdo_A': '', 'A_correcta': '', 'acuerdo_B': '', 'B_correcta': '', 'exceso_es_rotulo_sin_anotar': '',
              'nota': ''} for k, c in enumerate(muestra)]
-    escribir_csv(dest / 'hoja_revision_errores.csv', hoja)
-    (dest / 'LEEME.txt').write_text(
-        'Revisión de la taxonomía de errores. Cada página tiene 4 casos: imagen | máscara real (verde) | predicción '
-        '(verde acierto, rojo exceso, azul omisión).\nEn hoja_revision_errores.csv marca acuerdo_A y acuerdo_B con si/no; '
-        'si es no, escribe la categoría correcta (A1..A6, B1..B7). Categorías:\n' +
-        '\n'.join(f'{n}: {r}' for n, r in CFG['taxonomy_geometric']['rules'] + CFG['taxonomy_condition']['rules']) +
-        '\nLa hoja no muestra la red ni la semilla para no sesgar.\n', encoding='utf-8')
-    print(dest, len(paginas), 'páginas,', len(hoja), 'casos')
+    escribir_hoja_excel(dest / 'hoja_revision_errores.xlsx', hoja)
+    print(dest, len(paginas), 'páginas,', len(hoja), 'casos;', paginas_pdf)
+
+
+# Texto llano para quien revisa (mismas reglas del protocolo, sin jerga)
+LLANO_A = {'A1_omision_total': 'A1 no marcó ningún rótulo',
+           'A2_deteccion_desplazada': 'A2 marcó algo, pero nada del rótulo',
+           'A3_subsegmentacion': 'A3 se quedó corto: dejó partes del rótulo sin marcar (azul)',
+           'A4_exceso_adyacente': 'A4 se pasó del borde: marcó de más pegado al rótulo (rojo junto al rótulo)',
+           'A5_falso_positivo_distante': 'A5 marcó algo lejos del rótulo (rojo aparte)',
+           'A6_error_mixto': 'A6 mezcla: se quedó corto y marcó de más'}
+LLANO_B = {'B1_ruido_confirmado': 'B1 la máscara tiene un error ya confirmado',
+           'B2_rotulo_en_borde': 'B2 algún rótulo toca el borde de la foto',
+           'B3_varios_rotulos': 'B3 hay dos o más rótulos',
+           'B4_rotulo_pequeno': 'B4 el rótulo es pequeño',
+           'B5_luz_extrema': 'B5 luz extrema: muy oscuro o muy claro',
+           'B6_bajo_contraste': 'B6 el rótulo casi no se distingue de su fondo',
+           'B7_sin_condicion': 'B7 ninguna de las anteriores'}
+COLUMNAS = [('n', 'Caso'), ('pagina', 'Página del PDF'), ('A_asignada', 'Qué error dice la máquina'),
+            ('acuerdo_A', '¿De acuerdo? (sí/no)'), ('A_correcta', 'Si no: cuál es'),
+            ('B_asignada', 'Qué condición dice la máquina'), ('acuerdo_B', '¿De acuerdo? (sí/no)'),
+            ('B_correcta', 'Si no: cuál es'),
+            ('exceso_es_rotulo_sin_anotar', 'Si hay rojo lejos del rótulo: ¿es un rótulo real que no tiene máscara?'),
+            ('nota', 'Nota (opcional)')]
+
+
+def dibujar_paginas(paginas, dest):
+    from PIL import ImageDraw, ImageFont
+    try:
+        fuente = ImageFont.truetype('arial.ttf', 22); chica = ImageFont.truetype('arial.ttf', 18)
+    except OSError:
+        fuente = chica = ImageFont.load_default()
+    esc, alto = 1.5, 430
+    ancho = int(776 * esc)
+    hojas = []
+    for k, pag in enumerate(paginas, 1):
+        lienzo = Image.new('RGB', (ancho, 60 + 4 * alto), 'white'); d = ImageDraw.Draw(lienzo)
+        d.text((10, 10), f'Página {k}.  Izquierda: foto.  Centro: lo que se anotó (verde).  Derecha: lo que marcó la red: '
+                         'verde = bien, rojo = de más, azul = le faltó.', fill='black', font=chica)
+        for j, (c, tira) in enumerate(pag):
+            y0 = 60 + j * alto
+            d.text((10, y0), f"Caso {c['n']}", fill='black', font=fuente)
+            t = Image.fromarray(tira).resize((ancho, int(256 * esc)), Image.Resampling.LANCZOS)
+            lienzo.paste(t, (0, y0 + 34))
+        lienzo.save(dest / f'pagina_{k:02d}.png'); hojas.append(lienzo)
+    pdf = dest / 'REVISION_ERRORES.pdf'
+    hojas[0].save(pdf, save_all=True, append_images=hojas[1:], resolution=110)
+    return str(pdf)
+
+
+def escribir_hoja_excel(path, hoja):
+    from openpyxl import Workbook
+    from openpyxl.styles import Alignment, Font, PatternFill
+    from openpyxl.worksheet.datavalidation import DataValidation
+    wb = Workbook(); ws = wb.active; ws.title = 'Revision'
+    ws.append([t for _, t in COLUMNAS])
+    for f in hoja:
+        ws.append([LLANO_A.get(f[k], f[k]) if k == 'A_asignada' else LLANO_B.get(f[k], f[k]) if k == 'B_asignada' else f[k]
+                   for k, _ in COLUMNAS])
+    n = len(hoja) + 1
+    listas = {'sino': '"sí,no"', 'sinona': '"sí,no,no aplica"'}
+    for col, lista in [('D', 'sino'), ('G', 'sino'), ('I', 'sinona')]:
+        dv = DataValidation(type='list', formula1=listas[lista], allow_blank=True); ws.add_data_validation(dv)
+        dv.add(f'{col}2:{col}{n}')
+    ref = wb.create_sheet('Categorias')
+    ref.append(['Código', 'Qué significa'])
+    for t in list(LLANO_A.values()) + [''] + list(LLANO_B.values()):
+        ref.append([t[:2], t[3:]] if t else [])
+    ref.append([]); ref.append(['', 'En la condición (B), si aplican varias, vale la primera de la lista.'])
+    for col, lista in [('E', 'A'), ('H', 'B')]:
+        dv = DataValidation(type='list', formula1='"' + ','.join(f'{lista}{i}' for i in range(1, 7 if lista == 'A' else 8)) + '"',
+                            allow_blank=True); ws.add_data_validation(dv); dv.add(f'{col}2:{col}{n}')
+    for celda in ws[1]:
+        celda.font = Font(bold=True); celda.alignment = Alignment(wrap_text=True, vertical='top')
+        celda.fill = PatternFill('solid', fgColor='DDEBF7')
+    for col, w in zip('ABCDEFGHIJ', [7, 9, 48, 12, 10, 42, 12, 10, 30, 30]):
+        ws.column_dimensions[col].width = w
+    ws.freeze_panes = 'A2'
+    for col, w in zip('AB', [9, 70]):
+        ref.column_dimensions[col].width = w
+    wb.save(path)
+
+
+def leer_hoja(path):
+    path = Path(path)
+    if path.suffix.lower() != '.xlsx':
+        return leer_csv(path)
+    from openpyxl import load_workbook
+    ws = load_workbook(path, data_only=True)['Revision']
+    filas = []
+    for fila in ws.iter_rows(min_row=2, values_only=True):
+        if fila[0] is None:
+            continue
+        f = {k: ('' if v is None else str(v).strip()) for (k, _), v in zip(COLUMNAS, fila)}
+        f['n'] = str(int(float(f['n'])))
+        filas.append(f)
+    return filas
+
+
+def si(x):
+    return x.strip().lower().startswith('s')
 
 
 def cmd_medir_revision(a):
-    hoja = leer_csv(a.hoja)
+    hoja = leer_hoja(a.hoja)
     muestra = {f['n']: f for f in leer_csv(OUT / 'muestra_revision.csv')}
     llenas = [f for f in hoja if f['acuerdo_A'].strip() and f['acuerdo_B'].strip()]
     if not llenas:
         raise SystemExit('La hoja no tiene respuestas')
-    res = {'casos_revisados': len(llenas), 'casos_muestra': len(hoja), **firma(), 'por_modelo': {}}
+    res = {'casos_revisados': len(llenas), 'casos_muestra': len(hoja), 'hoja_sha256': sha_file(a.hoja), **firma(),
+           'nota': 'Acuerdo con la categoría mostrada: A exacta (componentes predichas, Colab) y B automática',
+           'por_modelo': {}}
     for eje in ['A', 'B']:
-        k = sum(f[f'acuerdo_{eje}'].strip().lower().startswith('s') for f in llenas)
+        k = sum(si(f[f'acuerdo_{eje}']) for f in llenas)
         res[f'acuerdo_{eje}'] = {'k': k, 'n': len(llenas), 'tasa': r4(k / len(llenas)), 'IC95_wilson': wilson(k, len(llenas))}
     for m in CFG['human_review']['models']:
         fm = [f for f in llenas if muestra[f['n']]['model'] == m]
-        res['por_modelo'][m] = {eje: wilson(sum(f[f'acuerdo_{eje}'].strip().lower().startswith('s') for f in fm), len(fm))
-                                for eje in ['A', 'B']} | {'n': len(fm)}
-    exc = [f for f in llenas if f.get('exceso_es_rotulo_sin_anotar', '').strip()]
-    k = sum(f['exceso_es_rotulo_sin_anotar'].strip().lower().startswith('s') for f in exc)
+        res['por_modelo'][m] = {eje: {'k': sum(si(f[f'acuerdo_{eje}']) for f in fm), 'n': len(fm),
+                                      'IC95_wilson': wilson(sum(si(f[f'acuerdo_{eje}']) for f in fm), len(fm))}
+                                for eje in ['A', 'B']}
+    exc = [f for f in llenas if f.get('exceso_es_rotulo_sin_anotar', '').strip().lower() in ('sí', 'si', 'no')]
+    k = sum(si(f['exceso_es_rotulo_sin_anotar']) for f in exc)
     res['exceso_es_rotulo_sin_anotar'] = {'k': k, 'n': len(exc), 'tasa': r4(k / len(exc)) if exc else None,
                                           'IC95_wilson': wilson(k, len(exc))}
     res['correcciones'] = [{k: f[k] for k in ['n', 'A_asignada', 'A_correcta', 'B_asignada', 'B_correcta', 'nota']}
-                           for f in llenas if not f['acuerdo_A'].lower().startswith('s') or not f['acuerdo_B'].lower().startswith('s')]
+                           for f in llenas if not si(f['acuerdo_A']) or not si(f['acuerdo_B'])]
     (OUT / 'REVISION_HUMANA.json').write_text(json.dumps(res, indent=1, ensure_ascii=False), encoding='utf-8')
-    print(json.dumps({k: res[k] for k in ['casos_revisados', 'acuerdo_A', 'acuerdo_B']}, ensure_ascii=False))
+    print(json.dumps({k: res[k] for k in ['casos_revisados', 'acuerdo_A', 'acuerdo_B', 'exceso_es_rotulo_sin_anotar']},
+                     ensure_ascii=False))
 
 
 def main():

@@ -5,12 +5,16 @@
 > esto cambia modelos, umbral ni checkpoints. Validación (218 imágenes, 122 grupos), 10 redes × 5 semillas; test solo
 > como descripción secundaria. IC95 por bootstrap de grupos (4.000).
 >
-> **Hecho en local** (sin predicciones): `python scripts/errores_atajos_e2.py atributos --voc RUTA/VOC2012`, `extraer
+> **En local** (sin predicciones): `python scripts/errores_atajos_e2.py atributos --voc RUTA/VOC2012`, `extraer
 > --diagnosticos RUTA/diag_descarga` (los `*_clean.json` del complemento GPU: TP, FP, FN y HD95 por imagen) y
-> `analizar`. Tablas completas en `TABLAS_LOCAL.md`; datos en `RESUMEN_LOCAL.json` y los CSV de esta carpeta.
+> `analizar` → `TABLAS_LOCAL.md`, `RESUMEN_LOCAL.json` y los CSV.
 >
-> **Pendiente:** la prueba contrafactual de atajos y la taxonomía exacta (`colab/Atajos_Errores_E2.ipynb`, GPU) y la
-> revisión humana de 88 casos (`revision` y `medir-revision`). Ver al final.
+> **En Colab** (L4, 50 de 50 corridas, unos 20 min): `colab/Atajos_Errores_E2.ipynb` sin cambios, con
+> `scripts/atajos_gpu_e2.py` y la config embebidos (SHA-256 verificados). La salida está fuera del repositorio y en
+> Drive (`tesis_imo_e2_atajos_v1`). Resumen local: `errores_atajos_e2.py atajos --entrada CARPETA` →
+> `TABLAS_ATAJOS.md` y `RESUMEN_ATAJOS.json`.
+>
+> **Pendiente:** la revisión humana de 88 casos (fila 65). Ver al final.
 
 ## 1. Taxonomía de errores (fila 65)
 
@@ -18,15 +22,21 @@ Caso de error: par imagen-semilla con Dice < 0,80. Todas las redes superan los 1
 (SegFormer). Como un mismo caso se repite en varias semillas, también se cuentan imágenes distintas: 63 a 125 con
 el umbral de 0,80 y 128 a 186 con 0,90. Por eso los IC se calculan por grupo y no por caso.
 
-**Forma del error (eje A).** La omisión total casi no ocurre: entre 0 y 3,6 %. El error se reparte entre dos formas:
+**Forma del error (eje A, exacta con las componentes predichas en Colab).** La omisión total casi no ocurre: entre
+0 y 3,6 %. Tres formas reúnen casi todo el error, y cada red tiene la suya:
 
-- **Exceso lejos del rótulo** (A5, medido con HD95 como sustituto). Domina en las redes convolucionales pequeñas:
-  FCN 0,50 [0,37; 0,63], U-Net 0,56 [0,43; 0,68] y SegNet 0,56 [0,43; 0,68].
-- **Subsegmentación** (A3). Domina en SegFormer, con 0,55 [0,45; 0,65], y pesa en DeepLabv3+, U-Net++ y PIDNet
-  (0,37 a 0,40).
+- **Subsegmentación** (se queda corta). Es la forma principal de SegFormer, con 0,55 [0,45; 0,65], y de DeepLabv3+,
+  U-Net++ y PIDNet (0,37 a 0,40).
+- **Exceso pegado al rótulo** (se pasa del borde). Es la principal de U-Net, VM-UNet, SegNet y SegNeXt (0,37 a
+  0,39).
+- **Exceso lejos del rótulo.** Pesa sobre todo en FCN, U-Net y SegNet (0,28 a 0,30) y casi nada en SegFormer (0,05).
 
-TransUNet reparte sus errores entre las dos (0,33 y 0,34). Con el umbral de 0,90, A5 sigue primero en FCN, U-Net y
-SegNet, y la subsegmentación pasa a ser la más frecuente en las demás redes, TransUNet incluida.
+TransUNet reparte sus errores entre las dos primeras (0,33 y 0,33). El sustituto HD95 que se usó en local exageraba
+el exceso lejano: coincide con la forma exacta en el 72–94 % de los casos.
+
+Las redes preentrenadas grandes pierden **rótulos enteros** en imágenes con varios: de 78 a 159 veces en DeepLabv3+,
+PIDNet, U-Net++ y SegFormer, frente a 1 o 2 en FCN, U-Net y SegNet. Es la suma de las 5 semillas sobre las imágenes de
+validación con más de un rótulo.
 
 **Condición de la imagen (eje B), frente a su frecuencia en toda la validación:**
 
@@ -38,19 +48,19 @@ SegNet, y la subsegmentación pasa a ser la más frecuente en las demás redes, 
 | rótulo en el borde | 10 % | 0,4–13 % |
 | sin condición | 22 % | 3–12 % |
 
-Los errores se concentran en rótulos pequeños y en imágenes con varios rótulos. En las imágenes "limpias" casi no hay
-errores. El ruido de etiqueta confirmado solo alcanza una imagen de validación, porque la revisión de ruido muestreó
-sobre todo train.
+Los errores se concentran en rótulos pequeños y en imágenes con varios rótulos. En las imágenes sin ninguna condición
+difícil casi no hay errores. El ruido de etiqueta confirmado solo alcanza una imagen de validación, porque la revisión
+de ruido muestreó sobre todo train.
 
 **Errores compartidos.** 34 de 218 imágenes (0,156 [0,095; 0,224]) fallan en al menos 8 de las 10 redes, y 26 fallan
 en todas. Por condición, 17 tienen varios rótulos, 10 un rótulo pequeño y 5 luz extrema. En el otro extremo, 88
 imágenes no fallan en ninguna red. Una parte del error es dificultad propia de la imagen o de su anotación, no de la
 arquitectura, como anticipa la guía.
 
-**Cautela sobre A5.** El conjunto tiene rótulos reales sin máscara: el 10 % de las imágenes revisadas tenía un rótulo
-cortado por el borde sin anotar (`resultados/ruido_etiqueta_e2/`). Parte del "exceso distante" puede ser un acierto
-de la red contra una máscara incompleta. Para resolverlo, la hoja de revisión pregunta exactamente eso, y la corrida
-de Colab mide las componentes predichas en lugar de usar HD95.
+**Cautela sobre el exceso lejano.** El conjunto tiene rótulos reales sin máscara: el 10 % de las imágenes revisadas
+tenía un rótulo cortado por el borde sin anotar (`resultados/ruido_etiqueta_e2/`). Parte del exceso lejano puede ser
+un acierto de la red contra una máscara incompleta. En los paneles aparecen también objetos parecidos, como letreros
+verdes de salida. La hoja de revisión pregunta cuál de los dos casos es.
 
 ## 2. Subgrupos (fila 67)
 
@@ -68,18 +78,44 @@ Diferencia de cada subgrupo con el resto, con p de Holm dentro de cada red y atr
   rótulos son primeros planos, con un área mediana de 0,063 frente a 0,027. El tamaño confunde la comparación.
 - **Contraste y origen O1–O6.** No hay diferencias.
 
-## 3. Atajos: lo que ya se puede decir (fila 13)
+## 3. Atajos (fila 13)
 
-La guía pide comparar el desempeño con y sin la señal espuria identificada en el EDA. En el EDA, la señal candidata
-era el **origen de captura** (carpeta del XML). Los seis orígenes principales (O1–O6, de 27 a 40 imágenes cada uno)
-rinden igual. El origen menor, O7, sale mejor en las 10 redes en validación (+0,09 a +0,22, p Holm ≤ 0,035), pero son
-5 imágenes (dos con varios rótulos y una con rótulo pequeño). En test (10 imágenes) el signo se repite en las 10 redes
-(+0,04 a +0,12), aunque solo es significativo en dos (DeepLabv3+ y SegNeXt).
+**Por subconjuntos con la señal del EDA.** En el EDA, la señal candidata era el **origen de captura** (carpeta del
+XML). Los seis orígenes principales (O1–O6, de 27 a 40 imágenes cada uno) rinden igual. El origen menor, O7, sale
+mejor en las 10 redes en validación (+0,09 a +0,22, p Holm ≤ 0,035), pero son solo 5 imágenes, dos con varios rótulos
+y una con un rótulo pequeño. En test (10 imágenes) el signo se repite en las 10 redes (+0,04 a +0,12), aunque solo
+es significativo en dos (DeepLabv3+ y SegNeXt). El desempeño no depende del colector para casi todas las fotos.
 
-Lectura: el desempeño no depende del colector para casi todas las fotos. O7 es más fácil, y con tan pocas fotos no puede
-separarse si es por cómo se capturó o por qué se fotografió.
+**Prueba contrafactual** (Δ = Dice con la imagen cambiada − Dice limpio; reglas fijadas antes, δ = 0,02, Holm sobre
+20 pruebas):
 
-Falta la prueba directa: quitar el contexto, borrar el rótulo y quitar el color (C1–C3).
+| Red | Sin contexto Δ [IC95] | Decisión | Gris Δ [IC95] | Rótulo borrado: zona aún marcada [IC95] |
+|---|---:|---|---:|---:|
+| TransUNet | −0,117 [−0,144; −0,091] | dependencia | −0,332 [−0,382; −0,284] | 0,036 [0,022; 0,052] |
+| FCN | +0,025 [0,012; 0,040] | sin dependencia | −0,402 [−0,453; −0,352] | 0,014 [0,007; 0,023] |
+| U-Net | +0,022 [0,009; 0,037] | sin dependencia | −0,331 [−0,381; −0,284] | 0,014 [0,007; 0,024] |
+| VM-UNet | −0,022 [−0,040; −0,004] | indeterminado | −0,288 [−0,325; −0,251] | 0,055 [0,033; 0,081] |
+| SegNet | +0,036 [0,021; 0,051] | sin dependencia | −0,387 [−0,441; −0,334] | 0,015 [0,008; 0,025] |
+| DeepLabv3+ | +0,002 [−0,014; 0,019] | sin dependencia | −0,368 [−0,418; −0,317] | 0,069 [0,045; 0,096] |
+| U-Net++ | 0,000 [−0,019; 0,020] | sin dependencia | −0,300 [−0,341; −0,258] | 0,082 [0,058; 0,109] |
+| PIDNet-S | +0,001 [−0,019; 0,023] | sin dependencia | −0,324 [−0,367; −0,281] | 0,076 [0,053; 0,103] |
+| SegNeXt-T | −0,050 [−0,080; −0,020] | indeterminado | −0,313 [−0,359; −0,268] | 0,073 [0,049; 0,101] |
+| SegFormer-B0 | −0,215 [−0,263; −0,168] | dependencia | −0,419 [−0,469; −0,370] | 0,095 [0,065; 0,128] |
+
+Lectura:
+
+- **Contexto.** Seis redes segmentan el rótulo por el rótulo mismo. FCN, U-Net y SegNet incluso mejoran sin contexto:
+  el fondo les genera falsos positivos. Las dos con atención global dependen del contexto: TransUNet pierde 0,12 y
+  SegFormer 0,22. VM-UNet y SegNeXt quedan en indeterminado: caen, pero sin superar con claridad el margen δ.
+  - Cautela: un fondo plano es una imagen fuera de distribución, y a las redes con atención global les cambia todo el
+    mapa de atención. La caída mide la dependencia del contexto o la sensibilidad a ese artefacto, sin poder
+    separarlas.
+- **Rótulo borrado.** Ninguna red sigue marcando el rótulo donde ya no está: entre el 1,4 y el 9,5 % de la zona, con
+  todas las cotas inferiores por debajo del 0,10 fijado. No hay atajo del tipo "aquí suele haber un rótulo".
+- **Color.** Las 10 redes caen de 0,29 a 0,42 sin color. Dependen mucho del color, pero en un rótulo de mercancía
+  peligrosa el color es parte del significado (rojo inflamable, amarillo comburente). Se informa como dependencia, no
+  como atajo. La consecuencia práctica es que una cámara en blanco y negro o una luz que altere el color degradaría
+  todo el benchmark.
 
 ## 4. Daño potencial (fila 67)
 
@@ -92,19 +128,34 @@ luz es la disparidad con consecuencias operativas: rótulos de noche, en bodegas
 clase, las tasas más altas (oxygen, poison, infectious-substance: 0,13 a 0,20) tienen IC que llegan a 0, así que no
 se puede afirmar una disparidad por clase con 8 a 28 imágenes.
 
-No hay negativos reales en el conjunto. Las falsas alarmas se miden en negativos sintéticos (C2), pendiente en Colab.
+**Falsas alarmas.** No hay imágenes sin rótulo en el conjunto. Se midieron en **negativos sintéticos**: la misma foto
+con los rótulos anotados borrados. La red marca al menos 50 píxeles en el 31–59 % de ellos: FCN, U-Net y SegNet,
+0,31–0,33; las demás, 0,44–0,59.
 
-## Qué falta y cómo se cierra
+- La mayor parte viene de lo que queda en la foto. Cuando la imagen limpia ya tenía exceso lejano, la alarma aparece
+  en el 70–95 % de los casos: rótulos sin anotar u objetos parecidos.
+- Cuando no lo tenía, baja al 9–11 % en FCN, U-Net y SegNet, y queda en 33–46 % en el resto.
+- Para un uso en campo, la tasa de falsas alarmas es tan relevante como la de omisión. No hay negativos reales ni
+  validación en operación; queda como limitación.
 
-1. **Colab (GPU, necesita visto bueno).** Abrir `colab/Atajos_Errores_E2.ipynb`, correr las celdas 1 a 7 y bajar
-   `atajos_errores_e2.zip` (unos 30 a 45 min en L4; el piloto lo estima antes). Descomprimirlo fuera del repositorio y
-   correr `python scripts/errores_atajos_e2.py atajos --entrada CARPETA`. Escribe `RESUMEN_ATAJOS.json` y
-   `TABLAS_ATAJOS.md`: decisión por red sobre contexto, color y rótulo borrado, falsas alarmas en negativos y
-   taxonomía exacta.
-2. **Revisión humana (unos 45 min).** Correr `python scripts/errores_atajos_e2.py revision --entrada CARPETA --voc
-   RUTA/VOC2012 --destino CARPETA_FUERA_DEL_REPO`, que deja 22 páginas con 4 casos cada una y
-   `hoja_revision_errores.csv`. Se marcan en la hoja el acuerdo con A y con B, y si el exceso es un rótulo sin anotar.
-   Después, `python scripts/errores_atajos_e2.py medir-revision --hoja .../hoja_revision_errores.csv` escribe
-   `REVISION_HUMANA.json`. Son 88 casos y no 90: con 30 por red no alcanzan las imágenes distintas en A1 y A2.
-3. `python scripts/actualizar_checklist_errores.py` toma el estado de lo que exista: 13 y 67 pasan a C con
-   `RESUMEN_ATAJOS.json`, y 65 con `REVISION_HUMANA.json`.
+## 5. Control de la corrida
+
+La imagen limpia reproduce exactamente el Dice por imagen de los diagnósticos GPU en 9 redes: diferencia máxima 0 en
+1.090 pares cada una. **SegNeXt-T no**: 792 de 1.090 pares difieren, hasta 0,13. Su decodificador (factorización de
+matrices) se inicializa al azar en cada pasada. Las cifras de SegNeXt traen ese ruido adicional, que no sesga Δ pero
+lo hace menos preciso. El Dice medio de validación sí coincide (0,759).
+
+## 6. Revisión humana pendiente (fila 65)
+
+`python scripts/errores_atajos_e2.py revision --entrada CARPETA --voc RUTA/VOC2012 --destino CARPETA_FUERA_DEL_REPO`
+dejó `REVISION_ERRORES.pdf` (22 páginas, 88 casos del top 3) y `hoja_revision_errores.xlsx`. La forma que muestra la
+hoja es la exacta de Colab. Son 88 casos y no 90: con 30 por red no alcanzan las imágenes distintas en A1 y A2. Con
+la hoja llena:
+
+```
+python scripts/errores_atajos_e2.py medir-revision --hoja RUTA/hoja_revision_errores.xlsx
+```
+
+Escribe `REVISION_HUMANA.json`: acuerdo con IC de Wilson por eje y la fracción de excesos lejanos que son rótulos sin
+anotar. Luego, `python scripts/actualizar_checklist_errores2.py` deja 13 y 67 en C y pasa la 65 a C cuando existe
+esa revisión.
