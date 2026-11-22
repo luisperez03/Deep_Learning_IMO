@@ -28,6 +28,7 @@ def install(*a): subprocess.run([sys.executable, '-m', 'uv', 'pip', 'install', '
 install('setuptools==75.8.0')
 install('torch==2.5.1', 'torchvision==0.20.1', '--index-url', 'https://download.pytorch.org/whl/cu121')
 install('-r', f'{PROJECT}/requirements-e2.txt')
+install('transformers==4.46.3')   # VM-UNet lo importa (igual que colab/Complemento_GPU_E2.ipynb)
 install('--no-deps', 'https://github.com/Dao-AILab/causal-conv1d/releases/download/v1.5.0.post8/causal_conv1d-1.5.0.post8%2Bcu12torch2.5cxx11abiFALSE-cp311-cp311-linux_x86_64.whl')
 install('--no-deps', 'https://github.com/state-spaces/mamba/releases/download/v2.2.4/mamba_ssm-2.2.4%2Bcu12torch2.5cxx11abiFALSE-cp311-cp311-linux_x86_64.whl')
 site = ENV/'lib/python3.11/site-packages'

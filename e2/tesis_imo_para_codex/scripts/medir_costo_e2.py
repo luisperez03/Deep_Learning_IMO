@@ -177,6 +177,15 @@ def medir(a):
                 print("   sin salida (el subproceso murio)")
 
 
+def mem_inf(r):
+    """Memoria de la inferencia: en CPU, alza del conjunto de trabajo; en CUDA, pico de memoria asignada en la GPU."""
+    if "mem_inferencia_incremento_mib" in r:
+        return f"{r['mem_inferencia_incremento_mib']:.0f}"
+    if "gpu_mem_pico_mib" in r:
+        return f"{r['gpu_mem_pico_mib']:.0f} (GPU)"
+    return ""
+
+
 def tabla(a):
     dest = Path(a.salida)
     filas = []
@@ -194,10 +203,10 @@ def tabla(a):
             continue
         csv.append(f"{r['modelo']},{r['dispositivo']},{r['hilos']},{r['parametros']},{r['flops']/1e9:.4f},"
                    f"{r['latencia_ms_mediana']:.2f},{r['latencia_ms_iqr']:.2f},{r['pico_proceso_mib']:.0f},"
-                   f"{r['mem_inferencia_incremento_mib']:.0f},")
+                   f"{mem_inf(r)},")
         md.append(f"| {r['modelo']} | {r['dispositivo']} | {r['hilos']} | {r['parametros']:,} | {r['flops']/1e9:.2f} | "
                   f"{r['latencia_ms_mediana']:.1f} | {r['latencia_ms_iqr']:.1f} | {r['pico_proceso_mib']:.0f} | "
-                  f"{r['mem_inferencia_incremento_mib']:.0f} |")
+                  f"{mem_inf(r)} |")
     (dest / "costo_e2.csv").write_text("\n".join(csv) + "\n", encoding="utf-8")
     (dest / "costo_e2.md").write_text("\n".join(md) + "\n", encoding="utf-8")
     print("\n".join(md))
