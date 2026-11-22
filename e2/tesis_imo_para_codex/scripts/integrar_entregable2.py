@@ -1,6 +1,17 @@
-"""Integra el Jupyter Book desde resultados auditados; no entrena ni publica."""
+"""Integra el Jupyter Book desde resultados auditados; no entrena ni publica.
+
+  python scripts/integrar_entregable2.py                  # textos a resultados/integracion_e2/libro_generado/
+  python scripts/integrar_entregable2.py --escribir-libro # sobrescribe los capítulos de libro/ (no recomendado)
+
+Los capítulos que genera (index, _toc, resultados_e2, modelos_e2, checklist_e2, reproducibilidad_e2,
+e2_optimizadores.inc) y referencias_e2.bib se han ampliado a mano después de la primera integración: el BibTeX
+tiene 21 entradas y este script solo produce las diez de arquitecturas. Por eso, por defecto, el texto va a un
+área aparte para cotejarlo con el libro y solo se sobrescribe libro/ con la bandera explícita. Las figuras se
+regeneran siempre en libro/figuras/e2 (dependen solo de los datos).
+"""
 import json
 import shutil
+import sys
 from pathlib import Path
 import matplotlib
 matplotlib.use('Agg')
@@ -10,7 +21,13 @@ from analisis_integracion_e2 import NAMES
 
 P=Path(__file__).resolve().parents[1]; B=P/'libro'; D=P/'docs/revision_entregable2'
 def read(p):return json.loads(p.read_text(encoding='utf-8'))
-def put(p,s):p.write_text(s.strip()+'\n',encoding='utf-8')
+ESCRIBIR_LIBRO='--escribir-libro' in sys.argv
+GENERADO=P/'resultados/integracion_e2/libro_generado'
+def put(p,s):
+    p=Path(p)
+    if p.parent==B and not ESCRIBIR_LIBRO:
+        GENERADO.mkdir(parents=True,exist_ok=True); p=GENERADO/p.name
+    p.write_text(s.strip()+'\n',encoding='utf-8')
 
 def main():
     a=read(P/'resultados/auditoria_test_e2/AUDITORIA.json')
