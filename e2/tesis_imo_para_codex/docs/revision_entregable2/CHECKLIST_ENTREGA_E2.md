@@ -12,6 +12,8 @@ El usuario confirmó que el profesor acepta **diez modelos totales: tres E1 y si
 
 **Actualización del 22/11.** Revisión humana: los 12 casos de ruido de etiqueta confirmados a mano (fila 12) y techo por segunda anotación independiente de 50 imágenes de validación (fila 63).
 
+**Actualización del 22/11 (cierre).** Filas desactualizadas puestas al día con evidencia ya registrada (66, 70, 75; B11).
+
 ## Problema, hipótesis, datos y EDA — rúbrica 15 %
 
 | ID | Requisito (página guía) | Estado | Evidencia / cierre necesario |
@@ -101,7 +103,7 @@ El usuario confirmó que el profesor acepta **diez modelos totales: tres E1 y si
 | 63 | Techo y γ (48–49) | C | 22/11: segunda anotación independiente de 50 imágenes de validación (una por grupo, por tercil de área): techo Dice 0,941 (IC95 0,928–0,953). TransUNet 0,866 en las mismas 50; γ 0,31 (val) y 0,27 (test). `scripts/techo_reanotacion_e2.py medir/gamma`, `scripts/tabla_techo_e2.py`, `resultados/techo_e2/` |
 | 64 | HD95/ASSD y precisión/recall (36) | C | 20/11: HD95/ASSD y precisión/recall de las 5 semillas en test (etapa `clean`); HD95 de 17,1 px (TransUNet) a 34,3 (SegFormer, recall 0,688) |
 | 65 | Taxonomía previa, ≥100 casos/modelo e IC (49) | P | Panel dirigido y estratos; sin etiquetado sistemático de 100 errores/modelo |
-| 66 | Errores compartidos/diversidad/ensemble (49–50) | P | Matriz de correlación disponible; ensemble y ganancia pendientes |
+| 66 | Errores compartidos/diversidad/ensemble (49–50) | C | Errores compartidos: correlación del Dice por grupo entre las 10 redes de 0,62 (TransUNet-SegFormer) a 0,94 (FCN-U-Net), mediana 0,80 (`resultados/integracion_e2/analisis.json`, `error_correlation`; capítulo `resultados_e2`). Ensamble: 5 semillas del top 3, +0,021 a +0,028 de Dice con IC sin 0 (ID 62, capítulo `diagnosticos_e2`). Ensamble entre redes distintas no ejecutado |
 | 67 | Subgrupos, atajos y daño potencial (41,50) | P | Cuartiles de área con IC descriptivos; faltan negativos/validación operacional |
 
 ## Reproducibilidad, redacción y defensa — rúbrica 10 %
@@ -110,12 +112,12 @@ El usuario confirmó que el profesor acepta **diez modelos totales: tres E1 y si
 |---|---|---|---|
 | 68 | Jupyter Book y celdas reproducibles (58,62) | P | Libro/scripts integrados; notebooks sin ejecución automática; prueba limpia pendiente |
 | 69 | Un comando para tablas/figuras, entorno fijado (40) | C | `reproducir_entregable2.py`, `requirements-libro.txt`; requiere datos/resultados locales |
-| 70 | Código completo para todos los requisitos (58) | P | Benchmark disponible; diagnósticos F siguen sin evidencia ejecutada |
+| 70 | Código completo para todos los requisitos (58) | C | Código de todos los requisitos ejecutados en el repositorio: diagnósticos GPU (`scripts/diagnosticos_gpu_e2.py`, filas 57-60, 62, 64), complemento de entrenamiento (`scripts/complemento_entreno_e2.py`, filas 37, 41, 56, 61), revisión humana (filas 12, 63); los cuadernos de Colab se generan con `scripts/crear_colab_*.py` |
 | 71 | Datos/instrucciones/contrato (59) | P | Manifiestos y fuente probable; verificar obtención/licencia externa |
 | 72 | Resumen ≤250 palabras, discusión/RQ (62) | C | Índice y cierre E2 |
 | 73 | BibTeX completo (41) | C | 20/11: `libro/referencias_e2.bib` con 21 entradas (10 arquitecturas en versión editorial si existe, 7 de aplicación, 4 de mecanismos), DOI verificados con `verificar_doi_registro.py`. Riesgo: `scripts/integrar_entregable2.py` (línea 186) lo reescribe con solo diez entradas |
 | 74 | Lista apéndice B completa y honesta (63) | C | 21 filas siguientes, sin convertir P/F/D en aprobados |
-| 75 | Presentación y defensa técnica (59) | F | Preparar diapositivas/guion y ensayar |
+| 75 | Presentación y defensa técnica (59) | P | Guion de 13 diapositivas y respuestas de defensa en `docs/PRESENTACION_E2.md` y material privado de preguntas; falta el ensayo |
 | 76 | Publicación final | C | 21/11: rama `cierre-e2` integrada en `main` y libro compilado sin advertencias, publicado en GitHub Pages (`docs/`, https://luisperez03.github.io/Deep_Learning_IMO/) |
 
 ## Apéndice B: las 21 casillas originales
@@ -132,7 +134,7 @@ El usuario confirmó que el profesor acepta **diez modelos totales: tres E1 y si
 | B08 Potencia/R | D | ID06; planificación posterior |
 | B09 Trivial/clásico/tres E1 | C | Máscara vacía, baseline clásico (ID40) y tres E1 |
 | B10 Software/hardware/determinismo | C | ID43 |
-| B11 Tablas A/B/C con pruebas/IC/efectos | P | Comparación avanzada; ajuste/sobreajuste pendientes |
+| B11 Tablas A/B/C con pruebas/IC/efectos | C | Tablas con IC, pruebas y efectos (ID 48-49); ajuste y sobreajuste: brecha train-val (ID 57), sobreajuste a un lote (ID 41) y búsqueda equitativa (ID 37) |
 | B12 Familias/multiplicidad a priori | D | Ampliación Holm posterior al test |
 | B13 Techo/γ | C | ID63: techo 0,941 por reanotación independiente; γ por red |
 | B14 Arquitecturas sin diseño y dos fases | P | ID38; compactas heredadas requieren justificación |
