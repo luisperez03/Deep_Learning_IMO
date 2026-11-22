@@ -30,7 +30,7 @@ partición porque rompería la comparación con el E1 y el test ya estaba expues
 
 ## 5. Literatura y elección de las redes
 
-Scopus y WoS, 9.646 registros, 6.322 estudios únicos tras deduplicar y adjudicar tres pares de DOI con Crossref
+Scopus y WoS, 9.646 registros, 6.325 grupos provisionales tras deduplicar (6.322 esperados al aplicar tres pares de DOI ya adjudicados con Crossref)
 (el conteo final se confirma al correr el parser sobre las exportaciones). Diez redes en cuatro familias: CNN (FCN, SegNet,
 U-Net, DeepLabv3+, UNet++, PIDNet-S), CNN con atención (SegNeXt-T), Transformer (SegFormer-B0), híbrida
 (TransUNet) y espacio de estados (VM-UNet). Paper guía: SegFormer-B0.

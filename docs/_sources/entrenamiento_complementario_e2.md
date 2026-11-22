@@ -85,7 +85,7 @@ midió con sus máscaras verdaderas. Se eligió FCN porque es la red más barata
 Dice de validación de las 200 réplicas con máscaras permutadas (gris) y de la FCN entrenada con sus máscaras (rojo).
 ```
 
-Ninguna de las 200 réplicas llega al Dice real: p = 0,005, el mínimo posible con B = 200. **La distribución nula no
+El Dice real es el de la FCN de semilla 11 del benchmark, la misma semilla que fija el orden de lotes de las réplicas. Ninguna de las 200 réplicas llega a él: p = 0,005, el mínimo posible con B = 200. **La distribución nula no
 está en cero.** Su media es 0,465. Con las máscaras barajadas, la red no puede aprender qué imagen va con qué rótulo,
 pero sí dónde suelen caer los rótulos y de qué tamaño son, y con eso ya solapa casi la mitad. Ese 0,465 es lo que
 el pipeline obtiene sin información de la imagen; el 0,823 real lo supera en 0,36.
