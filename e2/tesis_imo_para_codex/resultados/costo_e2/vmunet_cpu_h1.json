@@ -1,0 +1,26 @@
+{
+ "modelo": "vmunet",
+ "dispositivo": "cpu",
+ "entrada": [
+  1,
+  3,
+  256,
+  256
+ ],
+ "hilos": 1,
+ "reps": 30,
+ "calentamiento": 5,
+ "hardware": {
+  "so": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.16",
+  "torch": "2.14.1",
+  "hilos_intraop_por_defecto": 1,
+  "gpu": false,
+  "cpu": {
+   "Name": "AMD Ryzen 5 PRO 6650U with Radeon Graphics     ",
+   "NumberOfCores": 6,
+   "NumberOfLogicalProcessors": 12
+  }
+ },
+ "error": "RuntimeError: VM-UNet requiere GPU CUDA y mamba-ssm; no hay fallback a GRU."
+}

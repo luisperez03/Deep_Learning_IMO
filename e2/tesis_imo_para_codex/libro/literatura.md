@@ -35,7 +35,9 @@ Selección operativa paralela: 3 redes E1 + 7 candidatas nuevas
 
 Los conteos son aritméticamente coherentes, pero no acreditan la elegibilidad. Los tres pares de DOI son el mismo artículo en cada caso: dos variantes no están registradas y la tercera es un alias que el propio registro redirige al canónico ({download}`resolución con evidencia <../docs/revision_entregable2/RESOLUCION_CONFLICTOS_DOI.md>`). Los alias ya están en `procesar_exportaciones.py`, pero las exportaciones no están en el repositorio: 6.322 es el conteo esperado, no uno ejecutado, y no se usa como cifra cerrada hasta correr el parser. No se informa kappa porque no hay dos cribados independientes completos.
 
-**Q5 y Q6 se omitieron por decisión del usuario.** Las fuentes suplementarias no sustituyen tres ecuaciones transversales ejecutadas. Este requisito continúa como alcance reducido; no se reabren las consultas automáticamente.
+**Búsquedas transversales: el requisito no se cumple.** La guía pide tres búsquedas transversales (mecanismos de otras modalidades) ejecutadas en las bases; se ejecutó una parte. Q5 llegó a mostrar conteos piloto (38 en Scopus y 14 en WoS), pero la exportación falló en las dos bases el 18/11 por la caída de la sesión institucional, y Q6 no se ejecutó; después se decidió no reabrirlas. Un fallo de exportación no es un resultado cero, así que esos 52 registros no se suman al corpus ni se cuentan como cribados.
+
+Lo que hay en su lugar es más débil y se declara como tal: los cuatro mecanismos de la tabla de abajo se documentaron desde su fuente primaria por búsqueda dirigida por nombre, y Q3 y Q4 (mecanismos dentro de visión) sí se exportaron. Eso prueba que cada mecanismo existe y de dónde viene; no prueba que no haya otros mecanismos transferibles que una búsqueda sistemática habría encontrado. El riesgo concreto es de omisión: un trabajo que lleve, por ejemplo, un mecanismo de audio o de series temporales a la segmentación de objetos pequeños podría faltar. Por eso las hipótesis de transferencia se presentan como hipótesis y ninguna conclusión del benchmark depende de que la lista de mecanismos sea exhaustiva.
 
 ## Antecedentes y pertinencia
 
@@ -54,9 +56,37 @@ FCN fundamenta predicción densa convolucional; SegNet reutiliza índices de poo
 | Híbrido | TransUNet R50-ViT-B/16 | Contexto global con características CNN; mucho mayor tamaño |
 | SSM visual | VM-UNet | Estados selectivos y escaneo; dependencia de kernels CUDA |
 
-Las [fichas de implementación](modelos_e2.md) incluyen diez diagramas, mecanismos matemáticos, referencias y parámetros medidos. Los resultados originales de las siete redes nuevas (dataset, métrica, cifra, varianza y costo, con tabla y página del PDF) están cotejados en {download}`resultados originales <../docs/revision_entregable2/RESULTADOS_ORIGINALES_7REDES.md>`: 21 de 21 cifras confirmadas. Solo UNet++ reporta varianza entre corridas (20 corridas, media ± DE). Las {download}`fichas bibliográficas preliminares <../docs/revision_entregable2/FICHAS_EXTRACCION_7REDES.md>` conservan campos del artículo y advertencias de verificación. Los FLOPs de un paper a otra resolución no son FLOPs de nuestra adaptación.
+Las [fichas de implementación](modelos_e2.md) incluyen diez diagramas, mecanismos matemáticos, referencias y parámetros medidos. Los resultados originales de las siete redes nuevas (dataset, métrica, cifra, varianza y costo, con tabla y página del PDF) están cotejados en {download}`resultados originales <../docs/revision_entregable2/RESULTADOS_ORIGINALES_7REDES.md>`: 21 de 21 cifras confirmadas. Solo UNet++ reporta varianza entre corridas (20 corridas, media ± DE). Los FLOPs de un paper a otra resolución no son FLOPs de nuestra adaptación.
 
-Attention U-Net aumentaría representación CNN; SAM exige definir prompts sin ground truth; YOLO-seg requiere armonizar instancia y máscara semántica. Son razones operativas, no pruebas de inferioridad. La puntuación completa por citación normalizada/cuártil sigue pendiente. Los subtotales históricos no son un ranking validado. PIDNet no obtiene evidencia directa de dominio HAZMAT solo por incorporar bordes; U-Net compacta no comparte backbone ResNet-18 con U-Net++.
+### Extracción y calidad de cada estudio
+
+Cada una de las siete candidatas, y las dos alternativas que se puntúan con ellas (Attention U-Net y Swin-Unet), tiene una ficha de trece campos leída del PDF: tarea, mecanismo, datos y unidad de partición, preprocesamiento, entrenamiento, métricas, repeticiones, ablaciones, dificultad compartida con HAZMAT-13, costo, código, riesgo de selección por test y limitaciones. Cada valor lleva la página y un fragmento literal, y `cotejar_fichas.py` comprueba que el fragmento está en esa página: **229 de 229 confirmados**; siete campos son ausencias declaradas ("no reportado"), todas de repeticiones o semillas ({download}`fichas cotejadas <../docs/revision_entregable2/FICHAS_COTEJADAS.md>`).
+
+Tres hallazgos de calidad pesan en la lectura de la literatura:
+
+- **Repeticiones.** Solo UNet++ repite corridas con contraste formal (20 ensayos, prueba t, IC95). Attention U-Net usa validación cruzada de cinco particiones; las otras siete dan una cifra de una sola corrida.
+- **Selección sobre el conjunto reportado.** En TransUNet, VM-UNet y Swin-Unet no hay conjunto de selección aparte: configuraciones como el dropout, la resolución o las conexiones se eligen comparando sobre el mismo conjunto cuyos resultados se publican. Sus cifras de cabecera son optimistas por construcción.
+- **Dificultad compartida.** Cuatro artículos traen un análisis cuantitativo dedicado a algo que también complica HAZMAT-13: bordes (experimento trimap de DeepLabv3+), tamaño del objeto (UNet++ por tamaño de tumor; TransUNet en órganos pequeños) y corrupción de la imagen (SegFormer en Cityscapes-C). En PIDNet-S los bordes son la motivación del diseño, pero su ablación de la pérdida de frontera se mide en mIoU global, sin métrica de borde.
+
+### Puntuación definitiva
+
+La rúbrica del protocolo (pertinencia 25, reproducibilidad 25, evidencia 20, viabilidad 10, recencia 10, citación 10) se aplicó a las nueve candidatas con reglas operativas escritas antes de calcular y evidencia de la ficha para cada nivel. La citación es el percentil de citas por año en OpenAlex, misma fecha para todas; la reproducibilidad se comprobó en el repositorio oficial (licencia y pesos publicados).
+
+| Candidata | Total | Sin citación | Sin viabilidad | Estado |
+|---|---:|---:|---:|---|
+| SegFormer-B0 | 77,08 | 76,39 | 74,54 | seleccionada |
+| UNet++ | 73,89 | 77,78 | 70,99 | seleccionada |
+| DeepLabv3+ | 73,19 | 70,83 | 70,22 | seleccionada |
+| TransUNet | 64,72 | 63,89 | 60,80 | seleccionada |
+| SegNeXt-T | 64,17 | 69,44 | 60,19 | seleccionada |
+| PIDNet-S | 59,31 | 65,28 | 54,78 | seleccionada |
+| Attention U-Net | 58,75 | 59,72 | 56,94 | excluida |
+| VM-UNet | 56,53 | 59,72 | 51,70 | seleccionada |
+| Swin-Unet | 54,86 | 54,17 | 52,62 | excluida |
+
+Con la restricción de cuatro familias, el mejor conjunto de siete es exactamente la selección operativa, con la puntuación total y también sin citación. VM-UNet queda por debajo de Attention U-Net, pero entra porque es la única SSM. La viabilidad favorece a las redes ya ejecutadas (las siete tienen piloto; las dos alternativas no). Si se quita ese componente, Attention U-Net (56,94) desplaza a PIDNet-S (54,78): la elección de PIDNet-S frente a Attention U-Net depende de la viabilidad demostrada y no de la literatura. Desglose, justificación por componente y rango de la sede en {download}`puntuación definitiva <../docs/revision_entregable2/PUNTUACION_DEFINITIVA.md>`.
+
+SAM y YOLO-seg no se puntúan porque no pasan el filtro previo del protocolo: SAM necesita prompts y YOLO-seg da máscaras de instancia por caja. Son razones operativas, no pruebas de inferioridad. U-Net compacta no comparte backbone ResNet-18 con U-Net++.
 
 ## Mecanismos transferibles
 
@@ -107,6 +137,8 @@ El protocolo `config/limitacion_segformer_area.json`, fijado antes de mirar resu
 
 En los seis estudios aplicados identificados no se encontró ninguno que segmente el rótulo por píxel con una red profunda ni que compare arquitecturas con varias semillas; el único que produce máscara usa GrabCut sobre la caja del detector. La afirmación es refutable: basta un estudio revisado por pares que haga cualquiera de las dos cosas. Su denominador son esos seis estudios, no el corpus: los 20 registros de dominio y las 2.087 dudas del precribado no se han revisado a texto completo, así que la conclusión queda condicionada a esa revisión y no se escribe "ningún estudio previo". Tampoco hay denominador final para estimar proporción de estudios con datos o código.
 
+El cierre está definido y su script, probado: `cribado_nucleo.py` lleva a texto completo todo registro de dominio (los marcados `RETENER_DOMINIO` y cualquiera que mencione rótulos o mercancía peligrosa en título o resumen) y revisa a mano una muestra aleatoria estratificada de 200 registros del precribado (semilla fija) para estimar, con IC95 de Wilson, cuántos incluibles perdió el filtro y cuántos retenidos sobran. De ahí salen el flujo PRISMA con exclusiones por motivo y el denominador del gap. Falta correrlo: necesita las exportaciones originales.
+
 La síntesis de los tres mecanismos transversales (atención, estado selectivo y dilatación), con fuente primaria, hipótesis para HAZMAT y el resultado del benchmark que refutaría cada una, está en {download}`mecanismos <../docs/revision_entregable2/MECANISMOS_TRANSVERSALES.md>`, sección 4.
 
-No se asignan cuartiles sin año, categoría y fuente. El {download}`BibTeX <referencias_e2.bib>` reúne 21 referencias (diez arquitecturas en su versión editorial cuando existe, siete de aplicación y cuatro de mecanismos), con DOI verificados el 20/11/2026 en Crossref o DataCite.
+No se asignan cuartiles sin año, categoría y fuente: las cinco conferencias llevan su rango CORE (ECCV, CVPR y NeurIPS son A* en ICORE2026) y las dos revistas (IEEE TMI y ACM TOMM) quedan sin cuartil porque SCImago no se pudo consultar de forma automatizada; el cuartil no entra en la rúbrica. El {download}`BibTeX <referencias_e2.bib>` reúne 21 referencias (diez arquitecturas en su versión editorial cuando existe, siete de aplicación y cuatro de mecanismos), con DOI verificados el 20/11/2026 en Crossref o DataCite.

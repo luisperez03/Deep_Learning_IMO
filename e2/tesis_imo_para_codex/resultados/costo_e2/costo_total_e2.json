@@ -1,0 +1,90 @@
+{
+ "bloques": [
+  {
+   "concepto": "Entrenamiento de las 50 corridas (segundos de época)",
+   "gpu": "NVIDIA L4",
+   "horas": 16.396194799199705,
+   "corridas": 50,
+   "kwh_cota_tdp": 1.1805260255423786
+  },
+  {
+   "concepto": "Diagnóstico: evaluación limpia",
+   "gpu": "NVIDIA L4",
+   "horas": 0.8570354258808326,
+   "corridas": 50,
+   "kwh_cota_tdp": 0.06170655066341995
+  },
+  {
+   "concepto": "Diagnóstico: interpretabilidad",
+   "gpu": "NVIDIA L4",
+   "horas": 0.2622544237958346,
+   "corridas": 15,
+   "kwh_cota_tdp": 0.01888231851330009
+  },
+  {
+   "concepto": "Diagnóstico: robustez",
+   "gpu": "NVIDIA L4",
+   "horas": 0.5742523397511105,
+   "corridas": 50,
+   "kwh_cota_tdp": 0.04134616846207995
+  },
+  {
+   "concepto": "Complemento: ablación",
+   "gpu": "NVIDIA L4",
+   "horas": 7.410555555555554,
+   "corridas": 15,
+   "kwh_cota_tdp": 0.5335599999999999
+  },
+  {
+   "concepto": "Complemento: permutación del pipeline",
+   "gpu": "NVIDIA L4",
+   "horas": 3.7958333333333347,
+   "corridas": 200,
+   "kwh_cota_tdp": 0.2733000000000001
+  },
+  {
+   "concepto": "Complemento: búsqueda de hiperparámetros",
+   "gpu": "NVIDIA L4",
+   "horas": 3.880555555555555,
+   "corridas": 40,
+   "kwh_cota_tdp": 0.2794
+  },
+  {
+   "concepto": "Complemento: sobreajuste a un lote (10 redes)",
+   "gpu": "NVIDIA L4",
+   "horas": 0.12417593874444441,
+   "corridas": 10,
+   "kwh_cota_tdp": 0.008940667589599997
+  }
+ ],
+ "horas_gpu_registradas": 33.30085737181637,
+ "kwh_cota_superior_tdp": 2.397661730770779,
+ "tdp_w": {
+  "NVIDIA L4": 72,
+  "Tesla T4": 70
+ },
+ "entrenamiento_por_modelo_horas": {
+  "transunet_2d": 3.460894942160551,
+  "fcn": 0.7952922040522238,
+  "unet": 0.7408507549069463,
+  "vmunet": 2.9053696435644443,
+  "segnet": 0.5335136401852787,
+  "deeplabv3plus": 1.0256225164052735,
+  "unetplusplus": 1.0008570827936112,
+  "pidnet_s": 2.2913992608577702,
+  "segnext_t": 2.0433461637219494,
+  "segformer_b0": 1.5990485905516558
+ },
+ "sin_registro": [
+  "evaluación en test (T4)",
+  "réplica de SegFormer (T4)",
+  "tiempo total de sesión de Colab",
+  "extracción de Dice por imagen de validación",
+  "instalación de dependencias"
+ ],
+ "advertencias": [
+  "horas = segundos registrados, no tiempo de pared de la sesión",
+  "energía = TDP x horas (cota de la GPU), no medida",
+  "GPU del complemento asumida L4"
+ ]
+}

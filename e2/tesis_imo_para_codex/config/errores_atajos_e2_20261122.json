@@ -1,0 +1,87 @@
+{
+ "schema": 1,
+ "date_local": "2026-11-22",
+ "status": "Protocolo escrito antes de calcular frecuencias de error, subgrupos y pruebas de atajos; posterior al test (ya observado) y a las tablas agregadas de diagnósticos. Exploratorio, no preregistro retroactivo.",
+ "document": "resultados/errores_atajos_e2/PROTOCOLO_ERRORES_ATAJOS_20261122.md",
+ "models": ["transunet_2d", "fcn", "unet", "vmunet", "segnet", "deeplabv3plus", "unetplusplus", "pidnet_s", "segnext_t", "segformer_b0"],
+ "top3_by_validation": ["transunet_2d", "unet", "fcn"],
+ "seeds": [11, 23, 37, 53, 71],
+ "threshold_probability": 0.5,
+ "alpha": 0.05,
+ "delta": 0.02,
+ "split_primary": "val",
+ "split_secondary": "test (descriptivo; ya observado, no decide nada)",
+ "bootstrap": {"draws": 4000, "unit": "group_id (grupo de similitud)", "seed": 20261122, "interval": "percentil 95 %"},
+ "error_case": {"unit": "par imagen-semilla de validación", "definition": "Dice < 0.80", "sensitivity": [0.70, 0.90], "minimum_per_model": 100},
+ "taxonomy_geometric": {
+  "order": "se aplica la primera regla que cumple el caso; categorías mutuamente excluyentes",
+  "rules": [
+   ["A1_omision_total", "TP == 0 y FP == 0 (sin predicción de rótulo)"],
+   ["A2_deteccion_desplazada", "TP == 0 y FP > 0"],
+   ["A3_subsegmentacion", "FN >= 2 * FP"],
+   ["A4_exceso_adyacente", "FP >= 2 * FN y HD95 <= 16 px"],
+   ["A5_falso_positivo_distante", "FP >= 2 * FN y HD95 > 16 px"],
+   ["A6_error_mixto", "resto"]
+  ],
+  "hd95_distant_px": 16,
+  "hd95_note": "Lienzo 256 x 256. HD95 es un sustituto local de la distancia del exceso; en Colab se mide exacto con componentes predichas",
+  "exact_colab": "componente predicha distante = sin solapamiento con la máscara real dilatada 5 px; rótulo omitido = componente real sin ningún píxel predicho"
+ },
+ "taxonomy_condition": {
+  "order": "se aplica la primera regla que cumple la imagen; mutuamente excluyentes; solo usa la imagen y la máscara real, nunca la predicción",
+  "rules": [
+   ["B1_ruido_confirmado", "imagen con error de anotación confirmado a mano (resultados/ruido_etiqueta_e2/confirmar.csv, veredicto_final error:*)"],
+   ["B2_rotulo_en_borde", "alguna región anotada toca el borde de la foto (resolución original)"],
+   ["B3_varios_rotulos", "dos o más regiones anotadas"],
+   ["B4_rotulo_pequeno", "fracción de área anotada < cuartil 1 de train"],
+   ["B5_luz_extrema", "luminancia media del rótulo < P10 o > P90 de train"],
+   ["B6_bajo_contraste", "|luminancia del rótulo - luminancia del anillo| < P10 de train"],
+   ["B7_sin_condicion", "resto"]
+  ],
+  "region_min_fraction": 0.0005,
+  "ring_width_fraction_of_max_side": 0.02,
+  "luminance": "Y = 0.299 R + 0.587 G + 0.114 B en [0, 1], resolución original"
+ },
+ "shared_errors": {"hard_for_all": "imagen con Dice medio de 5 semillas < 0.80 en al menos 8 de las 10 redes"},
+ "subgroups": {
+  "attributes": ["clase", "area_cuartil_train", "borde", "n_rotulos", "luminancia_tercil_train", "contraste_tercil_train", "origen"],
+  "class": "clase de la imagen según SegmentationClass; 'mixta' si hay más de una",
+  "origin": "carpeta de origen del XML, codificada O1..O7 por frecuencia en train (los nombres de carpeta no se publican)",
+  "estimand": "Dice medio por grupo dentro del subgrupo, promedio de 5 semillas por imagen",
+  "comparison": "subgrupo menos el resto, IC bootstrap por grupos; p bilateral bootstrap con Holm dentro de cada red x atributo",
+  "min_groups": 5
+ },
+ "harm": {
+  "severe_omission": "recall < 0.5 en el par imagen-semilla (se pierde la mayor parte del rótulo)",
+  "false_alarm_on_negative": "al menos 50 píxeles predichos (lienzo 256) en una imagen sin rótulo",
+  "by": ["clase", "area_cuartil_train", "luminancia_tercil_train"]
+ },
+ "human_review": {
+  "models": ["transunet_2d", "unet", "fcn"],
+  "cases_per_model": 30,
+  "stratified_by": "categoría geométrica (asignación proporcional, mínimo 3 si la categoría tiene casos)",
+  "seed": 20261122,
+  "question": "acuerdo con la categoría geométrica y con la condición asignadas; si no, la correcta",
+  "report": "acuerdo con IC Wilson por eje; sin cambiar las reglas después de ver la hoja"
+ },
+ "shortcuts": {
+  "split": "val",
+  "models": "las 10 redes x 5 semillas",
+  "conditions": {
+   "C0_limpia": "imagen original (recalcula Dice y componentes predichas)",
+   "C1_sin_contexto": "fuera de las cajas de las regiones reales ampliadas un 15 % por lado (mínimo 8 px) se pone el valor medio de train (cero normalizado, igual que el relleno del letterbox)",
+   "C2_sin_rotulo": "la máscara real dilatada 3 px se rellena con el píxel exterior más cercano y se suaviza con gaussiana sigma 3 dentro de la zona; la imagen queda sin rótulo (negativo sintético)",
+   "C3_gris": "luminancia replicada en los tres canales (se quita el color, se conserva la forma y el texto)"
+  },
+  "box_margin_fraction": 0.15,
+  "box_margin_min_px": 8,
+  "erase_dilation_px": 3,
+  "erase_blur_sigma": 3,
+  "decision": {
+   "C1_C3": "Δ = Dice(condición) - Dice(C0) por grupo. Dependencia material si la cota superior del IC95 < -δ y p Holm < 0.05 (H0: Δ >= -δ, 20 pruebas: 10 redes x 2 condiciones); sin dependencia material si la cota inferior > -δ; si no, indeterminado",
+   "C2": "fracción de la zona borrada predicha como rótulo y tasa de falsa alarma por imagen. Atajo de contexto si la cota inferior del IC95 de la fracción > 0.10",
+   "artefact_note": "C1 y C2 producen imágenes fuera de la distribución; una caída puede ser efecto del artefacto y no del atajo. Se reporta así"
+  },
+  "panels": "para la muestra de revisión humana guarda la predicción binaria limpia (PNG 256) de cada caso"
+ }
+}

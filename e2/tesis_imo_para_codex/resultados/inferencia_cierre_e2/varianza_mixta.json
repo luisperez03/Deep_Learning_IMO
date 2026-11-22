@@ -1,0 +1,171 @@
+{
+  "alcance": "VALIDACIÓN (selección de checkpoint): descriptivo de la estructura de varianza; exploratorio, posterior al test. Unidad de observación: imagen x corrida; 10.900 filas.",
+  "n": {
+    "filas": 10900,
+    "redes": 10,
+    "semillas": 5,
+    "grupos": 122,
+    "imagenes": 218
+  },
+  "formula": "dice ~ red + (1|semilla) + (1|red:semilla) + (1|grupo) + (1|grupo:imagen) + (1|red:grupo)",
+  "principal": {
+    "varianza": {
+      "semilla": 0.0000313,
+      "red:semilla": 0.00027407,
+      "grupo": 0.02749415,
+      "grupo:imagen": 0.00049311,
+      "red:grupo": 0.00649881,
+      "Residual": 0.00652299
+    },
+    "varianza_red_fija": 0.00163594,
+    "prop_aleatoria": {
+      "semilla": 0.00075764,
+      "red:semilla": 0.00663376,
+      "grupo": 0.66548537,
+      "grupo:imagen": 0.0119355,
+      "red:grupo": 0.15730117,
+      "Residual": 0.15788657
+    },
+    "prop_total": {
+      "red_fija": 0.03808905,
+      "semilla": 0.00072878,
+      "red:semilla": 0.00638109,
+      "grupo": 0.64013766,
+      "grupo:imagen": 0.01148088,
+      "red:grupo": 0.15130972,
+      "Residual": 0.15187282
+    }
+  },
+  "termino_tres_vias_red_grupo_imagen": {
+    "varianza": 0,
+    "singular": true
+  },
+  "lrt_componentes": [
+    {
+      "termino": "(1 | semilla)",
+      "estadistico": 1.08969393,
+      "p_mezcla": 0.14826952
+    },
+    {
+      "termino": "(1 | red:semilla)",
+      "estadistico": 240.70088171,
+      "p_mezcla": 1.38309797e-54
+    },
+    {
+      "termino": "(1 | red:grupo)",
+      "estadistico": 3957.3732351,
+      "p_mezcla": 0
+    }
+  ],
+  "F_red": {
+    "F": 15.87473442,
+    "gl_num": 9,
+    "gl_den": 123.58531292,
+    "p": 5.16105826e-17
+  },
+  "diagnostico": {
+    "residuos_asimetria": -1.17188947,
+    "residuos_curtosis_exceso": 12.29530738,
+    "residuos_fuera_3DE": 0.0233945,
+    "corr_absres_ajustado": -0.55348974,
+    "ajustados_fuera_01": 0.00100917,
+    "blup_grupo_asimetria": -1.61834097,
+    "blup_red_grupo_asimetria": -1.11782625,
+    "dice_cero": 96,
+    "singular_principal": false
+  },
+  "robustas": {
+    "int_rangos": {
+      "varianza": {
+        "semilla": 0.00031657,
+        "red:semilla": 0.00858254,
+        "grupo": 0.63792065,
+        "grupo:imagen": 0.08332598,
+        "red:grupo": 0.11034158,
+        "Residual": 0.16107132
+      },
+      "varianza_red_fija": 0.04734897,
+      "prop_aleatoria": {
+        "semilla": 0.00031607,
+        "red:semilla": 0.00856918,
+        "grupo": 0.63692791,
+        "grupo:imagen": 0.08319631,
+        "red:grupo": 0.11016987,
+        "Residual": 0.16082066
+      },
+      "prop_total": {
+        "red_fija": 0.04514122,
+        "semilla": 0.00030181,
+        "red:semilla": 0.00818236,
+        "grupo": 0.6081762,
+        "grupo:imagen": 0.07944072,
+        "red:grupo": 0.10519667,
+        "Residual": 0.15356102
+      }
+    },
+    "sin_ceros": {
+      "varianza": {
+        "semilla": 0.00002866,
+        "red:semilla": 0.0002561,
+        "grupo": 0.0255437,
+        "grupo:imagen": 0.00045436,
+        "red:grupo": 0.00545021,
+        "Residual": 0.00554812
+      },
+      "varianza_red_fija": 0.00147404,
+      "prop_aleatoria": {
+        "semilla": 0.00076873,
+        "red:semilla": 0.00686953,
+        "grupo": 0.6851638,
+        "grupo:imagen": 0.01218748,
+        "red:grupo": 0.14619205,
+        "Residual": 0.14881841
+      },
+      "prop_total": {
+        "red_fija": 0.03803455,
+        "semilla": 0.00073949,
+        "red:semilla": 0.00660825,
+        "grupo": 0.6591039,
+        "grupo:imagen": 0.01172394,
+        "red:grupo": 0.1406317,
+        "Residual": 0.14315817
+      }
+    }
+  },
+  "bootstrap_grupos": {
+    "B_validas": 200,
+    "IC95_prop_total": {
+      "red_fija": [0.0252126, 0.05731289],
+      "semilla": [0.00002431, 0.00211126],
+      "red:semilla": [0.00491462, 0.01110341],
+      "grupo": [0.52973556, 0.72162803],
+      "grupo:imagen": [0.00423512, 0.02281924],
+      "red:grupo": [0.1100869, 0.19745622],
+      "Residual": [0.11661238, 0.21054093]
+    }
+  },
+  "efectos_fijos_vs_fcn": {
+    "(Intercept)": 0.83117421,
+    "reddeeplabv3plus": -0.017802,
+    "redpidnet_s": -0.03455975,
+    "redsegformer_b0": -0.12763701,
+    "redsegnet": -0.02489767,
+    "redsegnext_t": -0.0706924,
+    "redtransunet_2d": 0.02187826,
+    "redunet": 0.00089913,
+    "redunetplusplus": -0.0209067,
+    "redvmunet": -0.01080159
+  },
+  "dice_medio_por_red_imagenes": {
+    "fcn": 0.84425441,
+    "deeplabv3plus": 0.82524229,
+    "pidnet_s": 0.80985921,
+    "segformer_b0": 0.72090523,
+    "segnet": 0.81804329,
+    "segnext_t": 0.77817252,
+    "transunet_2d": 0.86368364,
+    "unet": 0.84417594,
+    "unetplusplus": 0.82413517,
+    "vmunet": 0.83009429
+  }
+}

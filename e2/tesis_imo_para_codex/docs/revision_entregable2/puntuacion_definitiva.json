@@ -1,0 +1,340 @@
+{
+  "fecha_citas": "2026-11-22",
+  "candidatas": {
+    "DeepLabv3+": {
+      "familia": "CNN",
+      "niveles": {
+        "pertinencia": 3,
+        "reproducibilidad": 4,
+        "evidencia": 2,
+        "viabilidad": 4,
+        "recencia": 0
+      },
+      "justificacion": {
+        "pertinencia": "Experimento trimap: mIoU en bandas alrededor del borde; la ganancia del decoder crece al estrechar la banda (ficha: dificultad compartida)",
+        "reproducibilidad": "Código oficial en tensorflow/models con model_zoo.md de checkpoints entrenados",
+        "evidencia": "Ablaciones en val de VOC; la mejor variante se reentrena para test. Sin repeticiones",
+        "viabilidad": "Entrenada en el benchmark (SMP, ResNet-18), 5 semillas dentro del presupuesto",
+        "recencia": "2018; excepción fundacional documentada en el protocolo"
+      },
+      "puntos": {
+        "pertinencia": 18.75,
+        "reproducibilidad": 25.0,
+        "evidencia": 10.0,
+        "viabilidad": 10.0,
+        "recencia": 0.0
+      },
+      "citas": 24230,
+      "citas_por_anio": 2692.2,
+      "citacion_10": 9.44,
+      "total_100": 73.19,
+      "sin_citacion_90_a_100": 70.83,
+      "sin_viabilidad_90_a_100": 70.22,
+      "licencia": "NOASSERTION",
+      "sede": "ECCV, CORE A* (ICORE2026)",
+      "seleccionada": true
+    },
+    "UNet++": {
+      "familia": "CNN",
+      "niveles": {
+        "pertinencia": 3,
+        "reproducibilidad": 3,
+        "evidencia": 4,
+        "viabilidad": 4,
+        "recencia": 1
+      },
+      "justificacion": {
+        "pertinencia": "Análisis estratificado por tamaño de tumor en siete grupos con prueba t (Fig. 7)",
+        "reproducibilidad": "Código de autores; el README no publica pesos entrenados",
+        "evidencia": "20 ensayos independientes, media ± DE, prueba t contra U-Net e IC95 (Fig. 4); parada temprana en validación",
+        "viabilidad": "Entrenada en el benchmark, 5 semillas",
+        "recencia": "IEEE TMI 2020"
+      },
+      "puntos": {
+        "pertinencia": 18.75,
+        "reproducibilidad": 18.75,
+        "evidencia": 20.0,
+        "viabilidad": 10.0,
+        "recencia": 2.5
+      },
+      "citas": 5199,
+      "citas_por_anio": 742.7,
+      "citacion_10": 3.89,
+      "total_100": 73.89,
+      "sin_citacion_90_a_100": 77.78,
+      "sin_viabilidad_90_a_100": 70.99,
+      "licencia": "NOASSERTION",
+      "sede": "IEEE TMI (revista); cuartil no verificado",
+      "seleccionada": true
+    },
+    "PIDNet-S": {
+      "familia": "CNN",
+      "niveles": {
+        "pertinencia": 2,
+        "reproducibilidad": 3,
+        "evidencia": 2,
+        "viabilidad": 4,
+        "recencia": 3
+      },
+      "justificacion": {
+        "pertinencia": "Bordes y objetos pequeños como motivación y en figuras cualitativas; la ablación de pérdida de frontera se mide en mIoU global, sin métrica de borde",
+        "reproducibilidad": "Código de autores (MIT); el autor declara rotos los enlaces de pesos y la alternativa no se comprobó",
+        "evidencia": "Ablaciones en val de Cityscapes; test tras reentrenar con train+val. Sin repeticiones",
+        "viabilidad": "Entrenada en el benchmark, 5 semillas",
+        "recencia": "CVPR 2023"
+      },
+      "puntos": {
+        "pertinencia": 12.5,
+        "reproducibilidad": 18.75,
+        "evidencia": 10.0,
+        "viabilidad": 10.0,
+        "recencia": 7.5
+      },
+      "citas": 1107,
+      "citas_por_anio": 276.8,
+      "citacion_10": 0.56,
+      "total_100": 59.31,
+      "sin_citacion_90_a_100": 65.28,
+      "sin_viabilidad_90_a_100": 54.78,
+      "licencia": "MIT",
+      "sede": "CVPR, CORE A* (ICORE2026)",
+      "seleccionada": true
+    },
+    "SegNeXt-T": {
+      "familia": "CNN",
+      "niveles": {
+        "pertinencia": 2,
+        "reproducibilidad": 4,
+        "evidencia": 2,
+        "viabilidad": 4,
+        "recencia": 2
+      },
+      "justificacion": {
+        "pertinencia": "Escala como motivación del diseño multiescala; solo figura cualitativa de detalles",
+        "reproducibilidad": "Código de autores (Apache-2.0) con tabla de modelos entrenados y pesos de ImageNet",
+        "evidencia": "Comparaciones sobre validación de ADE20K y Cityscapes como reporte final. Sin repeticiones",
+        "viabilidad": "Entrenada en el benchmark, 5 semillas",
+        "recencia": "NeurIPS 2022"
+      },
+      "puntos": {
+        "pertinencia": 12.5,
+        "reproducibilidad": 25.0,
+        "evidencia": 10.0,
+        "viabilidad": 10.0,
+        "recencia": 5.0
+      },
+      "citas": 1723,
+      "citas_por_anio": 344.6,
+      "citacion_10": 1.67,
+      "total_100": 64.17,
+      "sin_citacion_90_a_100": 69.44,
+      "sin_viabilidad_90_a_100": 60.19,
+      "licencia": "Apache-2.0",
+      "sede": "NeurIPS, CORE A* (ICORE2026)",
+      "seleccionada": true
+    },
+    "SegFormer-B0": {
+      "familia": "Transformer",
+      "niveles": {
+        "pertinencia": 3,
+        "reproducibilidad": 4,
+        "evidencia": 2,
+        "viabilidad": 4,
+        "recencia": 2
+      },
+      "justificacion": {
+        "pertinencia": "Robustez a 16 corrupciones (Cityscapes-C: ruido, desenfoque, clima) frente a DeepLabv3+ y otros",
+        "reproducibilidad": "Código y pesos entrenados; además, la réplica de evaluación de este trabajo reprodujo 37,43 mIoU con el checkpoint oficial",
+        "evidencia": "Tablas de validación como reporte final; test de Cityscapes con val fusionado a train. Sin repeticiones",
+        "viabilidad": "Entrenada en el benchmark, 5 semillas",
+        "recencia": "NeurIPS 2021"
+      },
+      "puntos": {
+        "pertinencia": 18.75,
+        "reproducibilidad": 25.0,
+        "evidencia": 10.0,
+        "viabilidad": 10.0,
+        "recencia": 5.0
+      },
+      "citas": 11853,
+      "citas_por_anio": 1975.5,
+      "citacion_10": 8.33,
+      "total_100": 77.08,
+      "sin_citacion_90_a_100": 76.39,
+      "sin_viabilidad_90_a_100": 74.54,
+      "licencia": "NOASSERTION",
+      "sede": "NeurIPS, CORE A* (ICORE2026)",
+      "seleccionada": true
+    },
+    "TransUNet": {
+      "familia": "Híbrido CNN-Transformer",
+      "niveles": {
+        "pertinencia": 3,
+        "reproducibilidad": 3,
+        "evidencia": 1,
+        "viabilidad": 4,
+        "recencia": 2
+      },
+      "justificacion": {
+        "pertinencia": "Ablación de conexiones con ganancia desagregada en órganos pequeños (aorta, vesícula)",
+        "reproducibilidad": "Código de autores (Apache-2.0); solo pesos de ViT de ImageNet, no del modelo entrenado",
+        "evidencia": "Synapse sin conjunto de selección aparte: las configuraciones se eligen sobre los 12 casos que se reportan",
+        "viabilidad": "Entrenada en el benchmark, 5 semillas",
+        "recencia": "Preprint 2021"
+      },
+      "puntos": {
+        "pertinencia": 18.75,
+        "reproducibilidad": 18.75,
+        "evidencia": 5.0,
+        "viabilidad": 10.0,
+        "recencia": 5.0
+      },
+      "citas": 10311,
+      "citas_por_anio": 1718.5,
+      "citacion_10": 7.22,
+      "total_100": 64.72,
+      "sin_citacion_90_a_100": 63.89,
+      "sin_viabilidad_90_a_100": 60.8,
+      "licencia": "Apache-2.0",
+      "sede": "Preprint arXiv; no aplica",
+      "seleccionada": true
+    },
+    "VM-UNet": {
+      "familia": "SSM",
+      "niveles": {
+        "pertinencia": 2,
+        "reproducibilidad": 3,
+        "evidencia": 1,
+        "viabilidad": 4,
+        "recencia": 3
+      },
+      "justificacion": {
+        "pertinencia": "Objetos pequeños y bordes complejos solo en figuras cualitativas",
+        "reproducibilidad": "Código de autores (Apache-2.0); el README no publica pesos del modelo entrenado",
+        "evidencia": "Partición train/test sin validación; el dropout se elige comparando sobre el mismo test",
+        "viabilidad": "Entrenada en el benchmark, 5 semillas",
+        "recencia": "Preprint 2024 (versión editorial ACM TOMM 2025)"
+      },
+      "puntos": {
+        "pertinencia": 12.5,
+        "reproducibilidad": 18.75,
+        "evidencia": 5.0,
+        "viabilidad": 10.0,
+        "recencia": 7.5
+      },
+      "citas": 1486,
+      "citas_por_anio": 495.3,
+      "citacion_10": 2.78,
+      "total_100": 56.53,
+      "sin_citacion_90_a_100": 59.72,
+      "sin_viabilidad_90_a_100": 51.7,
+      "licencia": "Apache-2.0",
+      "sede": "ACM TOMM (revista, 2025); cuartil no verificado",
+      "seleccionada": true
+    },
+    "Attention U-Net": {
+      "familia": "CNN",
+      "niveles": {
+        "pertinencia": 2,
+        "reproducibilidad": 3,
+        "evidencia": 3,
+        "viabilidad": 3,
+        "recencia": 0
+      },
+      "justificacion": {
+        "pertinencia": "Páncreas (objeto pequeño y variable) como motivación; resultados por órgano frente a U-Net sin análisis dedicado",
+        "reproducibilidad": "Código de autores (MIT); sin pesos entrenados en el README",
+        "evidencia": "Validación cruzada de 5 particiones en CT-82, valores p frente a U-Net y evaluación externa CT-150 → CT-82; sin conjunto de validación",
+        "viabilidad": "Configuración pública plausible; sin piloto",
+        "recencia": "2018; sin excepción fundacional"
+      },
+      "puntos": {
+        "pertinencia": 12.5,
+        "reproducibilidad": 18.75,
+        "evidencia": 15.0,
+        "viabilidad": 7.5,
+        "recencia": 0.0
+      },
+      "citas": 12523,
+      "citas_por_anio": 1391.4,
+      "citacion_10": 5.0,
+      "total_100": 58.75,
+      "sin_citacion_90_a_100": 59.72,
+      "sin_viabilidad_90_a_100": 56.94,
+      "licencia": "MIT",
+      "sede": "MIDL 2018; sin rango CORE",
+      "seleccionada": false
+    },
+    "Swin-Unet": {
+      "familia": "Transformer",
+      "niveles": {
+        "pertinencia": 2,
+        "reproducibilidad": 3,
+        "evidencia": 1,
+        "viabilidad": 3,
+        "recencia": 2
+      },
+      "justificacion": {
+        "pertinencia": "Bordes afirmados con HD y figura cualitativa; sin análisis dedicado",
+        "reproducibilidad": "Código de autores y pesos de Swin-T de ImageNet; el repositorio no declara licencia",
+        "evidencia": "Ablaciones sobre el test de Synapse y configuración elegida con esos resultados",
+        "viabilidad": "Configuración pública plausible (entrada 224); sin piloto",
+        "recencia": "ECCV Workshops 2022"
+      },
+      "puntos": {
+        "pertinencia": 12.5,
+        "reproducibilidad": 18.75,
+        "evidencia": 5.0,
+        "viabilidad": 7.5,
+        "recencia": 5.0
+      },
+      "citas": 8355,
+      "citas_por_anio": 1671.0,
+      "citacion_10": 6.11,
+      "total_100": 54.86,
+      "sin_citacion_90_a_100": 54.17,
+      "sin_viabilidad_90_a_100": 52.62,
+      "licencia": null,
+      "sede": "Taller de ECCV 2022; el rango de ECCV no se extiende a sus talleres",
+      "seleccionada": false
+    }
+  },
+  "optimo_con_diversidad": {
+    "total_100": [
+      "DeepLabv3+",
+      "PIDNet-S",
+      "SegFormer-B0",
+      "SegNeXt-T",
+      "TransUNet",
+      "UNet++",
+      "VM-UNet"
+    ],
+    "sin_citacion_90_a_100": [
+      "DeepLabv3+",
+      "PIDNet-S",
+      "SegFormer-B0",
+      "SegNeXt-T",
+      "TransUNet",
+      "UNet++",
+      "VM-UNet"
+    ],
+    "sin_viabilidad_90_a_100": [
+      "Attention U-Net",
+      "DeepLabv3+",
+      "SegFormer-B0",
+      "SegNeXt-T",
+      "TransUNet",
+      "UNet++",
+      "VM-UNet"
+    ]
+  },
+  "seleccion_operativa": [
+    "DeepLabv3+",
+    "PIDNet-S",
+    "SegFormer-B0",
+    "SegNeXt-T",
+    "TransUNet",
+    "UNet++",
+    "VM-UNet"
+  ]
+}

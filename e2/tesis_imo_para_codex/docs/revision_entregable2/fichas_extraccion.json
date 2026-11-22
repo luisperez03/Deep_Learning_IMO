@@ -1,0 +1,1568 @@
+[
+ {
+  "red": "DeepLabv3+",
+  "referencia": "Chen et al., ECCV 2018",
+  "arxiv": "1802.02611v3",
+  "estado": "seleccionada",
+  "campos": {
+   "tarea_modalidad": {
+    "valor": "Segmentación semántica densa (etiqueta por píxel) de imágenes RGB: PASCAL VOC 2012 (20 clases + fondo) y Cityscapes.",
+    "evidencia": [
+     {
+      "pagina": 7,
+      "fragmento": "The proposed models are evaluated on the PASCAL VOC 2012 semantic"
+     },
+     {
+      "pagina": 1,
+      "fragmento": "Semantic segmentation with the goal to assign semantic labels to every pixel in an"
+     }
+    ]
+   },
+   "mecanismo": {
+    "valor": "Codificador DeepLabv3 (convolución atrous + ASPP) más un decodificador simple: sube x4 las características, las concatena con las de bajo nivel (1x1 a 48 canales), dos convoluciones 3x3 y otro x4. Backbone Xception modificado y convolución atrous separable en ASPP y decodificador.",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "concatenated with the corresponding low-level features [73]"
+     },
+     {
+      "pagina": 5,
+      "fragmento": "we refer the resulting convolution as atrous"
+     }
+    ]
+   },
+   "datos_particion": {
+    "valor": "VOC 2012: 1.464 train, 1.449 val, 1.456 test; con anotaciones extra, 10.582 (trainaug) para entrenar. Cityscapes: 2.975 train, 500 val, 1.525 test (más ~20.000 gruesas). Unidad: imagen; no se describe otra separación.",
+    "evidencia": [
+     {
+      "pagina": 7,
+      "fragmento": "1, 464 (train), 1, 449 (val), and"
+     },
+     {
+      "pagina": 7,
+      "fragmento": "10, 582 (trainaug) training images"
+     },
+     {
+      "pagina": 12,
+      "fragmento": "(2975, 500, and 1525 for the training, validation, and test sets respectively)"
+     }
+    ]
+   },
+   "preprocesamiento": {
+    "valor": "Recorte 513x513, aumento por escalado aleatorio, BN ajustada con output stride 16. Preentrenamiento en ImageNet-1k (ResNet-101 o Xception); para comparar con el estado del arte, además MS-COCO y JFT-300M.",
+    "evidencia": [
+     {
+      "pagina": 7,
+      "fragmento": "random scale data augmentation during training"
+     },
+     {
+      "pagina": 6,
+      "fragmento": "We employ ImageNet-1k [74] pretrained ResNet-101 [25] or"
+     },
+     {
+      "pagina": 11,
+      "fragmento": "further pretrain our proposed DeepLabv3+ model on MS-COCO dataset [79],"
+     }
+    ]
+   },
+   "entrenamiento": {
+    "valor": "Se remite al protocolo de DeepLabv3 [23]: política poly, tasa inicial 0,007, extremo a extremo. Pérdida, optimizador, lote, iteraciones y criterio de checkpoint de la segmentación no se detallan aquí. El preentrenamiento de Xception usa Nesterov (momento 0,9, lr 0,05). Prueba final con output stride 8 y BN congelada.",
+    "evidencia": [
+     {
+      "pagina": 7,
+      "fragmento": "We follow the same training protocol as in [23]"
+     },
+     {
+      "pagina": 10,
+      "fragmento": "Nesterov momentum optimizer with momentum = 0.9, initial learning"
+     },
+     {
+      "pagina": 11,
+      "fragmento": "with output stride = 8 and frozen batch normalization parameters"
+     }
+    ]
+   },
+   "metricas": {
+    "valor": "mIoU (IoU por píxel promediado sobre las 21 clases en VOC) y Multiply-Adds como costo; además mIoU dentro de una banda trimap alrededor de las etiquetas 'void' para los bordes. Estrategias de inferencia: multiescala y volteo.",
+    "evidencia": [
+     {
+      "pagina": 7,
+      "fragmento": "pixel intersection-over-union averaged"
+     },
+     {
+      "pagina": 8,
+      "fragmento": "mIOU and Multiply-Adds in Tab. 3 when using ResNet-101"
+     },
+     {
+      "pagina": 11,
+      "fragmento": "then compute the mean IOU for those pixels that are within the dilated band"
+     }
+    ]
+   },
+   "repeticiones_incertidumbre": {
+    "valor": "No reportado",
+    "evidencia": []
+   },
+   "ablaciones": {
+    "valor": "Decodificador: canales de reducción del bajo nivel (8 a 64), número y tamaño de convoluciones 3x3, uso de Conv2 y Conv3. Estrategia de inferencia (output stride, multiescala, volteo), con y sin decodificador. Backbone ResNet-101 frente a Xception, convolución separable, COCO/JFT. En Cityscapes: decodificador y características a nivel de imagen.",
+    "evidencia": [
+     {
+      "pagina": 8,
+      "fragmento": "to either 48 or 32 leads to better"
+     },
+     {
+      "pagina": 10,
+      "fragmento": "Adding decoder: The second row block in Tab. 3 contains the results when"
+     },
+     {
+      "pagina": 11,
+      "fragmento": "to 41%, while similar mIOU performance is obtained."
+     },
+     {
+      "pagina": 13,
+      "fragmento": "performance to 78.79% (1.46% improvement)."
+     }
+    ]
+   },
+   "dificultad_compartida": {
+    "valor": "Bordes: evaluados explícitamente con el experimento trimap (Sec. 4.4, Fig. 5a): la mejora del decodificador es mayor cuanto más estrecha la banda. Objetos pequeños, variación de escala (solo como estrategia de inferencia multiescala) y robustez a ruido/desenfoque: no se evalúan; la escala y el detalle aparecen como motivación.",
+    "evidencia": [
+     {
+      "pagina": 11,
+      "fragmento": "when the dilated band is narrow. We have observed 4.8%"
+     },
+     {
+      "pagina": 13,
+      "fragmento": "mIOU as a function of trimap band width around the object boundaries"
+     }
+    ]
+   },
+   "costo": {
+    "valor": "Multiply-Adds por configuración en las Tablas 3 y 5 (p. ej., 54,17B a 3055,35B con Xception según OS y multiescala). El decodificador suma unos 20B. No se reportan parámetros, FPS ni latencia. Preentrenamiento de Xception con 50 GPU asíncronas.",
+    "evidencia": [
+     {
+      "pagina": 10,
+      "fragmento": "at the cost of about 20B extra computation overhead."
+     },
+     {
+      "pagina": 10,
+      "fragmento": "use asynchronous training with 50 GPUs and each GPU has batch size 32 with"
+     },
+     {
+      "pagina": 11,
+      "fragmento": "to 41%, while similar mIOU performance is obtained."
+     }
+    ]
+   },
+   "codigo": {
+    "valor": "https://github.com/tensorflow/models/tree/master/research/deeplab (implementación en TensorFlow).",
+    "evidencia": [
+     {
+      "pagina": 1,
+      "fragmento": "//github.com/tensorflow/models/tree/master/research/deeplab"
+     }
+    ]
+   },
+   "seleccion_por_test": {
+    "valor": "Las decisiones de diseño y las comparaciones de las Tablas 1 a 5 y 7a se hacen sobre val. Luego se toma la mejor variante y se entrena/evalúa para test (Tabla 6, 7b). No dice cómo se eligió el checkpoint ni cuántas veces se evaluó en test; el val es el reporte de las ablaciones, no un hold-out separado.",
+    "evidencia": [
+     {
+      "pagina": 13,
+      "fragmento": "the best model variant on val set, we then further"
+     },
+     {
+      "pagina": 11,
+      "fragmento": "we thus opt for the best performance model and train it"
+     }
+    ]
+   },
+   "limitaciones": {
+    "valor": "Modo de fallo cualitativo (última fila de Fig. 6): sofá frente a silla, objetos muy ocluidos y vistas raras. Con output stride 32 queda 1 a 1,5 % por debajo; sin análisis de errores cuantitativo.",
+    "evidencia": [
+     {
+      "pagina": 11,
+      "fragmento": "in segmenting (a) sofa vs. chair, (b) heavily occluded objects, and (c) objects"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "red": "UNet++",
+  "referencia": "Zhou et al., IEEE TMI 2020",
+  "arxiv": "1912.05074v2",
+  "estado": "seleccionada",
+  "campos": {
+   "tarea_modalidad": {
+    "valor": "Segmentación semántica (y de instancias con Mask RCNN++) de imágenes médicas: microscopía electrónica, Cell-CT, núcleos, RM cerebral (4 secuencias), TC de hígado y de nódulos pulmonares (3D). Salida: máscara binaria por píxel o vóxel.",
+    "evidencia": [
+     {
+      "pagina": 1,
+      "fragmento": "neural architecture for semantic and instance segmentation, by"
+     },
+     {
+      "pagina": 1,
+      "fragmento": "covering multiple imaging modalities such"
+     }
+    ]
+   },
+   "mecanismo": {
+    "valor": "Ensamble integrado de U-Nets de profundidades distintas con decodificadores conectados densamente a la misma resolución (skip connections rediseñadas) y supervisión profunda en X0,1 a X0,4, que además permite podar la red en inferencia.",
+    "evidencia": [
+     {
+      "pagina": 1,
+      "fragmento": "of U-Nets of varying depths whose decoders are densely"
+     },
+     {
+      "pagina": 3,
+      "fragmento": "Unlike U-Nete, deep supervision is not required for"
+     }
+    ]
+   },
+   "datos_particion": {
+    "valor": "Seis conjuntos: EM 30 imágenes (24/3/3), Cell 354 (212/70/72), Nuclei 670 (50/20/30 %), Tumor cerebral 30 pacientes en 5 folds (3/1/1), Hígado 331 TC (100/15/15 pacientes), Nódulo 1.012 casos (510/100/408). Unidad: imagen en EM, Cell y Nuclei; paciente o caso en los demás.",
+    "evidencia": [
+     {
+      "pagina": 5,
+      "fragmento": "into training (212 images), validation (70 images), and test (72"
+     },
+     {
+      "pagina": 5,
+      "fragmento": "training set (3-fold), a validation set (1-fold), and a test set"
+     },
+     {
+      "pagina": 5,
+      "fragmento": "training (100 patients), validation (15 patients), and test (15"
+     }
+    ]
+   },
+   "preprocesamiento": {
+    "valor": "Parches de 96x96 con solape de la mitad (EM) y ventana deslizante (Nuclei); cortes de RM reescalados a 256x256; TC de pulmón remuestreada a 1-1-1 y recorte 64x64x64. No describe aumento de datos ni preentrenamiento.",
+    "evidencia": [
+     {
+      "pagina": 4,
+      "fragmento": "based on 96×96 patches, which are chosen to overlap by half"
+     },
+     {
+      "pagina": 5,
+      "fragmento": "We further pre-process the dataset by re-scaling the slices to"
+     },
+     {
+      "pagina": 5,
+      "fragmento": "We have re-sampled the volumes to 1-1-1 spacing and then"
+     }
+    ]
+   },
+   "entrenamiento": {
+    "valor": "Pérdida híbrida (entropía cruzada por píxel más Dice suave) en cada salida con pesos iguales. Adam, tasa 3e-4, parada temprana sobre validación. Lote, épocas y el criterio exacto de la parada no se dan.",
+    "evidencia": [
+     {
+      "pagina": 5,
+      "fragmento": "Adam is used as the optimizer with a"
+     },
+     {
+      "pagina": 5,
+      "fragmento": "We use early-stop mechanism on the validation"
+     },
+     {
+      "pagina": 4,
+      "fragmento": "we give same balanced weights"
+     }
+    ]
+   },
+   "metricas": {
+    "valor": "IoU y Dice, media y desviación estándar sobre 20 repeticiones; en el apéndice sensibilidad, especificidad, F1 y F2 por píxel. En tumor cerebral se usa la evaluación 'completa' (las cuatro etiquetas como positivo).",
+    "evidencia": [
+     {
+      "pagina": 5,
+      "fragmento": "evaluate the results using Dice-"
+     },
+     {
+      "pagina": 5,
+      "fragmento": "is done by considering all four labels as positive class and"
+     }
+    ]
+   },
+   "repeticiones_incertidumbre": {
+    "valor": "20 ensayos independientes por configuración, media±d.e.; prueba t de dos muestras independientes (p<0,05) contra U-Net; intervalos de confianza del 95 % en Fig. 4. No aclara si las repeticiones varían semilla, partición o ambas.",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "Through 20 trials, we further present statistical"
+     },
+     {
+      "pagina": 3,
+      "fragmento": "for comparison (mean±s.d. %)."
+     },
+     {
+      "pagina": 7,
+      "fragmento": "adopt t-test on each bucket based on 20 different trials"
+     }
+    ]
+   },
+   "ablaciones": {
+    "valor": "Profundidad de U-Net (L1 a L4), U-Net con ensamble, UNet+ y UNet++ con y sin supervisión profunda; U-Net ancha de parámetros comparables; distintos backbones (VGG-19, ResNet-152, DenseNet-201); poda (L1 a L4); entrenamiento embebido frente a aislado.",
+    "evidencia": [
+     {
+      "pagina": 3,
+      "fragmento": "TABLE I: Ablation study on U-Nets of varying depths alongside"
+     },
+     {
+      "pagina": 7,
+      "fragmento": "We have compared the isolated and embedded training"
+     }
+    ]
+   },
+   "dificultad_compartida": {
+    "valor": "Variación de escala: evaluada con un análisis estratificado por tamaño de tumor cerebral en siete grupos (Fig. 7, Sec. V-A), con prueba t por grupo; mejora significativa en 5 de 7. Bordes, objetos pequeños en sentido estricto y robustez a ruido o iluminación: no se evalúan.",
+    "evidencia": [
+     {
+      "pagina": 7,
+      "fragmento": "Fig. 7 compares U-Net and UNet++ for segmenting different"
+     },
+     {
+      "pagina": 8,
+      "fragmento": "Fig. 7: UNet++ can better segment tumors of various sizes than does"
+     }
+    ]
+   },
+   "costo": {
+    "valor": "GPU: tres NVIDIA TITAN X (Pascal) de 12 GB. Parámetros: U-Net 7,8M, UNet++ 9,0M. Poda: UNet++ L3 reduce en promedio 32,2 % el tiempo de inferencia y 75,6 % la memoria con 0,6 puntos menos de IoU; tiempo medido procesando 10K imágenes de prueba. Sin FLOPs.",
+    "evidencia": [
+     {
+      "pagina": 5,
+      "fragmento": "performed using three NVIDIA TITAN X (Pascal) GPUs with"
+     },
+     {
+      "pagina": 5,
+      "fragmento": "UNet++ 9.0M 32 64 128 256 512"
+     },
+     {
+      "pagina": 7,
+      "fragmento": "32.2% reduction in inference time and 75.6% reduction in"
+     }
+    ]
+   },
+   "codigo": {
+    "valor": "https://github.com/MrGiovanni/UNetPlusPlus (implementación y modelos preentrenados).",
+    "evidencia": [
+     {
+      "pagina": 1,
+      "fragmento": "https://github.com/MrGiovanni/UNetPlusPlus"
+     }
+    ]
+   },
+   "seleccion_por_test": {
+    "valor": "Parada temprana sobre validación y nivel de poda elegido según desempeño en validación, lo que indica uso de val para decidir. El texto no dice explícitamente que las tablas de resultados sean sobre test, ni cómo se escogieron hiperparámetros distintos a lr de Adam.",
+    "evidencia": [
+     {
+      "pagina": 5,
+      "fragmento": "We use early-stop mechanism on the validation"
+     },
+     {
+      "pagina": 7,
+      "fragmento": "the level of pruning should be determined by evaluating the"
+     }
+    ]
+   },
+   "limitaciones": {
+    "valor": "La poda agresiva degrada el IoU de forma notable; la supervisión profunda aporta poco en varios conjuntos; en tumor cerebral queda por debajo del ganador de BraTS 2013 (Dice 92 % frente a 90,83 %). No hay análisis de errores ni casos fallidos.",
+    "evidencia": [
+     {
+      "pagina": 7,
+      "fragmento": "More aggressive pruning further reduces the inference time but"
+     },
+     {
+      "pagina": 5,
+      "fragmento": "Deep supervision, however, is only marginally"
+     },
+     {
+      "pagina": 6,
+      "fragmento": "The winner in BraTS 2013 holds a"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "red": "PIDNet-S",
+  "referencia": "Xu et al., CVPR 2023",
+  "arxiv": "2206.02066v3",
+  "estado": "seleccionada",
+  "campos": {
+   "tarea_modalidad": {
+    "valor": "Segmentación semántica en tiempo real de imágenes RGB de escenas urbanas (Cityscapes, CamVid) y de escenas generales (PASCAL Context): etiqueta por píxel.",
+    "evidencia": [
+     {
+      "pagina": 1,
+      "fragmento": "Semantic segmentation is a fundamental task for visual"
+     },
+     {
+      "pagina": 6,
+      "fragmento": "In this section, our models will be trained and tested on"
+     }
+    ]
+   },
+   "mecanismo": {
+    "valor": "Red de tres ramas inspirada en el controlador PID: P (detalle, alta resolución), I (contexto) y D (frontera, detección de bordes). Módulos Pag (atención a píxel para la rama P), PAPPM/DAPPM (contexto) y Bag (atención de frontera que decide entre detalle y contexto).",
+    "evidencia": [
+     {
+      "pagina": 4,
+      "fragmento": "PIDNet possesses three branches with complementary"
+     },
+     {
+      "pagina": 5,
+      "fragmento": "boundary attention to guide the fusion of detailed (P)"
+     }
+    ]
+   },
+   "datos_particion": {
+    "valor": "Cityscapes (solo anotación fina): 2.975 train, 500 val, 1.525 test. CamVid: 367/101/233 (11 clases). PASCAL Context: 4.998 train y 5.105 val. Unidad: imagen. Para los resultados de test se entrena con train y val juntos (Cityscapes y CamVid).",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "images are divided into sets with numbers of 2975, 500,"
+     },
+     {
+      "pagina": 6,
+      "fragmento": "partitioned into 367, 101 and 233 for train-"
+     },
+     {
+      "pagina": 6,
+      "fragmento": "train and val set for Cityscapes and CamVid."
+     }
+    ]
+   },
+   "preprocesamiento": {
+    "valor": "Recorte aleatorio, volteo horizontal y escalado aleatorio [0,5, 2,0]; recortes de 1024x1024 (Cityscapes), 960x720 (CamVid), 520x520 (PASCAL Context). Preentrenamiento en ImageNet (recorte 224x224); CamVid se ajusta desde Cityscapes.",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "of [0.5, 2.0] for data augmentation."
+     },
+     {
+      "pagina": 6,
+      "fragmento": "them by ImageNet [41] as most of previous works doing"
+     },
+     {
+      "pagina": 6,
+      "fragmento": "[484, 1e−2, 5e−4, 1024×1024,"
+     }
+    ]
+   },
+   "entrenamiento": {
+    "valor": "Pérdida con cuatro términos (l0 semántica auxiliar, l1 BCE ponderada de frontera, l2 CE, l3 CE consciente de frontera) con pesos 0,4/20/1/1 y umbral 0,8; OHEM; política poly. Épocas/lr/decaimiento/recorte/lote: Cityscapes 484, 1e-2, 5e-4, 1024x1024, 12. Optimizador y criterio de checkpoint no se declaran.",
+    "evidencia": [
+     {
+      "pagina": 4,
+      "fragmento": "Empirically, we set the parameters for the training loss of"
+     },
+     {
+      "pagina": 4,
+      "fragmento": "of dice loss [13], weighted binary cross entropy loss l1 is"
+     },
+     {
+      "pagina": 6,
+      "fragmento": "Training. Our training protocols are almost the same as"
+     }
+    ]
+   },
+   "metricas": {
+    "valor": "mIoU por conjunto (val y test en Cityscapes; 59 y 60 clases en PASCAL Context) y FPS con lote 1 y BN integrada; GFLOPs y parámetros. En PASCAL Context se usa inferencia multiescala y con volteo.",
+    "evidencia": [
+     {
+      "pagina": 8,
+      "fragmento": "Different from other two datasets, multi-scale and"
+     },
+     {
+      "pagina": 6,
+      "fragmento": "batch size to be 1 for measurement of inference speed."
+     }
+    ]
+   },
+   "repeticiones_incertidumbre": {
+    "valor": "No reportado",
+    "evidencia": []
+   },
+   "ablaciones": {
+    "valor": "ADB y Bag añadidos a BiSeNet y DDRNet; Pag frente a Add y Bag frente a Add, con y sin preentrenamiento; PAPPM frente a DAPPM y Light-Bag; pérdidas extra l0, l1, l3 y OHEM. También la variante PIDNet-S-Simple sin Pag ni Bag.",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "Ablation study of ADB-Bag for BiSeNet and DDRNet."
+     },
+     {
+      "pagina": 6,
+      "fragmento": "Ablation study of Pag and Bag on PIDNet-L."
+     },
+     {
+      "pagina": 7,
+      "fragmento": "Ablation study of PAPPM and Light-Bag on PIDNet-S."
+     },
+     {
+      "pagina": 7,
+      "fragmento": "Ablation study of extra losses and OHEM for PIDNet-L."
+     }
+    ]
+   },
+   "dificultad_compartida": {
+    "valor": "Bordes y objetos pequeños son la motivación y se tratan de forma cualitativa (Fig. 2, 3, 8, 9: bordes y objetos pequeños realzados por Bag) y con la ablación de pérdida de frontera (+1,1 % mIoU). No hay métrica de borde ni evaluación por tamaño de objeto, de escala o de corrupción.",
+    "evidencia": [
+     {
+      "pagina": 7,
+      "fragmento": "regions and small objects are greatly enhanced in the output"
+     },
+     {
+      "pagina": 7,
+      "fragmento": "According to Table 4, boundary loss l1 and boundary-"
+     }
+    ]
+   },
+   "costo": {
+    "valor": "RTX 3090, PyTorch 1.8, CUDA 11.2, cuDNN 8.0, Windows, lote 1, BN fusionada, sin herramientas de aceleración. Cityscapes 2048x1024: PIDNet-S 93,2 FPS, 47,6 GFLOPs, 7,6M parámetros; GFLOPs a resolución completa. Los FPS de otros modelos con * se midieron en la misma plataforma.",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "3090, PyTorch 1.8, CUDA 11.2, cuDNN 8.0 and Windows-"
+     },
+     {
+      "pagina": 8,
+      "fragmento": "PIDNet-S 78.8 78.6 93.2 RTX 3090 2048×1024 47.6 7.6M"
+     },
+     {
+      "pagina": 8,
+      "fragmento": "The GFLOPs for PIDNet is derived based on full-resolution input."
+     }
+    ]
+   },
+   "codigo": {
+    "valor": "https://github.com/XuJiacong/PIDNet",
+    "evidencia": [
+     {
+      "pagina": 2,
+      "fragmento": "https://github.com/XuJiacong/PIDNet"
+     }
+    ]
+   },
+   "seleccion_por_test": {
+    "valor": "Las ablaciones se reportan sobre val de Cityscapes; los resultados de test se obtienen reentrenando con train y val, por lo que el val deja de ser un hold-out en esa etapa. Los pesos de la pérdida se fijan 'empíricamente' sin decir con qué datos; en CamVid se detiene el entrenamiento por tasa de aprendizaje. No hay indicio explícito de ajuste con test.",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "accuracy on Cityscapes val set compared with their origi-"
+     },
+     {
+      "pagina": 6,
+      "fragmento": "Before testing, our models are trained by both"
+     }
+    ]
+   },
+   "limitaciones": {
+    "valor": "El método depende de anotaciones precisas en las fronteras, costosas de producir. PIDNet-S-Simple tiene menor capacidad de generalización. En PASCAL Context queda competitivo pero por debajo de HRNet.",
+    "evidencia": [
+     {
+      "pagina": 8,
+      "fragmento": "cise annotation around boundary, which usually requires a"
+     },
+     {
+      "pagina": 8,
+      "fragmento": "has weaker generalization ability but still presents highest"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "red": "SegNeXt-T",
+  "referencia": "Guo et al., NeurIPS 2022",
+  "arxiv": "2209.08575v1",
+  "estado": "seleccionada",
+  "campos": {
+   "tarea_modalidad": {
+    "valor": "Segmentación semántica de imágenes RGB (escenas urbanas, interiores, aéreas); entrada imagen, salida mapa de clases por píxel.",
+    "evidencia": [
+     {
+      "pagina": 1,
+      "fragmento": "a simple convolutional network architecture for semantic"
+     },
+     {
+      "pagina": 6,
+      "fragmento": "ADE20K, Cityscapes and iSAID datasets and 80K"
+     }
+    ]
+   },
+   "mecanismo": {
+    "valor": "Codificador convolucional MSCAN con atención convolucional multiescala (MSCA: conv. depthwise y ramas de tiras 7, 11, 21 cuyo resultado reescala la entrada por producto elemento a elemento) y decodificador ligero con Hamburger sobre las últimas tres etapas.",
+    "evidencia": [
+     {
+      "pagina": 4,
+      "fragmento": "multi-branch depth-wise strip convolutions to capture"
+     },
+     {
+      "pagina": 5,
+      "fragmento": "We aggregate features from the last three stages and use a lightweight"
+     }
+    ]
+   },
+   "datos_particion": {
+    "valor": "ADE20K 20.210/2.000/3.352; Cityscapes 2.975/500/1.525; Pascal VOC 10.582/1.449/1.456; iSAID 1.411/458/937; Pascal Context 4.996 train y 5.104 val; COCO-Stuff 164k. Unidad de separación: imagen. Preentrenamiento en ImageNet-1K.",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "2,975/500/1,525 images for training, validation and testing, respectively."
+     },
+     {
+      "pagina": 6,
+      "fragmento": "images in the training, validation and test sets."
+     }
+    ]
+   },
+   "preprocesamiento": {
+    "valor": "Aumentos: volteo horizontal aleatorio, escalado aleatorio (0,5 a 2) y recorte aleatorio; codificador preentrenado en ImageNet-1K con el régimen de DeiT. El tamaño de recorte no se da en el texto principal (remite al suplemento).",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "random horizontal ﬂipping, random scaling (from 0.5 to 2) and random cropping."
+     },
+     {
+      "pagina": 6,
+      "fragmento": "DeiT [70]. For segmentation experiments, we adopt some common data augmentation including"
+     }
+    ]
+   },
+   "entrenamiento": {
+    "valor": "AdamW, tasa inicial 0,00006 con decaimiento poly; 160K iteraciones (ADE20K, Cityscapes, iSAID) u 80K (COCO-Stuff, VOC, Context); lote 8 en Cityscapes y 16 en el resto. Pérdida y criterio de checkpoint no se indican.",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "is set to 8 for the Cityscapes dataset and 16 for all the other datasets."
+     },
+     {
+      "pagina": 6,
+      "fragmento": "AdamW [54] is applied to"
+     }
+    ]
+   },
+   "metricas": {
+    "valor": "mIoU para segmentación y Top-1 en ImageNet; se reportan mIoU de escala única (SS) y multiescala con volteo (MS). No se explica la agregación entre clases ni se reportan IoU por clase en el texto principal.",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "We adopt Top-1 accuracy and mean Intersection over"
+     },
+     {
+      "pagina": 6,
+      "fragmento": "single-scale (SS) and multi-scale (MS)"
+     }
+    ]
+   },
+   "repeticiones_incertidumbre": {
+    "valor": "No reportado",
+    "evidencia": []
+   },
+   "ablaciones": {
+    "valor": "Ablación de MSCA (ramas 7, 11, 21, conv. 1x1, atención; Tab. 6 y Tab. 8 vs. un solo kernel grande), de módulos de contexto global en el decodificador (CC, EMA, NL, Ham; Tab. 5) y de estructura del decodificador (Fig. 3a, b, c y con etapa 1; Tab. 7).",
+    "evidencia": [
+     {
+      "pagina": 7,
+      "fragmento": "Ablation on MSCA design. We conduct ablation study on MSCA design on both ImageNet"
+     },
+     {
+      "pagina": 7,
+      "fragmento": "We ablate three different decoder designs for segmentation, all of which have been shown"
+     }
+    ]
+   },
+   "dificultad_compartida": {
+    "valor": "Sin experimento dedicado. Solo la figura cualitativa 4 (SegNeXt-B vs SegFormer-B2 en Cityscapes) con la afirmación de que reconoce bien detalles de objetos; la variación de escala se menciona como motivación del diseño multiescala. No hay evaluación de bordes, objetos pequeños ni corrupciones.",
+    "evidencia": [
+     {
+      "pagina": 8,
+      "fragmento": "proposed MSCA, our method recognizes well when processing object details."
+     },
+     {
+      "pagina": 2,
+      "fragmento": "needs to process objects of varying sizes in a"
+     }
+    ]
+   },
+   "costo": {
+    "valor": "8 GPU RTX 3090 para entrenar. SegNeXt-T: 4,3M parámetros, 6,6 GFLOPs en ADE20K; SegNeXt-S en Cityscapes 124,6 GFLOPs frente a 717,1 de SegFormer-B2. Latencia: SegNeXt-T 25 FPS con una RTX 3090 a 768x1536, sin optimizaciones.",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "are trained on a node with 8 RTX 3090 GPUs."
+     },
+     {
+      "pagina": 9,
+      "fragmento": "SegNeXt-T realizes 25 frames per second (FPS) using a single 3090 RTX GPU"
+     }
+    ]
+   },
+   "codigo": {
+    "valor": "El PDF dice que el código está disponible pero no da URL propia; solo aparecen URL de mmsegmentation y timm, que son bibliotecas usadas.",
+    "evidencia": [
+     {
+      "pagina": 1,
+      "fragmento": "on the ADE20K datasets with the same or fewer computations. Code is available."
+     }
+    ]
+   },
+   "seleccion_por_test": {
+    "valor": "Sin indicios explícitos. No describe cómo se elige el checkpoint ni los hiperparámetros. Las comparaciones de ADE20K y Cityscapes (Fig. 1, Tab. 9) se hacen sobre validación, que actúa como reporte final; test solo en VOC (tabla de líderes) y Cityscapes en tiempo real.",
+    "evidencia": [
+     {
+      "pagina": 8,
+      "fragmento": "performance-computation curves of"
+     },
+     {
+      "pagina": 8,
+      "fragmento": "different methods on the Cityscape and ADE20K validation set."
+     }
+    ]
+   },
+   "limitaciones": {
+    "valor": "Reconocen que no han extendido el método a modelos de más de 100M parámetros ni a otras tareas de visión o PLN. No hay análisis de errores.",
+    "evidencia": [
+     {
+      "pagina": 10,
+      "fragmento": "Our model also has its limitations, for example, extending this method"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "red": "SegFormer-B0",
+  "referencia": "Xie et al., NeurIPS 2021",
+  "arxiv": "2105.15203v3",
+  "estado": "seleccionada",
+  "campos": {
+   "tarea_modalidad": {
+    "valor": "Segmentación semántica de imágenes RGB (conducción, escenas, COCO-Stuff); entrada imagen HxWx3, salida máscara de clases a 1/4 de resolución, reescalada.",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "Cityscapes is a driving dataset for semantic segmentation consisting of 5000"
+     },
+     {
+      "pagina": 3,
+      "fragmento": "Given an image of size H"
+     }
+    ]
+   },
+   "mecanismo": {
+    "valor": "Codificador Transformer jerárquico (MiT) con parches solapados, atención eficiente con reducción de secuencia y Mix-FFN (conv. 3x3) sin codificación posicional; decodificador All-MLP que fusiona las cuatro escalas.",
+    "evidencia": [
+     {
+      "pagina": 5,
+      "fragmento": "The proposed All-MLP decoder consists of four main steps."
+     },
+     {
+      "pagina": 4,
+      "fragmento": "Mix-FFN which considers the effect of zero padding to leak location"
+     }
+    ]
+   },
+   "datos_particion": {
+    "valor": "ADE20K (20.210 imágenes, 150 clases), Cityscapes (5.000 imágenes finas, 19 clases) y COCO-Stuff (164k; 118k train, 5k val). Unidad: imagen. Para el test de Cityscapes se une validación a entrenamiento. No detalla las particiones de ADE20K ni Cityscapes en el texto.",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "COCO-Stuff covers 172 labels and consists of"
+     },
+     {
+      "pagina": 8,
+      "fragmento": "we follow the common setting [20] and merge the validation images to the"
+     }
+    ]
+   },
+   "preprocesamiento": {
+    "valor": "Redimensión aleatoria 0,5-2,0, volteo horizontal y recorte aleatorio (512, 1024 y 512; 640 para B5 en ADE20K); encoder preentrenado en ImageNet-1K y decodificador con inicialización aleatoria. En evaluación se reescala el lado corto o se usa ventana deslizante de 1024.",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "We pre-train the encoder on the Imagenet-1K dataset"
+     },
+     {
+      "pagina": 6,
+      "fragmento": "data augmentation through random resize with ratio 0.5-2.0, random"
+     }
+    ]
+   },
+   "entrenamiento": {
+    "valor": "AdamW, tasa inicial 0,00006 con programa poly (factor 1,0); 160K iteraciones en ADE20K y Cityscapes, 80K en COCO-Stuff y 40K en ablaciones; lote 16 (8 en Cityscapes). Sin OHEM, pérdidas auxiliares ni balanceo de clases; la pérdida y el criterio de checkpoint no se indican.",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "We trained the models using AdamW optimizer for 160K iterations on"
+     },
+     {
+      "pagina": 6,
+      "fragmento": "such as OHEM, auxiliary losses or class balance loss."
+     }
+    ]
+   },
+   "metricas": {
+    "valor": "mIoU, con prueba de escala única (SS) y multiescala (MS); en Cityscapes inferencia por ventana deslizante de 1024x1024. No describe cómo se agrega entre clases ni sobre el conjunto.",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "semantic segmentation performance using mean Intersection over Union (mIoU)."
+     },
+     {
+      "pagina": 6,
+      "fragmento": "we do inference using sliding window test by cropping 1024"
+     }
+    ]
+   },
+   "repeticiones_incertidumbre": {
+    "valor": "No reportado",
+    "evidencia": []
+   },
+   "ablaciones": {
+    "valor": "Tamaño del modelo (B0-B5), dimensión C del decodificador, Mix-FFN frente a codificación posicional con distinta resolución de prueba, y codificadores CNN frente a Transformer con decodificador MLP (Tab. 1). Todas de una corrida, sin varianza.",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "4.2 Ablation Studies"
+     },
+     {
+      "pagina": 7,
+      "fragmento": "Mix-FFN vs. Positional Encoder (PE). In this experiment, we analyze the effect of"
+     }
+    ]
+   },
+   "dificultad_compartida": {
+    "valor": "Sí, robustez: Cityscapes-C (16 corrupciones de ruido, desenfoque, clima y digitales; Tab. 5, Fig. 7) con comparación frente a DeepLabv3+ y otros. Además variación de resolución de prueba (Tab. 1c, Mix-FFN vs PE). Bordes y objetos pequeños: solo afirmación cualitativa en la Fig. 4.",
+    "evidencia": [
+     {
+      "pagina": 9,
+      "fragmento": "generate Cityscapes-C, which expands the Cityscapes validation set with"
+     },
+     {
+      "pagina": 8,
+      "fragmento": "4.4 Robustness to natural corruptions"
+     }
+    ]
+   },
+   "costo": {
+    "valor": "Entrenamiento en 8 GPU Tesla V100. B0: 3,8M parámetros, 8,4 GFLOPs en ADE20K, 47,6 FPS a 512 en Cityscapes sin TensorRT; B5: 84,7M parámetros, 183,3 GFLOPs, 9,8 FPS en ADE20K (Tab. 2). Condiciones de medición de FPS no especificadas más allá de la escala de entrada.",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "and train on a server with 8 Tesla"
+     },
+     {
+      "pagina": 2,
+      "fragmento": "without accelerated implementations such as TensorRT, yields 71.9% mIoU"
+     }
+    ]
+   },
+   "codigo": {
+    "valor": "github.com/NVlabs/SegFormer (declarado como código por publicar); además usa mmsegmentation.",
+    "evidencia": [
+     {
+      "pagina": 1,
+      "fragmento": "Code will be released at: github.com/NVlabs/SegFormer."
+     }
+    ]
+   },
+   "seleccion_por_test": {
+    "valor": "Sin indicios de ajuste en test. Las tablas de ADE20K y Cityscapes (Tab. 1 y 2) son de validación y funcionan como reporte final; el test de Cityscapes se evalúa fusionando validación con entrenamiento (Tab. 3). No indica cómo se elige el checkpoint.",
+    "evidencia": [
+     {
+      "pagina": 8,
+      "fragmento": "we follow the common setting [20] and merge the validation images to the"
+     },
+     {
+      "pagina": 8,
+      "fragmento": "train set and report results using Imagenet-1K pre-training and also using"
+     }
+    ]
+   },
+   "limitaciones": {
+    "valor": "Reconocen que no está claro si el modelo más pequeño (3,7M parámetros) funcionaría en un chip de borde con 100k de memoria. No hay análisis de errores más allá de figuras cualitativas.",
+    "evidencia": [
+     {
+      "pagina": 9,
+      "fragmento": "One limitation is that although our smallest"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "red": "TransUNet",
+  "referencia": "Chen et al., preprint 2021",
+  "arxiv": "2102.04306v1",
+  "estado": "seleccionada",
+  "campos": {
+   "tarea_modalidad": {
+    "valor": "Segmentación semántica médica multiclase: cortes axiales 2D de TC abdominal (Synapse, 8 órganos) y de RM cardíaca (ACDC, VI, VD y miocardio); entrada corte 224x224, salida máscara por píxel; los volúmenes se infieren corte a corte.",
+    "evidencia": [
+     {
+      "pagina": 5,
+      "fragmento": "We use the 30 abdominal CT scans"
+     },
+     {
+      "pagina": 6,
+      "fragmento": "Each patient scan is manually annotated with ground truth for left ventricle"
+     }
+    ]
+   },
+   "mecanismo": {
+    "valor": "Codificador híbrido ResNet-50 + ViT de 12 capas (parches de 1x1 sobre el mapa CNN) y decodificador en cascada (CUP) con bloques de 2x upsampling y saltos tipo U-Net a 1/2, 1/4 y 1/8.",
+    "evidencia": [
+     {
+      "pagina": 5,
+      "fragmento": "CNN-Transformer Hybrid as Encoder. Rather than using the pure Trans-"
+     },
+     {
+      "pagina": 5,
+      "fragmento": "Cascaded Upsampler. We introduce a cascaded upsampler (CUP), which con-"
+     }
+    ]
+   },
+   "datos_particion": {
+    "valor": "Synapse: 30 TC, 18 casos de entrenamiento (2.212 cortes) y 12 de validación, partición aleatoria por caso. ACDC: 70 casos de entrenamiento (1.930 cortes), 10 de validación y 20 de prueba. La unidad de separación es el paciente o volumen; las cifras de Synapse se reportan sobre el conjunto de 12 casos.",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "random split of 18 training cases (2212 axial"
+     },
+     {
+      "pagina": 6,
+      "fragmento": "random split of 70 training cases (1930 axial"
+     }
+    ]
+   },
+   "preprocesamiento": {
+    "valor": "Aumentos simples (rotación y volteo aleatorios); resolución de entrada 224x224 con parche 16 (512x512 en una ablación); ResNet-50 y ViT preentrenados en ImageNet. No describe normalización ni recortes.",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "For all experiments, we apply simple data augmentations, e.g., random rotation"
+     },
+     {
+      "pagina": 6,
+      "fragmento": "input resolution and patch size P are set as 224"
+     }
+    ]
+   },
+   "entrenamiento": {
+    "valor": "SGD con tasa 0,01, momento 0,9 y decaimiento de pesos 1e-4; lote 24; 20k iteraciones en ACDC y 14k en Synapse. La pérdida y el criterio de selección del checkpoint no se indican.",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "optimizer with learning rate 0.01, momentum 0.9 and weight decay 1e-4."
+     },
+     {
+      "pagina": 6,
+      "fragmento": "default batch size is 24 and the default number of training iterations"
+     }
+    ]
+   },
+   "metricas": {
+    "valor": "DSC medio y distancia de Hausdorff (HD, mm) en Synapse; solo DSC en ACDC; además DSC por órgano o estructura. Se promedia sobre los 8 órganos tras reconstruir el volumen 3D apilando cortes 2D. No detalla el cálculo del promedio entre casos.",
+    "evidencia": [
+     {
+      "pagina": 5,
+      "fragmento": "we report the average DSC and average Hausdor"
+     },
+     {
+      "pagina": 6,
+      "fragmento": "predicted 2D slices are stacked together to reconstruct the 3D prediction"
+     }
+    ]
+   },
+   "repeticiones_incertidumbre": {
+    "valor": "No reportado",
+    "evidencia": []
+   },
+   "ablaciones": {
+    "valor": "Número de saltos (0, 1, 3), resolución de entrada (224 vs 512), tamaño de parche y longitud de secuencia (32, 16, 8) y escala del modelo (Base vs Large); además comparación de codificador y decodificador (ViT-None, ViT-CUP, R50-ViT-CUP). Todas de una corrida.",
+    "evidencia": [
+     {
+      "pagina": 8,
+      "fragmento": "including: 1) the number of skip-connections; 2) input resolution;"
+     },
+     {
+      "pagina": 9,
+      "fragmento": "Model Scaling. Last but not least, we provide ablation study on"
+     }
+    ]
+   },
+   "dificultad_compartida": {
+    "valor": "Evaluación parcial: objetos pequeños y precisión de bordes se discuten con la ablación de saltos (ganancia mayor en órganos pequeños, Fig. 2) y con la Fig. 3 cualitativa sobre forma y límite; la resolución de entrada se ablaciona (Tab. 2). No evalúa ruido ni corrupciones.",
+    "evidencia": [
+     {
+      "pagina": 8,
+      "fragmento": "the performance gain of smaller organs (i.e., aorta, gallbladder,"
+     },
+     {
+      "pagina": 10,
+      "fragmento": "tend to be coarser than those by TransUNet"
+     }
+    ]
+   },
+   "costo": {
+    "valor": "Entrenamiento en una sola GPU Nvidia RTX2080Ti. No reporta parámetros, FLOPs ni latencia; solo dice que 512x512 exige un costo computacional mucho mayor y que se prefirió el modelo Base por costo.",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "conducted using a single Nvidia RTX2080Ti GPU."
+     },
+     {
+      "pagina": 9,
+      "fragmento": "at the expense of a much larger computational cost."
+     }
+    ]
+   },
+   "codigo": {
+    "valor": "https://github.com/Beckschen/TransUNet",
+    "evidencia": [
+     {
+      "pagina": 1,
+      "fragmento": "Code and models are available at https://github.com/Beckschen/"
+     }
+    ]
+   },
+   "seleccion_por_test": {
+    "valor": "Probable: en Synapse solo hay entrenamiento y un conjunto de 12 casos llamado validación (y 'testing' en el texto de ablaciones), sobre el que se reportan todos los resultados y se eligen configuraciones (saltos, resolución, modelo Base); no hay conjunto de prueba aparte. En ACDC sí hay 20 casos de prueba.",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "random split of 18 training cases (2212 axial"
+     },
+     {
+      "pagina": 8,
+      "fragmento": "in average DSC on all 8 testing organs are"
+     }
+    ]
+   },
+   "limitaciones": {
+    "valor": "No incluye sección de limitaciones. Reconoce que ViT solo no iguala a U-Net y que subir la resolución a 512 cuesta mucho más cómputo; ofrece análisis cualitativo (Fig. 3) de sobre y subsegmentación en los competidores.",
+    "evidencia": [
+     {
+      "pagina": 7,
+      "fragmento": "cannot match the performance of U-Net or attnUNet."
+     },
+     {
+      "pagina": 9,
+      "fragmento": "at the expense of a much larger computational cost."
+     }
+    ]
+   }
+  }
+ },
+ {
+  "red": "VM-UNet",
+  "referencia": "Ruan y Xiang, preprint 2024; ACM TOMM 2025",
+  "arxiv": "2402.02491v2",
+  "estado": "seleccionada",
+  "campos": {
+   "tarea_modalidad": {
+    "valor": "Segmentación médica 2D: lesiones de piel en dermoscopía (ISIC17/18, binaria) y segmentación multiórgano en cortes de TC abdominal (Synapse, 8 órganos).",
+    "evidencia": [
+     {
+      "pagina": 4,
+      "fragmento": "on VM-UNet for skin lesion and organ segmentation tasks."
+     }
+    ]
+   },
+   "mecanismo": {
+    "valor": "U-Net asimétrica puramente basada en modelos de espacio de estados (Mamba): bloques VSS con SS2D (escaneo en cuatro direcciones), codificador fuerte y decodificador débil, skips por suma sin parámetros.",
+    "evidencia": [
+     {
+      "pagina": 3,
+      "fragmento": "have not adopted a symmetrical structure but instead utilized"
+     },
+     {
+      "pagina": 4,
+      "fragmento": "the scan expanding operation unfolds the"
+     }
+    ]
+   },
+   "datos_particion": {
+    "valor": "ISIC17 (2150 imágenes: 1500 train/650 test) e ISIC18 (2694: 1886/808), partición 7:3 sin validación. Synapse: 30 casos TC, 18 para entrenar y 12 para probar (separación por caso).",
+    "evidencia": [
+     {
+      "pagina": 5,
+      "fragmento": "a 7:3 ratio for use as training and test sets."
+     },
+     {
+      "pagina": 5,
+      "fragmento": "18 cases are used for training and 12"
+     }
+    ]
+   },
+   "preprocesamiento": {
+    "valor": "Reescala a 256x256 (ISIC) y 224x224 (Synapse); aumentos: volteo y rotación aleatorios; pesos iniciales de VMamba-S preentrenado en ImageNet-1k.",
+    "evidencia": [
+     {
+      "pagina": 5,
+      "fragmento": "augmentation techniques, including random flip and random"
+     },
+     {
+      "pagina": 5,
+      "fragmento": "VMamba-S [21], which is pre-trained"
+     }
+    ]
+   },
+   "entrenamiento": {
+    "valor": "BceDice (ISIC) y CeDice (Synapse), pesos 1; AdamW, lr inicial 1e-3, CosineAnnealingLR (mínimo 1e-5), lote 32, 300 épocas. No declara criterio de selección del checkpoint.",
+    "evidencia": [
+     {
+      "pagina": 5,
+      "fragmento": "size to 32 and employ AdamW [46] optimizer with an initial"
+     },
+     {
+      "pagina": 5,
+      "fragmento": "Training epochs are set to 300."
+     }
+    ]
+   },
+   "metricas": {
+    "valor": "ISIC: mIoU, DSC, exactitud, especificidad y sensibilidad. Synapse: DSC medio, DSC por órgano y HD95. No explica cómo se agregan (promedio por imagen o global).",
+    "evidencia": [
+     {
+      "pagina": 5,
+      "fragmento": "Coefficient (DSC) and the 95% Hausdorff Distance (HD95)."
+     },
+     {
+      "pagina": 6,
+      "fragmento": "DSC of every single class (Aorta, Gallbladder, Kidney(L),"
+     }
+    ]
+   },
+   "repeticiones_incertidumbre": {
+    "valor": "No reportado",
+    "evidencia": []
+   },
+   "ablaciones": {
+    "valor": "Pesos iniciales (sin preentrenar, VMamba-T, VMamba-S), dropout 0,0 a 0,3, arquitectura simétrica vs asimétrica y más bloques, y resolución de entrada 256/384/512.",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "TABLE III: Ablation studies on initial weights of VM-UNet."
+     },
+     {
+      "pagina": 6,
+      "fragmento": "TABLE IV: Ablation studies on the different values of dropout."
+     },
+     {
+      "pagina": 7,
+      "fragmento": "Ablation studies on the input size of images."
+     }
+    ]
+   },
+   "dificultad_compartida": {
+    "valor": "Solo cualitativa (Fig. 4 y 5, ISIC18), sin métrica dedicada: objetos pequeños y bordes complejos (mejor que otros modelos, según los autores) y fallo ante pelos y zonas claras. Escala: solo ablación de resolución (cae a 512).",
+    "evidencia": [
+     {
+      "pagina": 7,
+      "fragmento": "in the context of segmenting small targets, as illustrated"
+     },
+     {
+      "pagina": 8,
+      "fragmento": "complex segmentation boundaries, as shown in the visualiza-"
+     },
+     {
+      "pagina": 8,
+      "fragmento": "besides, it is highly sensitive"
+     }
+    ]
+   },
+   "costo": {
+    "valor": "GPU RTX A6000 (A100 para 512x512 por falta de memoria). Modelo base: 27,43 M parámetros y 4,11 GFLOPs (Tabla V); ~30 M según la discusión. Latencia/FPS no reportados.",
+    "evidencia": [
+     {
+      "pagina": 5,
+      "fragmento": "All experiments are conducted on a single"
+     },
+     {
+      "pagina": 6,
+      "fragmento": "{2,2,2,2-2,2,2,1} 27.43M 4.11G 80.23 89.03 81.35 89.71"
+     },
+     {
+      "pagina": 8,
+      "fragmento": "count of VM-UNet is approximately 30M"
+     }
+    ]
+   },
+   "codigo": {
+    "valor": "https://github.com/JCruan519/VM-UNet",
+    "evidencia": [
+     {
+      "pagina": 1,
+      "fragmento": "at https://github.com/JCruan519/VM-UNet."
+     }
+    ]
+   },
+   "seleccion_por_test": {
+    "valor": "Posible: solo hay partición train/test, sin validación, y el dropout se compara sobre el mismo test; se informa el mejor valor por conjunto (ISIC17 mejor con 0,0, ISIC18 con 0,2). Criterio de checkpoint no declarado.",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "Dropout (a value of 0.0) resulted in the highest performance,"
+     },
+     {
+      "pagina": 6,
+      "fragmento": "and DSC were observed at a Dropout rate of 0.2, achieving"
+     }
+    ]
+   },
+   "limitaciones": {
+    "valor": "Reconocen: posible mala generalización de longitud, ~30 M parámetros, evaluación solo en modelos pequeños, fallos en lesiones claras y sensibilidad al pelo (Fig. 5), y caída inexplicada a mayor resolución.",
+    "evidencia": [
+     {
+      "pagina": 8,
+      "fragmento": "and fails to produce satisfactory results for"
+     },
+     {
+      "pagina": 7,
+      "fragmento": "meet expectations. The specific reasons for this phenomenon"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "red": "Attention U-Net",
+  "referencia": "Oktay et al., MIDL 2018",
+  "arxiv": "1804.03999v3",
+  "estado": "excluida",
+  "campos": {
+   "tarea_modalidad": {
+    "valor": "Segmentación 3D multiclase en TC abdominal (páncreas, bazo, riñón); entrada volumen 3D submuestreado, salida mapa de segmentación por vóxel.",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "abdominal CT multi-label segmentation"
+     },
+     {
+      "pagina": 6,
+      "fragmento": "150 abdominal 3D CT scans acquired from patients"
+     }
+    ]
+   },
+   "mecanismo": {
+    "valor": "U-Net 3D con compuertas de atención aditivas (soft attention) en los skips, con señal de compuerta en rejilla de escalas más gruesas y sigmoide; supervisión profunda.",
+    "evidencia": [
+     {
+      "pagina": 4,
+      "fragmento": "We use additive attention [2] to obtain the gating"
+     },
+     {
+      "pagina": 5,
+      "fragmento": "we propose a grid-attention technique."
+     }
+    ]
+   },
+   "datos_particion": {
+    "valor": "CT-150 (150 TC; 120 train/30 test, y variante 30 train/120 test) y CT-82 TCIA (82 TC; 61 train/21 test). Separación por escaneo; no declara si por paciente ni usa validación.",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "training (120) and testing (30)."
+     },
+     {
+      "pagina": 7,
+      "fragmento": "split into training (61) and testing (21) sets."
+     }
+    ]
+   },
+   "preprocesamiento": {
+    "valor": "Submuestreo isotrópico a 2 mm; normalización de intensidad N(0,1); aumentos afines, volteos y recortes aleatorios. Sin preentrenamiento salvo ajuste fino desde CT-150 a CT-82.",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "are downsampled to isotropic 2.00 mm resolution due to"
+     },
+     {
+      "pagina": 6,
+      "fragmento": "Intensity values are linearly scaled to obtain a normal"
+     }
+    ]
+   },
+   "entrenamiento": {
+    "valor": "Pérdida Sorensen-Dice, optimizador Adam, batch norm y supervisión profunda; lotes de 2 a 4 muestras. Tasa, épocas y criterio de checkpoint no reportados.",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "All models are trained using the Adam optimiser [15],"
+     },
+     {
+      "pagina": 6,
+      "fragmento": "small batch sizes of 2 to 4 samples."
+     }
+    ]
+   },
+   "metricas": {
+    "valor": "Dice (DSC), precisión, recall y distancia superficie a superficie (S2S) del páncreas; se reporta media ± desviación entre casos de prueba.",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "Dice scores (DSC) and surface distances (S2S)"
+     },
+     {
+      "pagina": 7,
+      "fragmento": "Pancreas S2S Dist (mm) 2.358±1.464 1.920±1.284"
+     }
+    ]
+   },
+   "repeticiones_incertidumbre": {
+    "valor": "Una corrida por configuración; desviación entre casos de prueba y valores p (sin nombrar la prueba) de .005 a .09. Además validación cruzada de 5 particiones en CT-82.",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "increase recall values (p = .005)"
+     },
+     {
+      "pagina": 8,
+      "fragmento": "5-fold cross-validation on the CT-82 dataset using"
+     }
+    ]
+   },
+   "ablaciones": {
+    "valor": "Compara con U-Net de mayor capacidad (Tabla 2), entrena con 30 vs 120 imágenes, y antes/después de ajuste fino/desde cero en CT-82. No ablaciona el diseño de la compuerta.",
+    "evidencia": [
+     {
+      "pagina": 7,
+      "fragmento": "repeated with higher capacity U-Net"
+     },
+     {
+      "pagina": 7,
+      "fragmento": "obtained before (BFT) and after"
+     }
+    ]
+   },
+   "dificultad_compartida": {
+    "valor": "No hay experimento dedicado. Objetos pequeños (páncreas) y bordes solo de forma indirecta: DSC, recall y distancia S2S por órgano frente a U-Net. Ruido o corrupción: no evaluados; escala y bordes aparecen como motivación.",
+    "evidencia": [
+     {
+      "pagina": 4,
+      "fragmento": "small objects that show large shape variability."
+     },
+     {
+      "pagina": 7,
+      "fragmento": "Pancreas S2S Dist (mm) 2.358±1.464 1.920±1.284"
+     }
+    ]
+   },
+   "costo": {
+    "valor": "Parámetros 5,88 M (U-Net) vs 6,40 M (+8 %); inferencia 0,167 s vs 0,179 s para entrada 160x160x96. Hardware no declarado.",
+    "evidencia": [
+     {
+      "pagina": 7,
+      "fragmento": "Number of Params 5.88 M 6.40 M 5.88 M 6.40 M"
+     },
+     {
+      "pagina": 7,
+      "fragmento": "tensor of size 160 × 160 × 96."
+     }
+    ]
+   },
+   "codigo": {
+    "valor": "https://github.com/ozan-oktay/Attention-Gated-Networks",
+    "evidencia": [
+     {
+      "pagina": 6,
+      "fragmento": "https://github.com/ozan-oktay/Attention-Gated-Networks"
+     }
+    ]
+   },
+   "seleccion_por_test": {
+    "valor": "No hay conjunto de validación ni se describe cómo se eligen hiperparámetros o checkpoint; se reporta sobre test. Parcial mitigación: evaluación externa en CT-82 con modelos de CT-150.",
+    "evidencia": [
+     {
+      "pagina": 7,
+      "fragmento": "trained on CT-150 dataset are directly applied to CT-82 dataset"
+     }
+    ]
+   },
+   "limitaciones": {
+    "valor": "Reconocen: entradas submuestreadas por memoria, sin posprocesado, conexiones residuales sin mejora significativa y caída de desempeño con menos datos de entrenamiento.",
+    "evidencia": [
+     {
+      "pagina": 8,
+      "fragmento": "despite the input images are downsampled to lower resolution."
+     },
+     {
+      "pagina": 8,
+      "fragmento": "our experiments with residual connections have not provided"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "red": "Swin-Unet",
+  "referencia": "Cao et al., ECCV Workshops 2022",
+  "arxiv": "2105.05537v1",
+  "estado": "excluida",
+  "campos": {
+   "tarea_modalidad": {
+    "valor": "Segmentación médica 2D: multiórgano en cortes de TC (Synapse) y cardíaca en resonancia (ACDC: VI, VD, miocardio).",
+    "evidencia": [
+     {
+      "pagina": 1,
+      "fragmento": "ments on multi-organ and cardiac segmentation tasks demonstrate that"
+     },
+     {
+      "pagina": 10,
+      "fragmento": "By using the image data of MR mode as input, Swin-"
+     }
+    ]
+   },
+   "mecanismo": {
+    "valor": "Red tipo U-Net puramente Transformer: bloques Swin (ventanas desplazadas), fusión de parches en el codificador, expansión de parches en el decodificador simétrico y skips concatenados.",
+    "evidencia": [
+     {
+      "pagina": 1,
+      "fragmento": "Transformer with shifted windows as the encoder"
+     },
+     {
+      "pagina": 4,
+      "fragmento": "The decoder is composed of Swin Transformer"
+     }
+    ]
+   },
+   "datos_particion": {
+    "valor": "Synapse: 30 casos, 3779 cortes; 18 casos para entrenar y 12 para probar. ACDC: 70 entrenamiento, 10 validación y 20 prueba, de pacientes distintos.",
+    "evidencia": [
+     {
+      "pagina": 7,
+      "fragmento": "30 cases with 3779 axial abdominal clinical CT images"
+     },
+     {
+      "pagina": 8,
+      "fragmento": "18 samples are divided into the training set and 12 samples into testing set."
+     }
+    ]
+   },
+   "preprocesamiento": {
+    "valor": "Entrada 224x224, parche de 4; aumentos de volteo y rotación; encoder y decoder inicializados con pesos Swin preentrenados en ImageNet.",
+    "evidencia": [
+     {
+      "pagina": 8,
+      "fragmento": "The input image size and patch size are set as 224×224 and 4"
+     },
+     {
+      "pagina": 8,
+      "fragmento": "weights pre-trained on ImageNet are used to initialize"
+     }
+    ]
+   },
+   "entrenamiento": {
+    "valor": "SGD con momento 0,9, decaimiento de pesos 1e-4, lote 24, en una V100. Pérdida, tasa de aprendizaje, épocas y criterio de checkpoint no reportados.",
+    "evidencia": [
+     {
+      "pagina": 8,
+      "fragmento": "training period, the batch size is 24 and the popular SGD optimizer"
+     },
+     {
+      "pagina": 8,
+      "fragmento": "with momentum 0.9 and weight decay 1e-4 is used to optimize our model for"
+     }
+    ]
+   },
+   "metricas": {
+    "valor": "DSC medio y distancia de Hausdorff (HD) en Synapse con DSC por órgano; solo DSC medio y por estructura en ACDC. Agregación sin detallar.",
+    "evidencia": [
+     {
+      "pagina": 8,
+      "fragmento": "average Dice-Similarity"
+     },
+     {
+      "pagina": 8,
+      "fragmento": "only average DSC is used to evaluate our"
+     }
+    ]
+   },
+   "repeticiones_incertidumbre": {
+    "valor": "No reportado",
+    "evidencia": []
+   },
+   "ablaciones": {
+    "valor": "Método de sobremuestreo (bilineal, convolución transpuesta, expansión de parches), número de skips (0 a 3), tamaño de entrada (224 vs 384) y escala del modelo (tiny vs base), en Synapse.",
+    "evidencia": [
+     {
+      "pagina": 10,
+      "fragmento": "Table 3. Ablation study on the impact of the up-sampling"
+     },
+     {
+      "pagina": 10,
+      "fragmento": "Table 4. Ablation study on the impact of the number of skip connection"
+     },
+     {
+      "pagina": 11,
+      "fragmento": "Table 5. Ablation study on the impact of the input size"
+     }
+    ]
+   },
+   "dificultad_compartida": {
+    "valor": "Bordes: afirman mejores predicciones por la HD y la Fig. 3 (cualitativa); sobresegmentación de las CNN. Resolución de entrada evaluada en ablación. Objetos pequeños y ruido no evaluados; la robustez solo se afirma.",
+    "evidencia": [
+     {
+      "pagina": 9,
+      "fragmento": "indicates that our approach can achieve better edge predictions."
+     },
+     {
+      "pagina": 9,
+      "fragmento": "tend to have over-segmentation problems"
+     }
+    ]
+   },
+   "costo": {
+    "valor": "Una GPU Nvidia V100 de 32 GB; aumento de coste con entrada 384 y modelo base, sin cifras. Parámetros, FLOPs y latencia no reportados.",
+    "evidencia": [
+     {
+      "pagina": 8,
+      "fragmento": "We train our model on a Nvidia V100 GPU with 32GB memory."
+     },
+     {
+      "pagina": 11,
+      "fragmento": "computational cost of the whole network."
+     }
+    ]
+   },
+   "codigo": {
+    "valor": "https://github.com/HuCaoFighting/Swin-Unet",
+    "evidencia": [
+     {
+      "pagina": 1,
+      "fragmento": "https://github.com/HuCaoFighting/Swin-Unet."
+     }
+    ]
+   },
+   "seleccion_por_test": {
+    "valor": "Probable: las ablaciones se hacen en el test de Synapse y se eligen 3 skips, entrada 224 y modelo tiny con esos resultados. ACDC tiene 10 casos de validación sin uso declarado; Synapse no tiene validación.",
+    "evidencia": [
+     {
+      "pagina": 10,
+      "fragmento": "in order to make the model more robust"
+     },
+     {
+      "pagina": 11,
+      "fragmento": "we adopt the Tiny-based model to perform medical image segmentation"
+     }
+    ]
+   },
+   "limitaciones": {
+    "valor": "Reconocen: preentrenamiento ImageNet subóptimo y entrada solo 2D, aunque la mayoría de datos médicos son 3D.",
+    "evidencia": [
+     {
+      "pagina": 11,
+      "fragmento": "which may be a suboptimal scheme."
+     },
+     {
+      "pagina": 11,
+      "fragmento": "2D, while most of the medical image data are 3D"
+     }
+    ]
+   }
+  }
+ }
+]
