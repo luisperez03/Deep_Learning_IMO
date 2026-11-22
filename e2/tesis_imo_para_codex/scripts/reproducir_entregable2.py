@@ -5,6 +5,10 @@ from pathlib import Path
 P=Path(__file__).resolve().parents[1]
 for args in [
     ['-m','unittest','discover','-s','tests','-p','test_integracion_e2.py'],
+    # Auditoría y figura del test antes de integrar: integrar_entregable2.py copia
+    # resultados/auditoria_test_e2/comparacion_validacion_test.png, que no existe en un clon nuevo.
+    ['scripts/auditar_test_e2.py'],
+    ['scripts/graficar_test_e2.py'],
     ['scripts/analisis_integracion_e2.py'],
     ['scripts/integrar_entregable2.py'],
 ]:

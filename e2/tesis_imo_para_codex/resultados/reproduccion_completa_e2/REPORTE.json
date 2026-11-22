@@ -1,0 +1,917 @@
+{
+ "estado": "Clon limpio desde GitHub; datos externos como hermanos; intérprete con -E -s.",
+ "url": "https://github.com/luisperez03/Deep_Learning_IMO.git",
+ "rama": "cierre-e2",
+ "commit": "7b669a7744d2f4655495e1fa47459f36da6f19ee",
+ "destino": "C:\\Proyectos\\estudio\\datos\\deep_learning\\reproduccion_completa_e2_20261122b",
+ "entorno": {
+  "python": "3.12.16",
+  "numpy": "2.5.5",
+  "scipy": "1.18.1",
+  "pillow": "13.0.0",
+  "matplotlib": "3.11.2",
+  "plataforma": "Windows-11-10.0.26200-SP0"
+ },
+ "datos_externos": {
+  "VOC2012": "C:\\Proyectos\\estudio\\datos\\hazmat13_drive\\VOC2012",
+  "resultados_test_e2_final": "C:\\Proyectos\\estudio\\datos\\deep_learning\\repo_dl_imo\\e2\\resultados_test_e2_final",
+  "archivos_test": 2234,
+  "mascaras_seed11": 2180,
+  "huella_sha256_test": "e9d87e516e6909ca5504181809fa8c41f4ee083d42b369a072a97d9d1d78cf82",
+  "historias": null
+ },
+ "pasos": {
+  "mascaras_binarias": {
+   "orden": "-E -s scripts/reconstruir_mascaras_binarias_e2.py --voc C:\\Proyectos\\estudio\\datos\\deep_learning\\reproduccion_completa_e2_20261122b\\repo\\e2\\VOC2012",
+   "codigo_salida": 0,
+   "segundos": 36.1,
+   "salida_final": [
+    "{",
+    " \"escritas_y_verificadas\": 1451,",
+    " \"fallas\": [],",
+    " \"n_fallas\": 0,",
+    " \"destino\": \"C:\\\\Proyectos\\\\estudio\\\\datos\\\\deep_learning\\\\reproduccion_completa_e2_20261122b\\\\repo\\\\e2\\\\tesis_imo_para_codex\\\\resultados\\\\preentrenamiento\\\\masks_binary\"",
+    "}"
+   ],
+   "error_final": []
+  },
+  "auditar_test": {
+   "orden": "-E -s scripts/auditar_test_e2.py",
+   "codigo_salida": 0,
+   "segundos": 15.9,
+   "salida_final": [
+    "      -0.008283485643527813,",
+    "      0.027790421547751878",
+    "    ],",
+    "    \"primary\": true",
+    "  }",
+    "}"
+   ],
+   "error_final": []
+  },
+  "graficar_test": {
+   "orden": "-E -s scripts/graficar_test_e2.py",
+   "codigo_salida": 0,
+   "segundos": 4.1,
+   "salida_final": [],
+   "error_final": []
+  },
+  "analisis_integracion": {
+   "orden": "-E -s C:\\Proyectos\\estudio\\datos\\deep_learning\\repo_dl_imo\\e2\\tesis_imo_para_codex\\scripts\\reproduccion_completa_e2.py --_analisis-sin-historias C:\\Proyectos\\estudio\\datos\\deep_learning\\reproduccion_completa_e2_20261122b\\repo\\e2\\tesis_imo_para_codex",
+   "codigo_salida": 0,
+   "segundos": 49.5,
+   "salida_final": [
+    "    \"IoU\": 0.0,",
+    "    \"mIoU\": 0.4812470721788427,",
+    "    \"accuracy\": 0.9624941443576854",
+    "  },",
+    "  \"discrepancy\": 0.0",
+    "}"
+   ],
+   "error_final": []
+  },
+  "integrar_entregable2": {
+   "orden": "-E -s scripts/integrar_entregable2.py",
+   "codigo_salida": 0,
+   "segundos": 5.1,
+   "salida_final": [
+    "Cap�tulos, tablas, referencias y diagramas E2 integrados."
+   ],
+   "error_final": []
+  },
+  "completar_analisis_locales": {
+   "orden": "-E -s scripts/completar_analisis_locales_e2.py",
+   "codigo_salida": 0,
+   "segundos": 131.8,
+   "salida_final": [
+    "Bordes pidnet_s",
+    "Bordes segnext_t",
+    "Bordes segformer_b0",
+    "Bordes transunet_2d",
+    "Bordes vmunet",
+    "Complementos locales finalizados"
+   ],
+   "error_final": []
+  },
+  "tests": {
+   "test_auditoria.py": {
+    "orden": "-E -s -m unittest discover -s tests -p test_auditoria.py",
+    "codigo_salida": 0,
+    "segundos": 1.0,
+    "salida_final": [
+     "[AUDITOR�A] Hazmat: <HOME>\\AppData\\Local\\Temp\\tmp3_ysgz8i\\Hazmat Pacards.v5i.coco",
+     "[AUDITOR�A] VOC: <HOME>\\AppData\\Local\\Temp\\tmp3_ysgz8i\\VOC2012",
+     "[AUDITOR�A] SeaFront: <HOME>\\AppData\\Local\\Temp\\tmp3_ysgz8i\\SeaFront_v1_0_0",
+     "",
+     "[LISTO] Auditor�a escrita en: <HOME>\\AppData\\Local\\Temp\\tmp3_ysgz8i\\resultados\\auditoria",
+     "No se han modificado las carpetas originales. Lee INFORME_AUDITORIA.md."
+    ],
+    "error_final": [
+     "....",
+     "----------------------------------------------------------------------",
+     "Ran 4 tests in 0.521s",
+     "OK"
+    ]
+   },
+   "test_colab_replica.py": {
+    "orden": "-E -s -m unittest discover -s tests -p test_colab_replica.py",
+    "codigo_salida": 0,
+    "segundos": 10.1,
+    "salida_final": [
+     "config/replica_segformer.json fbd963ee4014f429",
+     "primaria: mIoU 66.40 % IC95 [59.63; 74.63] | media por imagen (D2) 66.13 % | 0.1 min",
+     "hf_512: mIoU 66.36 % IC95 [59.63; 74.52] | media por imagen (D2) 66.06 % | 0.0 min",
+     "Veredicto: no_replicado | D = 29.0 puntos, IC95 [22.23, 37.23]",
+     "37,4 dentro del IC95: False",
+     "Peores 5 clases: [('c6', 0.0), ('c7', 0.0), ('c9', 98.4), ('c0', 100.0), ('c1', 100.0)]"
+    ],
+    "error_final": [
+     "..",
+     "----------------------------------------------------------------------",
+     "Ran 2 tests in 9.057s",
+     "OK"
+    ]
+   },
+   "test_complementos_locales_e2.py": {
+    "orden": "-E -s -m unittest discover -s tests -p test_complementos_locales_e2.py",
+    "codigo_salida": 0,
+    "segundos": 7.6,
+    "salida_final": [],
+    "error_final": [
+     "...",
+     "----------------------------------------------------------------------",
+     "Ran 3 tests in 0.002s",
+     "OK"
+    ]
+   },
+   "test_e2.py": {
+    "principal": {
+     "orden": "-E -s -m unittest discover -s tests -p test_e2.py",
+     "codigo_salida": 1,
+     "segundos": 10.0,
+     "salida_final": [],
+     "error_final": [
+      "    return Distribution.from_name(distribution_name)",
+      "           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+      "  File \"C:\\Proyectos\\estudio\\datos\\deep_learning\\env_limpio\\Lib\\importlib\\metadata\\__init__.py\", line 399, in from_name",
+      "    raise PackageNotFoundError(name)",
+      "importlib.metadata.PackageNotFoundError: No package metadata was found for ml-collections",
+      "----------------------------------------------------------------------",
+      "Ran 4 tests in 4.120s",
+      "FAILED (errors=1)"
+     ]
+    },
+    "alternativo": {
+     "orden": "-E -s -m unittest discover -s tests -p test_e2.py",
+     "codigo_salida": 1,
+     "segundos": 9.4,
+     "salida_final": [],
+     "error_final": [
+      "    return Distribution.from_name(distribution_name)",
+      "           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+      "  File \"C:\\Proyectos\\estudio\\datos\\deep_learning\\env_e2\\Lib\\importlib\\metadata\\__init__.py\", line 399, in from_name",
+      "    raise PackageNotFoundError(name)",
+      "importlib.metadata.PackageNotFoundError: No package metadata was found for einops",
+      "----------------------------------------------------------------------",
+      "Ran 4 tests in 3.319s",
+      "FAILED (errors=1)"
+     ]
+    },
+    "codigo_salida": 1
+   },
+   "test_evaluacion_e2.py": {
+    "orden": "-E -s -m unittest discover -s tests -p test_evaluacion_e2.py",
+    "codigo_salida": 0,
+    "segundos": 6.0,
+    "salida_final": [],
+    "error_final": [
+     "..",
+     "----------------------------------------------------------------------",
+     "Ran 2 tests in 0.222s",
+     "OK"
+    ]
+   },
+   "test_inicio_voc.py": {
+    "orden": "-E -s -m unittest discover -s tests -p test_inicio_voc.py",
+    "codigo_salida": 0,
+    "segundos": 1.1,
+    "salida_final": [
+     "{\"images\": 1, \"masks\": 1, \"status_counts\": {\"ok\": 1}}",
+     "Duplicados exactos: 0 grupos; entre splits: 0; discrepancias de clases XML/mascara: 0",
+     "Resultados: C:\\Proyectos\\estudio\\datos\\deep_learning\\reproduccion_completa_e2_20261122b\\repo\\e2\\tesis_imo_para_codex\\resultados\\tests_tmp\\tmpcv6l7ruh\\project\\results",
+     "{\"images\": 1, \"masks\": 1, \"status_counts\": {\"ok\": 1}}",
+     "Duplicados exactos: 0 grupos; entre splits: 0; discrepancias de clases XML/mascara: 0",
+     "Resultados: C:\\Proyectos\\estudio\\datos\\deep_learning\\reproduccion_completa_e2_20261122b\\repo\\e2\\tesis_imo_para_codex\\resultados\\tests_tmp\\tmpcv6l7ruh\\project\\results"
+    ],
+    "error_final": [
+     "....",
+     "----------------------------------------------------------------------",
+     "Ran 4 tests in 0.388s",
+     "OK"
+    ]
+   },
+   "test_integracion_e2.py": {
+    "orden": "-E -s -m unittest discover -s tests -p test_integracion_e2.py",
+    "codigo_salida": 0,
+    "segundos": 7.2,
+    "salida_final": [],
+    "error_final": [
+     "....",
+     "----------------------------------------------------------------------",
+     "Ran 4 tests in 0.012s",
+     "OK"
+    ]
+   },
+   "test_limitacion_area.py": {
+    "orden": "-E -s -m unittest discover -s tests -p test_limitacion_area.py",
+    "codigo_salida": 0,
+    "segundos": 13.4,
+    "salida_final": [],
+    "error_final": [
+     "..........",
+     "----------------------------------------------------------------------",
+     "Ran 10 tests in 11.406s",
+     "OK"
+    ]
+   },
+   "test_metricas_diagnostico_e2.py": {
+    "orden": "-E -s -m unittest discover -s tests -p test_metricas_diagnostico_e2.py",
+    "codigo_salida": 0,
+    "segundos": 3.0,
+    "salida_final": [],
+    "error_final": [
+     ".........",
+     "----------------------------------------------------------------------",
+     "Ran 9 tests in 0.044s",
+     "OK"
+    ]
+   },
+   "test_preparacion.py": {
+    "orden": "-E -s -m unittest discover -s tests -p test_preparacion.py",
+    "codigo_salida": 0,
+    "segundos": 0.9,
+    "salida_final": [],
+    "error_final": [
+     "......",
+     "----------------------------------------------------------------------",
+     "Ran 6 tests in 0.041s",
+     "OK"
+    ]
+   },
+   "test_replica_segformer.py": {
+    "orden": "-E -s -m unittest discover -s tests -p test_replica_segformer.py",
+    "codigo_salida": 0,
+    "segundos": 9.1,
+    "salida_final": [],
+    "error_final": [
+     "............",
+     "----------------------------------------------------------------------",
+     "Ran 12 tests in 7.335s",
+     "OK"
+    ]
+   },
+   "test_revision_voc.py": {
+    "orden": "-E -s -m unittest discover -s tests -p test_revision_voc.py",
+    "codigo_salida": 0,
+    "segundos": 1.8,
+    "salida_final": [],
+    "error_final": [
+     "....",
+     "----------------------------------------------------------------------",
+     "Ran 4 tests in 0.073s",
+     "OK"
+    ]
+   }
+  },
+  "libro": {
+   "orden": "build libro -W --keep-going",
+   "codigo_salida": 0,
+   "segundos": 34.6,
+   "salida_final": [
+    "You can look at your book by opening this file in a browser:",
+    "    libro\\_build\\html\\index.html",
+    "Or paste this line directly into your browser bar:",
+    "    file://C:\\Proyectos\\estudio\\datos\\deep_learning\\reproduccion_completa_e2_20261122b\\repo\\e2\\tesis_imo_para_codex\\libro\\_build\\html\\index.html            ",
+    "",
+    "\u001b[92m===============================================================================\u001b[0m"
+   ],
+   "error_final": [],
+   "avisos": 0,
+   "avisos_ejemplos": [],
+   "html": true,
+   "paginas_html": 18
+  },
+  "cuadernos": {
+   "_previo_inicio_voc": {
+    "orden": "-E -s scripts/inicio_voc.py",
+    "codigo_salida": 0,
+    "segundos": 53.3,
+    "salida_final": [
+     "Pares revisados: 1400/1685",
+     "Pares revisados: 1500/1685",
+     "Pares revisados: 1600/1685",
+     "{\"images\": 1685, \"masks\": 1583, \"status_counts\": {\"ok\": 1583, \"missing_mask\": 102}}",
+     "Duplicados exactos: 0 grupos; entre splits: 0; discrepancias de clases XML/mascara: 69",
+     "Resultados: C:\\Proyectos\\estudio\\datos\\deep_learning\\reproduccion_completa_e2_20261122b\\repo\\e2\\tesis_imo_para_codex\\resultados\\inicio_voc"
+    ],
+    "error_final": []
+   },
+   "_previo_revisar_voc": {
+    "orden": "-E -s scripts/revisar_voc.py",
+    "codigo_salida": 0,
+    "segundos": 53.4,
+    "salida_final": [
+     "Firmas visuales: 600/1685",
+     "Firmas visuales: 900/1685",
+     "Firmas visuales: 1200/1685",
+     "Firmas visuales: 1500/1685",
+     "748 pares candidatos; 146 entre train/val originales; 8 carpetas de origen XML.",
+     "Grupos RGB id�nticos: 0; entre train/val: 0"
+    ],
+    "error_final": []
+   },
+   "colab/Atajos_Errores_E2.ipynb": {
+    "celdas_codigo": 7,
+    "celdas_con_salida_guardada": 0,
+    "requiere": [
+     "Google Drive",
+     "Colab",
+     "GPU (cuda)"
+    ],
+    "ejecutado": false
+   },
+   "colab/Benchmark_E2_Colab_v2.ipynb": {
+    "celdas_codigo": 6,
+    "celdas_con_salida_guardada": 0,
+    "requiere": [
+     "Google Drive",
+     "Colab",
+     "GPU (cuda)"
+    ],
+    "ejecutado": false
+   },
+   "colab/Complemento_Entrenamiento_E2.ipynb": {
+    "celdas_codigo": 12,
+    "celdas_con_salida_guardada": 0,
+    "requiere": [
+     "Google Drive",
+     "Colab",
+     "GPU (cuda)"
+    ],
+    "ejecutado": false
+   },
+   "colab/Complemento_GPU_E2.ipynb": {
+    "celdas_codigo": 9,
+    "celdas_con_salida_guardada": 0,
+    "requiere": [
+     "Google Drive",
+     "Colab",
+     "GPU (cuda)"
+    ],
+    "ejecutado": false
+   },
+   "colab/Evaluacion_Final_E2_Colab.ipynb": {
+    "celdas_codigo": 6,
+    "celdas_con_salida_guardada": 0,
+    "requiere": [
+     "Google Drive",
+     "Colab",
+     "GPU (cuda)"
+    ],
+    "ejecutado": false
+   },
+   "colab/Extraer_Validacion_E2.ipynb": {
+    "celdas_codigo": 4,
+    "celdas_con_salida_guardada": 0,
+    "requiere": [
+     "Google Drive",
+     "Colab"
+    ],
+    "ejecutado": false
+   },
+   "colab/Replica_SegFormer_ADE20K.ipynb": {
+    "celdas_codigo": 8,
+    "celdas_con_salida_guardada": 0,
+    "requiere": [
+     "Google Drive",
+     "Colab",
+     "GPU (cuda)"
+    ],
+    "ejecutado": false
+   },
+   "libro/eda_original.ipynb": {
+    "celdas_codigo": 9,
+    "celdas_con_salida_guardada": 9,
+    "requiere": [],
+    "ejecutado": true,
+    "ejecucion": {
+     "orden": "-E -s C:\\Proyectos\\estudio\\datos\\deep_learning\\repo_dl_imo\\e2\\tesis_imo_para_codex\\scripts\\reproduccion_completa_e2.py --_ejecutar-celdas C:\\Proyectos\\estudio\\datos\\deep_learning\\reproduccion_completa_e2_20261122b\\repo\\e2\\tesis_imo_para_codex\\libro\\eda_original.ipynb C:\\Proyectos\\estudio\\datos\\deep_learning\\reproduccion_completa_e2_20261122b\\cuadernos_ejecutados\\libro__eda_original.ipynb.json",
+     "codigo_salida": 0,
+     "segundos": 1.8,
+     "salida_final": [
+      "{\"error\": null, \"celdas_codigo\": 9, \"celdas_ejecutadas_sin_error\": 9, \"figuras_mostradas\": 25, \"celdas_con_salida_guardada\": 9, \"celdas_texto_igual_a_lo_guardado\": 8, \"lineas_distintas\": [\"Versiones: {'numpy': '2.5.5', 'Pillow': '13.0.0'}\"]}"
+     ],
+     "error_final": []
+    },
+    "resultado": {
+     "error": null,
+     "celdas_codigo": 9,
+     "celdas_ejecutadas_sin_error": 9,
+     "figuras_mostradas": 25,
+     "celdas_con_salida_guardada": 9,
+     "celdas_texto_igual_a_lo_guardado": 8,
+     "lineas_distintas": [
+      "Versiones: {'numpy': '2.5.5', 'Pillow': '13.0.0'}"
+     ]
+    }
+   },
+   "notebooks/01_eda_voc.ipynb": {
+    "celdas_codigo": 9,
+    "celdas_con_salida_guardada": 0,
+    "requiere": [],
+    "ejecutado": true,
+    "ejecucion": {
+     "orden": "-E -s C:\\Proyectos\\estudio\\datos\\deep_learning\\repo_dl_imo\\e2\\tesis_imo_para_codex\\scripts\\reproduccion_completa_e2.py --_ejecutar-celdas C:\\Proyectos\\estudio\\datos\\deep_learning\\reproduccion_completa_e2_20261122b\\repo\\e2\\tesis_imo_para_codex\\notebooks\\01_eda_voc.ipynb C:\\Proyectos\\estudio\\datos\\deep_learning\\reproduccion_completa_e2_20261122b\\cuadernos_ejecutados\\notebooks__01_eda_voc.ipynb.json",
+     "codigo_salida": 0,
+     "segundos": 1.4,
+     "salida_final": [
+      "{\"error\": null, \"celdas_codigo\": 9, \"celdas_ejecutadas_sin_error\": 9, \"figuras_mostradas\": 25, \"celdas_con_salida_guardada\": 0, \"celdas_texto_igual_a_lo_guardado\": 0, \"lineas_distintas\": []}"
+     ],
+     "error_final": []
+    },
+    "resultado": {
+     "error": null,
+     "celdas_codigo": 9,
+     "celdas_ejecutadas_sin_error": 9,
+     "figuras_mostradas": 25,
+     "celdas_con_salida_guardada": 0,
+     "celdas_texto_igual_a_lo_guardado": 0,
+     "lineas_distintas": []
+    }
+   },
+   "notebooks/benchmark_e2_colab.ipynb": {
+    "celdas_codigo": 6,
+    "celdas_con_salida_guardada": 0,
+    "requiere": [
+     "Google Drive",
+     "Colab",
+     "GPU (cuda)"
+    ],
+    "ejecutado": false
+   },
+   "notebooks/evaluacion_final_e2.ipynb": {
+    "celdas_codigo": 6,
+    "celdas_con_salida_guardada": 0,
+    "requiere": [
+     "Google Drive",
+     "Colab",
+     "GPU (cuda)"
+    ],
+    "ejecutado": false
+   }
+  }
+ },
+ "no_reproducido": {
+  "libro/figuras/e2/curvas_validacion.png": "faltan las historias de entrenamiento (history.json de las 50 corridas, solo en Drive)",
+  "libro/figuras/e2/curvas_perdida.png": "faltan las historias de entrenamiento (history.json de las 50 corridas, solo en Drive)"
+ },
+ "entorno_alternativo": {
+  "python": "3.12.16",
+  "numpy": "2.5.5",
+  "scipy": "1.18.1",
+  "pillow": "13.0.0",
+  "matplotlib": "3.11.2"
+ },
+ "archivos_modificados_respecto_a_lo_publicado": {
+  "libro/figuras/e2/comparacion.png": {
+   "tipo": "png",
+   "misma_forma": true,
+   "forma": [
+    1188,
+    1800
+   ],
+   "pixeles_distintos": 109245,
+   "fraccion_pixeles_distintos": 0.05108726150392817,
+   "diferencia_max_canal": 255
+  },
+  "libro/figuras/e2/diagrama_deeplabv3plus.png": {
+   "tipo": "png",
+   "misma_forma": true,
+   "forma": [
+    255,
+    1800
+   ],
+   "pixeles_distintos": 5851,
+   "fraccion_pixeles_distintos": 0.01274727668845316,
+   "diferencia_max_canal": 246
+  },
+  "libro/figuras/e2/diagrama_fcn.png": {
+   "tipo": "png",
+   "misma_forma": true,
+   "forma": [
+    255,
+    1800
+   ],
+   "pixeles_distintos": 5478,
+   "fraccion_pixeles_distintos": 0.011934640522875817,
+   "diferencia_max_canal": 246
+  },
+  "libro/figuras/e2/diagrama_pidnet_s.png": {
+   "tipo": "png",
+   "misma_forma": true,
+   "forma": [
+    255,
+    1800
+   ],
+   "pixeles_distintos": 7473,
+   "fraccion_pixeles_distintos": 0.01628104575163399,
+   "diferencia_max_canal": 246
+  },
+  "libro/figuras/e2/diagrama_segformer_b0.png": {
+   "tipo": "png",
+   "misma_forma": true,
+   "forma": [
+    255,
+    1800
+   ],
+   "pixeles_distintos": 4424,
+   "fraccion_pixeles_distintos": 0.00963834422657952,
+   "diferencia_max_canal": 246
+  },
+  "libro/figuras/e2/diagrama_segnet.png": {
+   "tipo": "png",
+   "misma_forma": true,
+   "forma": [
+    255,
+    1800
+   ],
+   "pixeles_distintos": 5128,
+   "fraccion_pixeles_distintos": 0.011172113289760349,
+   "diferencia_max_canal": 246
+  },
+  "libro/figuras/e2/diagrama_segnext_t.png": {
+   "tipo": "png",
+   "misma_forma": true,
+   "forma": [
+    255,
+    1800
+   ],
+   "pixeles_distintos": 4995,
+   "fraccion_pixeles_distintos": 0.01088235294117647,
+   "diferencia_max_canal": 246
+  },
+  "libro/figuras/e2/diagrama_transunet_2d.png": {
+   "tipo": "png",
+   "misma_forma": true,
+   "forma": [
+    255,
+    1800
+   ],
+   "pixeles_distintos": 4888,
+   "fraccion_pixeles_distintos": 0.010649237472766885,
+   "diferencia_max_canal": 246
+  },
+  "libro/figuras/e2/diagrama_unet.png": {
+   "tipo": "png",
+   "misma_forma": true,
+   "forma": [
+    255,
+    1800
+   ],
+   "pixeles_distintos": 5463,
+   "fraccion_pixeles_distintos": 0.011901960784313725,
+   "diferencia_max_canal": 246
+  },
+  "libro/figuras/e2/diagrama_unetplusplus.png": {
+   "tipo": "png",
+   "misma_forma": true,
+   "forma": [
+    255,
+    1800
+   ],
+   "pixeles_distintos": 5733,
+   "fraccion_pixeles_distintos": 0.012490196078431373,
+   "diferencia_max_canal": 246
+  },
+  "libro/figuras/e2/diagrama_vmunet.png": {
+   "tipo": "png",
+   "misma_forma": true,
+   "forma": [
+    255,
+    1800
+   ],
+   "pixeles_distintos": 4573,
+   "fraccion_pixeles_distintos": 0.009962962962962963,
+   "diferencia_max_canal": 246
+  },
+  "libro/figuras/e2/pareto.png": {
+   "tipo": "png",
+   "misma_forma": true,
+   "forma": [
+    800,
+    1600
+   ],
+   "pixeles_distintos": 78587,
+   "fraccion_pixeles_distintos": 0.06139609375,
+   "diferencia_max_canal": 255
+  },
+  "libro/figuras/e2/rangos_cd.png": {
+   "tipo": "png",
+   "misma_forma": true,
+   "forma": [
+    960,
+    1600
+   ],
+   "pixeles_distintos": 53568,
+   "fraccion_pixeles_distintos": 0.034875,
+   "diferencia_max_canal": 255
+  },
+  "resultados/complementos_locales_e2/PROTOCOLO.json": {
+   "tipo": "json",
+   "discrepancia_max": 0.0,
+   "donde": null,
+   "hojas": 86,
+   "hojas_no_numericas_distintas": 9,
+   "ejemplos": [
+    {
+     "hoja": "/protocol/conformal/added",
+     "nuevo": "2026-11-20, antes de ejecutar diagnosticos GPU",
+     "publicado": "None"
+    },
+    {
+     "hoja": "/protocol/conformal/alpha",
+     "nuevo": "0.1",
+     "publicado": "None"
+    },
+    {
+     "hoja": "/protocol/conformal/calibration",
+     "nuevo": "validacion; test solo para medir cobertura",
+     "publicado": "None"
+    }
+   ]
+  },
+  "resultados/complementos_locales_e2/RESUMEN.json": {
+   "tipo": "json",
+   "discrepancia_max": 8.673779165591089e-05,
+   "donde": "/adversarial/auc_crossfit",
+   "hojas": 112,
+   "hojas_no_numericas_distintas": 0,
+   "ejemplos": []
+  },
+  "resultados/complementos_locales_e2/descriptores_imagen.json": {
+   "tipo": "json",
+   "discrepancia_max": 0.0014490927419354982,
+   "donde": "[1216]/features[19]",
+   "hojas": 87060,
+   "hojas_no_numericas_distintas": 0,
+   "ejemplos": []
+  },
+  "resultados/complementos_locales_e2/histogramas_rgb_por_clase.json": {
+   "tipo": "json",
+   "discrepancia_max": 337.0,
+   "donde": "/train[0][0][19]",
+   "hojas": 576,
+   "hojas_no_numericas_distintas": 0,
+   "ejemplos": []
+  },
+  "resultados/complementos_locales_e2/sensibilidad_estadistica.json": {
+   "tipo": "json",
+   "discrepancia_max": 6.903332072649704e-14,
+   "donde": "/tost_exploratory/CI90_t[0]",
+   "hojas": 25,
+   "hojas_no_numericas_distintas": 0,
+   "ejemplos": []
+  },
+  "resultados/complementos_locales_e2/validacion_adversarial.json": {
+   "tipo": "json",
+   "discrepancia_max": 0.004481508130022516,
+   "donde": "/probability[339]",
+   "hojas": 2272,
+   "hojas_no_numericas_distintas": 0,
+   "ejemplos": []
+  },
+  "resultados/integracion_e2/analisis.json": {
+   "tipo": "json",
+   "discrepancia_max": 1.7763568394002505e-15,
+   "donde": "/nemenyi_CD",
+   "hojas": 611,
+   "hojas_no_numericas_distintas": 0,
+   "ejemplos": []
+  },
+  "resultados/auditoria_test_e2/comparacion_validacion_test.pdf": {
+   "tipo": "nuevo",
+   "nota": "sin versión publicada"
+  },
+  "resultados/auditoria_test_e2/comparacion_validacion_test.png": {
+   "tipo": "nuevo",
+   "nota": "sin versión publicada"
+  },
+  "resultados/integracion_e2/libro_generado/_toc.yml": {
+   "tipo": "nuevo",
+   "nota": "sin versión publicada"
+  },
+  "resultados/integracion_e2/libro_generado/checklist_e2.md": {
+   "tipo": "nuevo",
+   "nota": "sin versión publicada"
+  },
+  "resultados/integracion_e2/libro_generado/e2_optimizadores.inc": {
+   "tipo": "nuevo",
+   "nota": "sin versión publicada"
+  },
+  "resultados/integracion_e2/libro_generado/index.md": {
+   "tipo": "nuevo",
+   "nota": "sin versión publicada"
+  },
+  "resultados/integracion_e2/libro_generado/modelos_e2.md": {
+   "tipo": "nuevo",
+   "nota": "sin versión publicada"
+  },
+  "resultados/integracion_e2/libro_generado/referencias_e2.bib": {
+   "tipo": "nuevo",
+   "nota": "sin versión publicada"
+  },
+  "resultados/integracion_e2/libro_generado/reproducibilidad_e2.md": {
+   "tipo": "nuevo",
+   "nota": "sin versión publicada"
+  },
+  "resultados/integracion_e2/libro_generado/resultados_e2.md": {
+   "tipo": "nuevo",
+   "nota": "sin versión publicada"
+  }
+ },
+ "disc_max_json": 337.0,
+ "recalculo_independiente": {
+  "imagenes_test": 218,
+  "grupos_test": 122,
+  "corridas": 50,
+  "mascaras": {
+   "deeplabv3plus": {
+    "imagenes": 218,
+    "grupos": 122,
+    "disc_max_imagen": 0.0,
+    "disc_max_grupo": 0.0,
+    "Dice_grupos_recalculado": 0.8079230629043408,
+    "Dice_grupos_registrado": 0.8079230629043408
+   },
+   "fcn": {
+    "imagenes": 218,
+    "grupos": 122,
+    "disc_max_imagen": 0.0,
+    "disc_max_grupo": 0.0,
+    "Dice_grupos_recalculado": 0.8429925835119594,
+    "Dice_grupos_registrado": 0.8429925835119594
+   },
+   "pidnet_s": {
+    "imagenes": 218,
+    "grupos": 122,
+    "disc_max_imagen": 0.0,
+    "disc_max_grupo": 0.0,
+    "Dice_grupos_recalculado": 0.7571412306260628,
+    "Dice_grupos_registrado": 0.7571412306260628
+   },
+   "segformer_b0": {
+    "imagenes": 218,
+    "grupos": 122,
+    "disc_max_imagen": 0.0,
+    "disc_max_grupo": 0.0,
+    "Dice_grupos_recalculado": 0.6956701728226814,
+    "Dice_grupos_registrado": 0.6956701728226814
+   },
+   "segnet": {
+    "imagenes": 218,
+    "grupos": 122,
+    "disc_max_imagen": 0.0,
+    "disc_max_grupo": 0.0,
+    "Dice_grupos_recalculado": 0.7779329730546798,
+    "Dice_grupos_registrado": 0.7779329730546798
+   },
+   "segnext_t": {
+    "imagenes": 218,
+    "grupos": 122,
+    "disc_max_imagen": 0.0,
+    "disc_max_grupo": 0.0,
+    "Dice_grupos_recalculado": 0.7747294677967915,
+    "Dice_grupos_registrado": 0.7747294677967915
+   },
+   "transunet_2d": {
+    "imagenes": 218,
+    "grupos": 122,
+    "disc_max_imagen": 0.0,
+    "disc_max_grupo": 0.0,
+    "Dice_grupos_recalculado": 0.8711542708275118,
+    "Dice_grupos_registrado": 0.8711542708275118
+   },
+   "unet": {
+    "imagenes": 218,
+    "grupos": 122,
+    "disc_max_imagen": 0.0,
+    "disc_max_grupo": 0.0,
+    "Dice_grupos_recalculado": 0.8422430541558305,
+    "Dice_grupos_registrado": 0.8422430541558305
+   },
+   "unetplusplus": {
+    "imagenes": 218,
+    "grupos": 122,
+    "disc_max_imagen": 0.0,
+    "disc_max_grupo": 0.0,
+    "Dice_grupos_recalculado": 0.8090159163908264,
+    "Dice_grupos_registrado": 0.8090159163908264
+   },
+   "vmunet": {
+    "imagenes": 218,
+    "grupos": 122,
+    "disc_max_imagen": 0.0,
+    "disc_max_grupo": 0.0,
+    "Dice_grupos_recalculado": 0.878612057984686,
+    "Dice_grupos_registrado": 0.878612057984686
+   }
+  },
+  "tabla": {
+   "deeplabv3plus": {
+    "Dice_test": 0.8140088509563825,
+    "DE_semillas": 0.024605965646402106
+   },
+   "fcn": {
+    "Dice_test": 0.8535430694690757,
+    "DE_semillas": 0.013590713209322019
+   },
+   "pidnet_s": {
+    "Dice_test": 0.7936376783046537,
+    "DE_semillas": 0.023118096977121517
+   },
+   "segformer_b0": {
+    "Dice_test": 0.7052682567580981,
+    "DE_semillas": 0.010424692231056213
+   },
+   "segnet": {
+    "Dice_test": 0.8246846136539997,
+    "DE_semillas": 0.033442611643667124
+   },
+   "segnext_t": {
+    "Dice_test": 0.7791901837524806,
+    "DE_semillas": 0.010430653785125456
+   },
+   "transunet_2d": {
+    "Dice_test": 0.8626044865031046,
+    "DE_semillas": 0.005739190805886022
+   },
+   "unet": {
+    "Dice_test": 0.8463675180987074,
+    "DE_semillas": 0.013746876747547154
+   },
+   "unetplusplus": {
+    "Dice_test": 0.8076047564090482,
+    "DE_semillas": 0.005850470578109147
+   },
+   "vmunet": {
+    "Dice_test": 0.8390512506859441,
+    "DE_semillas": 0.02969906810807368
+   }
+  },
+  "contrastes_vs_fcn": {
+   "deeplabv3plus": -0.0395342185126932,
+   "pidnet_s": -0.059905391164422034,
+   "segformer_b0": -0.14827481271097773,
+   "segnet": -0.02885845581507598,
+   "segnext_t": -0.0743528857165951,
+   "transunet_2d": 0.009061417034028928,
+   "unet": -0.00717555137036845,
+   "unetplusplus": -0.045938313060027706,
+   "vmunet": -0.014491818783131757
+  },
+  "mascaras_total": 2180,
+  "mascaras_disc_max_imagen": 0.0,
+  "mascaras_disc_max_grupo": 0.0,
+  "agregacion_imagen_a_grupo_disc_max": 0.0,
+  "discrepancias_vs_publicado": {
+   "tabla_vs_RESUMEN_TEST_media": 0.0,
+   "tabla_vs_RESUMEN_TEST_DE": 0.0,
+   "tabla_vs_AUDITORIA_publicada_media": 0.0,
+   "tabla_vs_AUDITORIA_publicada_DE": 0.0,
+   "contrastes_vs_RESUMEN_TEST": 2.1510571102112408e-16,
+   "contrastes_vs_analisis_json": 0.0,
+   "tabla_vs_INFORME_TEST_4_decimales": {
+    "cifras": 20,
+    "distintas_al_redondear": 0
+   }
+  },
+  "reinferencia_gpu": {
+   "por_red": {
+    "deeplabv3plus": -4.583986424888664e-07,
+    "fcn": 0.0,
+    "pidnet_s": 1.3432058103779454e-05,
+    "segformer_b0": -1.027718043777881e-05,
+    "segnet": -2.1979592560450456e-06,
+    "segnext_t": -3.6369577263162256e-06,
+    "transunet_2d": -5.536062529176711e-06,
+    "unet": 0.0,
+    "unetplusplus": -3.200972239492117e-07,
+    "vmunet": 0.0
+   },
+   "disc_max": 1.3432058103779454e-05,
+   "redes": 10,
+   "redes_identicas": 3
+  }
+ },
+ "segundos_total": 498.6
+}

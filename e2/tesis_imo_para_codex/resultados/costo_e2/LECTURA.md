@@ -3,7 +3,7 @@
 > **Trazabilidad.** Generado el 2026-11-22 con `scripts/medir_costo_e2.py` (parámetros, FLOPs, memoria, latencia) y
 > `scripts/costo_total_e2.py` (costo de GPU registrado y cota de energía). Redes instanciadas con inicialización
 > aleatoria (el costo no depende de los pesos). Entrada: 1 imagen RGB de 256×256, batch 1, `torch.no_grad`.
-> Entorno: torch 2.14.1 CPU, Python 3.12, Windows 11, AMD Ryzen 5 PRO 6650U (6 núcleos, 12 hilos lógicos), 14,8 GiB de RAM.
+> Entorno de CPU: torch 2.14.1, Python 3.12, Windows 11, AMD Ryzen 5 PRO 6650U (6 núcleos, 12 hilos lógicos), 14,8 GiB de RAM. GPU: Colab, NVIDIA L4, torch 2.5.1+cu121.
 > Por qué importa: el costo es el contrapeso del Dice en la comparación de redes (fila 44) y el gasto total es la base
 > de cualquier afirmación de costo o energía (fila 45).
 
@@ -33,10 +33,37 @@
 | SegNeXt-T | 4.225.121 | 3,13 | 202,1 (16,5) | 129,1 (27,2) | 364 | 27 |
 | SegFormer-B0 | 3.714.401 | 3,49 | 215,9 (15,9) | 115,2 (68,2) | 392 | 57 |
 | TransUNet 2D | 105.322.001 | 76,77 | 2057,8 (95,9) | 737,6 (80,8) | 797 | 96 |
-| VM-UNet | 44.273.833 (solo conteo) | — | — | — | — | — |
+| VM-UNet | 44.273.833 (solo conteo) | — | no corre en CPU (ver GPU) | — | — | — |
 
 Tabla completa con ambos hilos y todos los campos: `costo_e2.csv`, `costo_e2.md`; un JSON por red y configuración
 (`<modelo>_cpu_h<hilos>.json`) con el hardware, los 30 tiempos y los FLOPs por operador.
+
+## Resultados en GPU (NVIDIA L4, 256×256, batch 1, las 10 redes)
+
+Misma L4 del entrenamiento (Colab, mismo script con `--dispositivo cuda`, latencia con sincronización; JSON
+`<modelo>_cuda_h1.json`). Memoria = pico de GPU (`max_memory_allocated`) en inferencia.
+
+| Modelo | GFLOPs | Latencia mediana (IQR) ms | Pico GPU MiB |
+|---|---|---|---|
+| FCN | 1,27 | 0,6 (0,04) | 9 |
+| SegNet | 2,11 | 1,1 (0,03) | 24 |
+| U-Net | 3,68 | 1,0 (0,02) | 30 |
+| DeepLabv3+ | 9,12 | 4,3 (0,07) | 73 |
+| UNet++ | 31,94 | 6,5 (0,12) | 145 |
+| PIDNet-S | 3,13 | 11,1 (0,25) | 36 |
+| SegNeXt-T | 3,13 | 16,7 (0,49) | 35 |
+| SegFormer-B0 | 3,49 | 8,8 (0,23) | 68 |
+| TransUNet 2D | 76,77 | 23,1 (0,32) | 452 |
+| VM-UNet | 19,47 (cota inferior) | 32,7 (0,34) | 255 |
+
+- **En GPU la latencia sigue sin ordenarse por FLOPs, y más:** PIDNet-S y SegNeXt-T hacen 3,1 G y tardan 11 y 17 ms,
+  mientras U-Net, con 3,7 G, tarda 1,0 ms; VM-UNet (19 G) es la más lenta (32,7 ms), por encima de TransUNet (77 G, 23 ms).
+  A batch 1 domina el número de lanzamientos de kernels y los operadores secuenciales (ramas, escaneo selectivo), no
+  la aritmética.
+- **VM-UNet:** `FlopCounterMode` no cuenta el escaneo selectivo de Mamba (`selective_scan`, kernel propio), así que sus 19,47 G
+  son una cota inferior y no comparables 1 a 1 con las demás.
+- El IQR en GPU es pequeño (≤ 0,5 ms) y no hubo otras cargas en la GPU; el pico de proceso (CPU) de 679–1039 MiB en los JSON
+  de GPU incluye el contexto CUDA y no se interpreta como memoria del modelo.
 
 ## Lectura
 
@@ -52,15 +79,14 @@ Tabla completa con ambos hilos y todos los campos: `costo_e2.csv`, `costo_e2.md`
 
 ## Límites (declarar tal cual)
 
-1. **CPU, no la GPU del entrenamiento.** Entrenamiento en L4 y test en T4: estas latencias no son las de ninguna de
-   las dos y no se pueden mezclar con los segundos de época. Sirven para comparar redes entre sí en un mismo hardware.
+1. **Las latencias de CPU no son las de la GPU del entrenamiento (L4) ni las del test (T4).** Las de GPU sí son de la L4,
+   pero con batch 1 y sin carga de datos: no se pueden mezclar con los segundos de época, que incluyen E/S y lotes mayores.
+   La T4 del test no se midió.
 2. **Máquina compartida.** Las mediciones corrieron mientras otras tareas usaban el equipo; el IQR de varias redes con
    6 hilos es amplio (p. ej. SegFormer-B0, 68 ms). Las medianas ordenan las redes, pero una diferencia menor al IQR no es
    una diferencia.
-3. **VM-UNet no corre en CPU:** exige CUDA y `mamba-ssm` y el repositorio prohíbe el reemplazo por GRU. Solo se declara su
-   número de parámetros (44.273.833, de `analisis.json`). FLOPs, memoria y latencia quedan pendientes de la medición en
-   Colab (`COLAB_MEDIR_COSTO.md`, mismo script con `--dispositivo cuda`). Aun medido allí, `FlopCounterMode` no cuenta el
-   escaneo selectivo de Mamba (kernel propio): sus FLOPs serían una cota inferior.
+3. **VM-UNet no corre en CPU** (exige CUDA y `mamba-ssm`; sin reemplazo por GRU): se midió solo en GPU L4. Sus FLOPs son
+   cota inferior (`selective_scan` no se cuenta). Las celdas de Colab usadas están en `COLAB_MEDIR_COSTO.md`.
 4. Una sola resolución (256), batch 1 e inicialización aleatoria; la memoria excluye la de activaciones de entrenamiento.
 5. Los FLOPs son de la misma herramienta para todas, pero no coinciden con los que reportan los autores de cada red (otra
    resolución, otra herramienta, otros operadores contados).
@@ -96,7 +122,8 @@ Se reconstruyó solo lo que quedó registrado en el repo (horas de GPU), sin est
 
 ```
 python scripts/medir_costo_e2.py medir --modelos fcn,segnet,unet,deeplabv3plus,unetplusplus,pidnet_s,segnext_t,segformer_b0,transunet_2d,vmunet
-python scripts/medir_costo_e2.py tabla
+python scripts/medir_costo_e2.py tabla   # une CPU y GPU
+# GPU: celdas de COLAB_MEDIR_COSTO.md (colab/Medir_Costo_GPU_E2.ipynb), --dispositivo cuda
 python scripts/costo_total_e2.py
 ```
 

@@ -30,6 +30,10 @@ El usuario confirmó que el profesor acepta **diez modelos totales: tres E1 y si
 
 **Actualización del 22/11 (cribado).** Exportaciones originales recuperadas: conciliación definitiva (6.322 grupos, fila 21), PRISMA del núcleo de dominio con error del precribado medido (fila 20) y gap con denominador cerrado (fila 30).
 
+**Actualización del 22/11 (costo, GPU).** VM-UNet y las demás redes medidas en la L4 (fila 44 cerrada).
+
+**Actualización del 22/11 (reproducción).** Reproducción completa en un clon limpio de GitHub con los datos externos declarados: tablas y contrastes del test con discrepancia 0, recálculo independiente desde las máscaras y libro compilado sin avisos (filas 55 y 68; B20 y B21).
+
 ## Problema, hipótesis, datos y EDA — rúbrica 15 %
 
 | ID | Requisito (página guía) | Estado | Evidencia / cierre necesario |
@@ -87,7 +91,7 @@ El usuario confirmó que el profesor acepta **diez modelos totales: tres E1 y si
 | 41 | Sanidad de aprendizaje y preflight (46) | C | Diez preflight GPU y entrenamiento completo; 21/11, sobreajuste a un lote de 4 imágenes (500 pasos): 9 de 10 pasan (Dice ≥ 0,90); VM-UNet 0,750, falla en la imagen de rótulo más pequeño. `resultados/complemento_entreno_e2/`, capítulo `entrenamiento_complementario_e2` |
 | 42 | Curvas train y validación (13) | C | 50 curvas; pérdida train y Dice val no se restan |
 | 43 | Configuración, versiones, semillas/hardware (13,41) | C | Freeze/config; L4 train/T4 test; determinismo warn_only |
-| 44 | Parámetros, FLOPs, memoria/latencia homogénea (13,48) | P | 22/11: 9 de 10 redes medidas en CPU homogénea (256×256, batch 1, 1 y 6 hilos, 5 de calentamiento y 30 repeticiones, mediana e IQR): parámetros, FLOPs (FlopCounterMode, cota inferior), memoria (pico de proceso e incremento en inferencia) y latencia. Los FLOPs no ordenan la latencia (PIDNet-S, SegNeXt-T y SegFormer-B0: 3,1–3,5 G, 90–216 ms con 1 hilo); TransUNet 77 G y 2,1 s. CPU, no L4/T4; equipo compartido. VM-UNet exige CUDA: solo parámetros; medición en GPU preparada (`COLAB_MEDIR_COSTO.md`). `scripts/medir_costo_e2.py`, `resultados/costo_e2/` |
+| 44 | Parámetros, FLOPs, memoria/latencia homogénea (13,48) | C | 22/11: las 10 redes medidas. CPU homogénea (256×256, batch 1, 1 y 6 hilos, 5 de calentamiento y 30 repeticiones, mediana e IQR) en 9 redes y GPU L4 (misma del entrenamiento) en las 10: parámetros, FLOPs (FlopCounterMode, cota inferior), memoria y latencia. Los FLOPs no ordenan la latencia ni en CPU ni en GPU (PIDNet-S y SegNeXt-T: 3,1 G, 11 y 17 ms en L4; U-Net 3,7 G, 1,0 ms); TransUNet 77 G, 23,1 ms; VM-UNet 19,5 G (cota: no cuenta selective_scan), 32,7 ms, 255 MiB. T4 del test sin medir; CPU de equipo compartido. `scripts/medir_costo_e2.py`, `colab/Medir_Costo_GPU_E2.ipynb`, `resultados/costo_e2/` |
 | 45 | Costo total/energía cuando sea posible (48) | C | 22/11: costo de GPU reconstruido de lo registrado: 33,3 h (entrenamiento 16,4 h; diagnósticos 1,7 h; complemento 15,2 h), todas en L4. Energía solo como cota superior TDP×horas ≈ 2,4 kWh de GPU (no medida; sin CPU ni centro de datos). Sin registro: test (T4), réplica, tiempo de sesión: el total es un mínimo. `scripts/costo_total_e2.py`, `resultados/costo_e2/costo_total_e2.md`, `LECTURA.md` |
 | 46 | Auditoría completa de fuga (44–46) | C | Integridad, partición, adversarial, embeddings y casi duplicados (ID 11) y, 21/11, permutación de máscaras del pipeline (ID 56): p = 0,005 |
 | 47 | Test nunca usado para decisiones y una evaluación (4,63) | D | E2 con pesos/umbral cerrados; test ya expuesto en E1 |
@@ -103,7 +107,7 @@ El usuario confirmó que el profesor acepta **diez modelos totales: tres E1 y si
 | 52 | Ranking/CD/Pareto (17–18) | C | Rangos grupos/semillas; CD Nemenyi; Pareto puntual Dice/parámetros |
 | 53 | Descomposición de varianza/modelo mixto (50) | C | 22/11, validación (declarada): modelo mixto `lme4` sobre 10.900 Dice imagen x corrida con red fija y semilla, corrida, grupo, imagen y red x grupo aleatorios. Del total: grupo 64,0 % (IC95 boot 53,0–72,2 %), red x grupo 15,1 %, residuo 15,2 %, red 3,8 %, corrida 0,6 %, semilla común 0,07 % (LRT p = 0,15). Residuos asimétricos y de colas pesadas: el reparto se mantiene sobre rangos (INT) y sin los 96 Dice = 0. `scripts/varianza_mixta_val_e2.R`, `resultados/inferencia_cierre_e2/` |
 | 54 | Equivalencia/relevancia δ (48) | C | 22/11, TOST δ = 0,02 en test con 122 grupos, t y bootstrap (mismas decisiones en las 18): TransUNet − FCN 0,0091, IC90 t [−0,0061; 0,0242], boot [−0,0056; 0,0244], p = 0,12: indeterminado (ni equivalentes ni superior); U-Net − FCN −0,0072, IC90 [−0,0148; 0,0005], p Holm(9) 0,028 (boot 0,040): equivalentes; ninguna red equivalente a TransUNet (RQ3). Frágil a las semillas: sin la 53 U-Net − FCN deja de serlo y sin la 23 TransUNet − FCN lo sería. Validación: mismas conclusiones. `scripts/inferencia_test_grupos_e2.py`, `resultados/inferencia_cierre_e2/` |
-| 55 | Reproducción independiente/discrepancia (41,63) | P | Reagregación desde registros: 0. 20/11, entorno limpio (`scripts/prueba_entorno_limpio_e2.py`): lo que corre con el repositorio coincide (máx. 0,0014); la reproducción completa necesita los resultados del test y las corridas, que están fuera del repositorio (`resultados/entorno_limpio_e2/LECTURA.md`) |
+| 55 | Reproducción independiente/discrepancia (41,63) | C | 22/11: clon limpio de GitHub (`cierre-e2`, 7b669a7) con VOC2012 y el test cerrado (2.234 archivos, huella SHA-256): tablas, contrastes y auditoría con discrepancia 0 (`AUDITORIA.json`, `ANALISIS.md` idénticos byte a byte; `analisis.json` 1,8e-15). Recálculo independiente desde 2.180 máscaras de semilla 11: Dice por imagen y grupo, discrepancia 0. Reinferencia en GPU (etapa clean): 1,3e-5. Complementos de EDA hasta 0,0045 por Pillow 13. No reproducidas: dos figuras de curvas (historias solo en Drive). `scripts/reproduccion_completa_e2.py`, `resultados/reproduccion_completa_e2/` |
 
 ## Ruta F4b y diagnósticos — rúbrica 15 %
 
@@ -126,7 +130,7 @@ El usuario confirmó que el profesor acepta **diez modelos totales: tres E1 y si
 
 | ID | Requisito (página guía) | Estado | Evidencia / cierre necesario |
 |---|---|---|---|
-| 68 | Jupyter Book y celdas reproducibles (58,62) | P | Libro/scripts integrados; notebooks sin ejecución automática; prueba limpia pendiente |
+| 68 | Jupyter Book y celdas reproducibles (58,62) | C | 22/11, clon limpio: `jupyter-book build libro -W` sin avisos (18 páginas); cuadernos de EDA (`libro/eda_original.ipynb`, `notebooks/01_eda_voc.ipynb`) ejecutados 9 de 9 celdas, texto igual al guardado salvo versiones; los 9 de Colab piden GPU y Drive, clasificados y documentados. 11 de 12 archivos de tests pasan (`test_e2.py`: faltan `ml-collections` y `einops` en el entorno local). `resultados/reproduccion_completa_e2/LECTURA.md` |
 | 69 | Un comando para tablas/figuras, entorno fijado (40) | C | `reproducir_entregable2.py`, `requirements-libro.txt`; requiere datos/resultados locales |
 | 70 | Código completo para todos los requisitos (58) | C | Código de todos los requisitos ejecutados en el repositorio: diagnósticos GPU (`scripts/diagnosticos_gpu_e2.py`, filas 57-60, 62, 64), complemento de entrenamiento (`scripts/complemento_entreno_e2.py`, filas 37, 41, 56, 61), revisión humana (filas 12, 63); los cuadernos de Colab se generan con `scripts/crear_colab_*.py` |
 | 71 | Datos/instrucciones/contrato (59) | C | 22/11: instrucciones de obtención y verificación reproducibles en `docs/DATA_CARD_HAZMAT13.md` §6 (enlaces, estructura VOC, `scripts/verificar_corpus_hazmat13.py`, particiones con SHA256 en `resultados/preentrenamiento/*.csv`). La descarga de la carpeta de Drive queda sujeta a autorización; licencia de imágenes: ver fila 08 |
@@ -159,8 +163,8 @@ El usuario confirmó que el profesor acepta **diez modelos totales: tres E1 y si
 | B17 Incertidumbre top3/cobertura | C | ID62 ejecutado el 20/11 (exploratorio) |
 | B18 Test una vez, pesos/umbrales fijos | D | Cierre E2 sí, exposición histórica E1 |
 | B19 Réplica/limitación paper | C | ID32 réplica compatible; ID33 limitación por área no confirmada (déficit de nivel) |
-| B20 Reproducción independiente/discrepancia | P | Agregación 0; entorno limpio parcial (ID55) |
-| B21 Extremo a extremo y entorno | P | Informe con un comando; experimentos faltantes |
+| B20 Reproducción independiente/discrepancia | C | ID55: clon limpio, discrepancia 0 en test; reinferencia GPU 1,3e-5 |
+| B21 Extremo a extremo y entorno | C | Un comando desde clon y datos externos (`reproduccion_completa_e2.py`); entorno registrado; `docs/REPRODUCCION_EXTREMO_A_EXTREMO.md` |
 
 ## Orden de cierre para el domingo
 
