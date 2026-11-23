@@ -14,7 +14,7 @@
 > Drive (`tesis_imo_e2_atajos_v1`). Resumen local: `errores_atajos_e2.py atajos --entrada CARPETA` →
 > `TABLAS_ATAJOS.md` y `RESUMEN_ATAJOS.json`.
 >
-> **Pendiente:** la revisión humana de 88 casos (fila 65). Ver al final.
+> **Revisión humana** de 88 casos (fila 65), por confirmación global del revisor: sección 6.
 
 ## 1. Taxonomía de errores (fila 65)
 
@@ -145,17 +145,37 @@ La imagen limpia reproduce exactamente el Dice por imagen de los diagnósticos G
 matrices) se inicializa al azar en cada pasada. Las cifras de SegNeXt traen ese ruido adicional, que no sesga Δ pero
 lo hace menos preciso. El Dice medio de validación sí coincide (0,759).
 
-## 6. Revisión humana pendiente (fila 65)
+## 6. Revisión humana (fila 65)
 
-`python scripts/errores_atajos_e2.py revision --entrada CARPETA --voc RUTA/VOC2012 --destino CARPETA_FUERA_DEL_REPO`
-dejó `REVISION_ERRORES.pdf` (22 páginas, 88 casos del top 3) y `hoja_revision_errores.xlsx`. La forma que muestra la
-hoja es la exacta de Colab. Son 88 casos y no 90: con 30 por red no alcanzan las imágenes distintas en A1 y A2. Con
-la hoja llena:
+**Material.** `python scripts/errores_atajos_e2.py revision --entrada CARPETA --voc RUTA/VOC2012 --destino
+CARPETA_FUERA_DEL_REPO` dejó `REVISION_ERRORES.pdf` (22 páginas, 88 casos del top 3: 29 de TransUNet, 29 de U-Net y
+30 de FCN) y `hoja_revision_errores.xlsx`. La forma que muestra la hoja es la exacta de Colab. Son 88 casos y no 90:
+con 30 por red no alcanzan las imágenes distintas en A1 y A2.
 
-```
-python scripts/errores_atajos_e2.py medir-revision --hoja RUTA/hoja_revision_errores.xlsx
-```
+**Cómo se llenó (22/11).** El revisor miró los 88 casos en el PDF y declaró que todas las clasificaciones automáticas
+eran correctas, pero no marcó la hoja. Con su autorización expresa, la hoja se llenó por script:
 
-Escribe `REVISION_HUMANA.json`: acuerdo con IC de Wilson por eje y la fracción de excesos lejanos que son rótulos sin
-anotar. Luego, `python scripts/actualizar_checklist_errores2.py` deja 13 y 67 en C y pasa la 65 a C cuando existe
-esa revisión.
+- "sí" en el acuerdo con la forma y con la condición de los 88 casos (`registrar_confirmacion_global.py`);
+- en los 35 casos de forma A5 o A6, "no" a "el rojo lejano es un rótulo sin anotar", según su respuesta global de
+  que siempre era un error de la red; "no aplica" en los 53 restantes (`registrar_columna_i.py`).
+
+Los dos scripts están en la carpeta de trabajo del estudio (`ejemplos/2026-11-22_revision_errores_e2/`). La hoja
+vacía se conserva aparte. `REVISION_HUMANA.json` guarda el SHA-256 de la hoja llena.
+
+**Resultado** (`medir-revision --hoja .../hoja_revision_errores.xlsx`):
+
+| | Acuerdo | IC95 Wilson |
+|---|---:|---:|
+| Forma del error (A) | 88/88 | 95,8–100 % |
+| Condición de la imagen (B) | 88/88 | 95,8–100 % |
+| Exceso lejano que era un rótulo sin anotar | 0/35 | 0–9,9 % |
+
+Por red, 29/29 o 30/30 en los dos ejes (IC95 88–100 %).
+
+**Salvedad.** Es una **confirmación global, no una marca caso por caso**: el revisor no dejó constancia individual de
+cada caso. El acuerdo perfecto es menos informativo que una revisión independiente caso por caso. Además, la hoja
+mostraba la categoría asignada, lo que favorece el acuerdo. Lo que sí sostiene es que ninguna categoría le pareció
+equivocada al mirar los 88 paneles. Para el exceso lejano, la respuesta (0 de 35) indica que el exceso de estas tres
+redes es error de la red y no un hueco de la anotación. Con 35 casos, la cota superior es del 10 %.
+
+`python scripts/actualizar_checklist_errores3.py` deja 13, 65 y 67 en C con esta evidencia; basta correr ese.
