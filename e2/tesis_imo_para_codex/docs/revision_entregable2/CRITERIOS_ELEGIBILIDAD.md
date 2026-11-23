@@ -43,6 +43,20 @@ rótulo. Para cada incluido se registran dos preguntas que pueden refutar el gap
 Si no se recupera el texto completo, se decide con el resumen y se anota en `nota`. El motivo "texto completo no
 recuperado" se reserva para cuando el resumen tampoco basta.
 
+## Bloque transversal (Q5 y Q6): censo a título y resumen
+
+Añadido el 22/11/2026 al reabrir Q5 y Q6, antes de revisar sus registros. Estas consultas buscan mecanismos nacidos en
+secuencias o señales (modelos de espacio de estados y Mamba; convoluciones dilatadas o temporales) y su paso a visión.
+`incluir` (clasificación `mecanismo transferible`) si el estudio aplica o transfiere ese mecanismo a una tarea de visión
+sobre imágenes 2D o fotogramas: segmentación, detección o clasificación. Es la evidencia publicada de transferencia que
+pide la ficha de mecanismo. `excluir` con motivo si:
+
+- el mecanismo se queda en su dominio de origen (pronóstico de series, voz, audio, texto o señales 1D): `tarea sin
+  transferencia`;
+- la imagen es solo un medio y el aporte es propio de otra modalidad (espectrogramas tratados como señal, radar o SAR
+  multitemporal donde lo que se modela es la serie): `tarea sin transferencia`;
+- es un resumen de congreso, una errata o una revisión: `sin método original`.
+
 ## Quién decide
 
 Las decisiones las propone un asistente de IA y las valida el investigador (protocolo, paso 6). No hay segundo

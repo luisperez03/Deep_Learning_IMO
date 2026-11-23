@@ -92,6 +92,38 @@ def preparar():
                       'muestra': Counter(muestra.values())}, ensure_ascii=False, indent=1))
 
 
+def ampliar():
+    """Agrega a cribado_manual.csv, sin tocar las filas existentes ni la muestra ya sorteada, los grupos nuevos tras
+    una exportación posterior: todo grupo con algún registro de las consultas transversales (Q5, Q6) va al estrato
+    TRANSVERSAL, que se revisa completo (censo, no muestra); un grupo nuevo que cumpla la regla del núcleo va a
+    NUCLEO_DOMINIO."""
+    grupos = json.loads((ROOT / 'registros_conciliados.json').read_text(encoding='utf-8'))
+    dec = json.loads((ROOT / 'precribado_registros.json').read_text(encoding='utf-8'))
+    ruta = ROOT / 'cribado_manual.csv'
+    filas = list(csv.DictReader(open(ruta, encoding='utf-8')))
+    ya = {f['id'] for f in filas}
+    nuevas = Counter()
+    for g in grupos:
+        if g['id'] in ya:
+            continue
+        if dec[g['id']] == 'RETENER_DOMINIO' or DOMINIO.search(texto(g)) or \
+                any(re.search(r'_Q[01]_', r['origen']) for r in g['registros']):
+            est = 'NUCLEO_DOMINIO'
+        elif any(re.search(r'_Q[56]_', r['origen']) for r in g['registros']):
+            est = 'TRANSVERSAL'
+        else:
+            continue
+        filas.append({'id': g['id'], 'estrato': est, 'decision_automatica': dec[g['id']],
+                      'anio': g['registros'][0]['anio'], 'titulo': g['titulo'], 'doi': g['doi'],
+                      'nivel': 'texto completo' if est == 'NUCLEO_DOMINIO' else 'título y resumen'})
+        nuevas[est] += 1
+    with open(ruta, 'w', newline='', encoding='utf-8') as f:
+        w = csv.DictWriter(f, CAMPOS)
+        w.writeheader()
+        w.writerows({k: f.get(k, '') for k in CAMPOS} for f in filas)
+    print(f'Filas nuevas: {dict(nuevas)}; total {len(filas)}')
+
+
 def registrar(*rutas):
     """Vuelca en cribado_manual.csv decisiones de archivos JSON [{id, decision_manual, motivo, clasificacion, nota,
     (segmenta_rotulo_por_pixel), (compara_arquitecturas_con_semillas)}]. Falla si un ID no está en la hoja."""
@@ -133,7 +165,9 @@ def cerrar():
     conc = json.loads((ROOT / 'conciliacion.json').read_text(encoding='utf-8'))
     total_estrato = Counter(estrato(d) for d in dec.values())
     nucleo = [f for f in filas if f['estrato'] == 'NUCLEO_DOMINIO']
-    muestra = [f for f in filas if f['estrato'] != 'NUCLEO_DOMINIO']
+    transversal = [f for f in filas if f['estrato'] == 'TRANSVERSAL']
+    muestra = [f for f in filas if f['estrato'] in MUESTRA]
+    censo = nucleo + transversal  # revisados completos: no entran en la extrapolación de los estratos
     error = {}
     for est in MUESTRA:
         fs = [f for f in muestra if f['estrato'] == est]
@@ -144,7 +178,7 @@ def cerrar():
         else:
             k = sum(f['decision_manual'] == 'excluir' for f in fs)
         lo, hi = wilson(k, len(fs))
-        n_est = total_estrato[est] - sum(1 for f in nucleo if estrato(f['decision_automatica']) == est)
+        n_est = total_estrato[est] - sum(1 for f in censo if estrato(f['decision_automatica']) == est)
         ki = sum(f['decision_manual'] == 'incluir' for f in fs)
         li, hi_ = wilson(ki, len(fs))
         error[est] = {'revisados': len(fs), 'discrepancias': k, 'tasa': round(k / len(fs), 4) if fs else None,
@@ -165,6 +199,11 @@ def cerrar():
                                                                         if f['decision_manual'] == 'excluir'),
                                         'clasificacion_incluidos': Counter(f['clasificacion'] for f in incl)},
               'error_filtro': error, 'gap': gap}
+    tin = [f for f in transversal if f['decision_manual'] == 'incluir']
+    salida['transversal_q5_q6'] = {'revisados': len(transversal), 'incluidos': len(tin),
+                                   'excluidos_por_motivo': Counter(f['motivo'] for f in transversal
+                                                                   if f['decision_manual'] == 'excluir'),
+                                   'clasificacion_incluidos': Counter(f['clasificacion'] for f in tin)}
     (ROOT / 'prisma_final.json').write_text(json.dumps(salida, ensure_ascii=False, indent=2), encoding='utf-8')
     md = ['# PRISMA del núcleo de dominio y error del precribado', '',
           'Generado por `cribado_nucleo.py cerrar` desde `cribado_manual.csv` (decisiones en '
@@ -177,7 +216,9 @@ def cerrar():
           f"Núcleo de dominio revisado: {len(nucleo)} (texto completo leído en "
           f"{sum(f['nota'].startswith('Texto completo') for f in nucleo)}; el resto con el resumen, ver nota)  ->  "
           f"incluidos: {len(incl)}",
-          f"Excluidos con motivo: {dict(salida['nucleo_texto_completo']['excluidos_por_motivo'])}", '```', '',
+          f"Excluidos con motivo: {dict(salida['nucleo_texto_completo']['excluidos_por_motivo'])}",
+          f"Transversales Q5/Q6 no revisados antes (censo, título y resumen): {len(transversal)}  ->  incluidos: "
+          f"{len(tin)}; excluidos con motivo: {dict(salida['transversal_q5_q6']['excluidos_por_motivo'])}", '```', '',
           'Discrepancia: en EXCLUIR, registro que se incluiría; en RETENER, registro que se excluiría; en DUDA, '
           'registro incluible.', '',
           '| Estrato del precribado | Revisados | Discrepancias | Tasa [IC95 Wilson] | Registros del estrato | Discrepancias esperadas | Incluibles estimados [IC95] |',
@@ -205,4 +246,4 @@ if __name__ == '__main__':
     if accion == 'registrar':
         registrar(*sys.argv[2:])
     else:
-        {'preparar': preparar, 'cerrar': cerrar}.get(accion, lambda: sys.exit(__doc__))()
+        {'preparar': preparar, 'ampliar': ampliar, 'cerrar': cerrar}.get(accion, lambda: sys.exit(__doc__))()

@@ -10,31 +10,35 @@ La selección de siete candidatas nuevas fue aceptada como **lista de trabajo**.
 
 | Etapa | Conteo | Evidencia |
 |---|---:|---|
-| Scopus Q0–Q4 | 6.399 | Registros exportados |
-| WoS Q0–Q4 | 3.247 | Registros exportados |
-| Total importado | 9.646 | Trece archivos; sha256 fijados en `conciliacion.json` |
-| Duplicados | 3.324 | DOI normalizado y título/año; incluye los tres pares de DOI fusionados con sus alias |
-| Grupos únicos | **6.322** | `procesar_exportaciones.py`, sin coincidencias ambiguas |
-| Precribado automático: retener | 3.687 | 23 dominio, 343 arquitectura, 3.321 mecanismo |
-| Precribado automático: excluir | 2.513 | 2.143 dominio no transferible, 185 tarea, 124 tipo documental, 61 detección |
+| Scopus Q0–Q6 | 6.448 | Registros exportados (Q0–Q4 el 17/11; Q5 y Q6 el 22/11) |
+| WoS Q0–Q6 | 3.267 | Registros exportados |
+| Total importado | 9.715 | Diecisiete archivos; sha256 fijados en `conciliacion.json` |
+| Duplicados | 3.349 | DOI normalizado y título/año; incluye los tres pares de DOI fusionados con sus alias |
+| Grupos únicos | **6.366** | `procesar_exportaciones.py`, sin coincidencias ambiguas |
+| Precribado automático: retener | 3.689 | 23 dominio, 343 arquitectura, 3.323 mecanismo |
+| Precribado automático: excluir | 2.555 | 2.152 dominio no transferible, 201 tarea, 134 tipo documental, 68 detección |
 | Precribado automático: duda | 122 | |
 | Núcleo de dominio revisado | 25 | Incluidos 10; excluidos 15 con motivo |
+| Bloque transversal Q5/Q6 revisado (censo) | 52 | Incluidos 9; excluidos 43 con motivo |
 | Muestra de validación del precribado | 200 | Aleatoria estratificada, título y resumen |
 
 ```text
-9.646 registros importados (Scopus 6.399, WoS 3.247)
-  └─ 3.324 duplicados
-      └─ 6.322 grupos únicos
+9.715 registros importados (Scopus 6.448, WoS 3.267)
+  └─ 3.349 duplicados
+      └─ 6.366 grupos únicos
           ├─ Núcleo de dominio (precribado de dominio, mención de rótulos o consultas Q0/Q1): 25
           │     ├─ excluidos: 15 (13 tarea sin transferencia, 2 sin método original)
           │     └─ INCLUIDOS: 10 estudios sobre rótulos o placas de mercancía peligrosa
-          └─ Resto: 6.297 con decisión automática
+          ├─ Bloque transversal (Q5/Q6), todos los grupos no revisados antes: 52
+          │     ├─ excluidos: 43 (22 sin método original, 21 tarea sin transferencia)
+          │     └─ INCLUIDOS: 9 transferencias de mecanismo a visión
+          └─ Resto: 6.289 con decisión automática
                 ├─ muestra revisada: 200 (60 excluir, 60 duda, 40 mecanismo, 40 arquitectura)
-                └─ incluibles estimados a título y resumen: 3.103 (2.256–3.940), no evaluados
+                └─ incluibles estimados a título y resumen: 3.100 (2.254–3.936), no evaluados
                    a texto completo: fuera del alcance de la síntesis
 
-Síntesis: 10 estudios de dominio + 9 arquitecturas puntuadas (fichas cotejadas)
-          + fuentes primarias de los mecanismos
+Síntesis: 10 estudios de dominio + 9 transferencias de mecanismo
+          + 9 arquitecturas puntuadas (fichas cotejadas) + fuentes primarias de los mecanismos
 ```
 
 Los tres pares de DOI son el mismo artículo en cada caso: dos variantes no están registradas y la tercera es un alias que el propio registro redirige al canónico ({download}`resolución con evidencia <../docs/revision_entregable2/RESOLUCION_CONFLICTOS_DOI.md>`). Con los alias en el parser, los tres pares se fusionan sin perder identificadores: cada grupo absorbido queda registrado en el que lo recibe.
@@ -45,9 +49,16 @@ Los tres pares de DOI son el mismo artículo en cada caso: dos variantes no est�
 
 Las decisiones las propone un asistente de IA con esos criterios. Una segunda pasada sobre 20 de las 200 coincidió en las 20. No es un segundo revisor independiente, así que no se informa kappa.
 
-**Búsquedas transversales: el requisito no se cumple.** La guía pide tres búsquedas transversales (mecanismos de otras modalidades) ejecutadas en las bases; se ejecutó una parte. Q5 llegó a mostrar conteos piloto (38 en Scopus y 14 en WoS), pero la exportación falló en las dos bases el 18/11 por la caída de la sesión institucional, y Q6 no se ejecutó; después se decidió no reabrirlas. Un fallo de exportación no es un resultado cero, así que esos 52 registros no se suman al corpus ni se cuentan como cribados.
+**Búsquedas transversales: las tres están ejecutadas.** La guía pide tres búsquedas de mecanismos nacidos en otras modalidades, y son Q4 (atención desde el lenguaje), Q5 (espacio de estados desde secuencias) y Q6 (convoluciones dilatadas o temporales desde señales). Q4 se exportó el 17/11. Q5 había mostrado conteos piloto el 18/11, pero no se pudo exportar, y Q6 no se había ejecutado; las dos se corrieron y exportaron el 22/11 con las ecuaciones del protocolo. Q5 dio 38 registros en Scopus y 14 en WoS, iguales a los pilotos; Q6 dio 11 y 6. El fallo de exportación de Scopus no era de la consulta: el proxy institucional no reenviaba el servidor de descargas ({download}`bitácora <../docs/revision_entregable2/BITACORA_BUSQUEDAS.md>`).
 
-Lo que hay en su lugar es más débil y se declara como tal: los cuatro mecanismos de la tabla de abajo se documentaron desde su fuente primaria por búsqueda dirigida por nombre, y Q3 y Q4 (mecanismos dentro de visión) sí se exportaron. Eso prueba que cada mecanismo existe y de dónde viene; no prueba que no haya otros mecanismos transferibles que una búsqueda sistemática habría encontrado. El riesgo concreto es de omisión: un trabajo que lleve, por ejemplo, un mecanismo de audio o de series temporales a la segmentación de objetos pequeños podría faltar. Por eso las hipótesis de transferencia se presentan como hipótesis y ninguna conclusión del benchmark depende de que la lista de mecanismos sea exhaustiva.
+Los 52 grupos de Q5 y Q6 que no se habían revisado se criban todos a título y resumen, con un criterio propio del bloque escrito antes de revisarlos. Se incluyen los estudios que llevan el mecanismo a una tarea de visión. Entran 9:
+
+- **Ocho con espacio de estados o Mamba.** Uno segmenta cultivos con un módulo de contexto de espacio de estados sobre la imagen. Otro segmenta hígado en RM con U-Mamba. Los demás son un decodificador SSM para segmentación audiovisual por píxel, un backbone visual ligero tipo Mamba, segmentación por razonamiento con un modelo multimodal basado en Mamba, re-identificación de personas, y anomalías y acciones en vídeo.
+- **Uno con red convolucional temporal sobre fotogramas** (emociones en vídeo).
+
+Se excluyen 43: 22 son resúmenes de congreso, revisiones o editoriales, y 21 dejan el mecanismo en su dominio de origen (ECG, EEG, series de energía o SAR multitemporal) o no lo usan.
+
+La lectura cambia para la familia SSM. Hay transferencia publicada de Mamba a la segmentación 2D, también en imagen médica, lo que respalda tratar VM-UNet como una familia con evidencia en visión y no solo como un trasplante desde el lenguaje. Para la dilatación desde audio o series, Q6 no encuentra ningún estudio que la lleve a segmentación 2D; el único incluido la usa en el eje temporal de un vídeo. La dilatación de DeepLabv3+ se sostiene por su propia línea dentro de visión (Yu y Koltun), no por una transferencia desde las señales. Ninguno de los 9 trata rótulos ni objetos pequeños, así que no cambian el gap.
 
 ## Antecedentes y pertinencia
 

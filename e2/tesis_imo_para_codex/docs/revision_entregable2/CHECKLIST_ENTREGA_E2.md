@@ -4,7 +4,7 @@ Revisado el 20/11/2026 contra la guía original de 65 páginas, incluida ruta F4
 
 **C:** cubierto con evidencia. **P:** parcial. **F:** falta ejecutar/verificar. **D:** desviación histórica no reparable retroactivamente. **NA:** no aplica con motivo. Un plan o un script no acreditan una ejecución. No convertir el número de filas en porcentaje de calificación.
 
-El usuario confirmó que el profesor acepta **diez modelos totales: tres E1 y siete nuevos**. No se infieren dispensas de otros requisitos. Q5/Q6 siguen omitidas por instrucción explícita.
+El usuario confirmó que el profesor acepta **diez modelos totales: tres E1 y siete nuevos**. No se infieren dispensas de otros requisitos. Q5/Q6 se reabrieron y ejecutaron el 22/11 (fila 24).
 
 **Actualización del 20/11 (tarde).** Se integraron los complementos de datos, fuga, ruido, bibliografía y los cuadernos preparados de diagnóstico GPU, entrenamiento y réplica. Lo preparado sin ejecutar sigue en F, con su ruta. Orden de corridas: `docs/GUIA_CORRIDAS_CIERRE_E2.md`.
 
@@ -34,6 +34,8 @@ El usuario confirmó que el profesor acepta **diez modelos totales: tres E1 y si
 
 **Actualización del 22/11 (reproducción).** Reproducción completa en un clon limpio de GitHub con los datos externos declarados: tablas y contrastes del test con discrepancia 0, recálculo independiente desde las máscaras y libro compilado sin avisos (filas 55 y 68; B20 y B21).
 
+**Actualización del 22/11 (Q5 y Q6).** Búsquedas transversales Q5 y Q6 ejecutadas y exportadas en las dos bases (fila 24); corpus de 6.366 grupos y censo del bloque transversal (filas 20, 21 y 30).
+
 ## Problema, hipótesis, datos y EDA — rúbrica 15 %
 
 | ID | Requisito (página guía) | Estado | Evidencia / cierre necesario |
@@ -62,17 +64,17 @@ El usuario confirmó que el profesor acepta **diez modelos totales: tres E1 y si
 |---|---|---|---|
 | 18 | ≥2 bases, ecuaciones, filtros, fechas/conteos (9–10) | C | Scopus/WoS, protocolo, bitácora, 13 exportaciones Q0–Q4 |
 | 19 | Inclusión/exclusión y excepciones antiguas (10) | C | Criterios documentados; aplicación final distinta de definición |
-| 20 | PRISMA completo y exclusiones razonadas (10) | C | 22/11: 9.646 → 6.322 grupos; precribado reconstruido con reglas explícitas (el original no conservó reglas ni decisiones); núcleo de dominio de 25 revisado registro por registro (10 incluidos, 15 excluidos con motivo) y muestra estratificada de 200 a ciegas: el filtro pierde 37 % [26–49] de incluibles en su estrato de exclusión; unos 3.100 incluibles estimados, fuera de la síntesis. `cribado_nucleo.py`, `PRISMA_FINAL.md`, `CRITERIOS_ELEGIBILIDAD.md`; consistencia 20/20 (`auditoria_cribado.json`) |
-| 21 | DOI adjudicados y aplicados a registros (10) | C | 22/11: `procesar_exportaciones.py` sobre las 13 exportaciones (sha256 verificados): 9.646 registros, 6.322 grupos, 3.324 duplicados, 0 coincidencias ambiguas; tres alias aplicados con los ID absorbidos conservados (`conciliacion.json`) |
+| 20 | PRISMA completo y exclusiones razonadas (10) | C | 22/11: Q0–Q6, 9.715 → 6.366 grupos; precribado reconstruido con reglas explícitas; núcleo de dominio de 25 revisado registro por registro (10 incluidos, 15 excluidos con motivo); censo del bloque Q5/Q6 de 52 (9 incluidos, 43 excluidos con motivo); muestra estratificada de 200 a ciegas: el filtro pierde 37 % [26–49] de incluibles en su estrato de exclusión; unos 3.100 incluibles estimados, fuera de la síntesis. `cribado_nucleo.py`, `PRISMA_FINAL.md`, `CRITERIOS_ELEGIBILIDAD.md`; consistencia 20/20 |
+| 21 | DOI adjudicados y aplicados a registros (10) | C | 22/11: `procesar_exportaciones.py` sobre las 17 exportaciones (sha256 verificados): 9.715 registros, 6.366 grupos, 3.349 duplicados, 0 coincidencias ambiguas; tres alias de DOI aplicados con los ID absorbidos conservados; los 6.322 grupos previos a Q5/Q6 mantienen su ID (`conciliacion.json`) |
 | 22 | Extracción/calidad de cada incluido (10–12) | C | 22/11: nueve fichas de 13 campos (siete candidatas y dos alternativas) con página y fragmento literal del PDF; `cotejar_fichas.py` confirma 229 de 229 (`cotejo_fichas.json`, `FICHAS_COTEJADAS.md`). Calidad: repeticiones, selección por test y dificultad compartida, en el capítulo de literatura |
 | 23 | Acuerdo de revisores si hay varios (10) | NA | Sin dos cribados completos independientes; no inventar kappa |
-| 24 | Tres búsquedas transversales ejecutadas (10) | P | Q5 sin exportación (fallo de sesión institucional el 18/11; conteos piloto 38/14) y Q6 sin ejecutar; no se reabren. Justificación y riesgo de omisión en el capítulo de literatura; requisito no cumplido |
+| 24 | Tres búsquedas transversales ejecutadas (10) | C | 22/11: Q5 y Q6 reabiertas por instrucción del usuario y ejecutadas y exportadas en Scopus y WoS con las ecuaciones del protocolo (Q5 38 + 14, iguales al piloto; Q6 11 + 6); con Q4, tres transversales. Causa del fallo de exportación del 18/11 identificada (host de descargas no reenviado por el proxy). Censo del bloque: 9 transferencias a visión, 8 de espacio de estados. `BITACORA_BUSQUEDAS.md`, `DECISIONES.md` |
 | 25 | Tabla de mecanismos/fuentes/transferibilidad (10) | C | Literatura: mecanismos e hipótesis con riesgos |
 | 26 | Número de redes y cuatro familias (11) | C | Diez totales aceptados por profesor según usuario; CNN/Transformer/híbrido/SSM |
 | 27 | Puntuación completa, citas/cuartiles y exclusiones (11) | C | 22/11: rúbrica de seis componentes aplicada a nueve candidatas con evidencia por nivel; citas OpenAlex (misma fecha), licencias y pesos por la API de GitHub; rango CORE de las conferencias y cuartil SCImago de las revistas (IEEE TMI Q1 2020, ACM TOMM Q1 2025); óptimo con cuatro familias = selección operativa; exclusiones razonadas (`puntuar_candidatos.py`, `PUNTUACION_DEFINITIVA.md`) |
 | 28 | Referencias, diagramas, matemáticas y adaptaciones (11) | C | Diez fichas, diez esquemas, DOI/BibTeX; compactas identificadas como adaptaciones |
 | 29 | Datasets/resultados/varianza/costo originales (11–12) | C | 20/11, siete redes nuevas: `RESULTADOS_ORIGINALES_7REDES.md`, dataset, métrica, cifra, varianza y costo con tabla y página del PDF de arXiv; `cotejar_resultados_originales.py` confirma 21 de 21 (`cotejo_resultados_originales.json`). Corrige seis cifras de las fichas del 18/11 |
-| 30 | Reproducibilidad de literatura y gap refutable (12) | C | 22/11: gap refutable con denominador de 13 estudios de dominio (10 del cribado y 3 anteriores a 2019): ninguno segmenta el rótulo por píxel con red ni compara arquitecturas con semillas; 2 leídos a texto completo, 8 decididos con resúmenes que declaran el método (acceso no disponible, declarado). Literatura reproducible por scripts (`cribado_nucleo.py`, `cotejar_fichas.py`, `puntuar_candidatos.py`) |
+| 30 | Reproducibilidad de literatura y gap refutable (12) | C | 22/11: gap refutable con denominador de 13 estudios de dominio (10 del cribado y 3 anteriores a 2019); ninguno segmenta el rótulo por píxel con red ni compara arquitecturas con semillas; Q5/Q6 no añaden registros de dominio; 2 leídos a texto completo, 8 decididos con resúmenes que declaran el método. Literatura reproducible por scripts (`cribado_nucleo.py`, `cotejar_fichas.py`, `puntuar_candidatos.py`) |
 | 31 | Paper guía justificado y documentado (16) | C | SegFormer-B0; condiciones originales separadas de HAZMAT |
 | 32 | Réplica original y discrepancia/IC (16–17) | C | 20/11, Colab T4: checkpoint oficial de SegFormer-B0 en ADE20K val (2.000), escala única, mIoU 37,43 % (IC95 35,47–38,30) frente a 37,4; D = +0,03 (IC95 −1,93 a +0,90); veredicto a priori `compatible`; desviaciones D1 (−1,49 con el preprocesador de HF) y D2 (media por imagen). Réplica de evaluación, no de entrenamiento. `resultados/replica_segformer/LECTURA.md` |
 | 33 | Limitación cuantificada y piloto ≥3 redes (17) | C | 20/11: protocolo a priori `config/limitacion_segformer_area.json`, terciles de área en los 122 grupos de validación, SegFormer frente a 3 redes piloto (U-Net, DeepLabv3+, SegNeXt-T), 5 semillas. Veredicto `no_confirmada`: Δ T3−T1 de SegFormer 0,082 [−0,030; 0,194] y sin diferencia con las piloto (p Holm ≥ 0,55); déficit de nivel, −0,12 frente a U-Net en el tercil pequeño. Dice por imagen extraído de los 50 checkpoints (`colab/Extraer_Validacion_E2.ipynb`). `resultados/limitacion_segformer_area/RESUMEN.md` |
@@ -171,5 +173,5 @@ El usuario confirmó que el profesor acepta **diez modelos totales: tres E1 y si
 1. Revisar evidencia integrada y compilar. No llamar definitivo al informe con requisitos centrales F.
 2. Ejecutar complemento GPU con pesos congelados: calibración, robustez, explicabilidad, incertidumbre, bordes y costo. Protocolo antes de esa ejecución; carácter exploratorio explícito.
 3. Definir presupuesto para réplica original, clásico fuerte y ablaciones. No seleccionar variantes usando test ni prometer cómputo no realizado.
-4. Adjudicar bibliografía y anotación humana con trazabilidad; Q5/Q6 siguen omitidas.
+4. Adjudicar bibliografía y anotación humana con trazabilidad; Q5/Q6 ejecutadas el 22/11.
 5. Preparar defensa, reproducción limpia y revisión final. Solicitar autorización al llegar a publicación.

@@ -5933,6 +5933,43 @@ Generada de exportaciones reales. Todos los registros siguen pendientes de criba
 | E2-6295 | 2022 | LTPConstraint: a transfer learning based end-to-end method for RNA secondary structure prediction | 10.1186/s12859-022-04847-z | Scopus, WoS | Pendiente |
 | E2-6296 | 2022 | An Analysis of ResNet50 Model and RMSprop Optimizer for Education Platform Using an Intelligent Chatbot System | 10.1007/978-981-16-3637-0_41 | Scopus | Pendiente |
 | E2-6297 | 2025 | A General-Purpose Knowledge Retention Metric for Evaluating Distillation Models Across Architectures and Tasks | 10.3390/ai6100273 | Scopus, WoS | Pendiente |
+| E2-6326 | 2025 | A Review of Multi-Sensor Fusion in Autonomous Driving | 10.3390/s25196033 | Scopus, WoS | Pendiente |
+| E2-6327 | 2025 | CLIMB-ReID: A Hybrid CLIP-Mamba Framework for Person Re-identification | 10.1609/aaai.v39i9.33039 | Scopus | Pendiente |
+| E2-6328 | 2025 | A Multi-Branch Deep Learning Architecture Combining GCN, Vision Transformer, and Mamba for SSVEP Signal Decoding | 10.1016/j.ifacol.2025.12.555 | Scopus | Pendiente |
+| E2-6329 | 2026 | Vision-language-action models: current developments and frontier advances | 10.11834/jig.260042 | Scopus | Pendiente |
+| E2-6330 | 2025 | ISBI 2025 - 2025 IEEE 22nd International Symposium on Biomedical Imaging, Proceedings |  | Scopus | Pendiente |
+| E2-6331 | 2026 | JEPA-Mamba: a self-supervised joint-embedding architecture with bidirectional Mamba for ECG representation learning | 10.1007/s13534-026-00620-w | Scopus | Pendiente |
+| E2-6332 | 2026 | 22nd Pacific Rim International Conference on Artificial Intelligence, PRICAI 2025 |  | Scopus | Pendiente |
+| E2-6333 | 2026 | 13th International Conference on Image and Graphics, ICIG 2025 |  | Scopus | Pendiente |
+| E2-6334 | 2026 | Adaptive Digital Service Loops for Continuous Preschool Mental Health Monitoring and Personalized Emotional Care in IoT-Enabled Healthcare Systems | 10.1109/miot.2026.3734994 | Scopus | Pendiente |
+| E2-6335 | 2025 | From Traditional to Foundation Models: A Survey for Land Use and Land Cover Hyperspectral Image Classification | 10.1002/widm.70049 | Scopus, WoS | Pendiente |
+| E2-6336 | 2026 | Light-Weighted Foundation Model for Seismic Data Processing Based on Representative and Non-redundant Pre-training Dataset | 10.1007/s10712-026-09957-4 | Scopus, WoS | Pendiente |
+| E2-6337 | 2026 | VL-Grading: A vision–language distillation framework for preoperative grading of clear cell renal cell carcinoma from multi-phase contrast-enhanced ultrasound | 10.1016/j.bspc.2026.110321 | Scopus, WoS | Pendiente |
+| E2-6338 | 2026 | 1st International Workshop on Agentic AI for Medicine, Agentic AI 2025, 1st International Workshop on Clinical-Driven Robotics and Embodied AI Technology, CREATE 2025, and 1st International Workshop on Multimodal Large Language Models in Clinical Practice, CMLLMs 2025, Held in Conjunction with the 28th International Conference on Medical Image Computing and Computer Assisted Intervention, MICCAI 2025 |  | Scopus | Pendiente |
+| E2-6339 | 2026 | MTGNet: a task-oriented and spectrally guided framework for EEG denoising | 10.1088/1741-2552/ae9ef1 | Scopus | Pendiente |
+| E2-6340 | 2023 | Detection of Exponential Regimes from Time Series for Characterizing the Thermal Dynamics of Buildings | 10.1109/icmla58977.2023.00252 | Scopus | Pendiente |
+| E2-6341 | 2025 | Multiscale Contextual Mamba: Advancing Psychiatric Disorder Detection across Multisite Functional Magnetic Resonance Imaging Datasets via State Space Modeling | 10.34133/hds.0224 | Scopus | Pendiente |
+| E2-6342 | 2026 | A Survey of Deep-Learning-Based Object Detection: From Single-Modality to Cross-Modality | 10.1109/tsmc.2026.3740033 | Scopus, WoS | Pendiente |
+| E2-6343 | 2026 | 32nd International Conference on Multimedia Modeling, MMM 2026 |  | Scopus | Pendiente |
+| E2-6344 | 2026 | A Bi-Modal Knowledge Distillation Framework for Explainable Neonatal Jaundice Diagnosis | 10.1109/cbms69103.2026.00064 | Scopus | Pendiente |
+| E2-6345 | 2026 | Audio–visual segmentation via hierarchical side tuning with state space model | 10.1007/s10489-026-07249-3 | Scopus | Pendiente |
+| E2-6346 | 2026 | Mamba Differential Selective State Space Modelling Framework for Robust Continuous ECGBased Arrhythmia Classification | 10.1109/icdcece68961.2026.11645882 | Scopus | Pendiente |
+| E2-6347 | 2026 | L2G-Net: Local-to-global feature enhancement via cluster tokens for 3D place recognition | 10.1016/j.neunet.2026.108700 | Scopus | Pendiente |
+| E2-6348 | 2025 | Tiny-vGamba: Distilling Large Vision-(Language) Knowledge from CLIP into a Lightweight vGamba Network | 10.1109/iccvw69036.2025.00324 | Scopus | Pendiente |
+| E2-6349 | 2026 | Efficient Multimodal Large Model Algorithm for Intelligent Catenary Inspection | 10.1109/aiita69518.2026.11567242 | Scopus | Pendiente |
+| E2-6350 | 2025 | GSTM-SCD: Graph-enhanced spatio-temporal state space model for semantic change detection in multi-temporal remote sensing images | 10.1016/j.isprsjprs.2025.09.003 | Scopus, WoS | Pendiente |
+| E2-6351 | 2025 | Multilingual-Prompt-Guided Directional Feature Learning for Weakly Supervised Video Anomaly Detection | 10.1109/tpami.2025.3590242 | Scopus, WoS | Pendiente |
+| E2-6352 | 2024 | Proceedings - 2024 IEEE International Conference on Bioinformatics and Biomedicine, BIBM 2024 |  | Scopus | Pendiente |
+| E2-6353 | 2026 | A Latent-Guided Hybrid Architecture for Liver Segmentation in Contrast-Enhanced MRI | 10.1007/978-3-032-16271-7_8 | Scopus | Pendiente |
+| E2-6354 | 2025 | International Conferenceon Neuro-Symbolic Systems, 2025 |  | Scopus | Pendiente |
+| E2-6355 | 2023 | Model selection, adaptation, and combination for transfer learning in wind and photovoltaic power forecasts | 10.1016/j.egyai.2023.100249 | Scopus, WoS | Pendiente |
+| E2-6356 | 2023 | AmtNet: Attentional multi-scale temporal network for phonocardiogram signal classification | 10.1016/j.bspc.2023.104934 | Scopus, WoS | Pendiente |
+| E2-6357 | 2024 | Sign Language-to-Emotion-Specific Text Translation: A Review | 10.1109/icacrs62842.2024.10841673 | Scopus | Pendiente |
+| E2-6358 | 2021 | 8th Conference on Sound and Music Technology, CSMT 2020 |  | Scopus | Pendiente |
+| E2-6359 | 2026 | Cross-modal motion analysis: Transferring motion-capture and force-plate features to video-based standing long jump prediction | 10.1117/12.3102001 | Scopus | Pendiente |
+| E2-6360 | 2024 | Visual Modality Continuous Emotion Recognition Based on Vision Transformer and Transfer Learning | 10.1109/ihmsc62065.2024.00016 | Scopus | Pendiente |
+| E2-6361 | 2026 | 3rd International Conference on 6G Communications Networking and Signal Processing, SGCNSP 2025 |  | Scopus | Pendiente |
+| E2-6362 | 2024 | Multimodal Emotion Recognition Algorithm Based on Graph Attention Network | 10.1109/ainit61980.2024.10581429 | Scopus | Pendiente |
 | E2-0022 | 2023 | Hyperspectral Classification of Hazardous Materials Based on Deep Learning | 10.3390/su15097653 | WoS | Pendiente |
 | E2-1021 | 2027 | HFFNet: Hierarchical feature fusion network for lightweight RGB-T semantic segmentation * | 10.1016/j.neunet.2026.109510 | WoS | Pendiente |
 | E2-1022 | 2026 | HAWKSight: Hierarchical Attention-Driven Weighted Kernel Network for Aerial Salient Object Detection | 10.1109/jstars.2025.3638685 | WoS | Pendiente |
@@ -6326,3 +6363,10 @@ Generada de exportaciones reales. Todos los registros siguen pendientes de criba
 | E2-6323 | 2026 | Enhancing deep learning models for time series classification via knowledge distillation | 10.1007/s10115-026-02818-x | WoS | Pendiente |
 | E2-6324 | 2026 | A Survey on Large Language Models for Communication, Network, and Service Management: Application Insights, Challenges, and Future Directions | 10.1109/comst.2025.3564333 | WoS | Pendiente |
 | E2-6325 | 2023 | Attention-Based Adversarial Robust Distillation in Radio Signal Classifications for Low-Power IoT Devices | 10.1109/jiot.2022.3215188 | WoS | Pendiente |
+| E2-6363 | 2026 | MAMBA: SSM model as alternative to the transformers | 10.29019/enfoqueute.1204 | WoS | Pendiente |
+| E2-6364 | 2027 | Large model empowered embodied AI: A survey on decision-making and embodied learning | 10.1016/j.neucom.2026.135458 | WoS | Pendiente |
+| E2-6365 | 2026 | A Comprehensive Survey of Large AI Models for Future Communications: Foundations, Applications, and Challenges | 10.1109/comst.2026.3660844 | WoS | Pendiente |
+| E2-6366 | 2026 | STAR: Semantic-Temporal Adaptive Representation Learning for Few-Shot Action Recognition | 10.1109/tcsvt.2026.3688705 | WoS | Pendiente |
+| E2-6367 | 2026 | Multi-dimensional Spatio-temporal Feature Enhancement for Lip Reading | 10.11999/jeit251111 | WoS | Pendiente |
+| E2-6368 | 2025 | Semantic Segmentation of Paddy Rice From Sentinel-1 SAR Time Series: A Temporal Convolutional Network Approach | 10.1109/access.2025.3622649 | WoS | Pendiente |
+| E2-6369 | 2020 | Deep Learning Applications with Practical Measured Results in Electronics Industries | 10.3390/electronics9030501 | WoS | Pendiente |

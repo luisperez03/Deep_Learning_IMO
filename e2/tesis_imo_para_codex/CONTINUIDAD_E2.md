@@ -24,7 +24,7 @@ La última respuesta al usuario comunicó: empezar por SegFormer-B0 y PIDNet-S; 
 
 - Trabajar en español, con rigor y explicaciones claras. Conservar progreso en archivos; economizar créditos.
 - **Preguntar antes de subir a GitHub o desplegar.** Daniel puede haber realizado cambios remotos. Preparar y revisar la integración antes de solicitar esa autorización. No se hizo push ni despliegue en esta fase.
-- **Omitir Q5 y Q6**, por instrucción explícita «vamos con esas, omite q5 y 6». No insistir con autenticación o exportación de esas consultas.
+- **Omitir Q5 y Q6**, por instrucción explícita «vamos con esas, omite q5 y 6». No insistir con autenticación o exportación de esas consultas. **Revocado el 22/11:** Q5 y Q6 se reabrieron, ejecutaron y exportaron; ver `DECISIONES.md`, "2026-11-22 — Reapertura de Q5 y Q6".
 - Continuar con las siete candidatas aceptadas como lista de trabajo. No representan un Top 7 obtenido del cribado completo.
 - El usuario se autenticó personalmente en Uninorte/Scopus/Elsevier y resolvió CAPTCHA en WoS. No guardar ni solicitar contraseñas. Las sesiones pueden haber expirado; no son necesarias para el siguiente trabajo local.
 - Leer `AGENTS.md`. No modificar datasets originales, descargar datasets ni entrenar por defecto. Las autorizaciones anteriores del E1 no equivalen a autorizar nuevas siete redes.

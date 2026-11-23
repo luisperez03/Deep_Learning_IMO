@@ -217,3 +217,11 @@ semillas fijas. La dispersión entre semillas se informa por separado.
 - Condición: VM-UNet requiere prueba en entorno Linux/CUDA compatible; TransUNet necesita presupuesto medido. Hardware local histórico Windows/AMD no acredita esa compatibilidad. No sustituir SSM por CNN sin revisar cobertura de familias.
 - Propuesta metodológica: comparar inicialización aleatoria por separado de pesos externos; conservar E1 histórico y volver a correr bases si cambia el presupuesto de selección. El test existente sigue congelado, declarando exposición previa y sin usarlo para elegir configuraciones.
 - Pendientes: commits, entorno reproducible, condiciones/hashes de checkpoints, pruebas de adaptadores y mediciones de recursos. La consulta documental no certifica ejecución. No se efectuó subida ni despliegue; se mantiene la autorización previa exigida por el usuario.
+
+## 2026-11-22 — Reapertura de Q5 y Q6
+
+- Se revoca la omisión de Q5 y Q6 del 18/11 (sección anterior: «vamos con esas, omite q5 y 6»). Instrucción del 22/11: «Sí, reábrela y corre Q5 y Q6».
+- Ejecutadas y exportadas en Scopus y WoS con las ecuaciones del protocolo y los filtros 2019–2026: Q5 38 + 14 registros (iguales a los conteos piloto) y Q6 11 + 6. Archivos, sha256 y la causa del fallo de exportación del 18/11 en `docs/revision_entregable2/BITACORA_BUSQUEDAS.md`, sección "Reapertura de Q5 y Q6".
+- Corpus: 9.715 registros, 6.366 grupos y 3.349 duplicados (antes 9.646 / 6.322 / 3.324); los ID anteriores no cambian. Los 52 grupos del bloque transversal que no estaban revisados se criban completos (censo): 9 incluidos como mecanismo transferible y 43 excluidos con motivo (`PRISMA_FINAL.md`).
+- Queda sin efecto lo anterior sobre que no se requiere iniciar sesión para Q5/Q6 y que el requisito de tres búsquedas transversales no se cumple: Q4, Q5 y Q6 están ejecutadas y exportadas.
+
