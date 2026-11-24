@@ -1,5 +1,7 @@
 # Referencias aplicadas al problema y gap refutable
 
+> **22/11/2026: cribado del núcleo cerrado.** Del corpus de 6.366 grupos (6.322 antes de reabrir Q5 y Q6, que no añadieron registros de dominio) se incluyeron 10 estudios sobre rótulos o placas de mercancía peligrosa. Ninguno segmenta el rótulo por píxel con una red ni compara arquitecturas con semillas (`PRISMA_FINAL.md`, `decisiones_cribado_nucleo.json`). El denominador del gap es de 13 estudios (esos 10 y tres anteriores a 2019) y la condición de abajo queda resuelta; redacción vigente en `libro/literatura.md`, sección "Gap y límites de la síntesis".
+
 **20/11/2026.** DOI verificados en Crossref y doi.org con `verificar_doi_registro.py` (`evidencia_doi_registro.json`). Lo que hace cada estudio se tomó de su resumen, recuperado de OpenAlex a partir del DOI; **no se leyó el texto completo**. BibTeX en `libro/referencias_e2.bib`.
 
 ## Estudios aplicados a rótulos de mercancía peligrosa

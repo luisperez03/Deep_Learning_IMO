@@ -2,6 +2,7 @@
 
 Versión 0.1, preparada el 17 de noviembre de 2026 (America/Bogota).
 Actualización del 18/11: Q0–Q4 ejecutadas y exportadas en ambas bases. Por decisión explícita del usuario se omiten Q5 y Q6: Q5 conserva conteos piloto sin exportación; Q6 no se ejecutó. Las ecuaciones originales se conservan como historial. El requisito original de tres búsquedas transversales no se declara cumplido con este alcance reducido. Consultas exactas, cambios y conteos en `BITACORA_BUSQUEDAS.md`; esa bitácora prevalece sobre Q1 v0.1 como registro de la recuperación realizada.
+Actualización del 22/11: la omisión de Q5 y Q6 se revocó; las dos se ejecutaron y exportaron en Scopus y WoS con las ecuaciones de abajo y los filtros 2019–2026 (conteos y archivos en `BITACORA_BUSQUEDAS.md`, sección "Reapertura de Q5 y Q6"). Las tres búsquedas transversales (Q4, Q5 y Q6) quedan ejecutadas.
 Estado: piloto de búsqueda. Las ecuaciones se validan antes de cerrar la recuperación definitiva; cualquier cambio conserva versión y resultados anteriores. No es un preregistro retrospectivo del Entregable 1.
 
 ## Alcance y preguntas

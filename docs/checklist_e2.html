@@ -284,10 +284,22 @@ document.write(`
 <h1>Verificación de requisitos del Entregable 2<a class="headerlink" href="#verificacion-de-requisitos-del-entregable-2" title="Permalink to this heading">#</a></h1>
 <p>Revisado el 20/11/2026 contra la guía original de 65 páginas, incluida ruta F4b y apéndice B. Entrega prevista: domingo 22/11/2026. Este control no garantiza una nota.</p>
 <p><strong>C:</strong> cubierto con evidencia. <strong>P:</strong> parcial. <strong>F:</strong> falta ejecutar/verificar. <strong>D:</strong> desviación histórica no reparable retroactivamente. <strong>NA:</strong> no aplica con motivo. Un plan o un script no acreditan una ejecución. No convertir el número de filas en porcentaje de calificación.</p>
-<p>El usuario confirmó que el profesor acepta <strong>diez modelos totales: tres E1 y siete nuevos</strong>. No se infieren dispensas de otros requisitos. Q5/Q6 siguen omitidas por instrucción explícita.</p>
+<p>El usuario confirmó que el profesor acepta <strong>diez modelos totales: tres E1 y siete nuevos</strong>. No se infieren dispensas de otros requisitos. Q5/Q6 se reabrieron y ejecutaron el 22/11 (fila 24).</p>
 <p><strong>Actualización del 20/11 (tarde).</strong> Se integraron los complementos de datos, fuga, ruido, bibliografía y los cuadernos preparados de diagnóstico GPU, entrenamiento y réplica. Lo preparado sin ejecutar sigue en F, con su ruta. Orden de corridas: <code class="docutils literal notranslate"><span class="pre">docs/GUIA_CORRIDAS_CIERRE_E2.md</span></code>.</p>
 <p><strong>Actualización del 21/11.</strong> Se corrió el complemento de entrenamiento en L4: sobreajuste, búsqueda T = 4, permutación de FCN con B = 200 y ablación de TransUNet (filas 37, 41, 46, 56, 61). Exploratorio: el test ya estaba observado y no se cargó.</p>
 <p><strong>Actualización del 22/11.</strong> Revisión humana: los 12 casos de ruido de etiqueta confirmados a mano (fila 12) y techo por segunda anotación independiente de 50 imágenes de validación (fila 63).</p>
+<p><strong>Actualización del 22/11 (cierre).</strong> Filas desactualizadas puestas al día con evidencia ya registrada (66, 70, 75; B11).</p>
+<p><strong>Actualización del 22/11 (datos).</strong> Data Card de HAZMAT-13 con procedencia, versión, huellas, adquisición, licencia, ética y obtención (filas 07 y 71); la licencia y adquisición de las imágenes siguen sin certificar (fila 08).</p>
+<p><strong>Actualización del 22/11 (inferencia).</strong> Equivalencia TOST en test y validación, descomposición de varianza con modelo mixto en validación, simetría y sensibilidad, max-T simultáneo y sesgo del ganador (filas 50, 51, 53, 54 y B15). Exploratorio, posterior al test.</p>
+<p><strong>Actualización del 22/11 (literatura).</strong> Fichas de extracción cotejadas con el PDF (fila 22), puntuación definitiva con citación (27), justificación de Q5/Q6 (24) y cribado del núcleo preparado (20, 21, 30), que espera las exportaciones originales de Scopus/WoS.</p>
+<p><strong>Actualización del 22/11 (costo).</strong> Parámetros, FLOPs, memoria y latencia de 9 de las 10 redes en CPU homogénea (fila 44; VM-UNet pendiente de GPU) y costo de GPU reconstruido con cota de energía (fila 45).</p>
+<p><strong>Actualización del 22/11 (errores y atajos).</strong> Prueba contrafactual de atajos en Colab (L4, 50 corridas), taxonomía de errores, subgrupos y daño potencial con protocolo previo, exploratorio (filas 13 y 67); revisión humana de la taxonomía en 88 casos, por confirmación global del revisor (fila 65).</p>
+<p><strong>Actualización del 22/11 (inferencia en test por grupo).</strong> Con los 122 grupos del test: TOST con bootstrap, simetría, max-T, sensibilidad sin grupo o semilla y sesgo del ganador (filas 50, 51, 54 y B15).</p>
+<p><strong>Actualización del 22/11 (integración).</strong> Equivalencia ejecutada en las RQ (fila 04) y BibTeX protegido de la reintegración (fila 73).</p>
+<p><strong>Actualización del 22/11 (cribado).</strong> Exportaciones originales recuperadas: conciliación definitiva (6.322 grupos, fila 21), PRISMA del núcleo de dominio con error del precribado medido (fila 20) y gap con denominador cerrado (fila 30).</p>
+<p><strong>Actualización del 22/11 (costo, GPU).</strong> VM-UNet y las demás redes medidas en la L4 (fila 44 cerrada).</p>
+<p><strong>Actualización del 22/11 (reproducción).</strong> Reproducción completa en un clon limpio de GitHub con los datos externos declarados: tablas y contrastes del test con discrepancia 0, recálculo independiente desde las máscaras y libro compilado sin avisos (filas 55 y 68; B20 y B21).</p>
+<p><strong>Actualización del 22/11 (Q5 y Q6).</strong> Búsquedas transversales Q5 y Q6 ejecutadas y exportadas en las dos bases (fila 24); corpus de 6.366 grupos y censo del bloque transversal (filas 20, 21 y 30).</p>
 <section id="problema-hipotesis-datos-y-eda-rubrica-15">
 <h2>Problema, hipótesis, datos y EDA — rúbrica 15 %<a class="headerlink" href="#problema-hipotesis-datos-y-eda-rubrica-15" title="Permalink to this heading">#</a></h2>
 <table class="table">
@@ -316,8 +328,8 @@ document.write(`
 </tr>
 <tr class="row-odd"><td><p>04</p></td>
 <td><p>≥3 RQ, H0/H1, α, efecto y decisión (2–3)</p></td>
-<td><p>P</p></td>
-<td><p>RQ1–4 integradas; temporalidad explícita; equivalencia no ejecutada</p></td>
+<td><p>C</p></td>
+<td><p>RQ1-4 con H0/H1, α = 0,05, efecto (δ = 0,02 Dice) y regla de decisión en <code class="docutils literal notranslate"><span class="pre">metodos_e2.md</span></code>; temporalidad explícita (ampliación posterior al test). 22/11: equivalencia ejecutada (TOST pareado por grupos, t y bootstrap, Holm(9)): TransUNet-FCN indeterminado (p = 0,117), U-Net-FCN equivalentes (p Holm 0,028, condicional a las semillas); RQ3 respondida: ninguna red equivalente a TransUNet (<code class="docutils literal notranslate"><span class="pre">cierre_e2.md</span></code>, ID 54)</p></td>
 </tr>
 <tr class="row-even"><td><p>05</p></td>
 <td><p>Preregistro completo anterior al entrenamiento (42)</p></td>
@@ -331,13 +343,13 @@ document.write(`
 </tr>
 <tr class="row-even"><td><p>07</p></td>
 <td><p>Data Card, procedencia, versión/hash (3)</p></td>
-<td><p>P</p></td>
-<td><p>Tamaños, objetivo y manifiestos; origen HAZMAT13 probable, sin identidad externa certificada</p></td>
+<td><p>C</p></td>
+<td><p>22/11: Data Card completa, <code class="docutils literal notranslate"><span class="pre">docs/DATA_CARD_HAZMAT13.md</span></code>. Fuente: mrl-amrl/HAZMAT13 (commit <code class="docutils literal notranslate"><span class="pre">ec85498</span></code>, 12/07/2021, sin releases) y artículo doi:10.1016/j.mlwa.2021.100104. Coinciden 1.685 imágenes, 13 clases con su orden, formato VOC y ruta <code class="docutils literal notranslate"><span class="pre">/home/amrl/</span></code> en los XML; huellas agregadas de imágenes y XML y SHA256 por archivo (2.902 de 2.902 verificados). Identidad binaria con el Drive de los autores no verificada (declarado): requiere descargar con permiso. <code class="docutils literal notranslate"><span class="pre">scripts/verificar_corpus_hazmat13.py</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p>08</p></td>
 <td><p>Licencias, adquisición, geografía, ética (3,41)</p></td>
 <td><p>P</p></td>
-<td><p>Límites declarados; falta verificar licencia de imágenes externas y metadatos de adquisición</p></td>
+<td><p>22/11: verificado: licencia MIT del repositorio (copyright MRL-AMRL 2021), que nombra «Software»; README y artículo no declaran licencia de datos, titularidad de las fotos ni cómo se adquirieron (sin EXIF; <code class="docutils literal notranslate"><span class="pre">database</span> <span class="pre">=</span> <span class="pre">Unknown</span></code> en los XML; parte de las muestras viene de situaciones de RoboCup). Geografía no documentada. Ética y límites declarados en <code class="docutils literal notranslate"><span class="pre">docs/DATA_CARD_HAZMAT13.md</span></code>. Sin redistribución de imágenes. Sigue P hasta aclaración de los autores (no enviada)</p></td>
 </tr>
 <tr class="row-even"><td><p>09</p></td>
 <td><p>Distribución, desbalance y entropía (3–4)</p></td>
@@ -361,8 +373,8 @@ document.write(`
 </tr>
 <tr class="row-even"><td><p>13</p></td>
 <td><p>Sesgos y atajos (4)</p></td>
-<td><p>P</p></td>
-<td><p>Origen XML y limitaciones documentados; falta prueba de atajos</p></td>
+<td><p>C</p></td>
+<td><p>22/11, exploratorio, reglas previas (δ = 0,02, Holm): prueba contrafactual en validación, 10 redes × 5 semillas (Colab L4). Sin contexto: dependencia material en TransUNet, SegFormer-B0; indeterminado en VM-UNet, SegNeXt-T; sin dependencia en las otras 6. Rótulo borrado: zona predicha 0,01–0,09, ninguna red lo infiere del contexto. Gris: caída 0,29–0,42 en las 10 (el color es parte del rótulo, no un atajo en sí). Señal del EDA (origen de captura): O1–O6 sin diferencias. Imágenes sintéticas fuera de distribución, declarado. <code class="docutils literal notranslate"><span class="pre">resultados/errores_atajos_e2/</span></code> (<code class="docutils literal notranslate"><span class="pre">LECTURA.md</span></code>, <code class="docutils literal notranslate"><span class="pre">TABLAS_ATAJOS.md</span></code>), protocolo previo del 22/11 (<code class="docutils literal notranslate"><span class="pre">PROTOCOLO_ERRORES_ATAJOS_20261122.md</span></code>), <code class="docutils literal notranslate"><span class="pre">colab/Atajos_Errores_E2.ipynb</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p>14</p></td>
 <td><p>Particiones y semillas regenerables (4)</p></td>
@@ -410,18 +422,18 @@ document.write(`
 </tr>
 <tr class="row-even"><td><p>20</p></td>
 <td><p>PRISMA completo y exclusiones razonadas (10)</p></td>
-<td><p>P</p></td>
-<td><p>9646 registros, 6325 grupos provisionales; precribado automático, sin elegibilidad final</p></td>
+<td><p>C</p></td>
+<td><p>22/11: Q0–Q6, 9.715 → 6.366 grupos; precribado reconstruido con reglas explícitas; núcleo de dominio de 25 revisado registro por registro (10 incluidos, 15 excluidos con motivo); censo del bloque Q5/Q6 de 52 (9 incluidos, 43 excluidos con motivo); muestra estratificada de 200 a ciegas: el filtro pierde 37 % [26–49] de incluibles en su estrato de exclusión; unos 3.100 incluibles estimados, fuera de la síntesis. <code class="docutils literal notranslate"><span class="pre">cribado_nucleo.py</span></code>, <code class="docutils literal notranslate"><span class="pre">PRISMA_FINAL.md</span></code>, <code class="docutils literal notranslate"><span class="pre">CRITERIOS_ELEGIBILIDAD.md</span></code>; consistencia 20/20</p></td>
 </tr>
 <tr class="row-odd"><td><p>21</p></td>
 <td><p>DOI adjudicados y aplicados a registros (10)</p></td>
-<td><p>F</p></td>
-<td><p>Tres pares ambiguos; falta correspondencia y conteo definitivo</p></td>
+<td><p>C</p></td>
+<td><p>22/11: <code class="docutils literal notranslate"><span class="pre">procesar_exportaciones.py</span></code> sobre las 17 exportaciones (sha256 verificados): 9.715 registros, 6.366 grupos, 3.349 duplicados, 0 coincidencias ambiguas; tres alias de DOI aplicados con los ID absorbidos conservados; los 6.322 grupos previos a Q5/Q6 mantienen su ID (<code class="docutils literal notranslate"><span class="pre">conciliacion.json</span></code>)</p></td>
 </tr>
 <tr class="row-even"><td><p>22</p></td>
 <td><p>Extracción/calidad de cada incluido (10–12)</p></td>
-<td><p>P</p></td>
-<td><p>Siete fichas preliminares; falta cotejo completo de tablas originales</p></td>
+<td><p>C</p></td>
+<td><p>22/11: nueve fichas de 13 campos (siete candidatas y dos alternativas) con página y fragmento literal del PDF; <code class="docutils literal notranslate"><span class="pre">cotejar_fichas.py</span></code> confirma 229 de 229 (<code class="docutils literal notranslate"><span class="pre">cotejo_fichas.json</span></code>, <code class="docutils literal notranslate"><span class="pre">FICHAS_COTEJADAS.md</span></code>). Calidad: repeticiones, selección por test y dificultad compartida, en el capítulo de literatura</p></td>
 </tr>
 <tr class="row-odd"><td><p>23</p></td>
 <td><p>Acuerdo de revisores si hay varios (10)</p></td>
@@ -430,8 +442,8 @@ document.write(`
 </tr>
 <tr class="row-even"><td><p>24</p></td>
 <td><p>Tres búsquedas transversales ejecutadas (10)</p></td>
-<td><p>P</p></td>
-<td><p>Q5/Q6 omitidas; fuentes suplementarias no sustituyen consultas</p></td>
+<td><p>C</p></td>
+<td><p>22/11: Q5 y Q6 reabiertas por instrucción del usuario y ejecutadas y exportadas en Scopus y WoS con las ecuaciones del protocolo (Q5 38 + 14, iguales al piloto; Q6 11 + 6); con Q4, tres transversales. Causa del fallo de exportación del 18/11 identificada (host de descargas no reenviado por el proxy). Censo del bloque: 9 transferencias a visión, 8 de espacio de estados. <code class="docutils literal notranslate"><span class="pre">BITACORA_BUSQUEDAS.md</span></code>, <code class="docutils literal notranslate"><span class="pre">DECISIONES.md</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p>25</p></td>
 <td><p>Tabla de mecanismos/fuentes/transferibilidad (10)</p></td>
@@ -445,8 +457,8 @@ document.write(`
 </tr>
 <tr class="row-odd"><td><p>27</p></td>
 <td><p>Puntuación completa, citas/cuartiles y exclusiones (11)</p></td>
-<td><p>P</p></td>
-<td><p>Lista operativa; bibliometría y rúbrica definitiva sin cerrar</p></td>
+<td><p>C</p></td>
+<td><p>22/11: rúbrica de seis componentes aplicada a nueve candidatas con evidencia por nivel; citas OpenAlex (misma fecha), licencias y pesos por la API de GitHub; rango CORE de las conferencias y cuartil SCImago de las revistas (IEEE TMI Q1 2020, ACM TOMM Q1 2025); óptimo con cuatro familias = selección operativa; exclusiones razonadas (<code class="docutils literal notranslate"><span class="pre">puntuar_candidatos.py</span></code>, <code class="docutils literal notranslate"><span class="pre">PUNTUACION_DEFINITIVA.md</span></code>)</p></td>
 </tr>
 <tr class="row-even"><td><p>28</p></td>
 <td><p>Referencias, diagramas, matemáticas y adaptaciones (11)</p></td>
@@ -460,8 +472,8 @@ document.write(`
 </tr>
 <tr class="row-even"><td><p>30</p></td>
 <td><p>Reproducibilidad de literatura y gap refutable (12)</p></td>
-<td><p>P</p></td>
-<td><p>Gap candidato; denominador de estudios incluidos no cerrado</p></td>
+<td><p>C</p></td>
+<td><p>22/11: gap refutable con denominador de 13 estudios de dominio (10 del cribado y 3 anteriores a 2019); ninguno segmenta el rótulo por píxel con red ni compara arquitecturas con semillas; Q5/Q6 no añaden registros de dominio; 2 leídos a texto completo, 8 decididos con resúmenes que declaran el método. Literatura reproducible por scripts (<code class="docutils literal notranslate"><span class="pre">cribado_nucleo.py</span></code>, <code class="docutils literal notranslate"><span class="pre">cotejar_fichas.py</span></code>, <code class="docutils literal notranslate"><span class="pre">puntuar_candidatos.py</span></code>)</p></td>
 </tr>
 <tr class="row-odd"><td><p>31</p></td>
 <td><p>Paper guía justificado y documentado (16)</p></td>
@@ -544,13 +556,13 @@ document.write(`
 </tr>
 <tr class="row-even"><td><p>44</p></td>
 <td><p>Parámetros, FLOPs, memoria/latencia homogénea (13,48)</p></td>
-<td><p>P</p></td>
-<td><p>Parámetros y horas; FLOPs, pico y latencia pura pendientes</p></td>
+<td><p>C</p></td>
+<td><p>22/11: las 10 redes medidas. CPU homogénea (256×256, batch 1, 1 y 6 hilos, 5 de calentamiento y 30 repeticiones, mediana e IQR) en 9 redes y GPU L4 (misma del entrenamiento) en las 10: parámetros, FLOPs (FlopCounterMode, cota inferior), memoria y latencia. Los FLOPs no ordenan la latencia ni en CPU ni en GPU (PIDNet-S y SegNeXt-T: 3,1 G, 11 y 17 ms en L4; U-Net 3,7 G, 1,0 ms); TransUNet 77 G, 23,1 ms; VM-UNet 19,5 G (cota: no cuenta selective_scan), 32,7 ms, 255 MiB. T4 del test sin medir; CPU de equipo compartido. <code class="docutils literal notranslate"><span class="pre">scripts/medir_costo_e2.py</span></code>, <code class="docutils literal notranslate"><span class="pre">colab/Medir_Costo_GPU_E2.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">resultados/costo_e2/</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p>45</p></td>
 <td><p>Costo total/energía cuando sea posible (48)</p></td>
-<td><p>P</p></td>
-<td><p>Horas de épocas; excluyen interrupciones/E/S; no inventar energía</p></td>
+<td><p>C</p></td>
+<td><p>22/11: costo de GPU reconstruido de lo registrado: 33,3 h (entrenamiento 16,4 h; diagnósticos 1,7 h; complemento 15,2 h), todas en L4. Energía solo como cota superior TDP×horas ≈ 2,4 kWh de GPU (no medida; sin CPU ni centro de datos). Sin registro: test (T4), réplica, tiempo de sesión: el total es un mínimo. <code class="docutils literal notranslate"><span class="pre">scripts/costo_total_e2.py</span></code>, <code class="docutils literal notranslate"><span class="pre">resultados/costo_e2/costo_total_e2.md</span></code>, <code class="docutils literal notranslate"><span class="pre">LECTURA.md</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p>46</p></td>
 <td><p>Auditoría completa de fuga (44–46)</p></td>
@@ -588,13 +600,13 @@ document.write(`
 </tr>
 <tr class="row-even"><td><p>50</p></td>
 <td><p>Tres procedimientos y multiplicidad (23,51)</p></td>
-<td><p>P</p></td>
-<td><p>Bootstrap/intercambio, Wilcoxon-Holm, Friedman/Nemenyi; ampliación posterior explícita</p></td>
+<td><p>C</p></td>
+<td><p>Bootstrap/intercambio, Wilcoxon-Holm, Friedman/Nemenyi en test. 22/11, test y validación: t, intercambio, Wilcoxon y signo con Holm(9), y max-T por cambio de signo con IC95 simultáneos (respeta la correlación entre los nueve contrastes). En test max-T rechaza las mismas seis redes que t-Holm (TransUNet − FCN: p 0,90, IC simultáneo [−0,016; 0,034]). Familia fijada después del test: la desviación temporal queda en B12 (D). <code class="docutils literal notranslate"><span class="pre">scripts/inferencia_test_grupos_e2.py</span></code>, <code class="docutils literal notranslate"><span class="pre">resultados/inferencia_cierre_e2/</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p>51</p></td>
 <td><p>Supuestos y sensibilidad (18,51)</p></td>
-<td><p>P</p></td>
-<td><p>Shapiro/estimandos documentados; independencia aproximada y simetría no certificadas</p></td>
+<td><p>C</p></td>
+<td><p>22/11, test con 122 grupos y validación: simetría de las diferencias (bootstrap simetrizado, MGG) rechazada en 6 de 9 contrastes con FCN en test (4 en validación), por cola izquierda; donde se rechaza, la prueba del signo decide igual que Wilcoxon. Los cuatro procedimientos coinciden en 8 de 9 en test (U-Net++: la media rechaza, la localización no). Sin un grupo o sin una semilla solo cambian las redes en el borde sin ajuste (VM-UNet, U-Net); la autocorrelación entre grupos vecinos no es significativa con Holm. La independencia entre grupos se comprobó, no se certifica. <code class="docutils literal notranslate"><span class="pre">scripts/inferencia_test_grupos_e2.py</span></code>, <code class="docutils literal notranslate"><span class="pre">resultados/inferencia_cierre_e2/</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p>52</p></td>
 <td><p>Ranking/CD/Pareto (17–18)</p></td>
@@ -603,18 +615,18 @@ document.write(`
 </tr>
 <tr class="row-odd"><td><p>53</p></td>
 <td><p>Descomposición de varianza/modelo mixto (50)</p></td>
-<td><p>P</p></td>
-<td><p>DE semillas y correlación disponibles; falta descomposición formal con diagnóstico</p></td>
+<td><p>C</p></td>
+<td><p>22/11, validación (declarada): modelo mixto <code class="docutils literal notranslate"><span class="pre">lme4</span></code> sobre 10.900 Dice imagen x corrida con red fija y semilla, corrida, grupo, imagen y red x grupo aleatorios. Del total: grupo 64,0 % (IC95 boot 53,0–72,2 %), red x grupo 15,1 %, residuo 15,2 %, red 3,8 %, corrida 0,6 %, semilla común 0,07 % (LRT p = 0,15). Residuos asimétricos y de colas pesadas: el reparto se mantiene sobre rangos (INT) y sin los 96 Dice = 0. <code class="docutils literal notranslate"><span class="pre">scripts/varianza_mixta_val_e2.R</span></code>, <code class="docutils literal notranslate"><span class="pre">resultados/inferencia_cierre_e2/</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p>54</p></td>
 <td><p>Equivalencia/relevancia δ (48)</p></td>
-<td><p>P</p></td>
-<td><p>δ interpretado; no equivalencia demostrada ni TOST ejecutado</p></td>
+<td><p>C</p></td>
+<td><p>22/11, TOST δ = 0,02 en test con 122 grupos, t y bootstrap (mismas decisiones en las 18): TransUNet − FCN 0,0091, IC90 t [−0,0061; 0,0242], boot [−0,0056; 0,0244], p = 0,12: indeterminado (ni equivalentes ni superior); U-Net − FCN −0,0072, IC90 [−0,0148; 0,0005], p Holm(9) 0,028 (boot 0,040): equivalentes; ninguna red equivalente a TransUNet (RQ3). Frágil a las semillas: sin la 53 U-Net − FCN deja de serlo y sin la 23 TransUNet − FCN lo sería. Validación: mismas conclusiones. <code class="docutils literal notranslate"><span class="pre">scripts/inferencia_test_grupos_e2.py</span></code>, <code class="docutils literal notranslate"><span class="pre">resultados/inferencia_cierre_e2/</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p>55</p></td>
 <td><p>Reproducción independiente/discrepancia (41,63)</p></td>
-<td><p>P</p></td>
-<td><p>Reagregación desde registros: 0. 20/11, entorno limpio (<code class="docutils literal notranslate"><span class="pre">scripts/prueba_entorno_limpio_e2.py</span></code>): lo que corre con el repositorio coincide (máx. 0,0014); la reproducción completa necesita los resultados del test y las corridas, que están fuera del repositorio (<code class="docutils literal notranslate"><span class="pre">resultados/entorno_limpio_e2/LECTURA.md</span></code>)</p></td>
+<td><p>C</p></td>
+<td><p>22/11: clon limpio de GitHub (<code class="docutils literal notranslate"><span class="pre">cierre-e2</span></code>, 7b669a7) con VOC2012 y el test cerrado (2.234 archivos, huella SHA-256): tablas, contrastes y auditoría con discrepancia 0 (<code class="docutils literal notranslate"><span class="pre">AUDITORIA.json</span></code>, <code class="docutils literal notranslate"><span class="pre">ANALISIS.md</span></code> idénticos byte a byte; <code class="docutils literal notranslate"><span class="pre">analisis.json</span></code> 1,8e-15). Recálculo independiente desde 2.180 máscaras de semilla 11: Dice por imagen y grupo, discrepancia 0. Reinferencia en GPU (etapa clean): 1,3e-5. Complementos de EDA hasta 0,0045 por Pillow 13. No reproducidas: dos figuras de curvas (historias solo en Drive). <code class="docutils literal notranslate"><span class="pre">scripts/reproduccion_completa_e2.py</span></code>, <code class="docutils literal notranslate"><span class="pre">resultados/reproduccion_completa_e2/</span></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -677,18 +689,18 @@ document.write(`
 </tr>
 <tr class="row-odd"><td><p>65</p></td>
 <td><p>Taxonomía previa, ≥100 casos/modelo e IC (49)</p></td>
-<td><p>P</p></td>
-<td><p>Panel dirigido y estratos; sin etiquetado sistemático de 100 errores/modelo</p></td>
+<td><p>C</p></td>
+<td><p>22/11, exploratorio: taxonomía previa de dos ejes mutuamente excluyentes (forma A1–A6, exacta con componentes predichas; condición B1–B7); censo de errores de validación (Dice &lt; 0,80), 188–482 casos imagen-semilla por red, frecuencias con IC95 por grupos y sensibilidad 0,70/0,90; acuerdo del sustituto HD95 con la forma exacta 0,72–0,94; 34/218 imágenes fallan en ≥ 8 redes. Revisión humana de 88 casos del top 3 (muestra estratificada, PDF con imagen, anotación y predicción): confirmación global del revisor, no caso por caso; acuerdo 88/88 en forma y 88/88 en condición (IC95 Wilson 95,8–100,0 %); exceso lejano que era rótulo sin anotar 0/35 (0,0–9,9 %). <code class="docutils literal notranslate"><span class="pre">resultados/errores_atajos_e2/</span></code> (<code class="docutils literal notranslate"><span class="pre">LECTURA.md</span></code>, <code class="docutils literal notranslate"><span class="pre">TABLAS_ATAJOS.md</span></code>), protocolo previo del 22/11 (<code class="docutils literal notranslate"><span class="pre">PROTOCOLO_ERRORES_ATAJOS_20261122.md</span></code>), <code class="docutils literal notranslate"><span class="pre">colab/Atajos_Errores_E2.ipynb</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p>66</p></td>
 <td><p>Errores compartidos/diversidad/ensemble (49–50)</p></td>
-<td><p>P</p></td>
-<td><p>Matriz de correlación disponible; ensemble y ganancia pendientes</p></td>
+<td><p>C</p></td>
+<td><p>Errores compartidos: correlación del Dice por grupo entre las 10 redes de 0,62 (TransUNet-SegFormer) a 0,94 (FCN-U-Net), mediana 0,80 (<code class="docutils literal notranslate"><span class="pre">resultados/integracion_e2/analisis.json</span></code>, <code class="docutils literal notranslate"><span class="pre">error_correlation</span></code>; capítulo <code class="docutils literal notranslate"><span class="pre">resultados_e2</span></code>). Ensamble: 5 semillas del top 3, +0,021 a +0,028 de Dice con IC sin 0 (ID 62, capítulo <code class="docutils literal notranslate"><span class="pre">diagnosticos_e2</span></code>). Ensamble entre redes distintas no ejecutado</p></td>
 </tr>
 <tr class="row-odd"><td><p>67</p></td>
 <td><p>Subgrupos, atajos y daño potencial (41,50)</p></td>
-<td><p>P</p></td>
-<td><p>Cuartiles de área con IC descriptivos; faltan negativos/validación operacional</p></td>
+<td><p>C</p></td>
+<td><p>22/11, exploratorio: subgrupos (clase, área, borde, n.º de rótulos, luz, contraste, origen) con IC95 por grupos y Holm; caen el cuartil de área menor (6 de 10 redes) y el tercil de poca luz (7 de 10). Daño: omisión grave (recall &lt; 0,5) 3,8–7,7 % en nueve redes y 20 % en SegFormer, 8–12 % con poca luz en el top 3. Negativos sintéticos (rótulos borrados): falsa alarma 0,31–0,59 (0,09–0,46 sin exceso previo en la imagen limpia); sin negativos reales ni validación en campo, declarado. Atajos: fila 13. <code class="docutils literal notranslate"><span class="pre">resultados/errores_atajos_e2/</span></code> (<code class="docutils literal notranslate"><span class="pre">LECTURA.md</span></code>, <code class="docutils literal notranslate"><span class="pre">TABLAS_ATAJOS.md</span></code>), protocolo previo del 22/11 (<code class="docutils literal notranslate"><span class="pre">PROTOCOLO_ERRORES_ATAJOS_20261122.md</span></code>), <code class="docutils literal notranslate"><span class="pre">colab/Atajos_Errores_E2.ipynb</span></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -706,8 +718,8 @@ document.write(`
 <tbody>
 <tr class="row-even"><td><p>68</p></td>
 <td><p>Jupyter Book y celdas reproducibles (58,62)</p></td>
-<td><p>P</p></td>
-<td><p>Libro/scripts integrados; notebooks sin ejecución automática; prueba limpia pendiente</p></td>
+<td><p>C</p></td>
+<td><p>22/11, clon limpio: <code class="docutils literal notranslate"><span class="pre">jupyter-book</span> <span class="pre">build</span> <span class="pre">libro</span> <span class="pre">-W</span></code> sin avisos (18 páginas); cuadernos de EDA (<code class="docutils literal notranslate"><span class="pre">libro/eda_original.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">notebooks/01_eda_voc.ipynb</span></code>) ejecutados 9 de 9 celdas, texto igual al guardado salvo versiones; los 9 de Colab piden GPU y Drive, clasificados y documentados. 11 de 12 archivos de tests pasan (<code class="docutils literal notranslate"><span class="pre">test_e2.py</span></code>: faltan <code class="docutils literal notranslate"><span class="pre">ml-collections</span></code> y <code class="docutils literal notranslate"><span class="pre">einops</span></code> en el entorno local). <code class="docutils literal notranslate"><span class="pre">resultados/reproduccion_completa_e2/LECTURA.md</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p>69</p></td>
 <td><p>Un comando para tablas/figuras, entorno fijado (40)</p></td>
@@ -716,13 +728,13 @@ document.write(`
 </tr>
 <tr class="row-even"><td><p>70</p></td>
 <td><p>Código completo para todos los requisitos (58)</p></td>
-<td><p>P</p></td>
-<td><p>Benchmark disponible; diagnósticos F siguen sin evidencia ejecutada</p></td>
+<td><p>C</p></td>
+<td><p>Código de todos los requisitos ejecutados en el repositorio: diagnósticos GPU (<code class="docutils literal notranslate"><span class="pre">scripts/diagnosticos_gpu_e2.py</span></code>, filas 57-60, 62, 64), complemento de entrenamiento (<code class="docutils literal notranslate"><span class="pre">scripts/complemento_entreno_e2.py</span></code>, filas 37, 41, 56, 61), revisión humana (filas 12, 63); los cuadernos de Colab se generan con <code class="docutils literal notranslate"><span class="pre">scripts/crear_colab_*.py</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p>71</p></td>
 <td><p>Datos/instrucciones/contrato (59)</p></td>
-<td><p>P</p></td>
-<td><p>Manifiestos y fuente probable; verificar obtención/licencia externa</p></td>
+<td><p>C</p></td>
+<td><p>22/11: instrucciones de obtención y verificación reproducibles en <code class="docutils literal notranslate"><span class="pre">docs/DATA_CARD_HAZMAT13.md</span></code> §6 (enlaces, estructura VOC, <code class="docutils literal notranslate"><span class="pre">scripts/verificar_corpus_hazmat13.py</span></code>, particiones con SHA256 en <code class="docutils literal notranslate"><span class="pre">resultados/preentrenamiento/*.csv</span></code>). La descarga de la carpeta de Drive queda sujeta a autorización; licencia de imágenes: ver fila 08</p></td>
 </tr>
 <tr class="row-even"><td><p>72</p></td>
 <td><p>Resumen ≤250 palabras, discusión/RQ (62)</p></td>
@@ -732,7 +744,7 @@ document.write(`
 <tr class="row-odd"><td><p>73</p></td>
 <td><p>BibTeX completo (41)</p></td>
 <td><p>C</p></td>
-<td><p>20/11: <code class="docutils literal notranslate"><span class="pre">libro/referencias_e2.bib</span></code> con 21 entradas (10 arquitecturas en versión editorial si existe, 7 de aplicación, 4 de mecanismos), DOI verificados con <code class="docutils literal notranslate"><span class="pre">verificar_doi_registro.py</span></code>. Riesgo: <code class="docutils literal notranslate"><span class="pre">scripts/integrar_entregable2.py</span></code> (línea 186) lo reescribe con solo diez entradas</p></td>
+<td><p>20/11: <code class="docutils literal notranslate"><span class="pre">libro/referencias_e2.bib</span></code> con 21 entradas (10 arquitecturas en versión editorial si existe, 7 de aplicación, 4 de mecanismos), DOI verificados con <code class="docutils literal notranslate"><span class="pre">verificar_doi_registro.py</span></code>. 22/11: <code class="docutils literal notranslate"><span class="pre">scripts/integrar_entregable2.py</span></code> ya no reescribe <code class="docutils literal notranslate"><span class="pre">libro/</span></code> por defecto (escribe en <code class="docutils literal notranslate"><span class="pre">resultados/integracion_e2/libro_generado/</span></code>; solo con <code class="docutils literal notranslate"><span class="pre">--escribir-libro</span></code>), riesgo resuelto</p></td>
 </tr>
 <tr class="row-even"><td><p>74</p></td>
 <td><p>Lista apéndice B completa y honesta (63)</p></td>
@@ -741,8 +753,8 @@ document.write(`
 </tr>
 <tr class="row-odd"><td><p>75</p></td>
 <td><p>Presentación y defensa técnica (59)</p></td>
-<td><p>F</p></td>
-<td><p>Preparar diapositivas/guion y ensayar</p></td>
+<td><p>P</p></td>
+<td><p>Guion de 13 diapositivas y respuestas de defensa en <code class="docutils literal notranslate"><span class="pre">docs/PRESENTACION_E2.md</span></code> y material privado de preguntas; falta el ensayo</p></td>
 </tr>
 <tr class="row-even"><td><p>76</p></td>
 <td><p>Publicación final</p></td>
@@ -803,8 +815,8 @@ document.write(`
 <td><p>ID43</p></td>
 </tr>
 <tr class="row-even"><td><p>B11 Tablas A/B/C con pruebas/IC/efectos</p></td>
-<td><p>P</p></td>
-<td><p>Comparación avanzada; ajuste/sobreajuste pendientes</p></td>
+<td><p>C</p></td>
+<td><p>Tablas con IC, pruebas y efectos (ID 48-49); ajuste y sobreajuste: brecha train-val (ID 57), sobreajuste a un lote (ID 41) y búsqueda equitativa (ID 37)</p></td>
 </tr>
 <tr class="row-odd"><td><p>B12 Familias/multiplicidad a priori</p></td>
 <td><p>D</p></td>
@@ -819,8 +831,8 @@ document.write(`
 <td><p>ID38; compactas heredadas requieren justificación</p></td>
 </tr>
 <tr class="row-even"><td><p>B15 Selección val/equivalencia/sesgo ganador</p></td>
-<td><p>P</p></td>
-<td><p>Checkpoints por val; equivalencia no demostrada</p></td>
+<td><p>C</p></td>
+<td><p>Checkpoints por val. 22/11: TOST (ID54). Sesgo del ganador: en test TransUNet gana en el 83 % de los bootstrap de grupos (FCN 16 %), sesgo del nivel 0,0023 (Dice corregido 0,860) y optimismo por mitades 0,005; en validación ≈ 0. Checkpoint por val frente a test: test − val +0,010 (8 de 10 redes suben), sin optimismo visible; TransUNet − FCN pasa de 0,022 (val) a 0,009 (test)</p></td>
 </tr>
 <tr class="row-odd"><td><p>B16 Robustez/explicabilidad/fidelidad/estabilidad</p></td>
 <td><p>C</p></td>
@@ -839,12 +851,12 @@ document.write(`
 <td><p>ID32 réplica compatible; ID33 limitación por área no confirmada (déficit de nivel)</p></td>
 </tr>
 <tr class="row-odd"><td><p>B20 Reproducción independiente/discrepancia</p></td>
-<td><p>P</p></td>
-<td><p>Agregación 0; entorno limpio parcial (ID55)</p></td>
+<td><p>C</p></td>
+<td><p>ID55: clon limpio, discrepancia 0 en test; reinferencia GPU 1,3e-5</p></td>
 </tr>
 <tr class="row-even"><td><p>B21 Extremo a extremo y entorno</p></td>
-<td><p>P</p></td>
-<td><p>Informe con un comando; experimentos faltantes</p></td>
+<td><p>C</p></td>
+<td><p>Un comando desde clon y datos externos (<code class="docutils literal notranslate"><span class="pre">reproduccion_completa_e2.py</span></code>); entorno registrado; <code class="docutils literal notranslate"><span class="pre">docs/REPRODUCCION_EXTREMO_A_EXTREMO.md</span></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -855,7 +867,7 @@ document.write(`
 <li><p>Revisar evidencia integrada y compilar. No llamar definitivo al informe con requisitos centrales F.</p></li>
 <li><p>Ejecutar complemento GPU con pesos congelados: calibración, robustez, explicabilidad, incertidumbre, bordes y costo. Protocolo antes de esa ejecución; carácter exploratorio explícito.</p></li>
 <li><p>Definir presupuesto para réplica original, clásico fuerte y ablaciones. No seleccionar variantes usando test ni prometer cómputo no realizado.</p></li>
-<li><p>Adjudicar bibliografía y anotación humana con trazabilidad; Q5/Q6 siguen omitidas.</p></li>
+<li><p>Adjudicar bibliografía y anotación humana con trazabilidad; Q5/Q6 ejecutadas el 22/11.</p></li>
 <li><p>Preparar defensa, reproducción limpia y revisión final. Solicitar autorización al llegar a publicación.</p></li>
 </ol>
 </section>

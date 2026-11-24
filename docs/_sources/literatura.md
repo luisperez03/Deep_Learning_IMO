@@ -6,36 +6,59 @@ Se investigan antecedentes de localización de rótulos, arquitecturas de segmen
 
 La selección de siete candidatas nuevas fue aceptada como **lista de trabajo**. No equivale a una revisión sistemática completa de todas las referencias recuperadas. Según confirmación del usuario, el profesor acepta diez modelos totales, incluyendo las tres redes del E1.
 
-## Identificación y precribado verificables
+## Identificación, cribado y elegibilidad
 
-| Etapa | Conteo | Alcance de la evidencia |
+| Etapa | Conteo | Evidencia |
 |---|---:|---|
-| Scopus Q0–Q4 | 6.399 | Registros exportados |
-| WoS Q0–Q4 | 3.247 | Registros exportados |
-| Total bruto | 9.646 | Trece archivos |
-| Duplicados técnicos | 3.321 | Conciliación con reglas DOI/título |
-| Grupos provisionales | 6.325 | Tres pares con DOI contradictorios, adjudicados el 20/11 con Crossref y doi.org; alias en el parser, fusión aún no aplicada: se esperan 6.322 grupos y 3.324 duplicados |
-| Sugerencia automática: retener | 2.186 | 20 dominio, 507 arquitectura, 1.659 mecanismo |
-| Sugerencia automática: excluir | 2.052 | No son exclusiones humanas definitivas |
-| Duda | 2.087 | Requiere inspección |
-| Elegibles e incluidos definitivos | No cerrado | No se deducen del número de redes entrenadas |
+| Scopus Q0–Q6 | 6.448 | Registros exportados (Q0–Q4 el 17/11; Q5 y Q6 el 22/11) |
+| WoS Q0–Q6 | 3.267 | Registros exportados |
+| Total importado | 9.715 | Diecisiete archivos; sha256 fijados en `conciliacion.json` |
+| Duplicados | 3.349 | DOI normalizado y título/año; incluye los tres pares de DOI fusionados con sus alias |
+| Grupos únicos | **6.366** | `procesar_exportaciones.py`, sin coincidencias ambiguas |
+| Precribado automático: retener | 3.689 | 23 dominio, 343 arquitectura, 3.323 mecanismo |
+| Precribado automático: excluir | 2.555 | 2.152 dominio no transferible, 201 tarea, 134 tipo documental, 68 detección |
+| Precribado automático: duda | 122 | |
+| Núcleo de dominio revisado | 25 | Incluidos 10; excluidos 15 con motivo |
+| Bloque transversal Q5/Q6 revisado (censo) | 52 | Incluidos 9; excluidos 43 con motivo |
+| Muestra de validación del precribado | 200 | Aleatoria estratificada, título y resumen |
 
 ```text
-9.646 registros importados
-  └─ 3.321 duplicados técnicos
-      └─ 6.325 grupos provisionales
-          ├─ 2.186 sugerencias de retención
-          ├─ 2.052 sugerencias de exclusión
-          └─ 2.087 dudas
-Adjudicación humana, recuperación y elegibilidad final: pendientes
+9.715 registros importados (Scopus 6.448, WoS 3.267)
+  └─ 3.349 duplicados
+      └─ 6.366 grupos únicos
+          ├─ Núcleo de dominio (precribado de dominio, mención de rótulos o consultas Q0/Q1): 25
+          │     ├─ excluidos: 15 (13 tarea sin transferencia, 2 sin método original)
+          │     └─ INCLUIDOS: 10 estudios sobre rótulos o placas de mercancía peligrosa
+          ├─ Bloque transversal (Q5/Q6), todos los grupos no revisados antes: 52
+          │     ├─ excluidos: 43 (22 sin método original, 21 tarea sin transferencia)
+          │     └─ INCLUIDOS: 9 transferencias de mecanismo a visión
+          └─ Resto: 6.289 con decisión automática
+                ├─ muestra revisada: 200 (60 excluir, 60 duda, 40 mecanismo, 40 arquitectura)
+                └─ incluibles estimados a título y resumen: 3.100 (2.254–3.936), no evaluados
+                   a texto completo: fuera del alcance de la síntesis
 
-Selección operativa paralela: 3 redes E1 + 7 candidatas nuevas
-(no es una etapa final demostrada del flujo PRISMA)
+Síntesis: 10 estudios de dominio + 9 transferencias de mecanismo
+          + 9 arquitecturas puntuadas (fichas cotejadas) + fuentes primarias de los mecanismos
 ```
 
-Los conteos son aritméticamente coherentes, pero no acreditan la elegibilidad. Los tres pares de DOI son el mismo artículo en cada caso: dos variantes no están registradas y la tercera es un alias que el propio registro redirige al canónico ({download}`resolución con evidencia <../docs/revision_entregable2/RESOLUCION_CONFLICTOS_DOI.md>`). Los alias ya están en `procesar_exportaciones.py`, pero las exportaciones no están en el repositorio: 6.322 es el conteo esperado, no uno ejecutado, y no se usa como cifra cerrada hasta correr el parser. No se informa kappa porque no hay dos cribados independientes completos.
+Los tres pares de DOI son el mismo artículo en cada caso: dos variantes no están registradas y la tercera es un alias que el propio registro redirige al canónico ({download}`resolución con evidencia <../docs/revision_entregable2/RESOLUCION_CONFLICTOS_DOI.md>`). Con los alias en el parser, los tres pares se fusionan sin perder identificadores: cada grupo absorbido queda registrado en el que lo recibe.
 
-**Q5 y Q6 se omitieron por decisión del usuario.** Las fuentes suplementarias no sustituyen tres ecuaciones transversales ejecutadas. Este requisito continúa como alcance reducido; no se reabren las consultas automáticamente.
+**El precribado se reconstruyó.** Del filtro automático original solo quedaron los conteos, sin sus reglas ni sus decisiones por registro. `precribado_reconstruido.py` lo sustituye con las mismas ocho categorías y reglas explícitas. Coincide en lo que importa para el gap (23 registros de dominio frente a 20) y difiere en el resto: manda a "mecanismo" casi todas las antiguas dudas, porque términos como atención o Transformer aparecen en casi todo el corpus.
+
+**Su error se midió, y es grande.** Una muestra aleatoria estratificada de 200 registros (semilla fija) se revisó a título y resumen con criterios escritos antes de empezar ({download}`criterios <../docs/revision_entregable2/CRITERIOS_ELEGIBILIDAD.md>`), sin ver la decisión del filtro. En el estrato de exclusión, 22 de 60 registros eran incluibles (37 %, IC95 de Wilson 26–49 %): el filtro descarta como "dominio no transferible" muchos estudios médicos 2D con mecanismos generales que los criterios sí admiten. En los estratos de retención sobra entre el 20 % (arquitectura) y el 45 % (mecanismo). Por eso ninguna decisión automática se presenta como exclusión humana. El corpus se usa en dos niveles: el núcleo de dominio, revisado registro por registro, y una estimación de cuántos incluibles hay en el resto (unos 3.100), que no se leyeron a texto completo y quedan fuera de la síntesis. Flujo completo con exclusiones por motivo en {download}`PRISMA <../docs/revision_entregable2/PRISMA_FINAL.md>`.
+
+Las decisiones las propone un asistente de IA con esos criterios. Una segunda pasada sobre 20 de las 200 coincidió en las 20. No es un segundo revisor independiente, así que no se informa kappa.
+
+**Búsquedas transversales: las tres están ejecutadas.** La guía pide tres búsquedas de mecanismos nacidos en otras modalidades, y son Q4 (atención desde el lenguaje), Q5 (espacio de estados desde secuencias) y Q6 (convoluciones dilatadas o temporales desde señales). Q4 se exportó el 17/11. Q5 había mostrado conteos piloto el 18/11, pero no se pudo exportar, y Q6 no se había ejecutado; las dos se corrieron y exportaron el 22/11 con las ecuaciones del protocolo. Q5 dio 38 registros en Scopus y 14 en WoS, iguales a los pilotos; Q6 dio 11 y 6. El fallo de exportación de Scopus no era de la consulta: el proxy institucional no reenviaba el servidor de descargas ({download}`bitácora <../docs/revision_entregable2/BITACORA_BUSQUEDAS.md>`).
+
+Los 52 grupos de Q5 y Q6 que no se habían revisado se criban todos a título y resumen, con un criterio propio del bloque escrito antes de revisarlos. Se incluyen los estudios que llevan el mecanismo a una tarea de visión. Entran 9:
+
+- **Ocho con espacio de estados o Mamba.** Uno segmenta cultivos con un módulo de contexto de espacio de estados sobre la imagen. Otro segmenta hígado en RM con U-Mamba. Los demás son un decodificador SSM para segmentación audiovisual por píxel, un backbone visual ligero tipo Mamba, segmentación por razonamiento con un modelo multimodal basado en Mamba, re-identificación de personas, y anomalías y acciones en vídeo.
+- **Uno con red convolucional temporal sobre fotogramas** (emociones en vídeo).
+
+Se excluyen 43: 22 son resúmenes de congreso, revisiones o editoriales, y 21 dejan el mecanismo en su dominio de origen (ECG, EEG, series de energía o SAR multitemporal) o no lo usan.
+
+La lectura cambia para la familia SSM. Hay transferencia publicada de Mamba a la segmentación 2D, también en imagen médica, lo que respalda tratar VM-UNet como una familia con evidencia en visión y no solo como un trasplante desde el lenguaje. Para la dilatación desde audio o series, Q6 no encuentra ningún estudio que la lleve a segmentación 2D; el único incluido la usa en el eje temporal de un vídeo. La dilatación de DeepLabv3+ se sostiene por su propia línea dentro de visión (Yu y Koltun), no por una transferencia desde las señales. Ninguno de los 9 trata rótulos ni objetos pequeños, así que no cambian el gap.
 
 ## Antecedentes y pertinencia
 
@@ -54,9 +77,37 @@ FCN fundamenta predicción densa convolucional; SegNet reutiliza índices de poo
 | Híbrido | TransUNet R50-ViT-B/16 | Contexto global con características CNN; mucho mayor tamaño |
 | SSM visual | VM-UNet | Estados selectivos y escaneo; dependencia de kernels CUDA |
 
-Las [fichas de implementación](modelos_e2.md) incluyen diez diagramas, mecanismos matemáticos, referencias y parámetros medidos. Los resultados originales de las siete redes nuevas (dataset, métrica, cifra, varianza y costo, con tabla y página del PDF) están cotejados en {download}`resultados originales <../docs/revision_entregable2/RESULTADOS_ORIGINALES_7REDES.md>`: 21 de 21 cifras confirmadas. Solo UNet++ reporta varianza entre corridas (20 corridas, media ± DE). Las {download}`fichas bibliográficas preliminares <../docs/revision_entregable2/FICHAS_EXTRACCION_7REDES.md>` conservan campos del artículo y advertencias de verificación. Los FLOPs de un paper a otra resolución no son FLOPs de nuestra adaptación.
+Las [fichas de implementación](modelos_e2.md) incluyen diez diagramas, mecanismos matemáticos, referencias y parámetros medidos. Los resultados originales de las siete redes nuevas (dataset, métrica, cifra, varianza y costo, con tabla y página del PDF) están cotejados en {download}`resultados originales <../docs/revision_entregable2/RESULTADOS_ORIGINALES_7REDES.md>`: 21 de 21 cifras confirmadas. Solo UNet++ reporta varianza entre corridas (20 corridas, media ± DE). Los FLOPs de un paper a otra resolución no son FLOPs de nuestra adaptación.
 
-Attention U-Net aumentaría representación CNN; SAM exige definir prompts sin ground truth; YOLO-seg requiere armonizar instancia y máscara semántica. Son razones operativas, no pruebas de inferioridad. La puntuación completa por citación normalizada/cuártil sigue pendiente. Los subtotales históricos no son un ranking validado. PIDNet no obtiene evidencia directa de dominio HAZMAT solo por incorporar bordes; U-Net compacta no comparte backbone ResNet-18 con U-Net++.
+### Extracción y calidad de cada estudio
+
+Cada una de las siete candidatas, y las dos alternativas que se puntúan con ellas (Attention U-Net y Swin-Unet), tiene una ficha de trece campos leída del PDF: tarea, mecanismo, datos y unidad de partición, preprocesamiento, entrenamiento, métricas, repeticiones, ablaciones, dificultad compartida con HAZMAT-13, costo, código, riesgo de selección por test y limitaciones. Cada valor lleva la página y un fragmento literal, y `cotejar_fichas.py` comprueba que el fragmento está en esa página: **229 de 229 confirmados**; siete campos son ausencias declaradas ("no reportado"), todas de repeticiones o semillas ({download}`fichas cotejadas <../docs/revision_entregable2/FICHAS_COTEJADAS.md>`).
+
+Tres hallazgos de calidad pesan en la lectura de la literatura:
+
+- **Repeticiones.** Solo UNet++ repite corridas con contraste formal (20 ensayos, prueba t, IC95). Attention U-Net usa validación cruzada de cinco particiones; las otras siete dan una cifra de una sola corrida.
+- **Selección sobre el conjunto reportado.** En TransUNet, VM-UNet y Swin-Unet no hay conjunto de selección aparte: configuraciones como el dropout, la resolución o las conexiones se eligen comparando sobre el mismo conjunto cuyos resultados se publican. Sus cifras de cabecera son optimistas por construcción.
+- **Dificultad compartida.** Cuatro artículos traen un análisis cuantitativo dedicado a algo que también complica HAZMAT-13: bordes (experimento trimap de DeepLabv3+), tamaño del objeto (UNet++ por tamaño de tumor; TransUNet en órganos pequeños) y corrupción de la imagen (SegFormer en Cityscapes-C). En PIDNet-S los bordes son la motivación del diseño, pero su ablación de la pérdida de frontera se mide en mIoU global, sin métrica de borde.
+
+### Puntuación definitiva
+
+La rúbrica del protocolo (pertinencia 25, reproducibilidad 25, evidencia 20, viabilidad 10, recencia 10, citación 10) se aplicó a las nueve candidatas con reglas operativas escritas antes de calcular y evidencia de la ficha para cada nivel. La citación es el percentil de citas por año en OpenAlex, misma fecha para todas; la reproducibilidad se comprobó en el repositorio oficial (licencia y pesos publicados).
+
+| Candidata | Total | Sin citación | Sin viabilidad | Estado |
+|---|---:|---:|---:|---|
+| SegFormer-B0 | 77,08 | 76,39 | 74,54 | seleccionada |
+| UNet++ | 73,89 | 77,78 | 70,99 | seleccionada |
+| DeepLabv3+ | 73,19 | 70,83 | 70,22 | seleccionada |
+| TransUNet | 64,72 | 63,89 | 60,80 | seleccionada |
+| SegNeXt-T | 64,17 | 69,44 | 60,19 | seleccionada |
+| PIDNet-S | 59,31 | 65,28 | 54,78 | seleccionada |
+| Attention U-Net | 58,75 | 59,72 | 56,94 | excluida |
+| VM-UNet | 56,53 | 59,72 | 51,70 | seleccionada |
+| Swin-Unet | 54,86 | 54,17 | 52,62 | excluida |
+
+Con la restricción de cuatro familias, el mejor conjunto de siete es exactamente la selección operativa, con la puntuación total y también sin citación. VM-UNet queda por debajo de Attention U-Net, pero entra porque es la única SSM. La viabilidad favorece a las redes ya ejecutadas (las siete tienen piloto; las dos alternativas no). Si se quita ese componente, Attention U-Net (56,94) desplaza a PIDNet-S (54,78): la elección de PIDNet-S frente a Attention U-Net depende de la viabilidad demostrada y no de la literatura. Desglose, justificación por componente y rango de la sede en {download}`puntuación definitiva <../docs/revision_entregable2/PUNTUACION_DEFINITIVA.md>`.
+
+SAM y YOLO-seg no se puntúan porque no pasan el filtro previo del protocolo: SAM necesita prompts y YOLO-seg da máscaras de instancia por caja. Son razones operativas, no pruebas de inferioridad. U-Net compacta no comparte backbone ResNet-18 con U-Net++.
 
 ## Mecanismos transferibles
 
@@ -105,8 +156,12 @@ El protocolo `config/limitacion_segformer_area.json`, fijado antes de mirar resu
 
 ## Gap y límites de la síntesis
 
-En los seis estudios aplicados identificados no se encontró ninguno que segmente el rótulo por píxel con una red profunda ni que compare arquitecturas con varias semillas; el único que produce máscara usa GrabCut sobre la caja del detector. La afirmación es refutable: basta un estudio revisado por pares que haga cualquiera de las dos cosas. Su denominador son esos seis estudios, no el corpus: los 20 registros de dominio y las 2.087 dudas del precribado no se han revisado a texto completo, así que la conclusión queda condicionada a esa revisión y no se escribe "ningún estudio previo". Tampoco hay denominador final para estimar proporción de estudios con datos o código.
+**Afirmación.** Ningún estudio de los identificados sobre rótulos o placas de mercancía peligrosa segmenta el rótulo por píxel con una red profunda ni compara arquitecturas de segmentación con varias semillas. El denominador son 13 estudios: los 10 de dominio que el cribado incluyó del corpus y tres anteriores a 2019, fuera de la ventana de búsqueda, hallados por búsqueda dirigida (Mohamed et al., 2018; Zhao et al., 2013; Thongkor et al., 2016). Los 13 detectan, reconocen, clasifican o localizan. El único que produce máscara, DeepHAZMAT, la obtiene con GrabCut sobre la caja del detector. E2-0007 publica un conjunto RGB-D de señales hazmat, pero su segmentación es de planos sobre la nube de puntos y su detector, yolov3-tiny, da cajas.
+
+**Qué la refuta.** Un solo estudio revisado por pares que segmente por píxel rótulos o placas de mercancía peligrosa con una red profunda, o que compare arquitecturas de segmentación sobre ese objeto informando la variabilidad entre corridas.
+
+**Alcance de la lectura.** Dos de los diez se leyeron a texto completo: E2-0007 y DeepHAZMAT, en sus versiones de arXiv. Los otros ocho se decidieron con el resumen, que en todos declara el método: un detector de cajas (YOLO u otro), un clasificador o visión clásica (umbral en HSV, OpenCV). Su texto completo no se pudo leer: IEEE Xplore no cargó a través del ezproxy, Uninorte no tiene suscripción a Springer ni a SPIE, e IS&T no ofrece el PDF. Por eso la afirmación se acota a "en los estudios identificados", y no a "ningún estudio previo". No se estima la proporción de estudios con datos o código: el denominador es de 13 y su propósito es el gap, no esa estadística.
 
 La síntesis de los tres mecanismos transversales (atención, estado selectivo y dilatación), con fuente primaria, hipótesis para HAZMAT y el resultado del benchmark que refutaría cada una, está en {download}`mecanismos <../docs/revision_entregable2/MECANISMOS_TRANSVERSALES.md>`, sección 4.
 
-No se asignan cuartiles sin año, categoría y fuente. El {download}`BibTeX <referencias_e2.bib>` reúne 21 referencias (diez arquitecturas en su versión editorial cuando existe, siete de aplicación y cuatro de mecanismos), con DOI verificados el 20/11/2026 en Crossref o DataCite.
+No se asignan cuartiles sin año, categoría y fuente: las cinco conferencias llevan su rango CORE (ECCV, CVPR y NeurIPS son A* en ICORE2026) y las dos revistas son Q1 en SCImago en el año de la versión citada: IEEE TMI en 2020, en sus cuatro categorías, para UNet++; ACM TOMM en 2025, en Computer Networks and Communications y en Hardware and Architecture, para VM-UNet. Ambas siguen en Q1 en 2025. La consulta, a mano, fue el 22/11/2026, con datos de Scopus de marzo de 2026. El cuartil no entra en la rúbrica. El {download}`BibTeX <referencias_e2.bib>` reúne 21 referencias (diez arquitecturas en su versión editorial cuando existe, siete de aplicación y cuatro de mecanismos), con DOI verificados el 20/11/2026 en Crossref o DataCite.

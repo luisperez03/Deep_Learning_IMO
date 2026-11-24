@@ -375,7 +375,7 @@ Entrenamiento: NVIDIA L4; evaluación: Tesla T4. No comparar tiempos entre ambas
 <h2>Conclusión principal<a class="headerlink" href="#conclusion-principal" title="Permalink to this heading">#</a></h2>
 <p>TransUNet conserva el mayor promedio de Dice en test, mientras FCN pasa al segundo lugar y U-Net al tercero.
 La diferencia principal TransUNet–FCN es 0.00906 (aproximadamente 0.91 puntos porcentuales). IC95 pareado por grupos: [-0.00828, 0.02779].
-El intervalo incluye cero: esta evaluación no establece una mejora clara de TransUNet sobre FCN con este procedimiento. Tampoco demuestra equivalencia entre ambas.
+El intervalo incluye cero: esta evaluación no establece una mejora clara de TransUNet sobre FCN con este procedimiento. Tampoco demuestra equivalencia: el TOST con δ = 0,02 da IC90 [−0,0061; 0,0242] y p = 0,117 (bootstrap [−0,0056; 0,0244]), resultado indeterminado. U-Net y FCN sí resultan equivalentes (−0,0072, IC90 [−0,0148; 0,0005], p Holm(9) = 0,028), pero esa conclusión depende de las semillas: sin la 53 deja de serlo (p = 0,062).
 FCN compacta es una referencia favorable en coste/tamaño: 72.145 parámetros frente a 105.322.001 de TransUNet. Una recomendación basada en parsimonia es defendible; no confundirla con declarar a FCN ganadora en Dice.
 U-Net permanece competitiva. VM-UNet presenta mayor variación entre semillas. Los resultados bajos de SegFormer corresponden a esta adaptación desde cero y receta fija; no justifican inferioridad universal de los Transformers.</p>
 </section>
@@ -557,7 +557,7 @@ El contraste global detecta heterogeneidad del conjunto; no demuestra que TransU
 <li><p>Friedman/Nemenyi usan grupos como bloques, condicionales a modelos ya entrenados. La independencia de grupos es aproximada; la similitud no identifica escenas certificadas. No extrapolar a otros datasets.</p></li>
 <li><p>Holm se aplica por separado a los nueve contrastes contra FCN para cada procedimiento. Los IC95 son marginales, no simultáneos. No elegir la prueba que dé el p más favorable.</p></li>
 <li><p>d_z estandariza diferencias por grupo; no es d entre semillas. La probabilidad de superioridad por grupo y su dispersión se conservan en JSON.</p></li>
-<li><p>δ heredado = 0,02 Dice. El IC del contraste principal incluye cero y se extiende fuera de ±δ; no acredita superioridad relevante ni equivalencia.</p></li>
+<li><p>δ heredado = 0,02 Dice. El IC del contraste principal incluye cero y se extiende fuera de ±δ; no acredita superioridad relevante ni equivalencia. El TOST pareado por grupos (t y bootstrap dan las mismas decisiones en los 18 contrastes) lo confirma: TransUNet–FCN p = 0,117; solo U-Net–FCN es equivalente. Detalle, simetría, max-T y sesgo del ganador en <code class="docutils literal notranslate"><span class="pre">resultados/inferencia_cierre_e2/LECTURA.md</span></code>.</p></li>
 </ul>
 </section>
 <section id="referencia-trivial-y-recursos">
