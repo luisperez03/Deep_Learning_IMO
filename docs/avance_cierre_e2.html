@@ -262,13 +262,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#en-ejecucion-busqueda-de-arquitectura-de-las-compactas-fila-38-y-b14">En ejecución: búsqueda de arquitectura de las compactas (fila 38 y B14)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos">Datos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inferencia">Inferencia</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#literatura">Literatura</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#replica-entrenamiento-y-diagnosticos">Réplica, entrenamiento y diagnósticos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#errores-atajos-y-costo">Errores, atajos y costo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduccion-y-publicacion">Reproducción y publicación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#en-ejecucion-busqueda-de-arquitectura-de-las-compactas-fila-38-y-b14">En ejecución: búsqueda de arquitectura de las compactas (fila 38 y B14)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declarado-como-limitacion">Declarado como limitación</a></li>
 </ul>
             </nav>
@@ -287,6 +287,19 @@ document.write(`
 fila por fila está en <code class="docutils literal notranslate"><span class="pre">docs/revision_entregable2/CHECKLIST_ENTREGA_E2.md</span></code>. Al 24/11 quedan abiertas solo las filas 38 y
 B14 (búsqueda de arquitectura, en ejecución) y 75 (ensayo de la sustentación). Los análisis posteriores al test son
 exploratorios: no cambian la selección original ni los protocolos cerrados.</p>
+<section id="en-ejecucion-busqueda-de-arquitectura-de-las-compactas-fila-38-y-b14">
+<h2>En ejecución: búsqueda de arquitectura de las compactas (fila 38 y B14)<a class="headerlink" href="#en-ejecucion-busqueda-de-arquitectura-de-las-compactas-fila-38-y-b14" title="Permalink to this heading">#</a></h2>
+<p>La sección 14 del enunciado pide, para las redes sin arquitectura definida en su artículo (FCN, U-Net y SegNet), 1.000
+arquitecturas en la fase 1 y los finalistas con varias semillas en la fase 2. El protocolo se fijó antes de correr
+(<code class="docutils literal notranslate"><span class="pre">docs/PROTOCOLO_BUSQUEDA_ARQUITECTURA_E2.md</span></code>). Se ejecuta en <code class="docutils literal notranslate"><span class="pre">colab/Busqueda_Arquitectura_E2.ipynb</span></code>, siempre en L4.</p>
+<ul class="simple">
+<li><p>Fase 1: completa, 1.040 corridas por familia (3.120 en total).</p></li>
+<li><p>Finalistas: 12 por familia, las 10 mejores (k = 10, porque σ_semilla/σ_arquitectura ≤ 1 en las tres) más la
+referencia a0498 (64, 64, 64) y la heredada del E1 a0056.</p></li>
+<li><p>Fase 2: 180 corridas (12 × 3 familias × 5 semillas) a 256 px, hasta 30 épocas; 28 terminadas al 24/11.</p></li>
+</ul>
+<p>Al terminar: resumen, análisis, filas 38 y B14 con <code class="docutils literal notranslate"><span class="pre">scripts/actualizar_checklist_arquitectura.py</span></code>, libro y presentación.</p>
+</section>
 <section id="datos">
 <h2>Datos<a class="headerlink" href="#datos" title="Permalink to this heading">#</a></h2>
 <table class="table">
@@ -465,19 +478,6 @@ exploratorios: no cambian la selección original ni los protocolos cerrados.</p>
 </tbody>
 </table>
 </section>
-<section id="en-ejecucion-busqueda-de-arquitectura-de-las-compactas-fila-38-y-b14">
-<h2>En ejecución: búsqueda de arquitectura de las compactas (fila 38 y B14)<a class="headerlink" href="#en-ejecucion-busqueda-de-arquitectura-de-las-compactas-fila-38-y-b14" title="Permalink to this heading">#</a></h2>
-<p>La sección 14 del enunciado pide, para las redes sin arquitectura definida en su artículo (FCN, U-Net y SegNet), 1.000
-arquitecturas en la fase 1 y los finalistas con varias semillas en la fase 2. El protocolo se fijó antes de correr
-(<code class="docutils literal notranslate"><span class="pre">docs/PROTOCOLO_BUSQUEDA_ARQUITECTURA_E2.md</span></code>). Se ejecuta en <code class="docutils literal notranslate"><span class="pre">colab/Busqueda_Arquitectura_E2.ipynb</span></code>, siempre en L4.</p>
-<ul class="simple">
-<li><p>Fase 1: completa, 1.040 corridas por familia (3.120 en total).</p></li>
-<li><p>Finalistas: 12 por familia, las 10 mejores (k = 10, porque σ_semilla/σ_arquitectura ≤ 1 en las tres) más la
-referencia a0498 (64, 64, 64) y la heredada del E1 a0056.</p></li>
-<li><p>Fase 2: 180 corridas (12 × 3 familias × 5 semillas) a 256 px, hasta 30 épocas; 28 terminadas al 24/11.</p></li>
-</ul>
-<p>Al terminar: resumen, análisis, filas 38 y B14 con <code class="docutils literal notranslate"><span class="pre">scripts/actualizar_checklist_arquitectura.py</span></code>, libro y presentación.</p>
-</section>
 <section id="declarado-como-limitacion">
 <h2>Declarado como limitación<a class="headerlink" href="#declarado-como-limitacion" title="Permalink to this heading">#</a></h2>
 <p>No hubo preregistro previo (05), el número de semillas no salió de un cálculo de potencia (06), el test ya se había
@@ -553,13 +553,13 @@ Nada se retrofechó.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#en-ejecucion-busqueda-de-arquitectura-de-las-compactas-fila-38-y-b14">En ejecución: búsqueda de arquitectura de las compactas (fila 38 y B14)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos">Datos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inferencia">Inferencia</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#literatura">Literatura</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#replica-entrenamiento-y-diagnosticos">Réplica, entrenamiento y diagnósticos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#errores-atajos-y-costo">Errores, atajos y costo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduccion-y-publicacion">Reproducción y publicación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#en-ejecucion-busqueda-de-arquitectura-de-las-compactas-fila-38-y-b14">En ejecución: búsqueda de arquitectura de las compactas (fila 38 y B14)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declarado-como-limitacion">Declarado como limitación</a></li>
 </ul>
   </nav></div>

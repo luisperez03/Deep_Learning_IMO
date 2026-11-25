@@ -5,6 +5,19 @@ fila por fila está en `docs/revision_entregable2/CHECKLIST_ENTREGA_E2.md`. Al 2
 B14 (búsqueda de arquitectura, en ejecución) y 75 (ensayo de la sustentación). Los análisis posteriores al test son
 exploratorios: no cambian la selección original ni los protocolos cerrados.
 
+## En ejecución: búsqueda de arquitectura de las compactas (fila 38 y B14)
+
+La sección 14 del enunciado pide, para las redes sin arquitectura definida en su artículo (FCN, U-Net y SegNet), 1.000
+arquitecturas en la fase 1 y los finalistas con varias semillas en la fase 2. El protocolo se fijó antes de correr
+(`docs/PROTOCOLO_BUSQUEDA_ARQUITECTURA_E2.md`). Se ejecuta en `colab/Busqueda_Arquitectura_E2.ipynb`, siempre en L4.
+
+- Fase 1: completa, 1.040 corridas por familia (3.120 en total).
+- Finalistas: 12 por familia, las 10 mejores (k = 10, porque σ_semilla/σ_arquitectura ≤ 1 en las tres) más la
+  referencia a0498 (64, 64, 64) y la heredada del E1 a0056.
+- Fase 2: 180 corridas (12 × 3 familias × 5 semillas) a 256 px, hasta 30 épocas; 28 terminadas al 24/11.
+
+Al terminar: resumen, análisis, filas 38 y B14 con `scripts/actualizar_checklist_arquitectura.py`, libro y presentación.
+
 ## Datos
 
 | Análisis | Resultado | Evidencia |
@@ -59,19 +72,6 @@ exploratorios: no cambian la selección original ni los protocolos cerrados.
 |---|---|---|
 | Reproducción en clon limpio (fila 55) | Tablas, contrastes y auditoría con discrepancia 0; recálculo independiente desde 2.180 máscaras con discrepancia 0 | `resultados/auditoria_test_e2/AUDITORIA.json`, `scripts/reproducir_entregable2.py` |
 | Libro (filas 68 y 76) | `jupyter-book build -W` sin avisos; publicado en GitHub Pages el 21/11 y republicado el 24/11 | `scripts/publicar_libro_docs.py` |
-
-## En ejecución: búsqueda de arquitectura de las compactas (fila 38 y B14)
-
-La sección 14 del enunciado pide, para las redes sin arquitectura definida en su artículo (FCN, U-Net y SegNet), 1.000
-arquitecturas en la fase 1 y los finalistas con varias semillas en la fase 2. El protocolo se fijó antes de correr
-(`docs/PROTOCOLO_BUSQUEDA_ARQUITECTURA_E2.md`). Se ejecuta en `colab/Busqueda_Arquitectura_E2.ipynb`, siempre en L4.
-
-- Fase 1: completa, 1.040 corridas por familia (3.120 en total).
-- Finalistas: 12 por familia, las 10 mejores (k = 10, porque σ_semilla/σ_arquitectura ≤ 1 en las tres) más la
-  referencia a0498 (64, 64, 64) y la heredada del E1 a0056.
-- Fase 2: 180 corridas (12 × 3 familias × 5 semillas) a 256 px, hasta 30 épocas; 28 terminadas al 24/11.
-
-Al terminar: resumen, análisis, filas 38 y B14 con `scripts/actualizar_checklist_arquitectura.py`, libro y presentación.
 
 ## Declarado como limitación
 
