@@ -3,7 +3,8 @@
 > **Trazabilidad.** Escrito el 2026-11-20 a partir de `resultados/auditoria_test_e2/CONCLUSIONES.md`, del checklist
 > maestro, de `libro/complementos_datos_e2.md` y de las guías de los complementos. Las cifras del benchmark son las
 > del test cerrado y auditado; lo que dice **[si se corrió]** se llena con los resúmenes de los cuadernos
-> complementarios o se presenta como pendiente. Unos 15 minutos, 13 diapositivas.
+> complementarios o se presenta como pendiente. Unos 15 minutos, 13 diapositivas. La búsqueda de arquitectura se
+> agregó el 26/11 desde `resultados/busqueda_arquitectura_e2/LECTURA.md`.
 
 ## 1. El problema
 
@@ -88,6 +89,11 @@ Exploratorio, en validación (el test no se cargó).
 - **Sobreajuste a un lote:** 9 de 10 redes memorizan 4 imágenes; VM-UNet falla en la de rótulo más pequeño.
 - **Búsqueda con el mismo presupuesto (T = 4, 10 épocas):** la receta gana solo en VM-UNet; SegFormer-B0 sube de
   0,660 a 0,782 con más tasa; TransUNet y VM-UNet siguen arriba.
+- **Búsqueda de arquitectura de las compactas (sección 14), completa:** 1.000 arquitecturas por familia y 12
+  finalistas con 5 semillas, 180 corridas. La regla (menos parámetros dentro del empate con la mejor) elige
+  (64, 64, 64) con dropout en el bloque central en las tres. Frente a la heredada: FCN +0,020, U-Net +0,033,
+  SegNet +0,039 de Dice de validación; U-Net y SegNet estaban subestimadas en el benchmark. La de mayor media gana
+  menos de 0,013 más con 6 a 11 veces los parámetros. El test no se reevalúa.
 
 ## 12. Réplica del paper guía
 
@@ -115,5 +121,9 @@ humano con una sola segunda persona y 50 imágenes. Un solo conjunto de datos.
   evaluación y no se eligió nada con ella; se declara que no es un conjunto nunca observado.
 - **¿Hay fuga?** Se auditó con hashes, dHash y embeddings; el efecto de los casi duplicados se cuantifica y no
   cambia el orden.
+- **¿Las compactas heredadas eran las adecuadas?** No del todo: la búsqueda en dos fases encuentra una arquitectura
+  mejor en las tres familias (entre 0,020 y 0,039 sobre la heredada, en validación), y en U-Net y SegNet parte de la
+  mejora viene de una tasa menor (0,0003). No se reabrió el test. Además, la fase 1 a 128 px y 6 épocas no ordenó a
+  los finalistas (en U-Net, Spearman −0,96): sirvió de cribado, no garantiza que sean las mejores de las 1.000.
 - **¿Qué es el techo de desempeño?** El acuerdo entre dos anotadores: Dice 0,941 (IC95 0,928–0,953) en 50 imágenes
   de validación. TransUNet llega a 0,866 en las mismas imágenes y cubre el 70 % del margen sobre el clásico (γ 0,31).

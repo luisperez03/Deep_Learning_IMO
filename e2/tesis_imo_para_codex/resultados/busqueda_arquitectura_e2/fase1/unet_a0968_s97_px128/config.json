@@ -1,0 +1,67 @@
+{
+  "fingerprint": "76889a003271d8ffe434f0dd8a801a9766ca9250bda6e5725e9631d02effca9a",
+  "tarea": {
+    "id": "unet_a0968_s97_px128",
+    "bloque": "fase1",
+    "familia": "unet",
+    "arq": "a0968",
+    "w": [
+      256,
+      256,
+      32
+    ],
+    "b": [
+      0,
+      0,
+      0
+    ],
+    "dropout_p": 0.2,
+    "semilla": 97,
+    "optim": {
+      "optimizer": "Adam",
+      "lr": 0.0003,
+      "weight_decay": 0.0
+    },
+    "epocas": 6,
+    "paciencia": 5,
+    "conservar": "ninguno",
+    "macs": 195290988544,
+    "macs_efectivos": 48822747136,
+    "px": 128,
+    "fraccion_train": 1.0,
+    "semilla_subconjunto": 20261123
+  },
+  "protocolo": {
+    "batch_size": 2,
+    "size": 256,
+    "threshold": 0.5
+  },
+  "identidad": {
+    "source": "38fdd50dad06ab7993d1328100e61ee839336cc63d1cabfbf540736404e8402f",
+    "data": "a3c47c120862424d8f402154176723c1e6f9055cb4a50d2966d637c44b32f206"
+  },
+  "entorno": {
+    "packages": {
+      "torch": "2.5.1+cu121",
+      "torchvision": "0.20.1+cu121",
+      "numpy": "1.26.4",
+      "Pillow": "11.1.0",
+      "segmentation-models-pytorch": "0.5.0",
+      "timm": "1.0.15",
+      "scipy": "1.15.2",
+      "ml-collections": "1.0.0",
+      "einops": "0.8.1",
+      "mamba-ssm": null,
+      "causal-conv1d": null,
+      "triton": "3.1.0",
+      "transformers": null
+    },
+    "python": "3.11.11",
+    "cuda": "12.1",
+    "device": "NVIDIA L4"
+  },
+  "filas": {
+    "train": 1015,
+    "val": 218
+  }
+}

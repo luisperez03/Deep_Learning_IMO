@@ -1,0 +1,37 @@
+{
+  "regla": "Se queda la tasa con mayor Dice de validación. Si su ventaja sobre la receta (0,001) es menor que 0,005, se queda la receta. La tasa elegida queda fija para las 1000 arquitecturas y para la fase 2 de esa familia.",
+  "dice_validacion": {
+    "fcn": {
+      "0.0003": 0.7082876792305304,
+      "0.001": 0.7195113547194943,
+      "0.003": 0.7028094030917995
+    },
+    "unet": {
+      "0.0003": 0.7321505961386156,
+      "0.001": 0.6754576556405361,
+      "0.003": 0.6487014414351119
+    },
+    "segnet": {
+      "0.0003": 0.7210989656593698,
+      "0.001": 0.70475191642091,
+      "0.003": 0.6774334604205653
+    }
+  },
+  "lr_elegida": {
+    "fcn": 0.001,
+    "unet": 0.0003,
+    "segnet": 0.0003
+  },
+  "arquitectura": {
+    "w": [
+      64,
+      64,
+      64
+    ],
+    "b": [
+      0,
+      1,
+      0
+    ]
+  }
+}

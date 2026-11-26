@@ -1,0 +1,91 @@
+{
+  "completed": true,
+  "fingerprint": "d3a3b8ba1e0a9d7804c3e7f411634a3786f82478f8836d0c9a03d934318726d3",
+  "id": "unet_a0528_s98_px128",
+  "bloque": "fase1",
+  "familia": "unet",
+  "arq": "a0528",
+  "w": [
+    64,
+    128,
+    32
+  ],
+  "b": [
+    0,
+    0,
+    0
+  ],
+  "semilla": 98,
+  "optim": {
+    "optimizer": "Adam",
+    "lr": 0.0003,
+    "weight_decay": 0.0
+  },
+  "epocas": 6,
+  "paciencia": 5,
+  "px": 128,
+  "fraccion_train": 1.0,
+  "n_train": 1015,
+  "best_val_group_Dice": 0.7323963326324624,
+  "best_epoch": 4,
+  "val_loss_best_epoch": 0.16748900574828507,
+  "train_loss_best_epoch": 0.1632721244591504,
+  "epochs_completed": 6,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.32045991429554416,
+      "val_loss": 0.2353350772701819,
+      "val_group_Dice": 0.6302257683102779,
+      "seconds": 16.736706032000257,
+      "train_seconds": 14.126911248999932
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.20510433175293682,
+      "val_loss": 0.2470184983172958,
+      "val_group_Dice": 0.6320589027909514,
+      "seconds": 16.75487778200022,
+      "train_seconds": 14.089431989999866
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.1787964619953057,
+      "val_loss": 0.19788370151585394,
+      "val_group_Dice": 0.6812082291500856,
+      "seconds": 18.652379911000025,
+      "train_seconds": 15.28778983400025
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.1632721244591504,
+      "val_loss": 0.16748900574828507,
+      "val_group_Dice": 0.7323963326324624,
+      "seconds": 20.739949766999416,
+      "train_seconds": 17.476766289999432
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.14054783841072044,
+      "val_loss": 0.1860719096479476,
+      "val_group_Dice": 0.7087331704663877,
+      "seconds": 20.5649067939994,
+      "train_seconds": 17.359621550000156
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.13731631607257674,
+      "val_loss": 0.2018454674409207,
+      "val_group_Dice": 0.697998342365419,
+      "seconds": 20.594669898000575,
+      "train_seconds": 17.40469254799973
+    }
+  ],
+  "parameters": 785985,
+  "macs": 21445476352,
+  "macs_efectivos": 5361369088,
+  "seconds_this_session": 114.04732573399997,
+  "seconds_total": 114.0434901839999,
+  "device": "cuda",
+  "test_evaluated": false
+}

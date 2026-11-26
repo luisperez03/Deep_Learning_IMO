@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Avance del cierre del 20 al 24 de noviembre &#8212; Segmentación de etiquetas de mercancías peligrosas</title>
+    <title>Avance del cierre del 20 al 26 de noviembre &#8212; Segmentación de etiquetas de mercancías peligrosas</title>
   
   
   
@@ -152,10 +152,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="metodos_e2.html">Diseño experimental y ruta de segmentación E2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="resultados_e2.html">Resultados E2: benchmark e inferencia</a></li>
 <li class="toctree-l1"><a class="reference internal" href="complementos_e2.html">Complementos locales del 20 de noviembre</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Avance del cierre del 20 al 24 de noviembre</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Avance del cierre del 20 al 26 de noviembre</a></li>
 <li class="toctree-l1"><a class="reference internal" href="complementos_datos_e2.html">Complementos de datos: fuga, shift, ruido, techo y EDA por clase</a></li>
 <li class="toctree-l1"><a class="reference internal" href="diagnosticos_e2.html">Diagnósticos sobre los pesos congelados</a></li>
 <li class="toctree-l1"><a class="reference internal" href="entrenamiento_complementario_e2.html">Entrenamientos complementarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="busqueda_arquitectura_e2.html">Búsqueda de arquitectura de las compactas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cierre_e2.html">Discusión, limitaciones y cierre pendiente</a></li>
 <li class="toctree-l1"><a class="reference internal" href="checklist_e2.html">Verificación de requisitos del Entregable 2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reproducibilidad_e2.html">Reproducción y archivos de entrega</a></li>
@@ -252,7 +253,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Avance del cierre del 20 al 24 de noviembre</h1>
+    <h1>Avance del cierre del 20 al 26 de noviembre</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -262,7 +263,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#en-ejecucion-busqueda-de-arquitectura-de-las-compactas-fila-38-y-b14">En ejecución: búsqueda de arquitectura de las compactas (fila 38 y B14)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-de-arquitectura-de-las-compactas-fila-38-y-b14-terminada-el-26-11">Búsqueda de arquitectura de las compactas (fila 38 y B14), terminada el 26/11</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos">Datos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inferencia">Inferencia</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#literatura">Literatura</a></li>
@@ -281,24 +282,48 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="avance-del-cierre-del-20-al-24-de-noviembre">
-<h1>Avance del cierre del 20 al 24 de noviembre<a class="headerlink" href="#avance-del-cierre-del-20-al-24-de-noviembre" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="avance-del-cierre-del-20-al-26-de-noviembre">
+<h1>Avance del cierre del 20 al 26 de noviembre<a class="headerlink" href="#avance-del-cierre-del-20-al-26-de-noviembre" title="Permalink to this heading">#</a></h1>
 <p>Trabajo posterior al commit <code class="docutils literal notranslate"><span class="pre">8395ea5</span></code> (20/11), en la rama <code class="docutils literal notranslate"><span class="pre">cierre-e2</span></code>, copiada a <code class="docutils literal notranslate"><span class="pre">main</span></code> en cada publicación. El estado
-fila por fila está en <code class="docutils literal notranslate"><span class="pre">docs/revision_entregable2/CHECKLIST_ENTREGA_E2.md</span></code>. Al 24/11 quedan abiertas solo las filas 38 y
-B14 (búsqueda de arquitectura, en ejecución) y 75 (ensayo de la sustentación). Los análisis posteriores al test son
-exploratorios: no cambian la selección original ni los protocolos cerrados.</p>
-<section id="en-ejecucion-busqueda-de-arquitectura-de-las-compactas-fila-38-y-b14">
-<h2>En ejecución: búsqueda de arquitectura de las compactas (fila 38 y B14)<a class="headerlink" href="#en-ejecucion-busqueda-de-arquitectura-de-las-compactas-fila-38-y-b14" title="Permalink to this heading">#</a></h2>
+fila por fila está en <code class="docutils literal notranslate"><span class="pre">docs/revision_entregable2/CHECKLIST_ENTREGA_E2.md</span></code>. Al 26/11 queda abierta solo la fila 75
+(ensayo de la sustentación). Los análisis posteriores al test son exploratorios: no cambian la selección original ni
+los protocolos cerrados.</p>
+<section id="busqueda-de-arquitectura-de-las-compactas-fila-38-y-b14-terminada-el-26-11">
+<h2>Búsqueda de arquitectura de las compactas (fila 38 y B14), terminada el 26/11<a class="headerlink" href="#busqueda-de-arquitectura-de-las-compactas-fila-38-y-b14-terminada-el-26-11" title="Permalink to this heading">#</a></h2>
 <p>La sección 14 del enunciado pide, para las redes sin arquitectura definida en su artículo (FCN, U-Net y SegNet), 1.000
 arquitecturas en la fase 1 y los finalistas con varias semillas en la fase 2. El protocolo se fijó antes de correr
-(<code class="docutils literal notranslate"><span class="pre">docs/PROTOCOLO_BUSQUEDA_ARQUITECTURA_E2.md</span></code>). Se ejecuta en <code class="docutils literal notranslate"><span class="pre">colab/Busqueda_Arquitectura_E2.ipynb</span></code>, siempre en L4.</p>
-<ul class="simple">
-<li><p>Fase 1: completa, 1.040 corridas por familia (3.120 en total).</p></li>
-<li><p>Finalistas: 12 por familia, las 10 mejores (k = 10, porque σ_semilla/σ_arquitectura ≤ 1 en las tres) más la
-referencia a0498 (64, 64, 64) y la heredada del E1 a0056.</p></li>
-<li><p>Fase 2: 180 corridas (12 × 3 familias × 5 semillas) a 256 px, hasta 30 épocas; 28 terminadas al 24/11.</p></li>
-</ul>
-<p>Al terminar: resumen, análisis, filas 38 y B14 con <code class="docutils literal notranslate"><span class="pre">scripts/actualizar_checklist_arquitectura.py</span></code>, libro y presentación.</p>
+(<code class="docutils literal notranslate"><span class="pre">docs/PROTOCOLO_BUSQUEDA_ARQUITECTURA_E2.md</span></code>) y se ejecutó completo en <code class="docutils literal notranslate"><span class="pre">colab/Busqueda_Arquitectura_E2.ipynb</span></code>, en L4.
+Solo validación; el test no se cargó.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Análisis</p></th>
+<th class="head"><p>Resultado</p></th>
+<th class="head"><p>Evidencia</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Ejecución</p></td>
+<td><p>Fase 1: 1.000 por familia más 40 repeticiones (3.120), a 128 px y 6 épocas. k = 10 (σ_semilla/σ_arquitectura ≤ 1). Fase 2: 10 finalistas, referencia (64, 64, 64)/(0, 1, 0) y heredada (16, 32, 64) por familia, 5 semillas, 180 corridas. 243,7 h de L4 sumadas por corrida, unas 61 h de reloj con cuatro procesos</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">resultados/busqueda_arquitectura_e2/COSTO.json</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Ganadora por la regla</p></td>
+<td><p>La referencia (64, 64, 64)/(0, 1, 0) en las tres: el empate con la mejor abarca a todos los finalistas y gana la de menos parámetros. Dice val FCN 0,851, U-Net 0,873, SegNet 0,861. La de mayor media gana 0,009–0,013 más con 6 a 11 veces los parámetros</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">resultados/busqueda_arquitectura_e2/LECTURA.md</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Frente a la heredada</p></td>
+<td><p>FCN +0,020 [0,011; 0,028], U-Net +0,033 [0,026; 0,041], SegNet +0,039 [0,020; 0,059]. Por la lectura fijada antes, el benchmark subestimó U-Net y SegNet. En FCN la heredada reproduce el Dice de validación del benchmark (0,8309); en U-Net y SegNet la tasa menor (0,0003) explica 0,008 y 0,015</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">resultados/busqueda_arquitectura_e2/TABLA_RESUMEN.md</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Fase 1 frente a fase 2</p></td>
+<td><p>Spearman en los finalistas: FCN −0,07, U-Net −0,96, SegNet 0,39. La fase 1 a fidelidad reducida cribó, pero no ordenó a los finalistas</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">libro/busqueda_arquitectura_e2.md</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Espacio</p></td>
+<td><p>Los anchos explican R² 0,39–0,57; pesa sobre todo el primer bloque en U-Net y SegNet; dropout con efecto de milésimas</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">scripts/lectura_busqueda_arquitectura_e2.py</span></code></p></td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="datos">
 <h2>Datos<a class="headerlink" href="#datos" title="Permalink to this heading">#</a></h2>
@@ -472,7 +497,7 @@ referencia a0498 (64, 64, 64) y la heredada del E1 a0056.</p></li>
 <td><p><code class="docutils literal notranslate"><span class="pre">resultados/auditoria_test_e2/AUDITORIA.json</span></code>, <code class="docutils literal notranslate"><span class="pre">scripts/reproducir_entregable2.py</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p>Libro (filas 68 y 76)</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">jupyter-book</span> <span class="pre">build</span> <span class="pre">-W</span></code> sin avisos; publicado en GitHub Pages el 21/11 y republicado el 24/11</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">jupyter-book</span> <span class="pre">build</span> <span class="pre">-W</span></code> sin avisos; publicado en GitHub Pages el 21/11 y republicado el 24 y el 26/11</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">scripts/publicar_libro_docs.py</span></code></p></td>
 </tr>
 </tbody>
@@ -553,7 +578,7 @@ Nada se retrofechó.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#en-ejecucion-busqueda-de-arquitectura-de-las-compactas-fila-38-y-b14">En ejecución: búsqueda de arquitectura de las compactas (fila 38 y B14)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-de-arquitectura-de-las-compactas-fila-38-y-b14-terminada-el-26-11">Búsqueda de arquitectura de las compactas (fila 38 y B14), terminada el 26/11</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos">Datos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inferencia">Inferencia</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#literatura">Literatura</a></li>

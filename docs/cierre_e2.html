@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Búsqueda" href="search.html" />
     <link rel="next" title="Verificación de requisitos del Entregable 2" href="checklist_e2.html" />
-    <link rel="prev" title="Entrenamientos complementarios" href="entrenamiento_complementario_e2.html" />
+    <link rel="prev" title="Búsqueda de arquitectura de las compactas" href="busqueda_arquitectura_e2.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
   </head>
@@ -152,10 +152,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="metodos_e2.html">Diseño experimental y ruta de segmentación E2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="resultados_e2.html">Resultados E2: benchmark e inferencia</a></li>
 <li class="toctree-l1"><a class="reference internal" href="complementos_e2.html">Complementos locales del 20 de noviembre</a></li>
-<li class="toctree-l1"><a class="reference internal" href="avance_cierre_e2.html">Avance del cierre del 20 al 24 de noviembre</a></li>
+<li class="toctree-l1"><a class="reference internal" href="avance_cierre_e2.html">Avance del cierre del 20 al 26 de noviembre</a></li>
 <li class="toctree-l1"><a class="reference internal" href="complementos_datos_e2.html">Complementos de datos: fuga, shift, ruido, techo y EDA por clase</a></li>
 <li class="toctree-l1"><a class="reference internal" href="diagnosticos_e2.html">Diagnósticos sobre los pesos congelados</a></li>
 <li class="toctree-l1"><a class="reference internal" href="entrenamiento_complementario_e2.html">Entrenamientos complementarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="busqueda_arquitectura_e2.html">Búsqueda de arquitectura de las compactas</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Discusión, limitaciones y cierre pendiente</a></li>
 <li class="toctree-l1"><a class="reference internal" href="checklist_e2.html">Verificación de requisitos del Entregable 2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reproducibilidad_e2.html">Reproducción y archivos de entrega</a></li>
@@ -309,27 +310,31 @@ document.write(`
 <td><p>Recetas fijas distintas, auxiliares PIDNet y capacidades muy diferentes</p></td>
 <td><p>No atribuir toda diferencia a arquitectura; la búsqueda equitativa (T = 4, exploratoria) muestra que SegFormer-B0 depende de la receta y que el resto se mueve poco</p></td>
 </tr>
-<tr class="row-odd"><td><p>Selección</p></td>
+<tr class="row-odd"><td><p>Interna</p></td>
+<td><p>Compactas heredadas del E1, sin búsqueda de arquitectura en el benchmark</p></td>
+<td><p>La búsqueda en dos fases (<a class="reference internal" href="busqueda_arquitectura_e2.html"><span class="doc">Búsqueda de arquitectura de las compactas</span></a>, solo validación) muestra que no eran óptimas: con la arquitectura elegida por la regla y la tasa del ajuste previo ganan 0,020 (FCN), 0,041 (U-Net) y 0,054 (SegNet) de Dice de validación. El benchmark subestimó U-Net y SegNet; el test no se reevalúa</p></td>
+</tr>
+<tr class="row-even"><td><p>Selección</p></td>
 <td><p>Test ya observado en E1; cierre E2 después de validación</p></td>
 <td><p>Declarar la cronología; no afinar usando los resultados actuales</p></td>
 </tr>
-<tr class="row-even"><td><p>Estadística</p></td>
+<tr class="row-odd"><td><p>Estadística</p></td>
 <td><p>Cinco semillas, una partición, grupos de similitud aproximados</p></td>
 <td><p>IC condicionales; no usar píxeles como réplicas ni afirmar reproducibilidad entre datasets</p></td>
 </tr>
-<tr class="row-odd"><td><p>Constructo</p></td>
+<tr class="row-even"><td><p>Constructo</p></td>
 <td><p>Máscaras con omisiones y objetivo binario</p></td>
 <td><p>Dice evalúa coincidencia con anotación disponible, no cumplimiento normativo IMO</p></td>
 </tr>
-<tr class="row-even"><td><p>Externa</p></td>
+<tr class="row-odd"><td><p>Externa</p></td>
 <td><p>Sin imágenes completamente negativas ni conjunto portuario independiente</p></td>
 <td><p>No estimar tasa operacional de falsas alarmas ni seguridad industrial</p></td>
 </tr>
-<tr class="row-odd"><td><p>Medición de costo</p></td>
+<tr class="row-even"><td><p>Medición de costo</p></td>
 <td><p>L4 en entrenamiento, T4 en test; tiempos con E/S</p></td>
 <td><p>No interpretar segundos registrados como latencia pura; no inferir energía sin medición</p></td>
 </tr>
-<tr class="row-even"><td><p>Literatura</p></td>
+<tr class="row-odd"><td><p>Literatura</p></td>
 <td><p>Cribado y bibliometría incompletos</p></td>
 <td><p>No llamar a la lista Top 10 exhaustivo ni afirmar un gap universal</p></td>
 </tr>
@@ -349,7 +354,7 @@ document.write(`
 <ol class="arabic simple">
 <li><p><strong>Informe y evidencia existente:</strong> conservar esta integración, tablas, curvas, análisis estadístico, checklist y archivos reproducibles. Revisar juntos la redacción y la defensa técnica.</p></li>
 <li><p><strong>Complemento GPU sobre pesos congelados:</strong> medir Dice de train para diagnóstico, probabilidades y calibración, robustez con tres severidades, incertidumbre predictiva en los tres mejores por validación, explicabilidad con fidelidad/estabilidad, bordes y costo comparable. Ejecutado en una L4 sobre los 50 checkpoints, exploratorio; resultados en el capítulo de diagnósticos. Lo más relevante para la discusión: las redes compactas (FCN, U-Net, SegNet) conservan entre el 68 y el 77 % del Dice limpio a lo largo de las severidades de ruido, desenfoque y brillo (área normalizada de la curva), frente a cerca del 92 % de TransUNet con ruido y desenfoque, lo que matiza el argumento de parsimonia.</p></li>
-<li><p><strong>Experimentos separados:</strong> baseline clásico fuerte, tres ablaciones con cinco semillas, sanidad de etiquetas permutadas y réplica SegFormer en condiciones originales. No hacerlos pasar por parte del benchmark cerrado. Todos se ejecutaron: baseline clásico (Dice 0,645), réplica de evaluación compatible (37,43 % frente a 37,4 % mIoU) y, en <a class="reference internal" href="entrenamiento_complementario_e2.html"><span class="doc">Entrenamientos complementarios</span></a>, la ablación de TransUNet (sin saltos −0,092, BCE sola −0,037, sin Transformer +0,007 con IC que incluye el cero), la permutación de máscaras con FCN (p = 0,005) y una búsqueda de hiperparámetros con el mismo presupuesto para las diez redes, exploratoria.</p></li>
+<li><p><strong>Experimentos separados:</strong> baseline clásico fuerte, tres ablaciones con cinco semillas, sanidad de etiquetas permutadas y réplica SegFormer en condiciones originales. No hacerlos pasar por parte del benchmark cerrado. Todos se ejecutaron: baseline clásico (Dice 0,645), réplica de evaluación compatible (37,43 % frente a 37,4 % mIoU) y, en <a class="reference internal" href="entrenamiento_complementario_e2.html"><span class="doc">Entrenamientos complementarios</span></a>, la ablación de TransUNet (sin saltos −0,092, BCE sola −0,037, sin Transformer +0,007 con IC que incluye el cero), la permutación de máscaras con FCN (p = 0,005) y una búsqueda de hiperparámetros con el mismo presupuesto para las diez redes, exploratoria. La búsqueda de arquitectura de las tres compactas (1.000 por familia y 12 finalistas con cinco semillas) también se ejecutó completa, en <a class="reference internal" href="busqueda_arquitectura_e2.html"><span class="doc">Búsqueda de arquitectura de las compactas</span></a>.</p></li>
 <li><p><strong>Trabajo documental y humano:</strong> adjudicar cribado/DOI, verificar bibliometría y cuartiles cuando correspondan, completar fichas de resultados de artículos, estimar acuerdo de anotación y preparar defensa. Q5/Q6 siguen omitidas por instrucción del usuario; no se reabren automáticamente.</p></li>
 <li><p><strong>Control de entrega:</strong> compilar localmente, revisar enlaces y cifras, ejecutar reproducción desde resultados y dejar registro de discrepancias. Solicitar autorización antes de publicar/subir a GitHub.</p></li>
 </ol>
@@ -389,12 +394,12 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="entrenamiento_complementario_e2.html"
+       href="busqueda_arquitectura_e2.html"
        title="página anterior">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">anterior</p>
-        <p class="prev-next-title">Entrenamientos complementarios</p>
+        <p class="prev-next-title">Búsqueda de arquitectura de las compactas</p>
       </div>
     </a>
     <a class="right-next"

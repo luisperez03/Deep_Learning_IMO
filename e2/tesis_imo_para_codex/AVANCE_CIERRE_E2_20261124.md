@@ -1,22 +1,24 @@
-# Avance del cierre del Entregable 2 — 20 al 24/11/2026
+# Avance del cierre del Entregable 2 — 20 al 26/11/2026
 
 Trabajo posterior al commit `8395ea5` (20/11), en la rama `cierre-e2`, copiada a `main` en cada publicación. El estado
-fila por fila está en `docs/revision_entregable2/CHECKLIST_ENTREGA_E2.md`. Al 24/11 quedan abiertas solo las filas 38 y
-B14 (búsqueda de arquitectura, en ejecución) y 75 (ensayo de la sustentación). Los análisis posteriores al test son
-exploratorios: no cambian la selección original ni los protocolos cerrados.
+fila por fila está en `docs/revision_entregable2/CHECKLIST_ENTREGA_E2.md`. Al 26/11 queda abierta solo la fila 75
+(ensayo de la sustentación). Los análisis posteriores al test son exploratorios: no cambian la selección original ni
+los protocolos cerrados.
 
-## En ejecución: búsqueda de arquitectura de las compactas (fila 38 y B14)
+## Búsqueda de arquitectura de las compactas (fila 38 y B14), terminada el 26/11
 
 La sección 14 del enunciado pide, para las redes sin arquitectura definida en su artículo (FCN, U-Net y SegNet), 1.000
 arquitecturas en la fase 1 y los finalistas con varias semillas en la fase 2. El protocolo se fijó antes de correr
-(`docs/PROTOCOLO_BUSQUEDA_ARQUITECTURA_E2.md`). Se ejecuta en `colab/Busqueda_Arquitectura_E2.ipynb`, siempre en L4.
+(`docs/PROTOCOLO_BUSQUEDA_ARQUITECTURA_E2.md`) y se ejecutó completo en `colab/Busqueda_Arquitectura_E2.ipynb`, en L4.
+Solo validación; el test no se cargó.
 
-- Fase 1: completa, 1.040 corridas por familia (3.120 en total).
-- Finalistas: 12 por familia, las 10 mejores (k = 10, porque σ_semilla/σ_arquitectura ≤ 1 en las tres) más la
-  referencia a0498 (64, 64, 64) y la heredada del E1 a0056.
-- Fase 2: 180 corridas (12 × 3 familias × 5 semillas) a 256 px, hasta 30 épocas; 28 terminadas al 24/11.
-
-Al terminar: resumen, análisis, filas 38 y B14 con `scripts/actualizar_checklist_arquitectura.py`, libro y presentación.
+| Análisis | Resultado | Evidencia |
+|---|---|---|
+| Ejecución | Fase 1: 1.000 por familia más 40 repeticiones (3.120), a 128 px y 6 épocas. k = 10 (σ_semilla/σ_arquitectura ≤ 1). Fase 2: 10 finalistas, referencia (64, 64, 64)/(0, 1, 0) y heredada (16, 32, 64) por familia, 5 semillas, 180 corridas. 243,7 h de L4 sumadas por corrida, unas 61 h de reloj con cuatro procesos | `resultados/busqueda_arquitectura_e2/COSTO.json` |
+| Ganadora por la regla | La referencia (64, 64, 64)/(0, 1, 0) en las tres: el empate con la mejor abarca a todos los finalistas y gana la de menos parámetros. Dice val FCN 0,851, U-Net 0,873, SegNet 0,861. La de mayor media gana 0,009–0,013 más con 6 a 11 veces los parámetros | `resultados/busqueda_arquitectura_e2/LECTURA.md` |
+| Frente a la heredada | FCN +0,020 [0,011; 0,028], U-Net +0,033 [0,026; 0,041], SegNet +0,039 [0,020; 0,059]. Por la lectura fijada antes, el benchmark subestimó U-Net y SegNet. En FCN la heredada reproduce el Dice de validación del benchmark (0,8309); en U-Net y SegNet la tasa menor (0,0003) explica 0,008 y 0,015 | `resultados/busqueda_arquitectura_e2/TABLA_RESUMEN.md` |
+| Fase 1 frente a fase 2 | Spearman en los finalistas: FCN −0,07, U-Net −0,96, SegNet 0,39. La fase 1 a fidelidad reducida cribó, pero no ordenó a los finalistas | `libro/busqueda_arquitectura_e2.md` |
+| Espacio | Los anchos explican R² 0,39–0,57; pesa sobre todo el primer bloque en U-Net y SegNet; dropout con efecto de milésimas | `scripts/lectura_busqueda_arquitectura_e2.py` |
 
 ## Datos
 
@@ -71,7 +73,7 @@ Al terminar: resumen, análisis, filas 38 y B14 con `scripts/actualizar_checklis
 | Análisis | Resultado | Evidencia |
 |---|---|---|
 | Reproducción en clon limpio (fila 55) | Tablas, contrastes y auditoría con discrepancia 0; recálculo independiente desde 2.180 máscaras con discrepancia 0 | `resultados/auditoria_test_e2/AUDITORIA.json`, `scripts/reproducir_entregable2.py` |
-| Libro (filas 68 y 76) | `jupyter-book build -W` sin avisos; publicado en GitHub Pages el 21/11 y republicado el 24/11 | `scripts/publicar_libro_docs.py` |
+| Libro (filas 68 y 76) | `jupyter-book build -W` sin avisos; publicado en GitHub Pages el 21/11 y republicado el 24 y el 26/11 | `scripts/publicar_libro_docs.py` |
 
 ## Declarado como limitación
 

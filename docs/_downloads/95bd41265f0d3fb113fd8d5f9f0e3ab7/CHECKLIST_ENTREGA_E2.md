@@ -36,6 +36,8 @@ El usuario confirmó que el profesor acepta **diez modelos totales: tres E1 y si
 
 **Actualización del 22/11 (Q5 y Q6).** Búsquedas transversales Q5 y Q6 ejecutadas y exportadas en las dos bases (fila 24); corpus de 6.366 grupos y censo del bloque transversal (filas 20, 21 y 30).
 
+**Actualización del 22/11 (arquitectura).** Búsqueda de arquitectura en dos fases para las tres compactas heredadas (fila 38 y B14): protocolo a priori, cuaderno y, si están, resultados de validación.
+
 ## Problema, hipótesis, datos y EDA — rúbrica 15 %
 
 | ID | Requisito (página guía) | Estado | Evidencia / cierre necesario |
@@ -87,7 +89,7 @@ El usuario confirmó que el profesor acepta **diez modelos totales: tres E1 y si
 | 35 | ≥5 ejecuciones/red y registros (13) | C | 50 corridas auditadas; pruebas de rangos actuales usan 122 grupos, no 5 pares |
 | 36 | Datos/resolución/pérdida base/parada comparables (12–15) | C | Pipeline común; auxiliares PIDNet y recetas distintas explícitos |
 | 37 | Búsqueda equitativa de hiperparámetros (13,46–47) | C | 21/11, L4, exploratoria: búsqueda aleatoria T = 4 con el mismo espacio relativo (tasa × 10^u común, weight decay) y el mismo presupuesto (10 épocas, semilla 11) para las 10, elección por validación, 40 configuraciones registradas. La receta gana solo en VM-UNet; SegFormer-B0 sube de 0,660 a 0,782; las dos primeras no cambian. Sin la fase de 5 semillas × 30 épocas (diseñada, ≈ 17 h). `resultados/complemento_entreno_e2/`, capítulo `entrenamiento_complementario_e2` |
-| 38 | Arquitectura indefinida: 1000 + finalistas (52–58) | P | Siete variantes publicadas definidas; justificar herencia de compactas locales. No afirmar búsqueda realizada |
+| 38 | Arquitectura indefinida: 1000 + finalistas (52–58) | C | Siete variantes publicadas con arquitectura definida; FCN, U-Net y SegNet compactas (diseño propio) recorren el espacio de la sección 14: 3 bloques, anchos {16..256}^3, dropout 0,2 en {0,1}^3 = 1000 por familia. Protocolo a priori del 22/11 (`docs/PROTOCOLO_BUSQUEDA_ARQUITECTURA_E2.md`, `config/busqueda_arquitectura_e2.json`), solo validación, exploratorio. Ejecutada: ajuste previo de la tasa con (64,64,64)/(0,1,0); fase 1 con las 1000 × 3; k = 10 finalistas + referencia + heredada con 5 semillas (fase 2). Fase 1 a fidelidad B (128 px, 100 % de train, 6 de 30 épocas), desviación declarada. FCN: ganadora (64, 64, 64)/(0, 1, 0), Dice val 0,851 (IC95 0,844–0,857); frente a la heredada 0,020 (el ganador supera a la heredada por menos de δ); Spearman fase 1-2 -0,07; U-Net: ganadora (64, 64, 64)/(0, 1, 0), Dice val 0,873 (IC95 0,863–0,883); frente a la heredada 0,033 (el ganador supera a la heredada por δ o más); Spearman fase 1-2 -0,96; SegNet: ganadora (64, 64, 64)/(0, 1, 0), Dice val 0,861 (IC95 0,846–0,875); frente a la heredada 0,039 (el ganador supera a la heredada por δ o más); Spearman fase 1-2 0,39. `resultados/busqueda_arquitectura_e2/` (`RESUMEN.json`, `LECTURA.md`) |
 | 39 | Tres E1 y baseline trivial adicional (11,22) | C | Tres compactas reentrenadas E2 y máscara vacía evaluada |
 | 40 | Clásico fuerte no profundo ajustado (11,46) | C | `scripts/baseline_clasico_e2.py`: HistGradientBoosting, 13 rasgos, 3 configuraciones × 5 semillas, elección por validación; Dice test 0,645 (IC95 grupos 0,605–0,682) en `resultados/baseline_clasico_e2/` |
 | 41 | Sanidad de aprendizaje y preflight (46) | C | Diez preflight GPU y entrenamiento completo; 21/11, sobreajuste a un lote de 4 imágenes (500 pasos): 9 de 10 pasan (Dice ≥ 0,90); VM-UNet 0,750, falla en la imagen de rótulo más pequeño. `resultados/complemento_entreno_e2/`, capítulo `entrenamiento_complementario_e2` |
@@ -159,7 +161,7 @@ El usuario confirmó que el profesor acepta **diez modelos totales: tres E1 y si
 | B11 Tablas A/B/C con pruebas/IC/efectos | C | Tablas con IC, pruebas y efectos (ID 48-49); ajuste y sobreajuste: brecha train-val (ID 57), sobreajuste a un lote (ID 41) y búsqueda equitativa (ID 37) |
 | B12 Familias/multiplicidad a priori | D | Ampliación Holm posterior al test |
 | B13 Techo/γ | C | ID63: techo 0,941 por reanotación independiente; γ por red |
-| B14 Arquitecturas sin diseño y dos fases | P | ID38; compactas heredadas requieren justificación |
+| B14 Arquitecturas sin diseño y dos fases | C | ID38; búsqueda en dos fases ejecutada para las tres compactas |
 | B15 Selección val/equivalencia/sesgo ganador | C | Checkpoints por val. 22/11: TOST (ID54). Sesgo del ganador: en test TransUNet gana en el 83 % de los bootstrap de grupos (FCN 16 %), sesgo del nivel 0,0023 (Dice corregido 0,860) y optimismo por mitades 0,005; en validación ≈ 0. Checkpoint por val frente a test: test − val +0,010 (8 de 10 redes suben), sin optimismo visible; TransUNet − FCN pasa de 0,022 (val) a 0,009 (test) |
 | B16 Robustez/explicabilidad/fidelidad/estabilidad | C | ID59–60 ejecutados el 20/11 (exploratorio) |
 | B17 Incertidumbre top3/cobertura | C | ID62 ejecutado el 20/11 (exploratorio) |

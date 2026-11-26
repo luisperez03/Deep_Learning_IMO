@@ -1,0 +1,964 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="es" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Búsqueda de arquitectura de las compactas &#8212; Segmentación de etiquetas de mercancías peligrosas</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'busqueda_arquitectura_e2';</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Discusión, limitaciones y cierre pendiente" href="cierre_e2.html" />
+    <link rel="prev" title="Entrenamientos complementarios" href="entrenamiento_complementario_e2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Segmentación de etiquetas de mercancías peligrosas</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Entregable 2</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="problema.html">Problema y datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eda.html">EDA y preparación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="literatura.html">Literatura, selección operativa y paper guía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelos_e2.html">Fichas de las diez implementaciones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metodos_e2.html">Diseño experimental y ruta de segmentación E2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resultados_e2.html">Resultados E2: benchmark e inferencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="complementos_e2.html">Complementos locales del 20 de noviembre</a></li>
+<li class="toctree-l1"><a class="reference internal" href="avance_cierre_e2.html">Avance del cierre del 20 al 26 de noviembre</a></li>
+<li class="toctree-l1"><a class="reference internal" href="complementos_datos_e2.html">Complementos de datos: fuga, shift, ruido, techo y EDA por clase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagnosticos_e2.html">Diagnósticos sobre los pesos congelados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entrenamiento_complementario_e2.html">Entrenamientos complementarios</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Búsqueda de arquitectura de las compactas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cierre_e2.html">Discusión, limitaciones y cierre pendiente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="checklist_e2.html">Verificación de requisitos del Entregable 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reproducibilidad_e2.html">Reproducción y archivos de entrega</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Antecedentes del Entregable 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="implementacion.html">Diseño experimental e implementación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resultados.html">Resultados y baseline</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Búsqueda de arquitectura de las compactas</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cifras-por-familia">Cifras por familia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecucion">Ejecución</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ganadora-por-la-regla-fijada-antes">1. Ganadora por la regla fijada antes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frente-a-la-compacta-heredada">2. Frente a la compacta heredada</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-fase-1-no-ordeno-a-los-finalistas">3. La fase 1 no ordenó a los finalistas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-espacio-fase-1">4. El espacio (fase 1)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-cambia-y-que-no">5. Qué cambia y qué no</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#detalle-de-la-fase-2">Detalle de la fase 2</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="busqueda-de-arquitectura-de-las-compactas">
+<h1>Búsqueda de arquitectura de las compactas<a class="headerlink" href="#busqueda-de-arquitectura-de-las-compactas" title="Permalink to this heading">#</a></h1>
+<p>FCN, U-Net y SegNet son las tres redes del benchmark sin una arquitectura fijada por su artículo: se usaron las
+versiones compactas heredadas del E1. La sección 14 de la guía pide, para esas redes, recorrer el espacio de
+arquitecturas en dos fases. El protocolo se fijó el 22/11, antes de correr (<code class="docutils literal notranslate"><span class="pre">docs/PROTOCOLO_BUSQUEDA_ARQUITECTURA_E2.md</span></code>):</p>
+<ul class="simple">
+<li><p><strong>Espacio.</strong> Tres bloques con anchos en {16, 32, 64, 128, 256} y dropout 0,2 encendido o apagado en cada bloque:
+1.000 arquitecturas por familia. La heredada, (16, 32, 64) sin dropout, está dentro.</p></li>
+<li><p><strong>Ajuste previo de la tasa.</strong> Tres tasas con la arquitectura de referencia (64, 64, 64)/(0, 1, 0). La regla, fijada
+antes, se queda con la receta (0,001) salvo que otra tasa gane por 0,005 o más.</p></li>
+<li><p><strong>Fase 1, cribado.</strong> Las 1.000 por familia con una semilla, a fidelidad reducida (128 px y 6 épocas, elegida por
+presupuesto con el piloto), más 40 repeticiones para medir el ruido de semilla.</p></li>
+<li><p><strong>Fase 2, confirmación.</strong> Los 10 mejores de la fase 1, la referencia y la heredada, con las cinco semillas del
+benchmark, a 256 px y 30 épocas.</p></li>
+<li><p><strong>Selección.</strong> Mayor media de validación. Si hay empate técnico con la mejor (diferencia menor que δ = 0,02 o
+intervalos al 95 % solapados), gana la de menos parámetros.</p></li>
+</ul>
+<p>Todo se mide en validación. El test no se cargó: esta búsqueda es exploratoria y no cambia las conclusiones del
+benchmark. Se ejecutó completa en Colab (<code class="docutils literal notranslate"><span class="pre">colab/Busqueda_Arquitectura_E2.ipynb</span></code>, L4); la fase 2 terminó el 26/11.</p>
+<p><img alt="Fase 1 frente a fase 2 (arriba) y parámetros frente a Dice de la fase 2 (abajo), por familia" src="_images/busqueda_arquitectura.png" /></p>
+<section id="cifras-por-familia">
+<h2>Cifras por familia<a class="headerlink" href="#cifras-por-familia" title="Permalink to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>FCN</p></th>
+<th class="head"><p>U-Net</p></th>
+<th class="head"><p>SegNet</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Tasa del ajuste previo</p></td>
+<td><p>0,001</p></td>
+<td><p>0,0003</p></td>
+<td><p>0,0003</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fase 1: media (DE entre arquitecturas)</p></td>
+<td><p>0,723 (0,016)</p></td>
+<td><p>0,729 (0,020)</p></td>
+<td><p>0,721 (0,026)</p></td>
+</tr>
+<tr class="row-even"><td><p>σ semilla / σ arquitectura (r)</p></td>
+<td><p>0,90</p></td>
+<td><p>0,89</p></td>
+<td><p>0,67</p></td>
+</tr>
+<tr class="row-odd"><td><p>Mayor media en fase 2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0982</span></code> 0,860</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0593</span></code> 0,882</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0756</span></code> 0,873</p></td>
+</tr>
+<tr class="row-even"><td><p>Ganadora por la regla (menos parámetros en el empate)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0498</span></code> 0,851</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0498</span></code> 0,873</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0498</span></code> 0,861</p></td>
+</tr>
+<tr class="row-odd"><td><p>Mayor media − ganadora</p></td>
+<td><p>0,010</p></td>
+<td><p>0,009</p></td>
+<td><p>0,013</p></td>
+</tr>
+<tr class="row-even"><td><p>Empate técnico / equivalentes TOST</p></td>
+<td><p>11 / 4</p></td>
+<td><p>11 / 7</p></td>
+<td><p>11 / 5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ganadora − heredada (IC95 t)</p></td>
+<td><p>0,020 [0,011; 0,028]</p></td>
+<td><p>0,033 [0,026; 0,041]</p></td>
+<td><p>0,039 [0,020; 0,059]</p></td>
+</tr>
+<tr class="row-even"><td><p>Ganadora − heredada (IC95 bootstrap por grupos)</p></td>
+<td><p>[0,010; 0,030]</p></td>
+<td><p>[0,025; 0,041]</p></td>
+<td><p>[0,028; 0,051]</p></td>
+</tr>
+<tr class="row-odd"><td><p>Lectura fijada antes</p></td>
+<td><p>el ganador supera a la heredada por menos de δ</p></td>
+<td><p>el ganador supera a la heredada por δ o más</p></td>
+<td><p>el ganador supera a la heredada por δ o más</p></td>
+</tr>
+<tr class="row-even"><td><p>Heredada en fase 2 / benchmark (val)</p></td>
+<td><p>0,831 / 0,831</p></td>
+<td><p>0,840 / 0,832</p></td>
+<td><p>0,821 / 0,806</p></td>
+</tr>
+<tr class="row-odd"><td><p>Spearman fase 1 − fase 2 (10 finalistas)</p></td>
+<td><p>-0,07 (p = 0,855)</p></td>
+<td><p>-0,96 (p = 0,000)</p></td>
+<td><p>0,39 (p = 0,260)</p></td>
+</tr>
+<tr class="row-even"><td><p>Rango de la referencia en fase 1</p></td>
+<td><p>593</p></td>
+<td><p>440</p></td>
+<td><p>563</p></td>
+</tr>
+<tr class="row-odd"><td><p>DE arquitecturas / DE semilla</p></td>
+<td><p>1,36</p></td>
+<td><p>2,67</p></td>
+<td><p>2,37</p></td>
+</tr>
+<tr class="row-even"><td><p>R² del modelo de anchos y dropout</p></td>
+<td><p>0,39</p></td>
+<td><p>0,39</p></td>
+<td><p>0,57</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sin dropout − con dropout (Wilcoxon p)</p></td>
+<td><p>0,0022 (p = 0,015)</p></td>
+<td><p>0,0021 (p = 0,232)</p></td>
+<td><p>0,0045 (p = 0,000)</p></td>
+</tr>
+</tbody>
+</table>
+<p>Generado por <code class="docutils literal notranslate"><span class="pre">scripts/lectura_busqueda_arquitectura_e2.py</span></code> desde <code class="docutils literal notranslate"><span class="pre">RESUMEN.json</span></code>, <code class="docutils literal notranslate"><span class="pre">fase1.csv</span></code> y los <code class="docutils literal notranslate"><span class="pre">result.json</span></code>. Solo validación; el test no se cargó (<code class="docutils literal notranslate"><span class="pre">test_evaluado</span> <span class="pre">=</span> <span class="pre">false</span></code>). Exploratorio: no cambia la selección ni las conclusiones del benchmark cerrado. Reglas de lectura fijadas antes en <code class="docutils literal notranslate"><span class="pre">docs/PROTOCOLO_BUSQUEDA_ARQUITECTURA_E2.md</span></code>.</p>
+</section>
+<section id="ejecucion">
+<h2>Ejecución<a class="headerlink" href="#ejecucion" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Fase 1 completa: 1.000 arquitecturas por familia, más 40 repeticiones con otra semilla para σ_semilla (3.120 corridas), a la fidelidad B de <code class="docutils literal notranslate"><span class="pre">fidelidad.json</span></code> (128 px, todo train, 6 épocas).</p></li>
+<li><p>k = 10 (r = σ_semilla/σ_arquitectura ≤ 1 en las tres: FCN 0,90, U-Net 0,89, SegNet 0,67). Fase 2: 12 arquitecturas por familia (10 finalistas, la referencia (64, 64, 64)/(0, 1, 0) y la heredada (16, 32, 64)/(0, 0, 0)) con las semillas 11, 23, 37, 53 y 71, a 256 px y 30 épocas con paciencia 5: 180 corridas, ninguna abierta.</p></li>
+<li><p>Cómputo registrado, suma de los segundos de cada corrida en L4: ajuste 0,2 h (9 corridas), fase 1 124,4 h (3.120 corridas), fase 2 119,0 h (180 corridas), piloto 0,1 h (30 corridas); total 243,7 h. Corrían cuatro procesos a la vez en una sola L4, así que el tiempo de reloj fue cerca de la cuarta parte (unas 61 h).</p></li>
+</ul>
+</section>
+<section id="ganadora-por-la-regla-fijada-antes">
+<h2>1. Ganadora por la regla fijada antes<a class="headerlink" href="#ganadora-por-la-regla-fijada-antes" title="Permalink to this heading">#</a></h2>
+<p>La regla elige la misma arquitectura en las tres familias: <code class="docutils literal notranslate"><span class="pre">a0498</span></code> (64, 64, 64)/(0, 1, 0), que es la referencia. No es la de mayor media en ninguna. Ocurre porque el empate técnico (diferencia con la mejor menor que δ = 0,02 o intervalos al 95 % solapados) abarca a los 11 finalistas no heredados de cada familia: con cinco semillas los intervalos miden de 0,01 a 0,05 y todas las medias caen a menos de δ de la mejor. Dentro del empate gana la de menos parámetros, y la referencia es la más pequeña de ese grupo. La heredada, más pequeña aún, queda fuera del empate en las tres.</p>
+<ul class="simple">
+<li><p>FCN: ganadora 0,8508 con 186.497 parámetros; mayor media <code class="docutils literal notranslate"><span class="pre">a0982</span></code> (256, 256, 64)/(1, 1, 0) 0,8603 con 1.961.921 (10,5 veces más). Diferencia 0,0095, menor que δ. Equivalentes a la mejor por TOST: 4 de 12 (incluida la ganadora).</p></li>
+<li><p>U-Net: ganadora 0,8729 con 407.937 parámetros; mayor media <code class="docutils literal notranslate"><span class="pre">a0593</span></code> (64, 256, 256)/(0, 0, 1) 0,8821 con 3.948.033 (9,7 veces más). Diferencia 0,0092, menor que δ. Equivalentes a la mejor por TOST: 7 de 12 (la ganadora no está entre ellas).</p></li>
+<li><p>SegNet: ganadora 0,8607 con 338.369 parámetros; mayor media <code class="docutils literal notranslate"><span class="pre">a0756</span></code> (128, 128, 256)/(1, 0, 0) 0,8734 con 1.954.945 (5,8 veces más). Diferencia 0,0127, menor que δ. Equivalentes a la mejor por TOST: 5 de 12 (la ganadora no está entre ellas).</p></li>
+</ul>
+<p>En U-Net y SegNet la regla elige una arquitectura que el TOST no certifica equivalente a la mejor: el criterio de empate (δ o intervalos solapados) es más laxo que la equivalencia. La regla se aplica tal como se fijó y la diferencia se declara.</p>
+<p>Ninguna ganadora tiene un ancho en el borde del espacio (16 o 256): el óptimo por la regla no está recortado por el espacio. La de mayor media sí usa 256 en algún bloque en FCN, U-Net, SegNet.</p>
+</section>
+<section id="frente-a-la-compacta-heredada">
+<h2>2. Frente a la compacta heredada<a class="headerlink" href="#frente-a-la-compacta-heredada" title="Permalink to this heading">#</a></h2>
+<p>Ganadora menos heredada, las dos en la fase 2 con la misma receta y las mismas semillas (diferencia pareada por semilla, IC95 t; bootstrap por los 122 grupos de validación, 2.000 remuestreos; TOST con ±δ):</p>
+<ul class="simple">
+<li><p>FCN: 0,0199, IC95 t [0,0113; 0,0285], bootstrap [0,0103; 0,0303]; TOST p = 0,485. Lectura: el ganador supera a la heredada por menos de δ.</p></li>
+<li><p>U-Net: 0,0332, IC95 t [0,0256; 0,0407], bootstrap [0,0254; 0,0413]; TOST p = 0,996. Lectura: el ganador supera a la heredada por δ o más.</p></li>
+<li><p>SegNet: 0,0394, IC95 t [0,0201; 0,0586], bootstrap [0,0279; 0,0515]; TOST p = 0,975. Lectura: el ganador supera a la heredada por δ o más.</p></li>
+</ul>
+<p>Según la lectura fijada antes: en U-Net y SegNet la ganadora supera a la heredada por δ o más, así que el benchmark subestimó esas dos familias en validación. En FCN la mejora es real (el intervalo excluye el cero) pero su estimación queda justo por debajo de δ y el TOST no acredita equivalencia: ni subestimación declarada ni herencia justificada. En ninguna familia la heredada cae en el conjunto equivalente a la mejor.</p>
+<p>Cuánto de esa mejora es tasa y cuánto arquitectura. El ajuste previo cambió la tasa de 0,001 a 0,0003 en U-Net y SegNet; en FCN la dejó igual. Comparación descriptiva con las cinco corridas originales del benchmark (validación):</p>
+<ul class="simple">
+<li><p>FCN: benchmark 0,8309; heredada en la fase 2 0,8309 (+0,0000, efecto de la tasa); ganadora 0,8508 (+0,0199 sobre la heredada, efecto de la arquitectura).</p></li>
+<li><p>U-Net: benchmark 0,8320; heredada en la fase 2 0,8398 (+0,0078, efecto de la tasa); ganadora 0,8729 (+0,0332 sobre la heredada, efecto de la arquitectura).</p></li>
+<li><p>SegNet: benchmark 0,8063; heredada en la fase 2 0,8214 (+0,0151, efecto de la tasa); ganadora 0,8607 (+0,0394 sobre la heredada, efecto de la arquitectura).</p></li>
+</ul>
+<p>En FCN, con la misma tasa y las mismas semillas, la heredada reproduce el Dice de validación del benchmark a cuatro decimales (0,8309 frente a 0,8309): el entrenamiento de la búsqueda reproduce el del benchmark, y en las otras dos familias la diferencia con el benchmark se explica por la tasa, no por un cambio de código.</p>
+</section>
+<section id="la-fase-1-no-ordeno-a-los-finalistas">
+<h2>3. La fase 1 no ordenó a los finalistas<a class="headerlink" href="#la-fase-1-no-ordeno-a-los-finalistas" title="Permalink to this heading">#</a></h2>
+<p>Correlación de Spearman entre el Dice de la fase 1 y la media de la fase 2 en los 10 finalistas: FCN ρ = -0,07 (p = 0,855); U-Net ρ = -0,96 (p = 0,000); SegNet ρ = 0,39 (p = 0,260). Entre los 10 mejores de la fase 1 el rango está restringido y se espera una correlación baja, pero en U-Net el orden se invierte casi por completo. La referencia estaba en los puestos 593 (FCN), 440 (U-Net), 563 (SegNet) de 1.000 en la fase 1 y en la fase 2 queda a menos de δ de la mejor. Una explicación posible es que la fidelidad reducida de la fase 1 (128 px y 6 épocas) premie a las redes que aprenden rápido a baja resolución, que no son necesariamente las mejores a 256 px y 30 épocas. La fase 1 sirvió de cribado, como estaba previsto, pero no permite afirmar que los finalistas sean las mejores de las 1.000 a fidelidad completa. Es una limitación de la búsqueda.</p>
+</section>
+<section id="el-espacio-fase-1">
+<h2>4. El espacio (fase 1)<a class="headerlink" href="#el-espacio-fase-1" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>FCN: anchos y dropout explican R² = 0,39 de la varianza. Proporción por ancho: w1 0,14, w2 0,07, w3 0,16; el dropout suma menos de 0,02. Sin dropout rinde 0,0022 más que con dropout (mediana por bloque de anchos; Wilcoxon p = 0,015, r biserial 0,25).</p></li>
+<li><p>U-Net: anchos y dropout explican R² = 0,39 de la varianza. Proporción por ancho: w1 0,28, w2 0,10, w3 0,00; el dropout suma menos de 0,02. Sin dropout rinde 0,0021 más que con dropout (mediana por bloque de anchos; Wilcoxon p = 0,232, r biserial 0,12).</p></li>
+<li><p>SegNet: anchos y dropout explican R² = 0,57 de la varianza. Proporción por ancho: w1 0,47, w2 0,07, w3 0,01; el dropout suma menos de 0,02. Sin dropout rinde 0,0045 más que con dropout (mediana por bloque de anchos; Wilcoxon p = 0,000, r biserial 0,37).</p></li>
+</ul>
+<p>El ancho del primer bloque, el que trabaja a resolución completa, es el factor que más pesa en U-Net y SegNet; en FCN pesan parecido el primero y el último. Términos cuadráticos en log2 del ancho con p &lt; 0,05: FCN w2, FCN w3, U-Net w1, SegNet w1, todos negativos: rendimientos decrecientes al ensanchar. El efecto del dropout es pequeño, del orden de milésimas, y a 6 épocas puede deberse a que el dropout frena el aprendizaje temprano más que a una peor solución final.</p>
+<p>Sensibilidad (DE entre arquitecturas en la fase 1 frente a la DE por semilla en la fase 2): FCN 1,36, U-Net 2,67, SegNet 2,37. La arquitectura importa en el espacio completo, más en U-Net y SegNet que en FCN. Entre los finalistas, en cambio, las diferencias quedan por debajo de δ.</p>
+<p>Brecha de Dice train−validación en la fase 2: de 0,033 a 0,070; la menor de cada familia es la de la heredada, la red más pequeña.</p>
+</section>
+<section id="que-cambia-y-que-no">
+<h2>5. Qué cambia y qué no<a class="headerlink" href="#que-cambia-y-que-no" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Las conclusiones del benchmark sobre test no cambian: el test no se cargó y la comparación de las diez redes se hizo con las compactas heredadas.</p></li>
+<li><p>Las compactas del benchmark no eran óptimas en su espacio: con la arquitectura de la regla y la tasa del ajuste previo ganan en validación 0,020 (FCN), 0,041 (U-Net), 0,054 (SegNet) sobre sus cinco corridas originales. Eso no se traslada al test sin evaluarlo, y el test ya fue observado.</p></li>
+<li><p>No hay confirmación en test de la ganadora (paso A6 de la guía) ni validación anidada; los dos puntos estaban declarados como limitación en el protocolo.</p></li>
+</ul>
+</section>
+<section id="detalle-de-la-fase-2">
+<h2>Detalle de la fase 2<a class="headerlink" href="#detalle-de-la-fase-2" title="Permalink to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Familia</p></th>
+<th class="head"><p>Arquitectura (anchos)/(dropout)</p></th>
+<th class="head"><p>Papel</p></th>
+<th class="head text-right"><p>Parámetros</p></th>
+<th class="head text-right"><p>Dice val fase 2</p></th>
+<th class="head"><p>IC95 t</p></th>
+<th class="head text-right"><p>DE semillas</p></th>
+<th class="head text-right"><p>Dice fase 1</p></th>
+<th class="head text-right"><p>Brecha train−val</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>FCN</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0982</span></code> (256, 256, 64)/(1, 1, 0) (mayor media)</p></td>
+<td><p>finalista</p></td>
+<td class="text-right"><p>1.961.921</p></td>
+<td class="text-right"><p>0,8603</p></td>
+<td><p>[0,845; 0,876]</p></td>
+<td class="text-right"><p>0,0125</p></td>
+<td class="text-right"><p>0,756</p></td>
+<td class="text-right"><p>0,063</p></td>
+</tr>
+<tr class="row-odd"><td><p>FCN</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0599</span></code> (64, 256, 256)/(1, 1, 1)</p></td>
+<td><p>finalista</p></td>
+<td class="text-right"><p>1.956.929</p></td>
+<td class="text-right"><p>0,8600</p></td>
+<td><p>[0,846; 0,874]</p></td>
+<td class="text-right"><p>0,0109</p></td>
+<td class="text-right"><p>0,756</p></td>
+<td class="text-right"><p>0,063</p></td>
+</tr>
+<tr class="row-even"><td><p>FCN</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0554</span></code> (64, 128, 256)/(0, 1, 0)</p></td>
+<td><p>finalista</p></td>
+<td class="text-right"><p>1.145.665</p></td>
+<td class="text-right"><p>0,8521</p></td>
+<td><p>[0,835; 0,869]</p></td>
+<td class="text-right"><p>0,0136</p></td>
+<td class="text-right"><p>0,767</p></td>
+<td class="text-right"><p>0,067</p></td>
+</tr>
+<tr class="row-odd"><td><p>FCN</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0498</span></code> (64, 64, 64)/(0, 1, 0) <strong>(ganadora)</strong></p></td>
+<td><p>referencia</p></td>
+<td class="text-right"><p>186.497</p></td>
+<td class="text-right"><p>0,8508</p></td>
+<td><p>[0,844; 0,857]</p></td>
+<td class="text-right"><p>0,0054</p></td>
+<td class="text-right"><p>0,720</p></td>
+<td class="text-right"><p>0,062</p></td>
+</tr>
+<tr class="row-even"><td><p>FCN</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0508</span></code> (64, 64, 128)/(1, 0, 0)</p></td>
+<td><p>finalista</p></td>
+<td class="text-right"><p>334.145</p></td>
+<td class="text-right"><p>0,8474</p></td>
+<td><p>[0,840; 0,855]</p></td>
+<td class="text-right"><p>0,0060</p></td>
+<td class="text-right"><p>0,766</p></td>
+<td class="text-right"><p>0,068</p></td>
+</tr>
+<tr class="row-odd"><td><p>FCN</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0674</span></code> (128, 32, 256)/(0, 1, 0)</p></td>
+<td><p>finalista</p></td>
+<td class="text-right"><p>861.633</p></td>
+<td class="text-right"><p>0,8463</p></td>
+<td><p>[0,840; 0,853]</p></td>
+<td class="text-right"><p>0,0054</p></td>
+<td class="text-right"><p>0,755</p></td>
+<td class="text-right"><p>0,058</p></td>
+</tr>
+<tr class="row-even"><td><p>FCN</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0835</span></code> (256, 16, 256)/(0, 1, 1)</p></td>
+<td><p>finalista</p></td>
+<td class="text-right"><p>1.263.905</p></td>
+<td class="text-right"><p>0,8424</p></td>
+<td><p>[0,828; 0,857]</p></td>
+<td class="text-right"><p>0,0118</p></td>
+<td class="text-right"><p>0,765</p></td>
+<td class="text-right"><p>0,057</p></td>
+</tr>
+<tr class="row-odd"><td><p>FCN</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0717</span></code> (128, 64, 256)/(1, 0, 1)</p></td>
+<td><p>finalista</p></td>
+<td class="text-right"><p>999.937</p></td>
+<td class="text-right"><p>0,8406</p></td>
+<td><p>[0,827; 0,855]</p></td>
+<td class="text-right"><p>0,0113</p></td>
+<td class="text-right"><p>0,770</p></td>
+<td class="text-right"><p>0,061</p></td>
+</tr>
+<tr class="row-even"><td><p>FCN</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0957</span></code> (256, 128, 256)/(1, 0, 1)</p></td>
+<td><p>finalista</p></td>
+<td class="text-right"><p>1.925.377</p></td>
+<td class="text-right"><p>0,8401</p></td>
+<td><p>[0,791; 0,889]</p></td>
+<td class="text-right"><p>0,0396</p></td>
+<td class="text-right"><p>0,755</p></td>
+<td class="text-right"><p>0,050</p></td>
+</tr>
+<tr class="row-odd"><td><p>FCN</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0467</span></code> (64, 32, 128)/(0, 1, 1)</p></td>
+<td><p>finalista</p></td>
+<td class="text-right"><p>251.137</p></td>
+<td class="text-right"><p>0,8382</p></td>
+<td><p>[0,822; 0,854]</p></td>
+<td class="text-right"><p>0,0131</p></td>
+<td class="text-right"><p>0,758</p></td>
+<td class="text-right"><p>0,064</p></td>
+</tr>
+<tr class="row-even"><td><p>FCN</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0673</span></code> (128, 32, 256)/(0, 0, 1)</p></td>
+<td><p>finalista</p></td>
+<td class="text-right"><p>861.633</p></td>
+<td class="text-right"><p>0,8314</p></td>
+<td><p>[0,813; 0,850]</p></td>
+<td class="text-right"><p>0,0150</p></td>
+<td class="text-right"><p>0,759</p></td>
+<td class="text-right"><p>0,055</p></td>
+</tr>
+<tr class="row-odd"><td><p>FCN</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0056</span></code> (16, 32, 64)/(0, 0, 0)</p></td>
+<td><p>heredada</p></td>
+<td class="text-right"><p>72.145</p></td>
+<td class="text-right"><p>0,8309</p></td>
+<td><p>[0,822; 0,840]</p></td>
+<td class="text-right"><p>0,0071</p></td>
+<td class="text-right"><p>0,727</p></td>
+<td class="text-right"><p>0,050</p></td>
+</tr>
+<tr class="row-even"><td><p>U-Net</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0593</span></code> (64, 256, 256)/(0, 0, 1) (mayor media)</p></td>
+<td><p>finalista</p></td>
+<td class="text-right"><p>3.948.033</p></td>
+<td class="text-right"><p>0,8821</p></td>
+<td><p>[0,875; 0,889]</p></td>
+<td class="text-right"><p>0,0056</p></td>
+<td class="text-right"><p>0,781</p></td>
+<td class="text-right"><p>0,067</p></td>
+</tr>
+<tr class="row-odd"><td><p>U-Net</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0591</span></code> (64, 256, 128)/(1, 1, 1)</p></td>
+<td><p>finalista</p></td>
+<td class="text-right"><p>2.915.585</p></td>
+<td class="text-right"><p>0,8806</p></td>
+<td><p>[0,873; 0,888]</p></td>
+<td class="text-right"><p>0,0064</p></td>
+<td class="text-right"><p>0,782</p></td>
+<td class="text-right"><p>0,058</p></td>
+</tr>
+<tr class="row-even"><td><p>U-Net</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0372</span></code> (32, 256, 32)/(1, 0, 0)</p></td>
+<td><p>finalista</p></td>
+<td class="text-right"><p>2.103.361</p></td>
+<td class="text-right"><p>0,8776</p></td>
+<td><p>[0,864; 0,891]</p></td>
+<td class="text-right"><p>0,0108</p></td>
+<td class="text-right"><p>0,781</p></td>
+<td class="text-right"><p>0,057</p></td>
+</tr>
+<tr class="row-odd"><td><p>U-Net</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0569</span></code> (64, 256, 32)/(0, 0, 1)</p></td>
+<td><p>finalista</p></td>
+<td class="text-right"><p>2.334.785</p></td>
+<td class="text-right"><p>0,8764</p></td>
+<td><p>[0,864; 0,889]</p></td>
+<td class="text-right"><p>0,0103</p></td>
+<td class="text-right"><p>0,783</p></td>
+<td class="text-right"><p>0,053</p></td>
+</tr>
+<tr class="row-even"><td><p>U-Net</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0576</span></code> (64, 256, 64)/(0, 0, 0)</p></td>
+<td><p>finalista</p></td>
+<td class="text-right"><p>2.509.953</p></td>
+<td class="text-right"><p>0,8761</p></td>
+<td><p>[0,869; 0,883]</p></td>
+<td class="text-right"><p>0,0059</p></td>
+<td class="text-right"><p>0,783</p></td>
+<td class="text-right"><p>0,063</p></td>
+</tr>
+<tr class="row-odd"><td><p>U-Net</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0388</span></code> (32, 256, 128)/(1, 0, 0)</p></td>
+<td><p>finalista</p></td>
+<td class="text-right"><p>2.684.161</p></td>
+<td class="text-right"><p>0,8752</p></td>
+<td><p>[0,861; 0,889]</p></td>
+<td class="text-right"><p>0,0113</p></td>
+<td class="text-right"><p>0,784</p></td>
+<td class="text-right"><p>0,060</p></td>
+</tr>
+<tr class="row-even"><td><p>U-Net</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0574</span></code> (64, 256, 32)/(1, 1, 0)</p></td>
+<td><p>finalista</p></td>
+<td class="text-right"><p>2.334.785</p></td>
+<td class="text-right"><p>0,8741</p></td>
+<td><p>[0,857; 0,891]</p></td>
+<td class="text-right"><p>0,0135</p></td>
+<td class="text-right"><p>0,788</p></td>
+<td class="text-right"><p>0,060</p></td>
+</tr>
+<tr class="row-odd"><td><p>U-Net</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0498</span></code> (64, 64, 64)/(0, 1, 0) <strong>(ganadora)</strong></p></td>
+<td><p>referencia</p></td>
+<td class="text-right"><p>407.937</p></td>
+<td class="text-right"><p>0,8729</p></td>
+<td><p>[0,863; 0,883]</p></td>
+<td class="text-right"><p>0,0079</p></td>
+<td class="text-right"><p>0,732</p></td>
+<td class="text-right"><p>0,058</p></td>
+</tr>
+<tr class="row-even"><td><p>U-Net</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0566</span></code> (64, 256, 16)/(1, 1, 0)</p></td>
+<td><p>finalista</p></td>
+<td class="text-right"><p>2.254.113</p></td>
+<td class="text-right"><p>0,8726</p></td>
+<td><p>[0,864; 0,882]</p></td>
+<td class="text-right"><p>0,0073</p></td>
+<td class="text-right"><p>0,785</p></td>
+<td class="text-right"><p>0,058</p></td>
+</tr>
+<tr class="row-odd"><td><p>U-Net</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0560</span></code> (64, 256, 16)/(0, 0, 0)</p></td>
+<td><p>finalista</p></td>
+<td class="text-right"><p>2.254.113</p></td>
+<td class="text-right"><p>0,8724</p></td>
+<td><p>[0,866; 0,879]</p></td>
+<td class="text-right"><p>0,0050</p></td>
+<td class="text-right"><p>0,796</p></td>
+<td class="text-right"><p>0,058</p></td>
+</tr>
+<tr class="row-even"><td><p>U-Net</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0541</span></code> (64, 128, 64)/(1, 0, 1)</p></td>
+<td><p>finalista</p></td>
+<td class="text-right"><p>887.425</p></td>
+<td class="text-right"><p>0,8697</p></td>
+<td><p>[0,857; 0,882]</p></td>
+<td class="text-right"><p>0,0099</p></td>
+<td class="text-right"><p>0,790</p></td>
+<td class="text-right"><p>0,059</p></td>
+</tr>
+<tr class="row-odd"><td><p>U-Net</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0056</span></code> (16, 32, 64)/(0, 0, 0)</p></td>
+<td><p>heredada</p></td>
+<td class="text-right"><p>118.273</p></td>
+<td class="text-right"><p>0,8398</p></td>
+<td><p>[0,833; 0,847]</p></td>
+<td class="text-right"><p>0,0057</p></td>
+<td class="text-right"><p>0,701</p></td>
+<td class="text-right"><p>0,041</p></td>
+</tr>
+<tr class="row-even"><td><p>SegNet</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0756</span></code> (128, 128, 256)/(1, 0, 0) (mayor media)</p></td>
+<td><p>finalista</p></td>
+<td class="text-right"><p>1.954.945</p></td>
+<td class="text-right"><p>0,8734</p></td>
+<td><p>[0,863; 0,883]</p></td>
+<td class="text-right"><p>0,0081</p></td>
+<td class="text-right"><p>0,775</p></td>
+<td class="text-right"><p>0,060</p></td>
+</tr>
+<tr class="row-odd"><td><p>SegNet</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0794</span></code> (128, 256, 256)/(0, 1, 0)</p></td>
+<td><p>finalista</p></td>
+<td class="text-right"><p>3.020.289</p></td>
+<td class="text-right"><p>0,8734</p></td>
+<td><p>[0,866; 0,881]</p></td>
+<td class="text-right"><p>0,0059</p></td>
+<td class="text-right"><p>0,767</p></td>
+<td class="text-right"><p>0,065</p></td>
+</tr>
+<tr class="row-even"><td><p>SegNet</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0737</span></code> (128, 128, 64)/(0, 0, 1)</p></td>
+<td><p>finalista</p></td>
+<td class="text-right"><p>1.155.841</p></td>
+<td class="text-right"><p>0,8675</p></td>
+<td><p>[0,857; 0,878]</p></td>
+<td class="text-right"><p>0,0086</p></td>
+<td class="text-right"><p>0,769</p></td>
+<td class="text-right"><p>0,057</p></td>
+</tr>
+<tr class="row-odd"><td><p>SegNet</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0920</span></code> (256, 128, 16)/(0, 0, 0)</p></td>
+<td><p>finalista</p></td>
+<td class="text-right"><p>3.128.481</p></td>
+<td class="text-right"><p>0,8645</p></td>
+<td><p>[0,854; 0,875]</p></td>
+<td class="text-right"><p>0,0084</p></td>
+<td class="text-right"><p>0,778</p></td>
+<td class="text-right"><p>0,070</p></td>
+</tr>
+<tr class="row-even"><td><p>SegNet</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0585</span></code> (64, 256, 128)/(0, 0, 1)</p></td>
+<td><p>finalista</p></td>
+<td class="text-right"><p>1.510.529</p></td>
+<td class="text-right"><p>0,8645</p></td>
+<td><p>[0,856; 0,873]</p></td>
+<td class="text-right"><p>0,0069</p></td>
+<td class="text-right"><p>0,768</p></td>
+<td class="text-right"><p>0,064</p></td>
+</tr>
+<tr class="row-odd"><td><p>SegNet</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0966</span></code> (256, 256, 16)/(1, 1, 0)</p></td>
+<td><p>finalista</p></td>
+<td class="text-right"><p>4.181.537</p></td>
+<td class="text-right"><p>0,8624</p></td>
+<td><p>[0,839; 0,885]</p></td>
+<td class="text-right"><p>0,0185</p></td>
+<td class="text-right"><p>0,767</p></td>
+<td class="text-right"><p>0,051</p></td>
+</tr>
+<tr class="row-even"><td><p>SegNet</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0760</span></code> (128, 256, 16)/(0, 0, 0)</p></td>
+<td><p>finalista</p></td>
+<td class="text-right"><p>1.817.889</p></td>
+<td class="text-right"><p>0,8617</p></td>
+<td><p>[0,842; 0,881]</p></td>
+<td class="text-right"><p>0,0156</p></td>
+<td class="text-right"><p>0,785</p></td>
+<td class="text-right"><p>0,056</p></td>
+</tr>
+<tr class="row-odd"><td><p>SegNet</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0498</span></code> (64, 64, 64)/(0, 1, 0) <strong>(ganadora)</strong></p></td>
+<td><p>referencia</p></td>
+<td class="text-right"><p>338.369</p></td>
+<td class="text-right"><p>0,8607</p></td>
+<td><p>[0,846; 0,875]</p></td>
+<td class="text-right"><p>0,0117</p></td>
+<td class="text-right"><p>0,721</p></td>
+<td class="text-right"><p>0,053</p></td>
+</tr>
+<tr class="row-even"><td><p>SegNet</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0726</span></code> (128, 128, 16)/(1, 1, 0)</p></td>
+<td><p>finalista</p></td>
+<td class="text-right"><p>1.059.745</p></td>
+<td class="text-right"><p>0,8580</p></td>
+<td><p>[0,841; 0,875]</p></td>
+<td class="text-right"><p>0,0136</p></td>
+<td class="text-right"><p>0,772</p></td>
+<td class="text-right"><p>0,055</p></td>
+</tr>
+<tr class="row-odd"><td><p>SegNet</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0630</span></code> (128, 16, 128)/(1, 1, 0)</p></td>
+<td><p>finalista</p></td>
+<td class="text-right"><p>801.585</p></td>
+<td class="text-right"><p>0,8531</p></td>
+<td><p>[0,841; 0,866]</p></td>
+<td class="text-right"><p>0,0101</p></td>
+<td class="text-right"><p>0,767</p></td>
+<td class="text-right"><p>0,049</p></td>
+</tr>
+<tr class="row-even"><td><p>SegNet</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0838</span></code> (256, 16, 256)/(1, 1, 0)</p></td>
+<td><p>finalista</p></td>
+<td class="text-right"><p>3.075.377</p></td>
+<td class="text-right"><p>0,8238</p></td>
+<td><p>[0,769; 0,879]</p></td>
+<td class="text-right"><p>0,0445</p></td>
+<td class="text-right"><p>0,766</p></td>
+<td class="text-right"><p>0,062</p></td>
+</tr>
+<tr class="row-odd"><td><p>SegNet</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a0056</span></code> (16, 32, 64)/(0, 0, 0)</p></td>
+<td><p>heredada</p></td>
+<td class="text-right"><p>85.761</p></td>
+<td class="text-right"><p>0,8214</p></td>
+<td><p>[0,806; 0,837]</p></td>
+<td class="text-right"><p>0,0126</p></td>
+<td class="text-right"><p>0,696</p></td>
+<td class="text-right"><p>0,033</p></td>
+</tr>
+</tbody>
+</table>
+<p>Los datos de cada corrida (configuración, historia por época, predicciones de validación) están en
+<code class="docutils literal notranslate"><span class="pre">resultados/busqueda_arquitectura_e2/</span></code>, sin los pesos, que quedan en Drive. Se regeneran las tablas, la lectura y la
+figura con <code class="docutils literal notranslate"><span class="pre">scripts/lectura_busqueda_arquitectura_e2.py</span> <span class="pre">--figura</span></code>.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="entrenamiento_complementario_e2.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Entrenamientos complementarios</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="cierre_e2.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Discusión, limitaciones y cierre pendiente</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cifras-por-familia">Cifras por familia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecucion">Ejecución</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ganadora-por-la-regla-fijada-antes">1. Ganadora por la regla fijada antes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frente-a-la-compacta-heredada">2. Frente a la compacta heredada</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-fase-1-no-ordeno-a-los-finalistas">3. La fase 1 no ordenó a los finalistas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-espacio-fase-1">4. El espacio (fase 1)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-cambia-y-que-no">5. Qué cambia y qué no</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#detalle-de-la-fase-2">Detalle de la fase 2</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Luis Perez y Daniel Carbono
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

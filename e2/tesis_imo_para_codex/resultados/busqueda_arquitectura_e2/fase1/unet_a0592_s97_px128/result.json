@@ -1,0 +1,91 @@
+{
+  "completed": true,
+  "fingerprint": "7364063bc18d7ebf26b715fde3638cb125b86244059e3b64e96116e6d438a15b",
+  "id": "unet_a0592_s97_px128",
+  "bloque": "fase1",
+  "familia": "unet",
+  "arq": "a0592",
+  "w": [
+    64,
+    256,
+    256
+  ],
+  "b": [
+    0,
+    0,
+    0
+  ],
+  "semilla": 97,
+  "optim": {
+    "optimizer": "Adam",
+    "lr": 0.0003,
+    "weight_decay": 0.0
+  },
+  "epocas": 6,
+  "paciencia": 5,
+  "px": 128,
+  "fraccion_train": 1.0,
+  "n_train": 1015,
+  "best_val_group_Dice": 0.7496199066932008,
+  "best_epoch": 4,
+  "val_loss_best_epoch": 0.16529948097747674,
+  "train_loss_best_epoch": 0.14945990431117895,
+  "epochs_completed": 6,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.30586381807115864,
+      "val_loss": 0.25536866038354167,
+      "val_group_Dice": 0.6185623469972316,
+      "seconds": 31.161445064000873,
+      "train_seconds": 27.363845457002753
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.20537330007611823,
+      "val_loss": 0.20174340143321304,
+      "val_group_Dice": 0.6912080785929046,
+      "seconds": 32.37936328299838,
+      "train_seconds": 28.008094781998807
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.16495289657209894,
+      "val_loss": 0.17761861962702022,
+      "val_group_Dice": 0.7254687624406905,
+      "seconds": 31.12439386999904,
+      "train_seconds": 26.299402098000428
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.14945990431117895,
+      "val_loss": 0.16529948097747674,
+      "val_group_Dice": 0.7496199066932008,
+      "seconds": 27.356293123000796,
+      "train_seconds": 23.454561991002265
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.13600859911424185,
+      "val_loss": 0.16548077696336244,
+      "val_group_Dice": 0.7490327030608385,
+      "seconds": 25.650732775000506,
+      "train_seconds": 21.727105150999705
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.11465065583513288,
+      "val_loss": 0.1580403817544153,
+      "val_group_Dice": 0.7452425268886125,
+      "seconds": 24.45414683099807,
+      "train_seconds": 21.134813623997616
+    }
+  ],
+  "parameters": 3948033,
+  "macs": 62931337216,
+  "macs_efectivos": 15732834304,
+  "seconds_this_session": 172.1303869049989,
+  "seconds_total": 172.12637494599767,
+  "device": "cuda",
+  "test_evaluated": false
+}

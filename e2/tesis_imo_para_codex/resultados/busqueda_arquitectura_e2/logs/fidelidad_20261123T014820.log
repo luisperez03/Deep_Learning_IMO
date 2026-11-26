@@ -1,0 +1,48 @@
+{
+  "regla": "Con el piloto en L4 se estiman las horas de ajuste previo + fase 1 + repetición de cada opción. Se elige la primera opción, en el orden A, B, C, cuya estimación no pase del presupuesto de horas que se fija antes de ver el piloto. Si ninguna cabe, se usa C y se registra que excede el presupuesto. La elección queda en fidelidad.json y no se cambia después de empezar el ajuste previo. La fase 2 es siempre a fidelidad completa.",
+  "presupuesto_horas_fase1": 50.0,
+  "opciones_estimadas": [
+    {
+      "nombre": "A",
+      "px": 256,
+      "fraccion_train": 1.0,
+      "descripcion": "La del protocolo: imagen completa a 256 px, todo train",
+      "horas_fase1": 98.4,
+      "horas_ruido": 4.5,
+      "horas_ajuste": 0.15,
+      "horas_total_antes_de_fase2": 103.0
+    },
+    {
+      "nombre": "B",
+      "px": 128,
+      "fraccion_train": 1.0,
+      "descripcion": "La red ve la imagen reducida a 128 px por promedio de área; su salida vuelve a 256 por interpolación bilineal y la pérdida y el Dice se miden a 256 contra la máscara original. Todo train. Cómputo de la red / 4",
+      "horas_fase1": 47.5,
+      "horas_ruido": 2.0,
+      "horas_ajuste": 0.12,
+      "horas_total_antes_de_fase2": 49.6
+    },
+    {
+      "nombre": "C",
+      "px": 128,
+      "fraccion_train": 0.5,
+      "descripcion": "Como B, entrenando con la mitad de train elegida por grupos de similitud (semilla_subconjunto), la misma para todas. Validación completa",
+      "horas_fase1": 26.6,
+      "horas_ruido": 1.1,
+      "horas_ajuste": 0.07,
+      "horas_total_antes_de_fase2": 27.7
+    }
+  ],
+  "elegida": {
+    "nombre": "B",
+    "px": 128,
+    "fraccion_train": 1.0,
+    "descripcion": "La red ve la imagen reducida a 128 px por promedio de área; su salida vuelve a 256 por interpolación bilineal y la pérdida y el Dice se miden a 256 contra la máscara original. Todo train. Cómputo de la red / 4",
+    "horas_fase1": 47.5,
+    "horas_ruido": 2.0,
+    "horas_ajuste": 0.12,
+    "horas_total_antes_de_fase2": 49.6
+  },
+  "cabe_en_el_presupuesto": true,
+  "desviacion": "Fidelidad de la fase 1 reducida respecto del 20 % de épocas a resolución completa; se declara y se mide su efecto con la correlación de rangos fase 1 - fase 2."
+}

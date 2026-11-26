@@ -1,0 +1,92 @@
+{
+  "estimado": true,
+  "nota": "Piloto de una época con la caché llena, un proceso. No es una medición de la búsqueda.",
+  "modelo_tiempo": {
+    "fcn@128": {
+      "train_a": 6.697009967408736,
+      "train_c": 1.9475084946415931e-10,
+      "val_a": 1.1258202081788697,
+      "val_c": 3.864965349325567e-12,
+      "n": 5
+    },
+    "fcn@256": {
+      "train_a": 5.385955101423747,
+      "train_c": 3.725538310376817e-10,
+      "val_a": 0.7977838089828266,
+      "val_c": 2.111749957244896e-11,
+      "n": 5
+    },
+    "unet@128": {
+      "train_a": 5.7239314252951505,
+      "train_c": 2.7422643805791347e-10,
+      "val_a": 0.9967925640377843,
+      "val_c": 1.0092383899041193e-11,
+      "n": 5
+    },
+    "unet@256": {
+      "train_a": 5.792369172368778,
+      "train_c": 3.411500989017449e-10,
+      "val_a": 0.7259010012031033,
+      "val_c": 2.3193756346413705e-11,
+      "n": 5
+    },
+    "segnet@128": {
+      "train_a": 5.913865833019362,
+      "train_c": 2.7331551367744576e-10,
+      "val_a": 1.0383344642032917,
+      "val_c": 5.2939670320347125e-12,
+      "n": 5
+    },
+    "segnet@256": {
+      "train_a": 5.6113120639903125,
+      "train_c": 3.8057208927907096e-10,
+      "val_a": 0.7247415272570049,
+      "val_c": 2.36363217618497e-11,
+      "n": 5
+    }
+  },
+  "opciones_fase1": [
+    {
+      "nombre": "A",
+      "px": 256,
+      "fraccion_train": 1.0,
+      "descripcion": "La del protocolo: imagen completa a 256 px, todo train",
+      "horas_fase1": 98.4,
+      "horas_ruido": 4.5,
+      "horas_ajuste": 0.15,
+      "horas_total_antes_de_fase2": 103.0
+    },
+    {
+      "nombre": "B",
+      "px": 128,
+      "fraccion_train": 1.0,
+      "descripcion": "La red ve la imagen reducida a 128 px por promedio de área; su salida vuelve a 256 por interpolación bilineal y la pérdida y el Dice se miden a 256 contra la máscara original. Todo train. Cómputo de la red / 4",
+      "horas_fase1": 47.5,
+      "horas_ruido": 2.0,
+      "horas_ajuste": 0.12,
+      "horas_total_antes_de_fase2": 49.6
+    },
+    {
+      "nombre": "C",
+      "px": 128,
+      "fraccion_train": 0.5,
+      "descripcion": "Como B, entrenando con la mitad de train elegida por grupos de similitud (semilla_subconjunto), la misma para todas. Validación completa",
+      "horas_fase1": 26.6,
+      "horas_ruido": 1.1,
+      "horas_ajuste": 0.07,
+      "horas_total_antes_de_fase2": 27.7
+    }
+  ],
+  "horas_fase2_cota_30_epocas": {
+    "k10": {
+      "mediana_del_espacio": 20.1,
+      "los_mas_caros": 91.4
+    },
+    "k20": {
+      "mediana_del_espacio": 36.8,
+      "los_mas_caros": 165.5
+    }
+  },
+  "nota_fase2": "Cota con 30 épocas; con paciencia 5 las compactas del benchmark promediaron 19,6 a 29,2. Depende de qué finalistas salgan: los anchos cuestan más.",
+  "nota_paralelo": "Horas de un proceso. Varios procesos en la misma GPU bajan el reloj mientras la GPU no esté saturada."
+}

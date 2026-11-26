@@ -152,10 +152,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="metodos_e2.html">Diseño experimental y ruta de segmentación E2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="resultados_e2.html">Resultados E2: benchmark e inferencia</a></li>
 <li class="toctree-l1"><a class="reference internal" href="complementos_e2.html">Complementos locales del 20 de noviembre</a></li>
-<li class="toctree-l1"><a class="reference internal" href="avance_cierre_e2.html">Avance del cierre del 20 al 24 de noviembre</a></li>
+<li class="toctree-l1"><a class="reference internal" href="avance_cierre_e2.html">Avance del cierre del 20 al 26 de noviembre</a></li>
 <li class="toctree-l1"><a class="reference internal" href="complementos_datos_e2.html">Complementos de datos: fuga, shift, ruido, techo y EDA por clase</a></li>
 <li class="toctree-l1"><a class="reference internal" href="diagnosticos_e2.html">Diagnósticos sobre los pesos congelados</a></li>
 <li class="toctree-l1"><a class="reference internal" href="entrenamiento_complementario_e2.html">Entrenamientos complementarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="busqueda_arquitectura_e2.html">Búsqueda de arquitectura de las compactas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cierre_e2.html">Discusión, limitaciones y cierre pendiente</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Verificación de requisitos del Entregable 2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reproducibilidad_e2.html">Reproducción y archivos de entrega</a></li>
@@ -301,6 +302,7 @@ document.write(`
 <p><strong>Actualización del 22/11 (costo, GPU).</strong> VM-UNet y las demás redes medidas en la L4 (fila 44 cerrada).</p>
 <p><strong>Actualización del 22/11 (reproducción).</strong> Reproducción completa en un clon limpio de GitHub con los datos externos declarados: tablas y contrastes del test con discrepancia 0, recálculo independiente desde las máscaras y libro compilado sin avisos (filas 55 y 68; B20 y B21).</p>
 <p><strong>Actualización del 22/11 (Q5 y Q6).</strong> Búsquedas transversales Q5 y Q6 ejecutadas y exportadas en las dos bases (fila 24); corpus de 6.366 grupos y censo del bloque transversal (filas 20, 21 y 30).</p>
+<p><strong>Actualización del 22/11 (arquitectura).</strong> Búsqueda de arquitectura en dos fases para las tres compactas heredadas (fila 38 y B14): protocolo a priori, cuaderno y, si están, resultados de validación.</p>
 <section id="problema-hipotesis-datos-y-eda-rubrica-15">
 <h2>Problema, hipótesis, datos y EDA — rúbrica 15 %<a class="headerlink" href="#problema-hipotesis-datos-y-eda-rubrica-15" title="Permalink to this heading">#</a></h2>
 <table class="table">
@@ -527,8 +529,8 @@ document.write(`
 </tr>
 <tr class="row-even"><td><p>38</p></td>
 <td><p>Arquitectura indefinida: 1000 + finalistas (52–58)</p></td>
-<td><p>P</p></td>
-<td><p>Siete variantes publicadas definidas; justificar herencia de compactas locales. No afirmar búsqueda realizada</p></td>
+<td><p>C</p></td>
+<td><p>Siete variantes publicadas con arquitectura definida; FCN, U-Net y SegNet compactas (diseño propio) recorren el espacio de la sección 14: 3 bloques, anchos {16..256}^3, dropout 0,2 en {0,1}^3 = 1000 por familia. Protocolo a priori del 22/11 (<code class="docutils literal notranslate"><span class="pre">docs/PROTOCOLO_BUSQUEDA_ARQUITECTURA_E2.md</span></code>, <code class="docutils literal notranslate"><span class="pre">config/busqueda_arquitectura_e2.json</span></code>), solo validación, exploratorio. Ejecutada: ajuste previo de la tasa con (64,64,64)/(0,1,0); fase 1 con las 1000 × 3; k = 10 finalistas + referencia + heredada con 5 semillas (fase 2). Fase 1 a fidelidad B (128 px, 100 % de train, 6 de 30 épocas), desviación declarada. FCN: ganadora (64, 64, 64)/(0, 1, 0), Dice val 0,851 (IC95 0,844–0,857); frente a la heredada 0,020 (el ganador supera a la heredada por menos de δ); Spearman fase 1-2 -0,07; U-Net: ganadora (64, 64, 64)/(0, 1, 0), Dice val 0,873 (IC95 0,863–0,883); frente a la heredada 0,033 (el ganador supera a la heredada por δ o más); Spearman fase 1-2 -0,96; SegNet: ganadora (64, 64, 64)/(0, 1, 0), Dice val 0,861 (IC95 0,846–0,875); frente a la heredada 0,039 (el ganador supera a la heredada por δ o más); Spearman fase 1-2 0,39. <code class="docutils literal notranslate"><span class="pre">resultados/busqueda_arquitectura_e2/</span></code> (<code class="docutils literal notranslate"><span class="pre">RESUMEN.json</span></code>, <code class="docutils literal notranslate"><span class="pre">LECTURA.md</span></code>)</p></td>
 </tr>
 <tr class="row-odd"><td><p>39</p></td>
 <td><p>Tres E1 y baseline trivial adicional (11,22)</p></td>
@@ -828,8 +830,8 @@ document.write(`
 <td><p>ID63: techo 0,941 por reanotación independiente; γ por red</p></td>
 </tr>
 <tr class="row-odd"><td><p>B14 Arquitecturas sin diseño y dos fases</p></td>
-<td><p>P</p></td>
-<td><p>ID38; compactas heredadas requieren justificación</p></td>
+<td><p>C</p></td>
+<td><p>ID38; búsqueda en dos fases ejecutada para las tres compactas</p></td>
 </tr>
 <tr class="row-even"><td><p>B15 Selección val/equivalencia/sesgo ganador</p></td>
 <td><p>C</p></td>
