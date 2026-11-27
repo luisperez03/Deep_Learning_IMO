@@ -1,5 +1,12 @@
 # Bitácora de decisiones y preguntas
 
+## 2026-11-26 — Revisión editorial del cierre E2
+
+- Revisión sobre `cd2de0c`: se corrigen instrucciones conversacionales, estados antiguos y la interpretación del TOST, conservando la declaración de asistencia de IA en el cribado.
+- La revisión humana de errores se describe como confirmación global. Sin registros individuales no se presenta un acuerdo independiente 88/88 ni sus intervalos; la fila 65 queda parcial.
+- Se corrige el formato de valores p pequeños y su generador; los resultados numéricos originales se conservan. Se aclara el subtotal de costo anterior a la búsqueda de arquitectura.
+- Alcance autorizado: edición y compilación local del libro, sin entrenamientos, inferencia ni nuevos análisis pesados. E3 continúa como propuesta pendiente de protocolo y evaluación independiente.
+
 ## 2026-11-20 — Integración E2 y revisión completa de requisitos
 
 - El usuario pidió integrar todo y revisar cada requisito para entregar el domingo 22/11. Confirmó que el profesor acepta diez modelos totales (3 E1 + 7 nuevos). Esta confirmación no dispensa otros requisitos de la guía.

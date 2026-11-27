@@ -12,4 +12,4 @@ Resultados exploratorios posteriores al test original. No alteran selección ori
 
 La falta de rechazo adversarial no demuestra ausencia de shift. Estas permutaciones prueban dominio, no etiquetas de segmentación. Las distancias de borde son a 256×256 con padding excluido y penalización diagonal para predicciones vacías; solo seed11. La descomposición de sumas de cuadrados es descriptiva, no estimación poblacional de efectos aleatorios. El clásico tiene tres candidatos de ajuste: no hubo igualdad retrospectiva de HPO con redes.
 
-Quedan preparados los scripts de diagnósticos GPU, sin ejecución ni notebook complementario terminado. Consultar `CONTINUAR_CLAUDE_CODE.md` para el traspaso completo.
+Este apartado conserva los resultados locales del 20/11. Los diagnósticos GPU y los experimentos complementarios se ejecutaron posteriormente y se presentan en sus capítulos; el avance de cierre recoge el estado al 26/11.

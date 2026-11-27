@@ -1,8 +1,8 @@
 # Avance del cierre del Entregable 2 — 20 al 26/11/2026
 
 Trabajo posterior al commit `8395ea5` (20/11), en la rama `cierre-e2`, copiada a `main` en cada publicación. El estado
-fila por fila está en `docs/revision_entregable2/CHECKLIST_ENTREGA_E2.md`. Al 26/11 queda abierta solo la fila 75
-(ensayo de la sustentación). Los análisis posteriores al test son exploratorios: no cambian la selección original ni
+fila por fila está en `docs/revision_entregable2/CHECKLIST_ENTREGA_E2.md`. Tras la revisión editorial del 26/11 quedan parciales las filas 65
+(registro individual de la revisión humana de errores) y 75 (ensayo de sustentación). Los análisis posteriores al test son exploratorios: no cambian la selección original ni
 los protocolos cerrados.
 
 ## Búsqueda de arquitectura de las compactas (fila 38 y B14), terminada el 26/11
@@ -34,7 +34,7 @@ Solo validación; el test no se cargó.
 
 | Análisis | Resultado | Evidencia |
 |---|---|---|
-| Equivalencia (filas 04 y 54) | TOST δ = 0,02 en test con 122 grupos, t y bootstrap, Holm(9). TransUNet − FCN 0,0091, IC90 [−0,0061; 0,0242], p = 0,12: indeterminado. U-Net − FCN −0,0072, p Holm 0,028: equivalentes, pero depende de la semilla 53 (sin ella, p = 0,062). Ninguna red es equivalente a TransUNet | `libro/resultados_e2.md` |
+| Equivalencia (filas 04 y 54) | TOST δ = 0,02 en test con 122 grupos, t y bootstrap, Holm(9). TransUNet − FCN 0,0091, IC90 [−0,0061; 0,0242], p = 0,12: indeterminado. U-Net − FCN −0,0072, p Holm 0,028: equivalentes, pero depende de la semilla 53 (sin ella, p = 0,062). No se demostró equivalencia de ninguna red con TransUNet | `libro/resultados_e2.md` |
 | Supuestos y sensibilidad (fila 51) | Simetría de diferencias rechazada en 6 de 9 contrastes con FCN en test; donde se rechaza, la prueba del signo decide igual que Wilcoxon; los cuatro procedimientos coinciden en 8 de 9 | `libro/resultados_e2.md` |
 | Descomposición de varianza (fila 53) | Modelo mixto (`lme4`) sobre 10.900 Dice de validación: grupo 64,0 % (IC95 53,0–72,2), red × grupo 15,1 %, residuo 15,2 %, red 3,8 %, corrida 0,6 %, semilla común 0,07 % | `libro/resultados_e2.md` |
 
@@ -64,9 +64,9 @@ Solo validación; el test no se cargó.
 | Análisis | Resultado | Evidencia |
 |---|---|---|
 | Atajos (fila 13) | Prueba contrafactual con 10 redes × 5 semillas: dependencia del contexto en TransUNet y SegFormer-B0; ninguna infiere el rótulo borrado; en gris todas caen 0,29–0,42 | `resultados/errores_atajos_e2/` |
-| Taxonomía de errores (fila 65) | Censo de errores de validación con taxonomía previa de dos ejes; 188–482 casos por red; revisión humana de 88 casos que confirma la clasificación automática | `scripts/errores_atajos_e2.py` |
+| Taxonomía de errores (fila 65) | Censo de errores de validación con taxonomía previa de dos ejes; 188–482 casos por red; revisión cualitativa global de 88 paneles, sin registro individual; validación humana pendiente de completar | `scripts/errores_atajos_e2.py` |
 | Subgrupos y daño (fila 67) | Caen el cuartil de área menor (6 de 10 redes) y la poca luz (7 de 10); omisión grave 3,8–7,7 % en nueve redes y 20 % en SegFormer | `resultados/errores_atajos_e2/` |
-| Costo computacional (filas 44 y 45) | Parámetros, FLOPs, memoria y latencia de las 10 en GPU L4 (VM-UNet 19,5 GFLOPs y 32,7 ms); los FLOPs no ordenan la latencia. Costo total registrado 33,3 h de L4, mínimo | `scripts/costo_total_e2.py`, `colab/Medir_Costo_GPU_E2.ipynb` |
+| Costo computacional (filas 44 y 45) | Parámetros, FLOPs, memoria y latencia de las 10 en GPU L4 (VM-UNet 19,5 GFLOPs y 32,7 ms); los FLOPs no ordenan la latencia. Subtotal registrado al 22/11: 33,3 h de L4; no incluye la búsqueda de arquitectura posterior. Esta suma 243,7 h por corrida concurrente, con unas 61 h de reloj estimadas en una sola L4; ambas unidades no deben sumarse como tiempo de ocupación de GPU | `scripts/costo_total_e2.py`, `colab/Medir_Costo_GPU_E2.ipynb` |
 
 ## Reproducción y publicación
 

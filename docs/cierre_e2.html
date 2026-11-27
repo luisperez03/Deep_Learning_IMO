@@ -1,98 +1,98 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="es" >
+<html lang="es" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Discusión, limitaciones y cierre pendiente &#8212; Segmentación de etiquetas de mercancías peligrosas</title>
+    <title>Discusión, limitaciones y próximos pasos &#8212; Segmentación de etiquetas de mercancías peligrosas</title>
   
   
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
 
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
-  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script>let toggleHintShow = 'Click to show';</script>
-    <script>let toggleHintHide = 'Click to hide';</script>
+    <script src="_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script src="_static/translations.js"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/translations.js?v=d190bf04"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'cierre_e2';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Búsqueda" href="search.html" />
     <link rel="next" title="Verificación de requisitos del Entregable 2" href="checklist_e2.html" />
     <link rel="prev" title="Búsqueda de arquitectura de las compactas" href="busqueda_arquitectura_e2.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
   </head>
+  <body data-default-mode="">
   
   
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
 
   
+  <div id="pst-scroll-pixel-helper"></div>
   
-  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
   
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -100,7 +100,6 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -108,16 +107,69 @@ const thebe_selector_output = ".output, .cell_output"
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
   
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -130,6 +182,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="index.html">
@@ -138,10 +193,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     <p class="title logo__title">Segmentación de etiquetas de mercancías peligrosas</p>
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Entregable 2</span></p>
 <ul class="current nav bd-sidenav">
@@ -157,7 +220,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="diagnosticos_e2.html">Diagnósticos sobre los pesos congelados</a></li>
 <li class="toctree-l1"><a class="reference internal" href="entrenamiento_complementario_e2.html">Entrenamientos complementarios</a></li>
 <li class="toctree-l1"><a class="reference internal" href="busqueda_arquitectura_e2.html">Búsqueda de arquitectura de las compactas</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Discusión, limitaciones y cierre pendiente</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Discusión, limitaciones y próximos pasos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="checklist_e2.html">Verificación de requisitos del Entregable 2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reproducibilidad_e2.html">Reproducción y archivos de entrega</a></li>
 </ul>
@@ -173,14 +236,19 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -189,14 +257,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -210,7 +278,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Modo de pantalla completa"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -223,26 +291,20 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
-<script>
-document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
-  </button>
-`);
-</script>
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -253,7 +315,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Discusión, limitaciones y cierre pendiente</h1>
+    <h1>Discusión, limitaciones y próximos pasos</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -262,13 +324,13 @@ document.write(`
                 <h2> Contenido </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-permite-concluir-el-experimento">Qué permite concluir el experimento</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#respuesta-a-las-preguntas">Respuesta a las preguntas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amenazas-a-la-validez">Amenazas a la validez</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#techo-y-margen-restante">Techo y margen restante</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gap-e-hipotesis-para-una-siguiente-fase">Gap e hipótesis para una siguiente fase</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plan-de-cierre-para-el-domingo">Plan de cierre para el domingo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-del-cierre-y-trabajo-pendiente">Estado del cierre y trabajo pendiente</a></li>
 </ul>
             </nav>
         </div>
@@ -278,27 +340,27 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="discusion-limitaciones-y-cierre-pendiente">
-<h1>Discusión, limitaciones y cierre pendiente<a class="headerlink" href="#discusion-limitaciones-y-cierre-pendiente" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="discusion-limitaciones-y-proximos-pasos">
+<h1>Discusión, limitaciones y próximos pasos<a class="headerlink" href="#discusion-limitaciones-y-proximos-pasos" title="Link to this heading">#</a></h1>
 <section id="que-permite-concluir-el-experimento">
-<h2>Qué permite concluir el experimento<a class="headerlink" href="#que-permite-concluir-el-experimento" title="Permalink to this heading">#</a></h2>
-<p>TransUNet presenta el mayor Dice medio de test en esta comparación, seguido de FCN y U-Net compactas. Su mejora frente a FCN es menor que el margen práctico heredado de 0,02 y el IC pareado incluye cero. Esto no demuestra equivalencia ni descarta una mejora relevante: el extremo superior supera 0,02, y el TOST con δ = 0,02 queda indeterminado (IC90 [−0,0061; 0,0242], p = 0,117). FCN constituye una referencia de menor tamaño; no debe presentarse como ganadora en Dice ni como más rápida sin medir latencia comparable.</p>
+<h2>Qué permite concluir el experimento<a class="headerlink" href="#que-permite-concluir-el-experimento" title="Link to this heading">#</a></h2>
+<p>TransUNet presenta el mayor Dice medio de test en esta comparación, seguido de FCN y U-Net compactas. Su mejora frente a FCN es menor que el margen práctico heredado de 0,02 y el IC pareado incluye cero. Esto no demuestra equivalencia ni descarta una mejora relevante: el extremo superior supera 0,02, y el TOST con δ = 0,02 queda indeterminado (IC90 [−0,0061; 0,0242], p = 0,117). FCN constituye una referencia de menor tamaño. La comparación de velocidad se basa en las mediciones homogéneas de latencia, no en el número de parámetros.</p>
 <p>Los resultados no sostienen que una familia sea universalmente superior. Solo hay un representante Transformer, uno híbrido y uno SSM, con capacidad y optimizadores diferentes. En especial, la puntuación de SegFormer entrenado desde cero a 256 píxeles no es una réplica de su artículo ni demuestra que la autoatención sea inadecuada para HAZMAT.</p>
 </section>
 <section id="respuesta-a-las-preguntas">
-<h2>Respuesta a las preguntas<a class="headerlink" href="#respuesta-a-las-preguntas" title="Permalink to this heading">#</a></h2>
+<h2>Respuesta a las preguntas<a class="headerlink" href="#respuesta-a-las-preguntas" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>RQ1:</strong> mayor estimación puntual para TransUNet, sin mejora clara frente a FCN con el IC cerrado. La ampliación estadística se presenta separada y como exploratoria.</p></li>
 <li><p><strong>RQ2:</strong> el contraste global y los contrastes corregidos permiten describir heterogeneidad entre estas diez adaptaciones; ver los valores p en resultados. Una diferencia global no prueba todas las diferencias pareadas.</p></li>
-<li><p><strong>RQ3:</strong> existen alternativas compactas competitivas, pero ninguna es equivalente a TransUNet por TOST con δ = 0,02 (la más cercana, FCN, p = 0,117; luego U-Net, p = 0,36). La respuesta es no, condicional a las cinco semillas.</p></li>
+<li><p><strong>RQ3:</strong> existen alternativas compactas competitivas, pero no se demostró equivalencia con TransUNet mediante TOST con δ = 0,02 (la más cercana, FCN, p = 0,117; luego U-Net, p = 0,36). La evidencia es insuficiente para afirmar equivalencia; tampoco demuestra ausencia de equivalencia. La inferencia es condicional a las cinco semillas.</p></li>
 <li><p><strong>RQ4:</strong> los estratos de área y la correlación de errores permiten localizar dificultades; no prueban que el tamaño sea su causa ni que las anotaciones sean correctas.</p></li>
 </ul>
 </section>
 <section id="amenazas-a-la-validez">
-<h2>Amenazas a la validez<a class="headerlink" href="#amenazas-a-la-validez" title="Permalink to this heading">#</a></h2>
-<table class="table">
+<h2>Amenazas a la validez<a class="headerlink" href="#amenazas-a-la-validez" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Dimensión</p></th>
 <th class="head"><p>Amenaza</p></th>
@@ -340,25 +402,22 @@ document.write(`
 </tr>
 </tbody>
 </table>
+</div>
 </section>
 <section id="techo-y-margen-restante">
-<h2>Techo y margen restante<a class="headerlink" href="#techo-y-margen-restante" title="Permalink to this heading">#</a></h2>
+<h2>Techo y margen restante<a class="headerlink" href="#techo-y-margen-restante" title="Link to this heading">#</a></h2>
 <p>Una segunda anotación independiente de 50 imágenes de validación da un techo de Dice 0,941 (IC95 0,928–0,953), no 1 (<a class="reference internal" href="complementos_datos_e2.html"><span class="doc">Complementos de datos: fuga, shift, ruido, techo y EDA por clase</span></a>). Sobre esas mismas imágenes TransUNet llega a 0,866: le falta cerca de 0,075 y cubre el 70 % del margen sobre el clásico (γ = 0,31 en validación, 0,27 en test). El margen restante es mayor que las diferencias entre las mejores redes y se concentra en los rótulos pequeños. Es una sola segunda persona y una muestra de 50; el techo mide acuerdo con las etiquetas del conjunto, que omiten rótulos cortados por el borde en un 10 % de las imágenes (IC95 5,5–17,4 %).</p>
 </section>
 <section id="gap-e-hipotesis-para-una-siguiente-fase">
-<h2>Gap e hipótesis para una siguiente fase<a class="headerlink" href="#gap-e-hipotesis-para-una-siguiente-fase" title="Permalink to this heading">#</a></h2>
+<h2>Gap e hipótesis para una siguiente fase<a class="headerlink" href="#gap-e-hipotesis-para-una-siguiente-fase" title="Link to this heading">#</a></h2>
 <p>La evidencia local motiva investigar si mecanismos que preservan bordes de rótulos pequeños mejoran la relación desempeño/tamaño bajo una comparación controlada. Es una <strong>hipótesis candidata</strong>, no una ausencia demostrada de estudios en toda la literatura. El siguiente experimento debe separar capacidad, preentrenamiento y pérdidas; fijar α, δ, presupuesto y evaluación independiente antes de ejecutarse. No se seleccionará una arquitectura E3 mediante optimización sobre este test.</p>
 </section>
-<section id="plan-de-cierre-para-el-domingo">
-<h2>Plan de cierre para el domingo<a class="headerlink" href="#plan-de-cierre-para-el-domingo" title="Permalink to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p><strong>Informe y evidencia existente:</strong> conservar esta integración, tablas, curvas, análisis estadístico, checklist y archivos reproducibles. Revisar juntos la redacción y la defensa técnica.</p></li>
-<li><p><strong>Complemento GPU sobre pesos congelados:</strong> medir Dice de train para diagnóstico, probabilidades y calibración, robustez con tres severidades, incertidumbre predictiva en los tres mejores por validación, explicabilidad con fidelidad/estabilidad, bordes y costo comparable. Ejecutado en una L4 sobre los 50 checkpoints, exploratorio; resultados en el capítulo de diagnósticos. Lo más relevante para la discusión: las redes compactas (FCN, U-Net, SegNet) conservan entre el 68 y el 77 % del Dice limpio a lo largo de las severidades de ruido, desenfoque y brillo (área normalizada de la curva), frente a cerca del 92 % de TransUNet con ruido y desenfoque, lo que matiza el argumento de parsimonia.</p></li>
-<li><p><strong>Experimentos separados:</strong> baseline clásico fuerte, tres ablaciones con cinco semillas, sanidad de etiquetas permutadas y réplica SegFormer en condiciones originales. No hacerlos pasar por parte del benchmark cerrado. Todos se ejecutaron: baseline clásico (Dice 0,645), réplica de evaluación compatible (37,43 % frente a 37,4 % mIoU) y, en <a class="reference internal" href="entrenamiento_complementario_e2.html"><span class="doc">Entrenamientos complementarios</span></a>, la ablación de TransUNet (sin saltos −0,092, BCE sola −0,037, sin Transformer +0,007 con IC que incluye el cero), la permutación de máscaras con FCN (p = 0,005) y una búsqueda de hiperparámetros con el mismo presupuesto para las diez redes, exploratoria. La búsqueda de arquitectura de las tres compactas (1.000 por familia y 12 finalistas con cinco semillas) también se ejecutó completa, en <a class="reference internal" href="busqueda_arquitectura_e2.html"><span class="doc">Búsqueda de arquitectura de las compactas</span></a>.</p></li>
-<li><p><strong>Trabajo documental y humano:</strong> adjudicar cribado/DOI, verificar bibliometría y cuartiles cuando correspondan, completar fichas de resultados de artículos, estimar acuerdo de anotación y preparar defensa. Q5/Q6 siguen omitidas por instrucción del usuario; no se reabren automáticamente.</p></li>
-<li><p><strong>Control de entrega:</strong> compilar localmente, revisar enlaces y cifras, ejecutar reproducción desde resultados y dejar registro de discrepancias. Solicitar autorización antes de publicar/subir a GitHub.</p></li>
-</ol>
-<p>No se puede garantizar una calificación de 5 ni marcar como ejecutado lo pendiente. El checklist distingue requisitos cubiertos, parciales, pendientes, no aplicables y desviaciones históricas que no pueden corregirse retroactivamente.</p>
+<section id="estado-del-cierre-y-trabajo-pendiente">
+<h2>Estado del cierre y trabajo pendiente<a class="headerlink" href="#estado-del-cierre-y-trabajo-pendiente" title="Link to this heading">#</a></h2>
+<p>El cierre del 26 de noviembre incluye los diagnósticos sobre los 50 checkpoints, el clásico no profundo, las ablaciones, la prueba de máscaras permutadas, la réplica de evaluación de SegFormer y las búsquedas de hiperparámetros y arquitectura. Q5 y Q6 se ejecutaron el 22 de noviembre. Los complementos posteriores al test se mantienen como análisis exploratorios, separados del benchmark principal.</p>
+<p>Estos resultados matizan la comparación inicial. Las compactas conservan entre el 68 y el 77 % del Dice limpio en las curvas de degradación, frente a cerca del 92 % de TransUNet con ruido y desenfoque. La búsqueda de arquitectura mejora las compactas en validación, pero no se evaluaron esas variantes sobre un test independiente. La ablación sin Transformer presenta una diferencia de +0,007, con un intervalo que incluye cero: no demuestra una mejora ni una pérdida de desempeño.</p>
+<p>Quedan pendientes el ensayo de sustentación y el registro individual de la revisión humana de errores. La revisión disponible es una confirmación global de 88 paneles; no permite estimar un acuerdo independiente caso por caso. El checklist conserva las limitaciones históricas de preregistro, potencia, exposición previa al test y licencia de las imágenes.</p>
+<p>Para el entregable 3, la evidencia orienta una comparación controlada de mecanismos de borde y resolución en redes compactas. Se requiere concretar la propuesta, fijar presupuesto y criterios de éxito, y disponer de una evaluación independiente del test ya observado.</p>
 </section>
 </section>
 
@@ -387,11 +446,10 @@ document.write(`
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer d-print-none">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="busqueda_arquitectura_e2.html"
@@ -411,30 +469,30 @@ document.write(`
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contenido
   </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-permite-concluir-el-experimento">Qué permite concluir el experimento</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#respuesta-a-las-preguntas">Respuesta a las preguntas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amenazas-a-la-validez">Amenazas a la validez</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#techo-y-margen-restante">Techo y margen restante</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gap-e-hipotesis-para-una-siguiente-fase">Gap e hipótesis para una siguiente fase</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plan-de-cierre-para-el-domingo">Plan de cierre para el domingo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-del-cierre-y-trabajo-pendiente">Estado del cierre y trabajo pendiente</a></li>
 </ul>
   </nav></div>
 
@@ -456,6 +514,7 @@ Por Luis Perez y Daniel Carbono
   
   <div class="footer-item">
     
+
   </div>
   
   <div class="footer-item">
@@ -475,8 +534,8 @@ Por Luis Perez y Daniel Carbono
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
 
   <footer class="bd-footer">
   </footer>

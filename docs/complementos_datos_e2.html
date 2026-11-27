@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="es" >
+<html lang="es" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Complementos de datos: fuga, shift, ruido, techo y EDA por clase &#8212; Segmentación de etiquetas de mercancías peligrosas</title>
   
@@ -15,84 +14,85 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
 
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
-  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script>let toggleHintShow = 'Click to show';</script>
-    <script>let toggleHintHide = 'Click to hide';</script>
+    <script src="_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script src="_static/translations.js"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/translations.js?v=d190bf04"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'complementos_datos_e2';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Búsqueda" href="search.html" />
     <link rel="next" title="Diagnósticos sobre los pesos congelados" href="diagnosticos_e2.html" />
     <link rel="prev" title="Avance del cierre del 20 al 26 de noviembre" href="avance_cierre_e2.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
   </head>
+  <body data-default-mode="">
   
   
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
 
   
+  <div id="pst-scroll-pixel-helper"></div>
   
-  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
   
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -100,7 +100,6 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -108,16 +107,69 @@ const thebe_selector_output = ".output, .cell_output"
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
   
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -130,6 +182,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="index.html">
@@ -138,10 +193,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     <p class="title logo__title">Segmentación de etiquetas de mercancías peligrosas</p>
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Entregable 2</span></p>
 <ul class="current nav bd-sidenav">
@@ -157,7 +220,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="diagnosticos_e2.html">Diagnósticos sobre los pesos congelados</a></li>
 <li class="toctree-l1"><a class="reference internal" href="entrenamiento_complementario_e2.html">Entrenamientos complementarios</a></li>
 <li class="toctree-l1"><a class="reference internal" href="busqueda_arquitectura_e2.html">Búsqueda de arquitectura de las compactas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cierre_e2.html">Discusión, limitaciones y cierre pendiente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cierre_e2.html">Discusión, limitaciones y próximos pasos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="checklist_e2.html">Verificación de requisitos del Entregable 2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reproducibilidad_e2.html">Reproducción y archivos de entrega</a></li>
 </ul>
@@ -173,14 +236,19 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -189,14 +257,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -210,7 +278,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Modo de pantalla completa"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -223,26 +291,20 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
-<script>
-document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
-  </button>
-`);
-</script>
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -262,7 +324,7 @@ document.write(`
                 <h2> Contenido </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuga-residual-por-embeddings-controles-11-y-46">Fuga residual por embeddings (controles 11 y 46)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sensibilidad-del-dice-sin-los-9-grupos">Sensibilidad del Dice sin los 9 grupos</a></li>
 </ul>
@@ -282,10 +344,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="complementos-de-datos-fuga-shift-ruido-techo-y-eda-por-clase">
-<h1>Complementos de datos: fuga, shift, ruido, techo y EDA por clase<a class="headerlink" href="#complementos-de-datos-fuga-shift-ruido-techo-y-eda-por-clase" title="Permalink to this heading">#</a></h1>
+<h1>Complementos de datos: fuga, shift, ruido, techo y EDA por clase<a class="headerlink" href="#complementos-de-datos-fuga-shift-ruido-techo-y-eda-por-clase" title="Link to this heading">#</a></h1>
 <p>Este capítulo reúne análisis que se cierran en CPU con los datos y los registros del repositorio, sin checkpoints
 ni inferencia nueva. <strong>Todos son exploratorios y posteriores a la apertura del test</strong>: no cambian la selección de
 modelos, el umbral, el ranking oficial ni las conclusiones cerradas en <code class="docutils literal notranslate"><span class="pre">resultados_e2.md</span></code>. Cada cifra sale de un
@@ -297,7 +359,7 @@ distintas en id, grupo y partición, y las 1.451 imágenes con el SHA-256 de los
 trae, se regeneraron con <code class="docutils literal notranslate"><span class="pre">reconstruir_mascaras_binarias_e2.py</span></code> y coinciden byte a byte con los SHA-256 del
 manifiesto.</p>
 <section id="fuga-residual-por-embeddings-controles-11-y-46">
-<h2>Fuga residual por embeddings (controles 11 y 46)<a class="headerlink" href="#fuga-residual-por-embeddings-controles-11-y-46" title="Permalink to this heading">#</a></h2>
+<h2>Fuga residual por embeddings (controles 11 y 46)<a class="headerlink" href="#fuga-residual-por-embeddings-controles-11-y-46" title="Link to this heading">#</a></h2>
 <p>Los grupos de similitud se formaron con dHash y aHash, que no ven rotaciones, recortes ni cambios de encuadre. Para
 buscar lo que se les escapó, cada imagen se representó con una ResNet-50 de ImageNet-1k (promedio global, 2.048
 dimensiones, mismo letterbox a 256) y se midió el <strong>coseno máximo contra train</strong>. Ese máximo, tomado sobre unas
@@ -305,7 +367,7 @@ mil comparaciones, es alto aunque no haya fuga, así que no se compara con un pe
 referencia es la misma estadística dentro de train, cada imagen contra el resto de train <strong>sin su propio grupo</strong>.
 Como ancla, los pares dentro de un mismo grupo dHash (casi duplicados conocidos) tienen coseno con percentil 5 de
 0,981 y mediana de 0,992.</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Fracción de imágenes con coseno máximo contra train mayor que…</p></th>
 <th class="head text-right"><p>0,90</p></th>
@@ -353,6 +415,7 @@ Como ancla, los pares dentro de un mismo grupo dHash (casi duplicados conocidos)
 </tr>
 </tbody>
 </table>
+</div>
 <p>Las dos últimas filas toman el máximo sobre ocho variantes de cada imagen; eso sube la cifra por construcción y
 sirve como cota de duplicados girados, no como comparación con train.</p>
 <p><strong>Lectura.</strong></p>
@@ -371,7 +434,7 @@ entre 0,92 y 0,94, la misma escena montada con rótulos distintos.</p></li>
 nuevas. Es optimista respecto de una operación real, y lo es para todos los modelos.</p></li>
 </ol>
 <section id="sensibilidad-del-dice-sin-los-9-grupos">
-<h3>Sensibilidad del Dice sin los 9 grupos<a class="headerlink" href="#sensibilidad-del-dice-sin-los-9-grupos" title="Permalink to this heading">#</a></h3>
+<h3>Sensibilidad del Dice sin los 9 grupos<a class="headerlink" href="#sensibilidad-del-dice-sin-los-9-grupos" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">sensibilidad_casi_duplicados_e2.py</span></code> repite el resumen por grupos quitando esos 9 grupos. Los 50 JSON de test por
 corrida no están en el repositorio; sí están la precisión y la exhaustividad por imagen de las 10 redes con semilla
 11 (<code class="docutils literal notranslate"><span class="pre">bordes_seed11_por_imagen.json</span></code>), y de ellas el Dice por imagen sale exacto: 2PR/(P+R) = 2TP/(2TP+FP+FN). La
@@ -379,7 +442,7 @@ auditoría del test recalculó esas 2.180 máscaras contra los JSON sin incidenc
 de cinco, por eso la segunda columna no coincide con la oficial. Con los 50 JSON presentes como hermanos del
 proyecto, el mismo script usa las cinco semillas sin cambios; su cálculo se probó con 50 JSON sintéticos
 (<code class="docutils literal notranslate"><span class="pre">--fuente</span> <span class="pre">simular</span></code>).</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Red</p></th>
 <th class="head text-right"><p>Dice oficial (5 semillas)</p></th>
@@ -462,6 +525,7 @@ proyecto, el mismo script usa las cinco semillas sin cambios; su cálculo se pro
 </tr>
 </tbody>
 </table>
+</div>
 <p>Los grupos con casi duplicado son más fáciles para casi todas las redes (entre 4 y 13 puntos más de Dice), que es
 lo que se espera si parte del acierto viene de haber visto esa sesión. Pero pesan 9 de 122 grupos: quitarlos baja
 el Dice entre 0,003 y 0,010, <strong>el ranking de seed11 no cambia</strong> (τ de Kendall = 1) y la diferencia TransUNet − FCN
@@ -470,13 +534,13 @@ orden de los modelos; sí recorta el alcance de la conclusión al de sesiones co
 </section>
 </section>
 <section id="shift-train-validacion-control-15">
-<h2>Shift train/validación (control 15)<a class="headerlink" href="#shift-train-validacion-control-15" title="Permalink to this heading">#</a></h2>
+<h2>Shift train/validación (control 15)<a class="headerlink" href="#shift-train-validacion-control-15" title="Link to this heading">#</a></h2>
 <p>El análisis existente es train/test (AUC 0,560, p de permutación 0,090). <code class="docutils literal notranslate"><span class="pre">shift_train_val_e2.py</span></code> hace el par que
 faltaba, train/validación, con <strong>los mismos 61 descriptores por imagen, sin máscara</strong>, el mismo clasificador
 (regresión logística estandarizada y balanceada, 5 folds, semilla 20261120) y 200 permutaciones, y añade dos
 pruebas que no dependen de un clasificador. Unidad: grupo (567 de train, 122 de validación). Validación ya se usó
 para elegir checkpoints, así que un shift train/val afectaría a la selección, no al test.</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Prueba</p></th>
 <th class="head"><p>Resultado</p></th>
@@ -497,6 +561,7 @@ para elegir checkpoints, así que un shift train/val afectaría a la selección,
 </tr>
 </tbody>
 </table>
+</div>
 <p>Una AUC algo menor que 0,5 es lo habitual cuando no hay señal y se valida cruzado (las predicciones fuera de fold
 quedan levemente anticorrelacionadas con la etiqueta). La auditoría de origen sobre la misma partición, con otros
 diez rasgos (ancho, alto, aspecto, luminancia, contraste, saturación, nitidez, fracción etiquetada, regiones y área
@@ -507,13 +572,13 @@ coinciden exactamente (aspecto D = 0,046; fracción etiquetada 0,093; regiones 0
 con unos 690 grupos es limitada.</p>
 </section>
 <section id="ruido-de-etiqueta-control-12">
-<h2>Ruido de etiqueta (control 12)<a class="headerlink" href="#ruido-de-etiqueta-control-12" title="Permalink to this heading">#</a></h2>
+<h2>Ruido de etiqueta (control 12)<a class="headerlink" href="#ruido-de-etiqueta-control-12" title="Link to this heading">#</a></h2>
 <p>Se revisaron 100 imágenes al azar de train (82) y validación (18), nunca de test, comparando la máscara con la foto.
 Una primera pasada asistida marcó 7 errores y 5 dudosos; esos 12 casos se confirmaron después a mano, uno por uno,
 con la foto ampliada junto a la máscara (<code class="docutils literal notranslate"><span class="pre">resultados/ruido_etiqueta_e2/confirmar.csv</span></code>, columnas <code class="docutils literal notranslate"><span class="pre">confirma</span></code> y
 <code class="docutils literal notranslate"><span class="pre">veredicto_final</span></code>; <code class="docutils literal notranslate"><span class="pre">ruido_etiqueta_e2.py</span> <span class="pre">--confirmar</span></code> recalcula todo). Se confirmaron los 7 errores y 3 de los 5
 dudosos; los otros 2 resultaron correctos (en uno, el contorno sobresale unos píxeles, lo que no se cuenta como error).</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Partición</p></th>
 <th class="head text-right"><p>Imágenes con error</p></th>
@@ -539,6 +604,7 @@ dudosos; los otros 2 resultaron correctos (en uno, el contorno sobresale unos p�
 </tr>
 </tbody>
 </table>
+</div>
 <p>El IC de Wilson es el intervalo de confianza para una proporción que se usa con muestras chicas o tasas cercanas a
 0: no se sale de [0, 1] y no es simétrico. La revisión la hizo una sola persona; no mide acuerdo entre anotadores
 (eso lo hace el techo, más abajo).</p>
@@ -555,7 +621,7 @@ respecto de estas etiquetas.</p>
 imagen está acotado pero no está medido. No se corrigió ninguna máscara, y menos de test.</p>
 </section>
 <section id="techo-de-desempeno-y-control-63">
-<h2>Techo de desempeño y γ (control 63)<a class="headerlink" href="#techo-de-desempeno-y-control-63" title="Permalink to this heading">#</a></h2>
+<h2>Techo de desempeño y γ (control 63)<a class="headerlink" href="#techo-de-desempeno-y-control-63" title="Link to this heading">#</a></h2>
 <p>La guía pide al menos una cota de referencia (acuerdo entre anotadores, ruido irreducible o desempeño humano) y
 γ = (s_techo − s_red)/(s_techo − s_base), la fracción del margen sobre un modelo base que la red aún no cubre.</p>
 <p><strong>Medición.</strong> Una segunda persona, que no había visto las máscaras ni las predicciones, reanotó 50 imágenes de
@@ -567,7 +633,7 @@ con la del conjunto con la misma geometría y métrica que los modelos (letterbo
 fabricadas por erosión y dilatación de 2 px (Dice 0,936 en 12 imágenes). <code class="docutils literal notranslate"><span class="pre">gamma</span></code> usa como base el clásico
 HistGradientBoosting elegido en validación.</p>
 <p><strong>Techo:</strong> Dice 0,941 (IC95 bootstrap por grupos 0,928–0,953); mediana 0,953; IoU 0,892; por tercil de área (pequeño, medio, grande): 0,933, 0,941, 0,950. Clásico: 0,653 en validación y 0,645 en test.</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Red</p></th>
 <th class="head text-right"><p>Dice val (122 grupos)</p></th>
@@ -650,6 +716,7 @@ HistGradientBoosting elegido en validación.</p>
 </tr>
 </tbody>
 </table>
+</div>
 <p><strong>Lectura.</strong> Dos personas coinciden en Dice 0,941: ese es el techo práctico de esta tarea con estas etiquetas, no 1.
 Sobre las mismas 50 imágenes, TransUNet llega a 0,866 y la U-Net compacta a 0,864, a unos 0,075 del techo. TransUNet
 cubre cerca del 70 % del margen entre el clásico y el techo (γ = 0,31 en validación y 0,27 en test); SegFormer-B0
@@ -664,14 +731,14 @@ tiene su propio ruido (los rótulos cortados omitidos, arriba), así que mide ac
 absoluta. γ en test usa un techo medido en validación.</p>
 </section>
 <section id="eda-por-clase-entropia-areas-formas-y-color-controles-09-y-16">
-<h2>EDA por clase: entropía, áreas, formas y color (controles 09 y 16)<a class="headerlink" href="#eda-por-clase-entropia-areas-formas-y-color-controles-09-y-16" title="Permalink to this heading">#</a></h2>
+<h2>EDA por clase: entropía, áreas, formas y color (controles 09 y 16)<a class="headerlink" href="#eda-por-clase-entropia-areas-formas-y-color-controles-09-y-16" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">complementos_locales_e2/</span></code> ya tenía la fracción de primer plano, la entropía binaria por imagen, las regiones, el
 perímetro y los histogramas RGB de primer plano y fondo. <code class="docutils literal notranslate"><span class="pre">eda_clases_formas_e2.py</span></code> añade lo que faltaba por
 <strong>categoría</strong> (13 clases de rótulo). Formas y color se miden solo en train y validación; del test solo la presencia
 por clase, que ya estaba publicada.</p>
 <p><strong>Entropía de la distribución de clases.</strong> La entropía de Shannon (en bits) mide cuán repartidas están las clases; se
 normaliza por log₂ 13 (1 = todas iguales) y se expresa como número efectivo de clases, 2^H.</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Partición</p></th>
 <th class="head text-right"><p>H por presencia en imagen</p></th>
@@ -705,6 +772,7 @@ normaliza por log₂ 13 (1 = todas iguales) y se expresa como número efectivo d
 </tr>
 </tbody>
 </table>
+</div>
 <p>Por imagen el conjunto está casi balanceado entre clases. Por píxeles, validación lo está menos (9,6 clases
 efectivas), porque pocas imágenes con rótulos grandes concentran píxeles. La divergencia de Jensen-Shannon entre las
 distribuciones de presencia es pequeña: 0,027 bits train/val y 0,024 bits train/test (0 = iguales, 1 = disjuntas). El
@@ -733,7 +801,7 @@ infecciosa, peligro por inhalación y peligroso) tienen pocos píxeles saturados
 tinte de la iluminación (azules, 200–240°). Un modelo que se apoye en color tiene más difícil esas clases.</p>
 </section>
 <section id="reproduccion-en-entorno-limpio-controles-55-y-68">
-<h2>Reproducción en entorno limpio (controles 55 y 68)<a class="headerlink" href="#reproduccion-en-entorno-limpio-controles-55-y-68" title="Permalink to this heading">#</a></h2>
+<h2>Reproducción en entorno limpio (controles 55 y 68)<a class="headerlink" href="#reproduccion-en-entorno-limpio-controles-55-y-68" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">prueba_entorno_limpio_e2.py</span></code> copió el proyecto desde git (commit <code class="docutils literal notranslate"><span class="pre">a900dec</span></code>, solo lo versionado) a una carpeta
 nueva, puso <code class="docutils literal notranslate"><span class="pre">VOC2012</span></code> como hermano del proyecto (enlace al conjunto, SHA-256 de las 1.451 imágenes verificado) y
 corrió todo con un intérprete aislado (<code class="docutils literal notranslate"><span class="pre">-E</span> <span class="pre">-s</span></code>, variables de entorno mínimas): Python 3.12.16, numpy 2.5.5, scipy
@@ -743,7 +811,7 @@ corrió todo con un intérprete aislado (<code class="docutils literal notransla
 <p><strong>La orden de reproducción no corre completa desde el snapshot.</strong> <code class="docutils literal notranslate"><span class="pre">scripts/reproducir_entregable2.py</span></code> falla en su
 segundo paso, <code class="docutils literal notranslate"><span class="pre">analisis_integracion_e2.py</span></code>, porque lee artefactos que el repositorio no lleva. Faltan, con
 precisión:</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Falta</p></th>
 <th class="head"><p>Qué es</p></th>
@@ -773,11 +841,12 @@ precisión:</p>
 </tr>
 </tbody>
 </table>
+</div>
 <p><strong>Tests.</strong> 8 de 9 archivos pasan (36 de 37 pruebas). El que falla, <code class="docutils literal notranslate"><span class="pre">test_e2.py</span></code>, falla en una sola prueba por la
 falta de <code class="docutils literal notranslate"><span class="pre">ml-collections</span></code> en el entorno, no por un resultado distinto.</p>
 <p><strong>Re-ejecución desde datos.</strong> <code class="docutils literal notranslate"><span class="pre">completar_analisis_locales_e2.py</span></code> corrió en la copia hasta donde pide las máscaras de
 test de seed11 (EDA por imagen, descriptores, histogramas y adversarial train/test con 200 permutaciones):</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Salida regenerada</p></th>
 <th class="head"><p>Discrepancia máxima con lo versionado</p></th>
@@ -798,6 +867,7 @@ test de seed11 (EDA por imagen, descriptores, histogramas y adversarial train/te
 </tr>
 </tbody>
 </table>
+</div>
 <p>Las diferencias vienen del remuestreo bilineal del letterbox (Pillow 13 frente a 11.3), que mueve algunos píxeles de
 bin; las máscaras, que usan vecino más cercano, reproducen exacto. Ninguna conclusión cambia.</p>
 <p><strong>Complementos de este capítulo.</strong> Fuga por embeddings, sensibilidad sin casi duplicados, EDA por clase y γ se
@@ -810,8 +880,8 @@ nuevo. Para cerrar los controles 55 y 68 hacen falta esos archivos en el reposit
 los 50 JSON de test presentes.</p>
 </section>
 <section id="trazabilidad">
-<h2>Trazabilidad<a class="headerlink" href="#trazabilidad" title="Permalink to this heading">#</a></h2>
-<table class="table">
+<h2>Trazabilidad<a class="headerlink" href="#trazabilidad" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Resultado</p></th>
 <th class="head"><p>Script</p></th>
@@ -853,6 +923,7 @@ los 50 JSON de test presentes.</p>
 </tr>
 </tbody>
 </table>
+</div>
 <p>Los embeddings (<code class="docutils literal notranslate"><span class="pre">embeddings_resnet50.npz</span></code>, 1 + 8 + 8 vistas) quedan fuera del repositorio por tamaño; el script
 los recalcula con <code class="docutils literal notranslate"><span class="pre">--calcular</span></code> (necesita <code class="docutils literal notranslate"><span class="pre">timm</span></code> con <code class="docutils literal notranslate"><span class="pre">resnet50.tv_in1k</span></code>).</p>
 </section>
@@ -883,11 +954,10 @@ los recalcula con <code class="docutils literal notranslate"><span class="pre">-
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer d-print-none">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="avance_cierre_e2.html"
@@ -907,24 +977,24 @@ los recalcula con <code class="docutils literal notranslate"><span class="pre">-
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contenido
   </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuga-residual-por-embeddings-controles-11-y-46">Fuga residual por embeddings (controles 11 y 46)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sensibilidad-del-dice-sin-los-9-grupos">Sensibilidad del Dice sin los 9 grupos</a></li>
 </ul>
@@ -956,6 +1026,7 @@ Por Luis Perez y Daniel Carbono
   
   <div class="footer-item">
     
+
   </div>
   
   <div class="footer-item">
@@ -975,8 +1046,8 @@ Por Luis Perez y Daniel Carbono
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
 
   <footer class="bd-footer">
   </footer>

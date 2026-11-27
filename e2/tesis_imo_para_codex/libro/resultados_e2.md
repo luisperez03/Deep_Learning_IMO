@@ -22,7 +22,7 @@ Entrenamiento: NVIDIA L4; evaluación: Tesla T4. No comparar tiempos entre ambas
 TransUNet conserva el mayor promedio de Dice en test, mientras FCN pasa al segundo lugar y U-Net al tercero.
 La diferencia principal TransUNet–FCN es 0.00906 (aproximadamente 0.91 puntos porcentuales). IC95 pareado por grupos: [-0.00828, 0.02779].
 El intervalo incluye cero: esta evaluación no establece una mejora clara de TransUNet sobre FCN con este procedimiento. Tampoco demuestra equivalencia: el TOST con δ = 0,02 da IC90 [−0,0061; 0,0242] y p = 0,117 (bootstrap [−0,0056; 0,0244]), resultado indeterminado. U-Net y FCN sí resultan equivalentes (−0,0072, IC90 [−0,0148; 0,0005], p Holm(9) = 0,028), pero esa conclusión depende de las semillas: sin la 53 deja de serlo (p = 0,062).
-FCN compacta es una referencia favorable en coste/tamaño: 72.145 parámetros frente a 105.322.001 de TransUNet. Una recomendación basada en parsimonia es defendible; no confundirla con declarar a FCN ganadora en Dice.
+FCN compacta es una referencia favorable en coste/tamaño: 72.145 parámetros frente a 105.322.001 de TransUNet. FCN requiere menos parámetros, mientras que TransUNet presenta el mayor Dice medio de test.
 U-Net permanece competitiva. VM-UNet presenta mayor variación entre semillas. Los resultados bajos de SegFormer corresponden a esta adaptación desde cero y receta fija; no justifican inferioridad universal de los Transformers.
 
 ## Límites de interpretación

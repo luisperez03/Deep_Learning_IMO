@@ -14,7 +14,7 @@ La métrica primaria heredada es Dice de etiqueta, promediado primero por imagen
 |---|---|---|
 | RQ1. ¿TransUNet mejora el Dice frente a la FCN de referencia? | Diferencia media Δ; H0: Δ=0 frente a Δ≠0; α=0,05. Para mejora práctica, exigir evidencia por encima de δ=0,02. | Contraste principal fijado después de validación y antes de test; no preregistrado antes del entrenamiento. IC pareado de grupos cerrado. Las pruebas añadidas posteriormente son exploratorias. |
 | RQ2. ¿Existen diferencias entre las diez adaptaciones bajo la receta aplicada? | H0 global de rangos intercambiables; Friedman y post-hoc. Nueve contrastes contra FCN, Holm por procedimiento, α=0,05. | Exploratoria posterior al test. Condicional a cinco semillas y una partición; no afirma diferencias universales entre familias. |
-| RQ3. ¿Una alternativa de menor tamaño conserva desempeño dentro de ±0,02 respecto de TransUNet? | H0 de no equivalencia: Δ≤−0,02 o Δ≥0,02; H1: −0,02<Δ<0,02. Se requiere TOST o intervalo equivalente apropiado. | Pregunta exploratoria; Pareto describe tamaño/desempeño. TOST pareado por grupos (t y bootstrap, α = 0,05, Holm sobre nueve contrastes), ejecutado después del test: ninguna red es equivalente a TransUNet (`scripts/inferencia_test_grupos_e2.py`, `resultados/inferencia_cierre_e2/`). |
+| RQ3. ¿Una alternativa de menor tamaño conserva desempeño dentro de ±0,02 respecto de TransUNet? | H0 de no equivalencia: Δ≤−0,02 o Δ≥0,02; H1: −0,02<Δ<0,02. Se requiere TOST o intervalo equivalente apropiado. | Pregunta exploratoria; Pareto describe tamaño/desempeño. TOST pareado por grupos (t y bootstrap, α = 0,05, Holm sobre nueve contrastes), ejecutado después del test: no se demostró equivalencia de ninguna red con TransUNet (`scripts/inferencia_test_grupos_e2.py`, `resultados/inferencia_cierre_e2/`). |
 | RQ4. ¿El área anotada se asocia con dificultad compartida? | Describir Dice por cuartiles de área definidos en train e IC por grupos. | Exploratoria, sin declaración causal ni prueba confirmatoria. Permite proponer un experimento futuro sobre resolución/bordes. |
 
 La familia de nueve contrastes añadida en esta integración se declara ahora. No se presenta como decisión anterior al test. La hipótesis futura de E3 debe validarse en una evaluación independiente y no ajustando el modelo al test ya visto.
@@ -40,7 +40,7 @@ El EDA global y el test del E1 ya se habían observado. Por tanto, este test es 
 | Componente | Valor |
 |---|---|
 | Modelos y familias | Diez: siete CNN, un Transformer, un híbrido CNN–Transformer y un SSM |
-| Aceptación docente del número | El usuario confirmó el 19/11 que el profesor acepta 3 del E1 + 7 nuevos; no se infiere aprobación de otros requisitos |
+| Aceptación docente del número | El alcance acordado el 19/11 comprende tres modelos del E1 y siete adicionales; los demás requisitos se revisan por separado |
 | Inicialización | Aleatoria para las diez redes; sin pesos externos |
 | Semillas | 11, 23, 37, 53, 71; Python, NumPy y PyTorch |
 | Resolución / batch | 256×256; batch 2, último lote 3 para evitar un singleton con BatchNorm |
@@ -55,7 +55,7 @@ El EDA global y el test del E1 ya se habían observado. Por tanto, este test es 
 ```{include} e2_optimizadores.inc
 ```
 
-Se igualaron datos, resolución, semillas, máximo de épocas y regla de parada. **No hubo búsqueda sistemática de hiperparámetros ni igualdad de horas de GPU.** Las tasas, optimizadores, capacidad y auxiliares difieren. Este experimento compara adaptaciones completas bajo recetas fijas; no aísla causalmente la arquitectura ni representa el mejor resultado posible de cada red. La autorización histórica de no ajustar hiperparámetros en E1 no acredita una excepción equivalente para E2.
+Se igualaron datos, resolución, semillas, máximo de épocas y regla de parada. **El benchmark principal usó recetas fijas, sin búsqueda de hiperparámetros ni igualdad de horas de GPU.** Las tasas, optimizadores, capacidad y auxiliares difieren. Este experimento compara adaptaciones completas bajo recetas fijas; no aísla causalmente la arquitectura ni representa el mejor resultado posible de cada red. Posteriormente se ejecutaron una búsqueda exploratoria de hiperparámetros y la búsqueda de arquitectura de las compactas, descritas en sus capítulos; sus resultados no sustituyen los del benchmark cerrado.
 
 Las tres redes compactas del E1 conservan su código, pero se reentrenaron dentro del protocolo E2. Sus métricas E1 no se mezclan con las cincuenta corridas nuevas. FCN compacta no es FCN-8s original; U-Net compacta no usa ResNet-18.
 

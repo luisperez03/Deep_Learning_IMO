@@ -31,6 +31,10 @@ def n(x, d=3):
     return f"{x:.{d}f}".replace(".", ",")
 
 
+def p_texto(x):
+    return "< 0,001" if x < 0.001 else "= " + n(x, 3)
+
+
 def arq(t):
     return f"({', '.join(map(str, t['w']))})/({', '.join(map(str, t['b']))})"
 
@@ -87,11 +91,11 @@ def tabla_resumen(res):
     fila("Ganadora − heredada (IC95 bootstrap por grupos)", lambda f, x: (lambda c: f"[{n(c['bootstrap_grupos']['ic95'][0])}; {n(c['bootstrap_grupos']['ic95'][1])}]")(x["fase2"]["comparacion_heredada"]))
     fila("Lectura fijada antes", lambda f, x: x["fase2"]["comparacion_heredada"]["lectura"])
     fila("Heredada en fase 2 / benchmark (val)", lambda f, x: f"{n(por_arq(x['fase2'], 'a0056')['media'])} / {n(BENCHMARK_VAL[f])}")
-    fila("Spearman fase 1 − fase 2 (10 finalistas)", lambda f, x: f"{n(x['fase2']['spearman_fase1_fase2']['rho'], 2)} (p = {n(x['fase2']['spearman_fase1_fase2']['p'], 3)})")
+    fila("Spearman fase 1 − fase 2 (10 finalistas)", lambda f, x: f"{n(x['fase2']['spearman_fase1_fase2']['rho'], 2)} (p {p_texto(x['fase2']['spearman_fase1_fase2']['p'])})")
     fila("Rango de la referencia en fase 1", lambda f, x: str(x["finalistas"]["rango_referencia"]))
     fila("DE arquitecturas / DE semilla", lambda f, x: n(x["sensibilidad"]["cociente"], 2))
     fila("R² del modelo de anchos y dropout", lambda f, x: n(x["fase1"]["modelo_lineal"]["r2"], 2))
-    fila("Sin dropout − con dropout (Wilcoxon p)", lambda f, x: f"{n(x['fase1']['wilcoxon_dropout']['mediana_sin_menos_con'], 4)} (p = {n(x['fase1']['wilcoxon_dropout']['p'], 3)})")
+    fila("Sin dropout − con dropout (Wilcoxon p)", lambda f, x: f"{n(x['fase1']['wilcoxon_dropout']['mediana_sin_menos_con'], 4)} (p {p_texto(x['fase1']['wilcoxon_dropout']['p'])})")
     return "\n".join(filas) + "\n"
 
 
@@ -170,7 +174,7 @@ def lectura(res, cst):
           "búsqueda reproduce el del benchmark, y en las otras dos familias la diferencia con el benchmark se explica por la tasa, no por un cambio de código.", "",
           "## 3. La fase 1 no ordenó a los finalistas", "",
           "Correlación de Spearman entre el Dice de la fase 1 y la media de la fase 2 en los 10 finalistas: "
-          + "; ".join(f"{NOMBRE[f]} ρ = {n(sp[f]['rho'], 2)} (p = {n(sp[f]['p'], 3)})" for f in FAMILIAS) + ". "
+          + "; ".join(f"{NOMBRE[f]} ρ = {n(sp[f]['rho'], 2)} (p {p_texto(sp[f]['p'])})" for f in FAMILIAS) + ". "
           "Entre los 10 mejores de la fase 1 el rango está restringido y se espera una correlación baja, pero en U-Net "
           "el orden se invierte casi por completo. La referencia estaba en los puestos "
           + ", ".join(f"{fam[f]['finalistas']['rango_referencia']} ({NOMBRE[f]})" for f in FAMILIAS)
@@ -185,7 +189,7 @@ def lectura(res, cst):
                  f"Proporción por ancho: w1 {n(fa['w1']['proporcion_varianza'], 2)}, w2 {n(fa['w2']['proporcion_varianza'], 2)}, "
                  f"w3 {n(fa['w3']['proporcion_varianza'], 2)}; el dropout suma menos de 0,02. "
                  f"Sin dropout rinde {n(fam[f]['fase1']['wilcoxon_dropout']['mediana_sin_menos_con'], 4)} más que con dropout "
-                 f"(mediana por bloque de anchos; Wilcoxon p = {n(fam[f]['fase1']['wilcoxon_dropout']['p'], 3)}, "
+                 f"(mediana por bloque de anchos; Wilcoxon p {p_texto(fam[f]['fase1']['wilcoxon_dropout']['p'])}, "
                  f"r biserial {n(fam[f]['fase1']['wilcoxon_dropout']['rango_biserial'], 2)}).")
     cuad = [(NOMBRE[f], t["termino"].split("_")[1][:2], t["estimado"]) for f in FAMILIAS
             for t in fam[f]["fase1"]["tendencia_log2_ancho"] if "^2" in t["termino"] and t["p"] < 0.05]

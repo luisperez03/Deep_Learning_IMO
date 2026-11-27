@@ -162,20 +162,8 @@ eran correctas, pero no marcó la hoja. Con su autorización expresa, la hoja se
 Los dos scripts están en la carpeta de trabajo del estudio (`ejemplos/2026-11-22_revision_errores_e2/`). La hoja
 vacía se conserva aparte. `REVISION_HUMANA.json` guarda el SHA-256 de la hoja llena.
 
-**Resultado** (`medir-revision --hoja .../hoja_revision_errores.xlsx`):
+**Alcance de la revisión.** El revisor expresó conformidad global tras examinar los 88 paneles. La hoja fue completada por script a partir de esa respuesta; no contiene decisiones registradas individualmente por el revisor. Por ello, los conteos e intervalos calculados desde esa hoja no se interpretan como una estimación de acuerdo humano independiente y se omiten de esta síntesis.
 
-| | Acuerdo | IC95 Wilson |
-|---|---:|---:|
-| Forma del error (A) | 88/88 | 95,8–100 % |
-| Condición de la imagen (B) | 88/88 | 95,8–100 % |
-| Exceso lejano que era un rótulo sin anotar | 0/35 | 0–9,9 % |
+La revisión aporta una comprobación cualitativa: el revisor no señaló categorías incorrectas. No permite cuantificar la frecuencia de errores de clasificación ni concluir, caso por caso, que el exceso lejano corresponde siempre a un error de la red. Además, las categorías automáticas eran visibles, por lo que no fue una evaluación ciega.
 
-Por red, 29/29 o 30/30 en los dos ejes (IC95 88–100 %).
-
-**Salvedad.** Es una **confirmación global, no una marca caso por caso**: el revisor no dejó constancia individual de
-cada caso. El acuerdo perfecto es menos informativo que una revisión independiente caso por caso. Además, la hoja
-mostraba la categoría asignada, lo que favorece el acuerdo. Lo que sí sostiene es que ninguna categoría le pareció
-equivocada al mirar los 88 paneles. Para el exceso lejano, la respuesta (0 de 35) indica que el exceso de estas tres
-redes es error de la red y no un hueco de la anotación. Con 35 casos, la cota superior es del 10 %.
-
-`python scripts/actualizar_checklist_errores3.py` deja 13, 65 y 67 en C con esta evidencia; basta correr ese.
+Para completar esta validación se necesita registrar la decisión del revisor para cada caso, incluidos los desacuerdos y los casos dudosos. La evidencia original se conserva para trazabilidad. La fila 65 del checklist queda parcial hasta contar con ese registro.

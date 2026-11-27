@@ -1,8 +1,8 @@
-# Discusión, limitaciones y cierre pendiente
+# Discusión, limitaciones y próximos pasos
 
 ## Qué permite concluir el experimento
 
-TransUNet presenta el mayor Dice medio de test en esta comparación, seguido de FCN y U-Net compactas. Su mejora frente a FCN es menor que el margen práctico heredado de 0,02 y el IC pareado incluye cero. Esto no demuestra equivalencia ni descarta una mejora relevante: el extremo superior supera 0,02, y el TOST con δ = 0,02 queda indeterminado (IC90 [−0,0061; 0,0242], p = 0,117). FCN constituye una referencia de menor tamaño; no debe presentarse como ganadora en Dice ni como más rápida sin medir latencia comparable.
+TransUNet presenta el mayor Dice medio de test en esta comparación, seguido de FCN y U-Net compactas. Su mejora frente a FCN es menor que el margen práctico heredado de 0,02 y el IC pareado incluye cero. Esto no demuestra equivalencia ni descarta una mejora relevante: el extremo superior supera 0,02, y el TOST con δ = 0,02 queda indeterminado (IC90 [−0,0061; 0,0242], p = 0,117). FCN constituye una referencia de menor tamaño. La comparación de velocidad se basa en las mediciones homogéneas de latencia, no en el número de parámetros.
 
 Los resultados no sostienen que una familia sea universalmente superior. Solo hay un representante Transformer, uno híbrido y uno SSM, con capacidad y optimizadores diferentes. En especial, la puntuación de SegFormer entrenado desde cero a 256 píxeles no es una réplica de su artículo ni demuestra que la autoatención sea inadecuada para HAZMAT.
 
@@ -10,7 +10,7 @@ Los resultados no sostienen que una familia sea universalmente superior. Solo ha
 
 - **RQ1:** mayor estimación puntual para TransUNet, sin mejora clara frente a FCN con el IC cerrado. La ampliación estadística se presenta separada y como exploratoria.
 - **RQ2:** el contraste global y los contrastes corregidos permiten describir heterogeneidad entre estas diez adaptaciones; ver los valores p en resultados. Una diferencia global no prueba todas las diferencias pareadas.
-- **RQ3:** existen alternativas compactas competitivas, pero ninguna es equivalente a TransUNet por TOST con δ = 0,02 (la más cercana, FCN, p = 0,117; luego U-Net, p = 0,36). La respuesta es no, condicional a las cinco semillas.
+- **RQ3:** existen alternativas compactas competitivas, pero no se demostró equivalencia con TransUNet mediante TOST con δ = 0,02 (la más cercana, FCN, p = 0,117; luego U-Net, p = 0,36). La evidencia es insuficiente para afirmar equivalencia; tampoco demuestra ausencia de equivalencia. La inferencia es condicional a las cinco semillas.
 - **RQ4:** los estratos de área y la correlación de errores permiten localizar dificultades; no prueban que el tamaño sea su causa ni que las anotaciones sean correctas.
 
 ## Amenazas a la validez
@@ -34,12 +34,12 @@ Una segunda anotación independiente de 50 imágenes de validación da un techo 
 
 La evidencia local motiva investigar si mecanismos que preservan bordes de rótulos pequeños mejoran la relación desempeño/tamaño bajo una comparación controlada. Es una **hipótesis candidata**, no una ausencia demostrada de estudios en toda la literatura. El siguiente experimento debe separar capacidad, preentrenamiento y pérdidas; fijar α, δ, presupuesto y evaluación independiente antes de ejecutarse. No se seleccionará una arquitectura E3 mediante optimización sobre este test.
 
-## Plan de cierre para el domingo
+## Estado del cierre y trabajo pendiente
 
-1. **Informe y evidencia existente:** conservar esta integración, tablas, curvas, análisis estadístico, checklist y archivos reproducibles. Revisar juntos la redacción y la defensa técnica.
-2. **Complemento GPU sobre pesos congelados:** medir Dice de train para diagnóstico, probabilidades y calibración, robustez con tres severidades, incertidumbre predictiva en los tres mejores por validación, explicabilidad con fidelidad/estabilidad, bordes y costo comparable. Ejecutado en una L4 sobre los 50 checkpoints, exploratorio; resultados en el capítulo de diagnósticos. Lo más relevante para la discusión: las redes compactas (FCN, U-Net, SegNet) conservan entre el 68 y el 77 % del Dice limpio a lo largo de las severidades de ruido, desenfoque y brillo (área normalizada de la curva), frente a cerca del 92 % de TransUNet con ruido y desenfoque, lo que matiza el argumento de parsimonia.
-3. **Experimentos separados:** baseline clásico fuerte, tres ablaciones con cinco semillas, sanidad de etiquetas permutadas y réplica SegFormer en condiciones originales. No hacerlos pasar por parte del benchmark cerrado. Todos se ejecutaron: baseline clásico (Dice 0,645), réplica de evaluación compatible (37,43 % frente a 37,4 % mIoU) y, en {doc}`entrenamiento_complementario_e2`, la ablación de TransUNet (sin saltos −0,092, BCE sola −0,037, sin Transformer +0,007 con IC que incluye el cero), la permutación de máscaras con FCN (p = 0,005) y una búsqueda de hiperparámetros con el mismo presupuesto para las diez redes, exploratoria. La búsqueda de arquitectura de las tres compactas (1.000 por familia y 12 finalistas con cinco semillas) también se ejecutó completa, en {doc}`busqueda_arquitectura_e2`.
-4. **Trabajo documental y humano:** adjudicar cribado/DOI, verificar bibliometría y cuartiles cuando correspondan, completar fichas de resultados de artículos, estimar acuerdo de anotación y preparar defensa. Q5/Q6 siguen omitidas por instrucción del usuario; no se reabren automáticamente.
-5. **Control de entrega:** compilar localmente, revisar enlaces y cifras, ejecutar reproducción desde resultados y dejar registro de discrepancias. Solicitar autorización antes de publicar/subir a GitHub.
+El cierre del 26 de noviembre incluye los diagnósticos sobre los 50 checkpoints, el clásico no profundo, las ablaciones, la prueba de máscaras permutadas, la réplica de evaluación de SegFormer y las búsquedas de hiperparámetros y arquitectura. Q5 y Q6 se ejecutaron el 22 de noviembre. Los complementos posteriores al test se mantienen como análisis exploratorios, separados del benchmark principal.
 
-No se puede garantizar una calificación de 5 ni marcar como ejecutado lo pendiente. El checklist distingue requisitos cubiertos, parciales, pendientes, no aplicables y desviaciones históricas que no pueden corregirse retroactivamente.
+Estos resultados matizan la comparación inicial. Las compactas conservan entre el 68 y el 77 % del Dice limpio en las curvas de degradación, frente a cerca del 92 % de TransUNet con ruido y desenfoque. La búsqueda de arquitectura mejora las compactas en validación, pero no se evaluaron esas variantes sobre un test independiente. La ablación sin Transformer presenta una diferencia de +0,007, con un intervalo que incluye cero: no demuestra una mejora ni una pérdida de desempeño.
+
+Quedan pendientes el ensayo de sustentación y el registro individual de la revisión humana de errores. La revisión disponible es una confirmación global de 88 paneles; no permite estimar un acuerdo independiente caso por caso. El checklist conserva las limitaciones históricas de preregistro, potencia, exposición previa al test y licencia de las imágenes.
+
+Para el entregable 3, la evidencia orienta una comparación controlada de mecanismos de borde y resolución en redes compactas. Se requiere concretar la propuesta, fijar presupuesto y criterios de éxito, y disponer de una evaluación independiente del test ya observado.
