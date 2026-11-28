@@ -1,4 +1,13 @@
-"""Integra resultados completos de un paquete parcial sin atribuirles métricas de test."""
+"""Integra resultados completos de un paquete parcial sin atribuirles métricas de test.
+
+Formatos de result.json admitidos:
+- original y rivales (entrenar_original.py, arnés del E2): campos model, seed, history.json aparte;
+- compactas a0498 (código de la búsqueda de arquitectura): campos familia, arq, semilla y la historia dentro de
+  result.json. Se nombran <familia>_a0498.
+--historicas agrega las semillas de la fase 2 de la búsqueda (11, 23, 37, 53, 71) de las compactas a0498, que no
+viajan en la campaña; sus pesos no están en esa carpeta (se verificaron en compactas_a0498_e3.zip), así que se exige
+la misma receta que las semillas nuevas en lugar del SHA del checkpoint.
+"""
 import argparse
 import csv
 import hashlib
@@ -15,15 +24,44 @@ def sha(path):
     return h.hexdigest()
 
 
+CAMPOS_RECETA = ('familia', 'arq', 'w', 'b', 'optim', 'epocas', 'paciencia', 'px', 'fraccion_train', 'n_train',
+                 'parameters')
+
+
+def receta(r):
+    return json.dumps({k: r.get(k) for k in CAMPOS_RECETA}, sort_keys=True)
+
+
+def agregar_compacta(r, rel, rows, curves):
+    history = r['history']
+    assert len(history) == r['epochs_completed']
+    assert abs(max(x['val_group_Dice'] for x in history) - r['best_val_group_Dice']) < 1e-8
+    modelo = f"{r['familia']}_a0498"
+    rows.append(dict(modelo=modelo, semilla=r['semilla'], dice_val=r['best_val_group_Dice'],
+                     epocas=r['epochs_completed'], segundos=sum(x['seconds'] for x in history),
+                     checkpoint=(str(rel).replace('\\', '/') + '/' + r['best_file']), sha256=r['best_sha256']))
+    curves.extend(dict(modelo=modelo, semilla=r['semilla'], epoca=x['epoch'], perdida=x['train_loss'],
+                       dice_val=x['val_group_Dice']) for x in history)
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument('--campana', type=Path, required=True)
     p.add_argument('--salida', type=Path, required=True)
+    p.add_argument('--historicas', type=Path, help='carpeta fase2 de busqueda_arquitectura_e2 (compactas a0498)')
     a = p.parse_args()
     rows, curves = [], []
+    recetas = {}
     for path in sorted(a.campana.rglob('result.json')):
         r = json.loads(path.read_text()); folder = path.parent
         c = json.loads((folder/'config.json').read_text())
+        if 'familia' in r:  # compacta de la búsqueda de arquitectura
+            assert r['completed'] and r['arq'] == 'a0498' and c['fingerprint'] == r['fingerprint']
+            assert Path(r['best_file']).name == r['best_file'] and sha(folder/r['best_file']) == r['best_sha256']
+            agregar_compacta(r, path.parent.relative_to(a.campana), rows, curves)
+            recetas.setdefault(r['familia'], receta(r))
+            assert receta(r) == recetas[r['familia']], f"receta distinta en {folder}"
+            continue
         assert r['completed'] and c['fingerprint'] == r['fingerprint']
         assert Path(r['best_file']).name == r['best_file']
         assert sha(folder/r['best_file']) == r['best_sha256']
@@ -42,6 +80,13 @@ def main():
                          sha256=r['best_sha256']))
         curves.extend(dict(modelo=r['model'], semilla=r['seed'], epoca=x['epoch'],
                            perdida=x['train_loss'], dice_val=x['val_group_Dice']) for x in history)
+    if a.historicas:
+        for path in sorted(a.historicas.glob('*_a0498_s*/result.json')):
+            r = json.loads(path.read_text())
+            if r['familia'] not in recetas:
+                continue
+            assert r['completed'] and receta(r) == recetas[r['familia']], f"receta distinta en {path.parent}"
+            agregar_compacta(r, Path('busqueda_arquitectura_e2/fase2')/path.parent.name, rows, curves)
     assert rows and len({(r['modelo'],r['semilla']) for r in rows}) == len(rows)
     summaries = []
     for name in sorted({r['modelo'] for r in rows}):
