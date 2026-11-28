@@ -12,7 +12,7 @@
 - **Entrenamiento:** desde cero, sin pesos preentrenados; Adam, tasa 1e-3, lote 2, hasta 30 épocas, paciencia 5.
 - **Código:** `src/geometria_at.py`, `src/original_model.py`, `training/entrenar_original.py`; procedencia y
   SHA-256 en `experiments/procedencia.md`.
-- **Licencia del código:** sin definir (la decide el equipo).
+- **Licencia del código:** MIT (`LICENSE`); no cubre las fotografías ni las máscaras de HAZMAT-13.
 
 ## Uso previsto
 
@@ -38,7 +38,7 @@ por grupos de similitud perceptual (semilla 20261106); 234 imágenes excluidas. 
 
 - **Primaria:** Dice por grupo en test (media por grupo y luego sobre 10 semillas).
 - **Secundarias:** IoU y HD95 por grupo; Dice por tercil de área; brecha entre el tercil chico y el resto.
-- **Cifras del original:** diez semillas por brazo verificadas en `data/avance_colab.json`. Son resultados de validación con selección de época; la tabla de test de los rivales sigue siendo histórica.
+- **Cifras del original:** diez semillas por brazo verificadas en `data/avance_colab.json`. Mejor Dice de validación: UNet-AT 0,7862 ± 0,0192 y base 0,8077 ± 0,0109. Pareado por semilla, UNet-AT − base = −0,0215 (IC 95 % bootstrap de −0,036 a −0,010; Wilcoxon exacto p = 0,002; la base gana en las 10 semillas). Son resultados de validación con selección de época: en validación el mecanismo no mejora a su base. El test, que decide H1a y H1b, no se ha evaluado; la tabla de test de los rivales sigue siendo histórica.
 - **Adecuación:** debe superar a la máscara vacía y a la mayoritaria (pendiente de medir).
 
 ## Limitaciones
@@ -59,9 +59,10 @@ por grupos de similitud perceptual (semilla 20261106); 234 imágenes excluidas. 
 
 ## Reproducibilidad
 
-Libro (`book/`), contenedor (`Dockerfile`), integración continua (`.github/workflows/ci.yml`) y lista de verificación en
-el libro (capítulo de lista de verificación de reproducibilidad).
+Libro (`book/`), contenedor (`Dockerfile`), integración continua (`.github/workflows/e3.yml` en la raíz del repositorio) y lista de verificación en
+el libro (capítulo de lista de verificación de reproducibilidad). Reproducción independiente de las cifras publicadas:
+`experiments/reproduccion_independiente.py` (anexo A del libro).
 
 ## Integración local al 27 de noviembre
 
-FCN y U-Net a0498 admiten inferencia ONNX; SegNet conserva un respaldo TorchScript verificado. El comparador de test utiliza predicciones precalculadas de nueve redes sobre 218 imágenes, con arquitectura, semilla e integridad registradas. El original se incorpora con la semilla 11 seleccionada por validación y posproceso C2 completo; VM-UNet sigue pendiente. Esta exploración implica exposición al test y no sustituye la evaluación final del original. La ficha accesible desde el tablero está en `assets/ficha_modelo.html`; el despliegue público no se ha verificado.
+FCN y U-Net a0498 admiten inferencia ONNX; SegNet conserva un respaldo TorchScript verificado. El comparador de test utiliza predicciones precalculadas de nueve redes sobre 218 imágenes, con arquitectura, semilla e integridad registradas. El original se incorpora con la semilla 11 seleccionada por validación y posproceso C2 completo; VM-UNet sigue pendiente. Esta exploración implica exposición al test y no sustituye la evaluación final del original. La ficha accesible desde el tablero está en `assets/ficha_modelo.html`. Despliegue público: <https://hazmat13-e3.onrender.com>, con prueba de humo de 10 de 10 (anexo B del libro).
