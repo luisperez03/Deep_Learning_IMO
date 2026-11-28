@@ -43,15 +43,32 @@ def supplemental_sources(notebooks):
 def prepare_sources(notebooks, scope, stage):
     """Restaura el perfil de fuentes histórico antes de preflight, con 05 completa o no."""
     project=Path(scope['PROJECT']);output=Path(scope['OUTPUT']);extra=supplemental_sources(notebooks)
-    expected=set()
-    candidates=list(output.glob('*/config.json'))
+    expected=set();details=[]
+    candidates=sorted(output.glob('*/config.json'))
     preflight=output/'preflight.json'
-    if preflight.exists():candidates.append(preflight)
     for path in candidates:
         record=json.loads(path.read_text())
         value=record.get('identity',{}).get('source')
-        if value:expected.add(value)
-    if len(expected)>1:raise RuntimeError('La etapa contiene varias firmas históricas; no se modifica ni reanuda')
+        if value:
+            expected.add(value)
+            details.append({'archivo':str(path),'source':value,
+                            'device':record.get('environment',{}).get('device'),
+                            'python':record.get('environment',{}).get('python')})
+    previous=json.loads(preflight.read_text()) if preflight.exists() else {}
+    preflight_source=previous.get('identity',{}).get('source')
+    diagnostic={'corridas':details,'preflight_source':preflight_source}
+    print('Diagnóstico de identidades:',json.dumps(diagnostic,ensure_ascii=False,indent=2),flush=True)
+    if len(expected)>1:
+        raise RuntimeError('Los config.json de corridas tienen firmas distintas (ver diagnóstico). No se elige una ni se modifican checkpoints.')
+    # El preflight se regenera: un intento fallido puede haber sobrescrito su firma.
+    # La autoridad para reanudar es el config de la corrida, no ese informe temporal.
+    if expected and preflight_source and preflight_source not in expected:
+        backup=Path(scope.get('_E3_LOGDIR',output/'logs'))/f'preflight_anterior_{uuid.uuid4().hex}.json'
+        backup.parent.mkdir(parents=True,exist_ok=True);backup.write_bytes(preflight.read_bytes())
+        print('Preflight distinto de las corridas; se conserva copia en',backup,
+              'y se preparan las fuentes exigidas por config.json.',flush=True)
+    elif not expected and preflight_source:
+        expected.add(preflight_source)
     # Validar las dos variantes a partir del ZIP íntegro. Solo se restauran fuentes locales.
     archive=Path(scope['ZIP']);base=Path(scope['BASE'])
     with zipfile.ZipFile(archive) as z:
@@ -225,7 +242,7 @@ def run(notebooks, lane='todo'):
             name,nb=next((n,b) for n,b in notebooks.items() if n.startswith(stage+'_'))
             print(f'\nEJECUTANDO {name} — misma máquina, checkpoints en Drive',flush=True)
             stamp['estado']='ejecutando';save()
-            scope={'__name__':'__main__','_e3_run':stream_run}
+            scope={'__name__':'__main__','_e3_run':stream_run,'_E3_LOGDIR':logdir}
             started=time.perf_counter()
             prepared=False
             stamp['logs']={'stdout':str(logdir/f'{stage}.stdout.log'),'stderr':str(logdir/f'{stage}.stderr.log')};save()

@@ -47,7 +47,7 @@ esta celda en el cuaderno que ya tiene la GPU:
 ```python
 import os
 from urllib.request import urlopen
-url = 'https://raw.githubusercontent.com/luisperez03/Deep_Learning_IMO/e3-reanudacion-20261128/e3/continuidad/E3_CONTINUAR_EN_ESTA_MAQUINA.py'
+url = 'https://raw.githubusercontent.com/luisperez03/Deep_Learning_IMO/e3-reanudacion-20261128-v2/e3/continuidad/E3_CONTINUAR_EN_ESTA_MAQUINA.py'
 codigo_e3 = urlopen(url).read().decode('utf-8')
 os.environ['E3_CARRIL'] = 'todo'
 exec(compile(codigo_e3, 'lanzador_e3_corregido', 'exec'), {'__name__': '__main__'})
@@ -59,6 +59,14 @@ qué parte exacta de la identidad difiere.
 
 ## Comprobaciones
 
-14 pruebas locales de orquestación, reanudación de fuentes, inmutabilidad de los payloads,
+16 pruebas locales de orquestación, reanudación de fuentes, inmutabilidad de los payloads,
 salida en vivo, persistencia de errores y auditoría de campaña. No se ejecutó entrenamiento GPU
 en estas pruebas. La evidencia está en `pruebas_reanudacion.txt` y `verificacion_firmas_historicas.json`.
+
+## Revisión v2: preflight regenerado
+
+El error «varias firmas históricas» podía resultar de mezclar la firma de un `config.json` de corrida con la de un `preflight.json` regenerado tras un intento fallido. Ahora los configs de las corridas tienen prioridad. Si solo el preflight difiere, se guarda una copia en los logs, se recupera la firma del config y se permite regenerar el preflight mediante su comprobación normal. No se edita el fingerprint ni el checkpoint.
+
+Si difieren entre sí los configs de corridas, la ejecución se detiene y muestra las rutas y firmas precisas: no selecciona una arbitrariamente. El diagnóstico muestra también GPU y Python históricos. Una L4 no se considera automáticamente compatible con un checkpoint creado en T4; el arnés conserva su validación completa del entorno.
+
+El registro recibido no incluye las firmas concretas ni prueba que el conflicto sea solo del preflight. La revisión cubre ese caso con una prueba de regresión y mantiene la protección para conflictos reales. Si vuelve a detenerse, compartir el bloque «Diagnóstico de identidades».

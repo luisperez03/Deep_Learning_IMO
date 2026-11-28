@@ -83,6 +83,32 @@ def test_transformaciones_no_cambian_payloads_historicos():
                 assert 'setuptools==84.2.1' in changed
 
 
+def test_preflight_regenerado_no_invalida_config_checkpoint(project):
+    notebooks,scope,extra=project;base=O.source_digest(scope['PROJECT'])
+    wanted=O.prepare_sources(notebooks,scope,'06')['source']
+    run=scope['OUTPUT']/'transunet_seed89';run.mkdir(parents=True)
+    cfg=run/'config.json';cfg.write_text(json.dumps({'fingerprint':'no-alterar','identity':{'source':wanted}}))
+    checkpoint=run/'last.pt';checkpoint.write_bytes(b'checkpoint-original')
+    preflight=scope['OUTPUT']/'preflight.json'
+    preflight.write_text(json.dumps({'identity':{'source':base}}));before=preflight.read_bytes();cfg_before=cfg.read_bytes()
+    for rel in extra:(scope['PROJECT']/rel).unlink()
+    assert O.prepare_sources(notebooks,scope,'06')['source']==wanted
+    assert cfg.read_bytes()==cfg_before and checkpoint.read_bytes()==b'checkpoint-original'
+    assert preflight.read_bytes()==before
+    assert next((scope['OUTPUT']/'logs').glob('preflight_anterior_*.json')).read_bytes()==before
+
+
+def test_conflicto_real_entre_corridas_no_se_oculta(project):
+    notebooks,scope,extra=project
+    before=O.source_digest(scope['PROJECT'])
+    for i,value in enumerate(['firma-1','firma-2']):
+        folder=scope['OUTPUT']/f'red_seed{i}';folder.mkdir(parents=True)
+        (folder/'config.json').write_text(json.dumps({'identity':{'source':value}}))
+    with pytest.raises(RuntimeError,match='config.json de corridas tienen firmas distintas'):
+        O.prepare_sources(notebooks,scope,'06')
+    assert O.source_digest(scope['PROJECT'])==before
+
+
 def test_stdout_stderr_en_vivo_y_error_persistente(tmp_path):
     received=threading.Event();release=tmp_path/'continuar'
     class Watch(io.StringIO):
