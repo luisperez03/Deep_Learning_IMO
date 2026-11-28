@@ -1,0 +1,671 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Método: UNet-AT &#8212; Entregable 3: UNet-AT y benchmark de segmentación de rótulos HAZMAT</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"tags": "ams"}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '03_metodo';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Diseño experimental: protocolo y potencia" href="04_diseno_experimental.html" />
+    <link rel="prev" title="Trabajo relacionado" href="02_trabajo_relacionado.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 3: UNet-AT y benchmark de segmentación de rótulos HAZMAT</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Resumen: UNet-AT y benchmark de rótulos HAZMAT
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_introduccion.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_trabajo_relacionado.html">Trabajo relacionado</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Método: UNet-AT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_diseno_experimental.html">Diseño experimental: protocolo y potencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_trazabilidad_e2.html">Trazabilidad de las correcciones del E2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_novedad.html">Revisión de novedad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_resultados.html">Resultados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_ablacion.html">Ablación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_robustez.html">Robustez, eficiencia y calidad (Cuadro 5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_exportacion_dashboard.html">Exportación y tablero de comparación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_discusion.html">Discusión</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_limitaciones.html">Limitaciones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_conclusiones.html">Conclusiones del estado verificado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_reproducibilidad.html">Lista de verificación de reproducibilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_ficha_modelo.html">Ficha del modelo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_compactas_integradas.html">Compactas seleccionadas e inferencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_estado_cierre.html">Integración y cierre del entregable</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/03_metodo.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Método: UNet-AT</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formulacion">Formulación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pseudocodigo-de-la-inferencia">Pseudocódigo de la inferencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teorema-de-inversion-exacta">Teorema de inversión exacta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complejidad">Complejidad</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="metodo-unet-at">
+<span id="sec-metodo"></span><h1>Método: UNet-AT<a class="headerlink" href="#metodo-unet-at" title="Link to this heading">#</a></h1>
+<section id="formulacion">
+<h2>Formulación<a class="headerlink" href="#formulacion" title="Link to this heading">#</a></h2>
+<p>El esqueleto es la U-Net compacta del E2 (anchos 16, 32 y 64, sin BatchNorm, desde cero). Dos cabezas de convolución
+1×1 producen la probabilidad del núcleo <span class="math notranslate nohighlight">\(P\)</span> y el mapa de umbral <span class="math notranslate nohighlight">\(T\)</span>. La binarización aproximada es</p>
+<div class="math notranslate nohighlight" id="equation-eq-binarizacion">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eq-binarizacion" title="Link to this equation">#</a></span>\[
+B = \sigma\big(k\,(P - T)\big), \qquad k = 50
+\]</div>
+<p>y la pérdida total es</p>
+<div class="math notranslate nohighlight" id="equation-eq-perdida">
+<span class="eqno">(2)<a class="headerlink" href="#equation-eq-perdida" title="Link to this equation">#</a></span>\[
+\mathcal{L} = 5\,\mathcal{L}_s + 10\,\mathcal{L}_t + \mathcal{L}_b
+\]</div>
+<p>con <span class="math notranslate nohighlight">\(\mathcal{L}_s\)</span> la entropía cruzada binaria con minería de negativos difíciles 1:3 sobre <span class="math notranslate nohighlight">\(P\)</span>, <span class="math notranslate nohighlight">\(\mathcal{L}_t\)</span> la
+pérdida L1 de <span class="math notranslate nohighlight">\(T\)</span> dentro de la banda y <span class="math notranslate nohighlight">\(\mathcal{L}_b\)</span> la pérdida Dice de <span class="math notranslate nohighlight">\(B\)</span> (según <span class="bibtex-citation" id="id1">[<a class="reference internal" href="referencias.html#id2" title="Minghui Liao, Zhaoyi Wan, Cong Yao, Kai Chen, and Xiang Bai. Real-time scene text detection with differentiable binarization. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 34, 11474–11481. 2020. doi:10.1609/aaai.v34i07.6812.">Liao <em>et al.</em>, 2020</a>]</span>; pesos
+confirmados en <code class="docutils literal notranslate"><span class="pre">MODELO_ORIGINAL_ESTADO.md</span></code>).</p>
+<p><strong>C1, encogimiento atenuado por grosor.</strong> Para una región de área <span class="math notranslate nohighlight">\(A\)</span>, perímetro <span class="math notranslate nohighlight">\(L\)</span> y radio inscrito <span class="math notranslate nohighlight">\(g\)</span>, el
+desplazamiento del borde al núcleo es</p>
+<div class="math notranslate nohighlight" id="equation-eq-c1">
+<span class="eqno">(3)<a class="headerlink" href="#equation-eq-c1" title="Link to this equation">#</a></span>\[
+D = \rho(K) = \varphi(g)\,\frac{A\,(1 - r^{2})}{L}, \qquad
+\varphi(g) = \frac{g^{2}}{g^{2} + g_0^{2}}, \quad r = 0{,}4,\; g_0 = 4\ \text{px}
+\]</div>
+<p>La regla de DBNet es el caso <span class="math notranslate nohighlight">\(\varphi \equiv 1\)</span>.</p>
+<p><strong>C2, expansión consistente.</strong> En inferencia, la distancia de expansión <span class="math notranslate nohighlight">\(d\)</span> es el punto fijo de</p>
+<div class="math notranslate nohighlight" id="equation-eq-c2">
+<span class="eqno">(4)<a class="headerlink" href="#equation-eq-c2" title="Link to this equation">#</a></span>\[
+d = \rho\big(M(K', d)\big)
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(K'\)</span> es el núcleo predicho y <span class="math notranslate nohighlight">\(M(K', d)\)</span> su desplazamiento en inglete (límite 2). Se resuelve por bisección
+(16 pasos) y refinamiento en píxeles, con un ajuste de 0,75 px calibrado en 200 imágenes de entrenamiento
+(<code class="docutils literal notranslate"><span class="pre">design_log.md</span></code>).</p>
+</section>
+<section id="pseudocodigo-de-la-inferencia">
+<h2>Pseudocódigo de la inferencia<a class="headerlink" href="#pseudocodigo-de-la-inferencia" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table" id="tab-pseudocodigo">
+<caption><span class="caption-number">Tabla 1 </span><span class="caption-text">Inferencia de UNet-AT (C2)</span><a class="headerlink" href="#tab-pseudocodigo" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Elemento</p></th>
+<th class="head"><p>Contenido</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Entradas</p></td>
+<td><p>Imagen <span class="math notranslate nohighlight">\(I\)</span> (3×256×256, letterbox); pesos entrenados; umbral 0,3; parámetros <span class="math notranslate nohighlight">\(r\)</span>, <span class="math notranslate nohighlight">\(g_0\)</span>, ajuste.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Salidas</p></td>
+<td><p>Máscara binaria 256×256 del rótulo.</p></td>
+</tr>
+<tr class="row-even"><td><p>Paso 1</p></td>
+<td><p>Calcular <span class="math notranslate nohighlight">\(P\)</span> y <span class="math notranslate nohighlight">\(T\)</span> con la red; binarizar <span class="math notranslate nohighlight">\(P\)</span> con 0,3.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Paso 2</p></td>
+<td><p>Extraer componentes conexos; descartar los de <span class="math notranslate nohighlight">\(P\)</span> media menor que 0,5 o área menor que 9 px.</p></td>
+</tr>
+<tr class="row-even"><td><p>Paso 3</p></td>
+<td><p>Por cada componente <span class="math notranslate nohighlight">\(K'\)</span>: buscar <span class="math notranslate nohighlight">\(d\)</span> con la ecuación <a class="reference internal" href="#equation-eq-c2">(4)</a> por bisección en <span class="math notranslate nohighlight">\([0, d_{\max}]\)</span>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Paso 4</p></td>
+<td><p>Refinar <span class="math notranslate nohighlight">\(d\)</span> en píxeles (candidatos vecinos) y expandir <span class="math notranslate nohighlight">\(K'\)</span> con inglete propio.</p></td>
+</tr>
+<tr class="row-even"><td><p>Paso 5</p></td>
+<td><p>Unir las regiones expandidas en la máscara de salida.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Criterio de parada</p></td>
+<td><p>Bisección: 16 iteraciones. Refinamiento: ningún candidato vecino mejora la consistencia
+<span class="math notranslate nohighlight">\(\lvert d - \rho(M(K', d))\rvert\)</span>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Código: <code class="docutils literal notranslate"><span class="pre">src/geometria_at.py</span></code>, <code class="docutils literal notranslate"><span class="pre">src/original_model.py</span></code>, <code class="docutils literal notranslate"><span class="pre">training/entrenar_original.py</span></code> (SHA-256 en
+<code class="docutils literal notranslate"><span class="pre">experiments/procedencia.md</span></code>).</p>
+</section>
+<section id="teorema-de-inversion-exacta">
+<span id="sec-teorema"></span><h2>Teorema de inversión exacta<a class="headerlink" href="#teorema-de-inversion-exacta" title="Link to this heading">#</a></h2>
+<p>Texto fuente: <code class="docutils literal notranslate"><span class="pre">entregable_3/diseno.md</span></code>, §3.5. Se conserva el argumento recuperado para revisión.
+La comprobación numérica de la implementación no valida todos sus pasos formales; la revisión
+independiente de esta demostración permanece pendiente. Su alcance continuo tampoco se extiende
+automáticamente al posproceso discreto ni a núcleos predichos con error.</p>
+<p><strong>Notación.</strong> <span class="math notranslate nohighlight">\(K=\bigcap_i\{x:\ n_i\!\cdot\! x\le b_i\}\)</span> es un polígono convexo con normales exteriores unitarias
+<span class="math notranslate nohighlight">\(n_i\)</span> y ángulos interiores <span class="math notranslate nohighlight">\(\theta_i\)</span>; <span class="math notranslate nohighlight">\(K_{-D}=\{x\in K:\ \operatorname{dist}(x,\partial K)\ge D\}\)</span>; el desplazamiento
+en inglete de <span class="math notranslate nohighlight">\(P=\bigcap_j\{n_j\!\cdot\! x\le c_j\}\)</span> es <span class="math notranslate nohighlight">\(M(P,d)=\bigcap_j\{n_j\!\cdot\! x\le c_j+d\}\)</span>.</p>
+<p><strong>Supuestos.</strong></p>
+<ul class="simple">
+<li><p>S1. Ningún lado colapsa: <span class="math notranslate nohighlight">\(D&lt;D^{*}(K)\)</span>, la menor distancia a la que un lado de <span class="math notranslate nohighlight">\(K_{-D}\)</span> se reduce a un punto. En
+un rectángulo de ancho <span class="math notranslate nohighlight">\(w\)</span>, <span class="math notranslate nohighlight">\(D^{*}=w/2\)</span> y la regla da <span class="math notranslate nohighlight">\(D\le 0{,}42\,(w/2)\)</span>.</p></li>
+<li><p>S2. Ángulos interiores <span class="math notranslate nohighlight">\(\theta_i\ge 60^\circ\)</span>, para que el límite de inglete 2 no recorte esquinas.</p></li>
+</ul>
+<p><strong>Lema 1 (el núcleo es el polígono de rectas desplazadas).</strong> Para <span class="math notranslate nohighlight">\(x\in K\)</span>,</p>
+<div class="math notranslate nohighlight" id="equation-eq-lema1">
+<span class="eqno">(5)<a class="headerlink" href="#equation-eq-lema1" title="Link to this equation">#</a></span>\[
+\operatorname{dist}(x,\partial K)=\min_i\,(b_i-n_i\!\cdot\! x)
+\]</div>
+<p>y por tanto <span class="math notranslate nohighlight">\(K_{-D}=\bigcap_i\{n_i\!\cdot\! x\le b_i-D\}\)</span>.</p>
+<p><em>Demostración.</em> <span class="math notranslate nohighlight">\(\partial K\subset\bigcup_i\ell_i\)</span>, así que <span class="math notranslate nohighlight">\(\operatorname{dist}(x,\partial K)\ge\min_i
+\operatorname{dist}(x,\ell_i)\)</span>. Recíprocamente, con <span class="math notranslate nohighlight">\(i^{*}\)</span> el índice del mínimo, el rayo <span class="math notranslate nohighlight">\(x+t\,n_{i^{*}}\)</span> sale de <span class="math notranslate nohighlight">\(K\)</span>
+en algún <span class="math notranslate nohighlight">\(t\le b_{i^{*}}-n_{i^{*}}\!\cdot\! x\)</span>, de modo que <span class="math notranslate nohighlight">\(\operatorname{dist}(x,\partial K)\le b_{i^{*}}-
+n_{i^{*}}\!\cdot\! x\)</span>. Las dos desigualdades dan la igualdad. <span class="math notranslate nohighlight">\(\square\)</span></p>
+<p><strong>Lema 2 (unicidad del punto fijo).</strong> Bajo S1, con <span class="math notranslate nohighlight">\(K_1=K_{-D}\)</span> y <span class="math notranslate nohighlight">\(h(d)=\rho(M(K_1,d))-d\)</span>, la función <span class="math notranslate nohighlight">\(h\)</span> es
+estrictamente decreciente en <span class="math notranslate nohighlight">\(d\ge 0\)</span>.</p>
+<p><em>Demostración.</em> Con <span class="math notranslate nohighlight">\(A_1\)</span>, <span class="math notranslate nohighlight">\(L_1\)</span> y <span class="math notranslate nohighlight">\(g_1\)</span> el área, el perímetro y el radio inscrito de <span class="math notranslate nohighlight">\(K_1\)</span>, las fórmulas de Steiner
+del desplazamiento en inglete dan</p>
+<div class="math notranslate nohighlight" id="equation-eq-steiner">
+<span class="eqno">(6)<a class="headerlink" href="#equation-eq-steiner" title="Link to this equation">#</a></span>\[
+A(d)=A_1+L_1d+c\,d^{2},\qquad L(d)=L_1+2c\,d,\qquad g(d)=g_1+d,\qquad c=\sum_i\cot(\theta_i/2)&gt;0
+\]</div>
+<p>(lo último por el Lema 1). Con <span class="math notranslate nohighlight">\(q=A/L\)</span> se tiene <span class="math notranslate nohighlight">\(q'(d)=1-2cA/L^{2}\le 1\)</span>. Por la desigualdad de Bonnesen
+<span class="bibtex-citation" id="id2">[<a class="reference internal" href="referencias.html#id11" title="Robert Osserman. Bonnesen-style isoperimetric inequalities. The American Mathematical Monthly, 86(1):1–29, 1979. doi:10.1080/00029890.1979.11994723.">Osserman, 1979</a>]</span>, <span class="math notranslate nohighlight">\(gL\ge A+\pi g^{2}\)</span>, de modo que <span class="math notranslate nohighlight">\(q\le g\)</span>. Entonces
+<span class="math notranslate nohighlight">\(\rho'(d)\le(1-r^{2})\,(g\varphi'(g)+\varphi(g))=(1-r^{2})\,(g\varphi)'\)</span>. Para <span class="math notranslate nohighlight">\(\varphi=g^{2}/(g^{2}+g_0^{2})\)</span> el máximo
+de <span class="math notranslate nohighlight">\((g\varphi)'\)</span> es <span class="math notranslate nohighlight">\(9/8\)</span>, en <span class="math notranslate nohighlight">\(g=\sqrt3\,g_0\)</span>; luego <span class="math notranslate nohighlight">\(\rho'\le 0{,}84\cdot 1{,}125=0{,}945&lt;1\)</span> y <span class="math notranslate nohighlight">\(h'=\rho'-1&lt;0\)</span>. Con
+<span class="math notranslate nohighlight">\(\varphi\equiv1\)</span>, <span class="math notranslate nohighlight">\(\rho'\le 0{,}84\)</span>. <span class="math notranslate nohighlight">\(\square\)</span></p>
+<p><strong>Teorema (C2 invierte a C1 y a la regla de DBNet).</strong> Sea <span class="math notranslate nohighlight">\(K\)</span> convexo con S1 y S2, <span class="math notranslate nohighlight">\(D=\rho(K)\)</span> y <span class="math notranslate nohighlight">\(K_1=K_{-D}\)</span>. La
+ecuación <a class="reference internal" href="#equation-eq-c2">(4)</a> tiene solución única <span class="math notranslate nohighlight">\(d=D\)</span> y <span class="math notranslate nohighlight">\(M(K_1,D)=K\)</span>.</p>
+<p><em>Demostración.</em> Por el Lema 1, <span class="math notranslate nohighlight">\(K_1=\bigcap_i\{n_i\!\cdot\! x\le b_i-D\}\)</span> y, por S1, los <span class="math notranslate nohighlight">\(m\)</span> semiplanos siguen siendo
+lados de <span class="math notranslate nohighlight">\(K_1\)</span>. Entonces <span class="math notranslate nohighlight">\(M(K_1,D)=\bigcap_i\{n_i\!\cdot\! x\le b_i\}=K\)</span>, y por S2 el límite de inglete no recorta esa
+intersección. Así <span class="math notranslate nohighlight">\(\rho(M(K_1,D))=\rho(K)=D\)</span>: <span class="math notranslate nohighlight">\(D\)</span> es raíz y, por el Lema 2, la única. <span class="math notranslate nohighlight">\(\square\)</span></p>
+<p><strong>Corolario (la expansión fija no puede).</strong> Con <span class="math notranslate nohighlight">\(r'\)</span> fijo, DBNet expande con <span class="math notranslate nohighlight">\(D'=A_1r'/L_1\)</span> y bordes redondeados; no
+hay una <span class="math notranslate nohighlight">\(r'\)</span> que reconstruya a la vez un cuadrado y un rectángulo muy alargado, y el redondeo pierde <span class="math notranslate nohighlight">\((4-\pi)D'^{2}\)</span>
+por rectángulo aun con la <span class="math notranslate nohighlight">\(r'\)</span> correcta.</p>
+<p><strong>Qué violan los datos.</strong> La discretización en píxeles (la inversa deja de ser única en ±1 px), las regiones reales
+no convexas o con perspectiva, y los errores de la red (que el teorema no corrige). Por eso es motivación, no
+garantía.</p>
+<div class="warning admonition">
+<p class="admonition-title">Pendiente</p>
+<p>Verificación local con pytest (27/11/2026): 11 pruebas aprobadas y una omitida con OpenCV 4.11.0.
+La discrepancia inicial del rombo de 10 px se reprodujo variando solo OpenCV: la versión 4.10
+rasteriza algunas posiciones subpíxel de forma distinta y produce Dice 0,9730335; 4.11 produce
+0,9822501, consistente con el 0,9823 histórico. Las 21 comparaciones ampliadas pasan con 4.11.
+No se cambió la tolerancia ni el archivo de geometría. La versión queda fijada en el entrenamiento
+y registrada en su identidad para impedir mezclar checkpoints entre estos entornos.
+La equivalencia directa con <code class="docutils literal notranslate"><span class="pre">entregable_2/codigo/etiquetas.py</span></code> sigue omitida porque falta ese archivo.
+Las pruebas numéricas no sustituyen una demostración formal ni la evaluación de un modelo entrenado completo.</p>
+</div>
+</section>
+<section id="complejidad">
+<h2>Complejidad<a class="headerlink" href="#complejidad" title="Link to this heading">#</a></h2>
+<p>Con <span class="math notranslate nohighlight">\(H\times W\)</span> píxeles, <span class="math notranslate nohighlight">\(n\)</span> regiones por imagen y una región de área <span class="math notranslate nohighlight">\(a\)</span> con caja recortada de área
+<span class="math notranslate nohighlight">\(a_c\approx(\sqrt a+2m)^2\)</span>:</p>
+<ul class="simple">
+<li><p><strong>Red:</strong> <span class="math notranslate nohighlight">\(O(HW)\)</span> por imagen, con 17 parámetros más que la U-Net compacta (cabezas 1×1).</p></li>
+<li><p><strong>Etiquetas (C1):</strong> una transformada de distancia por región, <span class="math notranslate nohighlight">\(O(nHW)\)</span>, con constante algo mayor que DBNet.</p></li>
+<li><p><strong>Inferencia (C2):</strong> por región, unas 32 evaluaciones (16 de bisección y unas 16 del refinamiento), cada una
+<span class="math notranslate nohighlight">\(O(v+a_c)\)</span> con <span class="math notranslate nohighlight">\(v\)</span> vértices; total <span class="math notranslate nohighlight">\(O(32\,n\,a_c)\)</span> contra <span class="math notranslate nohighlight">\(O(n\,a)\)</span> del posproceso de DBNet.</p></li>
+</ul>
+<p>Medido en CPU (<code class="docutils literal notranslate"><span class="pre">MODELO_ORIGINAL_ESTADO.md</span></code>): unos 0,3 s por imagen de validación con C2.</p>
+<div class="warning admonition">
+<p class="admonition-title">Pendiente</p>
+<p>Medición de tiempo y memoria al variar la resolución (128, 256, 512) y el número de regiones (<code class="docutils literal notranslate"><span class="pre">diseno.md</span></code> §3.6);
+saldrá de un script de <code class="docutils literal notranslate"><span class="pre">experiments/</span></code> aún no escrito.</p>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02_trabajo_relacionado.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Trabajo relacionado</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="04_diseno_experimental.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Diseño experimental: protocolo y potencia</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formulacion">Formulación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pseudocodigo-de-la-inferencia">Pseudocódigo de la inferencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teorema-de-inversion-exacta">Teorema de inversión exacta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complejidad">Complejidad</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Autores: por completar
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

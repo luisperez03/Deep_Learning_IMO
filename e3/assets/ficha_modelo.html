@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ficha de modelos · HAZMAT-13</title>
+<style>body{font:17px/1.65 system-ui,sans-serif;color:#203147;background:#f5f7fa;margin:0}main{max-width:850px;margin:3rem auto;padding:2rem;background:white;border-radius:12px}a{color:#145da0}h1,h2{line-height:1.25}h2{margin-top:2rem}table{border-collapse:collapse;width:100%}th,td{text-align:left;vertical-align:top;border-bottom:1px solid #d8e0e8;padding:.7rem}@media(max-width:600px){main{margin:0;padding:1.2rem}}</style>
+</head>
+<body><main>
+<a href="/">← Volver a la aplicación</a>
+<h1>Ficha de modelos</h1>
+<p>Proyecto académico de segmentación binaria de rótulos de mercancías peligrosas en imágenes HAZMAT-13. Estado de integración: 27 de noviembre de 2026.</p>
+<h2>Uso y alcance</h2>
+<p>La aplicación permite explorar resultados del benchmark y visualizar máscaras de segmentación. Identifica regiones candidatas de rótulos; no determina por sí sola la clase de mercancía, su peligrosidad ni el cumplimiento de una norma. Su uso previsto es investigación y demostración académica.</p>
+<h2>Artefactos disponibles</h2>
+<table><thead><tr><th>Modelo</th><th>Estado verificado</th></tr></thead><tbody>
+<tr><td>FCN y U-Net a0498</td><td>Inferencia ONNX local habilitada; comprobación contra PyTorch sobre 218 imágenes de validación.</td></tr>
+<tr><td>SegNet a0498</td><td>Respaldo TorchScript verificado. El ONNX no superó la tolerancia de probabilidades y la inferencia en la aplicación permanece deshabilitada.</td></tr>
+<tr><td>Resto del benchmark</td><td>Resultados históricos identificados como E2. La integración de las configuraciones y artefactos finales continúa pendiente.</td></tr>
+<tr><td>UNet-AT</td><td>Diez semillas por brazo verificadas. Dice medio de validación: UNet-AT 0,7862; base 0,8077. Demostración del original con semilla 11 y C2 completo. Evaluación final pendiente; no se declara superioridad.</td></tr>
+</tbody></table>
+<h2>Datos y evaluación</h2>
+<p>El conjunto de trabajo contiene 1.015 imágenes de entrenamiento, 218 de validación y 218 de test. Los grupos de similitud se mantienen separados entre particiones. Las métricas agregadas por grupo dan el mismo peso a cada grupo. Los resultados históricos de test del E2 no se atribuyen a las nuevas arquitecturas a0498.</p>
+<p>Para las compactas se recuperaron cinco semillas por familia. El artefacto de demostración representa una semilla elegida por la mediana de Dice en validación. Su resultado individual no equivale a la media de las cinco semillas.</p>
+<h2>Entrada y salida</h2>
+<p>Entrada: imagen PNG o JPEG, preprocesada con ajuste proporcional y relleno a 256 × 256 y la normalización fijada en entrenamiento. Salida: máscara binaria y superposición sobre la imagen. Las probabilidades no están calibradas.</p>
+<h2>Limitaciones</h2>
+<p>Objetos pequeños, ocluidos, iluminación diferente y fotografías fuera del dominio de entrenamiento pueden producir errores. La evaluación en tres conjuntos adicionales y la validación operativa no están completadas. La aplicación no sustituye inspección humana ni procedimientos de seguridad portuaria.</p>
+<h2>Privacidad y trazabilidad</h2>
+<p>La aplicación procesa las imágenes cargadas en memoria y no las guarda como archivos. Los artefactos se identifican con configuración, semilla, versiones y SHA-256; la aplicación rechaza artefactos que no superaron su verificación. No se incluyen imágenes del conjunto de datos en esta ficha.</p>
+<p>El despliegue público todavía no ha sido verificado. Esta ficha documenta el estado local y debe actualizarse cuando se incorporen los resultados finales.</p>
+</main></body></html>

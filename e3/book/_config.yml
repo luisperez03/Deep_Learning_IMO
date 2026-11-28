@@ -1,0 +1,47 @@
+# Configuración de Jupyter Book del Entregable 3.
+# Construir desde e3/:  jupyter-book build book/
+title: "Entregable 3: UNet-AT y benchmark de segmentación de rótulos HAZMAT"
+author: "Autores: por completar"
+copyright: "2026"
+language: es
+logo: ""
+
+# Las celdas se ejecutan al construir y se guardan en caché (jupyter-cache). Solo leen CSV versionados en
+# data/ y resultados precalculados: ningún entrenamiento corre al construir el libro.
+execute:
+  execute_notebooks: cache
+  timeout: 300
+  allow_errors: false
+  stderr_output: show
+
+bibtex_bibfiles:
+  - references.bib
+
+latex:
+  latex_engine: xelatex
+
+sphinx:
+  config:
+    bibtex_reference_style: author_year
+    language: es
+    html_show_copyright: false
+    nb_execution_show_tb: true
+    suppress_warnings: ["mystnb.unknown_mime_type"]
+    mathjax3_config:
+      tex:
+        tags: "ams"
+  extra_extensions: []
+
+parse:
+  myst_enable_extensions:
+    - amsmath
+    - colon_fence
+    - deflist
+    - dollarmath
+    - substitution
+  myst_heading_anchors: 3
+
+html:
+  use_issues_button: false
+  use_repository_button: false
+  use_edit_page_button: false

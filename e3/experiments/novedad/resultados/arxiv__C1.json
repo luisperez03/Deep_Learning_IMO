@@ -1,0 +1,29 @@
+{
+ "cadena": "C1",
+ "fuente": "arxiv",
+ "fecha": "2026-11-23T08:31:37-05:00",
+ "url": "https://export.arxiv.org/api/query?search_query=all%3A%28hazmat%20OR%20%22hazardous%20material%22%20OR%20%22dangerous%20goods%22%29%20AND%20all%3A%28placard%20OR%20label%20OR%20sign%29%20AND%20all%3A%28segmentation%20OR%20detection%29&max_results=50&sortBy=relevance",
+ "estado": "ok",
+ "total_declarado": 3,
+ "devueltos": 3,
+ "registros": [
+  {
+   "titulo": "DeepHAZMAT: Hazardous Materials Sign Detection and Segmentation with Restricted Computational Resources",
+   "anio": "2020",
+   "doi": "http://arxiv.org/abs/2007.06392v2",
+   "resumen": "One of the most challenging and non-trivial tasks in robot-based rescue operations is the Hazardous Materials or HAZMATs sign detection in the operation field, to prevent further unexpected disasters. Each Hazmat sign has a specific meaning that the rescue robot should detect and interpret it to take a safe action, accordingly. Accurate Hazmat detection and real-time processing are the two most important factors in such robotics applications. Furthermore, we also have to cope with some secondary challenges such as image distortion and restricted CPU and computational resources which are embedded in a rescue robot. In this paper, we propose a CNN-Based pipeline called DeepHAZMAT for detecting and segmenting Hazmats in four steps; 1) optimising the number of input images that are fed into the CNN network, 2) using the YOLOv3-tiny structure to collect the required visual information from th"
+  },
+  {
+   "titulo": "Improving CNN-based Planar Object Detection with Geometric Prior Knowledge",
+   "anio": "2019",
+   "doi": "http://arxiv.org/abs/1909.10245v2",
+   "resumen": "In this paper, we focus on the question: how might mobile robots take advantage of affordable RGB-D sensors for object detection? Although current CNN-based object detectors have achieved impressive results, there are three main drawbacks for practical usage on mobile robots: 1) It is hard and time-consuming to collect and annotate large-scale training sets. 2) It usually needs a long training time. 3) CNN-based object detection shows significant weakness in predicting location. We propose an improved method for the detection of planar objects, which rectifies images with geometric information to compensate for the perspective distortion before feeding it to the CNN detector module, typically a CNN-based detector like YOLO or MASK RCNN. By dealing with the perspective distortion in advance, we eliminate the need for the CNN detector to learn that. Experiments show that this approach sign"
+  },
+  {
+   "titulo": "Object Depth and Size Estimation using Stereo-vision and Integration with SLAM",
+   "anio": "2024",
+   "doi": "http://arxiv.org/abs/2409.07623v1",
+   "resumen": "Autonomous robots use simultaneous localization and mapping (SLAM) for efficient and safe navigation in various environments. LiDAR sensors are integral in these systems for object identification and localization. However, LiDAR systems though effective in detecting solid objects (e.g., trash bin, bottle, etc.), encounter limitations in identifying semitransparent or non-tangible objects (e.g., fire, smoke, steam, etc.) due to poor reflecting characteristics. Additionally, LiDAR also fails to detect features such as navigation signs and often struggles to detect certain hazardous materials that lack a distinct surface for effective laser reflection. In this paper, we propose a highly accurate stereo-vision approach to complement LiDAR in autonomous robots. The system employs advanced stereo vision-based object detection to detect both tangible and non-tangible objects and then uses simpl"
+  }
+ ]
+}

@@ -1,0 +1,411 @@
+{
+ "cadena": "C4",
+ "fuente": "openalex",
+ "fecha": "2026-11-23T08:35:16-05:00",
+ "url": "https://api.openalex.org/works?search=%28unclip%20OR%20%22kernel%20expansion%22%20OR%20%22expansion%20ratio%22%20OR%20%22learnable%20expansion%22%20OR%20%22adaptive%20expansion%22%20OR%20%22adaptive%20unclip%22%20OR%20%22kernel%20reconstruction%22%20OR%20%22offset%20ratio%22%29%20AND%20%28%22text%20detection%22%20OR%20%22scene%20text%22%20OR%20%22instance%20segmentation%22%29%20AND%20%28shrink%20OR%20shrunk%20OR%20kernel%20OR%20DBNet%29&per-page=50&select=id,doi,title,publication_year,cited_by_count,abstract_inverted_index,primary_location",
+ "estado": "ok",
+ "total_declarado": 368,
+ "devueltos": 50,
+ "registros": [
+  {
+   "titulo": "Text kernel expansion for real-time scene text detection",
+   "anio": 2024,
+   "doi": "https://doi.org/10.1007/s10044-024-01352-2",
+   "id": "https://openalex.org/W4404119823",
+   "citas": 3,
+   "resumen": ""
+  },
+  {
+   "titulo": "Deformable Kernel Expansion Model for Efficient Arbitrary-shaped Scene Text Detection",
+   "anio": 2023,
+   "doi": "https://doi.org/10.48550/arxiv.2303.15737",
+   "id": "https://openalex.org/W4361230835",
+   "citas": 2,
+   "resumen": "Scene text detection is a challenging computer vision task due to the high variation in text shapes and ratios. In this work, we propose a scene text detector named Deformable Kernel Expansion (DKE), which incorporates the merits of both segmentation and contour-based detectors. DKE employs a segmentation module to segment the shrunken text region as the text kernel, then expands the text kernel contour to obtain text boundary by regressing the vertex-wise offsets. Generating the text kernel by segmentation enables DKE to inherit the arbitrary-shaped text region modeling capability of segmentation-based detectors. Regressing the kernel contour with some sampled vertices enables DKE to avoid the complicated pixel-level post-processing and better learn contour deformation as the contour-based detectors. Moreover, we propose an Optimal Bipartite Graph Matching Loss (OBGML) that measures the"
+  },
+  {
+   "titulo": "Deformable Kernel Expansion Model for Efficient Arbitrary-shaped Scene Text Detection",
+   "anio": 2024,
+   "doi": "https://doi.org/10.21203/rs.3.rs-3987003/v1",
+   "id": "https://openalex.org/W4392234462",
+   "citas": 0,
+   "resumen": "Scene text detection is a challenging computer vision task due to the high variation in text shapes and ratios. In this work, we propose a real-time arbitrary-shaped scene text detector named Deformable Kernel Expansion (DKE), which incorporates the merits of both segmentation and contour-based detectors. DKE employs a segmentation module to segment the shrunken text region as the text kernel, then expands the kernel to obtain text boundary by regressing the vertex-wise offsets. Generating the text kernel by segmentation enables DKE to inherit the arbitrary-shaped text region modeling capability of segmentation-based detectors. Regressing the kernel with control points enables DKE to avoid the complicated pixel-level post-processing and better learn contour deformation as the contour-based detectors. Moreover, we propose an Optimal Bipartite Graph Matching Loss that measures the matching"
+  },
+  {
+   "titulo": "Deformable Kernel Expansion Model for Efficient Arbitrary-Shaped Scene Text Detection",
+   "anio": 2023,
+   "doi": "https://doi.org/10.2139/ssrn.4676354",
+   "id": "https://openalex.org/W4390241406",
+   "citas": 1,
+   "resumen": ""
+  },
+  {
+   "titulo": "Thai scene text recognition",
+   "anio": 2019,
+   "doi": "https://doi.org/10.58837/chula.the.2019.160",
+   "id": "https://openalex.org/W4386792828",
+   "citas": 3,
+   "resumen": "Automatic scene text detection and recognition can benefit a large number of daily life applications such as reading signs and labels, and helping visually impaired persons. Reading scene text images becomes more challenging than reading scanned documents in many aspects due to many factors such as variations of font styles and unpredictable lighting conditions. The problem can be decomposed into two sub-problems: text localization and text recognition. The proposed scene text localization works at the pixel level combined with a new text representation and a fully-convolutional neural network. This method is capable of detecting arbitrary shape texts without language limitations. The experimental results on the standard benchmarks show the performance in terms of accuracy and speed compared to the existing works. The cropped text instances are passed into the proposed text recognition a"
+  },
+  {
+   "titulo": "Research on lightweight terminal mark detection method based on improved DBNet network",
+   "anio": 2025,
+   "doi": "https://doi.org/10.21203/rs.3.rs-6601425/v1",
+   "id": "https://openalex.org/W4410381366",
+   "citas": 0,
+   "resumen": "To address the intricate backdrop and distorted deformation issues in substation terminal marking identification, a lightweight detection method utilizing an enhanced DBNet network is proposed. To address the intricate background factors in the terminal marking image, the backbone network is substituted with the lightweight MobileViTv3, and the DCA module of the dual cross-attention mechanism is incorporated to capture both local details and global contextual information. The Dynamic Snake Convolution (DSConv) is implemented within the feature pyramid to dynamically modify the sampling paths of the convolution kernel, while the offset generation network is revised to an MLP for enhanced accuracy in offset generation. Additionally, the upsampling operation of the FPN layer is replaced with the lightweight upsampling operator CARAFE, which adjusts the upsampling kernel based on the input f"
+  },
+  {
+   "titulo": "EBiDNet: A Character Detection Algorithm for LCD Interfaces Based on an Improved DBNet Framework",
+   "anio": 2025,
+   "doi": "https://doi.org/10.3390/sym17091443",
+   "id": "https://openalex.org/W4413954504",
+   "citas": 3,
+   "resumen": "Characters on liquid crystal display (LCD) interfaces often appear densely arranged, with complex image backgrounds and significant variations in target appearance, posing considerable challenges for visual detection. To improve the accuracy and robustness of character detection, this paper proposes an enhanced character detection algorithm based on the DBNet framework, named EBiDNet (EfficientNetV2 and BiFPN Enhanced DBNet). This algorithm integrates machine vision with deep learning techniques and introduces the following architectural optimizations. It employs EfficientNetV2-S, a lightweight, high-performance backbone network, to enhance feature extraction capability. Meanwhile, a bidirectional feature pyramid network (BiFPN) is introduced. Its distinctive symmetric design ensures balanced feature propagation in both top-down and bottom-up directions, thereby enabling more efficient m"
+  },
+  {
+   "titulo": "RTMDet: An Empirical Study of Designing Real-Time Object Detectors",
+   "anio": 2022,
+   "doi": "https://doi.org/10.48550/arxiv.2212.07784",
+   "id": "https://openalex.org/W4311726887",
+   "citas": 1361,
+   "resumen": "In this paper, we aim to design an efficient real-time object detector that exceeds the YOLO series and is easily extensible for many object recognition tasks such as instance segmentation and rotated object detection. To obtain a more efficient model architecture, we explore an architecture that has compatible capacities in the backbone and neck, constructed by a basic building block that consists of large-kernel depth-wise convolutions. We further introduce soft labels when calculating matching costs in the dynamic label assignment to improve accuracy. Together with better training techniques, the resulting object detector, named RTMDet, achieves 52.8% AP on COCO with 300+ FPS on an NVIDIA 3090 GPU, outperforming the current mainstream industrial detectors. RTMDet achieves the best parameter-accuracy trade-off with tiny/small/medium/large/extra-large model sizes for various application"
+  },
+  {
+   "titulo": "A Novel Multi-Stage Recognition System in Handwritten Chinese Characters",
+   "anio": 2024,
+   "doi": "https://doi.org/10.54097/ng5max90",
+   "id": "https://openalex.org/W4399767766",
+   "citas": 0,
+   "resumen": "Due to the various individual handwriting styles and diverse structures of Chinese characters, it is rather intricate to recognize handwritten Chinese characters precisely. In this paper, a muti-stage system that combines a Differentiable Binarization Network (DBNet) for text detection and Scene Text Recognition with a Single Visual Model (SVTR) for effective character recognition is developed, aiming to offer a potential solution for correct identification of handwritten Chinese characters in real-world scenarios. More specifically, the proposed system utilized the CASIA-HWDB2.x dataset from the Institute of Automation of the Chinese Academy of Sciences to train text detection and recognition models. For the detection, the Differentiable Binarization method in the Head Network applies a dynamic threshold map for text-background differentiation. On top of the SVTR employed as a recogniti"
+  },
+  {
+   "titulo": "A Simple Single-Scale Vision Transformer for Object Localization and Instance Segmentation",
+   "anio": 2021,
+   "doi": "https://doi.org/10.48550/arxiv.2112.09747",
+   "id": "https://openalex.org/W4225576398",
+   "citas": 49,
+   "resumen": "This work presents a simple vision transformer design as a strong baseline for object localization and instance segmentation tasks. Transformers recently demonstrate competitive performance in image classification tasks. To adopt ViT to object detection and dense prediction tasks, many works inherit the multistage design from convolutional networks and highly customized ViT architectures. Behind this design, the goal is to pursue a better trade-off between computational cost and effective aggregation of multiscale global contexts. However, existing works adopt the multistage architectural design as a black-box solution without a clear understanding of its true benefits. In this paper, we comprehensively study three architecture design choices on ViT -- spatial reduction, doubled channels, and multiscale features -- and demonstrate that a vanilla ViT architecture can fulfill this goal wit"
+  },
+  {
+   "titulo": "CBNet: A Plug-and-Play Network for Segmentation-Based Scene Text Detection",
+   "anio": 2024,
+   "doi": "https://doi.org/10.1007/s11263-024-02022-w",
+   "id": "https://openalex.org/W4392470567",
+   "citas": 26,
+   "resumen": ""
+  },
+  {
+   "titulo": "Pyramid Vision Transformer: A Versatile Backbone for Dense Prediction without Convolutions",
+   "anio": 2021,
+   "doi": "https://doi.org/10.48550/arxiv.2102.12122",
+   "id": "https://openalex.org/W3203606893",
+   "citas": 420,
+   "resumen": "Although using convolutional neural networks (CNNs) as backbones achieves great successes in computer vision, this work investigates a simple backbone network useful for many dense prediction tasks without convolutions. Unlike the recently-proposed Transformer model (e.g., ViT) that is specially designed for image classification, we propose Pyramid Vision Transformer~(PVT), which overcomes the difficulties of porting Transformer to various dense prediction tasks. PVT has several merits compared to prior arts. (1) Different from ViT that typically has low-resolution outputs and high computational and memory cost, PVT can be not only trained on dense partitions of the image to achieve high output resolution, which is important for dense predictions but also using a progressive shrinking pyramid to reduce computations of large feature maps. (2) PVT inherits the advantages from both CNN and "
+  },
+  {
+   "titulo": "CPISNet: Delving into Consistent Proposals of Instance Segmentation Network for High-Resolution Aerial Images",
+   "anio": 2021,
+   "doi": "https://doi.org/10.3390/rs13142788",
+   "id": "https://openalex.org/W3183708793",
+   "citas": 21,
+   "resumen": "Instance segmentation of high-resolution aerial images is challenging when compared to object detection and semantic segmentation in remote sensing applications. It adopts boundary-aware mask predictions, instead of traditional bounding boxes, to locate the objects-of-interest in pixel-wise. Meanwhile, instance segmentation can distinguish the densely distributed objects within a certain category by a different color, which is unavailable in semantic segmentation. Despite the distinct advantages, there are rare methods which are dedicated to the high-quality instance segmentation for high-resolution aerial images. In this paper, a novel instance segmentation method, termed consistent proposals of instance segmentation network (CPISNet), for high-resolution aerial images is proposed. Following top-down instance segmentation formula, it adopts the adaptive feature extraction network (AFEN)"
+  },
+  {
+   "titulo": "Shape Robust Text Detection With Progressive Scale Expansion Network",
+   "anio": 2019,
+   "doi": "https://doi.org/10.1109/cvpr.2019.00956",
+   "id": "https://openalex.org/W2963647456",
+   "citas": 948,
+   "resumen": "Scene text detection has witnessed rapid progress especially with the recent development of convolutional neural networks. However, there still exists two challenges which prevent the algorithm into industry applications. On the one hand, most of the state-of-art algorithms require quadrangle bounding box which is in-accurate to locate the texts with arbitrary shape. On the other hand, two text instances which are close to each other may lead to a false detection which covers both instances. Traditionally, the segmentation-based approach can relieve the first problem but usually fail to solve the second challenge. To address these two challenges, in this paper, we propose a novel Progressive Scale Expansion Network (PSENet), which can precisely detect text instances with arbitrary shapes. More specifically, PSENet generates the different scale of kernels for each text instance, and gradu"
+  },
+  {
+   "titulo": "Scene Text Detection with Polygon Offsetting and Border Augmentation",
+   "anio": 2020,
+   "doi": "https://doi.org/10.3390/electronics9010117",
+   "id": "https://openalex.org/W2999823539",
+   "citas": 15,
+   "resumen": "Scene text localization is a very crucial step in the issue of scene text recognition. The major challenges—such as how there are various sizes, shapes, unpredictable orientations, a wide range of colors and styles, occlusion, and local and global illumination variations—make the problem different from generic object detection. Unlike existing scene text localization methods, here we present a segmentation-based text detector which can detect an arbitrary shaped scene text by using polygon offsetting, combined with the border augmentation. This technique better distinguishes contiguous and arbitrary shaped text instances from nearby non-text regions. The quantitative experimental results on public benchmarks, ICDAR2015, ICDAR2017-MLT, ICDAR2019-MLT, and Total-Text datasets demonstrate the performance and robustness of our proposed method, compared to previous approaches which have been p"
+  },
+  {
+   "titulo": "MPViT: Multi-Path Vision Transformer for Dense Prediction",
+   "anio": 2022,
+   "doi": "https://doi.org/10.1109/cvpr52688.2022.00714",
+   "id": "https://openalex.org/W4312977443",
+   "citas": 490,
+   "resumen": "Dense computer vision tasks such as object detection and segmentation require effective multi-scale feature representation for detecting or classifying objects or regions with varying sizes. While Convolutional Neural Networks (CNNs) have been the dominant architectures for such tasks, recently introduced Vision Transformers (ViTs) aim to replace them as a backbone. Similar to CNNs, ViTs build a simple multi-stage structure (i.e., fine-to-coarse) for multi-scale representation with single-scale patches. In this work, with a different perspective from existing Transformers, we explore multi-scale patch embedding and multi-path structure, constructing the Multi-Path Vision Transformer (MPViT). MPViT embeds features of the same size (i.e., sequence length) with patches of different scales simultaneously by using overlapping convolutional patch embedding. Tokens of different scales are then "
+  },
+  {
+   "titulo": "Leaf area estimation in small-seeded broccoli using a lightweight instance segmentation framework based on improved YOLOv11-AreaNet",
+   "anio": 2025,
+   "doi": "https://doi.org/10.3389/fpls.2025.1622713",
+   "id": "https://openalex.org/W4412041579",
+   "citas": 8,
+   "resumen": "Introduction: Accurate leaf area quantification is vital for early phenotyping in small-seeded crops such as broccoli (Brassica oleracea var. italica), where dense, overlapping, and irregular foliage makes traditional measurement methods inefficient. Methods: This study presents YOLOv11-AreaNet, a lightweight instance segmentation model specifically designed for precise leaf area estimation in small-seeded broccoli seedlings. The model incorporates an EfficientNetV2 backbone, Focal Modulation, C2PSA-iRMB attention, LDConv, and CCFM modules, optimizing spatial sensitivity, multiscale fusion, and computational efficiency. A total of 6,192 germination-stage images were captured using a custom phenotyping system, from which 2,000 were selected and augmented to form a 5,000-image training set. Post-processing techniques-including morphological optimization, edge enhancement, and watershed seg"
+  },
+  {
+   "titulo": "Pruning-as-Search: Efficient Neural Architecture Search via Channel Pruning and Structural Reparameterization",
+   "anio": 2022,
+   "doi": "https://doi.org/10.24963/ijcai.2022/449",
+   "id": "https://openalex.org/W4200630931",
+   "citas": 77,
+   "resumen": "Neural architecture search (NAS) and network pruning are widely studied efficient AI techniques, but not yet perfect. NAS performs exhaustive candidate architecture search, incurring tremendous search cost. Though (structured) pruning can simply shrink model dimension, it remains unclear how to decide the per-layer sparsity automatically and optimally. In this work, we revisit the problem of layer-width optimization and propose Pruning-as-Search (PaS), an end-to-end channel pruning method to search out desired sub-network automatically and efficiently. Specifically, we add a depth-wise binary convolution to learn pruning policies directly through gradient descent. By combining the structural reparameterization and PaS, we successfully searched out a new family of VGG-like and lightweight networks, which enable the flexibility of arbitrary width with respect to each layer instead of each "
+  },
+  {
+   "titulo": "Wave-ViT: Unifying Wavelet and Transformers for Visual Representation Learning",
+   "anio": 2022,
+   "doi": "https://doi.org/10.1007/978-3-031-19806-9_19",
+   "id": "https://openalex.org/W4312832682",
+   "citas": 397,
+   "resumen": ""
+  },
+  {
+   "titulo": "DilateFormer: Multi-Scale Dilated Transformer for Visual Recognition",
+   "anio": 2023,
+   "doi": "https://doi.org/10.1109/tmm.2023.3243616",
+   "id": "https://openalex.org/W4319663728",
+   "citas": 466,
+   "resumen": "As ade factosolution, the vanilla Vision Transformers (ViTs) are encouraged to model long-range dependencies between arbitrary image patches while the global attended receptive field leads to quadratic computational cost. Another branch of Vision Transformers exploits local attention inspired by CNNs, which only models the interactions between patches in small neighborhoods. Although such a solution reduces the computational cost, it naturally suffers from small attended receptive fields, which may limit the performance. In this work, we explore effective Vision Transformers to pursue a preferable trade-off between the computational complexity and size of the attended receptive field. By analyzing the patch interaction of global attention in ViTs, we observe two key properties in the shallow layers, namely locality and sparsity, indicating the redundancy of global dependency modeling in "
+  },
+  {
+   "titulo": "Rethinking Channel Dimensions for Efficient Model Design",
+   "anio": 2021,
+   "doi": "https://doi.org/10.1109/cvpr46437.2021.00079",
+   "id": "https://openalex.org/W3166225737",
+   "citas": 188,
+   "resumen": "Designing an efficient model within the limited computational cost is challenging. We argue the accuracy of a lightweight model has been further limited by the design convention: a stage-wise configuration of the channel dimensions, which looks like a piecewise linear function of the network stage. In this paper, we study an effective channel dimension configuration towards better performance than the convention. To this end, we empirically study how to design a single layer properly by analyzing the rank of the output feature. We then investigate the channel configuration of a model by searching network architectures concerning the channel configuration under the computational cost restriction. Based on the investigation, we propose a simple yet effective channel configuration that can be parameterized by the layer index. As a result, our proposed model following the channel parameteriz"
+  },
+  {
+   "titulo": "P2T: Pyramid Pooling Transformer for Scene Understanding",
+   "anio": 2022,
+   "doi": "https://doi.org/10.1109/tpami.2022.3202765",
+   "id": "https://openalex.org/W4293680532",
+   "citas": 377,
+   "resumen": "Recently, the vision transformer has achieved great success by pushing the state-of-the-art of various vision tasks. One of the most challenging problems in the vision transformer is that the large sequence length of image tokens leads to high computational cost (quadratic complexity). A popular solution to this problem is to use a single pooling operation to reduce the sequence length. This paper considers how to improve existing vision transformers, where the pooled feature extracted by a single pooling operation seems less powerful. To this end, we note that pyramid pooling has been demonstrated to be effective in various vision tasks owing to its powerful ability in context abstraction. However, pyramid pooling has not been explored in backbone network design. To bridge this gap, we propose to adapt pyramid pooling to Multi-Head Self-Attention (MHSA) in the vision transformer, simult"
+  },
+  {
+   "titulo": "Vision Transformers with Hierarchical Attention",
+   "anio": 2024,
+   "doi": "https://doi.org/10.1007/s11633-024-1393-8",
+   "id": "https://openalex.org/W4394963135",
+   "citas": 214,
+   "resumen": "This paper tackles the high computational/space complexity associated with multi-head self-attention (MHSA) in vanilla vision transformers. To this end, we propose hierarchical MHSA (H-MHSA), a novel approach that computes sell-attention in a hierarchical fashion. Specifically, we first divide the input image into patches as commonly done, and each patch is viewed as a token. Then, the proposed H-MHSA learns token relationships within local patches, serving as local relationship modeling. Then, the small patches are merged into larger ones, and H-MHSA models the global dependencies for the small number of the merged tokens. At last, the local and global attentive features are aggregated to obtain features with powerful representation capacity. Since we only calculate attention for a limited number of tokens at each step, the computational load is reduced dramatically. Hence, H-MHSA can e"
+  },
+  {
+   "titulo": "Less Is More: Pay Less Attention in Vision Transformers",
+   "anio": 2022,
+   "doi": "https://doi.org/10.1609/aaai.v36i2.20099",
+   "id": "https://openalex.org/W3170642968",
+   "citas": 132,
+   "resumen": "Transformers have become one of the dominant architectures in deep learning, particularly as a powerful alternative to convolutional neural networks (CNNs) in computer vision. However, Transformer training and inference in previous works can be prohibitively expensive due to the quadratic complexity of self-attention over a long sequence of representations, especially for high-resolution dense prediction tasks. To this end, we present a novel Less attention vIsion Transformer (LIT), building upon the fact that the early self-attention layers in Transformers still focus on local patterns and bring minor benefits in recent hierarchical vision Transformers. Specifically, we propose a hierarchical Transformer where we use pure multi-layer perceptrons (MLPs) to encode rich local patterns in the early stages while applying self-attention modules to capture longer dependencies in deeper layers."
+  },
+  {
+   "titulo": "Pixel-Level Degradation for Text Image Super-Resolution and Recognition",
+   "anio": 2023,
+   "doi": "https://doi.org/10.3390/electronics12214546",
+   "id": "https://openalex.org/W4388379861",
+   "citas": 2,
+   "resumen": "In the realm of image reconstruction, deep learning-based super-resolution (SR) has established itself as a prevalent technique, particularly in the domain of text image restoration. This study aims to address notable deficiencies in existing research, including constraints imposed by restricted datasets and challenges related to model generalization. Specifically, the goal is to enhance the super-resolution network’s reconstruction of scene text image super-resolution and utilize the generated degenerate dataset to alleviate issues associated with poor generalization due to the sparse scene text image super-resolution dataset. The methodology employed begins with the degradation of images from the MJSynth dataset, using a stochastic degradation process to create eight distinct degraded versions. Subsequently, a blank image is constructed, preserving identical dimensions to the low-resol"
+  },
+  {
+   "titulo": "SpectFormer: Frequency and Attention is what you need in a Vision Transformer",
+   "anio": 2025,
+   "doi": "https://doi.org/10.1109/wacv61041.2025.00924",
+   "id": "https://openalex.org/W4409262833",
+   "citas": 256,
+   "resumen": "Vision transformers have been applied successfully for image recognition tasks. There have been either multi-headed self-attention based (ViT [12], DelT [54]) simi-lar to the original work in textual models or more re-cently based on spectral layers (Fnet [29], GFNet [46], AFNO [15]). We hypothesize that spectral layers cap-ture high-frequency information such as lines and edges, while attention layers capture token interactions. We inves-tigate this hypothesis through this work and observe that indeed mixing spectral and multi-headed attention layers provides a better transformer architecture. We thus pro-pose the novel Spectformer architecture for vision trans-formers that has initial spectral and deeper multi-headed attention layers. We believe that the resulting representation allows the transformer to capture the feature repre-sentation appropriately and it yields improved performan"
+  },
+  {
+   "titulo": "DenseNets Reloaded: Paradigm Shift Beyond ResNets and ViTs",
+   "anio": 2024,
+   "doi": "https://doi.org/10.1007/978-3-031-72646-0_23",
+   "id": "https://openalex.org/W4403844121",
+   "citas": 99,
+   "resumen": ""
+  },
+  {
+   "titulo": "AAF-Net: Scene text detection based on attention aggregation features",
+   "anio": 2022,
+   "doi": "https://doi.org/10.1371/journal.pone.0272322",
+   "id": "https://openalex.org/W4289972945",
+   "citas": 4,
+   "resumen": "With the advent of the era of artificial intelligence, text detection is widely used in the real world. In text detection, due to the limitation of the receptive field of the neural network, most existing scene text detection methods cannot accurately detect small target text instances in any direction, and the detection rate of mutually adhering text instances is low, which is prone to false detection. To tackle such difficulties, in this paper, we propose a new feature pyramid network for scene text detection, Cross-Scale Attention Aggregation Feature Pyramid Network (CSAA-FPN). Specifically, we use a Attention Aggregation Feature Module (AAFM) to enhance features, which not only solves the problem of weak features and small receptive fields extracted by lightweight networks but also better handles multi-scale information and accurately separate adjacent text instances. An attention mo"
+  },
+  {
+   "titulo": "Large language model driven transferable key information extraction mechanism for nonstandardized tables",
+   "anio": 2025,
+   "doi": "https://doi.org/10.1038/s41598-025-15627-z",
+   "id": "https://openalex.org/W4413139477",
+   "citas": 17,
+   "resumen": "Extracting key information from unstructured tables poses significant challenges due to layout variability, dependence on large annotated datasets, and inability of existing methods to directly output structured formats like JSON. These limitations hinder scalability and generalization to unseen document formats. We propose the Large Language Model Driven Transferable Key Information Extraction Mechanism (LLM-TKIE), which employs text detection to identify relevant regions in document images, followed by text recognition to extract content. An LLM then performs semantic reasoning, including completeness verification and key information extraction, before organizing data into structured formats. Without fine-tuning, LLM-TKIE achieves an F1-score of 80.9 and tree edit distance-based accuracy of 88.85 on CORD, and an F1-score of 83.9 with 93.3 accuracy on SROIE, demonstrating robust general"
+  },
+  {
+   "titulo": "Survey of Region-Based Text Extraction Techniques for Efficient Indexing of Image/Video Retrieval",
+   "anio": 2014,
+   "doi": "https://doi.org/10.5815/ijigsp.2014.12.08",
+   "id": "https://openalex.org/W2124653297",
+   "citas": 8,
+   "resumen": "With the dramatic increase in multimedia data, escalating trend of internet, and amplifying use of image/video capturing devices; content based indexing and text extraction is gaining more and more importance in research community. In the last decade, many techniques for text extraction are reported in the literature. Methodologies of text extraction from images/videos is generally comprises of text detection and localization, text tracking, text segmentation and optical character recognition (OCR). This paper intends to highlight the contributions and limitations of text detection, localization and tracking phases. The problem is exigent due to variations in the font styles, size and color, text orientations, animations and backgrounds. The paper can serve as the beacon-house for the novice researchers of the text extraction community."
+  },
+  {
+   "titulo": "QuadMamba: Learning Quadtree-based Selective Scan for Visual State Space Model",
+   "anio": 2024,
+   "doi": "https://doi.org/10.52202/079017-3737",
+   "id": "https://openalex.org/W4415795591",
+   "citas": 72,
+   "resumen": "Recent advancements in State Space Models, notably Mamba, have demonstrated superior performance over the dominant Transformer models, particularly in reducing the computational complexity from quadratic to linear. Yet, difficulties in adapting Mamba from language to vision tasks arise due to the distinct characteristics of visual data, such as the spatial locality and adjacency within images and large variations in information granularity across visual tokens. Existing vision Mamba approaches either flatten tokens into sequences in a raster scan fashion, which breaks the local adjacency of images, or manually partition tokens into windows, which limits their long-range modeling and generalization capabilities. To address these limitations, we present a new vision Mamba model, coined QuadMamba, that effectively captures local dependencies of varying granularities via quadtree-based image"
+  },
+  {
+   "titulo": "Dynamic Mobile-Former: Strengthening Dynamic Convolution with Attention and Residual Connection in Kernel Space",
+   "anio": 2023,
+   "doi": "https://doi.org/10.48550/arxiv.2304.07254",
+   "id": "https://openalex.org/W4366207485",
+   "citas": 5,
+   "resumen": "We introduce Dynamic Mobile-Former(DMF), maximizes the capabilities of dynamic convolution by harmonizing it with efficient operators.Our Dynamic MobileFormer effectively utilizes the advantages of Dynamic MobileNet (MobileNet equipped with dynamic convolution) using global information from light-weight attention.A Transformer in Dynamic Mobile-Former only requires a few randomly initialized tokens to calculate global features, making it computationally efficient.And a bridge between Dynamic MobileNet and Transformer allows for bidirectional integration of local and global features.We also simplify the optimization process of vanilla dynamic convolution by splitting the convolution kernel into an input-agnostic kernel and an input-dependent kernel.This allows for optimization in a wider kernel space, resulting in enhanced capacity.By integrating lightweight attention and enhanced dynamic"
+  },
+  {
+   "titulo": "Heracles: A Hybrid SSM-Transformer Model for High-Resolution Image and Time-Series Analysis",
+   "anio": 2024,
+   "doi": "https://doi.org/10.48550/arxiv.2403.18063",
+   "id": "https://openalex.org/W4393299819",
+   "citas": 14,
+   "resumen": "Transformers have revolutionized image modeling tasks with adaptations like DeIT, Swin, SVT, Biformer, STVit, and FDVIT. However, these models often face challenges with inductive bias and high quadratic complexity, making them less efficient for high-resolution images. State space models (SSMs) such as Mamba, V-Mamba, ViM, and SiMBA offer an alternative to handle high resolution images in computer vision tasks. These SSMs encounter two major issues. First, they become unstable when scaled to large network sizes. Second, although they efficiently capture global information in images, they inherently struggle with handling local information. To address these challenges, we introduce Heracles, a novel SSM that integrates a local SSM, a global SSM, and an attention-based token interaction module. Heracles leverages a Hartely kernel-based state space model for global image information, a loc"
+  },
+  {
+   "titulo": "Leveraging EfficientNetV2 for litter detection",
+   "anio": 2024,
+   "doi": "https://doi.org/10.1049/icp.2024.3322",
+   "id": "https://openalex.org/W4405317253",
+   "citas": 0,
+   "resumen": "Litter pollution is a significant environmental challenge globally, demanding advanced methods for detection and management. Recent advancements in computer vision offer promising alternatives to traditional approaches, yet they often rely on narrowly focused datasets with a lack of segmentation data, which is required for applications such as robotic grasping. This research paper addresses these limitations while utilising the TACO (Trash Annotations in Context) dataset, a small but growing dataset, created to encompass diverse environmental contexts and detailed annotation. EfficientNetV2, a state-of-the-art convolutional neural network architecture, is leveraged for both image classification and object detection/instance segmentation models. The image classification model achieves an F1-score of 0.854 in categorizing an image containing ‘Litter’ or ‘No Litter’. For object detection an"
+  },
+  {
+   "titulo": "iFormer: Integrating ConvNet and Transformer for Mobile Application",
+   "anio": 2025,
+   "doi": "https://doi.org/10.48550/arxiv.2501.15369",
+   "id": "https://openalex.org/W4406880412",
+   "citas": 25,
+   "resumen": "We present a new family of mobile hybrid vision networks, called iFormer, with a focus on optimizing latency and accuracy on mobile applications. iFormer effectively integrates the fast local representation capacity of convolution with the efficient global modeling ability of self-attention. The local interactions are derived from transforming a standard convolutional network, \\textit{i.e.}, ConvNeXt, to design a more lightweight mobile network. Our newly introduced mobile modulation attention removes memory-intensive operations in MHA and employs an efficient modulation mechanism to boost dynamic global representational capacity. We conduct comprehensive experiments demonstrating that iFormer outperforms existing lightweight networks across various tasks. Notably, iFormer achieves an impressive Top-1 accuracy of 80.4\\% on ImageNet-1k with a latency of only 1.10 ms on an iPhone 13, surpa"
+  },
+  {
+   "titulo": "EdgeCrafter: Compact ViTs for Edge Dense Prediction via Task-Specialized Distillation",
+   "anio": 2026,
+   "doi": "https://doi.org/10.48550/arxiv.2603.18739",
+   "id": "https://openalex.org/W7139924204",
+   "citas": 6,
+   "resumen": "Deploying high-performance dense prediction models on resource-constrained edge devices remains challenging due to strict computation and memory budgets. In practice, lightweight systems for object detection, instance segmentation, and pose estimation are still dominated by CNN-based architectures such as YOLO, while compact Vision Transformers (ViTs) often struggle to achieve comparable accuracy-efficiency trade-offs, even with large-scale pretraining. We argue that this gap arises primarily from insufficient task-specific representation learning in small-scale ViTs, rather than from an inherent mismatch between ViTs and edge dense prediction. To address this issue, we introduce EdgeCrafter, a unified compact ViT framework for edge dense prediction centered on ECDet, a detection model built on a distilled compact backbone and an edge-friendly encoder-decoder design. The resulting detect"
+  },
+  {
+   "titulo": "GTR: Gated Token Recurrence for Efficient Dense Prediction",
+   "anio": 2026,
+   "doi": "https://doi.org/10.48550/arxiv.2609.26590",
+   "id": "https://openalex.org/W7214078357",
+   "citas": 0,
+   "resumen": "Self-attention-based vision backbones perform well on dense prediction, but the quadratic computational cost of global softmax attention limits their efficiency as image resolution increases. We introduce Gated Token Recurrence (GTR), a softmax-free recurrent vision backbone that combines gated linear attention, alternating spatial scan directions, and spatially enhanced SwiGLU blocks. GTR is distilled from a detection-specialized DINOv3 teacher using only final-layer patch-token alignment through a linear projection and squared $\\ell_2$ loss, without masked-token prediction or intermediate-layer supervision. With Objects365 detector pre-training, GTR-L achieves 58.9 box AP on COCO \\texttt{val2017} with 1.908\\,ms median batch-one latency under compiled FP16 execution on an RTX~4090. The same backbone also transfers to instance segmentation, pose estimation, oriented detection, semantic s"
+  },
+  {
+   "titulo": "RapidNet: Multi-Level Dilated Convolution Based Mobile Backbone",
+   "anio": 2025,
+   "doi": "https://doi.org/10.1109/wacv61041.2025.00805",
+   "id": "https://openalex.org/W4409262362",
+   "citas": 18,
+   "resumen": "Vision transformers (ViTs) have dominated computer vision in recent years. However, ViTs are computationally expensive and not well suited for mobile devices; this led to the prevalence of convolutional neural network (CNN) and ViT-based hybrid models for mobile vision applications. Recently, Vision GNN (ViG) and CNN hybrid models have also been proposed for mobile vision tasks. However, all of these methods remain slower compared to pure CNN-based models. In this work, we propose Multi-Level Dilated Convolutions to devise a purely CNN-based mobile backbone. Using Multi-Level Dilated Convolutions allows for a larger theoretical receptive field than standard convolutions. Different levels of dilation also allow for interactions between the short-range and long-range features in an image. Experiments show that our proposed model outperforms state-of-the-art (SOTA) mobile CNN, ViT, ViG, and"
+  },
+  {
+   "titulo": "CSFNet: a compact and efficient convolution-transformer hybrid vision model",
+   "anio": 2024,
+   "doi": "https://doi.org/10.1007/s11042-024-18417-3",
+   "id": "https://openalex.org/W4391738692",
+   "citas": 2,
+   "resumen": ""
+  },
+  {
+   "titulo": "ToSkA: Topological Skeleton Analysis for Network-Based Shape Representation and Evaluation of Objects from Cells to Death Stars",
+   "anio": 2023,
+   "doi": "https://doi.org/10.48550/arxiv.2311.10539",
+   "id": "https://openalex.org/W4388843583",
+   "citas": 1,
+   "resumen": "Shape analysis and classification are popular methods for biologists, biophysicists and mathematicians investigating relationships between object function and form. Classic shape descriptors, such as sphericity, can be powerful but may be insufficient for more complex shapes. Here, we present 'napari-toska' a topological skeleton based method to analyze complex objects by representing their shape asymmetries as networks. Using global neighborhood principles, classic network science metrics and spatial feature embedding we create instance segmentation object profiles to be used for immediate or downstream classification. napari-toska can also follow temporal dynamics and identify network features capable of differentiating between experimental phenotypes. We incorporated the capacity to measure absolute spatial features of objects to bring in aspects of scale. Furthermore, napari-toska id"
+  },
+  {
+   "titulo": "Topological skeleton analysis for network-based shape representation in biology and beyond",
+   "anio": 2026,
+   "doi": "https://doi.org/10.1016/j.isci.2026.116486",
+   "id": "https://openalex.org/W7166127459",
+   "citas": 1,
+   "resumen": "Shape analysis and classification are popular methods for biologists, biophysicists, and mathematicians investigating relationships between function and form. Classic shape descriptors, such as sphericity, can be powerful but may be insufficient for more complex shapes. Here, we present \"napari-toska\" a topological skeleton-based method to analyze complex shapes by representing their asymmetries as networks. Using global neighborhood principles, classic network science metrics, and spatial feature embedding, we create instance segmentation object profiles for immediate or downstream classification. napari-toska also follows temporal dynamics and identifies network features that differentiate experimental phenotypes. We incorporated absolute spatial feature measurements of objects to retain aspects of scale. Furthermore, napari-toska identifies certain segmentation errors through the emer"
+  },
+  {
+   "titulo": "Detection of submarine pipeline and cable targets based on depth feature of high resolution sonar image",
+   "anio": 2026,
+   "doi": "https://doi.org/10.1371/journal.pone.0346343",
+   "id": "https://openalex.org/W7151419994",
+   "citas": 8,
+   "resumen": "For Side-Scan Sonar (SSS) submarine pipeline and cable target feature extraction, there are some problems such as poor real-time performance, high false detection rate, and difficulty in deploying edge equipment.With deep feature technology,this study applies a deep neural network to detect submarine pipeline and cable targets in order to solve the above problems.To enable real-time detection of submarine pipelines and cable in SSS imagery, we improve the YOLO11n-seg model by incorporating the A2C2f and DSConv modules, leveraging the characteristic features of the target images. It reduces the false detection rate of submarine pipeline feature in SSS image,the size of parameters and realize lightweight deployment.In allusion to the Marine-PULSE submarine pipeline and cable dataset,ablation experiments and comparative experiments are designed. The experimental results show significant imp"
+  },
+  {
+   "titulo": "All You Need Is a Second Look: Towards Arbitrary-Shaped Text Detection",
+   "anio": 2021,
+   "doi": "https://doi.org/10.1109/tcsvt.2021.3068133",
+   "id": "https://openalex.org/W3138649552",
+   "citas": 30,
+   "resumen": "Arbitrary-shaped text detection is a challenging task since curved texts in the wild are of the complex geometric layouts. Existing mainstream methods follow the instance segmentation pipeline to obtain the text regions. However, arbitrary-shaped texts are difficult to be depicted through one single segmentation network because of the varying scales. In this paper, we propose a two-stage segmentation-based detector, termed as NASK (Need A Second looK), for arbitrary-shaped text detection. Compared to the traditional single-stage segmentation network, our NASK conducts the detection in a coarse-to-fine manner with the first stage segmentation spotting the rectangle text proposals and the second one retrieving compact representations. Specifically, NASK is composed of a Text Instance Segmentation (TIS) network ($1^{st}$stage), a Geometry-aware Text RoI Alignment (GeoAlign) module, and a Fi"
+  },
+  {
+   "titulo": "AttentionViG: Cross-Attention-Based Dynamic Neighbor Aggregation in Vision GNNs",
+   "anio": 2025,
+   "doi": "https://doi.org/10.48550/arxiv.2509.25570",
+   "id": "https://openalex.org/W4415338133",
+   "citas": 3,
+   "resumen": "Vision Graph Neural Networks (ViGs) have demonstrated promising performance in image recognition tasks against Convolutional Neural Networks (CNNs) and Vision Transformers (ViTs). An essential part of the ViG framework is the node-neighbor feature aggregation method. Although various graph convolution methods, such as Max-Relative, EdgeConv, GIN, and GraphSAGE, have been explored, a versatile aggregation method that effectively captures complex node-neighbor relationships without requiring architecture-specific refinements is needed. To address this gap, we propose a cross-attention-based aggregation method in which the query projections come from the node, while the key projections come from its neighbors. Additionally, we introduce a novel architecture called AttentionViG that uses the proposed cross-attention aggregation scheme to conduct non-local message passing. We evaluated the im"
+  },
+  {
+   "titulo": "RaMLP: Vision MLP via Region-aware Mixing",
+   "anio": 2023,
+   "doi": "https://doi.org/10.24963/ijcai.2023/111",
+   "id": "https://openalex.org/W4385764523",
+   "citas": 8,
+   "resumen": "Recently, MLP-based architectures achieved impressive results in image classification against CNNs and ViTs. However, there is an obvious limitation in that their parameters are related to image sizes, allowing them to process only fixed image sizes. Therefore, they cannot directly adapt dense prediction tasks (e.g., object detection and semantic segmentation) where images are of various sizes. Recent methods tried to address it but brought two new problems, long-range dependencies or important visual cues are ignored. This paper presents a new MLP-based architecture, Region-aware MLP (RaMLP), to satisfy various vision tasks and address the above three problems. In particular, we propose a well-designed module, Region-aware Mixing (RaM). RaM captures important local information and further aggregates these important visual clues. Based on RaM, RaMLP achieves a global receptive field even"
+  },
+  {
+   "titulo": "Softmax-Free Linear Transformers",
+   "anio": 2024,
+   "doi": "https://doi.org/10.1007/s11263-024-02035-5",
+   "id": "https://openalex.org/W4392763775",
+   "citas": 30,
+   "resumen": ""
+  },
+  {
+   "titulo": "Dynamic Graph Message Passing Networks for Visual Recognition",
+   "anio": 2022,
+   "doi": "https://doi.org/10.1109/tpami.2022.3207500",
+   "id": "https://openalex.org/W4296437429",
+   "citas": 24,
+   "resumen": "Modelling long-range dependencies is critical for scene understanding tasks in computer vision. Although convolution neural networks (CNNs) have excelled in many vision tasks, they are still limited in capturing long-range structured relationships as they typically consist of layers of local kernels. A fully-connected graph, such as the self-attention operation in Transformers, is beneficial for such modelling, however, its computational overhead is prohibitive. In this paper, we propose a dynamic graph message passing network, that significantly reduces the computational complexity compared to related works modelling a fully-connected graph. This is achieved by adaptively sampling nodes in the graph, conditioned on the input, for message passing. Based on the sampled nodes, we dynamically predict node-dependent filter weights and the affinity matrix for propagating information between t"
+  },
+  {
+   "titulo": "MFil-Mamba: Multi-Filter Scanning for Spatial Redundancy-Aware Visual State Space Models",
+   "anio": 2026,
+   "doi": "https://doi.org/10.48550/arxiv.2603.20074",
+   "id": "https://openalex.org/W7140124491",
+   "citas": 1,
+   "resumen": "State Space Models (SSMs), especially recent Mamba architecture, have achieved remarkable success in sequence modeling tasks. However, extending SSMs to computer vision remains challenging due to the non-sequential structure of visual data and its complex 2D spatial dependencies. Although several early studies have explored adapting selective SSMs for vision applications, most approaches primarily depend on employing various traversal strategies over the same input. This introduces redundancy and distorts the intricate spatial relationships within images. To address these challenges, we propose MFil-Mamba, a novel visual state space architecture built on a multi-filter scanning backbone. Unlike fixed multi-directional traversal methods, our design enables each scan to capture unique and contextually relevant spatial information while minimizing redundancy. Furthermore, we incorporate an "
+  },
+  {
+   "titulo": "PP-OCRv6: From 1.5M to 34.5M Parameters, Surpassing Billion-Scale VLMs on OCR Tasks",
+   "anio": 2026,
+   "doi": "https://doi.org/10.48550/arxiv.2606.13108",
+   "id": "https://openalex.org/W7164492717",
+   "citas": 21,
+   "resumen": "Vision-Language Models (VLMs) have achieved impressive results on general vision-language tasks, yet they suffer from hallucination, imprecise localization, and prohibitive computational cost when applied to dedicated OCR scenarios. This paper presents PP-OCRv6, a lightweight OCR system that combines architectural innovation with data-centric optimization. PP-OCRv6 redesigns the backbone, detection neck, and recognition neck around a unified MetaFormer-style building block with structural reparameterization, decoupling spatial token mixing from channel mixing and supporting both tasks through task-specific stride configurations. Three model tiers (medium, small, tiny) share the same block primitives, covering deployment scenarios from server to edge. On our in-house benchmarks, PP-OCRv6_medium achieves 83.2% recognition accuracy and 86.2% detection Hmean, outperforming PP-OCRv5_server by"
+  },
+  {
+   "titulo": "Efficient text detection via Re-parameterization and Tversky coefficientEfficient and flexible text detection",
+   "anio": 2023,
+   "doi": "https://doi.org/10.1145/3650400.3650568",
+   "id": "https://openalex.org/W4394870851",
+   "citas": 0,
+   "resumen": "Currently, scene text detection models commonly suffer from a high precision but low recall issue. In other words, the false negative rate is much higher than the false positive rate, which limits the overall performance improvement of the models. This situation may lead to a series of issues such as missing important information. We propose an efficient and flexible text detection model to address the diversity of challenges in various usage scenarios. First of all, in order to meet the ever-increasing real-time needs while keeping its performance as unaffected as possible, we introduced the idea of structural re-parameterization, using parameter conversion to decouple training and inference, and realized multi-branch training and single-branch inference. In order to fuse multi-scale features efficiently and losslessly, we design a lightweight sub-pixel convolutional upsampling unit (LS"
+  }
+ ]
+}

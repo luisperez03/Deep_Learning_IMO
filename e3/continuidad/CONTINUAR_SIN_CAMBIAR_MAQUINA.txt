@@ -1,0 +1,50 @@
+Usa E3_CONTINUAR_EN_ESTA_MAQUINA.py en el cuaderno que YA tiene GPU.
+No cierres ni desconectes el entorno. Si hay un entrenamiento activo, espera a que termine la celda.
+Añade una celda debajo y pega:
+
+from google.colab import files
+import os
+subidos = files.upload()
+codigo_e3 = subidos['E3_CONTINUAR_EN_ESTA_MAQUINA.py'].decode('utf-8')
+os.environ['E3_CARRIL'] = 'todo'
+exec(compile(codigo_e3, 'lanzador_e3', 'exec'), {'__name__': '__main__'})
+
+Selecciona el archivo .py al abrirse el selector. No tienes que abrir otro notebook.
+El programa contiene los diez cuadernos y encadena sus celdas en esa misma sesión.
+Primero verifica y conserva etapas completas; las incompletas reanudan desde last.pt.
+Original y rivales usan entornos Python distintos dentro de la misma VM para que instalar
+las dependencias de VM-UNet no altere el entorno de los checkpoints del original.
+No se modifican las recetas ni las carpetas de salida v4.
+Mantén en MyDrive paquete_colab_e2_v2.zip, compactas_a0498_e3.zip y los pesos históricos E2.
+
+UNA MÁQUINA
+E3_CARRIL = 'todo': secuencia completa, una etapa detrás de otra, sin evaluar test.
+Se guardan progreso_todo.json y checkpoints en tesis_imo_e3_secuencia_v4 de Drive.
+Al terminar, resultados_para_revision.zip queda en Drive y se ofrece su descarga.
+Si hay un error, se detiene y conserva avances. Si se pierde la máquina, vuelve a ejecutar
+el mismo archivo en una sesión nueva; no borres checkpoints. Para una corrida incompleta,
+conserva el mismo tipo de GPU y versiones: su identidad se verifica al reanudar.
+No puede impedir que Colab termine una sesión ni garantizar cuánto tiempo te asigne una GPU.
+
+DOS MÁQUINAS YA ASIGNADAS (NO DOS PROCESOS EN UNA GPU)
+Máquina A: E3_CARRIL = 'original_y_compactas' (01,02,03,04,05).
+Máquina B: E3_CARRIL = 'rivales' (08,06,07).
+Cuando ambas terminen, en cualquiera que conserve GPU:
+
+os.environ['E3_CARRIL'] = 'cierre'
+exec(compile(codigo_e3, 'lanzador_e3', 'exec'), {'__name__': '__main__'})
+
+Esto ejecuta 09 y 10. codigo_e3 permanece en memoria si no reiniciaste el entorno; si se perdió,
+repite la carga del .py con files.upload(). No necesitas volver a solicitar GPU por cambiar el carril.
+No ejecutes 'todo' en una máquina mientras otra corre un carril: se solaparían escrituras.
+
+MÁS MÁQUINAS, SI YA LAS TIENES
+Carriles independientes: original, compactas, rivales_a, rivales_b, rivales_c.
+Solo un proceso por carril; cierre después de todos. Colab determina cuántas sesiones admite tu cuenta.
+
+ALTERNATIVA SIN SESIÓN ACTIVA
+E3_TODO_EN_UNA_MAQUINA.ipynb es el mismo lanzador empaquetado como cuaderno único.
+No necesitas usarlo si ya tienes GPU en el cuaderno actual.
+
+Verificación local: cinco pruebas de orquestación, exclusión de etapas completas, detención por
+fallo, separación de entornos y sintaxis de todas las celdas. La campaña GPU sigue pendiente de ejecución.

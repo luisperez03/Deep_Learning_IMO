@@ -1,0 +1,59 @@
+{
+ "cadena": "C3",
+ "fuente": "arxiv",
+ "fecha": "2026-11-23T08:34:58-05:00",
+ "url": "https://export.arxiv.org/api/query?search_query=all%3A%28%22differentiable%20binarization%22%20OR%20DBNet%20OR%20%22shrink%20ratio%22%20OR%20%22kernel%20shrinking%22%29%20AND%20all%3A%28adaptive%20OR%20inscribed%20OR%20thickness%29&max_results=50&sortBy=relevance",
+ "estado": "ok",
+ "total_declarado": 8,
+ "devueltos": 8,
+ "registros": [
+  {
+   "titulo": "Real-Time Scene Text Detection with Differentiable Binarization and Adaptive Scale Fusion",
+   "anio": "2022",
+   "doi": "http://arxiv.org/abs/2202.10304v1",
+   "resumen": "Recently, segmentation-based scene text detection methods have drawn extensive attention in the scene text detection field, because of their superiority in detecting the text instances of arbitrary shapes and extreme aspect ratios, profiting from the pixel-level descriptions. However, the vast majority of the existing segmentation-based approaches are limited to their complex post-processing algorithms and the scale robustness of their segmentation models, where the post-processing algorithms are not only isolated to the model optimization but also time-consuming and the scale robustness is usually strengthened by fusing multi-scale feature maps directly. In this paper, we propose a Differentiable Binarization (DB) module that integrates the binarization process, one of the most important steps in the post-processing procedure, into a segmentation network. Optimized along with the propos"
+  },
+  {
+   "titulo": "Real-time Scene Text Detection with Differentiable Binarization",
+   "anio": "2019",
+   "doi": "http://arxiv.org/abs/1911.08947v2",
+   "resumen": "Recently, segmentation-based methods are quite popular in scene text detection, as the segmentation results can more accurately describe scene text of various shapes such as curve text. However, the post-processing of binarization is essential for segmentation-based detection, which converts probability maps produced by a segmentation method into bounding boxes/regions of text. In this paper, we propose a module named Differentiable Binarization (DB), which can perform the binarization process in a segmentation network. Optimized along with a DB module, a segmentation network can adaptively set the thresholds for binarization, which not only simplifies the post-processing but also enhances the performance of text detection. Based on a simple segmentation network, we validate the performance improvements of DB on five benchmark datasets, which consistently achieves state-of-the-art result"
+  },
+  {
+   "titulo": "Arabic Handwritten Document OCR Solution with Binarization and Adaptive Scale Fusion Detection",
+   "anio": "2024",
+   "doi": "http://arxiv.org/abs/2412.01601v1",
+   "resumen": "The problem of converting images of text into plain text is a widely researched topic in both academia and industry. Arabic handwritten Text Recognation (AHTR) poses additional challenges due to diverse handwriting styles and limited labeled data. In this paper we present a complete OCR pipeline that starts with line segmentation using Differentiable Binarization and Adaptive Scale Fusion techniques to ensure accurate detection of text lines. Following segmentation, a CNN-BiLSTM-CTC architecture is applied to recognize characters. Our system, trained on the Arabic Multi-Fonts Dataset (AMFDS), achieves a Character Recognition Rate (CRR) of 99.20% and a Word Recognition Rate (WRR) of 93.75% on single-word samples containing 7 to 10 characters, along with a CRR of 83.76% for sentences. These results demonstrate the system's strong performance in handling Arabic scripts, establishing a new b"
+  },
+  {
+   "titulo": "SURGE: Surrogate Gradient Adaptation in Binary Neural Networks",
+   "anio": "2026",
+   "doi": "http://arxiv.org/abs/2605.10989v3",
+   "resumen": "The training of Binary Neural Networks (BNNs) is fundamentally based on gradient approximation for non-differentiable binarization operations (e.g., sign function). However, prevailing methods including the Straight-Through Estimator (STE) and its improved variants, rely on hand-crafted designs that suffer from gradient mismatch problem and information loss induced by fixed-range gradient clipping. To address this, we propose SURrogate GradiEnt Adaptation (SURGE), a novel learnable gradient compensation framework with theoretical grounding. SURGE mitigates gradient mismatch through auxiliary backpropagation. Specifically, we design a Dual-Path Gradient Compensator (DPGC) that constructs a parallel full-precision auxiliary branch for each binarized layer, decoupling gradient flow via output decomposition during backpropagation. DPGC enables bias-reduced gradient estimation by leveraging t"
+  },
+  {
+   "titulo": "AdvDyn: An Emissivity-based Physical Adversarial Patch for Dynamic Infrared Attack",
+   "anio": "2026",
+   "doi": "http://arxiv.org/abs/2610.22434v2",
+   "resumen": "With the widespread application of infrared object detection technologies in military domains, intelligent infrared adversarial camouflage capabilities have become critical. Existing physical attack methods predominantly employ static thermal suppression strategies, suffering from limited environmental adaptability, insufficient attack robustness, and inadequate visual concealment. This study proposes AdvDyn, an emissivity-based physical dynamic adversarial patch that achieves paradigm-shifting advancements from static to dynamic attacks through algorithm-material co-innovation. First, a multi-level loss function based on feature confusion mechanisms is designed to deceive detectors by attenuating target saliency and enforcing background feature alignment. Second, adaptive physical transformations and differentiable binarization optimization are integrated to address physical robustness "
+  },
+  {
+   "titulo": "Learning Independent Instance Maps for Crowd Localization",
+   "anio": "2020",
+   "doi": "http://arxiv.org/abs/2012.04164v3",
+   "resumen": "Accurately locating each head's position in the crowd scenes is a crucial task in the field of crowd analysis. However, traditional density-based methods only predict coarse prediction, and segmentation/detection-based methods cannot handle extremely dense scenes and large-range scale-variations crowds. To this end, we propose an end-to-end and straightforward framework for crowd localization, named Independent Instance Map segmentation (IIM). Different from density maps and boxes regression, each instance in IIM is non-overlapped. By segmenting crowds into independent connected components, the positions and the crowd counts (the centers and the number of components, respectively) are obtained. Furthermore, to improve the segmentation quality for different density regions, we present a differentiable Binarization Module (BM) to output structured instance maps. BM brings two advantages in"
+  },
+  {
+   "titulo": "Real-time Scene Text Detection Based on Global Level and Word Level Features",
+   "anio": "2022",
+   "doi": "http://arxiv.org/abs/2203.05251v1",
+   "resumen": "It is an extremely challenging task to detect arbitrary shape text in natural scenes on high accuracy and efficiency. In this paper, we propose a scene text detection framework, namely GWNet, which mainly includes two modules: Global module and RCNN module. Specifically, Global module improves the adaptive performance of the DB (Differentiable Binarization) module by adding k submodule and shift submodule. Two submodules enhance the adaptability of amplifying factor k, accelerate the convergence of models and help to produce more accurate detection results. RCNN module fuses global-level and word-level features. The word-level label is generated by obtaining the minimum axis-aligned rectangle boxes of the shrunk polygon. In the inference period, GWNet only uses global-level features to output simple polygon detections. Experiments on four benchmark datasets, including the MSRA-TD500, Tot"
+  },
+  {
+   "titulo": "Region Prompt Tuning: Fine-grained Scene Text Detection Utilizing Region Text Prompt",
+   "anio": "2024",
+   "doi": "http://arxiv.org/abs/2409.13576v2",
+   "resumen": "Recent advancements in prompt tuning have successfully adapted large-scale models like Contrastive Language-Image Pre-trained (CLIP) for downstream tasks such as scene text detection. Typically, text prompt complements the text encoder's input, focusing on global features while neglecting fine-grained details, leading to fine-grained text being ignored in task of scene text detection. In this paper, we propose the region prompt tuning (RPT) method for fine-grained scene text detection, where region text prompt proposed would help focus on fine-grained features. Region prompt tuning method decomposes region text prompt into individual characters and splits visual feature map into region visual tokens, creating a one-to-one correspondence between characters and tokens. This allows a character matches the local features of a token, thereby avoiding the omission of detailed features and fine"
+  }
+ ]
+}

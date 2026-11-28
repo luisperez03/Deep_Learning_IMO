@@ -1,0 +1,411 @@
+{
+ "cadena": "C3",
+ "fuente": "openalex",
+ "fecha": "2026-11-23T08:34:54-05:00",
+ "url": "https://api.openalex.org/works?search=%28%22differentiable%20binarization%22%20OR%20DBNet%20OR%20%22shrunk%20kernel%22%20OR%20%22kernel%20shrinking%22%20OR%20%22shrink%20ratio%22%29%20AND%20%28adaptive%20OR%20%22instance-adaptive%22%20OR%20%22area-aware%22%20OR%20%22size-adaptive%22%20OR%20inscribed%20OR%20thickness%20OR%20%22adaptive%20shrink%22%29&per-page=50&select=id,doi,title,publication_year,cited_by_count,abstract_inverted_index,primary_location",
+ "estado": "ok",
+ "total_declarado": 1515,
+ "devueltos": 50,
+ "registros": [
+  {
+   "titulo": "ASM-DBNet: Introducing Adaptive Differentiable Binarization, Spatial-Channel Self-Attention and Multi-Scale Context-Enhanced Dynamic Upsampling for Natural Scene Text Detection",
+   "anio": 2026,
+   "doi": "https://doi.org/10.3390/info17060585",
+   "id": "https://openalex.org/W7164513580",
+   "citas": 0,
+   "resumen": "Text detection models based on DBNet have demonstrated strong performance in natural scene text detection. However, these models still suffer from the following three issues. Firstly, the amplifying factor hyperparameter in the differentiable binarization (DB) makes it difficult for the text detection model to achieve optimal performance. Secondly, the integration of low-level and high-level features within the backbone’s feature pyramid lacks specific optimization strategies. Thirdly, the deconvolution operation in the prediction head may damage text contours. To tackle the aforementioned issues, this paper presents a text detection model termed ASM-DBNet, which mainly consists of three innovations. For the first issue, an adaptive differentiable binarization (ADB) scheme is proposed. It can independently predict amplifying factor for feature points at different spatial locations and re"
+  },
+  {
+   "titulo": "DBNet for Robust Text Detection in Challenging Medical Packaging Images",
+   "anio": 2026,
+   "doi": "https://doi.org/10.1109/icpege67691.2026.11451551",
+   "id": "https://openalex.org/W7141141381",
+   "citas": 0,
+   "resumen": "Text detection is a fundamental task in computer vision, supporting a wide range of applications such as scene understanding, document analysis, and intelligent information management. In the context of pharmaceutical packaging, detecting functional indication text is particularly challenging due to its small size, low contrast, complex background patterns, and diverse font styles. Traditional OCR-based approaches often struggle in these scenarios, leading to incomplete or inaccurate extraction. To address these issues, we propose a robust text detection framework based on DBNet (Differentiable Binarization Network). The core mechanism of differentiable binarization enables adaptive separation of text from cluttered backgrounds, which significantly improves detection robustness. Furthermore, we adopt a lightweight ResNet18 backbone to enhance efficiency while maintaining high accuracy, m"
+  },
+  {
+   "titulo": "Unveiling the potential of pre-processing and differentiable binarization thresholds for invoice text detection",
+   "anio": 2023,
+   "doi": "https://doi.org/10.54254/2755-2721/6/20230654",
+   "id": "https://openalex.org/W4386712864",
+   "citas": 0,
+   "resumen": "Invoice text detection aims to automatically identify key information in invoices, which is one of the representative applications of Optical Character Recognition (OCR) technology and a research hotspot in the computer vision community. The classic traditional OCR method consists of three key steps: preprocessing stage, text detection and text recognition. In the feature extraction stage, it faces problems such as insufficient generalization ability and poor robustness. In this paper, we reveal the great potential of preprocessing strategies in improving OCR accuracy, and propose an invoice text detection method based on DBNet and differentiable binarization thresholds. Specifically, we first introduce color segmentation and local adaptive threshold to improve the preprocessing process, which can effectively suppress the influence of background information and context noise on detection"
+  },
+  {
+   "titulo": "Research on Text Detection of Electric Equipment Nameplates Based on DBNet",
+   "anio": 2024,
+   "doi": "https://doi.org/10.7753/ijsea1401.1001",
+   "id": "https://openalex.org/W4405660969",
+   "citas": 0,
+   "resumen": "In the field of electrical equipment management, the accurate detection of text from nameplates is critical for effective information retrieval and maintenance.Traditional methods relying on manual detection are often time-consuming and error-prone.This paper presents a novel approach utilizing the DBNet (Differentiable Binarization Network) algorithm for automated text detection on electric equipment nameplates.DBNet employs an instance segmentation methodology, integrating differentiable binarization into the training process to produce robust binary maps, thereby enhancing text detection performance.Our experiments demonstrate that the DBNet model achieves superior accuracy and speed compared to traditional detection methods, effectively managing complex backgrounds and various text orientations.The results indicate that this approach significantly simplifies post-processing steps whi"
+  },
+  {
+   "titulo": "A Natural Street Scene Text Detection Method Based on the Improvement of DBNet++",
+   "anio": 2025,
+   "doi": "https://doi.org/10.3233/atde250769",
+   "id": "https://openalex.org/W4414778039",
+   "citas": 0,
+   "resumen": "Text detection provides fundamental support for text recognition and information extraction tasks in natural street scenes. In natural street scenes, there are interference factors such as complex backgrounds, uneven lighting, and multi-scale variations in text, which can affect the accuracy of text detection. Traditional methods have limitations in adapting to environmental interference and integrating local and global features, affecting the accuracy of text detection. To enhance the adaptability to different scales of text and reduce the interference of background noise, an improved text detection method based on the DBNet+++ model is proposed. The Efficient Channel Attention (ECA) module is introduced into the feature pyramid network to strengthen the model’s focus on text areas; the Dilated Atrous Spatial Fusion (DASF) module, combining dilated convolution and spatial attention, opt"
+  },
+  {
+   "titulo": "TBIA-DBNet: A Two-Branch Image-Adaptive DBNet for Scene Text Detection in Real-World Foggy Scenes",
+   "anio": 2024,
+   "doi": "https://doi.org/10.1007/978-3-031-78119-3_15",
+   "id": "https://openalex.org/W4404984569",
+   "citas": 4,
+   "resumen": ""
+  },
+  {
+   "titulo": "DB-EAC and LSTR: DBnet based seal text detection and Lightweight Seal Text Recognition",
+   "anio": 2024,
+   "doi": "https://doi.org/10.1371/journal.pone.0301862",
+   "id": "https://openalex.org/W4396977651",
+   "citas": 10,
+   "resumen": "Recognition of the key text of the Chinese seal can speed up the approval of documents, and improve the office efficiency of enterprises or government administrative departments. Due to image blurring and occlusion, the accuracy of Chinese seal recognition is low. In addition, the real dataset is very limited. In order to solve these problems, we improve the differentiable binarization detection algorithm (DBnet) to construct a model DB-ECA for text region detection, and propose a model named LSTR (Lightweight Seal Text Recognition) for text recognition. The efficient channel attention module is added to the differentiable binarization network to solve the feature pyramid conflict, and the convolutional layer network structure is improved to delay downsampling for reducing semantic feature loss. LSTR uses a lightweight CNN more suitable for small-sample generalization, and dynamically fu"
+  },
+  {
+   "titulo": "Advanced Text Detection of Container Numbers via Dual-Branch Adaptive Multi-Scale Network",
+   "anio": 2025,
+   "doi": "https://doi.org/10.3390/app15031492",
+   "id": "https://openalex.org/W4407107624",
+   "citas": 6,
+   "resumen": "Text detection of container numbers is essential in logistics for the efficient tracking and management of containers. However, the wear and damage that container numbers often endure in harsh environments make detection particularly challenging. We propose a Dual-Branch Adaptive Multi-Scale Network (DAMNet) to address these issues. The DAMNet integrates Efficient Multi-Scale Attention (EMA) into the Differentiable Binarization (DBNet) model to address the challenges of improving accuracy and efficiency in the current text detection networks. We also incorporate an auxiliary information branch that processes images using the Otsu thresholding method to extract local features. This additional branch enhances the model’s ability to learn the features of container number text. Furthermore, we improve the feature pyramid structure by introducing Adaptive Spatial Feature Fusion (ASFF). This m"
+  },
+  {
+   "titulo": "Image text recognition and post-processing of language model based on DBNet and TrOCR",
+   "anio": 2025,
+   "doi": "https://doi.org/10.1117/12.3071425",
+   "id": "https://openalex.org/W4412478107",
+   "citas": 0,
+   "resumen": "With the rapid development of deep learning technology, natural Scene Text Recognition (STR) has become a key research topic in the field of computer vision. While traditional two-stage OCR systems (text detection and text recognition) perform well in standard text scenarios, they still face robustness and accuracy challenges in real-world applications such as complex backgrounds, font variations, irregular layouts, and long text dependencies. To overcome these problems, this paper proposes an end-to-end text recognition framework that combines multi-modal feature enhancement with dynamic language correction to significantly improve recognition performance. The framework first uses differentiable binarization network (DBNet) for text detection, and uses adaptive thresholds to deal with the text regions with low contrast and blurred borders. Next, a Pathformer module is added to act as a "
+  },
+  {
+   "titulo": "Recognition of expiry data on food packages based on improved DBNet",
+   "anio": 2023,
+   "doi": "https://doi.org/10.1080/09540091.2023.2202363",
+   "id": "https://openalex.org/W4367186265",
+   "citas": 21,
+   "resumen": "To prevent products with missing character information from reaching the market, manufacturers need an automatic character recognition method. One of the key problems of this recognition method is to recognise text under complex package patterns. In addition, some products use dot matrix characters to reduce printing costs, which makes text extraction more difficult. We propose a character detection algorithm using DBNet as the base network, combined with the Convolutional Block Attention Module (CBAM) to improve its feature extraction of characters in complex contexts. After the character area has been located by the detection algorithm, it is intercepted and fed into a fully convolutional character recognition network to achieve print character recognition. We use ResNet as the backbone network and CTC loss for training. In addition, the CBAM module was added to the backbone network to"
+  },
+  {
+   "titulo": "Automated document processing system for government agencies using DBNET++ and BART models",
+   "anio": 2025,
+   "doi": "https://doi.org/10.33545/27075923.2025.v6.i2a.100",
+   "id": "https://openalex.org/W4415275669",
+   "citas": 3,
+   "resumen": "An automatic document classification system is presented that detects textual content in images and classifies documents into four predefined categories (Invoice, Report, Letter, and Form). The system supports both offline images (e.g., files on flash drives, HDDs, microSD) and real-time capture via connected cameras, and is designed to mitigate practical challenges such as variable illumination, arbitrary orientation, curved or partially occluded text, low resolution, and distant text. The pipeline comprises four stages: image capture and preprocessing, text detection [1] using a DBNet++ (Differentiable Binarization Network Plus) detector, and text classification [2] using a BART (Bidirectional and Auto-Regressive Transformers) classifier, all integrated within a user interface implemented in Python with PyQt5. The achieved results by the system for text detection in images were good at"
+  },
+  {
+   "titulo": "Research on Natural Scene Vehicle Nameplate Text Detection Based on Improved DBNet",
+   "anio": 2023,
+   "doi": "https://doi.org/10.1145/3590003.3590064",
+   "id": "https://openalex.org/W4378676971",
+   "citas": 0,
+   "resumen": "Vehicle nameplate information as the main content of vehicle test, it is an important guarantee for the test quality of automobile testing institutions, and an important basis for the transportation authorities to determine the consistency of vehicle parameter configuration. Aiming at the problems of diverse text distribution, variable scale and complex background in vehicle nameplate detection, this paper proposes a dense connection and feature enhancement based on differentiable Binarization (DBNet) semantic segmentation algorithm. This algorithm uses the Dense Atrous Spatial Pyramid Pooling (DASPP) module to establish the connection between multiple dilated convolutions, capture dense sampling point pixels, and improve the utilization of high-level feature information. Secondly, the Feature Pyramid Enhancement Module (FPEM) is used to enhance the expression ability of the multi-layer "
+  },
+  {
+   "titulo": "Pill Box Text Identification Using DBNet-CRNN",
+   "anio": 2023,
+   "doi": "https://doi.org/10.3390/ijerph20053881",
+   "id": "https://openalex.org/W4321497414",
+   "citas": 13,
+   "resumen": "The recognition process of natural scenes is complicated at present, and images themselves may be complex owing to the special features of natural scenes. In this study, we use the detection and recognition of pill box text as an application scenario and design a deep-learning-based text detection algorithm for such natural scenes. We propose an end-to-end graphical text detection and recognition model and implement a detection system based on the B/S research application for pill box recognition, which uses DBNet as the text detection framework and a convolutional recurrent neural network (CRNN) as the text recognition framework. No prior image preprocessing is required in the detection and recognition processes. The recognition result from the back-end is returned to the front-end display. Compared with traditional methods, this recognition process reduces the complexity of preprocessi"
+  },
+  {
+   "titulo": "Handwritten tax receipt recognition method based on improved DBNet and CRNN",
+   "anio": 2026,
+   "doi": "https://doi.org/10.1371/journal.pone.0352963",
+   "id": "https://openalex.org/W7167576776",
+   "citas": 1,
+   "resumen": "To recognize handwritten tax invoice text and manage tax invoices, a handwritten tax invoice recognition method based on improved differentiable binary network and convolutional recurrent neural network (CRNN) is proposed. This method first achieves bill text detection and localization through a differentiable binary network that integrates feature pyramid enhancement modules (FPEM). An improved CRNN is used to achieve bill text content recognition. In terms of text detection, the proposed module has an average detection precision of 89.1%, a recall rate of 86.4%, and an average frame rate of 63.5 frames per second. Compared with the Text Detection model based on Segformer and Enhanced Feature Pyramid and the Improved Fourier Contour Embedding Network, the precision has increased by 4.9% and 3.5%, respectively, and the frame rate has increased by 20.5 and 11.7 frames per second. In terms"
+  },
+  {
+   "titulo": "A Complex Scene Text Detection Method Based on Adaptive Scale Attention and Cross-scale Channel Fusion",
+   "anio": 2025,
+   "doi": "https://doi.org/10.1109/isctis65944.2025.11065998",
+   "id": "https://openalex.org/W4412345957",
+   "citas": 1,
+   "resumen": "Scene text detection plays a vital role in fields such as OCR and intelligent transportation systems. However, challenges such as the multi-scale nature of text, complex background interference, and irregular text shapes in natural scenes remain core technical obstacles. To address the shortcomings of the segmentation-based DBNet model—particularly its tendency to miss small-scale text and produce false positives in cluttered backgrounds-this paper proposes the DBNet-ASCF model. By introducing an Adaptive Scale Attention Module (ASAM) and a Cross-scale Channel Fusion Network (CCFN), the robustness of multi-scale text detection is significantly improved. Experiments demonstrate that on the ICDAR2015 dataset, the combined modules boost the F1-score from a baseline of 87.0% to 88.1%. On the MSRA-TD500 and Total-Text datasets, the model achieves F1-scores of 90.8% and 86.3%, representing imp"
+  },
+  {
+   "titulo": "Research on Text Detection in Tourist Traffic Signs Based on an Improved DBNet",
+   "anio": 2024,
+   "doi": "https://doi.org/10.1109/cisce62493.2024.10653283",
+   "id": "https://openalex.org/W4402353698",
+   "citas": 0,
+   "resumen": "To enhance the accuracy of text detection in tourism traffic signs, the simAM non-parametric attention mechanism is integrated during the downsampling stage of feature extraction in the DBNet network. This integration aims to suppress interference from non-text regions on tourism traffic signs, thereby increasing the focus on text areas without significantly adding to the parameter count. To address issues such as inconsistent character spacing and large variations in text area scale on tourism traffic signs, which lead to erroneous text segmentation and false detections, an ASPP module is incorporated within the feature pyramid structure. This addition enhances the model's ability to capture multi-scale contextual information and adapt to different text layouts. Experiments demonstrate that the improvements in the model have resulted in an increase of 3.2% in accuracy and 3.8% in recall"
+  },
+  {
+   "titulo": "Multiple improvement strategies for high-density text detection based on DBNet",
+   "anio": 2023,
+   "doi": "https://doi.org/10.54254/2753-8818/19/20230532",
+   "id": "https://openalex.org/W4389482522",
+   "citas": 0,
+   "resumen": "High-Density text detection is actually challenging task, which deserves more attention on its performance improvement. Based on a typical existing text detection model called DBNet, this paper introduces a new approach in improving the performance of it in text-rich and readability interfered scenarios, which are mostly characterized by dozens of lines of text using different font sizes and text background harder for detecting and reading, the most significant scenario is text detection on the passport information page. The approach proposed in this study includes several steps, namely a baseline setting, a method of dataset enrichment and new loss function aiming at raising text detection for short texts and single characters, such methods has achieved enhanced improvement on text detection especially on short texts: an overall precision reaching 0.7854 and recall reaching 0.8758. Comp"
+  },
+  {
+   "titulo": "Method for Qin Bamboo Slip Text Detection Based on an Enhanced DBNet Model",
+   "anio": 2024,
+   "doi": "https://doi.org/10.1109/aiim64537.2024.10934214",
+   "id": "https://openalex.org/W4408862162",
+   "citas": 3,
+   "resumen": "An improved DBNet-based detection method is proposed to address the detection challenges posed by background interference, texture breakage, and dense arrangements in the text of unearthed Qin bamboo slips. This approach incorporates a text collaborative learning module and an adaptive weighted feature pyramid into the DBNet framework. ResNet18, augmented with deformable convolution and the text collaborative learning module, is utilized during the feature extraction stage. Features of characters and blank areas are collaboratively sampled through a convolutional cascade with varying receptive fields, effectively mitigating the issue of texture breakage. The enhanced adaptive weighted feature pyramid optimizes the feature map’s receptive field and attention fusion, improving the model’s ability to learn complex backgrounds and densely arranged text. Furthermore, the modified loss functio"
+  },
+  {
+   "titulo": "Lecture Video Automatic Summarization System Based on DBNet and Kalman Filtering",
+   "anio": 2022,
+   "doi": "https://doi.org/10.1155/2022/5303503",
+   "id": "https://openalex.org/W4294351449",
+   "citas": 8,
+   "resumen": "Video summarization for educational scenarios aims to extract and locate the most meaningful frames from the original video based on the main contents of the lecture video. Aiming at the defect of existing computer vision-based lecture video summarization methods that tend to target specific scenes, a summarization method based on content detection and tracking is proposed. Firstly, DBNet is introduced to detect the contents such as text and mathematical formulas in the static frames of these videos, which is combined with the convolutional block attention module (CBAM) to improve the detection precision. Then, frame-by-frame data association of content instances is performed using Kalman filtering, the Hungarian algorithm, and appearance feature vectors to build a tracker. Finally, video segmentation and key frame location extraction are performed according to the content instance lifel"
+  },
+  {
+   "titulo": "Research on Water Meter Digital Recognition Method based on DBNET-CRNN Framework",
+   "anio": 2022,
+   "doi": "https://doi.org/10.54097/hset.v15i.2243",
+   "id": "https://openalex.org/W4311954502",
+   "citas": 1,
+   "resumen": "With the prominent drawbacks of traditional manual meter reading mode, the automatic recognition of water meter digits with high efficiency and high accuracy using image processing technology has become one of the issues that more and more researchers pay attention to. In order to more accurately and effectively count the groundwater representation numbers in natural scenes, this paper presents a detection and recognition algorithm for water meter digits based on DBNET-CRNN framework. First, we design text detection model recognition text box based on DBNET network. Next, we use a text recognition algorithm based on CRNN network to predict the text box area and identify the final result. In addition, we have independently analyzed the half-word to calibrate the results, which further improves the accuracy of the model. The experimental results show that the model achieves good results in"
+  },
+  {
+   "titulo": "Enhancing Feature Extraction in DBNet: A Novel Approach with Squeeze-and-Excitation Block and CBAM Module",
+   "anio": 2023,
+   "doi": "https://doi.org/10.1109/iccasit58768.2023.10351731",
+   "id": "https://openalex.org/W4389777235",
+   "citas": 8,
+   "resumen": "Accurately extracting feature information from street view images can improve the accuracy of digital detection. However, street view images vary in resolution, have complex backgrounds, and exhibit irregular arrangements of digits, posing significant challenges to object detection tasks. To better extract features from street view images, this paper proposes the CBAM-SE-DBNet model by incorporating two attention modules, namely the CBAM Module and the Squeeze-and-Excitation Block (SE Block), based on the DBNet architecture. The CBAM Module adaptively adjusts the channel and spatial attention of feature maps, aiding in the extraction of crucial information. On the other hand, the SE Block selectively enhances useful features by learning the importance weights for each channel. The combination of these two modules allows CBAM-SE-DBNet to effectively capture the key features of digits in s"
+  },
+  {
+   "titulo": "Text region detection algorithm for medical instruments screen based on improved DBNet",
+   "anio": 2024,
+   "doi": "https://doi.org/10.1109/prmvia63497.2024.00013",
+   "id": "https://openalex.org/W4402511016",
+   "citas": 0,
+   "resumen": "Recognition of text in images has become increasingly important with the rapid development of cameras, and the main technology involved is Optical Character Recognition (OCR). In order to enhance the recognition accuracy of traditional text region detection algorithms for medical instrument screen data, which contains irregular and small objects, this paper introduces an improved scheme incorporating Adaptive Spatial Feature Fusion (ASFF) and Gaussian Error Linear Unit (GELU) activation function, and proposes the DBNeti model. The introduction of ASFF aims to address the limitations of fixed feature fusion in traditional text recognition algorithms and to enhance the performance of target detectors at different scales. The GELU is introduced as the activation function of the DBNet algorithm, utilizing its nonlinear characteristics, gradient preservation, and computational efficiency to e"
+  },
+  {
+   "titulo": "A lightweight alignment-aware DBNet for surgical instrument code detection",
+   "anio": 2026,
+   "doi": "https://doi.org/10.1371/journal.pone.0355611",
+   "id": "https://openalex.org/W7201851208",
+   "citas": 1,
+   "resumen": "Reliable detection of engraved surface codes on surgical instruments is essential for end-to-end traceability, yet remains challenging in practice because metallic reflection, motion blur, scale variation and weak textures often hinder stable localization. Here we present LA-DBNet, a lightweight detection framework built on DBNet for this task. The model uses MobileNetV4 with LiteFPN to reduce complexity while preserving multi-scale feature representations. To better capture the elongated structure and edge features of engraved codes, we introduce a Directional Edge Collaborative Alignment (DECA) module to improve cross-scale feature alignment, and embed an Efficient Channel Attention (ECA) mechanism in the high-resolution feature layer to enhance responses relevant to the target and suppress noise caused by reflections. We further incorporate a region-weighted consistency learning strat"
+  },
+  {
+   "titulo": "Improved Angle Steel Character Detection Algorithm Based on DBNet",
+   "anio": 2022,
+   "doi": "https://doi.org/10.54097/ajst.v3i3.2549",
+   "id": "https://openalex.org/W4310868776",
+   "citas": 2,
+   "resumen": "Aiming at the problems of false detection and missed detection in manual recording of industrial angle steel characters, an improved angle steel character detection algorithm based on DBNet is proposed. First, the angle steel character dataset is collected. The algorithm uses MobileNetV3 as the backbone network, and replaces the attention mechanism in the backbone network with a new coordinate attention mechanism to obtain larger regional information and enhance the ability to extract complex features; secondly, weighted bidirectional The feature pyramid network improves the efficiency of multi-scale fusion and enhances the detection ability of small features; finally, a new data augmentation method and learning rate optimization strategy are used to enhance the robustness and convergence accuracy of the model. The experimental results show that, compared with the original DBNet algorith"
+  },
+  {
+   "titulo": "Attention Feature Pyramid Network for Scene Text Detection",
+   "anio": 2022,
+   "doi": "https://doi.org/10.1109/iccc56324.2022.10065815",
+   "id": "https://openalex.org/W4328027903",
+   "citas": 3,
+   "resumen": "Scene text detection is an important step in the scene text reading system, which has witnessed rapid development with convolutional neural networks. Feature Pyramid Network (FPN)[1] is a key component in modern scene text detection frameworks. Detectors use pyramid feature representation to solve the challenge of scale variation in scene text detection. However, the inconsistency across different feature scales is the primary limitation for the detectors based on feature pyramid. Thus, we propose a novel strategy to solve this issue, called attention feature pyramid network (AFPN). It solves this problem by introducing feature enhancement module (FEM) and dual attention module (DAM). AFPN first performs feature enhancement on the backbone output, and then adaptively adjusts the features fusion by introducing an attention mechanism. In feature enhancement module, it learns the way to spa"
+  },
+  {
+   "titulo": "EBiDNet: A Character Detection Algorithm for LCD Interfaces Based on an Improved DBNet Framework",
+   "anio": 2025,
+   "doi": "https://doi.org/10.3390/sym17091443",
+   "id": "https://openalex.org/W4413954504",
+   "citas": 3,
+   "resumen": "Characters on liquid crystal display (LCD) interfaces often appear densely arranged, with complex image backgrounds and significant variations in target appearance, posing considerable challenges for visual detection. To improve the accuracy and robustness of character detection, this paper proposes an enhanced character detection algorithm based on the DBNet framework, named EBiDNet (EfficientNetV2 and BiFPN Enhanced DBNet). This algorithm integrates machine vision with deep learning techniques and introduces the following architectural optimizations. It employs EfficientNetV2-S, a lightweight, high-performance backbone network, to enhance feature extraction capability. Meanwhile, a bidirectional feature pyramid network (BiFPN) is introduced. Its distinctive symmetric design ensures balanced feature propagation in both top-down and bottom-up directions, thereby enabling more efficient m"
+  },
+  {
+   "titulo": "An Improved DBNet Model with Pyramid Pooling and Multi‐Scale Enhancement for Small Text Object Detection",
+   "anio": 2024,
+   "doi": "https://doi.org/10.18293/jvlc2024-n1-061",
+   "id": "https://openalex.org/W4406357813",
+   "citas": 0,
+   "resumen": "Detecting small text objects has been a key focus in object detection research due to their unique characteristics: small size, limited semantic information, susceptibility to interference in complex scenes, and tendency to be easily obscured, among others.At present, there are still two common issues in representative object detection models: First, small objects are easily interfered by the background or other objects, and second, multi-layer feature networks cause the loss of small object feature information.To address these challenges, this paper proposes an improved version of the DBNet model by introducing two modules: the contextual information fusion module SPP-CIF and the multi-scale feature enhancement module DA-MSFE.SPP-CIF fuses global and contextual information, by replacing the pooling layer of a pyramid with two sequentially concatenated dilated convolutions of small expan"
+  },
+  {
+   "titulo": "Detection method of Tangut based on dynamic convolution and adaptive feature fusion",
+   "anio": 2024,
+   "doi": "https://doi.org/10.1145/3718491.3718602",
+   "id": "https://openalex.org/W4409094810",
+   "citas": 0,
+   "resumen": "Due to the complex strokes, high structural similarity, and the problems of missing characters and fading in ancient books written in Xixia, its detection is still relatively difficult to research. In view of the fact that there are few existing studies on the detection of ancient books written in Xixia and most of them have issues including inadequate detection accuracy, failures in character detection, and incorrect detection, a Xixia detection method based on ODA-DBNet based on dynamic convolution and adaptive feature fusion is proposed by comprehensively analyzing the existing mainstream text detection methods. Firstly, the method replaces the original convolution module (Conv) with the full-dimensional dynamic convolution module (ODConv) and combines it with the ResNet-50 feature extraction network to adaptively adjust the feature scale to obtain multi-dimensional complementary feat"
+  },
+  {
+   "titulo": "Research on lightweight terminal mark detection method based on improved DBNet network",
+   "anio": 2025,
+   "doi": "https://doi.org/10.21203/rs.3.rs-6601425/v1",
+   "id": "https://openalex.org/W4410381366",
+   "citas": 0,
+   "resumen": "To address the intricate backdrop and distorted deformation issues in substation terminal marking identification, a lightweight detection method utilizing an enhanced DBNet network is proposed. To address the intricate background factors in the terminal marking image, the backbone network is substituted with the lightweight MobileViTv3, and the DCA module of the dual cross-attention mechanism is incorporated to capture both local details and global contextual information. The Dynamic Snake Convolution (DSConv) is implemented within the feature pyramid to dynamically modify the sampling paths of the convolution kernel, while the offset generation network is revised to an MLP for enhanced accuracy in offset generation. Additionally, the upsampling operation of the FPN layer is replaced with the lightweight upsampling operator CARAFE, which adjusts the upsampling kernel based on the input f"
+  },
+  {
+   "titulo": "Jellyfish Chicken Swarm Optimizer based Convolutional Neural Network with transfer learning for Recognizing Text in Complex Images",
+   "anio": 2025,
+   "doi": null,
+   "id": "https://openalex.org/W7217897981",
+   "citas": 0,
+   "resumen": "Text acquired in images contains diverse information and thus it is widely utilized in several applications for understanding image scenarios. Also, it is employed for retrieving visual information. Semantic information in complex image is highly important for the humans to recognize the complete environment. Even though, text present in images reveal the flexible form in unconstrained state that makes identification of text as well as character recognition process as very challenging task. Here, Jellyfish Chicken Swarm Optimizer based Convolutional Neural Network with transfer learning (JCSO_CNN with TL) is presented for text recognition in complex images. The input image obtained from database performs text foreground extraction employing GrabCut method. Thereafter, text detection is carried out by Differentiable Binarization Net++ (DBNet++). Afterwards, character segmentation is accom"
+  },
+  {
+   "titulo": "An Industrial Computer Quality Inspection System Based on OCR",
+   "anio": 2025,
+   "doi": "https://doi.org/10.12792/icisip2025.021",
+   "id": "https://openalex.org/W7115060843",
+   "citas": 0,
+   "resumen": "Various types of quality inspection are required during the manufacturing process. However, traditional manual inspection methods are increasingly unable to meet the demands of the digitalized and automated manufacturing environment. To address this issue, we propose an automated quality inspection system for industrial computer products based on Optical Character Recognition (OCR). The system captures video signals and uses DBNet++ model to detect text regions. It then automatically crops these regions and inputs them into a CRNN model for character recognition. The system processes each image fully without human intervention. Based on recognized text, the system determines the product status and proceeds to the next device automatically. Experimental results show that the DBNet++ model achieves a precision of 95.72%, and the CRNN model achieves an accuracy of 99.12%. In the CPU environ"
+  },
+  {
+   "titulo": "Text images processing system using artificial intelligence models",
+   "anio": 2025,
+   "doi": "https://doi.org/10.33545/26633582.2025.v7.i2c.222",
+   "id": "https://openalex.org/W4416811652",
+   "citas": 0,
+   "resumen": "This is to present a text image classifier device that identifies textual content in images and then categorizes each image into one of four predefined categories, including Invoice, Form, Letter, or Report. The device supports a gallery mode, in which users browse files on flash disks, hard disk drives, or microSD cards, and a live mode which renders feeds of cameras connected to it. Its design is specifically aimed at addressing pragmatic challenges, such as changing light, random orientation, curvature or partial coverage of text, low resolution, and slightly visible text. The steps of the processing process are divided into four steps: image acquisition and preprocessing, textual elements detection with the help of DBNet++ (Differentiable Binarization Network Plus) model, BART (Bidirectional Auto-Regressive Transformers) model that classifies detected textual elements, and the presen"
+  },
+  {
+   "titulo": "A Quantum-Based Attention Mechanism in Scene Text Detection",
+   "anio": 2023,
+   "doi": "https://doi.org/10.1007/978-981-99-8543-2_1",
+   "id": "https://openalex.org/W4390341266",
+   "citas": 5,
+   "resumen": ""
+  },
+  {
+   "titulo": "(HTBNet)Arbitrary Shape Scene Text Detection with Binarization of Hyperbolic Tangent and Cross-Entropy",
+   "anio": 2024,
+   "doi": "https://doi.org/10.3390/e26070560",
+   "id": "https://openalex.org/W4400252152",
+   "citas": 25,
+   "resumen": "The existing segmentation-based scene text detection methods mostly need complicated post-processing, and the post-processing operation is separated from the training process, which greatly reduces the detection performance. The previous method, DBNet, successfully simplified post-processing and integrated post-processing into a segmentation network. However, the training process of the model took a long time for 1200 epochs and the sensitivity to texts of various scales was lacking, leading to some text instances being missed. Considering the above two problems, we design the text detection Network with Binarization of Hyperbolic Tangent (HTBNet). First of all, we propose the Binarization of Hyperbolic Tangent (HTB), optimized along with which the segmentation network can expedite the initial convergent speed by reducing the number of epochs from 1200 to 600. Because features of differe"
+  },
+  {
+   "titulo": "DBNetText Detection Algorithm Based on Edge Detection",
+   "anio": 2025,
+   "doi": "https://doi.org/10.17559/tv-20241204002168",
+   "id": "https://openalex.org/W4416045461",
+   "citas": 0,
+   "resumen": "In the booming e-commerce industry, precise text detection in product images is crucial for seamless operations.However, existing text detection algorithms face challenges due to the complex nature of e-commerce images.These images often combine intricate text with complex graphics and diverse product elements, all set against highly variable backgrounds.Artistic fonts, with their unique and often ornate designs, are especially difficult to detect accurately, leading to subpar performance in extracting product-related information.This inefficiency limits the development of intelligent e-commerce applications, which motivates our research.To address these challenges, we propose EIEM-DBNet, an edge-detection-based text detection algorithm.Its key innovation is the integration of the Edge Information Extraction Module (EIEM), which uses operators like Laplace, Sobel, and Canny to extract ed"
+  },
+  {
+   "titulo": "Building an AI-Integrated Braille Recognition Model for Blind Education: From Mechanical Devices to Personalized Learning Systems",
+   "anio": 2025,
+   "doi": "https://doi.org/10.4236/wjet.2026.141001",
+   "id": "https://openalex.org/W4416937795",
+   "citas": 1,
+   "resumen": "The context of inclusive education for blind people lacks suitable learning materials and traditional devices are difficult to expand, creating a need for a personalized technological solution. This study proposes and evaluates an AI-integrated Braille recognition and conversion model, designed in a three-layer architecture including terminals, AI engines, and learning management systems. At the device layer, Raspberry Pi 5 connects a camera placed near the paper surface with a choice of OV9281 or IMX708 sensors, displayed via a vibrating dot matrix and speakers. At the AI layer, the processing chain applies region of interest cropping, local contrast enhancement, noise reduction, adaptive thresholding, skew and distortion correction, then segmenting lines, words, characters, recognizing them using optical and deep learning models such as CRNN or DBNet (for optical character recognition)"
+  },
+  {
+   "titulo": "A Text Recognition Algorithm Based on a Dual-Attention Mechanism in Complex Driving Environment",
+   "anio": 2024,
+   "doi": "https://doi.org/10.17559/tv-20231023001052",
+   "id": "https://openalex.org/W4390480489",
+   "citas": 8,
+   "resumen": "In response to many problems such as complex background of text recognition environment, perspective distortion, shallow handwriting, and mixed Chinese and English characters, we have designed an OCR algorithm framework with features such as landmark extraction and correction, image enhancement, text detection, and text recognition.We have designed a DBNet based on dual attention mechanism and content-aware upsampling.We have also designed a text recognition module incorporating the central loss CRNN + CTC to improve content awareness.Experimental results show that the improved text detection network in this paper has increased accuracy by 5.09%, recall by 2.12%, and F-score by 3.46% on the ICDAR2015 dataset.The text recognition network has improved the accuracy of recognizing Chinese and English characters by 1.2%."
+  },
+  {
+   "titulo": "Real-Time Scene Text Detection With Differentiable Binarization and Adaptive Scale Fusion",
+   "anio": 2022,
+   "doi": "https://doi.org/10.1109/tpami.2022.3155612",
+   "id": "https://openalex.org/W4214922754",
+   "citas": 535,
+   "resumen": "Recently, segmentation-based scene text detection methods have drawn extensive attention in the scene text detection field, because of their superiority in detecting the text instances of arbitrary shapes and extreme aspect ratios, profiting from the pixel-level descriptions. However, the vast majority of the existing segmentation-based approaches are limited to their complex post-processing algorithms and the scale robustness of their segmentation models, where the post-processing algorithms are not only isolated to the model optimization but also time-consuming and the scale robustness is usually strengthened by fusing multi-scale feature maps directly. In this paper, we propose a Differentiable Binarization (DB) module that integrates the binarization process, one of the most important steps in the post-processing procedure, into a segmentation network. Optimized along with the propos"
+  },
+  {
+   "titulo": "Data Recognition for Multi-Source Heterogeneous Experimental Detection in Cloud Edge Collaboratives",
+   "anio": 2023,
+   "doi": "https://doi.org/10.4018/ijitsa.330986",
+   "id": "https://openalex.org/W4387038180",
+   "citas": 1,
+   "resumen": "This article proposes a multisource heterogeneous experimental data recognition method based on CRNN and DBNet in a cloud-edge collaborative environment in an attempt to address the issues of low efficiency and a high error rate that come with traditional manual data detection and recognition. Firstly, a recognition architecture for experimental detection data of intelligent measurement systems is designed based on a cloud-edge collaborative environment to improve the efficiency of data processing. Then, the improved DBNet network is used in the edge computing center to detect the text, and the correction module is used to correct the deviation of the detected text to ensure the standardization of the text. Finally, in the central cloud, the end-to-end indefinite length character recognition (CRNN) algorithm is used to analyze and identify the text order, rules, and other information of "
+  },
+  {
+   "titulo": "Efficient Region-Based Video Text Extraction Using Advanced Detection and Recognition Models",
+   "anio": 2025,
+   "doi": "https://doi.org/10.33411/ijist/1238",
+   "id": "https://openalex.org/W7172419681",
+   "citas": 0,
+   "resumen": "This paper presents an automated process for extracting text from video frames by specifically targeting text-rich regions, identified through advanced scene text detection methods. Unlike traditional techniques that apply OCR to entire frames—resulting in excessive computations and higher error rates—our approach focuses only on textual areas, improving both speed and accuracy. The system integrates effective preprocessing routines, cutting-edge text detectors (CRAFT, DBNet), and advanced recognition engines (CRNN, transformer-based) within a unified framework. Extensive testing on datasets such as ICDAR 2015, ICDAR 2017 MLT, and COCO-Text demonstrates consistent gains in F-scores and word recognition rates, significantly outperforming baseline methods. Additionally, detailed error analysis, ablation studies, and runtime evaluations offer deeper insights into the strengths and limitatio"
+  },
+  {
+   "titulo": "Text Detection and Recognition for X-ray Weld Seam Images",
+   "anio": 2024,
+   "doi": "https://doi.org/10.3390/app14062422",
+   "id": "https://openalex.org/W4392746074",
+   "citas": 5,
+   "resumen": "X-ray weld seam images carry vital information about welds. Leveraging graphic–text recognition technology enables intelligent data collection in complex industrial environments, promising significant improvements in work efficiency. This study focuses on using deep learning methods to enhance the accuracy and efficiency of detecting weld seam information. We began by actively gathering a dataset of X-ray weld seam images for model training and evaluation. The study comprises two main components: text detection and text recognition. For text detection, we employed a model based on the DBNet algorithm and tailored post-processing techniques to the unique features of weld seam images. Through model training, we achieved efficient detection of the text regions, with 91% precision, 92.4% recall, and a 91.7% F1 score on the test dataset. In the text recognition phase, we introduced modules li"
+  },
+  {
+   "titulo": "Visual Reconstruction of Cultural Symbols in Film and Television Animation Character Modeling Designs",
+   "anio": 2026,
+   "doi": "https://doi.org/10.65102/is2026038",
+   "id": "https://openalex.org/W7160424161",
+   "citas": 0,
+   "resumen": "The aesthetic orientation of character modeling design is closely related to the final presentation effect and connotation expression of film and television animation. This paper takes the visual expression of cultural symbols in modeling design as the entry point, and chooses two forms of hue information extraction and gray processing to realize the digital compilation of cultural symbols. Combining YOLOv8m and image enhancement and other means to improve the performance of image detection in the symbol recognition link, using DBNet and CRNN to extract the text, accessing TSRAG for recognition, and adopting a weighted fusion decision-making mechanism to synthesize the two links, to establish an image-based dual-link logo recognition algorithm. On this basis, a compressed-aware image reconstruction method based on multi-scale inter-level feature fusion is proposed with compressed-aware a"
+  },
+  {
+   "titulo": "DEEP LEARNING MODELS FOR EFFICIENT RECOGNITION OF ANCIENT TAMIL INSCRIPTIONS",
+   "anio": 2025,
+   "doi": "https://doi.org/10.58532/nbennurrtllvc9",
+   "id": "https://openalex.org/W7167807380",
+   "citas": 0,
+   "resumen": "Tamil script, known as Vattazuthu in history. It was used by Tamil people from around the Sixth Century to the Twelfth Century CE, and today it still has great significance to Tamil Nadu in terms of its cultural heritage. The current status of the need to recognize this writing system manually in an extremely immature field results from the following factors: first, the shape or form of the script (which has been eroded over time by various weather patterns, geography, and nature); second, there has been no developed method in the past for digitization and/or specification of how the script was originally written.This method proposes to combine high-resolution imagery with a new 3D LiDAR scan technology to produce depth maps based on the laser-based measurements of depth recorded by LIDAR devices and produce a robust recognition process using multimodal combinations of all data types. Pr"
+  },
+  {
+   "titulo": "IDBNet: Improved differentiable binarisation network for natural scene text detection",
+   "anio": 2023,
+   "doi": "https://doi.org/10.1049/cvi2.12241",
+   "id": "https://openalex.org/W4387178927",
+   "citas": 6,
+   "resumen": "The text in the natural scene can express rich semantic information, which helps people understand and analyse daily things. This paper focuses on the problems of discrete text spatial distribution and variable text geometric size in natural scenes with complex backgrounds and proposes an end‐to‐end natural scene text detection method based on DBNet. The authors first use IResNet as the backbone network, which does not increase network parameters while retaining more text features. Furthermore, a module with Transformer is introduced in the feature extraction stage to strengthen the correlation between high‐level feature pixels. Then, the authors add a spatial pyramid pooling structure in the end of feature extraction, which realises the combination of local and global features, enriches the expressive ability of feature maps, and alleviates the detection limitations caused by the geomet"
+  },
+  {
+   "titulo": "Detection and Recognition Algorithm for Cigarette Box Documents based on Deep Learning",
+   "anio": 2023,
+   "doi": "https://doi.org/10.54097/fcis.v5i1.11544",
+   "id": "https://openalex.org/W4387677608",
+   "citas": 1,
+   "resumen": "In order to solve the problem of unclear detection and recognition caused by damage and distortion of the markings on the cigarette box during transportation, this article introduces an efficient channel attention mechanism SENet module for the DBNet detection model, effectively enhancing the model's detection ability. The introduction of deformable convolutional DCN on the CRNN recognition model further enhances the model's ability to detect distorted text. The experimental results show that the accuracy of the detection model reaches 88.43%, and the recall rate reaches 83. 47%, the comprehensive indicator reached 85.87%, with a significant improvement effect. The entire line recognition rate of the recognition model also reached 90.23%, which is better than the original algorithm."
+  },
+  {
+   "titulo": "Detecting and recognizing seven segment digits using a deep learning approach",
+   "anio": 2024,
+   "doi": "https://doi.org/10.1051/itmconf/20246301007",
+   "id": "https://openalex.org/W4391781279",
+   "citas": 7,
+   "resumen": "Recognizing seven-segment digits is a specific task within the broader field of text detection and recognition. Seven-segment digits are commonly used for displaying numerical information in various applications. However, accurately detecting and recognizing these digits can be challenging due to factors like LED bleeding, glare, and the presence of printed text alongside the digits. The experiment described in this paper aims to identify the most effective models for detecting and recognizing texts and assess their accuracy and performance under different environmental conditions. The experiment reveals that DBNet from PaddleOCR is the best model for text detection, while PARSeq has the best accuracy for recognizing seven-segment digits on the 7Seg dataset. PARSeq also performs well on a custom dataset with lower LED ratios but struggles with glare conditions. Excluding special characte"
+  },
+  {
+   "titulo": "Computer Vision Technology Explains the Representation System and Communication Mechanism of Visual Symbols in British and American Literature",
+   "anio": 2025,
+   "doi": "https://doi.org/10.70517/ijhsa464139",
+   "id": "https://openalex.org/W4413461177",
+   "citas": 0,
+   "resumen": "With the acceleration of globalization, cultural exchanges between China and the West have become more and more frequent, and English literature has been widely introduced into China. In this paper, the visual symbols in English literature are studied. In the pre-processing process of literary images, tilt correction, text region extraction and segmentation are carried out on the scanned images in turn. Based on DBNet algorithm, a text detection algorithm SMA for English literature is proposed, and Res2Net is used as a feature extraction network to extract multi-scale features to realize text extraction in literary images. Using the literary image preprocessing method and text extraction method proposed in this paper, we obtain the text of the novel “The Picture of Dorian Gray” by the British writer Oscar Wilde, and explore the visual symbols embedded in it. “Life”, “soul”, and “love” ar"
+  },
+  {
+   "titulo": "Scene Text Detection Based on Multi-Headed Self-Attention Using Shifted Windows",
+   "anio": 2023,
+   "doi": "https://doi.org/10.3390/app13063928",
+   "id": "https://openalex.org/W4327956214",
+   "citas": 3,
+   "resumen": "Scene text detection has become a popular topic in computer vision research. Most of the current research is based on deep learning, using Convolutional Neural Networks (CNNs) to extract the visual features of images. However, due to the limitations of convolution kernel size, CNNs can only extract local features of images with small perceptual fields, and they cannot obtain more global features. In this paper, to improve the accuracy of scene text detection, a feature enhancement module is added to the text detection model. This module acquires global features of an image by computing the multi-headed self-attention of the feature map. The improved model extracts local features using CNNs, while extracting global features through the feature enhancement module. The features extracted by both of these are then fused to ensure that visual features at different levels of the image are extr"
+  },
+  {
+   "titulo": "Region Prompt Tuning: Fine-grained Scene Text Detection Utilizing Region Text Prompt",
+   "anio": 2024,
+   "doi": "https://doi.org/10.48550/arxiv.2409.13576",
+   "id": "https://openalex.org/W4403766745",
+   "citas": 1,
+   "resumen": "Recent advancements in prompt tuning have successfully adapted large-scale models like Contrastive Language-Image Pre-trained (CLIP) for downstream tasks such as scene text detection. Typically, text prompt complements the text encoder's input, focusing on global features while neglecting fine-grained details, leading to fine-grained text being ignored in task of scene text detection. In this paper, we propose the region prompt tuning (RPT) method for fine-grained scene text detection, where region text prompt proposed would help focus on fine-grained features. Region prompt tuning method decomposes region text prompt into individual characters and splits visual feature map into region visual tokens, creating a one-to-one correspondence between characters and tokens. This allows a character matches the local features of a token, thereby avoiding the omission of detailed features and fine"
+  },
+  {
+   "titulo": "Computer Vision-Based Information Extraction from Electrical Assets: A Systematic Literature Review",
+   "anio": 2026,
+   "doi": "https://doi.org/10.3390/s26165009",
+   "id": "https://openalex.org/W7201839472",
+   "citas": 2,
+   "resumen": "Automated inspection of electrical equipment has become increasingly important as utilities seek to replace inefficient manual processes in infrastructure management. Electrical-equipment nameplates contain critical technical information, but automatically extracting this information remains challenging. Although this topic has attracted growing research interest, the literature has not yet been systematically synthesized. This review addresses three research questions: (1) What real-world challenges affect the inspection and maintenance of electrical equipment, and what research gaps and opportunities remain? (2) Which computer vision and deep learning algorithms and architectures are used to extract text and digits from electrical equipment images? (3) Which metrics, datasets, and evaluation methodologies are used to assess these approaches? We conducted a systematic literature review "
+  }
+ ]
+}

@@ -1,0 +1,27 @@
+{
+ "cadena": "C4",
+ "fuente": "semanticscholar",
+ "fecha": "2026-11-23T08:43:17-05:00",
+ "url": "https://api.semanticscholar.org/graph/v1/paper/search/bulk?query=%28unclip%20%7C%20%22kernel%20expansion%22%20%7C%20%22expansion%20ratio%22%20%7C%20%22learnable%20expansion%22%20%7C%20%22adaptive%20expansion%22%20%7C%20%22kernel%20reconstruction%22%29%20%2B%20%28%22text%20detection%22%20%7C%20%22scene%20text%22%29&fields=title,year,externalIds,abstract,citationCount&sort=citationCount:desc",
+ "estado": "ok",
+ "total_declarado": 2,
+ "devueltos": 2,
+ "registros": [
+  {
+   "titulo": "Text kernel expansion for real-time scene text detection",
+   "anio": 2024,
+   "doi": "10.1007/s10044-024-01352-2",
+   "id": "ff85d6847c9870f3914126050bd6c0a8dd932450",
+   "citas": 2,
+   "resumen": ""
+  },
+  {
+   "titulo": "Deformable Kernel Expansion Model for Efficient Arbitrary-shaped Scene Text Detection",
+   "anio": 2023,
+   "doi": "10.48550/arXiv.2303.15737",
+   "id": "bf84eed1c315ef32632aa60779ca11b9b13b1288",
+   "citas": 1,
+   "resumen": "Scene text detection is a challenging computer vision task due to the high variation in text shapes and ratios. In this work, we propose a scene text detector named Deformable Kernel Expansion (DKE), which incorporates the merits of both segmentation and contour-based detectors. DKE employs a segmentation module to segment the shrunken text region as the text kernel, then expands the text kernel contour to obtain text boundary by regressing the vertex-wise offsets. Generating the text kernel by segmentation enables DKE to inherit the arbitrary-shaped text region modeling capability of segmentation-based detectors. Regressing the kernel contour with some sampled vertices enables DKE to avoid the complicated pixel-level post-processing and better learn contour deformation as the contour-based detectors. Moreover, we propose an Optimal Bipartite Graph Matching Loss (OBGML) that measures the"
+  }
+ ]
+}

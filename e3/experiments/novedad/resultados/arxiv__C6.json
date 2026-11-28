@@ -1,0 +1,35 @@
+{
+ "cadena": "C6",
+ "fuente": "arxiv",
+ "fecha": "2026-11-23T08:37:40-05:00",
+ "url": "https://export.arxiv.org/api/query?search_query=all%3A%22differentiable%20binarization%22%20AND%20all%3A%28segmentation%20OR%20medical%20OR%20crack%20OR%20defect%20OR%20%22remote%20sensing%22%29&max_results=50&sortBy=relevance",
+ "estado": "ok",
+ "total_declarado": 4,
+ "devueltos": 4,
+ "registros": [
+  {
+   "titulo": "Real-time Scene Text Detection with Differentiable Binarization",
+   "anio": "2019",
+   "doi": "http://arxiv.org/abs/1911.08947v2",
+   "resumen": "Recently, segmentation-based methods are quite popular in scene text detection, as the segmentation results can more accurately describe scene text of various shapes such as curve text. However, the post-processing of binarization is essential for segmentation-based detection, which converts probability maps produced by a segmentation method into bounding boxes/regions of text. In this paper, we propose a module named Differentiable Binarization (DB), which can perform the binarization process in a segmentation network. Optimized along with a DB module, a segmentation network can adaptively set the thresholds for binarization, which not only simplifies the post-processing but also enhances the performance of text detection. Based on a simple segmentation network, we validate the performance improvements of DB on five benchmark datasets, which consistently achieves state-of-the-art result"
+  },
+  {
+   "titulo": "Real-Time Scene Text Detection with Differentiable Binarization and Adaptive Scale Fusion",
+   "anio": "2022",
+   "doi": "http://arxiv.org/abs/2202.10304v1",
+   "resumen": "Recently, segmentation-based scene text detection methods have drawn extensive attention in the scene text detection field, because of their superiority in detecting the text instances of arbitrary shapes and extreme aspect ratios, profiting from the pixel-level descriptions. However, the vast majority of the existing segmentation-based approaches are limited to their complex post-processing algorithms and the scale robustness of their segmentation models, where the post-processing algorithms are not only isolated to the model optimization but also time-consuming and the scale robustness is usually strengthened by fusing multi-scale feature maps directly. In this paper, we propose a Differentiable Binarization (DB) module that integrates the binarization process, one of the most important steps in the post-processing procedure, into a segmentation network. Optimized along with the propos"
+  },
+  {
+   "titulo": "Arabic Handwritten Document OCR Solution with Binarization and Adaptive Scale Fusion Detection",
+   "anio": "2024",
+   "doi": "http://arxiv.org/abs/2412.01601v1",
+   "resumen": "The problem of converting images of text into plain text is a widely researched topic in both academia and industry. Arabic handwritten Text Recognation (AHTR) poses additional challenges due to diverse handwriting styles and limited labeled data. In this paper we present a complete OCR pipeline that starts with line segmentation using Differentiable Binarization and Adaptive Scale Fusion techniques to ensure accurate detection of text lines. Following segmentation, a CNN-BiLSTM-CTC architecture is applied to recognize characters. Our system, trained on the Arabic Multi-Fonts Dataset (AMFDS), achieves a Character Recognition Rate (CRR) of 99.20% and a Word Recognition Rate (WRR) of 93.75% on single-word samples containing 7 to 10 characters, along with a CRR of 83.76% for sentences. These results demonstrate the system's strong performance in handling Arabic scripts, establishing a new b"
+  },
+  {
+   "titulo": "Learning Independent Instance Maps for Crowd Localization",
+   "anio": "2020",
+   "doi": "http://arxiv.org/abs/2012.04164v3",
+   "resumen": "Accurately locating each head's position in the crowd scenes is a crucial task in the field of crowd analysis. However, traditional density-based methods only predict coarse prediction, and segmentation/detection-based methods cannot handle extremely dense scenes and large-range scale-variations crowds. To this end, we propose an end-to-end and straightforward framework for crowd localization, named Independent Instance Map segmentation (IIM). Different from density maps and boxes regression, each instance in IIM is non-overlapped. By segmenting crowds into independent connected components, the positions and the crowd counts (the centers and the number of components, respectively) are obtained. Furthermore, to improve the segmentation quality for different density regions, we present a differentiable Binarization Module (BM) to output structured instance maps. BM brings two advantages in"
+  }
+ ]
+}

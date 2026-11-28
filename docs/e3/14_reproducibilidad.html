@@ -1,0 +1,648 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Lista de verificación de reproducibilidad &#8212; Entregable 3: UNet-AT y benchmark de segmentación de rótulos HAZMAT</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"tags": "ams"}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '14_reproducibilidad';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Ficha del modelo" href="15_ficha_modelo.html" />
+    <link rel="prev" title="Conclusiones del estado verificado" href="13_conclusiones.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 3: UNet-AT y benchmark de segmentación de rótulos HAZMAT</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Resumen: UNet-AT y benchmark de rótulos HAZMAT
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_introduccion.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_trabajo_relacionado.html">Trabajo relacionado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_metodo.html">Método: UNet-AT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_diseno_experimental.html">Diseño experimental: protocolo y potencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_trazabilidad_e2.html">Trazabilidad de las correcciones del E2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_novedad.html">Revisión de novedad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_resultados.html">Resultados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_ablacion.html">Ablación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_robustez.html">Robustez, eficiencia y calidad (Cuadro 5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_exportacion_dashboard.html">Exportación y tablero de comparación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_discusion.html">Discusión</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_limitaciones.html">Limitaciones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_conclusiones.html">Conclusiones del estado verificado</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lista de verificación de reproducibilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_ficha_modelo.html">Ficha del modelo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_compactas_integradas.html">Compactas seleccionadas e inferencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_estado_cierre.html">Integración y cierre del entregable</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/14_reproducibilidad.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lista de verificación de reproducibilidad</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entorno-de-esta-construccion">Entorno de esta construcción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-operativo-vigente">Estado operativo vigente</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-recuperada-del-plan-inicial">Lista recuperada del plan inicial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduccion-independiente">Reproducción independiente</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lista-de-verificacion-de-reproducibilidad">
+<span id="sec-reproducibilidad"></span><h1>Lista de verificación de reproducibilidad<a class="headerlink" href="#lista-de-verificacion-de-reproducibilidad" title="Link to this heading">#</a></h1>
+<section id="entorno-de-esta-construccion">
+<h2>Entorno de esta construcción<a class="headerlink" href="#entorno-de-esta-construccion" title="Link to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Versiones del software con el que se construyó este libro y huella de la tabla principal.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span><span class="o">,</span><span class="w"> </span><span class="nn">platform</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">importlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">metadata</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Python:"</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">version</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">"| sistema:"</span><span class="p">,</span> <span class="n">platform</span><span class="o">.</span><span class="n">platform</span><span class="p">(),</span> <span class="s2">"| CPU:"</span><span class="p">,</span> <span class="n">platform</span><span class="o">.</span><span class="n">processor</span><span class="p">()</span> <span class="ow">or</span> <span class="s2">"n/d"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"numpy"</span><span class="p">,</span> <span class="s2">"pandas"</span><span class="p">,</span> <span class="s2">"matplotlib"</span><span class="p">,</span> <span class="s2">"jupyter-book"</span><span class="p">,</span> <span class="s2">"myst-nb"</span><span class="p">,</span> <span class="s2">"sphinx"</span><span class="p">]:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">metadata</span><span class="o">.</span><span class="n">version</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">metadata</span><span class="o">.</span><span class="n">PackageNotFoundError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">: no instalado"</span><span class="p">)</span>
+<span class="n">csv</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">".."</span><span class="p">)</span> <span class="o">/</span> <span class="s2">"data"</span> <span class="o">/</span> <span class="s2">"tabla_maestra.csv"</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"SHA-256 tabla_maestra.csv:"</span><span class="p">,</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">csv</span><span class="o">.</span><span class="n">read_bytes</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python: 3.12.14 | sistema: Windows-11-10.0.26300-SP0 | CPU: AMD64 Family 23 Model 160 Stepping 0, AuthenticAMD
+numpy: 2.2.6
+pandas: no instalado
+matplotlib: 3.10.3
+jupyter-book: 1.0.4.post1
+myst-nb: 1.4.0
+sphinx: 7.4.7
+SHA-256 tabla_maestra.csv: bfe3680f820071aad5ed8e461a8619f2007f8005ed0a28d8325a5f6d01909952
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="estado-operativo-vigente">
+<h2>Estado operativo vigente<a class="headerlink" href="#estado-operativo-vigente" title="Link to this heading">#</a></h2>
+<p>La secuencia v4 y el lanzador único conservan checkpoints por época y permiten reanudar. La identidad registra la versión de OpenCV 4.11 y las huellas del código; un cambio de identidad impide reutilizar silenciosamente un checkpoint. La prueba local reducida de entrenamiento y reanudación exacta aprobó en CPU; no acredita por sí sola determinismo entre GPU o plataformas.</p>
+<p>La campaña prevista comprende 120 corridas: 20 del original y 100 de rivales. Las 55 nuevas de rivales completan las compactas y corrigen SegFormer; no basta añadir cinco semillas indiscriminadamente a cada resultado histórico. La auditoría y las predicciones de validación son etapas separadas. Los tiempos finales, aceleradores realmente asignados y resultados deben leerse de sus registros, sin asumir que todas las sesiones usarán L4.</p>
+<p>El libro usa resultados livianos y no entrena modelos al compilar. La demostración de test contiene 1.962 máscaras verificadas de nueve redes; su inventario está en <code class="docutils literal notranslate"><span class="pre">data/demo_test_verificacion.json</span></code>. Las fotografías permanecen en el paquete local. La aplicación utiliza <code class="docutils literal notranslate"><span class="pre">http://[::1]:8051/modelos</span></code> en este equipo.</p>
+</section>
+<section id="lista-recuperada-del-plan-inicial">
+<h2>Lista recuperada del plan inicial<a class="headerlink" href="#lista-recuperada-del-plan-inicial" title="Link to this heading">#</a></h2>
+<p>La tabla siguiente conserva el plan inicial como antecedente. Sus recetas uniformes, estimaciones de cómputo, hardware previsto y estados pendientes no sustituyen la secuencia v4 ni un registro de ejecución. El tag de congelamiento y la reproducción independiente todavía deben verificarse.</p>
+<div class="pst-scrollable-table-container"><table class="table" id="tab-reproducibilidad">
+<caption><span class="caption-number">Tabla 4 </span><span class="caption-text">Lista de verificación de reproducibilidad</span><a class="headerlink" href="#tab-reproducibilidad" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Ítem</p></th>
+<th class="head"><p>Estado</p></th>
+<th class="head"><p>Dónde</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Versiones de software</p></td>
+<td><p>Entrenamiento: <code class="docutils literal notranslate"><span class="pre">requirements-train.txt</span></code> (torch 2.5.1, numpy 1.26.4, timm 1.0.15, …). Dashboard: <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>. Libro: <code class="docutils literal notranslate"><span class="pre">book/requirements.txt</span></code></p></td>
+<td><p>Archivos citados</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hardware</p></td>
+<td><p>Entrenamiento en GPU NVIDIA L4 (Colab) para las semillas del E3; latencias del E2 en CPU AMD Ryzen 5 PRO 6650U y GPU (nota de <code class="docutils literal notranslate"><span class="pre">tabla_maestra_meta.json</span></code>). VM-UNet exige CUDA</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">data/tabla_maestra_meta.json</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Semillas</p></td>
+<td><p>11, 23, 37, 53, 71, 89, 97, 101, 103, 107; reserva 127, 131, 137, 139, 149</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">experiments/protocolo.md</span></code>, §3</p></td>
+</tr>
+<tr class="row-odd"><td><p>Determinismo</p></td>
+<td><p>Pendiente: indicadores <code class="docutils literal notranslate"><span class="pre">torch.use_deterministic_algorithms</span></code> y de cuDNN usados por el arnés, y prueba de dos corridas con igual semilla</p></td>
+<td><p>Bloque A del plan</p></td>
+</tr>
+<tr class="row-even"><td><p>Rangos de hiperparámetros</p></td>
+<td><p>Receta fija por red, sin búsqueda en los rivales (Adam, lr 1e-3, lote 2, hasta 30 épocas, paciencia 5); el original recibe lo mismo. Sensibilidad a <span class="math notranslate nohighlight">\(g_0\in\{2, 8\}\)</span> px, exploratoria</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">experiments/protocolo.md</span></code>, §2 y §10</p></td>
+</tr>
+<tr class="row-odd"><td><p>Número de ejecuciones</p></td>
+<td><p>10 semillas por modelo (5 del E2 más 5 del E3) y por brazo del original</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">experiments/protocolo.md</span></code>, §3</p></td>
+</tr>
+<tr class="row-even"><td><p>Dispersión</p></td>
+<td><p>DE entre semillas e IC 95 % por grupos en la tabla principal</p></td>
+<td><p><a class="reference internal" href="07_resultados.html#sec-resultados"><span class="std std-ref">Resultados</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Datos</p></td>
+<td><p>HAZMAT-13: enlace y huellas en la declaración de datos; no se redistribuyen imágenes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">data/DATA_STATEMENT.md</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Código</p></td>
+<td><p>Pendiente: URL del repositorio y etiqueta <code class="docutils literal notranslate"><span class="pre">e3-protocolo</span></code> (sin commit ni push hasta el visto bueno del equipo). SHA-256 de los módulos del original</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">experiments/procedencia.md</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Tiempo de cómputo</p></td>
+<td><p>Medido: 3,28 h de L4 por semilla de los rivales (E2). Estimado: unas 20 h de L4 para el E3 (semillas 6 a 10 de los rivales, dos brazos del original con 10 semillas, búsqueda)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">plan.md</span></code>, sección Cómputo</p></td>
+</tr>
+<tr class="row-even"><td><p>Energía estimada</p></td>
+<td><p>Pendiente de cálculo final: energía <span class="math notranslate nohighlight">\(\approx\)</span> horas de GPU <span class="math notranslate nohighlight">\(\times\)</span> potencia máxima declarada del acelerador (L4: 72 W); es una cota superior, no una medición</p></td>
+<td><p>Este capítulo</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="reproduccion-independiente">
+<h2>Reproducción independiente<a class="headerlink" href="#reproduccion-independiente" title="Link to this heading">#</a></h2>
+<p>Procedimiento: una persona ajena al diseño construye la imagen, ejecuta el libro desde cero en el contenedor y
+regenera la tabla principal; se reporta la discrepancia máxima entre su tabla y la publicada.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>e3<span class="w"> </span>.
+docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="s2">"</span><span class="nv">$PWD</span><span class="s2">/book/_build:/app/book/_build"</span><span class="w"> </span>e3<span class="w"> </span>jupyter-book<span class="w"> </span>build<span class="w"> </span>book/
+</pre></div>
+</div>
+<p>Discrepancia máxima, por columna numérica <span class="math notranslate nohighlight">\(c\)</span> de la tabla principal:</p>
+<div class="math notranslate nohighlight" id="equation-eq-discrepancia">
+<span class="eqno">(7)<a class="headerlink" href="#equation-eq-discrepancia" title="Link to this equation">#</a></span>\[
+\Delta_{\max} = \max_{j,\,c}\ \bigl\lvert x^{\text{ajena}}_{j,c} - x^{\text{publicada}}_{j,c}\bigr\rvert
+\]</div>
+<div class="warning admonition">
+<p class="admonition-title">Pendiente</p>
+<ul class="simple">
+<li><p><strong>Reproducción independiente:</strong> no se ha hecho; la imagen de Docker no se ha construido (Docker no está verificado en
+esta máquina). Falta quién la ejecute, la fecha, el equipo y el <span class="math notranslate nohighlight">\(\Delta_{\max}\)</span> medido con <a class="reference internal" href="#equation-eq-discrepancia">(7)</a>.</p></li>
+<li><p><strong>Reproducción de las semillas 6 a 10 y del original:</strong> requiere GPU; las cifras del benchmark del E2 sí se
+regeneran desde <code class="docutils literal notranslate"><span class="pre">E3_E2_RESULTADOS</span></code> con <code class="docutils literal notranslate"><span class="pre">experiments/generar_tabla_maestra.py</span></code>.</p></li>
+</ul>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="13_conclusiones.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Conclusiones del estado verificado</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="15_ficha_modelo.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Ficha del modelo</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entorno-de-esta-construccion">Entorno de esta construcción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-operativo-vigente">Estado operativo vigente</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-recuperada-del-plan-inicial">Lista recuperada del plan inicial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduccion-independiente">Reproducción independiente</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Autores: por completar
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

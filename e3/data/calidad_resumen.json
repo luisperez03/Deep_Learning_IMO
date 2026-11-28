@@ -1,0 +1,66 @@
+{
+  "generado": "2026-11-23",
+  "particiones_imagenes": {
+    "train": 1015,
+    "val": 218,
+    "test": 218
+  },
+  "grupos_train_val": {
+    "train": 567,
+    "val": 122
+  },
+  "constantes_prosa": {
+    "imagenes_originales": {
+      "valor": 1685,
+      "fuente": "docs/DATA_CARD_HAZMAT13.md, sec. 1"
+    },
+    "sin_mascara": {
+      "valor": 102,
+      "fuente": "libro/eda.md, 'Calidad de las anotaciones'"
+    },
+    "cuarentena": {
+      "valor": 132,
+      "fuente": "docs/DATA_CARD_HAZMAT13.md, sec. 1 (huellas): 132 en cuarentena por discrepancias o revisión manual"
+    },
+    "pares_similares_candidatos": {
+      "valor": 748,
+      "fuente": "libro/eda.md, 'Similitud, procedencia y fugas': dHash y aHash <= 6 bits de 64"
+    },
+    "pares_similares_cruzaban_train_val_heredado": {
+      "valor": 146,
+      "fuente": "libro/eda.md, ídem"
+    },
+    "enlaces_que_cruzan_particiones_actual": {
+      "valor": 0,
+      "fuente": "libro/eda.md, ídem: partición por componentes conexas"
+    },
+    "discrepancias_clase_xml_mascara": {
+      "valor": 69,
+      "fuente": "libro/eda.md, 'Calidad de las anotaciones'"
+    }
+  },
+  "ruido_etiqueta": {
+    "muestra": 100,
+    "con_error": 10,
+    "tasa": 0.1,
+    "ic95_wilson": [
+      0.0552,
+      0.1744
+    ],
+    "tipo": "rótulo sin máscara (falta)",
+    "fuente": "resultados/ruido_etiqueta_e2/RESUMEN.json; muestra de train y val, test excluido"
+  },
+  "shift": {
+    "ks_min_p_holm": 1.0,
+    "mmd_solo_imagen_p": 0.9154,
+    "adversarial_auc_train_val": 0.45,
+    "adversarial_p": 0.8955,
+    "adversarial_auc_train_test": 0.5597,
+    "lectura": "Sin rechazo no demuestra ausencia de shift: con ~690 grupos la potencia para cambios pequeños es limitada y los descriptores son globales (color, textura, geometría), no semánticos."
+  },
+  "cortes_area_train_frac": [
+    0.01809,
+    0.03178,
+    0.0517
+  ]
+}

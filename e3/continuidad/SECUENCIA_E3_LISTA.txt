@@ -1,0 +1,88 @@
+SECUENCIA OPERATIVA E3 v4 — 27/11/2026
+
+PRIMERO: usa esta secuencia, no Original_E3.ipynb ni el piloto v3.
+La discrepancia está resuelta experimentalmente. OpenCV 4.10 y 4.11 rasterizan algunos rombos
+sintéticos de manera distinta. Con 4.11 pasan las 21 comparaciones sin cambiar código geométrico
+ni tolerancia. No es necesario esperar a Daniel para comenzar estos entrenamientos.
+Su archivo antiguo etiquetas.py sigue siendo útil para completar la trazabilidad histórica.
+
+PREPARACIÓN, UNA VEZ
+- En MyDrive: paquete_colab_e2_v2.zip (185 MB) y compactas_a0498_e3.zip (17 MB).
+- Conserva la carpeta de pesos históricos que ya verificaste:
+  /content/drive/MyDrive/tesis_imo_e2_arquitecturas_reales_v2
+- La secuencia CREA una carpeta nueva:
+  /content/drive/MyDrive/tesis_imo_e3_secuencia_v4
+  Esta es una decisión de salida, no una ubicación heredada de Daniel.
+- En el ZIP entregado, los .ipynb están en cuadernos/. Carga esos archivos en Colab.
+  En la copia local están en e3/training/colab/secuencia_v4/.
+- Etapas 01–08 y 10: GPU. Etapa 09: CPU suficiente. Anota unidades antes y después.
+- Abre cada cuaderno en un entorno independiente del anterior para evitar cambios de paquetes.
+  Los originales 01–04 usan el mismo conjunto de versiones e identidad; si cambias de tipo de GPU
+  al reanudar una corrida incompleta, puede rechazarse por cambio de entorno. Conserva el mismo tipo.
+
+CARRIL ORIGINAL — ORDEN OBLIGATORIO
+01_Original_semilla11.ipynb
+  Ejecutar todo. Primero pruebas; después dbnet y dbnet_at, semilla 11, hasta 30 épocas/paciencia 5.
+  Es un reinicio intencional: el piloto v3 usó otra versión de OpenCV. No copies sus pesos a v4.
+  Termina verificando result.json y SHA de cada mejor checkpoint. Si falla una prueba, no entrena.
+02_Original_semillas.ipynb
+  Ejecutar todo. Exige la etapa 01 completa; entrena 23,37,53,71 en ambos brazos.
+03_Original_semillas.ipynb
+  Ejecutar todo. Exige las primeras cinco; entrena 89,97,101,103,107 en ambos brazos.
+04_HPO_original.ipynb
+  Ejecutar todo tras 03. Cuatro intentos exploratorios, semilla 11 y hasta diez épocas.
+  No reemplaza la receta principal después de ver resultados.
+
+CARRILES RIVALES — INDEPENDIENTES DEL ORIGINAL Y ENTRE SÍ
+05_Compactas_a0498.ipynb
+  Ejecutar todo. Solo añade las cinco semillas nuevas de FCN, U-Net y SegNet a0498.
+  Conserva arquitectura, dropout y receta exacta de los configs recuperados. No repite las 15 existentes.
+06_Rivales_A.ipynb
+  TransUNet y PIDNet-S; cinco semillas nuevas.
+07_Rivales_B.ipynb
+  VM-UNet, SegNeXt, DeepLabv3+ y U-Net++; cinco semillas nuevas.
+08_Rivales_C.ipynb
+  SegFormer-B0: diez semillas con la receta corregida (no mezclar sus cinco anteriores mal ajustadas).
+
+Si tu cuenta permite sesiones simultáneas, puedes ejecutar el carril original en una y un carril
+rival en otra. No ejecutes dos copias del mismo cuaderno escribiendo en la misma carpeta.
+Si solo dispones de una sesión: prioriza 01,02,03 y 08; luego 05,06,07 y 04.
+Al interrumpirse una sesión, vuelve a ejecutar el mismo cuaderno. Los entrenadores reanudan y
+validan identidad; no borres resultados para eludir un error de incompatibilidad.
+
+RECEPCIÓN Y VALIDACIÓN
+09_Verificar_y_devolver.ipynb
+  Puede ejecutarse en cualquier momento para conocer faltantes; al terminar todos debe mostrar 120/120.
+  Cuenta 20 corridas del original + 100 de diez rivales, incluyendo 45 checkpoints históricos reutilizados.
+  No cuenta HPO como evidencia principal. Verifica identidad config/result, arquitectura y hashes.
+  Descarga resultados_e3_secuencia_v4.zip. ENVÍAME ESE ZIP incluso si hay una etapa fallida.
+  Los pesos grandes permanecen en Drive. El ZIP incluye configs, histories, resultados e inventario.
+10_Evaluacion_validacion.ipynb
+  Solo cuando 09 alcance 120/120. Recalcula predicciones de validación por imagen, Dice/IoU y
+  diferencias frente a la métrica guardada. Reanuda por corrida; no evalúa test.
+  Necesita GPU por VM-UNet. Descarga evaluacion_validacion_e3_v4.zip: ENVÍAME TAMBIÉN ESE ZIP.
+
+CIERRE QUE HAREMOS CON LOS RESULTADOS (NO ES OTRA BATERÍA PARA LANZAR A CIEGAS)
+11. Revisar métricas recalculadas, curvas, fallos, potencia y alcance estadístico; fijar el manifiesto
+    de pesos que se evaluará en test. No seleccionar semillas ni modificar receta usando test.
+12. Ejecutar evaluación final, ablaciones, comparaciones y robustez conforme al protocolo revisado.
+    Esta fase aún depende de los resultados y del cierre metodológico; no está habilitada por los cuadernos.
+13. Seleccionar los artefactos de inferencia con validación, exportar, verificar paridad y memoria;
+    integrar el original y los rivales en el dashboard. Los ONNX ya verificados de FCN/U-Net se conservan.
+14. Integrar tablas y limitaciones en el libro, revisar la aplicación y preparar el despliegue.
+    No se han publicado datos, pesos, código ni aplicación durante esta preparación.
+
+TIEMPO Y PRESUPUESTO — SIN PROMESA DE DURACIÓN
+- Original, 20 corridas: proyección del piloto aproximadamente 3 h 18 min, sin preparación/HPO.
+- Compactas, cinco semillas nuevas por familia: aproximadamente 6 h 41 min, según registros E2 en L4.
+- Rivales A/B/C: estimaciones heredadas 5 h 45 min, 6 h 59 min y 3 h 12 min.
+- Sumadas en serie rondan 26 horas de entrenamiento, antes de HPO y evaluación. No son 3 horas
+  para todo el E3. La GPU asignada, early stopping y el costo del posproceso pueden cambiarlo.
+- Si el plazo no permite completar todo, no reducir silenciosamente las semillas ni declarar resultados
+  incompletos como confirmatorios. Ejecuta 09 y priorizamos con evidencia. Comprar unidades no reduce
+  por sí solo el tiempo de pared. No hay aún una tasa fiable de unidades/hora a partir del piloto tan breve.
+
+ALCANCE ACADÉMICO
+Esta secuencia deja ejecutable el entrenamiento y la validación sobre HAZMAT-13. No resuelve por sí sola
+la demostración formal, novedad, potencia requerida, los tres conjuntos adicionales, la familia completa
+con baselines fuertes, reentrenamiento final uniforme ni el despliegue. No permite declarar E3 terminado.

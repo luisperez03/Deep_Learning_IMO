@@ -1,0 +1,70 @@
+{
+  "schema": 2,
+  "experiment": "e3_hpo_original_t3",
+  "pretrained": false,
+  "size": 256,
+  "batch_size": 2,
+  "epochs": 10,
+  "patience": 3,
+  "seeds": [
+    11
+  ],
+  "threshold": 0.5,
+  "loss": "0.5_BCEWithLogits_plus_0.5_softDice_per_image_valid",
+  "pidnet_aux_weight": 0.4,
+  "pidnet_boundary_weight": 1.0,
+  "models": {
+    "fcn": {
+      "optimizer": "Adam",
+      "lr": 0.001,
+      "weight_decay": 0.0
+    },
+    "segnet": {
+      "optimizer": "Adam",
+      "lr": 0.001,
+      "weight_decay": 0.0
+    },
+    "unet": {
+      "optimizer": "Adam",
+      "lr": 0.0011899757998003779,
+      "weight_decay": 0.0
+    },
+    "deeplabv3plus": {
+      "optimizer": "AdamW",
+      "lr": 0.0005,
+      "weight_decay": 0.01
+    },
+    "unetplusplus": {
+      "optimizer": "Adam",
+      "lr": 0.0005,
+      "weight_decay": 0.0
+    },
+    "pidnet_s": {
+      "optimizer": "AdamW",
+      "lr": 0.001,
+      "weight_decay": 0.01
+    },
+    "segnext_t": {
+      "optimizer": "AdamW",
+      "lr": 0.0001,
+      "weight_decay": 0.01
+    },
+    "segformer_b0": {
+      "optimizer": "AdamW",
+      "lr": 6e-05,
+      "weight_decay": 0.01
+    },
+    "transunet_2d": {
+      "optimizer": "SGD",
+      "lr": 0.001,
+      "momentum": 0.9,
+      "weight_decay": 0.0001
+    },
+    "vmunet": {
+      "optimizer": "AdamW",
+      "lr": 0.001,
+      "weight_decay": 0.01
+    }
+  },
+  "nota_e3": "Búsqueda exploratoria del original con el presupuesto de la del E2 (10 épocas, paciencia 3, semilla 11). models.unet es la receta del original."
+}

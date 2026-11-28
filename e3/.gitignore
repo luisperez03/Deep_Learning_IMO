@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+book/_build/
+# Pesos exportados: no se versionan (pesan y se regeneran con training/exportar_onnx.py).
+# Decisión abierta: si el dashboard desplegado los necesita, publicarlos como asset de un release, no en git.
+artifacts/*.onnx

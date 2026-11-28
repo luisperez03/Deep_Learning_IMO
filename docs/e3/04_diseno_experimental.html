@@ -1,0 +1,931 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Diseño experimental: protocolo y potencia &#8212; Entregable 3: UNet-AT y benchmark de segmentación de rótulos HAZMAT</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '04_diseno_experimental';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Trazabilidad de las correcciones del E2" href="05_trazabilidad_e2.html" />
+    <link rel="prev" title="Método: UNet-AT" href="03_metodo.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 3: UNet-AT y benchmark de segmentación de rótulos HAZMAT</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Resumen: UNet-AT y benchmark de rótulos HAZMAT
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_introduccion.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_trabajo_relacionado.html">Trabajo relacionado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_metodo.html">Método: UNet-AT</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Diseño experimental: protocolo y potencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_trazabilidad_e2.html">Trazabilidad de las correcciones del E2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_novedad.html">Revisión de novedad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_resultados.html">Resultados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_ablacion.html">Ablación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_robustez.html">Robustez, eficiencia y calidad (Cuadro 5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_exportacion_dashboard.html">Exportación y tablero de comparación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_discusion.html">Discusión</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_limitaciones.html">Limitaciones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_conclusiones.html">Conclusiones del estado verificado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_reproducibilidad.html">Lista de verificación de reproducibilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_ficha_modelo.html">Ficha del modelo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_compactas_integradas.html">Compactas seleccionadas e inferencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_estado_cierre.html">Integración y cierre del entregable</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/04_diseno_experimental.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Diseño experimental: protocolo y potencia</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-modelo-original-unet-at">1. El modelo original: UNet-AT</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lo-que-se-hereda-del-e2-y-no-se-toca">2. Lo que se hereda del E2 y no se toca</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#semillas">3. Semillas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas">4. Métricas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#familia-confirmatoria-principal-m-10">5. Familia confirmatoria principal (m = 10)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hipotesis-del-mecanismo-familia-aparte">6. Hipótesis del mecanismo (familia aparte)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-y-numero-de-semillas">7. Potencia y número de semillas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ablacion-familia-aparte-p-20">8. Ablación (familia aparte, p. 20)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disciplina-de-diseno-y-test">9. Disciplina de diseño y test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#robustez-eficiencia-y-calidad-cuadro-5">10. Robustez, eficiencia y calidad (Cuadro 5)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#publicacion-de-los-pesos-v2">11. Publicación de los pesos (v2)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-por-contraste">Potencia por contraste</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="diseno-experimental-protocolo-y-potencia">
+<span id="sec-diseno"></span><h1>Diseño experimental: protocolo y potencia<a class="headerlink" href="#diseno-experimental-protocolo-y-potencia" title="Link to this heading">#</a></h1>
+<p>El protocolo recuperado se incluye tal como está en <code class="docutils literal notranslate"><span class="pre">experiments/protocolo.md</span></code>. La etiqueta
+<code class="docutils literal notranslate"><span class="pre">e3-protocolo</span></code> no está verificada localmente. Su inclusión conserva el antecedente, no certifica
+que las condiciones de congelamiento se hayan cumplido. La ejecución vigente utiliza la secuencia v4.
+La potencia proviene de <code class="docutils literal notranslate"><span class="pre">experiments/potencia_e3.py</span></code> y <code class="docutils literal notranslate"><span class="pre">experiments/potencia_e3.json</span></code>: usa la U-Net
+histórica como referencia y no estima todavía la potencia del original ni de las compactas a0498.
+Antes del cierre deben reconciliarse recetas, política de entrenamiento final, familia de contrastes
+y unidad de análisis; no se reemplaza esa revisión con el número de corridas completadas.</p>
+<blockquote>
+<div><p><strong>Base:</strong> <code class="docutils literal notranslate"><span class="pre">entregable_3/diseno.md</span></code> (§3 y §5), adaptado al benchmark entregado en el E2 (10 redes desde cero,
+5 semillas) según <code class="docutils literal notranslate"><span class="pre">DECISION_E3_2026-11-21.md</span></code> y las decisiones de <code class="docutils literal notranslate"><span class="pre">plan.md</span></code>. El estándar está en <code class="docutils literal notranslate"><span class="pre">estandar.md</span></code>.</p>
+</div></blockquote>
+<section id="el-modelo-original-unet-at">
+<h2>1. El modelo original: UNet-AT<a class="headerlink" href="#el-modelo-original-unet-at" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Esqueleto:</strong> la U-Net compacta del E2 (<code class="docutils literal notranslate"><span class="pre">modelos_base.SmallUNet</span></code>: 3 niveles de 16, 32 y 64 canales, sin
+BatchNorm), desde cero, sin pesos preentrenados, igual que los rivales.</p></li>
+<li><p><strong>Representación de DBNet</strong> (Liao et al., 2020), transferida desde la detección de texto en escena: cabeza de
+probabilidad del núcleo P, cabeza de umbral T y binarización aproximada B = σ(k(P − T)), k = 50. Pérdida: la de
+DBNet según el código del E2 propio (<code class="docutils literal notranslate"><span class="pre">src/original_model.py</span></code> documenta los pesos).</p></li>
+<li><p><strong>C1, encogimiento atenuado por grosor:</strong> D = φ(g)·A(1 − r²)/L, φ(g) = g²/(g² + g0²), r = 0,4, g0 = 4 px (paso
+del mapa más profundo de la U-Net compacta, 1/4 de 256; fijado por la arquitectura).</p></li>
+<li><p><strong>C2, expansión consistente:</strong> d tal que d = regla(expandir(K”, d)), por bisección (16 pasos) y refinamiento en
+píxeles, con expansión en inglete propia (límite 2) y AJUSTE_PX = 0,75 (calibrado en 200 imágenes de train,
+<code class="docutils literal notranslate"><span class="pre">design_log.md</span></code>).</p></li>
+<li><p>Inferencia: binarizar P con 0,3; descartar componentes con P media &lt; 0,5 o área &lt; 9 px; expandir con C2.</p></li>
+<li><p>Código: <code class="docutils literal notranslate"><span class="pre">src/geometria_at.py</span></code>, <code class="docutils literal notranslate"><span class="pre">src/original_model.py</span></code>, <code class="docutils literal notranslate"><span class="pre">training/entrenar_original.py</span></code>. Su SHA-256 queda en
+<code class="docutils literal notranslate"><span class="pre">procedencia.md</span></code> al congelar.</p></li>
+</ul>
+<p><strong>Brazos entrenados (dos):</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Brazo</p></th>
+<th class="head"><p>Etiquetas</p></th>
+<th class="head"><p>Papel</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">dbnet</span></code></p></td>
+<td><p>Regla de DBNet (φ ≡ 1)</p></td>
+<td><p>Base del mecanismo: la misma red con la representación de DBNet sin cambios</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">dbnet_at</span></code></p></td>
+<td><p>C1</p></td>
+<td><p>El modelo original</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Las otras 6 variantes de la ablación factorial 2³ (C1, C2a, C2b) salen de esos checkpoints cambiando solo la
+inferencia (<code class="docutils literal notranslate"><span class="pre">diseno.md</span></code> §5.1).</p>
+</section>
+<section id="lo-que-se-hereda-del-e2-y-no-se-toca">
+<h2>2. Lo que se hereda del E2 y no se toca<a class="headerlink" href="#lo-que-se-hereda-del-e2-y-no-se-toca" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Datos:</strong> la partición del E2 (1.015 train, 218 validación con 122 grupos, 218 test con 122 grupos), los mismos
+archivos y SHA-256 (<code class="docutils literal notranslate"><span class="pre">resultados/preentrenamiento/freeze_manifest.json</span></code> del repo del E2), letterbox a 256 × 256.</p></li>
+<li><p><strong>Receta:</strong> la de la U-Net compacta en <code class="docutils literal notranslate"><span class="pre">config/experimento_e2.json</span></code>: Adam, lr 1e-3, wd 0, lote 2, hasta 30
+épocas, paciencia 5, mismo orden de lotes por semilla y época, selección del checkpoint por Dice medio por grupo en
+validación. En el original, ese Dice se mide después del posproceso C2.</p></li>
+<li><p><strong>Presupuesto de ajuste (corregido en la v2):</strong> el cierre del E2 corrió para las 10 redes una búsqueda equitativa
+de 4 intentos (receta × 10^u en lr y weight decay en {0; 1e-4; 1e-2}, 1 semilla, 10 épocas; fila 37,
+<code class="docutils literal notranslate"><span class="pre">resultados/complemento_entreno_e2/RESUMEN.md</span></code>). La versión 1 de este protocolo decía, por error, que no hubo
+búsqueda. Regla v2:</p>
+<ul>
+<li><p><strong>Rivales:</strong> la receta del benchmark, salvo <strong>SegFormer-B0</strong>, que corre con la configuración ganadora (t = 2:
+AdamW, lr 5,57e-4, wd 1e-4) porque la receta lo dejaba mal ajustado (0,660 frente a 0,782 de Dice en
+validación) y el enunciado prohíbe comparar contra rivales mal ajustados. Se corren sus 10 semillas con esa
+configuración y se registra como corrección del bloque A. En las otras 9 la búsqueda no mueve el Dice más de δ.</p></li>
+<li><p><strong>Original:</strong> la receta de su esqueleto como configuración confirmatoria, igual que los rivales, y la misma
+búsqueda de 4 intentos con el mismo presupuesto, exploratoria (<code class="docutils literal notranslate"><span class="pre">e3/config/hpo_original_t*.json</span></code>, generadas por
+<code class="docutils literal notranslate"><span class="pre">training/configs_e3.py</span></code> con la secuencia del E2).</p></li>
+</ul>
+</li>
+<li><p>Si la búsqueda de arquitectura de las
+compactas del E2 (checklist 38, B14) elige otra U-Net compacta, la U-Net rival se corre con la elegida y el
+original se mantiene sobre la del E2. Se declara la asimetría de esfuerzo de diseño (Nd = 5, <code class="docutils literal notranslate"><span class="pre">design_log.md</span></code>).</p></li>
+<li><p><strong>Rivales:</strong> sus checkpoints y resultados del E2 quedan congelados con hash al cerrar el bloque A. No se reajustan.</p></li>
+</ul>
+</section>
+<section id="semillas">
+<h2>3. Semillas<a class="headerlink" href="#semillas" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>R = 10 para todos los modelos de la familia y para los dos brazos:</strong> 11, 23, 37, 53, 71 (las del E2) y 89, 97,
+101, 103, 107 (las cinco siguientes de la lista fijada en el E2, <code class="docutils literal notranslate"><span class="pre">entregable_2/codigo/fases.py</span></code>).</p></li>
+<li><p><strong>Exclusión:</strong> una corrida se excluye solo si termina con pérdida no finita o sin checkpoint válido. Se reemplaza
+por la primera semilla libre de la reserva (127, 131, 137, 139, 149) en todos los modelos a la vez, para mantener
+el pareo. Se reporta.</p></li>
+<li><p>Por qué 10 y no más: ver §7.</p></li>
+</ul>
+</section>
+<section id="metricas">
+<h2>4. Métricas<a class="headerlink" href="#metricas" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Primaria:</strong> Dice por grupo en test. El valor de un grupo es la media de sus imágenes en cada semilla, y luego la
+media sobre las 10 semillas.</p></li>
+<li><p><strong>Tercil chico:</strong> el tercio de los 122 grupos de test con menor área etiquetada media, calculado con las
+etiquetas y sin ningún modelo; el mismo para todos.</p></li>
+<li><p><strong>Secundarias preregistradas:</strong> IoU y HD95 por grupo; Dice en los terciles 2 y 3; brecha «tercil chico − resto»;
+Dice por región por intervalos de área (174, 390, 719 y 1.398 px).</p></li>
+<li><p><strong>Adecuación:</strong> supera a la máscara vacía y a la mayoritaria; brecha entre train y validación del checkpoint
+elegido; consistencia entre validación y test.</p></li>
+</ul>
+</section>
+<section id="familia-confirmatoria-principal-m-10">
+<h2>5. Familia confirmatoria principal (m = 10)<a class="headerlink" href="#familia-confirmatoria-principal-m-10" title="Link to this heading">#</a></h2>
+<p><strong>Rivales:</strong> FCN, SegNet y U-Net compactas, DeepLabv3+ R18, UNet++ R18, PIDNet-S, SegNeXt-T, SegFormer-B0,
+TransUNet y VM-UNet. <strong>Referente fuera de la familia:</strong> el baseline clásico del E2 (Dice 0,645), que no es un
+baseline fuerte frente a redes que pasan de 0,80. Se reporta en tablas y en el diagrama de diferencia crítica sin
+prueba confirmatoria. La lista queda cerrada aquí.</p>
+<p><strong>Contraste j:</strong> dⱼ = Dice(UNet-AT) − Dice(rival j), por grupo, en los 122 grupos de test.</p>
+<p><strong>Tres pruebas por contraste</strong>, cada una con Holm sobre los 10 contrastes:</p>
+<ol class="arabic simple">
+<li><p>Wilcoxon de rangos con signo, pareado por grupo, bilateral.</p></li>
+<li><p>Bootstrap pareado por grupos: 10.000 réplicas; p bilateral por inversión del intervalo.</p></li>
+<li><p>t pareado por grupo, con Shapiro-Wilk sobre dⱼ reportado.</p></li>
+</ol>
+<p><strong>UNet-AT supera al rival j</strong> si se cumplen las cuatro condiciones: el mayor de los tres p ajustados es menor que
+0,05; la diferencia media es al menos δ = 0,02; |δ de Cliff| ≥ 0,147; el límite inferior del IC 95 % bootstrap es
+mayor que 0.</p>
+<p><strong>Complementos que no deciden:</strong> Friedman con Iman-Davenport (grupos como bloques), Nemenyi y diagrama de diferencia
+crítica con el original incluido; modelo de efectos mixtos y = µ + αⱼ + u_grupo + v_semilla + ε sobre el Dice por
+imagen; probabilidad de superioridad P(original &gt; rival) por grupos.</p>
+<p><strong>Sensibilidad de la conclusión:</strong> otra prueba (t sola), otra métrica (IoU), otros subconjuntos de semillas (las 5
+primeras y las 5 últimas).</p>
+</section>
+<section id="hipotesis-del-mecanismo-familia-aparte">
+<h2>6. Hipótesis del mecanismo (familia aparte)<a class="headerlink" href="#hipotesis-del-mecanismo-familia-aparte" title="Link to this heading">#</a></h2>
+<p><strong>H.</strong> C1 hace que el núcleo de los rótulos pequeños no sea más delgado que el paso del mapa más profundo, y C2 evita
+que eso cueste borde. Por tanto, UNet-AT (<code class="docutils literal notranslate"><span class="pre">dbnet_at</span></code>) sube el Dice por grupo de su base (<code class="docutils literal notranslate"><span class="pre">dbnet</span></code>) en el tercil chico
+de test en al menos δ = 0,02, sin bajarlo más de δ en los 122 grupos.</p>
+<ul class="simple">
+<li><p><strong>H1a, superioridad en el tercil chico:</strong> las tres pruebas del §5 a α = 0,05; decide el p más alto; IC 95 % por
+encima de 0 y diferencia de al menos δ.</p></li>
+<li><p><strong>H1b, no inferioridad en todos los grupos:</strong> límite inferior del IC 90 % bootstrap mayor que −δ.</p></li>
+<li><p><strong>Predicciones secundarias</strong>, que se reportan cumplidas o fallidas:</p>
+<ul>
+<li><p>casi toda la ganancia en el tercil chico viene de C1 y no de C2 (la variante <code class="docutils literal notranslate"><span class="pre">c2</span></code> sin C1 no la consigue);</p></li>
+<li><p>el HD95 del tercil chico baja;</p></li>
+<li><p>la ventaja desaparece al quitar C1 y no aparece con C1 sin C2a;</p></li>
+<li><p>UNet-AT frente a la U-Net compacta rival: la brecha «tercil chico − resto» se reduce.</p></li>
+</ul>
+</li>
+<li><p><strong>Se refuta</strong> si no se cumple H1a o no se cumple H1b.</p></li>
+</ul>
+</section>
+<section id="potencia-y-numero-de-semillas">
+<h2>7. Potencia y número de semillas<a class="headerlink" href="#potencia-y-numero-de-semillas" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">experiments/potencia_e3.py</span></code> → <code class="docutils literal notranslate"><span class="pre">potencia_e3.json</span></code>, con las 5 semillas del E2 en validación y la U-Net compacta como
+esqueleto del original:</p>
+<ul class="simple">
+<li><p>R necesario para δ = 0,02, potencia 0,90 y Holm (z = 2,807): de 10 (DeepLabv3+) a 48 (VM-UNet); con la cota
+superior del IC 80 % de σ̂_d, de 37 a 178.</p></li>
+<li><p>Con R = 10, la diferencia mínima detectable va de 0,020 a 0,043, y la potencia conjunta aproximada es 0,001.</p></li>
+<li><p><strong>Decisión declarada:</strong> R = 10. Subir a 48 semillas cuesta unas 125 h de L4 solo en los rivales y no cabe en el
+plazo. Por eso R3 se declara no alcanzable en <code class="docutils literal notranslate"><span class="pre">estandar.md</span></code>, y cada contraste se reporta con su diferencia mínima
+detectable. Un resultado no significativo se lee como ausencia de evidencia, no como evidencia de ausencia.</p></li>
+</ul>
+</section>
+<section id="ablacion-familia-aparte-p-20">
+<h2>8. Ablación (familia aparte, p. 20)<a class="headerlink" href="#ablacion-familia-aparte-p-20" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Las 8 variantes del factorial 2³ de C1, C2a y C2b (<code class="docutils literal notranslate"><span class="pre">diseno.md</span></code> §5.1), con los checkpoints de los dos brazos.</p></li>
+<li><p>Cada variante contra el modelo completo, con las tres pruebas y Holm dentro de la familia (m = 7), en todos los
+grupos y en el tercil chico (dos familias de 7).</p></li>
+<li><p>Efectos principales e interacciones con IC 95 % bootstrap por grupos.</p></li>
+<li><p>Control de capacidad: no aplica, porque ninguna variante cambia parámetros ni FLOPs.</p></li>
+<li><p><strong>Comparación con el trabajo más cercano</strong> (agregada el 2026-11-24, antes de congelar y sin evaluar nada):
+<code class="docutils literal notranslate"><span class="pre">okr_sobre_at</span></code> usa los núcleos del brazo <code class="docutils literal notranslate"><span class="pre">dbnet_at</span></code> y la dilatación de Optimal Kernel (Ma et al., 2023, Ec. 2,
+<code class="docutils literal notranslate"><span class="pre">src/geometria_at.distancia_okr</span></code>) en lugar de C2. Un contraste, <code class="docutils literal notranslate"><span class="pre">dbnet_at</span></code> − <code class="docutils literal notranslate"><span class="pre">okr_sobre_at</span></code>, con las tres pruebas,
+en todos los grupos y en el tercil chico, a α = 0,05 sin familia (es exploratorio y no decide R3). Mide si el punto
+fijo de C2 rinde más que la fórmula cerrada de OKR con los mismos núcleos. La erosión de OKR no se entrena (sería
+otro brazo en GPU): se declara.</p></li>
+</ul>
+</section>
+<section id="disciplina-de-diseno-y-test">
+<h2>9. Disciplina de diseño y test<a class="headerlink" href="#disciplina-de-diseno-y-test" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Partición de desarrollo:</strong> lo que tocó el diseño fue train (calibración y oráculo), 6 imágenes de validación y
+el oráculo de validación sin modelo (<code class="docutils literal notranslate"><span class="pre">design_log.md</span></code>, Nd = 5). Ningún dato de test.</p></li>
+<li><p><strong>Partición de confirmación:</strong> test de HAZMAT-13.</p></li>
+<li><p><strong>Test ya observado:</strong> los rivales se evaluaron en test en el E1 y en el E2. El original no se ha evaluado nunca
+en test. La evaluación del E3 en test es una lectura más de un conjunto ya visto para los rivales, y la primera
+para el original. Se declara en el informe.</p></li>
+<li><p>El test del original se evalúa una sola vez, después de terminar las 10 semillas de los dos brazos y de congelar
+los resultados de los rivales.</p></li>
+</ul>
+</section>
+<section id="robustez-eficiencia-y-calidad-cuadro-5">
+<h2>10. Robustez, eficiencia y calidad (Cuadro 5)<a class="headerlink" href="#robustez-eficiencia-y-calidad-cuadro-5" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Estudio</p></th>
+<th class="head"><p>Qué se hace</p></th>
+<th class="head"><p>Qué no</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Estabilidad por semilla</p></td>
+<td><p>Cajas, IC, coeficiente de variación y Kruskal-Wallis entre semillas, para todos</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-odd"><td><p>Perturbaciones</p></td>
+<td><p>Ruido, desenfoque, brillo y oclusión en 3 niveles, por inferencia, para todos</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-even"><td><p>Eficiencia y Pareto</p></td>
+<td><p>Parámetros, FLOPs, latencia en CPU (ONNX Runtime) y en GPU, memoria pico, horas de entrenamiento</p></td>
+<td><p>Energía: solo estimada (horas × TDP)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Calibración</p></td>
+<td><p>Rivales: ECE, Brier, pendiente e intercepto, antes y después de temperature scaling ajustado en validación</p></td>
+<td><p>El original no da probabilidad por píxel de la región completa (P es del núcleo). Se reporta la calibración de P frente al núcleo y se declara la limitación</p></td>
+</tr>
+<tr class="row-even"><td><p>Sensibilidad a hiperparámetros propios</p></td>
+<td><p>g0 en {2, 8} px, 3 semillas, en validación, exploratorio</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-odd"><td><p>Curva de aprendizaje</p></td>
+<td><p>Solo el original y su base, 25 % y 50 % de los grupos de train, 3 semillas</p></td>
+<td><p>Los rivales no se recorren: se declara</p></td>
+</tr>
+<tr class="row-even"><td><p>Cambio de distribución</p></td>
+<td><p>—</p></td>
+<td><p>Sin conjunto externo (ver <code class="docutils literal notranslate"><span class="pre">estandar.md</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Análisis de errores</p></td>
+<td><p>Por área de la región y número de rótulos, con los errores compartidos con los rivales</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-even"><td><p>Interpretabilidad</p></td>
+<td><p>Grad-CAM y prueba de borrado del original frente al mejor rival, estabilidad entre semillas</p></td>
+<td><p>—</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="publicacion-de-los-pesos-v2">
+<h2>11. Publicación de los pesos (v2)<a class="headerlink" href="#publicacion-de-los-pesos-v2" title="Link to this heading">#</a></h2>
+<p>El E2 declaró que no redistribuye imágenes ni pesos: la licencia MIT del repositorio de HAZMAT-13 solo cubre el código
+(fila 08 del cierre del E2). Por eso los artefactos ONNX no van al repositorio público. El dashboard los descarga al
+arrancar desde un almacén privado con un token guardado como secreto de Render, y solo devuelve predicciones. La galería
+no muestra imágenes del conjunto; la predicción en vivo usa las imágenes que sube quien usa la app, sin guardarlas.</p>
+</section>
+<section id="potencia-por-contraste">
+<span id="sec-potencia"></span><h2>Potencia por contraste<a class="headerlink" href="#potencia-por-contraste" title="Link to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lee la potencia precalculada (experiments/potencia_e3.json) y la muestra como tabla.</span>
+<span class="c1"># El script que la genera es experiments/potencia_e3.py; aquí no se recalcula.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">raiz</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">".."</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+<span class="n">pot</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">((</span><span class="n">raiz</span> <span class="o">/</span> <span class="s2">"experiments"</span> <span class="o">/</span> <span class="s2">"potencia_e3.json"</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">))</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"rival"</span><span class="p">,</span> <span class="s2">"sigma_d"</span><span class="p">,</span> <span class="s2">"R_necesario"</span><span class="p">,</span> <span class="s2">"R_necesario_IC80_sup"</span><span class="p">,</span> <span class="s2">"MDD_R10"</span><span class="p">,</span> <span class="s2">"potencia_R10"</span><span class="p">]</span>
+<span class="n">nombres</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Rival"</span><span class="p">,</span> <span class="s2">"Desv. est. de la diferencia"</span><span class="p">,</span> <span class="s2">"R necesario (alfa Holm, potencia 0,90)"</span><span class="p">,</span>
+           <span class="s2">"R necesario (cota sup. IC 80 %)"</span><span class="p">,</span> <span class="s2">"Diferencia mínima detectable con R = 10"</span><span class="p">,</span> <span class="s2">"Potencia con R = 10"</span><span class="p">]</span>
+<span class="n">filas</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pot</span><span class="p">[</span><span class="s2">"validacion"</span><span class="p">][</span><span class="s2">"filas"</span><span class="p">])[</span><span class="n">cols</span><span class="p">]</span>
+<span class="n">filas</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">nombres</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Contrastes en validación con la U-Net compacta como base; delta ="</span><span class="p">,</span> <span class="n">pot</span><span class="p">[</span><span class="s2">"delta"</span><span class="p">],</span> <span class="s2">"; m ="</span><span class="p">,</span> <span class="n">pot</span><span class="p">[</span><span class="s2">"m"</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">filas</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Contrastes en validación con la U-Net compacta como base; delta = 0.02 ; m = 10
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Rival</th>
+      <th>Desv. est. de la diferencia</th>
+      <th>R necesario (alfa Holm, potencia 0,90)</th>
+      <th>R necesario (cota sup. IC 80 %)</th>
+      <th>Diferencia mínima detectable con R = 10</th>
+      <th>Potencia con R = 10</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>deeplabv3plus</td>
+      <td>0.0152</td>
+      <td>10</td>
+      <td>37</td>
+      <td>0.0196</td>
+      <td>0.9136</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>fcn</td>
+      <td>0.0189</td>
+      <td>15</td>
+      <td>56</td>
+      <td>0.0244</td>
+      <td>0.7076</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>pidnet_s</td>
+      <td>0.0270</td>
+      <td>31</td>
+      <td>115</td>
+      <td>0.0348</td>
+      <td>0.3227</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>segformer_b0</td>
+      <td>0.0173</td>
+      <td>13</td>
+      <td>48</td>
+      <td>0.0224</td>
+      <td>0.7996</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>segnet</td>
+      <td>0.0334</td>
+      <td>47</td>
+      <td>175</td>
+      <td>0.0431</td>
+      <td>0.1810</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>segnext_t</td>
+      <td>0.0172</td>
+      <td>13</td>
+      <td>47</td>
+      <td>0.0222</td>
+      <td>0.8107</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>transunet_2d</td>
+      <td>0.0191</td>
+      <td>16</td>
+      <td>58</td>
+      <td>0.0247</td>
+      <td>0.6947</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>unet</td>
+      <td>0.0234</td>
+      <td>23</td>
+      <td>86</td>
+      <td>0.0302</td>
+      <td>0.4605</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>unetplusplus</td>
+      <td>0.0174</td>
+      <td>13</td>
+      <td>48</td>
+      <td>0.0225</td>
+      <td>0.7954</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>vmunet</td>
+      <td>0.0336</td>
+      <td>48</td>
+      <td>178</td>
+      <td>0.0434</td>
+      <td>0.1778</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="03_metodo.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Método: UNet-AT</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="05_trazabilidad_e2.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Trazabilidad de las correcciones del E2</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-modelo-original-unet-at">1. El modelo original: UNet-AT</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lo-que-se-hereda-del-e2-y-no-se-toca">2. Lo que se hereda del E2 y no se toca</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#semillas">3. Semillas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas">4. Métricas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#familia-confirmatoria-principal-m-10">5. Familia confirmatoria principal (m = 10)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hipotesis-del-mecanismo-familia-aparte">6. Hipótesis del mecanismo (familia aparte)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-y-numero-de-semillas">7. Potencia y número de semillas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ablacion-familia-aparte-p-20">8. Ablación (familia aparte, p. 20)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disciplina-de-diseno-y-test">9. Disciplina de diseño y test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#robustez-eficiencia-y-calidad-cuadro-5">10. Robustez, eficiencia y calidad (Cuadro 5)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#publicacion-de-los-pesos-v2">11. Publicación de los pesos (v2)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-por-contraste">Potencia por contraste</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Autores: por completar
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

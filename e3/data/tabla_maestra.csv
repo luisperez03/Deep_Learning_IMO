@@ -1,0 +1,13 @@
+modelo,nombre,familia,tipo,dice_val,dice_test,de_semillas,ic95_inf,ic95_sup,iou_test,parametros,gflops,lat_cpu1_ms,lat_cpu6_ms,lat_cuda_ms,horas_entrenamiento,rango_grupos,rango_semillas,pareto_e2,calibracion_ece,n_semillas,n_grupos,estado
+transunet_2d,TransUNet,Híbrido CNN-Transformer,red,0.8532,0.8626,0.0057,0.8363,0.8852,0.7835,105322001.0,76.7688,2057.83,737.61,23.06,3.461,3.18,2.0,True,pendiente,5.0,122.0,medido en E2
+fcn,FCN compacta,Convolucional,red,0.8309,0.8535,0.0136,0.8282,0.8744,0.7683,72145.0,1.2651,50.89,22.53,0.64,0.795,4.148,2.2,True,pendiente,5.0,122.0,medido en E2
+unet,U-Net compacta,Convolucional codificador-decodificador,red,0.832,0.8464,0.0137,0.8177,0.8702,0.7616,118273.0,3.6826,127.92,39.3,0.97,0.741,4.18,3.2,False,pendiente,5.0,122.0,medido en E2
+vmunet,VM-UNet,Espacio de estados (Mamba),red,0.8207,0.8391,0.0297,0.8101,0.863,0.7526,44273833.0,19.4736,,,32.73,2.905,4.926,4.2,False,pendiente,5.0,122.0,medido en E2
+segnet,SegNet compacta,Convolucional codificador-decodificador,red,0.8063,0.8247,0.0334,0.7949,0.8499,0.7346,85761.0,2.1139,73.17,24.81,1.05,0.534,5.516,5.0,False,pendiente,5.0,122.0,medido en E2
+deeplabv3plus,DeepLabv3+ R18,Convolucional con ASPP,red,0.8133,0.814,0.0246,0.7784,0.8438,0.7282,12329297.0,9.1242,277.18,86.0,4.26,1.026,5.713,5.6,False,pendiente,5.0,122.0,medido en E2
+unetplusplus,U-Net++ R18,Convolucional anidada,red,0.8099,0.8076,0.0059,0.7685,0.8417,0.7264,15970449.0,31.9354,812.35,320.88,6.52,1.001,4.77,6.4,False,pendiente,5.0,122.0,medido en E2
+pidnet_s,PIDNet-S,Convolucional de tres ramas,red,0.7963,0.7937,0.0231,0.7526,0.8287,0.7079,7716291.0,3.1342,89.81,53.18,11.11,2.291,6.508,7.6,False,pendiente,5.0,122.0,medido en E2
+segnext_t,SegNeXt-T,Convolucional con atención,red,0.7594,0.7792,0.0104,0.7406,0.8124,0.6813,4225121.0,3.1255,202.13,129.13,16.69,2.043,7.533,8.8,False,pendiente,5.0,122.0,medido en E2
+segformer_b0,SegFormer-B0,Transformer,red,0.7025,0.7053,0.0104,0.6613,0.7439,0.5945,3714401.0,3.4914,215.9,115.23,8.83,1.599,8.525,10.0,False,pendiente,5.0,122.0,medido en E2
+baseline_clasico,"Baseline clásico (HGB, 63 hojas)",Clásico (píxel a píxel),baseline,0.6533,0.6447,0.0022,0.6047,0.6824,,,,,,,,,,,pendiente,5.0,122.0,referente fuera de la familia
+original,Modelo original,pendiente,original,,,,,,,,,,,,,,,,pendiente,,,pendiente

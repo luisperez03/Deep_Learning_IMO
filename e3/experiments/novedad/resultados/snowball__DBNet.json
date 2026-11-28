@@ -1,0 +1,729 @@
+{
+ "semilla": "DBNet",
+ "titulo_resuelto": "Real-Time Scene Text Detection with Differentiable Binarization",
+ "openalex": "https://openalex.org/W2998621280",
+ "doi": "https://doi.org/10.1609/aaai.v34i07.6812",
+ "fecha": "2026-11-23T08:40:47-05:00",
+ "estado": "ok",
+ "referencias_declaradas": 43,
+ "referencias_resueltas": 43,
+ "citas_totales": 1067,
+ "citas_filtradas": 71,
+ "filtro_adelante": "(shrink OR shrunk OR kernel OR unclip OR \"expansion ratio\" OR \"kernel expansion\" OR offset OR inscribed OR thickness OR \"adaptive expansion\" OR \"learnable expansion\")",
+ "atras": [
+  {
+   "titulo": "Deep Residual Learning for Image Recognition",
+   "anio": 2016,
+   "doi": "https://doi.org/10.1109/cvpr.2016.90"
+  },
+  {
+   "titulo": "SSD: Single Shot MultiBox Detector",
+   "anio": 2016,
+   "doi": "https://doi.org/10.1007/978-3-319-46448-0_2"
+  },
+  {
+   "titulo": "Deformable Convolutional Networks",
+   "anio": 2017,
+   "doi": "https://doi.org/10.1109/iccv.2017.89"
+  },
+  {
+   "titulo": "Deformable ConvNets V2: More Deformable, Better Results",
+   "anio": 2019,
+   "doi": "https://doi.org/10.1109/cvpr.2019.00953"
+  },
+  {
+   "titulo": "EAST: An Efficient and Accurate Scene Text Detector",
+   "anio": 2017,
+   "doi": "https://doi.org/10.1109/cvpr.2017.283"
+  },
+  {
+   "titulo": "ICDAR 2015 competition on Robust Reading",
+   "anio": 2015,
+   "doi": "https://doi.org/10.1109/icdar.2015.7333942"
+  },
+  {
+   "titulo": "Synthetic Data for Text Localisation in Natural Images",
+   "anio": 2016,
+   "doi": "https://doi.org/10.1109/cvpr.2016.254"
+  },
+  {
+   "titulo": "Arbitrary-Oriented Scene Text Detection via Rotation Proposals",
+   "anio": 2018,
+   "doi": "https://doi.org/10.1109/tmm.2018.2818020"
+  },
+  {
+   "titulo": "Character Region Awareness for Text Detection",
+   "anio": 2019,
+   "doi": "https://doi.org/10.1109/cvpr.2019.00959"
+  },
+  {
+   "titulo": "Detecting Text in Natural Image with Connectionist Text Proposal Network",
+   "anio": 2016,
+   "doi": "https://doi.org/10.1007/978-3-319-46484-8_4"
+  },
+  {
+   "titulo": "TextBoxes: A Fast Text Detector with a Single Deep Neural Network",
+   "anio": 2017,
+   "doi": "https://doi.org/10.1609/aaai.v31i1.11196"
+  },
+  {
+   "titulo": "TextBoxes++: A Single-Shot Oriented Scene Text Detector",
+   "anio": 2018,
+   "doi": "https://doi.org/10.1109/tip.2018.2825107"
+  },
+  {
+   "titulo": "Detecting texts of arbitrary orientations in natural images",
+   "anio": 2012,
+   "doi": "https://doi.org/10.1109/cvpr.2012.6247787"
+  },
+  {
+   "titulo": "Shape Robust Text Detection With Progressive Scale Expansion Network",
+   "anio": 2019,
+   "doi": "https://doi.org/10.1109/cvpr.2019.00956"
+  },
+  {
+   "titulo": "Detecting Oriented Text in Natural Images by Linking Segments",
+   "anio": 2017,
+   "doi": "https://doi.org/10.1109/cvpr.2017.371"
+  },
+  {
+   "titulo": "TextSnake: A Flexible Representation for Detecting Text of Arbitrary Shapes",
+   "anio": 2018,
+   "doi": "https://doi.org/10.1007/978-3-030-01216-8_2"
+  },
+  {
+   "titulo": "PixelLink: Detecting Scene Text via Instance Segmentation",
+   "anio": 2018,
+   "doi": "https://doi.org/10.1609/aaai.v32i1.12269"
+  },
+  {
+   "titulo": "Total-Text: A Comprehensive Dataset for Scene Text Detection and Recognition",
+   "anio": 2017,
+   "doi": "https://doi.org/10.1109/icdar.2017.157"
+  },
+  {
+   "titulo": "Multi-oriented Text Detection with Fully Convolutional Networks",
+   "anio": 2016,
+   "doi": "https://doi.org/10.1109/cvpr.2016.451"
+  },
+  {
+   "titulo": "Rotation-Sensitive Regression for Oriented Scene Text Detection",
+   "anio": 2018,
+   "doi": "https://doi.org/10.1109/cvpr.2018.00619"
+  },
+  {
+   "titulo": "Mask TextSpotter: An End-to-End Trainable Neural Network for Spotting Text with Arbitrary Shapes",
+   "anio": 2018,
+   "doi": "https://doi.org/10.1007/978-3-030-01264-9_5"
+  },
+  {
+   "titulo": "A generic solution to polygon clipping",
+   "anio": 1992,
+   "doi": "https://doi.org/10.1145/129902.129906"
+  },
+  {
+   "titulo": "Deep Direct Regression for Multi-oriented Scene Text Detection",
+   "anio": 2017,
+   "doi": "https://doi.org/10.1109/iccv.2017.87"
+  },
+  {
+   "titulo": "Multi-oriented Scene Text Detection via Corner Localization and Region Segmentation",
+   "anio": 2018,
+   "doi": "https://doi.org/10.1109/cvpr.2018.00788"
+  },
+  {
+   "titulo": "Deep Matching Prior Network: Toward Tighter Multi-oriented Text Detection",
+   "anio": 2017,
+   "doi": "https://doi.org/10.1109/cvpr.2017.368"
+  },
+  {
+   "titulo": "Text-Attentional Convolutional Neural Network for Scene Text Detection",
+   "anio": 2016,
+   "doi": "https://doi.org/10.1109/tip.2016.2547588"
+  },
+  {
+   "titulo": "A Unified Framework for Multioriented Text Detection and Recognition",
+   "anio": 2014,
+   "doi": "https://doi.org/10.1109/tip.2014.2353813"
+  },
+  {
+   "titulo": "Curved scene text detection via transverse and longitudinal sequence connection",
+   "anio": 2019,
+   "doi": "https://doi.org/10.1016/j.patcog.2019.02.002"
+  },
+  {
+   "titulo": "Single Shot Text Detector with Regional Attention",
+   "anio": 2017,
+   "doi": "https://doi.org/10.1109/iccv.2017.331"
+  },
+  {
+   "titulo": "TextField: Learning a Deep Direction Field for Irregular Scene Text Detection",
+   "anio": 2019,
+   "doi": "https://doi.org/10.1109/tip.2019.2900589"
+  },
+  {
+   "titulo": "Look More Than Once: An Accurate Detector for Text of Arbitrary Shapes",
+   "anio": 2019,
+   "doi": "https://doi.org/10.1109/cvpr.2019.01080"
+  },
+  {
+   "titulo": "Mask TextSpotter: An End-to-End Trainable Neural Network for Spotting Text with Arbitrary Shapes",
+   "anio": 2019,
+   "doi": "https://doi.org/10.1109/tpami.2019.2937086"
+  },
+  {
+   "titulo": "Learning Shape-Aware Embedding for Scene Text Detection",
+   "anio": 2019,
+   "doi": "https://doi.org/10.1109/cvpr.2019.00436"
+  },
+  {
+   "titulo": "Scene Text Detection with Supervised Pyramid Context Network",
+   "anio": 2019,
+   "doi": "https://doi.org/10.1609/aaai.v33i01.33019038"
+  },
+  {
+   "titulo": "Arbitrary Shape Scene Text Detection With Adaptive Text Region Representation",
+   "anio": 2019,
+   "doi": "https://doi.org/10.1109/cvpr.2019.00661"
+  },
+  {
+   "titulo": "WordSup: Exploiting Word Annotations for Character Based Text Detection",
+   "anio": 2017,
+   "doi": "https://doi.org/10.1109/iccv.2017.529"
+  },
+  {
+   "titulo": "MSR: Multi-Scale Shape Regression for Scene Text Detection",
+   "anio": 2019,
+   "doi": "https://doi.org/10.24963/ijcai.2019/139"
+  },
+  {
+   "titulo": "Accurate Scene Text Detection Through Border Semantics Awareness and Bootstrapping",
+   "anio": 2018,
+   "doi": "https://doi.org/10.1007/978-3-030-01270-0_22"
+  },
+  {
+   "titulo": "Learning Markov Clustering Networks for Scene Text Detection",
+   "anio": 2018,
+   "doi": "https://doi.org/10.1109/cvpr.2018.00725"
+  },
+  {
+   "titulo": "Towards Robust Curve Text Detection With Conditional Spatial Expansion",
+   "anio": 2019,
+   "doi": "https://doi.org/10.1109/cvpr.2019.00744"
+  },
+  {
+   "titulo": "DeRPN: Taking a Further Step toward More General Object Detection",
+   "anio": 2019,
+   "doi": "https://doi.org/10.1609/aaai.v33i01.33019046"
+  },
+  {
+   "titulo": "SSD: Single Shot MultiBox Detector",
+   "anio": null,
+   "doi": null
+  },
+  {
+   "titulo": "PVANET: Deep but Lightweight Neural Networks for Real-time Object Detection",
+   "anio": 2016,
+   "doi": "https://doi.org/10.48550/arxiv.1608.08021"
+  }
+ ],
+ "adelante": [
+  {
+   "titulo": "ACE: Anchor-Free Corner Evolution for Real-Time Arbitrarily-Oriented Object Detection",
+   "anio": 2022,
+   "doi": "https://doi.org/10.1109/tip.2022.3167919",
+   "citas": 54,
+   "resumen": "Objects with different orientations are ubiquitous in the real world (e.g., texts/hands in the scene image, objects in the aerial image, etc.), and the widely-used axis-aligned bounding box does not compactly enclose the oriented objects. Thus arbitrarily-oriented object detection has attracted rising attention in recent years. In this paper, we propose a novel and effective model to detect arbitrarily-oriented objects. Instead of directly predicting the angles of oriented bounding boxes like most existing methods, we evolve the axis-aligned bounding box to the oriented quadrilateral box with the assistance of dynamically gathering contour information. More specifically, we first obtain the axis-aligned bounding box in an anchor-free manner. After that, we set the key points based on the sampled contour points of the axis-aligned bounding box. To improve the localization performance, we "
+  },
+  {
+   "titulo": "Kernel Proposal Network for Arbitrary Shape Text Detection",
+   "anio": 2022,
+   "doi": "https://doi.org/10.1109/tnnls.2022.3152596",
+   "citas": 52,
+   "resumen": "Segmentation-based methods have achieved great success for arbitrary shape text detection. However, separating neighboring text instances is still one of the most challenging problems due to the complexity of texts in scene images. In this article, we propose an innovative kernel proposal network (dubbed KPN) for arbitrary shape text detection. The proposed KPN can separate neighboring text instances by classifying different texts into instance-independent feature maps, meanwhile avoiding the complex aggregation process existing in segmentation-based arbitrary shape text detection methods. To be concrete, our KPN will predict a Gaussian center map for each text image, which will be used to extract a series of candidate kernel proposals (i.e., dynamic convolution kernel) from the embedding feature maps according to their corresponding keypoint positions. To enforce the independence betwee"
+  },
+  {
+   "titulo": "Zoom Text Detector",
+   "anio": 2023,
+   "doi": "https://doi.org/10.1109/tnnls.2023.3289327",
+   "citas": 49,
+   "resumen": "To pursue comprehensive performance, recent text detectors improve detection speed at the expense of accuracy. They adopt shrink-mask-based text representation strategies, which leads to a high dependence of detection accuracy on shrink-masks. Unfortunately, three disadvantages cause unreliable shrink-masks. Specifically, these methods try to strengthen the discrimination of shrink-masks from the background by semantic information. However, the feature defocusing phenomenon that coarse layers are optimized by fine-grained objectives limits the extraction of semantic features. Meanwhile, since both shrink-masks and the margins belong to texts, the detail loss phenomenon that the margins are ignored hinders the distinguishment of shrink-masks from the margins, which causes ambiguous shrink-mask edges. Moreover, false-positive samples enjoy similar visual features with shrink-masks. They ag"
+  },
+  {
+   "titulo": "CentripetalText: An Efficient Text Instance Representation for Scene Text Detection",
+   "anio": 2021,
+   "doi": "https://doi.org/10.48550/arxiv.2107.05945",
+   "citas": 42,
+   "resumen": "Scene text detection remains a grand challenge due to the variation in text curvatures, orientations, and aspect ratios. One of the hardest problems in this task is how to represent text instances of arbitrary shapes. Although many methods have been proposed to model irregular texts in a flexible manner, most of them lose simplicity and robustness. Their complicated post-processings and the regression under Dirac delta distribution undermine the detection performance and the generalization ability. In this paper, we propose an efficient text instance representation named CentripetalText (CT), which decomposes text instances into the combination of text kernels and centripetal shifts. Specifically, we utilize the centripetal shifts to implement pixel aggregation, guiding the external text pixels to the internal text kernels. The relaxation operation is integrated into the dense regression"
+  },
+  {
+   "titulo": "Sequential Deformation for Accurate Scene Text Detection",
+   "anio": 2020,
+   "doi": "https://doi.org/10.1007/978-3-030-58526-6_7",
+   "citas": 42,
+   "resumen": ""
+  },
+  {
+   "titulo": "TextDCT: Arbitrary-Shaped Text Detection via Discrete Cosine Transform Mask",
+   "anio": 2022,
+   "doi": "https://doi.org/10.1109/tmm.2022.3186431",
+   "citas": 37,
+   "resumen": "Arbitrary-shaped scene text detection is a challenging task due to the variety of text changes in font, size, color, and orientation. Most existing regression based methods resort to regress the masks or contour points of text regions to model the text instances. However, regressing the complete masks requires high training complexity, and contour points are not sufficient to capture the details of highly curved texts. To tackle the above limitations, we propose a novel light-weight anchor-free text detection framework called TextDCT, which adopts the discrete cosine transform (DCT) to encode the text masks as compact vectors. Further, considering the imbalanced number of training samples among pyramid layers, we only employ a single-level head for top-down prediction. To model the multi-scale texts in a single-level head, we introduce a novel positive sampling strategy by treating the s"
+  },
+  {
+   "titulo": "FAST: Faster Arbitrarily-Shaped Text Detector with Minimalist Kernel Representation",
+   "anio": 2021,
+   "doi": "https://doi.org/10.48550/arxiv.2111.02394",
+   "citas": 35,
+   "resumen": "We propose an accurate and efficient scene text detection framework, termed FAST (i.e., faster arbitrarily-shaped text detector). Different from recent advanced text detectors that used complicated post-processing and hand-crafted network architectures, resulting in low inference speed, FAST has two new designs. (1) We design a minimalist kernel representation (only has 1-channel output) to model text with arbitrary shape, as well as a GPU-parallel post-processing to efficiently assemble text lines with a negligible time overhead. (2) We search the network architecture tailored for text detection, leading to more powerful features than most networks that are searched for image classification. Benefiting from these two designs, FAST achieves an excellent trade-off between accuracy and efficiency on several challenging datasets, including Total Text, CTW1500, ICDAR 2015, and MSRA-TD500. Fo"
+  },
+  {
+   "titulo": "Reinforcement Shrink-Mask for Text Detection",
+   "anio": 2022,
+   "doi": "https://doi.org/10.1109/tmm.2022.3209022",
+   "citas": 34,
+   "resumen": "Existing real-time text detectors reconstruct text contours by shrink-masks only. Though they simplify the framework and can make the model run fast, the strong dependence on shrink-masks leads to unreliable detection results (e.g., miss detection and overdetection). Moreover, these methods ignore the information from surrounding pixels, which causes sensitive shrink-masks and accelerates the reliability decline of detection results. Considering the above problems, we construct an effective and efficient text detection network, termed as Reinforcement Shrink-Mask for Text Detection (RSMTD), which strengthens the model's ability to recognize texts while enjoying a high detection speed. Specifically, an effective text representation strategy (Reinforcement Shrink-Mask, RSM) is designed to decouple texts and shrink-masks. RSM builds texts through shrink-masks and reinforcement offsets to en"
+  },
+  {
+   "titulo": "CBNet: A Plug-and-Play Network for Segmentation-Based Scene Text Detection",
+   "anio": 2024,
+   "doi": "https://doi.org/10.1007/s11263-024-02022-w",
+   "citas": 26,
+   "resumen": ""
+  },
+  {
+   "titulo": "STEF: a Swin Transformer-Based Enhanced Feature Pyramid Fusion Model for Dongba character detection",
+   "anio": 2024,
+   "doi": "https://doi.org/10.1186/s40494-024-01321-2",
+   "citas": 19,
+   "resumen": "The Dongba manuscripts are a unique primitive pictographic writing system that originated among the Naxi people of Lijiang, China, boasting over a thousand years of history. The uniqueness of the Dongba manuscripts stems from their pronounced pictorial and ideographic characteristics. However, the digital preservation and inheritance of Dongba manu manuscripts face multiple challenges, including extracting its rich semantic information, recognizing individual characters, retrieving Dongba manuscripts, and automatically interpreting the meanings of Dongba manuscripts. Developing efficient Dongba character detection technology has become a key research focus, wherein establishing a standardized Dongba detection dataset is crucial for training and evaluating techniques. In this study, we have created a comprehensive Dongba manuscripts detection dataset covering various commonly used Dongba "
+  },
+  {
+   "titulo": "Spotlight Text Detector: Spotlight on Candidate Regions Like a Camera",
+   "anio": 2024,
+   "doi": "https://doi.org/10.1109/tmm.2024.3521824",
+   "citas": 17,
+   "resumen": "The irregular contour representation is one of the tough challenges in scene text detection. Although segmentation-based methods have achieved significant progress with the help of flexible pixel prediction, the overlap of geographically close texts hinders detecting them separately. To alleviate this problem, some shrink-based methods predict text kernels and expand them to restructure texts. However, the text kernel is an artificial object with incomplete semantic features that are prone to incorrect or missing detection. In addition, different from the general objects, the geometry features (aspect ratio, scale, and shape) of scene texts vary significantly, which makes it difficult to detect them accurately. To consider the above problems, we propose an effective spotlight text detector (STD), which consists of a spotlight calibration module (SCM) and a multivariate information extrac"
+  },
+  {
+   "titulo": "Focus Entirety and Perceive Environment for Arbitrary-Shaped Text Detection",
+   "anio": 2024,
+   "doi": "https://doi.org/10.1109/tmm.2024.3521797",
+   "citas": 16,
+   "resumen": "Due to the diversity of scene text in aspects such as font, color, shape, and size, accurately and efficiently detecting text is still a formidable challenge. Among the various detection approaches, segmentation-based approaches have emerged as prominent contenders owing to their flexible pixel-level predictions. However, these methods typically model text instances in a bottom-up manner, which is highly susceptible to noise. In addition, the prediction of pixels is isolated without introducing pixel-feature interaction, which also influences the detection performance. To alleviate these problems, we propose a multi-information level arbitrary-shaped text detector consisting of a focus entirety module (FEM) and a perceive environment module (PEM). The former extracts instance-level features and adopts a top-down scheme to model texts to reduce the influence of noises. Specifically, it as"
+  },
+  {
+   "titulo": "Multi-orientation scene text detection with scale-guided regression",
+   "anio": 2021,
+   "doi": "https://doi.org/10.1016/j.neucom.2021.07.026",
+   "citas": 16,
+   "resumen": ""
+  },
+  {
+   "titulo": "ADNet: Rethinking the Shrunk Polygon-Based Approach in Scene Text Detection",
+   "anio": 2022,
+   "doi": "https://doi.org/10.1109/tmm.2022.3216729",
+   "citas": 15,
+   "resumen": "To localize text regions and separate close instances, the shrunk polygon is widely used in recent scene text detection methods. However, there exist two problems: 1) Existing methods fail to consider the aspect ratio sensitive problem when reconstructing the text instance from shrunk polygon. 2) Texts with extreme aspect ratios will lead to the fracture of shrunk polygons. To handle these two problems, in this paper, we propose a novel Adaptive Dilation Network (ADNet) to focus on the reconstruction process from shrunk polygon, which aims to provide a tight and complete text representation. Firstly, instead of using a fixed dilation factor, ADNet uses an aspect ratio-wise dilation factor to reconstruct the text region from shrunk polygon for each text instance. Such an instance-wise dilation factor considers the scale correlation between the original and shrunk polygon, and thus can gui"
+  },
+  {
+   "titulo": "TransText: Improving scene text detection via transformer",
+   "anio": 2022,
+   "doi": "https://doi.org/10.1016/j.dsp.2022.103698",
+   "citas": 15,
+   "resumen": ""
+  },
+  {
+   "titulo": "Oriented object detection in aerial images based on area ratio of parallelogram",
+   "anio": 2022,
+   "doi": "https://doi.org/10.1117/1.jrs.16.034510",
+   "citas": 14,
+   "resumen": "Oriented object detection is a challenging task in aerial images since the objects in aerial images are displayed in arbitrary directions and are frequently densely packed. The mainstream detectors describe rotating objects using a five-parameter or eight-parameter representations, which have representation ambiguity for orientated object definition and border loss discontinuity in the regression process. We proposed an innovative representation method based on area ratio of parallelogram, called area ratio of parallelogram (ARP). Specifically, ARP regresses the minimum bounding rectangle of the oriented object and three area ratios. Three area ratios include the area ratio of a directed object to the smallest circumscribed rectangle and two parallelograms to the minimum circumscribed rectangle. It simplifies offset learning and eliminates the issue of angular periodicity or label point "
+  },
+  {
+   "titulo": "Real-Time Text Detection With Similar Mask in Traffic, Industrial, and Natural Scenes",
+   "anio": 2024,
+   "doi": "https://doi.org/10.1109/tits.2024.3485061",
+   "citas": 12,
+   "resumen": "Texts on the intelligent transportation scene include mass information. Fully harnessing this information is one of the critical drivers for advancing intelligent transportation. Unlike the general scene, detecting text in transportation has extra demand, such as a fast inference speed, except for high accuracy. Most existing real-time text detection methods are based on the shrink mask, which loses some geometry semantic information and needs complex post-processing. In addition, the previous method usually focuses on correct output, which ignores feature correction and lacks guidance during the intermediate process. To this end, we propose an efficient multi-scene text detector that contains an effective text representation similar mask (SM) and a feature correction module (FCM). Unlike previous methods, the former aims to preserve the geometric information of the instances as much as "
+  },
+  {
+   "titulo": "Text Position-Aware Pixel Aggregation Network With Adaptive Gaussian Threshold: Detecting Text in the Wild",
+   "anio": 2023,
+   "doi": "https://doi.org/10.1109/tcsvt.2023.3285096",
+   "citas": 12,
+   "resumen": "Over recent years, deep learning has significantly boosted scene text detection performance, and current segmentation-based scene text detectors can achieve compact bounding boxes for irregular texts. However, it is also challenging to tackle crowded or overlapping texts for these existing methods due to conglutination between adjacent text instances in segmentation results. To address these issues, we propose a more accurate scene text detector, Text Position-Aware Pixel Aggregation Network, termed TPPAN. Specifically, a Gaussian threshold representation is adaptively learned instead of a constant setting in Adaptively Text Kernel Thresholding (ATKT) module to obtain more accurate text kernels. Then Text Position-Aware Region Pixel Aggregation (TPAR-PA) module predicts the text regions in relative positions and generates more accurate text contours. Adequate experiments have demonstrate"
+  },
+  {
+   "titulo": "Scene images and text information‐based object location of robot grasping",
+   "anio": 2022,
+   "doi": "https://doi.org/10.1049/csy2.12049",
+   "citas": 12,
+   "resumen": "With the rapid development of artificial intelligence (AI), the application of this technology in the medical field is becoming increasingly extensive, along with a gradual increase in the amount of intelligent equipment in hospitals. Service robots can save human resources and replace nursing staff to achieve some work. In view of the phenomenon of mobile service robots' grabbing and distribution of patients' drugs in hospitals, a real‐time object detection and positioning system based on image and text information is proposed, which realizes the precise positioning and tracking of the grabbing objects and completes the grasping of a specific object (medicine bottle). The lightweight object detection model NanoDet is used to learn the features of the grasping objects and the object category, and bounding boxes are regressed. Then, the images in the bounding boxes are enhanced to overcom"
+  },
+  {
+   "titulo": "ADR-Net: Attention-oriented detail recovery network for document image shadow removal",
+   "anio": 2025,
+   "doi": "https://doi.org/10.1016/j.knosys.2025.114228",
+   "citas": 11,
+   "resumen": ""
+  },
+  {
+   "titulo": "RA-YOLOv8: An Improved YOLOv8 Seal Text Detection Method",
+   "anio": 2024,
+   "doi": "https://doi.org/10.3390/electronics13153001",
+   "citas": 11,
+   "resumen": "To detect text from electronic seals that have significant background interference, blurring, text overlapping, and curving, an improved YOLOv8 model named RA-YOLOv8 was developed. The model is primarily based on YOLOv8, with optimized structures in its backbone and neck. The receptive-field attention and efficient multi-scale attention (RFEMA) module is introduced in the backbone. The model’s ability to extract and integrate local and global features is enhanced by combining the attention on the receptive-field spatial feature of the receptive-field attention and coordinate attention (RFCA) module and the cross-spatial learning of the efficient multi-scale attention (EMA) module. The Alterable Kernel Convolution (AKConv) module is incorporated in the neck, enhancing the model’s detection accuracy of curved text by dynamically adjusting the sampling position. Furthermore, to boost the mo"
+  },
+  {
+   "titulo": "S3INet: Semantic-Information Space Sharing Interaction Network for Arbitrary Shape Text Detection",
+   "anio": 2025,
+   "doi": "https://doi.org/10.1109/tnnls.2025.3538806",
+   "citas": 10,
+   "resumen": "The detecting arbitrary shape text is a challenging task due to the significant variation in text shape, size, and aspect ratio, as well as the complexity of scene backgrounds. The enhancing feature extraction capabilities is essential for the boosting text detection accuracy. However, traditional text feature extraction methods face several issues, including insufficient multiscale feature fusion, limited information transfer between different feature levels, and constrained receptive field expansion when using asymmetric convolutional kernels for long text detection. To address these challenges, this article introduces an arbitrarily shaped scene text detector called the semantic-information space sharing interaction network (S3INet). The proposed network leverages the semantic-information space sharing module (S3M) to generate a single-level feature map capable of capturing multiscale"
+  },
+  {
+   "titulo": "Kernel-mask knowledge distillation for efficient and accurate arbitrary-shaped text detection",
+   "anio": 2023,
+   "doi": "https://doi.org/10.1007/s40747-023-01134-z",
+   "citas": 10,
+   "resumen": "Recently, segmentation-based approaches have been proposed to tackle arbitrary-shaped text detection. The trade-off between speed and accuracy is still a challenge that hinders its deployment in practical applications. Previous methods adopt complex pipelines to improve accuracy while ignoring inference speed. Moreover, the performance of most efficient scene text detectors often suffers from weak feature extraction when equipping lightweight networks. In this paper, we propose a novel distillation method for efficient and accurate arbitrary-shaped text detection, termed kernel-mask knowledge distillation. Our approach equips a low computational-cost visual transformer module (VTM) and a feature adaptation layer to make full use of feature-based and response-based knowledge in distillation. More specifically, first, the text features are obtained by aggregating the multi-level informatio"
+  },
+  {
+   "titulo": "DenseTextPVT: Pyramid Vision Transformer with Deep Multi-Scale Feature Refinement Network for Dense Text Detection",
+   "anio": 2023,
+   "doi": "https://doi.org/10.3390/s23135889",
+   "citas": 9,
+   "resumen": "Detecting dense text in scene images is a challenging task due to the high variability, complexity, and overlapping of text areas. To adequately distinguish text instances with high density in scenes, we propose an efficient approach called DenseTextPVT. We first generated high-resolution features at different levels to enable accurate dense text detection, which is essential for dense prediction tasks. Additionally, to enhance the feature representation, we designed the Deep Multi-scale Feature Refinement Network (DMFRN), which effectively detects texts of varying sizes, shapes, and fonts, including small-scale texts. DenseTextPVT, then, is inspired by Pixel Aggregation (PA) similarity vector algorithms to cluster text pixels into correct text kernels in the post-processing step. In this way, our proposed method enhances the precision of text detection and effectively reduces overlappin"
+  },
+  {
+   "titulo": "Ocular Biometry OCR: a machine learning algorithm leveraging optical character recognition to extract intra ocular lens biometry measurements",
+   "anio": 2025,
+   "doi": "https://doi.org/10.3389/frai.2024.1428716",
+   "citas": 8,
+   "resumen": "Given close relationships between ocular structure and ophthalmic disease, ocular biometry measurements (including axial length, lens thickness, anterior chamber depth, and keratometry values) may be leveraged as features in the prediction of eye diseases. However, ocular biometry measurements are often stored as PDFs rather than as structured data in electronic health records. Thus, time-consuming and laborious manual data entry is required for using biometry data as a disease predictor. Herein, we used two separate models, PaddleOCR and Gemini, to extract eye specific biometric measurements from 2,965 Lenstar, 104 IOL Master 500, and 3,616 IOL Master 700 optical biometry reports. For each patient eye, our text extraction pipeline, referred to as Ocular Biometry OCR, involves 1) cropping the report to the biometric data, 2) extracting the text via the optical character recognition model"
+  },
+  {
+   "titulo": "Conceptual text region network: Cognition-inspired accurate scene text detection",
+   "anio": 2021,
+   "doi": "https://doi.org/10.1016/j.neucom.2021.08.026",
+   "citas": 8,
+   "resumen": ""
+  },
+  {
+   "titulo": "Text kernel calculation for arbitrary shape text detection",
+   "anio": 2023,
+   "doi": "https://doi.org/10.1007/s00371-023-02963-2",
+   "citas": 7,
+   "resumen": ""
+  },
+  {
+   "titulo": "MTMFNet: multi-threshold and multi-scale feature fusion network for text detection",
+   "anio": 2025,
+   "doi": "https://doi.org/10.1007/s00371-025-03802-2",
+   "citas": 6,
+   "resumen": ""
+  },
+  {
+   "titulo": "Scene Text Detection in Foggy Weather Utilizing Knowledge Distillation of Diffusion Models",
+   "anio": 2025,
+   "doi": "https://doi.org/10.1109/lsp.2025.3540371",
+   "citas": 6,
+   "resumen": "Adverse weather conditions can significantly hinder the performance of deep learning-based object detection models. Traditional approaches often rely on image restoration techniques to enhance the quality of degraded images prior to detection. However, these methods frequently struggle to balance image enhancement and detection tasks effectively, often overlooking latent information that could be beneficial for detection. To address these challenges, we propose a novel framework: Knowledge Distillation based on Diffusion Models (KDDM). This framework incorporates a Dehaze Network (DN), which employs large kernel convolution to remove weather-specific artifacts, thereby revealing more latent information. The DN, together with a text detector, forms an end-to-end scene text detection network, acting as the student network. Additionally, the nuanced internal representations of text-to-image"
+  },
+  {
+   "titulo": "EK-Net++: Real-time scene text detection with expand kernel distance and Epoch Adaptive Weight",
+   "anio": 2024,
+   "doi": "https://doi.org/10.1016/j.eswa.2024.126159",
+   "citas": 6,
+   "resumen": ""
+  },
+  {
+   "titulo": "EK-Net:Real-Time Scene Text Detection with Expand Kernel Distance",
+   "anio": 2024,
+   "doi": "https://doi.org/10.1109/icassp48485.2024.10448354",
+   "citas": 6,
+   "resumen": "Recently, scene text detection has received significant attention due to its wide application. However, accurate detection in complex scenes of multiple scales, orientations, and curvature remains a challenge. Numerous detection methods adopt the Vatti clipping (VC) algorithm for multiple-instance training to address the issue of arbitrary-shaped text. Yet we identify several bias results from these approaches called the \"shrinked kernel\". Specifically, it refers to a decrease in accuracy resulting from an output that overly favors the text kernel. In this paper, we propose a new approach named Expand Kernel Network (EK-Net) with expand kernel distance to compensate for the previous deficiency, which includes three-stages regression to complete instance detection. Moreover, EK-Net not only realize the precise positioning of arbitrary-shaped text, but also achieve a trade-off between perf"
+  },
+  {
+   "titulo": "FC2RN: A Fully Convolutional Corner Refinement Network for Accurate Multi-Oriented Scene Text Detection",
+   "anio": 2020,
+   "doi": "https://doi.org/10.48550/arxiv.2007.05113",
+   "citas": 6,
+   "resumen": "Recent scene text detection works mainly focus on curve text detection. However, in real applications, the curve texts are more scarce than the multi-oriented ones. Accurate detection of multi-oriented text with large variations of scales, orientations, and aspect ratios is of great significance. Among the multi-oriented detection methods, direct regression for the geometry of scene text shares a simple yet powerful pipeline and gets popular in academic and industrial communities, but it may produce imperfect detections, especially for long texts due to the limitation of the receptive field. In this work, we aim to improve this while keeping the pipeline simple. A fully convolutional corner refinement network (FC2RN) is proposed for accurate multi-oriented text detection, in which an initial corner prediction and a refined corner prediction are obtained at one pass. With a novel quadrila"
+  },
+  {
+   "titulo": "CNN-DEdge: Multilingual Scene Text Detection and Extraction",
+   "anio": 2024,
+   "doi": "https://doi.org/10.18280/mmep.111125",
+   "citas": 5,
+   "resumen": "In today's ever-changing environment, text appears in a variety of forms and it creates a significant barrier for text detection process. Text detection is still a visionary process due to scene-specific challenges such as text appearing on curved surfaces, varying lighting conditions, occlusions, and complicated environmental backgrounds. In this work we propose an algorithm customized CNN architecture with bit plane for identifying the textual regions from natural image samples. The customized CNN architecture is developed by defining the kernels to extract the accurate text edges. The bit plane slicing task extracts the contributions of all bits in scene image pixels. By removing least significant bit planes, helps to separate the background from the CNN samples. Finally, the double stroke method is applied to extract fine-grained actual text information. The implemented approach is t"
+  },
+  {
+   "titulo": "Natural Scene Text Detection Algorithm Based on Improved DBNet",
+   "anio": 2022,
+   "doi": "https://doi.org/10.1109/iceict55736.2022.9909509",
+   "citas": 5,
+   "resumen": "There are many problems in text detection, such as large scale differences of high-resolution image features and poor multi-scale feature fusion, we propose an improved algorithm based on dbnet. On the basis of the feature fusion module, we add a atrous Convolution network with kernel-shared pooling to increase the receptive field, so that higher-level semantic information can be obtained in the feature fusion network, and through the shared kernel, the number of model parameters can be reduced, the computational cost can be reduced, and the detection accuracy can be improved. At the same time, we add the attention mechanism into the residual network to suppress the complex background noise and promote the information interaction between channels. In the loss function, we use dice loss partially to solve the imbalance of positive and negative sample data. Our experimental evaluation is o"
+  },
+  {
+   "titulo": "Optical Character Recognition Method Based on YOLO Positioning and Intersection Ratio Filtering",
+   "anio": 2025,
+   "doi": "https://doi.org/10.3390/sym17081198",
+   "citas": 4,
+   "resumen": "Driven by the rapid development of e-commerce and intelligent logistics, the volume of express delivery services has surged, making the efficient and accurate identification of shipping information a core requirement for automatic sorting systems. However, traditional Optical Character Recognition (OCR) technology struggles to meet the accuracy and real-time demands of complex logistics scenarios due to challenges such as image distortion, uneven illumination, and field overlap. This paper proposes a three-level collaborative recognition method based on deep learning that facilitates structured information extraction through regional normalization, dual-path parallel extraction, and a dynamic matching mechanism. First, the geometric distortion associated with contour detection and the lightweight direction classification model has been improved. Second, by integrating the enhanced YOLOv5"
+  },
+  {
+   "titulo": "Pull Pole Points to Text Contour by Magnetism: A Real-Time Scene Text Detector",
+   "anio": 2025,
+   "doi": "https://doi.org/10.1109/tip.2025.3609196",
+   "citas": 4,
+   "resumen": "Scene text reading plays a crucial role in scene understanding. As its precondition task, scene text detection has garnered increasing interest from researchers. Segmentation-based text detection methods have gained prominence due to their adaptable pixel-level predictions. Many existing methods predict the shrink mask and utilize the Vatti clipping algorithm to reconstruct text contours. However, the shrink mask only focuses on the global geometry feature and shrinks the same distance everywhere, which neglects local contour information and disrupts the instance shape feature. In addition, the post-processing based on the Vatti clipping algorithm heavily relies on the predictions and is relatively complex, causing suboptimal performance in both detection accuracy and efficiency. To address the above problems, we propose an efficient and effective method named Magnetic Text Detector (MTD"
+  },
+  {
+   "titulo": "DQ-DETR: Dynamic Queries Enhanced Detection Transformer for Arbitrary Shape Text Detection",
+   "anio": 2023,
+   "doi": "https://doi.org/10.1007/978-3-031-41679-8_14",
+   "citas": 4,
+   "resumen": ""
+  },
+  {
+   "titulo": "Text detection method based on HDBNet in natural scenes",
+   "anio": 2022,
+   "doi": "https://doi.org/10.1049/tje2.12212",
+   "citas": 4,
+   "resumen": "To solve the problem of large expansion offset of text detection in natural scenes, a text detection method based on HDBNet is proposed. First, the probability map of the text region is obtained by segmenting the image. The binary map is obtained by using the differentiable binarization of the probability map. The bounding box of the text region can be obtained by looking for the connected region on the binary map. Then, aiming at the problem of large expansion offset of text detection in natural scenes, a scheme of height prediction is adopted to compensate for the expansion loss caused by the width‐to‐height ratio. Finally, experiments show that when the depth network structure is ResNet‐50, the Precision, Recall and F‐measure of the proposed HDBNet method in TD500 data set are 0.9196, 0.8058 and 0.8590, respectively. Moreover, in MLT data set, the Precision, Recall and F‐measure of th"
+  },
+  {
+   "titulo": "Text-Pass Filter: An Efficient Scene Text Detector",
+   "anio": 2026,
+   "doi": "https://doi.org/10.1109/tmm.2026.3668365",
+   "citas": 3,
+   "resumen": "To pursue an efficient text assembling process, existing methods detect texts via the shrink-mask expansion strategy. However, the shrinking operation loses the visual features of text margins and confuses the foreground and background difference, which brings intrinsic limitations to recognize text features. We follow this issue and design Text-Pass Filter (TPF) for arbitrary-shaped text detection. It segments the whole text directly, which avoids the intrinsic limitations. It is noteworthy that different from previous whole text region-based methods, TPF can separate adhesive texts naturally without complex decoding or post-processing processes, which makes it possible for real-time text detection. Concretely, we find that the band-pass filter allows through components in a specified band of frequencies, called its passband but blocks components with frequencies above or below this ban"
+  },
+  {
+   "titulo": "A text clarification and deep relational reasoning method for Mongolian-Chinese bilingual arbitrary-shaped scene text detection",
+   "anio": 2025,
+   "doi": "https://doi.org/10.1007/s44443-025-00101-7",
+   "citas": 3,
+   "resumen": "Text detection in natural scenes, as a prerequisite for text reading, has rapidly advanced across various industries. However, in Mongolian-Chinese bilingual text scenes, Mongolian text follows a top-to-bottom layout, while Chinese text is typically arranged from left to right. There is a lack of detection methods that effectively integrate both. To address this limitation, we propose a text detection method specifically designed for Mongolian-Chinese bilingual scenes in natural environments. To enable joint detection of Mongolian and Chinese text, our approach constructs a bold text outline map using classification and regression branches to extract keypoints and edges. In parallel, a refine text character map is generated by a component branch that predicts character-level bounding boxes. These two representations are organically integrated, allowing for bidirectional interaction betwe"
+  },
+  {
+   "titulo": "Text kernel expansion for real-time scene text detection",
+   "anio": 2024,
+   "doi": "https://doi.org/10.1007/s10044-024-01352-2",
+   "citas": 3,
+   "resumen": ""
+  },
+  {
+   "titulo": "Scene Text Detection Based on Multi-Headed Self-Attention Using Shifted Windows",
+   "anio": 2023,
+   "doi": "https://doi.org/10.3390/app13063928",
+   "citas": 3,
+   "resumen": "Scene text detection has become a popular topic in computer vision research. Most of the current research is based on deep learning, using Convolutional Neural Networks (CNNs) to extract the visual features of images. However, due to the limitations of convolution kernel size, CNNs can only extract local features of images with small perceptual fields, and they cannot obtain more global features. In this paper, to improve the accuracy of scene text detection, a feature enhancement module is added to the text detection model. This module acquires global features of an image by computing the multi-headed self-attention of the feature map. The improved model extracts local features using CNNs, while extracting global features through the feature enhancement module. The features extracted by both of these are then fused to ensure that visual features at different levels of the image are extr"
+  },
+  {
+   "titulo": "Real-Time Scene Text Detection Based on Global Level and Word Level Features",
+   "anio": 2022,
+   "doi": "https://doi.org/10.2139/ssrn.4056901",
+   "citas": 3,
+   "resumen": ""
+  },
+  {
+   "titulo": "Starnet-tex: lightweight real-time text detection via middle-order enhanced contextual attention",
+   "anio": 2025,
+   "doi": "https://doi.org/10.1007/s40747-025-02072-8",
+   "citas": 2,
+   "resumen": "In recent years, scene text detection has garnered significant academic attention due to its broad applications. Existing methods still struggle to efficiently achieve precise localization of arbitrary-shaped text in complex natural scenes, particularly facing notable challenges in balancing detection accuracy and inference speed. To address this issue, this paper proposes StarNet-Tex, a lightweight real-time scene text detection framework. First, we propose a Contextual Attention Tail module (CAT) to address the long-range dependency deficiencies in shallow backbone networks. It achieves this through synergistic multi-directional large-kernel receptive field expansion and local feature enhancement, ultimately constructing the lightweight backbone network StarCAN. Second, we design a Channel Aggregation Feature Pyramid (CAFP) with cascaded U-shaped structures, which enhances middle-order"
+  },
+  {
+   "titulo": "A Historical Handwritten French Manuscripts Text Detection Method in Full Pages",
+   "anio": 2024,
+   "doi": "https://doi.org/10.3390/info15080483",
+   "citas": 2,
+   "resumen": "Historical handwritten manuscripts pose challenges to automated recognition techniques due to their unique handwriting styles and cultural backgrounds. In order to solve the problems of complex text word misdetection, omission, and insufficient detection of wide-pitch curved text, this study proposes a high-precision text detection method based on improved YOLOv8s. Firstly, the Swin Transformer is used to replace C2f at the end of the backbone network to solve the shortcomings of fine-grained information loss and insufficient learning features in text word detection. Secondly, the Dysample (Dynamic Upsampling Operator) method is used to retain more detailed features of the target and overcome the shortcomings of information loss in traditional upsampling to realize the text detection task for dense targets. Then, the LSK (Large Selective Kernel) module is added to the detection head to d"
+  },
+  {
+   "titulo": "Optimal Kernel for Real-Time Arbitrary-Shaped Text Detection",
+   "anio": 2023,
+   "doi": "https://doi.org/10.1109/icassp49357.2023.10094734",
+   "citas": 2,
+   "resumen": "Recently, segmentation-based text detection methods develop rapidly, which achieve competitive accuracy and detection speed. However, these methods are hard to fit text instances accurately, which leads to the decrease of model performance. Meanwhile, the poor perception of the text center by the boundary pixels further affects the detection accuracy. We follow the issues and design an efficient framework for arbitrary-shaped text detection, which is constructed based on Optimal Kernel Representation (OKR) and Pixel Enhancement Module (PEM). Specifically, OKR is proposed to fit texts with optimal kernels. It erodes texts according to the corresponding geometric characteristics, which is simpler and more accurate compared with previous methods. PEM is used to enhance the perception of boundary pixels to the virtual character centers of text, thus improving the cohesion of the whole instan"
+  },
+  {
+   "titulo": "Deformable Kernel Expansion Model for Efficient Arbitrary-shaped Scene Text Detection",
+   "anio": 2023,
+   "doi": "https://doi.org/10.48550/arxiv.2303.15737",
+   "citas": 2,
+   "resumen": "Scene text detection is a challenging computer vision task due to the high variation in text shapes and ratios. In this work, we propose a scene text detector named Deformable Kernel Expansion (DKE), which incorporates the merits of both segmentation and contour-based detectors. DKE employs a segmentation module to segment the shrunken text region as the text kernel, then expands the text kernel contour to obtain text boundary by regressing the vertex-wise offsets. Generating the text kernel by segmentation enables DKE to inherit the arbitrary-shaped text region modeling capability of segmentation-based detectors. Regressing the kernel contour with some sampled vertices enables DKE to avoid the complicated pixel-level post-processing and better learn contour deformation as the contour-based detectors. Moreover, we propose an Optimal Bipartite Graph Matching Loss (OBGML) that measures the"
+  },
+  {
+   "titulo": "Bidirectional Regression for Arbitrary-Shaped Text Detection",
+   "anio": 2021,
+   "doi": "https://doi.org/10.1007/978-3-030-86337-1_13",
+   "citas": 2,
+   "resumen": ""
+  },
+  {
+   "titulo": "iShapeInst: A novel and effective instance segmentation for irregularly shaped objects",
+   "anio": 2025,
+   "doi": "https://doi.org/10.1016/j.neucom.2025.130183",
+   "citas": 1,
+   "resumen": ""
+  },
+  {
+   "titulo": "Optimization Algorithm of Visual Multimodal Text Recognition for Public Opinion Analysis Scenarios",
+   "anio": 2024,
+   "doi": "https://doi.org/10.1007/978-3-031-44947-5_97",
+   "citas": 1,
+   "resumen": ""
+  },
+  {
+   "titulo": "EF2Net: Better Extracting, Fusing and Focusing Text Features for Scene Text Detection",
+   "anio": 2023,
+   "doi": "https://doi.org/10.1109/ainit59027.2023.10212684",
+   "citas": 1,
+   "resumen": "Text detection in natural scene images is a chal-lenging task that requires localization and fitting of text regions. Currently, existing natural scene methods use fixed-size convolutional kernels to extract text instance features and have achieved good results. However, due to the extremely large aspect ratio of text regions in natural scenes, extracting features using fixed-size convolutional kernels introduces background noise, which affects the accuracy of text detection. In addition, complex backgrounds in natural scenes may cause text features in existing methods to be incorrectly detected as text, while small and ambiguous text may be missed in the detection. To address these challenges, first, we use a new backbone with multi-branch depth band convolution to better capture text features in large aspect ratios and multi-scale backgrounds. Then, we propose a novel FPN that can obta"
+  },
+  {
+   "titulo": "STDFormer: transformer-based network for arbitrary-shaped text detection in natural scenes",
+   "anio": 2023,
+   "doi": "https://doi.org/10.1117/12.2659991",
+   "citas": 1,
+   "resumen": "Natural scene text detection refers to locating and representing the text in natural scene images. The existing methods of natural scene text detection are based on convolutional neural network (CNN), but it is vulnerable to useless background noise in the process of extracting the features of curved text instances because the convolution kernel of CNN is fixed in size and rectangular in shape. In order to solve this problem, this paper proposes a novel Transformer-based Feature Fusion Module (TFFM) by integrating the transformer structure into feature pyramid network to reduce the influence of background noise in the process of feature fusion. On this basis, combined with the backbone and detection head of transformer structure, a network of natural scene text detection with full transformer structure is constructed. The method proposed in this paper achieves the state-of-the-art result"
+  },
+  {
+   "titulo": "Deformable Kernel Expansion Model for Efficient Arbitrary-Shaped Scene Text Detection",
+   "anio": 2023,
+   "doi": "https://doi.org/10.2139/ssrn.4676354",
+   "citas": 1,
+   "resumen": ""
+  },
+  {
+   "titulo": "Arbitrary-Shaped Text Detection With Watershed Segmentation Network",
+   "anio": 2022,
+   "doi": "https://doi.org/10.1109/smartworld-uic-atc-scalcom-digitaltwin-pricomp-metaverse56740.2022.00060",
+   "citas": 1,
+   "resumen": "Arbitrary-shaped text detection is an important task in computer vision which has achieved great success in text reading systems. However, there still exist several challenges to be solved. For example, the regression-based text detection methods always fail to fit highly-curved text contours accurately. While the semantic segmentation-based methods could fit any geometries accurately, most of them employ single-size convolution kernels which ignore the diversity of receptive fields. To tackle the above issues, we propose a Watershed Segmentation Network (WSS-Net) which consists of two stages. Firstly, the pixel-level predictions of masks including text regions mask and text kernel regions mask are generated by the semantic segmentation network, in which two strategies i.e., deepening feature fusion and expanding receptive field are designed. Thus, the generated region masks can fit the "
+  },
+  {
+   "titulo": "Arbitrary-Shaped Text Detection with Gaussian Probability Distance Distribution",
+   "anio": 2022,
+   "doi": "https://doi.org/10.1109/ccet55412.2022.9906393",
+   "citas": 1,
+   "resumen": "With the development of semantic segmentation, segmentation-based methods have yielded great success in detecting arbitrary-shaped texts. However, many existing text detection methods use binary discrete distributions to predict shrunk text instances, which cannot generate complete and accurate text bounding boxes. In this paper, we propose an arbitrary-shaped scene text detection method based on predicting Gaussian probability distance map of the complete text region, and this map can retain more text boundary information. Then, the boundary pixels are clustered into high-confidence text centers by a learnable post-processing and false positives are filtered out by pixel-level score maps. We also propose an adaptive channel enhancement module to improve the pixel-level segmentation accuracy. Experiments on three standard datasets, including CTW1500, Total-Text, and MSRA-TD500, demonstra"
+  },
+  {
+   "titulo": "Text Detection by Jointly Learning Character and Word Regions",
+   "anio": 2021,
+   "doi": "https://doi.org/10.1007/978-3-030-86549-8_20",
+   "citas": 1,
+   "resumen": ""
+  },
+  {
+   "titulo": "A shared-backbone detection-recognition framework for end-to-end industrial character reading",
+   "anio": 2026,
+   "doi": "https://doi.org/10.1016/j.engappai.2026.116571",
+   "citas": 0,
+   "resumen": ""
+  },
+  {
+   "titulo": "Research on an OCR-Based Identification Model for Low-Quality Cross-Border Logistics Invoices",
+   "anio": 2026,
+   "doi": "https://doi.org/10.15837/ijccc.2026.5.7060",
+   "citas": 0,
+   "resumen": "Due to complex transportation conditions, cross-border logistics invoices often suffer from image blur and irregular layouts, which makes information extraction challenging. To address this issue, this paper proposes an OCR (Optical Character Recognition)-based recognition approach for crossborder logistics invoices. The proposed framework consists of two main stages: text detection and text recognition. To improve precision and adaptability in both stages, targeted enhancements are introduced. In the text detection stage, the ACMix module is integrated into the backbone of DBNet to strengthen the detection of small and irregular text regions. By combining the local feature modeling capability of convolution with the global context modeling ability of attention, the detection performance on long text and complex backgrounds is effectively improved. In the text recognition stage, Inceptio"
+  },
+  {
+   "titulo": "MVR: Diffusion-Based Multi-View Reasoning for Scene Text Detection",
+   "anio": 2026,
+   "doi": "https://doi.org/10.1007/978-3-032-36033-5_4",
+   "citas": 0,
+   "resumen": ""
+  },
+  {
+   "titulo": "ASM-DBNet: Introducing Adaptive Differentiable Binarization, Spatial-Channel Self-Attention and Multi-Scale Context-Enhanced Dynamic Upsampling for Natural Scene Text Detection",
+   "anio": 2026,
+   "doi": "https://doi.org/10.3390/info17060585",
+   "citas": 0,
+   "resumen": "Text detection models based on DBNet have demonstrated strong performance in natural scene text detection. However, these models still suffer from the following three issues. Firstly, the amplifying factor hyperparameter in the differentiable binarization (DB) makes it difficult for the text detection model to achieve optimal performance. Secondly, the integration of low-level and high-level features within the backbone’s feature pyramid lacks specific optimization strategies. Thirdly, the deconvolution operation in the prediction head may damage text contours. To tackle the aforementioned issues, this paper presents a text detection model termed ASM-DBNet, which mainly consists of three innovations. For the first issue, an adaptive differentiable binarization (ADB) scheme is proposed. It can independently predict amplifying factor for feature points at different spatial locations and re"
+  },
+  {
+   "titulo": "An Optional 2D Feature Scene Text Recognition Network Based on Transformer",
+   "anio": 2025,
+   "doi": "https://doi.org/10.1007/978-981-95-3729-7_14",
+   "citas": 0,
+   "resumen": ""
+  },
+  {
+   "titulo": "Compensating for the Incomplete With the Complete: An Efficient Scene Text Detector",
+   "anio": 2025,
+   "doi": "https://doi.org/10.1109/tcsvt.2025.3588711",
+   "citas": 0,
+   "resumen": "Scene text reading is an essential component of scene understanding. As its fundamental requirement, text detection has garnered increasing attention. Segmenting the text kernel and extending it to reconstruct text instances is efficient and effective among the various methods. However, the incomplete semantic features of text kernels and the high similarity between kernels and texts make it hard to extract kernels from images accurately. Considering the above, we propose an efficient text detector, termed CIC, which comprises a bidirectional information transfer module (BITM), a dual knowledge integration module (DKIM), and a cross-verification module (CVM). The former generates collaborative information between the predicted text and kernel via the proposed differentiable adaptive gap operator. It forces mutual restraint and collaborative progress between the predictions of text and ke"
+  },
+  {
+   "titulo": "Arbitrary-Shaped Text Detection with Hierarchical Feature Refinement and Nonlinear-Enhanced Transformers",
+   "anio": 2025,
+   "doi": "https://doi.org/10.1109/ijcnn64981.2025.11229105",
+   "citas": 0,
+   "resumen": "Detecting arbitrary-shaped scene text is a challenging task due to the irregularities in font, size, color, orientation, and shape, which often lead to detection errors. In this paper, we propose a novel boundary-learning-based, coarse-to-fine text detection network that combines the strengths of CNNs and Transformers. Specifically, we introduce two key components: the Hierarchical Feature Refinement Network (HFRNet) and the Nonlinear-Enhanced Transformer Module (NETM). HFRNet enhances multi-scale feature extraction, improving the detection of text at various scales through dynamic convolution kernel sampling and attention mechanisms. This enables better adaptation to spatial scale variations and geometric deformations. NETM, on the other hand, leverages multi-head self-attention and nonlinear feature mapping to improve the representation of complex sequential data, allowing for more acc"
+  },
+  {
+   "titulo": "Advanced Methods for Text Detection and Recognition in Customs Declaration Forms: The EFF-DBNet and SKSVTR",
+   "anio": 2025,
+   "doi": "https://doi.org/10.1109/cscwd64889.2025.11033246",
+   "citas": 0,
+   "resumen": "Customs documents contain a large amount of information. The image quality of customs declaration forms is often poor, with issues such as blurred characters, missing strokes, stroke merging, and noise contamination, which increase the difficulty of detection and recognition. Previous approaches for text detection and recognition have already achieved promising performances across various benchmarks. However, they usually fall short when dealing with customs declaration forms. In this paper, we propose EFF-DBNet, an efficient text detector, and SKSVTR, an advanced text recognition model. In the detection stage, we redesign the network based on the DBNet. We introduce the Efficient Channel Attention to extract features from image and utilize Feature Pyramid Enhancement Modules (FPEMs) for feature enhancement, then use a Feature Fusion Module to gather the features given by FPEMs of differ"
+  },
+  {
+   "titulo": "Bionic model of blood cell segmentation based on impulse image transformation",
+   "anio": 2024,
+   "doi": "https://doi.org/10.2478/pjmpe-2024-0027",
+   "citas": 0,
+   "resumen": "Introduction: The relevance of the proposed topic is determined by the high incidence of hematopoietic system diseases and the lack of a clear understanding at the cytological level of their mechanisms and correction methods. The purpose of the article is to create images of blood cells using mathematical modelling. Materials and Methods: To achieve the defined goal, fundamental research methods were utilized, among which the method of mathematical modelling played a significant role, employed in creating a bionic model of blood cells. Results: The results of this study have indicated that the task of recognizing blood cells in complex images poses a significant challenge in the field of medicine. Such tasks are complicated by the transparency of cells compared to the buffer solution, uneven thickness of the blood smear, and varying staining of the smear. Therefore, there is a need to im"
+  },
+  {
+   "titulo": "Deformable Kernel Expansion Model for Efficient Arbitrary-shaped Scene Text Detection",
+   "anio": 2024,
+   "doi": "https://doi.org/10.21203/rs.3.rs-3987003/v1",
+   "citas": 0,
+   "resumen": "Scene text detection is a challenging computer vision task due to the high variation in text shapes and ratios. In this work, we propose a real-time arbitrary-shaped scene text detector named Deformable Kernel Expansion (DKE), which incorporates the merits of both segmentation and contour-based detectors. DKE employs a segmentation module to segment the shrunken text region as the text kernel, then expands the kernel to obtain text boundary by regressing the vertex-wise offsets. Generating the text kernel by segmentation enables DKE to inherit the arbitrary-shaped text region modeling capability of segmentation-based detectors. Regressing the kernel with control points enables DKE to avoid the complicated pixel-level post-processing and better learn contour deformation as the contour-based detectors. Moreover, we propose an Optimal Bipartite Graph Matching Loss that measures the matching"
+  },
+  {
+   "titulo": "层级语义融合的场景文本检测",
+   "anio": 2023,
+   "doi": "https://doi.org/10.11834/jig.220902",
+   "citas": 0,
+   "resumen": "MSRA-TD500（MSRA text detection 500 database）数据集上，F值为88.2%，相比其他模型提升了1.0%；在ICDAR 2015（International Conference on Document Analysis and Recognition）数据集上，F值为87.0%。结论 提出的模型通过分别构建不同层级下的语义上下文和对歧义特征额外的惩罚解决了层级语义提取不充分的问题，获得了更高的检测精度。;Objective Scene-related text detection is essential for computer vision，which aims to localize text instances for targeted image. It is beneficial for such domain of text recognition applications like scene understanding，translation and text visual question answering. The emerging deep learning based convolution neural network（CNN）has been widely developing in relevance to text detection nowadays. Current researches are focused on texts location in terms of the regression of the quadrangular bounding box. However，since regression based methods unfit texts with arbitrary shapes（e. g. ， curved texts），many approaches focus on segmentation based methods. Fully convolution"
+  },
+  {
+   "titulo": "Find More Accurate Text Boundary for Scene Text Detection",
+   "anio": 2022,
+   "doi": "https://doi.org/10.1109/icpr56361.2022.9956596",
+   "citas": 0,
+   "resumen": "Arbitrary shape text detection is still an open problem due to several challenges, e.g., dense text adhesion, various sizes, and noises. In this work, we propose a novel scene text detection network by extracting and connecting a set of points on the boundary of each text instance. Our method mainly consists of three branches, including text center line (TCL) prediction, text orientation (TO) prediction, and text boundary offset (TBO) prediction to get the text boundary point proposals. Utilize these proposals, and the final refinement results can be obtained by point sampling and graph attention network(GAT). The detector can overcome the text instance sticking problem with these text boundary representations. Additionally, we propose distance-based dice loss and instance-aware L1loss to remove false positives and get over various text sizes on text boundary offset prediction respective"
+  },
+  {
+   "titulo": "Adaptive Shrink-Mask for Text Detection",
+   "anio": 2021,
+   "doi": "https://doi.org/10.48550/arxiv.2111.09560",
+   "citas": 0,
+   "resumen": "Existing real-time text detectors reconstruct text contours by shrink-masks directly, which simplifies the framework and can make the model run fast. However, the strong dependence on predicted shrink-masks leads to unstable detection results. Moreover, the discrimination of shrink-masks is a pixelwise prediction task. Supervising the network by shrink-masks only will lose much semantic context, which leads to the false detection of shrink-masks. To address these problems, we construct an efficient text detection network, Adaptive Shrink-Mask for Text Detection (ASMTD), which improves the accuracy during training and reduces the complexity of the inference process. At first, the Adaptive Shrink-Mask (ASM) is proposed to represent texts by shrink-masks and independent adaptive offsets. It weakens the coupling of texts to shrink-masks, which improves the robustness of detection results. Th"
+  },
+  {
+   "titulo": "A Position-Sensitive Regression Network for Multi-Oriented Scene Text Detection",
+   "anio": 2021,
+   "doi": "https://doi.org/10.1109/ccet52649.2021.9544344",
+   "citas": 0,
+   "resumen": "Over the past few years, scene text detection has attracted significant attention, and numerous efficient multi-oriented scene text detectors have emerged. However, there still exist challenges while detecting the long text instance due to the limitation of the receptive field. In this work, we propose a position-sensitive regression network, which predicts three scores of each pixel according to whose relative position in the text instance, representing text core, head, and tail, respectively. Only the pixel belongs to text head or tail is used for predicting the vertex coordinates offset to form the text bounding boxes, which is able to improve the accuracy of detecting the long text instance. In post-processing, we propose a text line reconstruction module (TLRM) to alleviate the effect of missing prediction of the head or tail of the text instance. Experiments on ICDAR 2015 and MSRA-"
+  },
+  {
+   "titulo": "An Accurate Threshold Insensitive Kernel Detector for Arbitrary Shaped Text",
+   "anio": 2021,
+   "doi": "https://doi.org/10.1109/icpr48806.2021.9412325",
+   "citas": 0,
+   "resumen": "Recently, segmentation-based methods are popular in scene text detection due to the segmentation results that can easily represent scene text of arbitrary shapes. However, previous works view text instances as normal objects. It is obvious that the edge of text differs from normal objects. In this paper, we propose a threshold insensitive kernel detector for arbitrary shaped text called TIKD, which includes a simple but stable base model and a new learning weight called Decay Loss Weight (DLW). By suppressing outlier pixels in a gradual way, DLW can lead the network to learn more accurate text instances. Our method shows great power in accuracy and stability. It is worth mentioning that we achieve the precision, recall, f-measure of 88.7%, 83.7%, 86.1% respectively on the Total-Text dataset, with a fast speed of 16.3 frames per second. What's more, even if we set the threshold in an extr"
+  }
+ ]
+}
