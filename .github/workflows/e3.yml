@@ -1,0 +1,33 @@
+# Integración continua del Entregable 3: pruebas unitarias del modelo original (src/original_model.py y
+# src/geometria_at.py), de la secuencia de Colab y del orquestador, y verificación de los documentos congelados.
+# Mismas versiones que el entrenamiento (requirements-train.txt), en CPU. El dashboard tiene su propio CI en
+# github.com/ddcarbono/hazmat13-e3.
+name: e3-pruebas
+
+on:
+  push:
+    paths: ["e3/**", ".github/workflows/e3.yml"]
+  pull_request:
+    paths: ["e3/**", ".github/workflows/e3.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11.9"
+      - name: dependencias (CPU)
+        run: |
+          pip install --index-url https://download.pytorch.org/whl/cpu torch==2.5.1
+          pip install numpy==1.26.4 opencv-python-headless==4.11.0.86 scipy==1.15.2 onnx==1.17.0 onnxruntime==1.20.1 pytest==8.3.3
+      - name: documentos congelados (etiqueta e3-protocolo-v2)
+        run: python e3/experiments/verificar_congelamiento.py
+      - name: pruebas del modelo original, la secuencia y el orquestador
+        run: python -m pytest -q e3/tests/test_original_model.py e3/tests/test_secuencia_e3.py e3/tests/test_orquestador_e3.py
