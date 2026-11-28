@@ -52,7 +52,9 @@ def test_ejecucion_secuencial_y_reanudacion(tmp_path,monkeypatch,fails):
 
 
 def test_lanzador_autocontenido_y_transformaciones():
-    source=(ROOT/'E3_CONTINUAR_EN_ESTA_MAQUINA.py').read_text(encoding='utf-8')
+    launcher=ROOT/'E3_CONTINUAR_EN_ESTA_MAQUINA.py'
+    if not launcher.exists():launcher=ROOT/'e3/continuidad/E3_CONTINUAR_EN_ESTA_MAQUINA.py'
+    source=launcher.read_text(encoding='utf-8')
     tree=ast.parse(source)
     notebooks=next(ast.literal_eval(n.value) for n in tree.body if isinstance(n,ast.Assign)
                    and isinstance(n.targets[0],ast.Name) and n.targets[0].id=='NOTEBOOKS')

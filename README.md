@@ -1,5 +1,7 @@
 # Deep Learning IMO
 
+**Último corte recibido: [042640 — SegFormer y compactas completos; 90/120 corridas verificadas](e3/continuidad/corte_042640/LEER_PRIMERO.md).** Rivales A y B pendientes. Incluye actualización de checkpoints y reconstrucción verificada del paquete completo.
+
 - **Entregable 3, avance:** [guía de continuidad para Daniel](e3/CONTINUAR_DANIEL.md).
 - **Resultados recibidos:** 20 corridas del original y 9 de SegFormer; validación, curvas y limitaciones en [el capítulo correspondiente](e3/book/18_avance_colab.md).
 - **Libro HTML:** [descargas del avance](https://github.com/luisperez03/Deep_Learning_IMO/releases/tag/e3-avance-20261127), archivo `libro_e3_html.zip`.

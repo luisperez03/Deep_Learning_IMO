@@ -1,5 +1,7 @@
 # Continuidad del E3 — corte del 27 de noviembre de 2026
 
+> **Estado posterior disponible:** [corte 20261128T042640Z](continuidad/corte_042640/LEER_PRIMERO.md): SegFormer y compactas completos, 90/120 corridas verificadas. Usar esa guía para continuar; los recuentos de 74/120 y SegFormer 9/10 siguientes describen el corte anterior.
+
 ## Qué está listo
 
 - Libro fuente en `book/`; versión HTML en `../docs/e3/` y ZIP descargable del release.

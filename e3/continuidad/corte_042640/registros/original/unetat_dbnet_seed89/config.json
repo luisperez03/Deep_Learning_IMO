@@ -1,0 +1,110 @@
+{
+  "fingerprint": "259efadd1a29aaf3bdd6ed4c42f55299f7154be554b7ff3de143f9b2e18b29ac",
+  "name": "unetat_dbnet",
+  "seed": 89,
+  "config": {
+    "schema": 2,
+    "experiment": "e2_arquitecturas_reales_v2",
+    "pretrained": false,
+    "size": 256,
+    "batch_size": 2,
+    "epochs": 30,
+    "patience": 5,
+    "seeds": [
+      11,
+      23,
+      37,
+      53,
+      71
+    ],
+    "threshold": 0.5,
+    "loss": "0.5_BCEWithLogits_plus_0.5_softDice_per_image_valid",
+    "pidnet_aux_weight": 0.4,
+    "pidnet_boundary_weight": 1.0,
+    "models": {
+      "fcn": {
+        "optimizer": "Adam",
+        "lr": 0.001,
+        "weight_decay": 0.0
+      },
+      "segnet": {
+        "optimizer": "Adam",
+        "lr": 0.001,
+        "weight_decay": 0.0
+      },
+      "unet": {
+        "optimizer": "Adam",
+        "lr": 0.001,
+        "weight_decay": 0.0
+      },
+      "deeplabv3plus": {
+        "optimizer": "AdamW",
+        "lr": 0.0005,
+        "weight_decay": 0.01
+      },
+      "unetplusplus": {
+        "optimizer": "Adam",
+        "lr": 0.0005,
+        "weight_decay": 0.0
+      },
+      "pidnet_s": {
+        "optimizer": "AdamW",
+        "lr": 0.001,
+        "weight_decay": 0.01
+      },
+      "segnext_t": {
+        "optimizer": "AdamW",
+        "lr": 0.0001,
+        "weight_decay": 0.01
+      },
+      "segformer_b0": {
+        "optimizer": "AdamW",
+        "lr": 6e-05,
+        "weight_decay": 0.01
+      },
+      "transunet_2d": {
+        "optimizer": "SGD",
+        "lr": 0.001,
+        "momentum": 0.9,
+        "weight_decay": 0.0001
+      },
+      "vmunet": {
+        "optimizer": "AdamW",
+        "lr": 0.001,
+        "weight_decay": 0.01
+      }
+    }
+  },
+  "identity": {
+    "e3": "a7a486a5d189108f92aebd0c79eb69d8c5d8d978045efb4d8ac8440d7bd8419a",
+    "e2_arnes": "aad2e456f4a55e3160b2e79f4293460b6e30c9adaeeb8136cb60251c08ee0fb2",
+    "opencv": "4.11.0",
+    "data": "bb4cae7843e9705215bba7a79b1186fab1a0c88cc89130d331793ee5339f5466"
+  },
+  "environment": {
+    "packages": {
+      "torch": "2.5.1+cu121",
+      "torchvision": "0.20.1+cu121",
+      "numpy": "1.26.4",
+      "Pillow": "11.1.0",
+      "segmentation-models-pytorch": "0.5.0",
+      "timm": "1.0.15",
+      "scipy": "1.15.2",
+      "ml-collections": "1.0.0",
+      "einops": "0.8.1",
+      "mamba-ssm": null,
+      "causal-conv1d": null,
+      "triton": "3.1.0",
+      "transformers": null
+    },
+    "python": "3.11.11",
+    "cuda": "12.1",
+    "device": "Tesla T4"
+  },
+  "modelo": {
+    "k": 50.0,
+    "cabeza": "1x1",
+    "g0": 0.0,
+    "perdida": "5*Ls + 10*Lt + Lb"
+  }
+}
