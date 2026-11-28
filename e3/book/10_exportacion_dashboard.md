@@ -29,6 +29,25 @@ Dash organiza páginas de contexto, EDA y modelos. Los resultados históricos se
 
 En el equipo de trabajo, `ABRIR_DASHBOARD.cmd` conecta el paquete local y sirve el tablero en `http://[::1]:8051/modelos`. Se verificaron respuestas HTTP 200 de página, layout, callbacks y estilos. El servidor debe permanecer activo. Las 29 pruebas de aplicación, consistencia, inferencia y comparador aprobaron antes de esta revisión editorial. Esta comprobación local no acredita un despliegue público.
 
-## Pendientes de entrega
+## Despliegue publicado
 
-La ficha ya está disponible en `assets/ficha_modelo.html`. Faltan los artefactos finales de la campaña, la integración de VM-UNet en la demostración y la inferencia en vivo del original, los autores definitivos y la verificación del despliegue publicado. `render.yaml` prepara una configuración, pero no prueba que Render haya ejecutado la aplicación. La galería pública también depende de resolver los permisos de redistribución de fotografías.
+El tablero está publicado en <https://hazmat13-e3.onrender.com>, desde el repositorio
+[ddcarbono/hazmat13-e3](https://github.com/ddcarbono/hazmat13-e3) (licencia MIT, Python 3.11.9, versiones exactas,
+Dockerfile). Cada cambio corre las pruebas, construye el contenedor y pasa la prueba de humo contra él; la prueba de humo
+contra el servicio publicado está en {ref}`sec-anexo-humo`.
+
+La página Modelos sigue el orden de la sustentación en cuatro pestañas:
+
+1. **Benchmark:** tabla de las diez redes y del referente, IC por grupos, Pareto, diferencia crítica y Dice por tamaño.
+2. **Modelo original:** mecanismo, hipótesis congelada, validación de las diez semillas por brazo y curvas.
+3. **Validación estadística:** diferencias pareadas por semilla entre UNet-AT y su base, con Wilcoxon exacto e IC
+   bootstrap, y la potencia del diseño con su diferencia mínima detectable.
+4. **Predicción en vivo:** carga de una fotografía propia (FCN o U-Net a0498 en ONNX Runtime, CPU), con explicación
+   local opcional por oclusión: se tapa cada parche del lienzo de 256 px con el gris de entrenamiento y se mide cuánto
+   cae la probabilidad media dentro de la máscara predicha. Parches de 32 px en FCN y de 64 px en U-Net, para que la
+   explicación quepa en el límite de 120 s del servidor gratuito. Incluye el diagnóstico por caso y el comparador de
+   test.
+
+En el sitio publicado no están la galería del EDA ni el comparador de test, porque necesitan las fotografías del
+conjunto, que no se redistribuyen; en local se conectan con variables de entorno. Siguen fuera de la aplicación la
+inferencia en vivo del original y la integración de VM-UNet en la comparación.

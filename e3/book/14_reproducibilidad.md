@@ -41,7 +41,8 @@ El libro usa resultados livianos y no entrena modelos al compilar. La demostraci
 
 ## Lista recuperada del plan inicial
 
-La tabla siguiente conserva el plan inicial como antecedente. Sus recetas uniformes, estimaciones de cómputo, hardware previsto y estados pendientes no sustituyen la secuencia v4 ni un registro de ejecución. El tag de congelamiento y la reproducción independiente todavía deben verificarse.
+La tabla siguiente conserva el plan inicial como antecedente. Sus recetas uniformes, estimaciones de cómputo, hardware previsto y estados pendientes no sustituyen la secuencia v4 ni un registro de ejecución. El congelamiento quedó verificado contra la etiqueta `e3-protocolo-v2`, y la reproducción
+independiente de las cifras publicadas está en {ref}`sec-anexo-reproduccion`.
 
 
 ```{list-table} Lista de verificación de reproducibilidad
@@ -76,8 +77,8 @@ La tabla siguiente conserva el plan inicial como antecedente. Sus recetas unifor
   - HAZMAT-13: enlace y huellas en la declaración de datos; no se redistribuyen imágenes
   - `data/DATA_STATEMENT.md`
 * - Código
-  - Pendiente: URL del repositorio y etiqueta `e3-protocolo` (sin commit ni push hasta el visto bueno del equipo). SHA-256 de los módulos del original
-  - `experiments/procedencia.md`
+  - <https://github.com/luisperez03/Deep_Learning_IMO>, licencia MIT. Protocolo congelado con la etiqueta `e3-protocolo-v2` (2026-11-24, antes de las corridas); `experiments/verificar_congelamiento.py` comprueba en CI que protocolo, estándar, procedencia y bitácora no cambiaron. Reproducción independiente en {ref}`sec-anexo-reproduccion`
+  - `experiments/procedencia.md`, `experiments/verificar_congelamiento.py`
 * - Tiempo de cómputo
   - Medido: 3,28 h de L4 por semilla de los rivales (E2). Estimado: unas 20 h de L4 para el E3 (semillas 6 a 10 de los rivales, dos brazos del original con 10 semillas, búsqueda)
   - `plan.md`, sección Cómputo

@@ -1,0 +1,49 @@
+{
+ "fecha_utc": "2026-11-28T04:33:21+00:00",
+ "python": "3.13.12",
+ "numpy": "2.3.5",
+ "pandas": "2.3.3",
+ "comprobaciones": [
+  {
+   "nombre": "generar_tabla_maestra.py en entorno limpio",
+   "ok": true,
+   "salida": "OK <tmp>/data\\tabla_maestra.csv (12 filas)\n"
+  },
+  {
+   "nombre": "tabla maestra = repositorio del proyecto",
+   "contra": "e3/data/tabla_maestra.csv",
+   "filas": 11,
+   "celdas": 154,
+   "modelos_distintos": [],
+   "diferencias": [],
+   "ok": true
+  },
+  {
+   "nombre": "tabla maestra = dashboard publicado",
+   "contra": "dashboard data/tabla_maestra.csv",
+   "filas": 11,
+   "celdas": 154,
+   "modelos_distintos": [],
+   "diferencias": [],
+   "ok": true
+  },
+  {
+   "nombre": "validación del original desde avance_colab_corridas.csv",
+   "ok": true,
+   "diferencia_pareada": -0.021450919145790382,
+   "diferencias": []
+  },
+  {
+   "nombre": "documentos congelados (e3-protocolo-v2)",
+   "ok": true,
+   "salida": [
+    "IGUAL     protocolo.md c3d7d85cfdaaa8d82dbe6720c27d13b412ad2291963d13f5b2ef166033cbf24e",
+    "IGUAL     estandar.md 31e1b6634e8a5eb92a04cd83c8c64d5f243f2c67fba204923c4e8f30160996b3",
+    "IGUAL     procedencia.md b7714c907aa4b8752fc4ba1388aac0d63afc60cec58e9637a9ed4d94b7a71971",
+    "IGUAL     design_log.md de3553bae1be27fe2c7d1ce671332b40dab92ce4bc7f42f6d43309f70a2bfb49"
+   ]
+  }
+ ],
+ "aprobadas": 5,
+ "total": 5
+}
