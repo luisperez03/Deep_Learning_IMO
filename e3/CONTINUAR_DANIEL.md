@@ -25,6 +25,7 @@ Release de avance: `https://github.com/luisperez03/Deep_Learning_IMO/releases/ta
 1. `tesis_imo_e3_secuencia_v4-20261128T013803Z-1-001.zip`: paquete recibido, con checkpoints y estados para continuar. Extraerlo en una carpeta propia; no sobrescribir una campaña más reciente.
 2. `artefactos_dashboard_e3.zip`: extraer desde la raíz del repositorio; crea `e3/artifacts/` con pesos de inferencia y máscaras verificadas.
 3. `libro_e3_html.zip`: extraer y abrir `intro.html` para leer el libro sin servidor Dash.
+4. `original_e3_20_corridas.zip`: descarga alternativa de 34 MB con solo el original. Es un subconjunto del paquete completo; no hace falta descargar ambos para trabajar con ese modelo.
 
 Las huellas de los paquetes están en `continuidad/*.sha256`. Los registros ligeros recibidos se conservan en
 `continuidad/registros_colab/`; contienen rutas del entorno de origen que deben adaptarse al equipo receptor.
