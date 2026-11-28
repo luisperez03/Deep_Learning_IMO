@@ -61,7 +61,12 @@ ax.set_xlabel("Coeficiente de Dice en test (adimensional, 0 a 1)")
 ax.set_ylabel("Red")
 ax.set_title("Figura 1. Dice en test por red (media sobre semillas; IC 95 % por grupos)")
 fig.tight_layout()
-plt.show()
+from io import BytesIO
+from IPython.display import Image
+buffer = BytesIO()
+fig.savefig(buffer, format="png", dpi=150, bbox_inches="tight")
+display(Image(data=buffer.getvalue()))
+plt.close(fig)
 ```
 
 *Figura 1.* Dice por grupo en test de cada red. Las filas sin valor (el modelo original) no se dibujan hasta que existan

@@ -37,7 +37,7 @@ La secuencia v4 y el lanzador único conservan checkpoints por época y permiten
 
 La campaña prevista comprende 120 corridas: 20 del original y 100 de rivales. Las 55 nuevas de rivales completan las compactas y corrigen SegFormer; no basta añadir cinco semillas indiscriminadamente a cada resultado histórico. La auditoría y las predicciones de validación son etapas separadas. Los tiempos finales, aceleradores realmente asignados y resultados deben leerse de sus registros, sin asumir que todas las sesiones usarán L4.
 
-El libro usa resultados livianos y no entrena modelos al compilar. La demostración de test contiene 1.962 máscaras verificadas de nueve redes; su inventario está en `data/demo_test_verificacion.json`. Las fotografías permanecen en el paquete local. La aplicación utiliza `http://[::1]:8051/modelos` en este equipo.
+El libro usa resultados livianos y no entrena modelos al compilar. La demostración de test contiene 2.180 máscaras verificadas de diez redes; su inventario está en `data/demo_test_verificacion.json`. Las fotografías permanecen en el paquete local. La aplicación utiliza `http://[::1]:8051/modelos` en este equipo.
 
 ## Lista recuperada del plan inicial
 

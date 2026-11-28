@@ -17,9 +17,9 @@ con una conclusión científica. Estado: 27 de noviembre de 2026.
 | Benchmark histórico E2 | Tabla, dispersión e intervalos de diez redes | Conservar su identificación histórica |
 | Compactas a0498 | Quince pesos verificados; FCN/U-Net ONNX y SegNet TorchScript | Incorporar campaña y evaluación finales |
 | Geometría del original | 21 comparaciones ampliadas; OpenCV fijado | Revisión formal y recuperación del código histórico faltante |
-| Entrenamiento del original | Piloto y prueba reducida de reanudación | Auditar las veinte corridas de ambos brazos |
+| Entrenamiento del original | Veinte corridas recibidas y verificadas; curvas en el capítulo siguiente | Completar evaluación final y ablaciones |
 | Rivales E3 | Secuencia preparada para completar cien corridas | Verificar semillas, recetas, hashes y curvas |
-| Comparación visual | Nueve redes, 218 casos por red; manifiestos verificados | Integrar VM-UNet y el original |
+| Comparación visual | Diez redes, 218 casos por red; manifiestos verificados | Integrar VM-UNet |
 | Estadística, ablación y robustez | Protocolo y capítulos preparados | Incorporar resultados, efectos, intervalos y supuestos |
 | Reproducibilidad | Fuentes locales, registros y construcción del libro | Reproducción independiente y versión pública identificable |
 | Evaluación adicional y novedad | Requisitos y limitaciones documentados | Ejecutar los conjuntos adicionales y completar revisión |

@@ -11,7 +11,7 @@ Las menciones a evaluación pendiente se refieren al cierre final, no a la ausen
 
 El benchmark E2 proporciona una referencia reproducible de diez redes. El mayor Dice puntual corresponde a una arquitectura considerablemente más grande que la FCN histórica. Esto justifica estudiar conjuntamente segmentación, dispersión, tamaño y costo de inferencia, sin confundir orden de medias con superioridad.
 
-Se recuperaron y verificaron quince checkpoints de las compactas a0498. FCN y U-Net superaron la comprobación ONNX en validación; SegNet conserva un respaldo TorchScript verificado. El tablero local compara nueve redes sobre los 218 casos de test y distingue resultados históricos, artefactos seleccionados y predicciones pendientes.
+Se recuperaron y verificaron quince checkpoints de las compactas a0498. FCN y U-Net superaron la comprobación ONNX en validación; SegNet conserva un respaldo TorchScript verificado. El tablero local compara diez redes sobre los 218 casos de test y distingue resultados históricos, artefactos seleccionados y predicciones pendientes.
 
 La discrepancia geométrica se reprodujo y se explicó por la versión de rasterización de OpenCV, sin relajar la tolerancia. Esto resuelve un problema de reproducibilidad de la implementación; no prueba eficacia del mecanismo ni novedad.
 
