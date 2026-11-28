@@ -54,7 +54,7 @@ máscaras idénticas y diferencia de Dice cero. Este respaldo requiere PyTorch y
 en el dashboard ONNX ni constituye una prueba de despliegue en Render.
 La probabilidad no está calibrada y no se presenta como una garantía de seguridad portuaria.
 Los resultados históricos de test del E2 permanecen identificados como históricos: no se atribuyen
-a las nuevas arquitecturas a0498. Las diez semillas del E3, el original y la evaluación ampliada siguen pendientes.
+a las nuevas arquitecturas a0498. El cierre de diez semillas de todos los rivales y la evaluación ampliada siguen pendientes. Las veinte corridas principales del original ya están integradas en {ref}`sec-avance-colab`.
 
 Reproducción: ejecutar el exportador con `--compactas`, `--modelos fcn unet segnet` y las rutas
 del E2, datos y pesos; después ejecutar `experiments/integrar_compactas_e3.py`.

@@ -17,9 +17,7 @@ Las menciones a evaluación pendiente se refieren al cierre final, no a la ausen
 DBNet {cite:p}`liao2020dbnet` sobre la U-Net compacta del benchmark, con dos reglas propias: encogimiento atenuado por
 grosor (C1) y expansión consistente en inferencia (C2). El argumento de inversión en polígonos convexos se presenta con sus supuestos en {ref}`sec-teorema`; su revisión formal y la revisión de novedad permanecen pendientes.
 
-**Resultados.** Pendiente: la comparación del original con los diez rivales, la ablación y la robustez dependen de
-entrenar los dos brazos del original con 10 semillas (bloque D del plan). El benchmark de los rivales sale de los
-resultados del E2 ({ref}`sec-resultados`).
+**Resultados disponibles.** Diez semillas por brazo del original: Dice medio de validación 0,7862 para UNet-AT y 0,8077 para la base. SegFormer corregido tiene nueve semillas y media provisional 0,8090. Las curvas y la dispersión están en {ref}`sec-avance-colab`. La evaluación final, la ablación y la robustez siguen abiertas. El benchmark histórico de test se conserva por separado ({ref}`sec-resultados`).
 
 **Alcance y límites.** No hay evaluación integrada en tres conjuntos adicionales. La potencia recuperada usa una referencia anterior y debe revisarse con las configuraciones seleccionadas y evidencia del original. Diez semillas no garantizan potencia de 0,90. La evidencia actual no acredita R3 ({ref}`sec-limitaciones`).
 
